@@ -1,5 +1,12 @@
 package com.github.croesch;
 
+import org.apache.log4j.Logger;
+
+import com.github.croesch.actions.ActionObserver;
+import com.github.croesch.actions.UserAction;
+import com.github.croesch.controller.CoreController;
+import com.github.croesch.i18n.Text;
+
 /**
  * partimana - a program to manage camps and their participants. <br>
  * <br>
@@ -17,7 +24,13 @@ package com.github.croesch;
  * @author croesch
  * @since Date: May 29, 2011 12:09:44 PM
  */
-public class PartiMana {
+public final class PartiMana implements ActionObserver {
+
+  /** logging class */
+  private final Logger log = Logger.getLogger(PartiMana.class);
+
+  /** indicator if the program should exit or is still running */
+  private boolean running = true;
 
   /**
    * Starts the manager.
@@ -27,7 +40,39 @@ public class PartiMana {
    * @param args possible command line arguments
    */
   public static void main(final String[] args) {
-    // TODO Auto-generated method stub
+    new PartiMana(args);
+  }
+
+  /**
+   * PartiMana main program.
+   * 
+   * @author croesch
+   * @since Date: May 29, 2011 3:41:57 PM
+   * @param args arguments that came from command line
+   */
+  public PartiMana(final String[] args) {
+    this.log.debug(Text.DEBUG_PROGRAM_STARTING.text());
+    this.log.debug(Text.DEBUG_SELECTED_LANGUAGE.text(Text.LANGUAGE));
+
+    final Runnable program = new CoreController(this, args);
+    program.run();
+
+    while (this.running) {
+      try {
+        Thread.sleep(1000);
+      } catch (final InterruptedException e) {
+        this.log.warn(e.getMessage(), e);
+      }
+    }
+    this.log.debug(Text.DEBUG_PROGRAM_EXITING.text());
+  }
+
+  @Override
+  public void performAction(final UserAction action) {
+    if (action == UserAction.EXIT) {
+      this.log.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
+      this.running = false;
+    }
   }
 
 }

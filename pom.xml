@@ -92,7 +92,7 @@
     	<artifactId>miglayout</artifactId>
     	<version>3.7.3</version>
     	<classifier>swing</classifier>
-    	<scope>provided</scope>
+    	<scope>compile</scope>
     </dependency>
     <dependency>
     	<groupId>org.easytesting</groupId>
@@ -107,6 +107,18 @@
     	<version>1.1.5</version>
 	  	<type>jar</type>
     	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.16</version>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.github.croesch</groupId>
+    	<artifactId>crhcomponents</artifactId>
+    	<version>1.2</version>
+    	<scope>compile</scope>
     </dependency>
   </dependencies>
   <properties>

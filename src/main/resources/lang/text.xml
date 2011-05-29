@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="0">English (Default)</entry>
+
+	<entry key="1000">Selected language: '{0}'</entry>
+	<entry key="1005">Starting program</entry>
+	<entry key="1009">Sending exit notification</entry>
+	<entry key="1010">Exiting program</entry>
+</properties> 
