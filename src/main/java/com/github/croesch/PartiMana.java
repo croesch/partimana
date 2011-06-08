@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.github.croesch.actions.ActionObserver;
 import com.github.croesch.actions.UserAction;
-import com.github.croesch.controller.CoreController;
+import com.github.croesch.controller.Controller;
 import com.github.croesch.i18n.Text;
 
 /**
@@ -54,7 +54,7 @@ public final class PartiMana implements ActionObserver {
     this.log.debug(Text.DEBUG_PROGRAM_STARTING.text());
     this.log.debug(Text.DEBUG_SELECTED_LANGUAGE.text(Text.LANGUAGE));
 
-    final Runnable program = new CoreController(this, args);
+    final Runnable program = new Controller(this, args);
     program.run();
 
     while (this.running) {

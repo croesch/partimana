@@ -4,8 +4,8 @@
  * TODO Comment here ...
  *
  * @author croesch
- * @since Date: May 29, 2011 12:25:10 PM
+ * @since Date: Jun 8, 2011 6:19:28 AM
  */
-public interface View {
+public interface IParticipantView {
 
 }

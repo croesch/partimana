@@ -6,6 +6,6 @@ package com.github.croesch.model.api;
  * @author croesch
  * @since Date: May 29, 2011 12:17:57 PM
  */
-public interface CoreModel {
+public interface ICampModel extends ICampModel4View {
 
 }

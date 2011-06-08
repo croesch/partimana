@@ -1,6 +1,6 @@
  package com.github.croesch.model;
 
-import com.github.croesch.model.api.PersistenceModel;
+import com.github.croesch.model.api.IPersistenceModel;
         
 /**
  * TODO Comment here ...
@@ -8,6 +8,6 @@ import com.github.croesch.model.api.PersistenceModel;
  * @author croesch
  * @since Date: May 29, 2011 12:20:27 PM
  */
-class PersistenceLayer implements PersistenceModel {
+class PersistenceModel implements IPersistenceModel {
 
 }

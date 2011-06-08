@@ -4,8 +4,8 @@
  * TODO Comment here ...
  *
  * @author croesch
- * @since Date: May 29, 2011 12:26:19 PM
+ * @since Date: Jun 8, 2011 6:19:09 AM
  */
-public interface CoreView {
+public interface IStatusView {
 
 }

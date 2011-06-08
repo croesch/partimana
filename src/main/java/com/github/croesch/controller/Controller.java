@@ -11,10 +11,10 @@ import com.github.croesch.actions.UserAction;
  * @author croesch
  * @since Date: May 29, 2011 12:15:51 PM
  */
-public final class CoreController implements Runnable {
+public final class Controller implements Runnable, ActionObserver {
 
   /** logging class */
-  private final Logger log = Logger.getLogger(CoreController.class);
+  private final Logger log = Logger.getLogger(Controller.class);
 
   /** the action observer for the main program */
   private final ActionObserver observer;
@@ -27,7 +27,7 @@ public final class CoreController implements Runnable {
    * @param o the {@link ActionObserver}
    * @param args the arguments from command line
    */
-  public CoreController(final ActionObserver o, final String[] args) {
+  public Controller(final ActionObserver o, final String[] args) {
     this.observer = o;
   }
 
@@ -39,6 +39,12 @@ public final class CoreController implements Runnable {
       this.log.warn(e.getMessage(), e);
     }
     this.observer.performAction(UserAction.EXIT);
+  }
+
+  @Override
+  public void performAction(final UserAction action) {
+    // TODO Auto-generated method stub
+
   }
 
 }

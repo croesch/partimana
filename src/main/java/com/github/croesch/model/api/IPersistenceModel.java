@@ -6,6 +6,6 @@
  * @author croesch
  * @since Date: May 29, 2011 12:18:12 PM
  */
-public interface PersistenceModel {
+public interface IPersistenceModel {
 
 }
