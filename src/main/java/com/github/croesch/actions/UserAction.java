@@ -1,7 +1,7 @@
 package com.github.croesch.actions;
 
 /**
- * TODO Comment here ...
+ * Enumeration that contains some different actions to pass to someone to react on the action.
  * 
  * @author croesch
  * @since Date: May 29, 2011 12:29:49 PM
