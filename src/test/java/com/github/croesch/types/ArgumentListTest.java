@@ -5,13 +5,19 @@ import static org.fest.assertions.Assertions.assertThat;
 import org.junit.Test;
 
 /**
- * TODO Comment here ...
+ * Provides different test methods for {@link ArgumentList}
  * 
  * @author croesch
  * @since Date: Jun 9, 2011 9:39:18 PM
  */
 public class ArgumentListTest {
 
+  /**
+   * Tests the constructor of {@link ArgumentList}
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   */
   @Test
   public final void testArgumentList() {
     new ArgumentList(new String[] { "" });
@@ -20,6 +26,12 @@ public class ArgumentListTest {
     new ArgumentList(null);
   }
 
+  /**
+   * Tests the behaviour of {@link ArgumentList#getCurrentArgument()}
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   */
   @Test
   public final void testGetCurrentArgument() {
     ArgumentList l = new ArgumentList(new String[] { "" });
@@ -40,6 +52,12 @@ public class ArgumentListTest {
     assertThat(l.getCurrentArgument()).isEqualTo("element");
   }
 
+  /**
+   * Tests the behaviour of {@link ArgumentList#previewNextArgument()}
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   */
   @Test
   public final void testPreviewNextArgument() {
     ArgumentList l = new ArgumentList(new String[] { "", "two" });
@@ -53,6 +71,12 @@ public class ArgumentListTest {
     assertThat(l.previewNextArgument()).isEmpty();
   }
 
+  /**
+   * Tests the behaviour of {@link ArgumentList#popArgument()}
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   */
   @Test
   public final void testPopArgument() {
     ArgumentList l = new ArgumentList(new String[] { "", "two" });
@@ -103,6 +127,12 @@ public class ArgumentListTest {
     assertThat(l.previewNextArgument()).isNull();
   }
 
+  /**
+   * Tests the behaviour of {@link ArgumentList#hasMore()}
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   */
   @Test
   public final void testHasMore() {
     ArgumentList l = new ArgumentList(new String[] { "", "two" });
