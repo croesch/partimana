@@ -12,6 +12,12 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  */
 public class Participant {
 
+  /** the id of that participant as stored in data base */
+  private final long id;
+
+  /** the highest id to calculate the next id for a new participant */
+  private static long highestId = 0;
+
   /** the last name of the participant */
   private String lastName = null;
 
@@ -104,6 +110,51 @@ public class Participant {
    * 
    * @author croesch
    * @since Date: Jun 16, 2011 9:16:04 PM
+   * @param id the number to identify this participant, must be higher than the highest number until now
+   * @param name the last name of the person
+   * @param firstName the first name of the person
+   * @param g the gender of the person
+   * @param den the denomination/confession of the person
+   * @param birth the birthday of the person
+   * @param str the street where the person lives
+   * @param pc the post code of the city where the person lives
+   * @param c the city where the person lives
+   * @param county the county council for this person
+   * @throws IllegalArgumentException if the id is too small
+   */
+  public Participant(final long id,
+                     final String name,
+                     final String firstName,
+                     final Gender g,
+                     final Denomination den,
+                     final Date birth,
+                     final String str,
+                     final int pc,
+                     final String c,
+                     final CountyCouncil county) throws IllegalArgumentException {
+    if (id <= highestId) {
+      throw new IllegalArgumentException();
+    }
+
+    setLastName(name);
+    setForeName(firstName);
+    setGender(g);
+    setDenomination(den);
+    setBirthDate(birth);
+    setStreet(str);
+    setPostCode(pc);
+    setCity(c);
+    setCountyCouncil(county);
+
+    this.id = id;
+    highestId = id;
+  }
+
+  /**
+   * Constructs a new {@link Participant}.
+   * 
+   * @author croesch
+   * @since Date: Jun 16, 2011 9:16:04 PM
    * @param name the last name of the person
    * @param firstName the first name of the person
    * @param g the gender of the person
@@ -123,15 +174,7 @@ public class Participant {
                      final int pc,
                      final String c,
                      final CountyCouncil county) {
-    setLastName(name);
-    setForeName(firstName);
-    setGender(g);
-    setDenomination(den);
-    setBirthDate(birth);
-    setStreet(str);
-    setPostCode(pc);
-    setCity(c);
-    setCountyCouncil(county);
+    this(highestId + 1, name, firstName, g, den, birth, str, pc, c, county);
   }
 
   /**
@@ -838,5 +881,16 @@ public class Participant {
    */
   public final void setPossibleMisc(final boolean pm) {
     this.possibleMisc = pm;
+  }
+
+  /**
+   * Returns the id of this participant as stored in the data base.
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   * @return the id that identifies this participant in something like a data base.
+   */
+  public final long getId() {
+    return this.id;
   }
 }

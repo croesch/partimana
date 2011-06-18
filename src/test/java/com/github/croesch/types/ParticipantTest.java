@@ -752,4 +752,87 @@ public class ParticipantTest {
     this.participant.setPossibleStaff(false);
     assertThat(this.participant.isPossibleStaff()).isFalse();
   }
+
+  /**
+   * Test method for {@link Participant#getId()}.
+   */
+  @Test
+  public final void testGetId() {
+    final long id = this.participant.getId();
+    this.participant = new Participant("name",
+                                       "first",
+                                       Gender.FEMALE,
+                                       Denomination.EVANGELIC,
+                                       new Date(),
+                                       "street",
+                                       SAMPLE_POSTCODE,
+                                       "city",
+                                       CountyCouncil.COUNTY_GERMERSHEIM);
+
+    assertThat(this.participant.getId()).isEqualTo(id + 1);
+    this.participant = new Participant(id + 2,
+                                       "name",
+                                       "first",
+                                       Gender.FEMALE,
+                                       Denomination.EVANGELIC,
+                                       new Date(),
+                                       "street",
+                                       SAMPLE_POSTCODE,
+                                       "city",
+                                       CountyCouncil.COUNTY_GERMERSHEIM);
+    assertThat(this.participant.getId()).isEqualTo(id + 2);
+  }
+
+  /**
+   * Test method for {@link Participant#getId()}.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void testGetIdIAE1() {
+    final long id = this.participant.getId();
+    this.participant = new Participant(id,
+                                       "name",
+                                       "first",
+                                       Gender.FEMALE,
+                                       Denomination.EVANGELIC,
+                                       new Date(),
+                                       "street",
+                                       SAMPLE_POSTCODE,
+                                       "city",
+                                       CountyCouncil.COUNTY_GERMERSHEIM);
+  }
+
+  /**
+   * Test method for {@link Participant#getId()}.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void testGetIdIAE2() {
+    final long id = this.participant.getId();
+    this.participant = new Participant(id - 1,
+                                       "name",
+                                       "first",
+                                       Gender.FEMALE,
+                                       Denomination.EVANGELIC,
+                                       new Date(),
+                                       "street",
+                                       SAMPLE_POSTCODE,
+                                       "city",
+                                       CountyCouncil.COUNTY_GERMERSHEIM);
+  }
+
+  /**
+   * Test method for {@link Participant#getId()}.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void testGetIdIAE3() {
+    this.participant = new Participant(-1,
+                                       "name",
+                                       "first",
+                                       Gender.FEMALE,
+                                       Denomination.EVANGELIC,
+                                       new Date(),
+                                       "street",
+                                       SAMPLE_POSTCODE,
+                                       "city",
+                                       CountyCouncil.COUNTY_GERMERSHEIM);
+  }
 }
