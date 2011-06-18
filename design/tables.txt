@@ -1,0 +1,9 @@
+participant:
+id | lastName | foreName | gender | denomination | birthDate | livingStreet | livingPostCode | livingCity | postStreet | postPostcode | postCity | phone | fax | mobilePhone | phoneOfParents | mailAddress | countyCouncil | bankCodeNumber | bankAccountNumber | dateSinceInDataBase | dateUpToInSystem | possibleParticipant | possibleStaff | possibleStaffYouth | possibleBoard | possibleExtendedBoard | possibleMAK | possibleAGE | possibleKitchen | possibleSeminar | possibleMisc
+
+
+participant-in-camp:
+campid | participantid | 
+
+camp:
+id | 
