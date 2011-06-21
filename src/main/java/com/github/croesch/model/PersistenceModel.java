@@ -27,13 +27,13 @@ class PersistenceModel implements IPersistenceModel {
   }
 
   @Override
-  public Map<Long, Camp> getListOfCamps() {
+  public Map<Long, Camp> getMapOfCamps() {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public Map<Long, Participant> getListOfParticipants() {
+  public Map<Long, Participant> getMapOfParticipants() {
     // TODO Auto-generated method stub
     return null;
   }

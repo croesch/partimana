@@ -32,22 +32,22 @@ public interface IPersistenceModel {
   void update(Camp c);
 
   /**
-   * Returns a list of all saved {@link Camp}s.
+   * Returns a map of all saved {@link Camp}s.
    * 
    * @author croesch
    * @since Date: Jun 19, 2011
    * @return a {@link Map} of all available {@link Camp}s.
    */
-  Map<Long, Camp> getListOfCamps();
+  Map<Long, Camp> getMapOfCamps();
 
   /**
-   * Returns a list of all saved {@link Participant}s.
+   * Returns a map of all saved {@link Participant}s.
    * 
    * @author croesch
    * @since Date: Jun 19, 2011
    * @return a {@link Map} of all available {@link Participant}s.
    */
-  Map<Long, Participant> getListOfParticipants();
+  Map<Long, Participant> getMapOfParticipants();
 
   /**
    * Deletes the given {@link Participant} from data.
