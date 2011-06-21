@@ -1,5 +1,7 @@
 package com.github.croesch.types;
 
+import com.github.croesch.i18n.Text;
+
 /**
  * Represents the types of denomiation.
  * 
@@ -9,24 +11,43 @@ package com.github.croesch.types;
 public enum Denomination {
 
   /** evangelic / protestant */
-  EVANGELIC,
+  EVANGELIC (Text.EVANGELIC),
 
   /** catholic */
-  CATHOLIC,
+  CATHOLIC (Text.CATHOLIC),
 
   /** orthodox */
-  ORTHODOX,
+  ORTHODOX (Text.ORTHODOX),
 
   /** muslim */
-  MUSLIM,
+  MUSLIM (Text.MUSLIM),
 
   /** free church */
-  FREE_CHURCH,
+  FREE_CHURCH (Text.FREE_CHURCH),
 
   /** jewish */
-  JEWISH,
+  JEWISH (Text.JEWISH),
 
   /** other denomination */
-  OTHER;
+  OTHER (Text.OTHER);
+
+  /** the i18n representation of this object */
+  private final String s;
+
+  /**
+   * Constructs a {@link Denomination} with the given i18n representation of the specific object.
+   * 
+   * @author croesch
+   * @since Date: Jun 21, 2011
+   * @param t the {@link Text} that represents this object.
+   */
+  private Denomination(final Text t) {
+    this.s = t.text();
+  }
+
+  @Override
+  public String toString() {
+    return this.s;
+  }
 
 }
