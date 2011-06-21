@@ -2,6 +2,7 @@ package com.github.croesch.types;
 
 import java.util.Date;
 
+import com.github.croesch.i18n.Text;
 import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
 
 /**
@@ -175,6 +176,59 @@ public class Participant {
                      final String c,
                      final CountyCouncil county) {
     this(highestId + 1, name, firstName, g, den, birth, str, pc, c, county);
+  }
+
+  /**
+   * Constructs a new {@link Participant} that is equal to the given {@link Participant}.
+   * 
+   * @author croesch
+   * @since Date: Jun 16, 2011 9:16:04 PM
+   * @param p the {@link Participant} to fetch the data from.
+   * @throws RequiredFieldSetToNullException if the given {@link Participant} is <code>null</code>
+   */
+  public Participant(final Participant p) throws RequiredFieldSetToNullException {
+    if (p == null) {
+      throw new RequiredFieldSetToNullException();
+    }
+
+    this.bank = p.bank;
+    this.bankAccountNumber = p.bankAccountNumber;
+    this.bankCodeNumber = p.bankCodeNumber;
+    this.birthDate = new Date(p.birthDate.getTime());
+    this.comment = p.comment;
+    this.countyCouncil = p.countyCouncil;
+    if (p.dateSinceInDataBase != null) {
+      this.dateSinceInDataBase = new Date(p.dateSinceInDataBase.getTime());
+    }
+    if (p.dateUpToInSystem != null) {
+      this.dateUpToInSystem = new Date(p.dateUpToInSystem.getTime());
+    }
+    this.denomination = p.denomination;
+    this.fax = p.fax;
+    this.foreName = p.foreName;
+    this.gender = p.gender;
+    this.id = p.id;
+    this.lastName = p.lastName;
+    this.livingAddress.setCity(p.livingAddress.getCity());
+    this.livingAddress.setPostCode(p.livingAddress.getPostCode());
+    this.livingAddress.setStreet(p.livingAddress.getStreet());
+    this.mailAddress = p.mailAddress;
+    this.mobilePhone = p.mobilePhone;
+    this.phone = p.phone;
+    this.phoneOfParents = p.phoneOfParents;
+    this.possibleAGE = p.possibleAGE;
+    this.possibleBoard = p.possibleBoard;
+    this.possibleExtendedBoard = p.possibleExtendedBoard;
+    this.possibleKitchen = p.possibleKitchen;
+    this.possibleMAK = p.possibleMAK;
+    this.possibleMisc = p.possibleMisc;
+    this.possibleParticipant = p.possibleParticipant;
+    this.possibleSeminar = p.possibleSeminar;
+    this.possibleStaff = p.possibleStaff;
+    this.possibleStaffYouth = p.possibleStaffYouth;
+    this.postToAddress.setCity(p.postToAddress.getCity());
+    this.postToAddress.setPostCode(p.postToAddress.getPostCode());
+    this.postToAddress.setStreet(p.postToAddress.getStreet());
   }
 
   /**
@@ -893,4 +947,250 @@ public class Participant {
   public final long getId() {
     return this.id;
   }
+
+  @Override
+  public final int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this.bank == null) ? 0 : this.bank.hashCode());
+    result = prime * result + this.bankAccountNumber;
+    result = prime * result + this.bankCodeNumber;
+    result = prime * result + this.birthDate.hashCode();
+    result = prime * result + ((this.comment == null) ? 0 : this.comment.hashCode());
+    result = prime * result + this.countyCouncil.hashCode();
+    result = prime * result + ((this.dateSinceInDataBase == null) ? 0 : this.dateSinceInDataBase.hashCode());
+    result = prime * result + ((this.dateUpToInSystem == null) ? 0 : this.dateUpToInSystem.hashCode());
+    result = prime * result + ((this.denomination == null) ? 0 : this.denomination.hashCode());
+    result = prime * result + ((this.fax == null) ? 0 : this.fax.hashCode());
+    result = prime * result + this.foreName.hashCode();
+    result = prime * result + this.gender.hashCode();
+    result = prime * result + (int) (this.id ^ (this.id >>> 32));
+    result = prime * result + this.lastName.hashCode();
+    result = prime * result + this.livingAddress.hashCode();
+    result = prime * result + ((this.mailAddress == null) ? 0 : this.mailAddress.hashCode());
+    result = prime * result + ((this.mobilePhone == null) ? 0 : this.mobilePhone.hashCode());
+    result = prime * result + ((this.phone == null) ? 0 : this.phone.hashCode());
+    result = prime * result + ((this.phoneOfParents == null) ? 0 : this.phoneOfParents.hashCode());
+    result = prime * result + (this.possibleAGE ? 1231 : 1237);
+    result = prime * result + (this.possibleBoard ? 1231 : 1237);
+    result = prime * result + (this.possibleExtendedBoard ? 1231 : 1237);
+    result = prime * result + (this.possibleKitchen ? 1231 : 1237);
+    result = prime * result + (this.possibleMAK ? 1231 : 1237);
+    result = prime * result + (this.possibleMisc ? 1231 : 1237);
+    result = prime * result + (this.possibleParticipant ? 1231 : 1237);
+    result = prime * result + (this.possibleSeminar ? 1231 : 1237);
+    result = prime * result + (this.possibleStaff ? 1231 : 1237);
+    result = prime * result + (this.possibleStaffYouth ? 1231 : 1237);
+    result = prime * result + this.postToAddress.hashCode();
+    return result;
+  }
+
+  @Override
+  public final boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Participant)) {
+      return false;
+    }
+    final Participant other = (Participant) obj;
+    if (this.bank == null) {
+      if (other.bank != null) {
+        return false;
+      }
+    } else if (!this.bank.equals(other.bank)) {
+      return false;
+    }
+    if (this.bankAccountNumber != other.bankAccountNumber) {
+      return false;
+    }
+    if (this.bankCodeNumber != other.bankCodeNumber) {
+      return false;
+    }
+    if (!this.birthDate.equals(other.birthDate)) {
+      return false;
+    }
+    if (this.comment == null) {
+      if (other.comment != null) {
+        return false;
+      }
+    } else if (!this.comment.equals(other.comment)) {
+      return false;
+    }
+    if (this.countyCouncil != other.countyCouncil) {
+      return false;
+    }
+    if (this.dateSinceInDataBase == null) {
+      if (other.dateSinceInDataBase != null) {
+        return false;
+      }
+    } else if (!this.dateSinceInDataBase.equals(other.dateSinceInDataBase)) {
+      return false;
+    }
+    if (this.dateUpToInSystem == null) {
+      if (other.dateUpToInSystem != null) {
+        return false;
+      }
+    } else if (!this.dateUpToInSystem.equals(other.dateUpToInSystem)) {
+      return false;
+    }
+    if (this.denomination != other.denomination) {
+      return false;
+    }
+    if (this.fax == null) {
+      if (other.fax != null) {
+        return false;
+      }
+    } else if (!this.fax.equals(other.fax)) {
+      return false;
+    }
+    if (!this.foreName.equals(other.foreName)) {
+      return false;
+    }
+    if (this.gender != other.gender) {
+      return false;
+    }
+    if (this.id != other.id) {
+      return false;
+    }
+    if (!this.lastName.equals(other.lastName)) {
+      return false;
+    }
+    if (!this.livingAddress.equals(other.livingAddress)) {
+      return false;
+    }
+    if (this.mailAddress == null) {
+      if (other.mailAddress != null) {
+        return false;
+      }
+    } else if (!this.mailAddress.equals(other.mailAddress)) {
+      return false;
+    }
+    if (this.mobilePhone == null) {
+      if (other.mobilePhone != null) {
+        return false;
+      }
+    } else if (!this.mobilePhone.equals(other.mobilePhone)) {
+      return false;
+    }
+    if (this.phone == null) {
+      if (other.phone != null) {
+        return false;
+      }
+    } else if (!this.phone.equals(other.phone)) {
+      return false;
+    }
+    if (this.phoneOfParents == null) {
+      if (other.phoneOfParents != null) {
+        return false;
+      }
+    } else if (!this.phoneOfParents.equals(other.phoneOfParents)) {
+      return false;
+    }
+    if (this.possibleAGE != other.possibleAGE) {
+      return false;
+    }
+    if (this.possibleBoard != other.possibleBoard) {
+      return false;
+    }
+    if (this.possibleExtendedBoard != other.possibleExtendedBoard) {
+      return false;
+    }
+    if (this.possibleKitchen != other.possibleKitchen) {
+      return false;
+    }
+    if (this.possibleMAK != other.possibleMAK) {
+      return false;
+    }
+    if (this.possibleMisc != other.possibleMisc) {
+      return false;
+    }
+    if (this.possibleParticipant != other.possibleParticipant) {
+      return false;
+    }
+    if (this.possibleSeminar != other.possibleSeminar) {
+      return false;
+    }
+    if (this.possibleStaff != other.possibleStaff) {
+      return false;
+    }
+    if (this.possibleStaffYouth != other.possibleStaffYouth) {
+      return false;
+    }
+    if (!this.postToAddress.equals(other.postToAddress)) {
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public final String toString() {
+    final StringBuilder builder = new StringBuilder();
+    builder.append(Text.PARTICIPANT);
+    builder.append(" [").append(Text.PARTICIPANT_ID).append("=").append(this.id);
+    builder.append(", ").append(Text.PARTICIPANT_LASTNAME).append("=");
+    builder.append(this.lastName);
+    builder.append(", ").append(Text.PARTICIPANT_FORENAME).append("=");
+    builder.append(this.foreName);
+    builder.append(", ").append(Text.PARTICIPANT_GENDER).append("=");
+    builder.append(this.gender);
+    builder.append(", ").append(Text.PARTICIPANT_DENOMINTAION).append("=");
+    builder.append(this.denomination);
+    builder.append(", ").append(Text.PARTICIPANT_BIRTHDAY).append("=");
+    builder.append(this.birthDate);
+    builder.append(", ").append(Text.PARTICIPANT_ADDRESS_LIVING).append("=");
+    builder.append(this.livingAddress);
+    builder.append(", ").append(Text.PARTICIPANT_ADDRESS_POSTAL).append("=");
+    builder.append(this.postToAddress);
+    builder.append(", ").append(Text.PARTICIPANT_PHONE).append("=");
+    builder.append(this.phone);
+    builder.append(", ").append(Text.PARTICIPANT_FAX).append("=");
+    builder.append(this.fax);
+    builder.append(", ").append(Text.PARTICIPANT_MOBILE_PHONE).append("=");
+    builder.append(this.mobilePhone);
+    builder.append(", ").append(Text.PARTICIPANT_PHONE_OF_PARENTS).append("=");
+    builder.append(this.phoneOfParents);
+    builder.append(", ").append(Text.PARTICIPANT_MAIL_ADDRESS).append("=");
+    builder.append(this.mailAddress);
+    builder.append(", ").append(Text.PARTICIPANT_COUNTY_COUNCIL).append("=");
+    builder.append(this.countyCouncil);
+    builder.append(", ").append(Text.PARTICIPANT_BANK_CODE_NUMBER).append("=");
+    builder.append(this.bankCodeNumber);
+    builder.append(", ").append(Text.PARTICIPANT_BANK_NAME).append("=");
+    builder.append(this.bank);
+    builder.append(", ").append(Text.PARTICIPANT_BANK_ACCOUNT_NUMBER).append("=");
+    builder.append(this.bankAccountNumber);
+    builder.append(", ").append(Text.PARTICIPANT_COMMENT).append("=");
+    builder.append(this.comment);
+    builder.append(", ").append(Text.PARTICIPANT_DATE_SINCE).append("=");
+    builder.append(this.dateSinceInDataBase);
+    builder.append(", ").append(Text.PARTICIPANT_DATE_UNTIL).append("=");
+    builder.append(this.dateUpToInSystem);
+    builder.append(", ").append(Text.PARTICIPANT_CAMP_PARTICIPANT).append("=");
+    builder.append(this.possibleParticipant);
+    builder.append(", ").append(Text.PARTICIPANT_STAFF_GENERAL).append("=");
+    builder.append(this.possibleStaff);
+    builder.append(", ").append(Text.PARTICIPANT_STAFF_YOUTH).append("=");
+    builder.append(this.possibleStaffYouth);
+    builder.append(", ").append(Text.PARTICIPANT_BOARD).append("=");
+    builder.append(this.possibleBoard);
+    builder.append(", ").append(Text.PARTICIPANT_EXTENDED_BOARD).append("=");
+    builder.append(this.possibleExtendedBoard);
+    builder.append(", ").append(Text.PARTICIPANT_MAK).append("=");
+    builder.append(this.possibleMAK);
+    builder.append(", ").append(Text.PARTICIPANT_AGE).append("=");
+    builder.append(this.possibleAGE);
+    builder.append(", ").append(Text.PARTICIPANT_CAMP_KITCHEN).append("=");
+    builder.append(this.possibleKitchen);
+    builder.append(", ").append(Text.PARTICIPANT_SEMINAR).append("=");
+    builder.append(this.possibleSeminar);
+    builder.append(", ").append(Text.PARTICIPANT_MISC).append("=");
+    builder.append(this.possibleMisc);
+    builder.append("]");
+    return builder.toString();
+  }
+
 }

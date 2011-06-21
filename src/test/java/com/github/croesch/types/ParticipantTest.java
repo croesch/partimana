@@ -44,6 +44,60 @@ public class ParticipantTest {
   }
 
   /**
+   * Test method for {@link Participant#Participant(Participant)}.
+   */
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public final void testParticipantParticipantRFSTNE() {
+    new Participant(null);
+  }
+
+  /**
+   * Test method for {@link Participant#Participant(Participant)}.
+   */
+  @Test
+  public final void testParticipantParticipant() {
+    final Date d1 = new Date(123);
+
+    this.participant.setBank("bank");
+    this.participant.setBankAccountNumber(1);
+    this.participant.setBankCodeNumber(12);
+    this.participant.setComment("comment");
+    this.participant.setDateSinceInDataBase(d1);
+    this.participant.setDateUpToInSystem(d1);
+    this.participant.setDenomination(Denomination.JEWISH);
+    this.participant.setFax("fax");
+    this.participant.setMailAddress("mail");
+    this.participant.setMobilePhone("mobile");
+    this.participant.setPhone("phone");
+    this.participant.setPhoneOfParents("phone");
+    this.participant.setPossibleAGE(true);
+    this.participant.setPossibleBoard(false);
+    this.participant.setPossibleExtendedBoard(false);
+    this.participant.setPossibleKitchen(true);
+    this.participant.setPossibleMAK(true);
+    this.participant.setPossibleMisc(false);
+    this.participant.setPossibleParticipant(false);
+    this.participant.setPossibleSeminar(false);
+    this.participant.setPossibleStaff(false);
+    this.participant.setPossibleStaffYouth(false);
+    this.participant.setCityPostal("city");
+    this.participant.setPostCodePostal(3124);
+    this.participant.setStreetPostal("street");
+
+    final Participant p = new Participant(this.participant);
+    assertThat(p).isEqualTo(this.participant);
+
+    d1.setTime(1212);
+    assertThat(p.getDateSinceInDataBase()).isNotEqualTo(d1);
+    assertThat(p.getDateUpToInSystem()).isNotEqualTo(d1);
+    assertThat(p).isEqualTo(this.participant);
+
+    p.setBirthDate(d1);
+    assertThat(p).isNotEqualTo(this.participant);
+
+  }
+
+  /**
    * Test method for
    * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
    */
