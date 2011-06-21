@@ -1,5 +1,6 @@
 package com.github.croesch.i18n;
 
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
@@ -185,7 +186,13 @@ public enum Text {
   private Text(final int k) {
     final ResourceBundle b = ResourceBundle.getBundle("lang/text", new XMLBundleControl());
     final String key = String.valueOf(k);
-    this.string = b.getString(key);
+    String value;
+    try {
+      value = b.getString(key);
+    } catch (final MissingResourceException mre) {
+      value = "!!missing-key=" + key + "!!";
+    }
+    this.string = value;
   }
 
   @Override
