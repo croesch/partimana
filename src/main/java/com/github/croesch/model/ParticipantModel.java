@@ -1,10 +1,15 @@
 package com.github.croesch.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.management.openmbean.KeyAlreadyExistsException;
 
 import com.github.croesch.model.api.IParticipantModel;
 import com.github.croesch.model.api.IPersistenceModel;
 import com.github.croesch.types.Participant;
+import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
 
 /**
  * Model responsible for participants.
@@ -17,8 +22,8 @@ class ParticipantModel implements IParticipantModel {
   /** model that is responsible to store and load data */
   private final IPersistenceModel persistenceModel;
 
-  /** list of all participants that are available */
-  private final Map<Long, Participant> listOfParticipants;
+  /** map of all participants that are available */
+  private final Map<Long, Participant> mapOfParticipants;
 
   /**
    * Creates a {@link ParticipantModel} that will load all {@link Participant}s from the given {@link IPersistenceModel}
@@ -30,11 +35,45 @@ class ParticipantModel implements IParticipantModel {
    */
   public ParticipantModel(final IPersistenceModel pm) {
     this.persistenceModel = pm;
-    this.listOfParticipants = this.persistenceModel.getListOfParticipants();
+    this.mapOfParticipants = this.persistenceModel.getMapOfParticipants();
   }
 
   @Override
   public Participant getParticipant(final long id) {
-    return this.listOfParticipants.get(Long.valueOf(id));
+    final Participant p = this.mapOfParticipants.get(Long.valueOf(id));
+    if (p == null) {
+      return null;
+    }
+    return new Participant(p);
+  }
+
+  @Override
+  public void store(final Participant p) throws KeyAlreadyExistsException, RequiredFieldSetToNullException {
+    final Participant store = new Participant(p);
+
+    if (this.mapOfParticipants.containsKey(store.getId())) {
+      this.persistenceModel.update(p);
+    } else {
+      this.persistenceModel.create(store);
+    }
+    this.mapOfParticipants.put(store.getId(), store);
+  }
+
+  @Override
+  public void delete(final Participant p) throws RequiredFieldSetToNullException {
+    if (p == null) {
+      throw new RequiredFieldSetToNullException();
+    }
+    this.persistenceModel.delete(p);
+    this.mapOfParticipants.remove(p.getId());
+  }
+
+  @Override
+  public List<Participant> getListOfParticipants() {
+    final List<Participant> list = new ArrayList<Participant>();
+    for (final Participant p : this.mapOfParticipants.values()) {
+      list.add(new Participant(p));
+    }
+    return list;
   }
 }

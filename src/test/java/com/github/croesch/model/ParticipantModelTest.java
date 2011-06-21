@@ -12,6 +12,7 @@ import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
 import com.github.croesch.types.Gender;
 import com.github.croesch.types.Participant;
+import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
 
 /**
  * Test methods for {@link ParticipantModel}
@@ -27,6 +28,10 @@ public final class ParticipantModelTest {
   /** our persistence model to test the behavior of the {@link ParticipantModel} */
   private HashMapPersistenceModel persistenceModel;
 
+  private Participant p1;
+
+  private Participant p2;
+
   /**
    * Sets up the two models.
    * 
@@ -38,6 +43,25 @@ public final class ParticipantModelTest {
   public void setUp() {
     this.persistenceModel = new HashMapPersistenceModel();
     this.pModel = new ParticipantModel(this.persistenceModel);
+
+    this.p1 = new Participant("name",
+                              "first",
+                              Gender.FEMALE,
+                              Denomination.CATHOLIC,
+                              new Date(),
+                              "street",
+                              12,
+                              "city",
+                              CountyCouncil.COUNTY_RHEIN_PFALZ);
+    this.p2 = new Participant("name",
+                              "first",
+                              Gender.FEMALE,
+                              Denomination.CATHOLIC,
+                              new Date(),
+                              "street",
+                              12,
+                              "city",
+                              CountyCouncil.COUNTY_RHEIN_PFALZ);
   }
 
   /**
@@ -45,31 +69,120 @@ public final class ParticipantModelTest {
    */
   @Test
   public void testGetParticipant() {
-    final Participant p1 = new Participant("name",
-                                           "first",
-                                           Gender.FEMALE,
-                                           Denomination.CATHOLIC,
-                                           new Date(),
-                                           "street",
-                                           12,
-                                           "city",
-                                           CountyCouncil.COUNTY_RHEIN_PFALZ);
-    final Participant p2 = new Participant("name",
-                                           "first",
-                                           Gender.FEMALE,
-                                           Denomination.CATHOLIC,
-                                           new Date(),
-                                           "street",
-                                           12,
-                                           "city",
-                                           CountyCouncil.COUNTY_RHEIN_PFALZ);
-    this.persistenceModel.create(p1);
-    this.persistenceModel.create(p2);
+    this.persistenceModel.create(this.p1);
+    this.persistenceModel.create(this.p2);
     this.pModel = new ParticipantModel(this.persistenceModel);
 
-    assertThat(this.pModel.getParticipant(p1.getId())).isEqualTo(p1);
-    assertThat(this.pModel.getParticipant(p2.getId())).isEqualTo(p2);
-    assertThat(this.pModel.getParticipant(p1.getId())).isEqualTo(p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.pModel.getParticipant(this.p2.getId())).isEqualTo(this.p2);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
     assertThat(this.pModel.getParticipant(Long.MAX_VALUE)).isNull();
+
+    final Participant p = this.pModel.getParticipant(this.p2.getId());
+    p.setBank("new bank");
+    assertThat(this.pModel.getParticipant(this.p2.getId())).isNotEqualTo(p);
+  }
+
+  /**
+   * Test method for {@link ParticipantModel#store(Participant)}.
+   */
+  @Test
+  public void testCreateParticipantKAEE() {
+    this.pModel.store(this.p1);
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+
+    this.p1.setBank("new bank");
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+  }
+
+  /**
+   * Test method for {@link ParticipantModel#delete(Participant)}.
+   */
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testDeleteParticipantRFSTNE() {
+    this.pModel.delete(null);
+  }
+
+  /**
+   * Test method for {@link ParticipantModel#delete(Participant)}.
+   */
+  @Test
+  public void testDeleteParticipant() {
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+    this.pModel.delete(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isNull();
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNull();
+    this.pModel.delete(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isNull();
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNull();
+
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+    this.p1.setBank("other bank");
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isNotEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNotEqualTo(this.p1);
+    this.pModel.delete(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isNull();
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNull();
+  }
+
+  /**
+   * Test method for {@link ParticipantModel#store(Participant)}.
+   */
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testStoreParticipantRFSTNE() {
+    this.pModel.store(null);
+  }
+
+  /**
+   * Test method for {@link ParticipantModel#store(Participant)}.
+   */
+  @Test
+  public void testStoreParticipant() {
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+    this.p1.setBank("new bank");
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isNotEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNotEqualTo(this.p1);
+
+    this.pModel.store(this.p2);
+    this.p1.setBank(null);
+    assertThat(this.pModel.getParticipant(this.p2.getId())).isEqualTo(this.p2);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p2.getId())).isEqualTo(this.p2);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+    this.p2.setBank("new bank");
+    assertThat(this.pModel.getParticipant(this.p2.getId())).isNotEqualTo(this.p2);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p2.getId())).isNotEqualTo(this.p2);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
+    this.pModel.store(this.p2);
+    assertThat(this.pModel.getParticipant(this.p2.getId())).isEqualTo(this.p2);
+    assertThat(this.persistenceModel.getMapOfParticipants().get(this.p2.getId())).isEqualTo(this.p2);
+  }
+
+  /**
+   * Test method for {@link ParticipantModel#getListOfParticipants()}
+   */
+  @Test
+  public void testGetListOfParticipants() {
+    this.pModel.store(this.p1);
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getListOfParticipants()).containsExactly(this.p1);
+    this.pModel.store(this.p2);
+    this.pModel.delete(this.p1);
+    assertThat(this.pModel.getListOfParticipants()).containsExactly(this.p2);
+    this.pModel.store(this.p1);
+    this.pModel.store(this.p1);
+    assertThat(this.pModel.getListOfParticipants()).contains(this.p2, this.p1);
+
   }
 }

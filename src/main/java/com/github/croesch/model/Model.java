@@ -1,11 +1,14 @@
 package com.github.croesch.model;
 
+import java.util.List;
+
 import com.github.croesch.model.api.ICampModel;
 import com.github.croesch.model.api.IModel4View;
 import com.github.croesch.model.api.IParticipantModel;
 import com.github.croesch.model.api.IPersistenceModel;
 import com.github.croesch.types.Camp;
 import com.github.croesch.types.Participant;
+import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
 
 /**
  * The model of the partimana program.
@@ -29,4 +32,18 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
     return this.participantModel.getParticipant(id);
   }
 
+  @Override
+  public void store(final Participant p) throws RequiredFieldSetToNullException {
+    this.participantModel.store(p);
+  }
+
+  @Override
+  public void delete(final Participant p) throws RequiredFieldSetToNullException {
+    this.participantModel.delete(p);
+  }
+
+  @Override
+  public List<Participant> getListOfParticipants() {
+    return this.participantModel.getListOfParticipants();
+  }
 }

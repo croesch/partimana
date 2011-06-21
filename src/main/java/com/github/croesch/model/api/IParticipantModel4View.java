@@ -1,5 +1,7 @@
 package com.github.croesch.model.api;
 
+import java.util.List;
+
 import com.github.croesch.types.Participant;
 
 /**
@@ -19,4 +21,13 @@ public interface IParticipantModel4View {
    * @return the participant with the given id, or <code>null</code> if no participant has this id.
    */
   Participant getParticipant(long id);
+
+  /**
+   * Returns a {@link List} containing all stored {@link Participant}s.
+   * 
+   * @author croesch
+   * @since Date: Jun 21, 2011
+   * @return a list that contains all participants stored in the model.
+   */
+  List<Participant> getListOfParticipants();
 }
