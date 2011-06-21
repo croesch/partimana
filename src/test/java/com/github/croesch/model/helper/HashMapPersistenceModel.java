@@ -32,12 +32,12 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
   }
 
   @Override
-  public Map<Long, Camp> getListOfCamps() {
+  public Map<Long, Camp> getMapOfCamps() {
     return new HashMap<Long, Camp>(this.campMap);
   }
 
   @Override
-  public Map<Long, Participant> getListOfParticipants() {
+  public Map<Long, Participant> getMapOfParticipants() {
     return new HashMap<Long, Participant>(this.participantMap);
   }
 
