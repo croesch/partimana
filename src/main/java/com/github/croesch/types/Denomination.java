@@ -10,6 +10,8 @@ import com.github.croesch.i18n.Text;
  */
 public enum Denomination {
 
+  //TODO add 'no denomination'
+
   /** evangelic / protestant */
   EVANGELIC (Text.EVANGELIC),
 
@@ -29,7 +31,7 @@ public enum Denomination {
   JEWISH (Text.JEWISH),
 
   /** other denomination */
-  OTHER (Text.OTHER);
+  OTHER (Text.OTHER_DENOMINATION);
 
   /** the i18n representation of this object */
   private final String s;
