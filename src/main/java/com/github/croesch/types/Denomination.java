@@ -31,7 +31,10 @@ public enum Denomination {
   JEWISH (Text.JEWISH),
 
   /** other denomination */
-  OTHER (Text.OTHER_DENOMINATION);
+  OTHER (Text.OTHER_DENOMINATION),
+
+  /** no denomination */
+  NONE (Text.NO_DENOMINATION);
 
   /** the i18n representation of this object */
   private final String s;

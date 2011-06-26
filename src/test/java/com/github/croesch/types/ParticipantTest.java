@@ -157,8 +157,8 @@ public class ParticipantTest {
     this.participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
-                                       Denomination.OTHER,
                                        null,
+                                       new Date(),
                                        "Musterstrasse 12",
                                        SAMPLE_POSTCODE,
                                        "Musterhausen",
@@ -175,8 +175,8 @@ public class ParticipantTest {
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
-                                       new Date(),
                                        null,
+                                       "Musterstrasse 12",
                                        SAMPLE_POSTCODE,
                                        "Musterhausen",
                                        CountyCouncil.OTHER);
@@ -193,6 +193,23 @@ public class ParticipantTest {
                                        Gender.MALE,
                                        Denomination.OTHER,
                                        new Date(),
+                                       null,
+                                       SAMPLE_POSTCODE,
+                                       "Musterhausen",
+                                       CountyCouncil.OTHER);
+  }
+
+  /**
+   * Test method for
+   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   */
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public final void testParticipantRFSTNE7() {
+    this.participant = new Participant("Mustermann",
+                                       "Max",
+                                       Gender.MALE,
+                                       Denomination.OTHER,
+                                       new Date(),
                                        "Musterstrasse 12",
                                        SAMPLE_POSTCODE,
                                        null,
@@ -204,7 +221,7 @@ public class ParticipantTest {
    * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
-  public final void testParticipantRFSTNE7() {
+  public final void testParticipantRFSTNE8() {
     this.participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
@@ -310,8 +327,8 @@ public class ParticipantTest {
     this.participant.setDenomination(Denomination.CATHOLIC);
     assertThat(this.participant.getDenomination()).isEqualTo(Denomination.CATHOLIC);
 
-    this.participant.setDenomination(null);
-    assertThat(this.participant.getDenomination()).isNull();
+    this.participant.setDenomination(Denomination.JEWISH);
+    assertThat(this.participant.getDenomination()).isEqualTo(Denomination.JEWISH);
 
     this.participant.setDenomination(Denomination.FREE_CHURCH);
     assertThat(this.participant.getDenomination()).isEqualTo(Denomination.FREE_CHURCH);

@@ -318,8 +318,12 @@ public class Participant {
    * 
    * @since Date: Jun 18, 2011
    * @param den the denomination of the participant
+   * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
    */
-  public final void setDenomination(final Denomination den) {
+  public final void setDenomination(final Denomination den) throws RequiredFieldSetToNullException {
+    if (den == null) {
+      throw new RequiredFieldSetToNullException();
+    }
     this.denomination = den;
   }
 
