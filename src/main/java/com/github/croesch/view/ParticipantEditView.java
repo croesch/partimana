@@ -1,5 +1,7 @@
 package com.github.croesch.view;
 
+import java.util.Date;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,6 +15,7 @@ import net.miginfocom.swing.MigLayout;
 import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
 import com.github.croesch.types.Gender;
+import com.github.croesch.types.Participant;
 import com.github.croesch.view.api.IParticipantEditView;
 
 /**
@@ -22,6 +25,7 @@ import com.github.croesch.view.api.IParticipantEditView;
  * @since Date: Jun 8, 2011 6:23:15 AM
  */
 class ParticipantEditView extends JPanel implements IParticipantEditView {
+
   private final JTextField firstNameTf;
 
   private final JTextField lastNameTf;
@@ -260,6 +264,204 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     final JCheckBox possMiscCb = new JCheckBox("Sonstiges");
     possibleFunctionsPanel.add(possMiscCb, "cell 2 2");
+  }
+
+  @Override
+  public void setParticipant(final Participant participant) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public String getFirstName() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getLastName() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Gender getGender() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Denomination getDenomination() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Date getBirthDate() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getPostalStreet() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public int getPostalPostCode() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public String getPostalCity() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public CountyCouncil getCountyCouncil() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getBank() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public int getBankAccountNumber() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int getBankCodeNumber() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public String getComment() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Date getDateUpToInDataBase() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getFax() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getMailAddress() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getMobilePhone() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getPhone() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public String getPhoneOfParents() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public boolean getPossibleAGE() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleBoard() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleExtendedBoard() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleKitchen() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleMAK() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleMisc() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleParticipant() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleSeminar() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleStaff() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean getPossibleStaffYouth() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public String getLivingStreet() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public int getLivingPostCode() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public String getLivingCity() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
