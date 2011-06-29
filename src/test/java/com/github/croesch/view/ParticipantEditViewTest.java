@@ -2,6 +2,8 @@ package com.github.croesch.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Before;
@@ -14,7 +16,7 @@ import com.github.croesch.types.Participant;
 import com.github.croesch.view.api.IParticipantEditView;
 
 /**
- * TODO Comment here ...
+ * Provides tests for {@link IParticipantEditView}
  * 
  * @author croesch
  * @since Date: Jun 26, 2011
@@ -110,10 +112,14 @@ public class ParticipantEditViewTest {
 
   /**
    * Test method for {@link IParticipantEditView#getBirthDate()}.
+   * 
+   * @throws ParseException
    */
   @Test
-  public final void testGetBirthDate() {
-    assertThat(this.testView.getBirthDate()).isEqualTo(this.participant.getBirthDate());
+  public final void testGetBirthDate() throws ParseException {
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    final Date date = sdf.parse(sdf.format(this.participant.getBirthDate()));
+    assertThat(this.testView.getBirthDate()).isEqualTo(date);
   }
 
   /**
@@ -182,10 +188,14 @@ public class ParticipantEditViewTest {
 
   /**
    * Test method for {@link IParticipantEditView#getDateUpToInDataBase()}.
+   * 
+   * @throws ParseException
    */
   @Test
-  public final void testGetDateUpToInDataBase() {
-    assertThat(this.testView.getDateUpToInDataBase()).isEqualTo(this.participant.getDateUpToInSystem());
+  public final void testGetDateUpToInDataBase() throws ParseException {
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    final Date date = sdf.parse(sdf.format(this.participant.getDateUpToInSystem()));
+    assertThat(this.testView.getDateUpToInDataBase()).isEqualTo(date);
   }
 
   /**
