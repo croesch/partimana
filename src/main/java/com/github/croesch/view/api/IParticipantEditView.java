@@ -20,7 +20,7 @@ public interface IParticipantEditView {
    * 
    * @author croesch
    * @since Date: Jun 26, 2011
-   * @param participant {@link Participant} to edit
+   * @param participant {@link Participant} to edit, <code>null</code> will clear the view
    */
   void setParticipant(Participant participant);
 
@@ -311,5 +311,23 @@ public interface IParticipantEditView {
    * @return {@link String} that represents the city where the {@link Participant} lives.
    */
   String getLivingCity();
+
+  /**
+   * Returns the id of the {@link Participant} or -1 if the participant doesn't exist already.
+   * 
+   * @author croesch
+   * @since Date: Jun 29, 2011
+   * @return the id that represents the id of the participant or <code>-1</code>, if this participant doesn't exist
+   *         already
+   */
+  long getId();
+
+  /**
+   * Clears all fields.
+   * 
+   * @author croesch
+   * @since Date: Jun 29, 2011
+   */
+  void clear();
 
 }
