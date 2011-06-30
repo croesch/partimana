@@ -9,6 +9,7 @@ import com.github.croesch.model.api.IPersistenceModel;
 import com.github.croesch.types.Camp;
 import com.github.croesch.types.Participant;
 import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
+import com.github.croesch.view.api.IView;
 
 /**
  * The model of the partimana program.
@@ -26,6 +27,20 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
   /** the model that is responsible for actions that have to do with {@link Camp}s */
   private final ICampModel campModel = new CampModel(this.persistenceModel);
+
+  /** the connection to the view of the program */
+  private IView view;
+
+  /**
+   * Sets the view for the model so that it can notify the view to update itself.
+   * 
+   * @author croesch
+   * @since Date: Jun 30, 2011
+   * @param v the view to set to the model.
+   */
+  public void setView(final IView v) {
+    this.view = v;
+  }
 
   @Override
   public Participant getParticipant(final long id) {

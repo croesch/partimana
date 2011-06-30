@@ -4,20 +4,29 @@ import org.apache.log4j.Logger;
 
 import com.github.croesch.actions.ActionObserver;
 import com.github.croesch.actions.UserAction;
+import com.github.croesch.i18n.Text;
+import com.github.croesch.model.Model;
+import com.github.croesch.view.View;
 
 /**
- * TODO Comment here ...
+ * The controller of the program.
  * 
  * @author croesch
  * @since Date: May 29, 2011 12:15:51 PM
  */
-public final class Controller implements Runnable, ActionObserver {
+public final class Controller implements ActionObserver {
 
   /** logging class */
-  private final Logger log = Logger.getLogger(Controller.class);
+  private static final Logger LOGGER = Logger.getLogger(Controller.class);
 
   /** the action observer for the main program */
   private final ActionObserver observer;
+
+  /** the connector to the model of the program */
+  private final Model model;
+
+  /** the connector to the view of the program */
+  private final View view;
 
   /**
    * Constructs the core controller with the given action observer and the arguments from command line.
@@ -29,22 +38,28 @@ public final class Controller implements Runnable, ActionObserver {
    */
   public Controller(final ActionObserver o, final String[] args) {
     this.observer = o;
-  }
+    this.model = new Model();
+    this.view = new View(this.model, this);
+    this.model.setView(this.view);
 
-  @Override
-  public void run() {
-    try {
-      Thread.sleep(10000);
-    } catch (final InterruptedException e) {
-      this.log.warn(e.getMessage(), e);
-    }
-    this.observer.performAction(UserAction.EXIT);
+    this.view.setVisible(true);
+
+    this.view.showInformation(Text.VERSION);
   }
 
   @Override
   public void performAction(final UserAction action) {
-    // TODO Auto-generated method stub
+    switch (action) {
 
+      case EXIT:
+        LOGGER.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
+        this.observer.performAction(action);
+        break;
+
+      default:
+        // do nothing
+        break;
+    }
   }
 
 }

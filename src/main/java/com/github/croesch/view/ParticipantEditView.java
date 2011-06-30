@@ -28,6 +28,10 @@ import com.github.croesch.view.api.IParticipantEditView;
  * @since Date: Jun 8, 2011 6:23:15 AM
  */
 class ParticipantEditView extends JPanel implements IParticipantEditView {
+  /**
+   * TODO i18n of the labels <br>
+   * TODO improve check of numeric text fields
+   */
 
   /** generated */
   private static final long serialVersionUID = 5388465740510568296L;

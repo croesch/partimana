@@ -11,22 +11,30 @@ import java.util.ResourceBundle;
  */
 public enum Text {
 
+  /** the name of the program */
+  PARTIMANA (0),
+  /** the string that contains the version */
+  VERSION (1),
+
   /** the name of the selected language */
-  LANGUAGE (0),
+  LANGUAGE (10),
   /** the constant yes */
-  YES (1),
+  YES (11),
   /** the constant no */
-  NO (2),
+  NO (12),
   /** the constant cancel */
-  CANCEL (3),
+  CANCEL (13),
   /** the constant ok */
-  OK (4),
+  OK (14),
   /** the constant apply */
-  APPLY (5),
+  APPLY (15),
   /** the constant close */
-  CLOSE (6),
+  CLOSE (16),
   /** the constant exit */
-  EXIT (7),
+  EXIT (17),
+
+  /** the name for the file menu */
+  FILE (20),
 
   /** the name for participant */
   PARTICIPANT (100),
@@ -90,15 +98,6 @@ public enum Text {
   PARTICIPANT_SEMINAR (129),
   /** the name for misc */
   PARTICIPANT_MISC (130),
-
-  /** the message to show which language is selected */
-  DEBUG_SELECTED_LANGUAGE (1000),
-  /** the message to indicate that program is starting */
-  DEBUG_PROGRAM_STARTING (1005),
-  /** the message to indicate that program is sending the message to exit */
-  DEBUG_PROGRAM_EXIT_NOTIFICATION (1009),
-  /** the message to indicate that program is exiting */
-  DEBUG_PROGRAM_EXITING (1010),
 
   /** constant for male */
   MALE (2000),
@@ -168,7 +167,19 @@ public enum Text {
   /** constant for city of zweibruecken */
   CITY_ZWEIBRUECKEN (2048),
   /** constant for another county council */
-  OTHER (2049);
+  OTHER (2049),
+
+  /** the message to show which language is selected */
+  DEBUG_SELECTED_LANGUAGE (10000),
+  /** the message to indicate that program is starting */
+  DEBUG_PROGRAM_STARTING (10005),
+  /** the message to indicate that program is sending the message to exit */
+  DEBUG_PROGRAM_EXIT_NOTIFICATION (10009),
+  /** the message to indicate that program is exiting */
+  DEBUG_PROGRAM_EXITING (10010),
+
+  /** warning for an unknown action */
+  WARN_UNKNOWN_ACTION (12000);
 
   /** the value of this instance */
   private final String string;

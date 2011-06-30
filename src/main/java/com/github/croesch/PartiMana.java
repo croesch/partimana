@@ -26,8 +26,11 @@ import com.github.croesch.i18n.Text;
  */
 public final class PartiMana implements ActionObserver {
 
+  /** the time to sleep until the next check will happen if the program should exit */
+  private static final int HEARTBEAT_INTERVALL = 1000;
+
   /** logging class */
-  private final Logger log = Logger.getLogger(PartiMana.class);
+  private static final Logger LOGGER = Logger.getLogger(PartiMana.class);
 
   /** indicator if the program should exit or is still running */
   private boolean running = true;
@@ -51,27 +54,29 @@ public final class PartiMana implements ActionObserver {
    * @param args arguments that came from command line
    */
   public PartiMana(final String[] args) {
-    this.log.debug(Text.DEBUG_PROGRAM_STARTING.text());
-    this.log.debug(Text.DEBUG_SELECTED_LANGUAGE.text(Text.LANGUAGE));
+    LOGGER.debug(Text.DEBUG_PROGRAM_STARTING.text());
+    LOGGER.debug(Text.DEBUG_SELECTED_LANGUAGE.text(Text.LANGUAGE));
 
-    final Runnable program = new Controller(this, args);
-    program.run();
+    // start 'real' program
+    new Controller(this, args);
 
     while (this.running) {
       try {
-        Thread.sleep(1000);
+        Thread.sleep(HEARTBEAT_INTERVALL);
       } catch (final InterruptedException e) {
-        this.log.warn(e.getMessage(), e);
+        LOGGER.warn(e.getMessage(), e);
       }
     }
-    this.log.debug(Text.DEBUG_PROGRAM_EXITING.text());
+    LOGGER.debug(Text.DEBUG_PROGRAM_EXITING.text());
   }
 
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.EXIT) {
-      this.log.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
+      LOGGER.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
       this.running = false;
+    } else {
+      LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }
   }
 
