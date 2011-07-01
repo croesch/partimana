@@ -1,10 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="0">English (Default)</entry>
+	<entry key="0">Partimana</entry>
+	<entry key="1">Version ${version}-b${buildNumber}</entry>
 
-	<entry key="1000">Selected language: '{0}'</entry>
-	<entry key="1005">Starting program</entry>
-	<entry key="1009">Sending exit notification</entry>
-	<entry key="1010">Exiting program</entry>
+	<entry key="10">Deutsch (Standard)</entry>
+	<entry key="11">Ja</entry>
+	<entry key="12">Nein</entry>
+	<entry key="13">Abbrechen</entry>
+	<entry key="14">OK</entry>
+	<entry key="15">Übernehmen</entry>
+	<entry key="16">Schließen</entry>
+	<entry key="17">Beenden</entry>
+	<entry key="18">Speichern</entry>
+	
+	<entry key="20">Datei</entry>
+		
+	<!-- Teilnehmer-Daten -->
+	<entry key="100">Teilnehmer</entry>
+	<entry key="101">Nummer</entry>
+	<entry key="102">Nachname</entry>
+	<entry key="103">Vorname</entry>
+	<entry key="104">Geschlecht</entry>
+	<entry key="105">Konfession</entry>
+	<entry key="106">Geburtstag</entry>
+	<entry key="107">Wohnanschrift</entry>
+	<entry key="108">Postanschrift</entry>
+	<entry key="109">Telefonnummer</entry>
+	<entry key="110">Faxnummer</entry>
+	<entry key="111">Handynummer</entry>
+	<entry key="112">Telefon der Eltern</entry>
+	<entry key="113">Mail-Adresse</entry>
+	<entry key="114">Kreisverwaltung</entry>
+	<entry key="115">BLZ</entry>
+	<entry key="116">Bank</entry>
+	<entry key="117">Kontonummer</entry>
+	<entry key="118">Kommentar</entry>
+	<entry key="119">Aufnahmedatum</entry>
+	<entry key="120">Austrittsdatum</entry>
+	<entry key="121">Freizeit-Teilnehmer</entry>
+	<entry key="122">Mitarbeiter allgemein</entry>
+	<entry key="123">Mitarbeiter Jugend</entry>
+	<entry key="124">Vorstand</entry>
+	<entry key="125">erw. Vorstand</entry>
+	<entry key="126">MAK</entry>
+	<entry key="127">AGE</entry>
+	<entry key="128">Freizeit-Küche</entry>
+	<entry key="129">Seminar</entry>
+	<entry key="130">Sonstige</entry>
+
+	<!-- Verschiedenes -->
+	<!-- Geschlecht -->
+	<entry key="2000">männlich</entry>
+	<entry key="2001">weiblich</entry>
+	
+	<!-- Konfession -->
+	<entry key="2010">Evangelisch</entry>
+	<entry key="2011">Katholisch</entry>
+	<entry key="2012">Orthodox</entry>
+	<entry key="2013">Muslimisch</entry>
+	<entry key="2014">Freikirchlich</entry>
+	<entry key="2015">Jüdisch</entry>
+	<entry key="2016">Andere Konfession</entry>
+	<entry key="2017">Ohne Konfession</entry>
+	
+	<!-- Anschrift -->
+	<entry key="2020">Straße</entry>
+	<entry key="2021">PLZ</entry>
+	<entry key="2022">Ort</entry>
+	
+	<!-- Kreisverwaltung -->
+	<entry key="2030">Unbekannte Kreisverwaltung</entry>
+	<entry key="2031">Kreis Alzey</entry>
+	<entry key="2032">Kreis Bad Kreuznach</entry>
+	<entry key="2033">Kreis Bad Dürkheim</entry>
+	<entry key="2034">Stadt Frankenthal</entry>
+	<entry key="2035">Kreis Gemersheim</entry>
+	<entry key="2036">Stadt Kaiserslautern</entry>
+	<entry key="2037">Kreis Kaiserslautern</entry>
+	<entry key="2038">Kreis Kirchheimbolanden</entry>
+	<entry key="2039">Kreis Kusel</entry>
+	<entry key="2040">Stadt Landau</entry>
+	<entry key="2041">Stadt Ludwigshafen</entry>
+	<entry key="2042">Kreis Rhein-Pfalz</entry>
+	<entry key="2043">Stadt Neustadt</entry>
+	<entry key="2044">Stadt Pirmasens</entry>
+	<entry key="2045">Stadt Speyer</entry>
+	<entry key="2046">Kreis Südliche Weinstraße</entry>
+	<entry key="2047">Kreis Südwestpfalz</entry>
+	<entry key="2048">Stadt Zweibrücken</entry>
+	<entry key="2049">Andere Kreisverwaltung</entry>
+
+	<!-- Debug-Informationen -->
+	<entry key="10000">Ausgewählte Sprache: '{0}'</entry>
+	<entry key="10001">Ausgewähltes Look-And-Feel: '{0}'</entry>
+	<entry key="10005">Programm startet</entry>
+	<entry key="10009">Sende Ende-Benachrichtigung</entry>
+	<entry key="10010">Programm endet</entry>
+	
+	<!-- Informationen -->
+	<entry key="11010">Teilnehmer #{0} erfolgreich gespeichert.</entry>
+
+	<!-- Warnungen -->	
+	<entry key="12000">Unbekannte Aktion: '{0}'</entry>
+
+	<!-- Fehler -->
+	<entry key="13000">Exception aufgetreten: '{0}'</entry>
+	<entry key="13010">Teilnehmer konnte nicht gespeichert werden ...</entry>
 </properties> 
