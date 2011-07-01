@@ -9,6 +9,8 @@ package com.github.croesch.actions;
 public enum UserAction {
 
   /** action to exit the program */
-  EXIT;
+  EXIT,
+  /** the action to save a participant */
+  SAVE_PARTICIPANT;
 
 }
