@@ -1,5 +1,6 @@
 package com.github.croesch.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.github.croesch.model.api.IPersistenceModel;
@@ -34,8 +35,7 @@ class PersistenceModel implements IPersistenceModel {
 
   @Override
   public Map<Long, Participant> getMapOfParticipants() {
-    // TODO Auto-generated method stub
-    return null;
+    return new HashMap<Long, Participant>();
   }
 
   @Override

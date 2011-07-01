@@ -4,8 +4,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.github.croesch.actions.ActionObserver;
-import com.github.croesch.actions.UserAction;
 import com.github.croesch.i18n.Text;
 
 /**
@@ -24,12 +22,11 @@ class MenuBar extends JMenuBar {
    * 
    * @author croesch
    * @since Date: Jun 30, 2011
-   * @param observer the {@link ActionObserver} that handles the menu actions.
    */
-  public MenuBar(final ActionObserver observer) {
+  public MenuBar() {
 
     final JMenu file = new JMenu(Text.FILE.text());
-    final JMenuItem exit = new JMenuItem(new Action(observer, UserAction.EXIT, Text.EXIT));
+    final JMenuItem exit = new JMenuItem(Action.getExitAction());
 
     file.add(exit);
 

@@ -32,6 +32,8 @@ public enum Text {
   CLOSE (16),
   /** the constant exit */
   EXIT (17),
+  /** the constant save */
+  SAVE (18),
 
   /** the name for the file menu */
   FILE (20),
@@ -171,6 +173,8 @@ public enum Text {
 
   /** the message to show which language is selected */
   DEBUG_SELECTED_LANGUAGE (10000),
+  /** the message to show which look and feel is selected */
+  DEBUG_SELECTED_LAF (10001),
   /** the message to indicate that program is starting */
   DEBUG_PROGRAM_STARTING (10005),
   /** the message to indicate that program is sending the message to exit */
@@ -178,8 +182,16 @@ public enum Text {
   /** the message to indicate that program is exiting */
   DEBUG_PROGRAM_EXITING (10010),
 
+  /** information that participant has been saved */
+  INFO_PARTICIPANT_SAVED (11010),
+
   /** warning for an unknown action */
-  WARN_UNKNOWN_ACTION (12000);
+  WARN_UNKNOWN_ACTION (12000),
+
+  /** error - an exception */
+  ERROR_EXCEPTION (13000),
+  /** error when participant cannot be saved */
+  ERROR_PARTICIPANT_NOT_SAVED (13010);
 
   /** the value of this instance */
   private final String string;

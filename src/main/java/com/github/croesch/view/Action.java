@@ -15,13 +15,19 @@ import com.github.croesch.i18n.Text;
  * @author croesch
  * @since Date: Jun 8, 2011 6:25:47 AM
  */
-class Action extends AbstractAction {
+final class Action extends AbstractAction {
 
   /** generated */
   private static final long serialVersionUID = -2077864085665141085L;
 
   /** the observer that is able to handle the action */
-  private final ActionObserver actionObserver;
+  private static ActionObserver observer = null;
+
+  /** action to close the program */
+  private static Action exitAction = new Action(UserAction.EXIT, Text.EXIT);
+
+  /** action to save something */
+  private static Action saveParticipantAction = new Action(UserAction.SAVE_PARTICIPANT, Text.SAVE);
 
   /** the action to pass to the observer */
   private final UserAction action;
@@ -32,18 +38,51 @@ class Action extends AbstractAction {
    * 
    * @author croesch
    * @since Date: Jun 30, 2011
-   * @param ao the {@link ActionObserver} that will handle the action
    * @param act the {@link UserAction} to pass to the observer
    * @param t the {@link Text} as description of this action
    */
-  public Action(final ActionObserver ao, final UserAction act, final Text t) {
+  private Action(final UserAction act, final Text t) {
     super(t.text());
-    this.actionObserver = ao;
     this.action = act;
+  }
+
+  /**
+   * Sets the observer that is able to handle the actions.
+   * 
+   * @author croesch
+   * @since Date: Jul 1, 2011
+   * @param ao the observer to handle actions
+   */
+  static void setObserver(final ActionObserver ao) {
+    observer = ao;
   }
 
   @Override
   public void actionPerformed(final ActionEvent ev) {
-    this.actionObserver.performAction(this.action);
+    if (observer != null) {
+      observer.performAction(this.action);
+    }
+  }
+
+  /**
+   * Returns the action to close the program.
+   * 
+   * @author croesch
+   * @since Date: Jul 1, 2011
+   * @return the {@link Action} to close the program
+   */
+  static Action getExitAction() {
+    return exitAction;
+  }
+
+  /**
+   * Returns the action to save a participant.
+   * 
+   * @author croesch
+   * @since Date: Jul 1, 2011
+   * @return the {@link Action} to save a participant
+   */
+  static Action getSaveParticipantAction() {
+    return saveParticipantAction;
   }
 }

@@ -56,8 +56,12 @@ public final class Controller implements ActionObserver {
         this.observer.performAction(action);
         break;
 
+      case SAVE_PARTICIPANT:
+        ParticipantSaver.performSave(this.model, this.view.getParticipantEditView(), this.view);
+        break;
+
       default:
-        // do nothing
+        LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
         break;
     }
   }
