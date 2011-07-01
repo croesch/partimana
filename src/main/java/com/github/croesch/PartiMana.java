@@ -1,5 +1,9 @@
 package com.github.croesch;
 
+import java.util.Locale;
+
+import javax.swing.UIManager;
+
 import org.apache.log4j.Logger;
 
 import com.github.croesch.actions.ActionObserver;
@@ -43,6 +47,17 @@ public final class PartiMana implements ActionObserver {
    * @param args possible command line arguments
    */
   public static void main(final String[] args) {
+    Locale.setDefault(Locale.GERMAN);
+
+    // setting up the laf of the current system
+    try {
+      final String laf = UIManager.getSystemLookAndFeelClassName();
+      LOGGER.debug(Text.DEBUG_SELECTED_LAF.text(laf));
+      UIManager.setLookAndFeel(laf);
+    } catch (final Exception e) {
+      LOGGER.error(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    }
+
     new PartiMana(args);
   }
 
