@@ -20,6 +20,16 @@ public interface IStatusView {
   void showInformation(Text info);
 
   /**
+   * Visualises the given information.
+   * 
+   * @author croesch
+   * @since Date: Jul 1, 2011
+   * @param info the information to visualise.
+   * @param args the arguments to put into the information.
+   */
+  void showInformation(Text info, Object ... args);
+
+  /**
    * Visualises the given error.
    * 
    * @author croesch

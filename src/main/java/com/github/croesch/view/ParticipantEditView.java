@@ -155,11 +155,17 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    */
   public ParticipantEditView() {
 
-    setLayout(new MigLayout("", "[][grow][][grow][][grow]", "[][][][][][][][][][][][][][][][]"));
+    final int space = 15;
+    setLayout(new MigLayout("fill, insets 0",
+                            "[110px!, sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, sg f]",
+                            "[sg]" + space + "[sg][sg]" + space + "[sg][sg][sg]" + space + "[sg][sg]" + space + "[sg]"
+                                    + space + "[sg][sg][sg]" + space + "[][grow]"));
 
     initNames();
 
     addComponents();
+
+    clear();
   }
 
   /**
@@ -170,128 +176,128 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    */
   private void addComponents() {
     final JLabel idLbl = new JLabel("ID:");
-    add(idLbl, "cell 0 0,alignx trailing");
+    add(idLbl, "cell 0 0");
 
     add(this.idValueLbl, "cell 1 0");
 
     final JLabel sinceInDbLbl = new JLabel("Seit");
-    add(sinceInDbLbl, "cell 2 0,alignx trailing");
+    add(sinceInDbLbl, "cell 2 0");
 
     add(this.sinceInDbValueLbl, "cell 3 0");
 
     final JLabel untilInDbLbl = new JLabel("Bis");
-    add(untilInDbLbl, "cell 4 0,alignx trailing");
+    add(untilInDbLbl, "cell 4 0");
 
-    add(this.untilInDbTf, "cell 5 0,growx");
+    add(this.untilInDbTf, "cell 5 0");
 
     final JLabel firstNameLbl = new JLabel("Vorname");
-    add(firstNameLbl, "cell 0 1,alignx trailing");
+    add(firstNameLbl, "cell 0 1");
 
-    add(this.firstNameTf, "cell 1 1,growx");
+    add(this.firstNameTf, "cell 1 1");
 
     final JLabel lastNameLbl = new JLabel("Nachname");
-    add(lastNameLbl, "cell 2 1,alignx trailing");
+    add(lastNameLbl, "cell 2 1");
 
-    add(this.lastNameTf, "cell 3 1,growx");
+    add(this.lastNameTf, "cell 3 1");
 
     final JLabel genderLbl = new JLabel("Geschlecht");
-    add(genderLbl, "cell 4 1,alignx trailing");
+    add(genderLbl, "cell 4 1");
 
-    add(this.genderCb, "cell 5 1,growx");
+    add(this.genderCb, "cell 5 1");
 
     final JLabel birthDayLbl = new JLabel("Geburtstag");
-    add(birthDayLbl, "cell 0 2,alignx trailing");
+    add(birthDayLbl, "cell 0 2");
 
-    add(this.birthDayTf, "cell 1 2,growx");
+    add(this.birthDayTf, "cell 1 2");
 
     final JLabel denominationLbl = new JLabel("Konfession");
-    add(denominationLbl, "cell 2 2,alignx trailing");
+    add(denominationLbl, "cell 2 2");
 
-    add(this.denominationCb, "cell 3 2,growx");
+    add(this.denominationCb, "cell 3 2");
 
     final JLabel countyCouncilLbl = new JLabel("Kreisverwaltung");
-    add(countyCouncilLbl, "cell 4 2,alignx trailing");
+    add(countyCouncilLbl, "cell 4 2");
 
-    add(this.countyCouncilCb, "cell 5 2,growx");
+    add(this.countyCouncilCb, "cell 5 2");
 
     final JLabel streetLbl = new JLabel("Stra\u00DFe");
-    add(streetLbl, "cell 1 3,alignx center");
+    add(streetLbl, "cell 1 3, grow 0, alignx center");
 
     final JLabel postCodeLbl = new JLabel("PLZ");
-    add(postCodeLbl, "cell 3 3,alignx center");
+    add(postCodeLbl, "cell 3 3, grow 0, alignx center");
 
     final JLabel cityLbl = new JLabel("Ort");
-    add(cityLbl, "cell 5 3,alignx center");
+    add(cityLbl, "cell 5 3, grow 0, alignx center");
 
     final JLabel livingAddressLbl = new JLabel("Wohnanschrift");
     add(livingAddressLbl, "cell 0 4");
 
-    add(this.livStreetTf, "cell 1 4,growx");
+    add(this.livStreetTf, "cell 1 4");
 
-    add(this.livPostCodeTf, "cell 3 4,growx");
+    add(this.livPostCodeTf, "cell 3 4");
 
-    add(this.livCityTf, "cell 5 4,growx");
+    add(this.livCityTf, "cell 5 4");
 
     final JLabel postToAddressLbl = new JLabel("Postanschrift");
     add(postToAddressLbl, "cell 0 5");
 
-    add(this.posStreetTf, "cell 1 5,growx");
+    add(this.posStreetTf, "cell 1 5");
 
-    add(this.posPostCodeTf, "cell 3 5,growx");
+    add(this.posPostCodeTf, "cell 3 5");
 
-    add(this.posCityTf, "cell 5 5,growx");
+    add(this.posCityTf, "cell 5 5");
 
     final JLabel phoneLbl = new JLabel("Telefon");
-    add(phoneLbl, "cell 0 7,alignx trailing");
+    add(phoneLbl, "cell 0 6");
 
-    add(this.phoneTf, "cell 1 7,growx");
+    add(this.phoneTf, "cell 1 6");
 
     final JLabel faxLbl = new JLabel("Fax");
-    add(faxLbl, "cell 2 7,alignx trailing");
+    add(faxLbl, "cell 2 6");
 
-    add(this.faxTf, "cell 3 7,growx");
+    add(this.faxTf, "cell 3 6");
 
     final JLabel mobilePhoneLbl = new JLabel("Handy");
-    add(mobilePhoneLbl, "cell 4 7,alignx trailing");
+    add(mobilePhoneLbl, "cell 4 6");
 
-    add(this.mobilePhoneTf, "cell 5 7,growx");
+    add(this.mobilePhoneTf, "cell 5 6");
 
     final JLabel phoneParentsLbl = new JLabel("Telefon Eltern");
-    add(phoneParentsLbl, "cell 0 8,alignx trailing");
+    add(phoneParentsLbl, "cell 0 7");
 
-    add(this.phoneParentsTf, "cell 1 8,growx");
+    add(this.phoneParentsTf, "cell 1 7");
 
     final JLabel mailAddressLbl = new JLabel("Mail");
-    add(mailAddressLbl, "cell 2 8,alignx trailing");
+    add(mailAddressLbl, "cell 2 7");
 
-    add(this.mailAddressTf, "cell 3 8 3 1,growx");
+    add(this.mailAddressTf, "cell 3 7 3 1");
 
     final JLabel bankAccNumberLbl = new JLabel("Kontonummer");
-    add(bankAccNumberLbl, "cell 0 10,alignx trailing");
+    add(bankAccNumberLbl, "cell 0 8");
 
-    add(this.bankAccNumberTf, "cell 1 10,growx");
+    add(this.bankAccNumberTf, "cell 1 8");
 
     final JLabel bankCodNumberLbl = new JLabel("BLZ");
-    add(bankCodNumberLbl, "cell 2 10,alignx trailing");
+    add(bankCodNumberLbl, "cell 2 8");
 
-    add(this.bankCodeNumberTf, "cell 3 10,growx");
+    add(this.bankCodeNumberTf, "cell 3 8");
 
     final JLabel bankLbl = new JLabel("Bank");
-    add(bankLbl, "cell 4 10,alignx trailing");
+    add(bankLbl, "cell 4 8");
 
-    add(this.bankTf, "cell 5 10,growx");
+    add(this.bankTf, "cell 5 8");
 
     final JScrollPane commentScrollPane = new JScrollPane();
-    add(commentScrollPane, "cell 1 12 5 3,grow");
+    add(commentScrollPane, "cell 1 9 5 3,grow");
 
     commentScrollPane.setViewportView(this.commentTa);
 
     final JLabel commentLbl = new JLabel("Kommentar");
-    add(commentLbl, "cell 0 12,alignx trailing");
+    add(commentLbl, "cell 0 9");
 
     initPossibleFunctionsPanel();
 
-    add(this.possibleFunctionsPanel, "cell 0 15 6 1,growx");
+    add(this.possibleFunctionsPanel, "cell 0 12 6 1, alignx leading");
   }
 
   /**
@@ -302,10 +308,10 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    */
   private void initPossibleFunctionsPanel() {
     this.possibleFunctionsPanel = new JPanel();
-    this.possibleFunctionsPanel.setLayout(new MigLayout("", "[100px][][][][]", "[][][]"));
+    this.possibleFunctionsPanel.setLayout(new MigLayout("", "[110px!][][][][][]", "[sg][sg]"));
 
     final JLabel functionsLbl = new JLabel("Funktionen");
-    this.possibleFunctionsPanel.add(functionsLbl, "cell 0 0,alignx trailing");
+    this.possibleFunctionsPanel.add(functionsLbl, "cell 0 0");
 
     this.possibleFunctionsPanel.add(this.possParticipantCb, "cell 1 0");
 
@@ -315,17 +321,17 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     this.possibleFunctionsPanel.add(this.possBoardCb, "cell 4 0");
 
-    this.possibleFunctionsPanel.add(this.possExtendedBoardCb, "cell 1 1");
+    this.possibleFunctionsPanel.add(this.possExtendedBoardCb, "cell 5 0");
 
-    this.possibleFunctionsPanel.add(this.possMakCb, "cell 2 1");
+    this.possibleFunctionsPanel.add(this.possMakCb, "cell 1 1");
 
-    this.possibleFunctionsPanel.add(this.possAgeCb, "cell 3 1");
+    this.possibleFunctionsPanel.add(this.possAgeCb, "cell 2 1");
 
-    this.possibleFunctionsPanel.add(this.possSeminarCb, "cell 4 1");
+    this.possibleFunctionsPanel.add(this.possSeminarCb, "cell 3 1");
 
-    this.possibleFunctionsPanel.add(this.possKitchenCb, "cell 1 2");
+    this.possibleFunctionsPanel.add(this.possKitchenCb, "cell 4 1");
 
-    this.possibleFunctionsPanel.add(this.possMiscCb, "cell 2 2");
+    this.possibleFunctionsPanel.add(this.possMiscCb, "cell 5 1");
   }
 
   /**
@@ -427,8 +433,16 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.bankAccNumberTf.setText(String.valueOf(participant.getBankAccountNumber()));
       this.bankCodeNumberTf.setText(String.valueOf(participant.getBankCodeNumber()));
       this.commentTa.setText(participant.getComment());
-      this.untilInDbTf.setText(DATE_FORMAT.format(participant.getDateUpToInSystem()));
-      this.sinceInDbValueLbl.setText(DATE_FORMAT.format(participant.getDateSinceInDataBase()));
+      if (participant.getDateUpToInSystem() != null) {
+        this.untilInDbTf.setText(DATE_FORMAT.format(participant.getDateUpToInSystem()));
+      } else {
+        this.untilInDbTf.setText(null);
+      }
+      if (participant.getDateSinceInDataBase() != null) {
+        this.sinceInDbValueLbl.setText(DATE_FORMAT.format(participant.getDateSinceInDataBase()));
+      } else {
+        this.sinceInDbValueLbl.setText(null);
+      }
       this.faxTf.setText(participant.getFax());
       this.mailAddressTf.setText(participant.getMailAddress());
       this.mobilePhoneTf.setText(participant.getMobilePhone());

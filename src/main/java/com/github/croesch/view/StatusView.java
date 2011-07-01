@@ -41,8 +41,7 @@ class StatusView extends JPanel implements IStatusView {
 
   @Override
   public void showInformation(final Text info) {
-    this.label.setForeground(Color.BLACK);
-    this.label.setText(info.text());
+    showInfo(info.text());
   }
 
   @Override
@@ -51,4 +50,20 @@ class StatusView extends JPanel implements IStatusView {
     this.label.setText(error.text());
   }
 
+  @Override
+  public void showInformation(final Text info, final Object ... args) {
+    showInfo(info.text(args));
+  }
+
+  /**
+   * Sets the color to black and visualises the given text.
+   * 
+   * @author croesch
+   * @since Date: Jul 1, 2011
+   * @param txt the text to display.
+   */
+  private void showInfo(final String txt) {
+    this.label.setForeground(Color.BLACK);
+    this.label.setText(txt);
+  }
 }

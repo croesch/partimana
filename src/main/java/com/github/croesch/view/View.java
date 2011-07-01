@@ -4,9 +4,13 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
+
+import org.apache.log4j.Logger;
 
 import com.github.croesch.actions.ActionObserver;
 import com.github.croesch.actions.UserAction;
@@ -31,6 +35,9 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   /** generated */
   private static final long serialVersionUID = -5242901770081600903L;
 
+  /** logging class */
+  private static final Logger LOGGER = Logger.getLogger(View.class);
+
   /** the connector to the model of the program to fetch updates */
   private final IModel4View model;
 
@@ -38,7 +45,7 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   private final ActionObserver observer;
 
   /** the part of the view that is responsible for viewing the participants */
-  private final IParticipantView participantView = new ParticipantView();
+  private final IParticipantView participantView;
 
   /** the part of the view that is responsible for viewing the status */
   private final IStatusView statusView;
@@ -54,12 +61,23 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   public View(final IModel4View m, final ActionObserver o) {
     this.model = m;
     this.observer = o;
+    Action.setObserver(this);
 
-    setJMenuBar(new MenuBar(this));
+    setJMenuBar(new MenuBar());
 
-    setLayout(new MigLayout());
+    // TODO change this
+    setSize(new Dimension(1200, 650));
     setTitle(Text.PARTIMANA.text());
-    setSize(new Dimension(500, 500)); // TODO change this
+    setLayout(new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
+
+    final ParticipantView pv = new ParticipantView();
+    this.participantView = pv;
+    add(pv, "top");
+
+    final JPanel buttonPanel = new JPanel();
+    buttonPanel.setLayout(new MigLayout("fill, ins 0 n 0 n", "[grow][]", "[]"));
+    buttonPanel.add(new JButton(Action.getSaveParticipantAction()), "cell 1 0");
+    add(buttonPanel);
 
     final StatusView sv = new StatusView();
     this.statusView = sv;
@@ -85,14 +103,30 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   }
 
   @Override
+  public void showInformation(final Text info, final Object ... args) {
+    this.statusView.showInformation(info, args);
+  }
+
+  @Override
   public void showError(final Text error) {
     this.statusView.showError(error);
   }
 
   @Override
   public void performAction(final UserAction action) {
-    if (action == UserAction.EXIT) {
-      dispose();
+    switch (action) {
+      case EXIT:
+        dispose();
+        break;
+
+      case SAVE_PARTICIPANT:
+        this.observer.performAction(action);
+        break;
+
+      default:
+        LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
+        break;
+
     }
   }
 

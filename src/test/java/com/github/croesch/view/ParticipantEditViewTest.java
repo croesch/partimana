@@ -28,7 +28,7 @@ public class ParticipantEditViewTest {
   private Participant participant;
 
   /**
-   * TODO Comment here ...
+   * Creates a default participant and adds it to the {@link IParticipantEditView}.
    * 
    * @author croesch
    * @since Date: Jun 26, 2011
@@ -76,6 +76,24 @@ public class ParticipantEditViewTest {
     this.participant.setStreetPostal("street");
 
     this.testView.setParticipant(this.participant);
+  }
+
+  /**
+   * Test method for {@link IParticipantEditView#setParticipant(Participant)}.
+   */
+  @Test
+  public void testSetParticipant() {
+    this.participant = new Participant("Mustermann",
+                                       "Max",
+                                       Gender.MALE,
+                                       Denomination.OTHER,
+                                       new Date(),
+                                       "Musterstrasse 12",
+                                       12345,
+                                       "Musterhausen",
+                                       CountyCouncil.OTHER);
+    this.testView.setParticipant(this.participant);
+
   }
 
   /**
