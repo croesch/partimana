@@ -334,7 +334,7 @@ public class Participant {
    * @return the date of birth of the participant
    */
   public final Date getBirthDate() {
-    return this.birthDate;
+    return (Date) this.birthDate.clone();
   }
 
   /**
@@ -700,7 +700,10 @@ public class Participant {
    * @return the date since the participant is in the system
    */
   public final Date getDateSinceInDataBase() {
-    return this.dateSinceInDataBase;
+    if (this.dateSinceInDataBase == null) {
+      return null;
+    }
+    return (Date) this.dateSinceInDataBase.clone();
   }
 
   /**
@@ -724,7 +727,10 @@ public class Participant {
    * @return the date up to that the user will be in the system
    */
   public final Date getDateUpToInSystem() {
-    return this.dateUpToInSystem;
+    if (this.dateUpToInSystem == null) {
+      return null;
+    }
+    return (Date) this.dateUpToInSystem.clone();
   }
 
   /**

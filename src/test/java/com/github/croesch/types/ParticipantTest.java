@@ -347,6 +347,10 @@ public class ParticipantTest {
     birth.setTime(0);
     assertThat(this.participant.getBirthDate()).isNotEqualTo(birth);
     assertThat(this.participant.getBirthDate()).isEqualTo(copy);
+
+    final Date d = this.participant.getBirthDate();
+    d.setTime(0);
+    assertThat(this.participant.getBirthDate()).isEqualTo(copy);
   }
 
   /**
@@ -643,7 +647,7 @@ public class ParticipantTest {
     this.participant.setDateSinceInDataBase(null);
     assertThat(this.participant.getDateSinceInDataBase()).isNull();
 
-    final Date d1 = new Date();
+    Date d1 = new Date();
     this.participant.setDateSinceInDataBase(d1);
     assertThat(this.participant.getDateSinceInDataBase()).isEqualTo(d1);
 
@@ -652,6 +656,11 @@ public class ParticipantTest {
     assertThat(this.participant.getDateSinceInDataBase()).isEqualTo(d2);
     d2.setTime(d1.getTime());
     assertThat(this.participant.getDateSinceInDataBase()).isNotEqualTo(d2);
+
+    this.participant.setDateSinceInDataBase(d2);
+    d1 = this.participant.getDateSinceInDataBase();
+    d1.setTime(12);
+    assertThat(this.participant.getDateSinceInDataBase()).isEqualTo(d2);
   }
 
   /**
@@ -662,7 +671,7 @@ public class ParticipantTest {
     this.participant.setDateUpToInSystem(null);
     assertThat(this.participant.getDateUpToInSystem()).isNull();
 
-    final Date d1 = new Date();
+    Date d1 = new Date();
     this.participant.setDateUpToInSystem(d1);
     assertThat(this.participant.getDateUpToInSystem()).isEqualTo(d1);
 
@@ -671,6 +680,11 @@ public class ParticipantTest {
     assertThat(this.participant.getDateUpToInSystem()).isEqualTo(d2);
     d2.setTime(d1.getTime());
     assertThat(this.participant.getDateUpToInSystem()).isNotEqualTo(d2);
+
+    this.participant.setDateUpToInSystem(d2);
+    d1 = this.participant.getDateUpToInSystem();
+    d1.setTime(12);
+    assertThat(this.participant.getDateUpToInSystem()).isEqualTo(d2);
   }
 
   /**

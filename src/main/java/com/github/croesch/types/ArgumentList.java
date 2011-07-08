@@ -22,7 +22,11 @@ public final class ArgumentList {
    * @param a the arguments
    */
   public ArgumentList(final String[] a) {
-    this.args = a;
+    if (a != null) {
+      this.args = a.clone();
+    } else {
+      this.args = null;
+    }
   }
 
   /**

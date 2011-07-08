@@ -14,9 +14,6 @@ public class ArgumentListTest {
 
   /**
    * Tests the constructor of {@link ArgumentList}
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
    */
   @Test
   public final void testArgumentList() {
@@ -24,6 +21,18 @@ public class ArgumentListTest {
     new ArgumentList(new String[] {});
     new ArgumentList(new String[] { null });
     new ArgumentList(null);
+  }
+
+  /**
+   * Test method that ensures, that the array is not stored by reference.
+   */
+  @Test
+  public final void testReference() {
+    final String[] a = new String[] { "a", "b", "c" };
+    final ArgumentList l = new ArgumentList(a);
+    assertThat(l.getCurrentArgument()).isEqualTo("a");
+    a[0] = "c";
+    assertThat(l.getCurrentArgument()).isEqualTo("a");
   }
 
   /**
@@ -109,19 +118,15 @@ public class ArgumentListTest {
     l.popArgument();
     assertThat(l.getCurrentArgument()).isEqualTo("one");
     assertThat(l.previewNextArgument()).isEqualTo("two");
-    assertThat(array[0]).isNull();
     l.popArgument();
     assertThat(l.getCurrentArgument()).isEqualTo("two");
     assertThat(l.previewNextArgument()).isEqualTo("three");
-    assertThat(array[1]).isNull();
     l.popArgument();
     assertThat(l.getCurrentArgument()).isEqualTo("three");
     assertThat(l.previewNextArgument()).isNull();
-    assertThat(array[2]).isNull();
     l.popArgument();
     assertThat(l.getCurrentArgument()).isNull();
     assertThat(l.previewNextArgument()).isNull();
-    assertThat(array[3]).isNull();
     l.popArgument();
     assertThat(l.getCurrentArgument()).isNull();
     assertThat(l.previewNextArgument()).isNull();

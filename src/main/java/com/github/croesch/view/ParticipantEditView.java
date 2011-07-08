@@ -37,7 +37,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   private static final long serialVersionUID = 5388465740510568296L;
 
   /** the date format to parse the dates entered in the text fields */
-  private static final DateFormat DATE_FORMAT = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM);
+  private final DateFormat dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM);
 
   /** the text field to edit the persons name */
   private final JTextField firstNameTf = new JTextField();
@@ -424,7 +424,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.lastNameTf.setText(participant.getLastName());
       this.genderCb.setSelectedItem(participant.getGender());
       this.denominationCb.setSelectedItem(participant.getDenomination());
-      this.birthDayTf.setText(DATE_FORMAT.format(participant.getBirthDate()));
+      this.birthDayTf.setText(this.dateFormat.format(participant.getBirthDate()));
       this.posStreetTf.setText(participant.getStreetPostal());
       this.posPostCodeTf.setText(String.valueOf(participant.getPostCodePostal()));
       this.posCityTf.setText(participant.getCityPostal());
@@ -434,12 +434,12 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.bankCodeNumberTf.setText(String.valueOf(participant.getBankCodeNumber()));
       this.commentTa.setText(participant.getComment());
       if (participant.getDateUpToInSystem() != null) {
-        this.untilInDbTf.setText(DATE_FORMAT.format(participant.getDateUpToInSystem()));
+        this.untilInDbTf.setText(this.dateFormat.format(participant.getDateUpToInSystem()));
       } else {
         this.untilInDbTf.setText(null);
       }
       if (participant.getDateSinceInDataBase() != null) {
-        this.sinceInDbValueLbl.setText(DATE_FORMAT.format(participant.getDateSinceInDataBase()));
+        this.sinceInDbValueLbl.setText(this.dateFormat.format(participant.getDateSinceInDataBase()));
       } else {
         this.sinceInDbValueLbl.setText(null);
       }
@@ -488,7 +488,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   @Override
   public Date getBirthDate() {
     try {
-      return DATE_FORMAT.parse(this.birthDayTf.getText());
+      return this.dateFormat.parse(this.birthDayTf.getText());
     } catch (final ParseException e) {
       return null;
     }
@@ -549,7 +549,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   @Override
   public Date getDateUpToInDataBase() {
     try {
-      return DATE_FORMAT.parse(this.untilInDbTf.getText());
+      return this.dateFormat.parse(this.untilInDbTf.getText());
     } catch (final ParseException e) {
       return null;
     }
