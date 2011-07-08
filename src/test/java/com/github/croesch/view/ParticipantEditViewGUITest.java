@@ -19,6 +19,7 @@ import org.fest.swing.fixture.JComboBoxFixture;
 import org.fest.swing.fixture.JLabelFixture;
 import org.fest.swing.fixture.JPanelFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
+import org.fest.swing.testing.FestSwingTestCaseTemplate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -36,7 +37,7 @@ import com.github.croesch.view.api.IParticipantEditView;
  * @author croesch
  * @since Date: Jun 26, 2011
  */
-public class ParticipantEditViewGUITest {
+public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
 
   private IParticipantEditView editView;
 
@@ -60,6 +61,11 @@ public class ParticipantEditViewGUITest {
    */
   @Before
   public void setUp() {
+    setUpRobot();
+
+    robot().settings().delayBetweenEvents(15);
+    robot().settings().eventPostingDelay(15);
+
     final ParticipantEditView view = new ParticipantEditView();
 
     this.participant = new Participant("Mustermann",
@@ -104,7 +110,7 @@ public class ParticipantEditViewGUITest {
     view.setName("editView");
     this.editView = view;
 
-    this.window = Containers.frameFixtureFor(view);
+    this.window = new FrameFixture(robot(), Containers.frameFor(view));
     this.window.show();
     this.testView = this.window.panel("editView");
   }
@@ -112,6 +118,7 @@ public class ParticipantEditViewGUITest {
   @After
   public void tearDown() {
     this.window.cleanUp();
+    cleanUp();
   }
 
   /**
