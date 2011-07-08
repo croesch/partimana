@@ -920,4 +920,172 @@ public class ParticipantTest {
                                        "city",
                                        CountyCouncil.COUNTY_GERMERSHEIM);
   }
+
+  /**
+   * Test method for {@link Participant#toString()}.
+   */
+  @Test
+  public final void testToString() {
+    assertThat(this.participant.toString()).contains(String.valueOf(this.participant.getId()));
+  }
+
+  /**
+   * Test method for {@link Participant#equals(Object)}.
+   */
+  @Test
+  public final void testEquals() {
+    Participant p = new Participant("Mustermann",
+                                    "Hans",
+                                    Gender.FEMALE,
+                                    Denomination.OTHER,
+                                    new Date(),
+                                    "Musterstrasse 12",
+                                    SAMPLE_POSTCODE,
+                                    "Musterhausen",
+                                    CountyCouncil.OTHER);
+
+    p.setBank("bank");
+    p.setBankAccountNumber(4);
+    p.setBankCodeNumber(7);
+    p.setComment("com");
+    p.setCountyCouncil(CountyCouncil.CITY_LANDAU);
+    p.setDateSinceInDataBase(new Date(12));
+    p.setDateUpToInSystem(new Date(24));
+    p.setDenomination(Denomination.FREE_CHURCH);
+    p.setFax("fax");
+
+    assertThat(this.participant).isEqualTo(this.participant);
+    assertThat(this.participant).isNotEqualTo(null);
+    assertThat(this.participant).isNotEqualTo("participant");
+    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(p).isNotEqualTo(this.participant);
+
+    this.participant.setBank("bank");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setBankAccountNumber(4);
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setBankCodeNumber(7);
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setBirthDate(this.participant.getBirthDate());
+    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(p).isNotEqualTo(this.participant);
+
+    this.participant.setComment("comment");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setComment("com");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setCountyCouncil(CountyCouncil.CITY_LANDAU);
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setDateSinceInDataBase(new Date());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setDateSinceInDataBase(new Date(12));
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setDateUpToInSystem(new Date());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setDateUpToInSystem(new Date(24));
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setDenomination(p.getDenomination());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setFax("d");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setFax(p.getFax());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setForeName(p.getForeName());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setGender(p.getGender());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p = new Participant(this.participant);
+    p.setLastName("l");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setLastName(p.getLastName());
+    p.setStreet("s");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setStreet(p.getStreet());
+    p.setMailAddress("mail-addy");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setMailAddress("mail");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setMailAddress(this.participant.getMailAddress());
+    p.setMobilePhone("mobile");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setMobilePhone("phone");
+    assertThat(this.participant).isNotEqualTo(p);
+    this.participant.setMobilePhone(p.getMobilePhone());
+    p.setPhone("mobile");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setPhone("phone");
+    assertThat(this.participant).isNotEqualTo(p);
+    p.setPhone(this.participant.getPhone());
+    p.setPhoneOfParents("pop");
+    assertThat(this.participant).isNotEqualTo(p);
+
+    this.participant.setPhoneOfParents("phone-of-parents");
+    assertThat(this.participant).isNotEqualTo(p);
+    p.setPhoneOfParents(this.participant.getPhoneOfParents());
+
+    p.setPossibleAGE(!this.participant.isPossibleAGE());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleAGE(this.participant.isPossibleAGE());
+    p.setPossibleBoard(!this.participant.isPossibleBoard());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleBoard(this.participant.isPossibleBoard());
+    p.setPossibleExtendedBoard(!this.participant.isPossibleExtendedBoard());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleExtendedBoard(this.participant.isPossibleExtendedBoard());
+    p.setPossibleKitchen(!this.participant.isPossibleKitchen());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleKitchen(this.participant.isPossibleKitchen());
+    p.setPossibleMAK(!this.participant.isPossibleMAK());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleMAK(this.participant.isPossibleMAK());
+    p.setPossibleMisc(!this.participant.isPossibleMisc());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleMisc(this.participant.isPossibleMisc());
+    p.setPossibleParticipant(!this.participant.isPossibleParticipant());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleParticipant(this.participant.isPossibleParticipant());
+    p.setPossibleSeminar(!this.participant.isPossibleSeminar());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleSeminar(this.participant.isPossibleSeminar());
+    p.setPossibleStaff(!this.participant.isPossibleStaff());
+    assertThat(this.participant).isNotEqualTo(p);
+
+    p.setPossibleStaff(this.participant.isPossibleStaff());
+    p.setPossibleStaffYouth(!this.participant.isPossibleStaffYouth());
+    assertThat(this.participant).isNotEqualTo(p);
+    p.setPossibleStaffYouth(this.participant.isPossibleStaffYouth());
+
+    assertThat(this.participant).isEqualTo(p);
+    p.setPostCodePostal(177);
+    assertThat(this.participant).isNotEqualTo(p);
+  }
 }

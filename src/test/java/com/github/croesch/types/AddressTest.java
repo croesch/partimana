@@ -108,6 +108,43 @@ public class AddressTest {
     copy.setStreet("stree");
     assertThat(this.address.hashCode()).isNotEqualTo(copy.hashCode());
     assertThat(this.address).isNotEqualTo(copy);
+
+    copy.setCity(this.address.getCity());
+    copy.setPostCode(this.address.getPostCode());
+    copy.setStreet(this.address.getStreet());
+
+    assertThat(this.address).isEqualTo(this.address);
+    assertThat(this.address).isNotEqualTo(null);
+    assertThat(this.address).isNotEqualTo("address");
+
+    this.address.setCity(null);
+    assertThat(this.address).isNotEqualTo(copy);
+    this.address.setCity("other");
+    assertThat(this.address).isNotEqualTo(copy);
+    this.address.setCity(copy.getCity());
+
+    this.address.setStreet(null);
+    assertThat(this.address).isNotEqualTo(copy);
+    this.address.setStreet("other");
+    assertThat(this.address).isNotEqualTo(copy);
+    this.address.setStreet(copy.getStreet());
+
+    this.address.setPostCode(-1);
+    assertThat(this.address).isNotEqualTo(copy);
+    this.address.setPostCode(copy.getPostCode());
+
+    assertThat(this.address).isEqualTo(copy);
   }
 
+  /**
+   * Test method for {@link Address#toString()}.
+   */
+  @Test
+  public final void testToString() {
+    this.address = new Address("street", 1223, "city");
+
+    assertThat(this.address.toString()).contains(this.address.getCity());
+    assertThat(this.address.toString()).contains(this.address.getStreet());
+    assertThat(this.address.toString()).contains(String.valueOf(this.address.getPostCode()));
+  }
 }
