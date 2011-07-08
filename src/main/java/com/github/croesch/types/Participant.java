@@ -961,38 +961,82 @@ public class Participant {
   @Override
   public final int hashCode() {
     final int prime = 31;
-    int result = 1;
-    result = prime * result + ((this.bank == null) ? 0 : this.bank.hashCode());
+    int result = prime + getHash(this.bank);
     result = prime * result + this.bankAccountNumber;
     result = prime * result + this.bankCodeNumber;
-    result = prime * result + this.birthDate.hashCode();
-    result = prime * result + ((this.comment == null) ? 0 : this.comment.hashCode());
+    result = prime * result + getHash(this.birthDate);
+    result = prime * result + getHash(this.comment);
     result = prime * result + this.countyCouncil.hashCode();
-    result = prime * result + ((this.dateSinceInDataBase == null) ? 0 : this.dateSinceInDataBase.hashCode());
-    result = prime * result + ((this.dateUpToInSystem == null) ? 0 : this.dateUpToInSystem.hashCode());
-    result = prime * result + ((this.denomination == null) ? 0 : this.denomination.hashCode());
-    result = prime * result + ((this.fax == null) ? 0 : this.fax.hashCode());
-    result = prime * result + this.foreName.hashCode();
+    result = prime * result + getHash(this.dateSinceInDataBase);
+    result = prime * result + getHash(this.dateUpToInSystem);
+    result = prime * result + getHash(this.denomination);
+    result = prime * result + getHash(this.fax);
+    result = prime * result + getHash(this.foreName);
     result = prime * result + this.gender.hashCode();
-    result = prime * result + (int) (this.id ^ (this.id >>> 32));
-    result = prime * result + this.lastName.hashCode();
+    result = prime * result + Long.valueOf(this.id).hashCode();
+    result = prime * result + getHash(this.lastName);
     result = prime * result + this.livingAddress.hashCode();
-    result = prime * result + ((this.mailAddress == null) ? 0 : this.mailAddress.hashCode());
-    result = prime * result + ((this.mobilePhone == null) ? 0 : this.mobilePhone.hashCode());
-    result = prime * result + ((this.phone == null) ? 0 : this.phone.hashCode());
-    result = prime * result + ((this.phoneOfParents == null) ? 0 : this.phoneOfParents.hashCode());
-    result = prime * result + (this.possibleAGE ? 1231 : 1237);
-    result = prime * result + (this.possibleBoard ? 1231 : 1237);
-    result = prime * result + (this.possibleExtendedBoard ? 1231 : 1237);
-    result = prime * result + (this.possibleKitchen ? 1231 : 1237);
-    result = prime * result + (this.possibleMAK ? 1231 : 1237);
-    result = prime * result + (this.possibleMisc ? 1231 : 1237);
-    result = prime * result + (this.possibleParticipant ? 1231 : 1237);
-    result = prime * result + (this.possibleSeminar ? 1231 : 1237);
-    result = prime * result + (this.possibleStaff ? 1231 : 1237);
-    result = prime * result + (this.possibleStaffYouth ? 1231 : 1237);
+    result = prime * result + getHash(this.mailAddress);
+    result = prime * result + getHash(this.mobilePhone);
+    result = prime * result + getHash(this.phone);
+    result = prime * result + getHash(this.phoneOfParents);
+    result = prime * result + Boolean.valueOf(this.possibleAGE).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleBoard).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleExtendedBoard).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleKitchen).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleMAK).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleMisc).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleParticipant).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleSeminar).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleStaff).hashCode();
+    result = prime * result + Boolean.valueOf(this.possibleStaffYouth).hashCode();
     result = prime * result + this.postToAddress.hashCode();
     return result;
+  }
+
+  /**
+   * Returns the hashcode of the given {@link String}
+   * 
+   * @since Date: Jul 8, 2011
+   * @param s the string to create a hashcode from
+   * @return the hashcode of the given {@link String}
+   * @see String#hashCode()
+   */
+  private static int getHash(final String s) {
+    if (s == null) {
+      return 0;
+    }
+    return s.hashCode();
+  }
+
+  /**
+   * Returns the hashcode of the given {@link Date}
+   * 
+   * @since Date: Jul 8, 2011
+   * @param d the date to create a hashcode from
+   * @return the hashcode of the given {@link Date}
+   * @see Date#hashCode()
+   */
+  private static int getHash(final Date d) {
+    if (d == null) {
+      return 0;
+    }
+    return d.hashCode();
+  }
+
+  /**
+   * Returns the hashcode of the given {@link Denomination}
+   * 
+   * @since Date: Jul 8, 2011
+   * @param d the denomination to create a hashcode from
+   * @return the hashcode of the given {@link Denomination}
+   * @see Denomination#hashCode()
+   */
+  private static int getHash(final Denomination d) {
+    if (d == null) {
+      return 0;
+    }
+    return d.hashCode();
   }
 
   @Override
@@ -1100,6 +1144,21 @@ public class Participant {
     } else if (!this.phoneOfParents.equals(other.phoneOfParents)) {
       return false;
     }
+    if (!this.postToAddress.equals(other.postToAddress)) {
+      return false;
+    }
+    return arePossibilitiesEqual(other);
+  }
+
+  /**
+   * Returns whether the possible functions of this {@link Participant} are equal to the possible functions of the given
+   * {@link Participant}.
+   * 
+   * @since Date: Jul 8, 2011
+   * @param other {@link Participant} to compare with, must not be <code>null</code>!
+   * @return <code>true</code>, if all possibilities are the same.
+   */
+  private boolean arePossibilitiesEqual(final Participant other) {
     if (this.possibleAGE != other.possibleAGE) {
       return false;
     }
@@ -1128,9 +1187,6 @@ public class Participant {
       return false;
     }
     if (this.possibleStaffYouth != other.possibleStaffYouth) {
-      return false;
-    }
-    if (!this.postToAddress.equals(other.postToAddress)) {
       return false;
     }
     return true;
