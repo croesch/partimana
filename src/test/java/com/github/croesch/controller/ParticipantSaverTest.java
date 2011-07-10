@@ -589,4 +589,46 @@ public class ParticipantSaverTest {
 
     assertThat(this.stored).isEqualTo(p);
   }
+
+  /**
+   * Test method for {@link ParticipantSaver#performSave(IParticipantModel, IParticipantEditView, IStatusView)} .
+   */
+  @Test
+  public final void testPerformSave_PostalStreet() {
+    final Participant p = new Participant(this.dummyParticipant);
+    p.setStreetPostal("street for post");
+
+    editView.setParticipant(p);
+    ParticipantSaver.performSave(this.model, editView, statusView);
+
+    assertThat(this.stored).isEqualTo(p);
+  }
+
+  /**
+   * Test method for {@link ParticipantSaver#performSave(IParticipantModel, IParticipantEditView, IStatusView)} .
+   */
+  @Test
+  public final void testPerformSave_PostalCity() {
+    final Participant p = new Participant(this.dummyParticipant);
+    p.setCityPostal("city for post");
+
+    editView.setParticipant(p);
+    ParticipantSaver.performSave(this.model, editView, statusView);
+
+    assertThat(this.stored).isEqualTo(p);
+  }
+
+  /**
+   * Test method for {@link ParticipantSaver#performSave(IParticipantModel, IParticipantEditView, IStatusView)} .
+   */
+  @Test
+  public final void testPerformSave_PostalPostCode() {
+    final Participant p = new Participant(this.dummyParticipant);
+    p.setPostCodePostal(84472);
+
+    editView.setParticipant(p);
+    ParticipantSaver.performSave(this.model, editView, statusView);
+
+    assertThat(this.stored).isEqualTo(p);
+  }
 }

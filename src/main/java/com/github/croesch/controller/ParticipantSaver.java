@@ -90,6 +90,10 @@ final class ParticipantSaver {
       p.setPossibleStaff(editView.getPossibleStaff());
       p.setPossibleStaffYouth(editView.getPossibleStaffYouth());
 
+      p.setStreetPostal(returnValueOrNullIfEmpty(editView.getPostalStreet()));
+      p.setCityPostal(returnValueOrNullIfEmpty(editView.getPostalCity()));
+      p.setPostCodePostal(editView.getPostalPostCode());
+
       editView.setParticipant(p);
       model.store(p);
       statusView.showInformation(Text.INFO_PARTICIPANT_SAVED, p.getId());
