@@ -1,6 +1,8 @@
 package com.github.croesch.types;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.github.croesch.i18n.Text;
 import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
@@ -1064,7 +1066,7 @@ public class Participant {
     if (this.bankCodeNumber != other.bankCodeNumber) {
       return false;
     }
-    if (!this.birthDate.equals(other.birthDate)) {
+    if (!areDatesEqual(this.birthDate, other.birthDate)) {
       return false;
     }
     if (this.comment == null) {
@@ -1077,18 +1079,10 @@ public class Participant {
     if (this.countyCouncil != other.countyCouncil) {
       return false;
     }
-    if (this.dateSinceInDataBase == null) {
-      if (other.dateSinceInDataBase != null) {
-        return false;
-      }
-    } else if (!this.dateSinceInDataBase.equals(other.dateSinceInDataBase)) {
+    if (!areDatesEqual(this.dateSinceInDataBase, other.dateSinceInDataBase)) {
       return false;
     }
-    if (this.dateUpToInSystem == null) {
-      if (other.dateUpToInSystem != null) {
-        return false;
-      }
-    } else if (!this.dateUpToInSystem.equals(other.dateUpToInSystem)) {
+    if (!areDatesEqual(this.dateUpToInSystem, other.dateUpToInSystem)) {
       return false;
     }
     if (this.denomination != other.denomination) {
@@ -1148,6 +1142,45 @@ public class Participant {
       return false;
     }
     return arePossibilitiesEqual(other);
+  }
+
+  /**
+   * Returns whether two dates are equal, ignoring the time.
+   * 
+   * @since Date: Jul 10, 2011
+   * @param one the date one to compare
+   * @param two the date two to compare
+   * @return <code>true</code>, if the dates are equal.
+   */
+  private boolean areDatesEqual(final Date one, final Date two) {
+    if (one == null) {
+      if (two != null) {
+        return false;
+      }
+      return true;
+    }
+
+    if (one.equals(two)) {
+      return true;
+    }
+    final Calendar cal1 = new GregorianCalendar();
+    cal1.setTime(one);
+
+    final Calendar cal2 = new GregorianCalendar();
+    cal2.setTime(two);
+
+    if (cal1.get(Calendar.DAY_OF_MONTH) != cal2.get(Calendar.DAY_OF_MONTH)) {
+      return false;
+    }
+
+    if (cal1.get(Calendar.MONTH) != cal2.get(Calendar.MONTH)) {
+      return false;
+    }
+
+    if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR)) {
+      return false;
+    }
+    return true;
   }
 
   /**
