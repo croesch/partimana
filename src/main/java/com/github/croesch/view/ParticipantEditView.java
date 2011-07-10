@@ -379,7 +379,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   }
 
   @Override
-  public void clear() {
+  public final void clear() {
     this.firstNameTf.setText(null);
     this.lastNameTf.setText(null);
     this.genderCb.setSelectedItem(null);
