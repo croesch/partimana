@@ -113,7 +113,7 @@ public class Participant {
    * 
    * @author croesch
    * @since Date: Jun 16, 2011 9:16:04 PM
-   * @param id the number to identify this participant, must be higher than the highest number until now
+   * @param forcedId the number to identify this participant, must be higher than the highest number until now
    * @param name the last name of the person
    * @param firstName the first name of the person
    * @param g the gender of the person
@@ -125,7 +125,7 @@ public class Participant {
    * @param county the county council for this person
    * @throws IllegalArgumentException if the id is too small
    */
-  public Participant(final long id,
+  public Participant(final long forcedId,
                      final String name,
                      final String firstName,
                      final Gender g,
@@ -135,7 +135,7 @@ public class Participant {
                      final int pc,
                      final String c,
                      final CountyCouncil county) throws IllegalArgumentException {
-    if (id <= highestId) {
+    if (forcedId <= highestId) {
       throw new IllegalArgumentException();
     }
 
@@ -149,8 +149,8 @@ public class Participant {
     setCity(c);
     setCountyCouncil(county);
 
-    this.id = id;
-    highestId = id;
+    this.id = forcedId;
+    highestId = forcedId;
   }
 
   /**

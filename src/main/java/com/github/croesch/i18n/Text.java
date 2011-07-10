@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 /**
  * This class provides access to the text properties file.
  * 
- * @author $Author: croesch $
- * @version $Revision: 1.9 $ ($Date: 2011/03/07 20:44:01 $)
+ * @author croesch
+ * @version 2011/03/07
  */
 public enum Text {
 
