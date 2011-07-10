@@ -16,6 +16,7 @@ import com.github.croesch.actions.ActionObserver;
 import com.github.croesch.actions.UserAction;
 import com.github.croesch.i18n.Text;
 import com.github.croesch.model.api.IModel4View;
+import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
 import com.github.croesch.view.api.ICampView;
 import com.github.croesch.view.api.IParticipantEditView;
 import com.github.croesch.view.api.IParticipantListView;
@@ -58,20 +59,24 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
    * @since Date: Jun 30, 2011
    * @param m the model to fetch data updates from.
    * @param o the observer to notify about actions.
+   * @throws RequiredFieldSetToNullException if the given model or the given observer is <code>null</code>
    */
-  public View(final IModel4View m, final ActionObserver o) {
+  public View(final IModel4View m, final ActionObserver o) throws RequiredFieldSetToNullException {
+    if (m == null || o == null) {
+      throw new RequiredFieldSetToNullException();
+    }
     this.model = m;
     this.observer = o;
     Action.setObserver(this);
 
     setJMenuBar(new MenuBar());
 
-    // TODO change this
+    // TODO change the default size of the view.
     setSize(new Dimension(1200, 650));
     setTitle(Text.PARTIMANA.text());
     setLayout(new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
 
-    final ParticipantView pv = new ParticipantView();
+    final ParticipantView pv = new ParticipantView(this.model);
     this.participantView = pv;
     add(pv, "top");
 

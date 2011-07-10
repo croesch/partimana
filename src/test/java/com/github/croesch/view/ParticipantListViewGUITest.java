@@ -3,9 +3,11 @@ package com.github.croesch.view;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.fest.swing.core.MouseClickInfo;
 import org.fest.swing.data.TableCell;
 import org.fest.swing.fixture.Containers;
 import org.fest.swing.fixture.FrameFixture;
@@ -195,6 +197,7 @@ public class ParticipantListViewGUITest extends FestSwingTestCaseTemplate implem
     this.listView.update(list);
     this.testView.table().selectRows(0);
     this.testView.table().requireSelectedRows(0);
+    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant1.getId());
 
     this.testView.table().selectCell(TableCell.row(0).column(0));
     assertThat(this.testView.table().component().isCellSelected(0, 1)).isTrue();
@@ -303,6 +306,113 @@ public class ParticipantListViewGUITest extends FestSwingTestCaseTemplate implem
     requireParticipant(this.testView.table(), 2, this.participant3);
     requireParticipant(this.testView.table(), 3, this.participant4);
     requireParticipant(this.testView.table(), 4, this.participant5);
+  }
+
+  /**
+   * Test method for {@link ParticipantListView}.
+   */
+  @Test
+  public final void testSelection_CountOfRows() {
+    final ArrayList<Participant> list = new ArrayList<Participant>();
+    list.add(this.participant1);
+    list.add(this.participant2);
+    list.add(this.participant3);
+    list.add(this.participant4);
+    list.add(this.participant5);
+    this.listView.update(list);
+
+    this.testView.table().selectRows(1, 2, 3);
+    this.testView.table().requireSelectedRows(3);
+    assertThat(this.testView.table().target.getSelectedRowCount()).isEqualTo(1);
+    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant4.getId());
+  }
+
+  /**
+   * Test method for {@link ParticipantListView#getSelectedParticipantId()}.
+   */
+  @Test
+  public final void testGetSelectedParticipantId() {
+    final ArrayList<Participant> list = new ArrayList<Participant>();
+    list.add(this.participant1);
+    list.add(this.participant2);
+    list.add(this.participant3);
+    list.add(this.participant4);
+    list.add(this.participant5);
+    this.listView.update(list);
+
+    this.testView.table().selectRows(1);
+    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant2.getId());
+
+    this.testView.table().selectRows(2);
+    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant3.getId());
+
+    this.testView.table().selectRows(4);
+    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant5.getId());
+
+    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
+      .releaseKey(KeyEvent.VK_CONTROL);
+    this.testView.table().requireNoSelection();
+    assertThat(this.listView.getSelectedParticipantId()).isZero();
+  }
+
+  /**
+   * Test method for {@link ParticipantListView}.
+   */
+  @Test
+  public final void testSelection_EventAfterDoubleClick() {
+    final ArrayList<Participant> list = new ArrayList<Participant>();
+    list.add(this.participant1);
+    list.add(this.participant2);
+    list.add(this.participant3);
+    list.add(this.participant4);
+    list.add(this.participant5);
+    this.listView.update(list);
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
+    assertThat(this.selectionEventFired).isEqualTo(1);
+
+    this.selectionEventFired = 0;
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
+
+    assertThat(this.selectionEventFired).isZero();
+    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
+    assertThat(this.selectionEventFired).isEqualTo(1);
+
+    this.selectionEventFired = 0;
+    this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
+    assertThat(this.selectionEventFired).isEqualTo(1);
+
+    this.selectionEventFired = 0;
+    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
+    assertThat(this.selectionEventFired).isEqualTo(1);
+
+    this.selectionEventFired = 0;
+    this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
+    assertThat(this.selectionEventFired).isEqualTo(1);
+
+    this.selectionEventFired = 0;
+    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
+    assertThat(this.selectionEventFired).isEqualTo(1);
   }
 
   private final void requireParticipant(final JTableFixture table, final int row, final Participant p) {

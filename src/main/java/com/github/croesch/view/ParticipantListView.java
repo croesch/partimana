@@ -1,15 +1,20 @@
 package com.github.croesch.view;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.actions.ActionObserver;
+import com.github.croesch.actions.UserAction;
+import com.github.croesch.i18n.Text;
 import com.github.croesch.types.Participant;
 import com.github.croesch.view.api.IParticipantListView;
 
@@ -38,7 +43,9 @@ class ParticipantListView extends JPanel implements IParticipantListView {
     setLayout(new MigLayout("fill"));
 
     final DefaultTableModel tm = new DefaultTableModel();
-    tm.setColumnIdentifiers(new Object[] { "ID", "Vorname", "Nachname" });
+    tm.setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
+                                          Text.PARTICIPANT_FORENAME.text(),
+                                          Text.PARTICIPANT_LASTNAME.text() });
     this.table = new JTable(tm) {
       /** generated */
       private static final long serialVersionUID = -6694984381634664552L;
@@ -49,6 +56,16 @@ class ParticipantListView extends JPanel implements IParticipantListView {
       }
     };
     this.table.setAutoCreateRowSorter(true);
+    this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    this.table.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(final MouseEvent e) {
+        if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+          o.performAction(UserAction.PARTICIPANT_SELECTED);
+        }
+        super.mouseClicked(e);
+      }
+    });
 
     add(new JScrollPane(this.table));
   }
@@ -64,9 +81,11 @@ class ParticipantListView extends JPanel implements IParticipantListView {
   }
 
   @Override
-  public Participant getSelected() {
-    // TODO Auto-generated method stub
-    return null;
+  public long getSelectedParticipantId() {
+    if (this.table.getSelectedRowCount() == 0) {
+      return 0;
+    }
+    return Long.parseLong(this.table.getValueAt(this.table.getSelectedRow(), 0).toString());
   }
 
 }

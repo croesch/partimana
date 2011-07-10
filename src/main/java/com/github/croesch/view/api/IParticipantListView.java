@@ -21,10 +21,11 @@ public interface IParticipantListView {
   void update(List<Participant> participants);
 
   /**
-   * Returns the selected participant from the list.
+   * Returns the id of the selected participant.
    * 
    * @since Date: Jul 10, 2011
-   * @return {@link Participant}, that is currently selected.
+   * @return id of the {@link Participant} that is currently selected.<br>
+   *         <code>0</code>, if no row is selected.
    */
-  Participant getSelected();
+  long getSelectedParticipantId();
 }
