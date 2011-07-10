@@ -4,6 +4,11 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 
+import org.apache.log4j.Logger;
+
+import com.github.croesch.actions.ActionObserver;
+import com.github.croesch.actions.UserAction;
+import com.github.croesch.i18n.Text;
 import com.github.croesch.view.api.IParticipantEditView;
 import com.github.croesch.view.api.IParticipantListView;
 import com.github.croesch.view.api.IParticipantView;
@@ -14,10 +19,13 @@ import com.github.croesch.view.api.IParticipantView;
  * @author croesch
  * @since Date: Jun 8, 2011 6:22:50 AM
  */
-class ParticipantView extends JPanel implements IParticipantView {
+class ParticipantView extends JPanel implements IParticipantView, ActionObserver {
 
   /** generated */
   private static final long serialVersionUID = 3996523912669034625L;
+
+  /** logging class */
+  private static final Logger LOGGER = Logger.getLogger(ParticipantView.class);
 
   /** the view to edit the participants */
   private final IParticipantEditView editView;
@@ -36,7 +44,7 @@ class ParticipantView extends JPanel implements IParticipantView {
     final ParticipantEditView pev = new ParticipantEditView();
     this.editView = pev;
 
-    final ParticipantListView plv = new ParticipantListView();
+    final ParticipantListView plv = new ParticipantListView(this);
     this.listView = plv;
 
     add(plv);
@@ -53,4 +61,12 @@ class ParticipantView extends JPanel implements IParticipantView {
     return this.listView;
   }
 
+  @Override
+  public void performAction(final UserAction action) {
+    if (action == UserAction.PARTICIPANT_SELECTED) {
+      this.editView.setParticipant(this.listView.getSelected());
+    } else {
+      LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
+    }
+  }
 }

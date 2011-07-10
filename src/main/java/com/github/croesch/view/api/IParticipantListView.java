@@ -19,4 +19,12 @@ public interface IParticipantListView {
    * @param participants the list of participants that is up to date.
    */
   void update(List<Participant> participants);
+
+  /**
+   * Returns the selected participant from the list.
+   * 
+   * @since Date: Jul 10, 2011
+   * @return {@link Participant}, that is currently selected.
+   */
+  Participant getSelected();
 }

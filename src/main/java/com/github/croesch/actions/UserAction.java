@@ -11,6 +11,8 @@ public enum UserAction {
   /** action to exit the program */
   EXIT,
   /** the action to save a participant */
-  SAVE_PARTICIPANT;
+  SAVE_PARTICIPANT,
+  /** the action that notifies about a selection change of participants */
+  PARTICIPANT_SELECTED;
 
 }
