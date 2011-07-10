@@ -19,7 +19,7 @@ import com.github.croesch.view.api.IView;
  */
 public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
-  /** the model that is responsible for persistency of data */
+  /** the model that is responsible for persistence of data */
   private final IPersistenceModel persistenceModel = new PersistenceModel();
 
   /** the model that is responsible for actions that have to do with {@link Participant}s */
@@ -50,11 +50,17 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
   @Override
   public void store(final Participant p) throws RequiredFieldSetToNullException {
     this.participantModel.store(p);
+    if (this.view != null) {
+      this.view.update();
+    }
   }
 
   @Override
   public void delete(final Participant p) throws RequiredFieldSetToNullException {
     this.participantModel.delete(p);
+    if (this.view != null) {
+      this.view.update();
+    }
   }
 
   @Override
