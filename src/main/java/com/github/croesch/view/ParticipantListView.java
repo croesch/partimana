@@ -42,30 +42,7 @@ class ParticipantListView extends JPanel implements IParticipantListView {
   public ParticipantListView(final ActionObserver o) {
     setLayout(new MigLayout("fill"));
 
-    final DefaultTableModel tm = new DefaultTableModel();
-    tm.setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
-                                          Text.PARTICIPANT_FORENAME.text(),
-                                          Text.PARTICIPANT_LASTNAME.text() });
-    this.table = new JTable(tm) {
-      /** generated */
-      private static final long serialVersionUID = -6694984381634664552L;
-
-      @Override
-      public boolean isCellEditable(final int rowIndex, final int colIndex) {
-        return false;
-      }
-    };
-    this.table.setAutoCreateRowSorter(true);
-    this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    this.table.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-          o.performAction(UserAction.PARTICIPANT_SELECTED);
-        }
-        super.mouseClicked(e);
-      }
-    });
+    this.table = new ParticipantTable(o);
 
     add(new JScrollPane(this.table));
   }
@@ -88,4 +65,68 @@ class ParticipantListView extends JPanel implements IParticipantListView {
     return Long.parseLong(this.table.getValueAt(this.table.getSelectedRow(), 0).toString());
   }
 
+  /**
+   * Table that displays a set of participants.
+   * 
+   * @author croesch
+   * @since Date: Jul 11, 2011
+   */
+  private static class ParticipantTable extends JTable {
+
+    /** generated */
+    private static final long serialVersionUID = -6694984381634664552L;
+
+    /**
+     * Creates a new table of participants.
+     * 
+     * @since Date: Jul 11, 2011
+     * @param o the {@link ActionObserver} that'll be notified on selection changes.
+     */
+    public ParticipantTable(final ActionObserver o) {
+      final DefaultTableModel tm = new DefaultTableModel();
+      tm.setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
+                                            Text.PARTICIPANT_FORENAME.text(),
+                                            Text.PARTICIPANT_LASTNAME.text() });
+      setModel(tm);
+      setAutoCreateRowSorter(true);
+      setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+      addMouseListener(new TableMouseListener(o));
+    }
+
+    @Override
+    public boolean isCellEditable(final int rowIndex, final int colIndex) {
+      return false;
+    }
+  }
+
+  /**
+   * Mouse listener for the table that will fire an action to a given observer that a row has been selected.
+   * 
+   * @author croesch
+   * @since Date: Jul 11, 2011
+   */
+  private static class TableMouseListener extends MouseAdapter {
+
+    /** the observer that should be notified about selection events */
+    private final ActionObserver observer;
+
+    /**
+     * Creates new mouse listener for the table of participants. Will fire the action if double click happened on the
+     * table.
+     * 
+     * @since Date: Jul 11, 2011
+     * @param o the {@link ActionObserver} to fire the action to.
+     */
+    public TableMouseListener(final ActionObserver o) {
+      this.observer = o;
+    }
+
+    @Override
+    public void mouseClicked(final MouseEvent e) {
+      if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+        this.observer.performAction(UserAction.PARTICIPANT_SELECTED);
+      }
+      super.mouseClicked(e);
+    }
+  }
 }
