@@ -100,6 +100,12 @@ public enum Text {
   PARTICIPANT_SEMINAR (129),
   /** the name for misc */
   PARTICIPANT_MISC (130),
+  /** the name for heading since when the participant is in the system */
+  PARTICIPANT_SINCE (131),
+  /** the name for heading until when the participant is in the system */
+  PARTICIPANT_UNTIL (132),
+  /** the name for heading possible functions of the participant */
+  PARTICIPANT_FUNCTIONS (133),
 
   /** constant for male */
   MALE (2000),

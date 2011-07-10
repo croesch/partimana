@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.github.croesch.i18n.Text;
 import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
 import com.github.croesch.types.Gender;
@@ -106,34 +107,34 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   private final JTextArea commentTa = new JTextArea();
 
   /** the check box to mark that this person can be participant */
-  private final JCheckBox possParticipantCb = new JCheckBox("Teilnehmer");
+  private final JCheckBox possParticipantCb = new JCheckBox(Text.PARTICIPANT_CAMP_PARTICIPANT.text());
 
   /** the check box to mark that this person can be staff */
-  private final JCheckBox possStaffCb = new JCheckBox("Mitarbeiter");
+  private final JCheckBox possStaffCb = new JCheckBox(Text.PARTICIPANT_STAFF_GENERAL.text());
 
   /** the check box to mark that this person can be staff youth */
-  private final JCheckBox possStaffYouthCb = new JCheckBox("Mitarbeiter-Jugend");
+  private final JCheckBox possStaffYouthCb = new JCheckBox(Text.PARTICIPANT_STAFF_YOUTH.text());
 
   /** the check box to mark that this person can be board member */
-  private final JCheckBox possBoardCb = new JCheckBox("Vorstand");
+  private final JCheckBox possBoardCb = new JCheckBox(Text.PARTICIPANT_BOARD.text());
 
   /** the check box to mark that this person can be extended board member */
-  private final JCheckBox possExtendedBoardCb = new JCheckBox("erweiterter Vorstand");
+  private final JCheckBox possExtendedBoardCb = new JCheckBox(Text.PARTICIPANT_EXTENDED_BOARD.text());
 
   /** the check box to mark that this person can be MAK */
-  private final JCheckBox possMakCb = new JCheckBox("MAK");
+  private final JCheckBox possMakCb = new JCheckBox(Text.PARTICIPANT_MAK.text());
 
   /** the check box to mark that this person can be AGE */
-  private final JCheckBox possAgeCb = new JCheckBox("AGE");
+  private final JCheckBox possAgeCb = new JCheckBox(Text.PARTICIPANT_AGE.text());
 
   /** the check box to mark that this person can be seminar member */
-  private final JCheckBox possSeminarCb = new JCheckBox("Seminar");
+  private final JCheckBox possSeminarCb = new JCheckBox(Text.PARTICIPANT_SEMINAR.text());
 
   /** the check box to mark that this person can be kitchen member */
-  private final JCheckBox possKitchenCb = new JCheckBox("K\u00FCche");
+  private final JCheckBox possKitchenCb = new JCheckBox(Text.PARTICIPANT_CAMP_KITCHEN.text());
 
   /** the check box to mark that this person can be misc. */
-  private final JCheckBox possMiscCb = new JCheckBox("Sonstiges");
+  private final JCheckBox possMiscCb = new JCheckBox(Text.PARTICIPANT_MISC.text());
 
   /** the label that contains the id of the person */
   private final JLabel idValueLbl = new JLabel("12345");
@@ -175,61 +176,61 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    * @since Date: Jun 28, 2011
    */
   private void addComponents() {
-    final JLabel idLbl = new JLabel("ID:");
+    final JLabel idLbl = new JLabel(Text.PARTICIPANT_ID.text());
     add(idLbl, "cell 0 0");
 
     add(this.idValueLbl, "cell 1 0");
 
-    final JLabel sinceInDbLbl = new JLabel("Seit");
+    final JLabel sinceInDbLbl = new JLabel(Text.PARTICIPANT_SINCE.text());
     add(sinceInDbLbl, "cell 2 0");
 
     add(this.sinceInDbValueLbl, "cell 3 0");
 
-    final JLabel untilInDbLbl = new JLabel("Bis");
+    final JLabel untilInDbLbl = new JLabel(Text.PARTICIPANT_UNTIL.text());
     add(untilInDbLbl, "cell 4 0");
 
     add(this.untilInDbTf, "cell 5 0");
 
-    final JLabel firstNameLbl = new JLabel("Vorname");
+    final JLabel firstNameLbl = new JLabel(Text.PARTICIPANT_FORENAME.text());
     add(firstNameLbl, "cell 0 1");
 
     add(this.firstNameTf, "cell 1 1");
 
-    final JLabel lastNameLbl = new JLabel("Nachname");
+    final JLabel lastNameLbl = new JLabel(Text.PARTICIPANT_LASTNAME.text());
     add(lastNameLbl, "cell 2 1");
 
     add(this.lastNameTf, "cell 3 1");
 
-    final JLabel genderLbl = new JLabel("Geschlecht");
+    final JLabel genderLbl = new JLabel(Text.PARTICIPANT_GENDER.text());
     add(genderLbl, "cell 4 1");
 
     add(this.genderCb, "cell 5 1");
 
-    final JLabel birthDayLbl = new JLabel("Geburtstag");
+    final JLabel birthDayLbl = new JLabel(Text.PARTICIPANT_BIRTHDAY.text());
     add(birthDayLbl, "cell 0 2");
 
     add(this.birthDayTf, "cell 1 2");
 
-    final JLabel denominationLbl = new JLabel("Konfession");
+    final JLabel denominationLbl = new JLabel(Text.PARTICIPANT_DENOMINTAION.text());
     add(denominationLbl, "cell 2 2");
 
     add(this.denominationCb, "cell 3 2");
 
-    final JLabel countyCouncilLbl = new JLabel("Kreisverwaltung");
+    final JLabel countyCouncilLbl = new JLabel(Text.PARTICIPANT_COUNTY_COUNCIL.text());
     add(countyCouncilLbl, "cell 4 2");
 
     add(this.countyCouncilCb, "cell 5 2");
 
-    final JLabel streetLbl = new JLabel("Stra\u00DFe");
+    final JLabel streetLbl = new JLabel(Text.STREET.text());
     add(streetLbl, "cell 1 3, grow 0, alignx center");
 
-    final JLabel postCodeLbl = new JLabel("PLZ");
+    final JLabel postCodeLbl = new JLabel(Text.POST_CODE.text());
     add(postCodeLbl, "cell 3 3, grow 0, alignx center");
 
-    final JLabel cityLbl = new JLabel("Ort");
+    final JLabel cityLbl = new JLabel(Text.CITY.text());
     add(cityLbl, "cell 5 3, grow 0, alignx center");
 
-    final JLabel livingAddressLbl = new JLabel("Wohnanschrift");
+    final JLabel livingAddressLbl = new JLabel(Text.PARTICIPANT_ADDRESS_LIVING.text());
     add(livingAddressLbl, "cell 0 4");
 
     add(this.livStreetTf, "cell 1 4");
@@ -238,7 +239,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     add(this.livCityTf, "cell 5 4");
 
-    final JLabel postToAddressLbl = new JLabel("Postanschrift");
+    final JLabel postToAddressLbl = new JLabel(Text.PARTICIPANT_ADDRESS_POSTAL.text());
     add(postToAddressLbl, "cell 0 5");
 
     add(this.posStreetTf, "cell 1 5");
@@ -247,42 +248,42 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     add(this.posCityTf, "cell 5 5");
 
-    final JLabel phoneLbl = new JLabel("Telefon");
+    final JLabel phoneLbl = new JLabel(Text.PARTICIPANT_PHONE.text());
     add(phoneLbl, "cell 0 6");
 
     add(this.phoneTf, "cell 1 6");
 
-    final JLabel faxLbl = new JLabel("Fax");
+    final JLabel faxLbl = new JLabel(Text.PARTICIPANT_FAX.text());
     add(faxLbl, "cell 2 6");
 
     add(this.faxTf, "cell 3 6");
 
-    final JLabel mobilePhoneLbl = new JLabel("Handy");
+    final JLabel mobilePhoneLbl = new JLabel(Text.PARTICIPANT_MOBILE_PHONE.text());
     add(mobilePhoneLbl, "cell 4 6");
 
     add(this.mobilePhoneTf, "cell 5 6");
 
-    final JLabel phoneParentsLbl = new JLabel("Telefon Eltern");
+    final JLabel phoneParentsLbl = new JLabel(Text.PARTICIPANT_PHONE_OF_PARENTS.text());
     add(phoneParentsLbl, "cell 0 7");
 
     add(this.phoneParentsTf, "cell 1 7");
 
-    final JLabel mailAddressLbl = new JLabel("Mail");
+    final JLabel mailAddressLbl = new JLabel(Text.PARTICIPANT_MAIL_ADDRESS.text());
     add(mailAddressLbl, "cell 2 7");
 
     add(this.mailAddressTf, "cell 3 7 3 1");
 
-    final JLabel bankAccNumberLbl = new JLabel("Kontonummer");
+    final JLabel bankAccNumberLbl = new JLabel(Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text());
     add(bankAccNumberLbl, "cell 0 8");
 
     add(this.bankAccNumberTf, "cell 1 8");
 
-    final JLabel bankCodNumberLbl = new JLabel("BLZ");
+    final JLabel bankCodNumberLbl = new JLabel(Text.PARTICIPANT_BANK_CODE_NUMBER.text());
     add(bankCodNumberLbl, "cell 2 8");
 
     add(this.bankCodeNumberTf, "cell 3 8");
 
-    final JLabel bankLbl = new JLabel("Bank");
+    final JLabel bankLbl = new JLabel(Text.PARTICIPANT_BANK_NAME.text());
     add(bankLbl, "cell 4 8");
 
     add(this.bankTf, "cell 5 8");
@@ -292,7 +293,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     commentScrollPane.setViewportView(this.commentTa);
 
-    final JLabel commentLbl = new JLabel("Kommentar");
+    final JLabel commentLbl = new JLabel(Text.PARTICIPANT_COMMENT.text());
     add(commentLbl, "cell 0 9");
 
     initPossibleFunctionsPanel();
@@ -310,7 +311,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
     this.possibleFunctionsPanel = new JPanel();
     this.possibleFunctionsPanel.setLayout(new MigLayout("", "[110px!][][][][][]", "[sg][sg]"));
 
-    final JLabel functionsLbl = new JLabel("Funktionen");
+    final JLabel functionsLbl = new JLabel(Text.PARTICIPANT_FUNCTIONS.text());
     this.possibleFunctionsPanel.add(functionsLbl, "cell 0 0");
 
     this.possibleFunctionsPanel.add(this.possParticipantCb, "cell 1 0");
