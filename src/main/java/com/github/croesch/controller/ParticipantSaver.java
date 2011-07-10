@@ -67,6 +67,29 @@ final class ParticipantSaver {
         p.setCity(editView.getLivingCity());
         p.setCountyCouncil(editView.getCountyCouncil());
       }
+
+      p.setBank(returnValueOrNullIfEmpty(editView.getBank()));
+      p.setBankAccountNumber(editView.getBankAccountNumber());
+      p.setBankCodeNumber(editView.getBankCodeNumber());
+      p.setComment(returnValueOrNullIfEmpty(editView.getComment()));
+      p.setDateUpToInSystem(editView.getDateUpToInDataBase());
+      p.setFax(returnValueOrNullIfEmpty(editView.getFax()));
+      p.setMailAddress(returnValueOrNullIfEmpty(editView.getMailAddress()));
+      p.setMobilePhone(returnValueOrNullIfEmpty(editView.getMobilePhone()));
+      p.setPhone(returnValueOrNullIfEmpty(editView.getPhone()));
+      p.setPhoneOfParents(returnValueOrNullIfEmpty(editView.getPhoneOfParents()));
+
+      p.setPossibleAGE(editView.getPossibleAGE());
+      p.setPossibleBoard(editView.getPossibleBoard());
+      p.setPossibleExtendedBoard(editView.getPossibleExtendedBoard());
+      p.setPossibleKitchen(editView.getPossibleKitchen());
+      p.setPossibleMAK(editView.getPossibleMAK());
+      p.setPossibleMisc(editView.getPossibleMisc());
+      p.setPossibleParticipant(editView.getPossibleParticipant());
+      p.setPossibleSeminar(editView.getPossibleSeminar());
+      p.setPossibleStaff(editView.getPossibleStaff());
+      p.setPossibleStaffYouth(editView.getPossibleStaffYouth());
+
       editView.setParticipant(p);
       model.store(p);
       statusView.showInformation(Text.INFO_PARTICIPANT_SAVED, p.getId());
@@ -74,6 +97,20 @@ final class ParticipantSaver {
       LOGGER.debug(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
       statusView.showError(Text.ERROR_PARTICIPANT_NOT_SAVED);
     }
+  }
+
+  /**
+   * Returns <code>null</code>, if the given {@link String} is null or empty.
+   * 
+   * @since Date: Jul 10, 2011
+   * @param s the string to test
+   * @return the given string, if it's not <code>null</code> and not empty, <code>null</code> otherwise.
+   */
+  private static String returnValueOrNullIfEmpty(final String s) {
+    if (s == null || s.trim().equals("")) {
+      return null;
+    }
+    return s;
   }
 
 }
