@@ -18,6 +18,7 @@ import com.github.croesch.i18n.Text;
 import com.github.croesch.model.api.IModel4View;
 import com.github.croesch.view.api.ICampView;
 import com.github.croesch.view.api.IParticipantEditView;
+import com.github.croesch.view.api.IParticipantListView;
 import com.github.croesch.view.api.IParticipantView;
 import com.github.croesch.view.api.IStatusView;
 import com.github.croesch.view.api.IVersionView;
@@ -98,6 +99,11 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   }
 
   @Override
+  public IParticipantListView getParticipantListView() {
+    return this.participantView.getParticipantListView();
+  }
+
+  @Override
   public void showInformation(final Text info) {
     this.statusView.showInformation(info);
   }
@@ -130,4 +136,8 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
     }
   }
 
+  @Override
+  public void update() {
+    getParticipantListView().update(this.model.getListOfParticipants());
+  }
 }
