@@ -42,7 +42,6 @@ final class ParticipantSaver {
                           final IParticipantEditView editView,
                           final IStatusView statusView) {
 
-    // TODO implement test case
     try {
       Participant p = null;
       if (editView.getId() <= 0) {
