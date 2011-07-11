@@ -44,7 +44,7 @@ class ParticipantListView extends JPanel implements IParticipantListView {
 
     this.table = new ParticipantTable(o);
 
-    add(new JScrollPane(this.table));
+    add(new JScrollPane(this.table), "grow");
   }
 
   @Override

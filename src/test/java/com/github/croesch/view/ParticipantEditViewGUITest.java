@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 
 import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
 import org.fest.swing.fixture.Containers;
 import org.fest.swing.fixture.FrameFixture;
@@ -19,12 +20,10 @@ import org.fest.swing.fixture.JComboBoxFixture;
 import org.fest.swing.fixture.JLabelFixture;
 import org.fest.swing.fixture.JPanelFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
-import org.fest.swing.testing.FestSwingTestCaseTemplate;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.github.croesch.PartiManaDefaultGUITestCase;
 import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
 import com.github.croesch.types.Gender;
@@ -37,7 +36,7 @@ import com.github.croesch.view.api.IParticipantEditView;
  * @author croesch
  * @since Date: Jun 26, 2011
  */
-public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
+public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
 
   private IParticipantEditView editView;
 
@@ -59,14 +58,14 @@ public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
    * @author croesch
    * @since Date: Jun 26, 2011
    */
-  @Before
-  public void setUp() {
-    setUpRobot();
-
-    robot().settings().delayBetweenEvents(15);
-    robot().settings().eventPostingDelay(15);
-
-    final ParticipantEditView view = new ParticipantEditView();
+  @Override
+  protected void before() {
+    final ParticipantEditView view = GuiActionRunner.execute(new GuiQuery<ParticipantEditView>() {
+      @Override
+      protected ParticipantEditView executeInEDT() throws Throwable {
+        return new ParticipantEditView();
+      }
+    });
 
     this.participant = new Participant("Mustermann",
                                        "Max",
@@ -106,7 +105,13 @@ public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
     this.participant.setPostCodePostal(3124);
     this.participant.setStreetPostal("street");
 
-    view.setParticipant(this.participant);
+    GuiActionRunner.execute(new GuiTask() {
+
+      @Override
+      protected void executeInEDT() throws Throwable {
+        view.setParticipant(ParticipantEditViewGUITest.this.participant);
+      }
+    });
     view.setName("editView");
     this.editView = view;
 
@@ -115,8 +120,8 @@ public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
     this.testView = this.window.panel("editView");
   }
 
-  @After
-  public void tearDown() {
+  @Override
+  protected void after() {
     this.window.cleanUp();
     cleanUp();
   }
@@ -126,7 +131,12 @@ public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
    */
   @Test
   public void testClear() {
-    this.editView.clear();
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        ParticipantEditViewGUITest.this.editView.clear();
+      }
+    });
     this.testView.textBox("firstNameTF").requireEmpty();
     this.testView.textBox("lastNameTF").requireEmpty();
     this.testView.comboBox("genderCB").requireNoSelection();
@@ -202,7 +212,12 @@ public class ParticipantEditViewGUITest extends FestSwingTestCaseTemplate {
    */
   @Test
   public void testSetParticipant() {
-    this.editView.setParticipant(null);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        ParticipantEditViewGUITest.this.editView.setParticipant(null);
+      }
+    });
     this.testView.textBox("firstNameTF").requireEmpty();
     this.testView.textBox("lastNameTF").requireEmpty();
     this.testView.comboBox("genderCB").requireNoSelection();

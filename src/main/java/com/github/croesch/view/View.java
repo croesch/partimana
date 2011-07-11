@@ -134,6 +134,10 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
         this.observer.performAction(action);
         break;
 
+      case CREATE_PARTICIPANT:
+        createParticipant();
+        break;
+
       default:
         LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
         break;
@@ -144,5 +148,10 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   @Override
   public void update() {
     getParticipantListView().update(this.model.getListOfParticipants());
+  }
+
+  @Override
+  public void createParticipant() {
+    this.participantView.createParticipant();
   }
 }

@@ -29,6 +29,12 @@ final class Action extends AbstractAction {
   /** action to save something */
   private static Action saveParticipantAction = new Action(UserAction.SAVE_PARTICIPANT, Text.SAVE);
 
+  /** action to create a new participant */
+  private static Action createParticipantAction = new Action(UserAction.CREATE_PARTICIPANT, Text.PARTICIPANT_NEW);
+
+  /** action to delete a participant */
+  private static Action deleteParticipantAction = new Action(UserAction.DELETE_PARTICIPANT, Text.PARTICIPANT_DELETE);
+
   /** the action to pass to the observer */
   private final UserAction action;
 
@@ -84,5 +90,27 @@ final class Action extends AbstractAction {
    */
   static Action getSaveParticipantAction() {
     return saveParticipantAction;
+  }
+
+  /**
+   * Returns the action to create a participant.
+   * 
+   * @author croesch
+   * @since Date: Jul 11, 2011
+   * @return the {@link Action} to create a participant
+   */
+  static Action getCreateParticipantAction() {
+    return createParticipantAction;
+  }
+
+  /**
+   * Returns the action to delete a participant.
+   * 
+   * @author croesch
+   * @since Date: Jul 11, 2011
+   * @return the {@link Action} to delete a participant
+   */
+  static Action getDeleteParticipantAction() {
+    return deleteParticipantAction;
   }
 }

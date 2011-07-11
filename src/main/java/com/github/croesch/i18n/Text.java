@@ -38,6 +38,11 @@ public enum Text {
   /** the name for the file menu */
   FILE (20),
 
+  /** the name for entry create new participant */
+  PARTICIPANT_NEW (31),
+  /** the name for entry delete selected participant */
+  PARTICIPANT_DELETE (32),
+
   /** the name for participant */
   PARTICIPANT (100),
   /** the name for the id of participant */

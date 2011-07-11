@@ -15,7 +15,9 @@
 	<entry key="18">Speichern</entry>
 	
 	<entry key="20">Datei</entry>
-		
+	<entry key="31">Neu</entry>
+	<entry key="32">Löschen</entry>
+	
 	<!-- Teilnehmer-Daten -->
 	<entry key="100">Teilnehmer</entry>
 	<entry key="101">Nummer</entry>

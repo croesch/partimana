@@ -12,6 +12,10 @@ public enum UserAction {
   EXIT,
   /** the action to save a participant */
   SAVE_PARTICIPANT,
+  /** the action to delete a participant */
+  DELETE_PARTICIPANT,
+  /** the action to create a new participant */
+  CREATE_PARTICIPANT,
   /** the action that notifies about a selection change of participants */
   PARTICIPANT_SELECTED;
 

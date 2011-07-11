@@ -1,5 +1,6 @@
 package com.github.croesch.view;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -59,7 +60,19 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
     final ParticipantListView plv = new ParticipantListView(this);
     this.listView = plv;
 
-    add(plv);
+    final JPanel buttonPanel = new JPanel(new MigLayout("fill"));
+    final JButton createButton = new JButton(Action.getCreateParticipantAction());
+    final JButton deleteButton = new JButton(Action.getDeleteParticipantAction());
+    createButton.setName("newParticipant");
+    deleteButton.setName("deleteParticipant");
+    buttonPanel.add(createButton, "sg one");
+    buttonPanel.add(deleteButton, "sg one");
+
+    final JPanel leftPanel = new JPanel(new MigLayout("fill", "[grow, fill]", "[][grow, fill]"));
+    leftPanel.add(buttonPanel, "wrap");
+    leftPanel.add(plv);
+
+    add(leftPanel);
     add(pev);
   }
 
@@ -80,5 +93,10 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
     } else {
       LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }
+  }
+
+  @Override
+  public void createParticipant() {
+    this.editView.clear();
   }
 }

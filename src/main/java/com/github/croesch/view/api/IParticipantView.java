@@ -26,4 +26,12 @@ public interface IParticipantView {
    */
   IParticipantListView getParticipantListView();
 
+  /**
+   * Performs creation of a new {@link com.github.croesch.types.Participant}. Means that the view will clear all fields
+   * and give the user the possibility to fill the fields and store the information as a new participant. Won't have an
+   * effect on the data.
+   * 
+   * @since Date: Jul 11, 2011
+   */
+  void createParticipant();
 }

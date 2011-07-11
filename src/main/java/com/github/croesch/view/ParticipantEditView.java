@@ -421,6 +421,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
     if (participant == null) {
       clear();
     } else {
+
       this.firstNameTf.setText(participant.getForeName());
       this.lastNameTf.setText(participant.getLastName());
       this.genderCb.setSelectedItem(participant.getGender());
