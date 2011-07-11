@@ -50,22 +50,22 @@ public interface IPersistenceModel {
   Map<Long, Participant> getMapOfParticipants();
 
   /**
-   * Deletes the given {@link Participant} from data.
+   * Deletes the {@link Participant} from data.
    * 
    * @author croesch
    * @since Date: Jun 19, 2011
-   * @param p the {@link Participant} to delete.
+   * @param id the number of the {@link Participant} to delete.
    */
-  void delete(Participant p);
+  void deleteParticipant(long id);
 
   /**
-   * Deletes the given {@link Camp} from data.
+   * Deletes the {@link Camp} from data.
    * 
    * @author croesch
    * @since Date: Jun 19, 2011
-   * @param c the {@link Camp} to delete.
+   * @param id the number of the {@link Camp} to delete.
    */
-  void delete(Camp c);
+  void deleteCamp(long id);
 
   /**
    * Creates the given {@linkp Participant} in the stored data.

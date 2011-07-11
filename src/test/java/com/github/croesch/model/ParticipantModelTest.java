@@ -102,23 +102,15 @@ public final class ParticipantModelTest {
   /**
    * Test method for {@link ParticipantModel#delete(Participant)}.
    */
-  @Test(expected = RequiredFieldSetToNullException.class)
-  public void testDeleteParticipantRFSTNE() {
-    this.pModel.delete(null);
-  }
-
-  /**
-   * Test method for {@link ParticipantModel#delete(Participant)}.
-   */
   @Test
   public void testDeleteParticipant() {
     this.pModel.store(this.p1);
     assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
     assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
-    this.pModel.delete(this.p1);
+    this.pModel.deleteParticipant(this.p1.getId());
     assertThat(this.pModel.getParticipant(this.p1.getId())).isNull();
     assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNull();
-    this.pModel.delete(this.p1);
+    this.pModel.deleteParticipant(this.p1.getId());
     assertThat(this.pModel.getParticipant(this.p1.getId())).isNull();
     assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNull();
 
@@ -128,7 +120,7 @@ public final class ParticipantModelTest {
     this.p1.setBank("other bank");
     assertThat(this.pModel.getParticipant(this.p1.getId())).isNotEqualTo(this.p1);
     assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNotEqualTo(this.p1);
-    this.pModel.delete(this.p1);
+    this.pModel.deleteParticipant(this.p1.getId());
     assertThat(this.pModel.getParticipant(this.p1.getId())).isNull();
     assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isNull();
   }
@@ -178,7 +170,7 @@ public final class ParticipantModelTest {
     this.pModel.store(this.p1);
     assertThat(this.pModel.getListOfParticipants()).containsExactly(this.p1);
     this.pModel.store(this.p2);
-    this.pModel.delete(this.p1);
+    this.pModel.deleteParticipant(this.p1.getId());
     assertThat(this.pModel.getListOfParticipants()).containsExactly(this.p2);
     this.pModel.store(this.p1);
     this.pModel.store(this.p1);

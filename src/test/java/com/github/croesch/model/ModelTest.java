@@ -94,7 +94,7 @@ public class ModelTest implements IView {
                                           "city",
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
     assertThat(this.updateCalled).isFalse();
-    this.model.delete(p);
+    this.model.deleteParticipant(p.getId());
 
     assertThat(this.updateCalled).isTrue();
   }
@@ -115,7 +115,7 @@ public class ModelTest implements IView {
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
     this.model.setView(null);
     assertThat(this.updateCalled).isFalse();
-    this.model.delete(p);
+    this.model.deleteParticipant(p.getId());
 
     assertThat(this.updateCalled).isFalse();
   }

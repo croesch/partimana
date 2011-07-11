@@ -39,13 +39,13 @@ class PersistenceModel implements IPersistenceModel {
   }
 
   @Override
-  public void delete(final Participant p) {
+  public void deleteParticipant(final long id) {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void delete(final Camp c) {
+  public void deleteCamp(final long id) {
     // TODO Auto-generated method stub
 
   }

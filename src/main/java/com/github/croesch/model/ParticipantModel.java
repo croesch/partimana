@@ -60,12 +60,9 @@ class ParticipantModel implements IParticipantModel {
   }
 
   @Override
-  public void delete(final Participant p) throws RequiredFieldSetToNullException {
-    if (p == null) {
-      throw new RequiredFieldSetToNullException();
-    }
-    this.persistenceModel.delete(p);
-    this.mapOfParticipants.remove(p.getId());
+  public void deleteParticipant(final long id) {
+    this.persistenceModel.deleteParticipant(id);
+    this.mapOfParticipants.remove(id);
   }
 
   @Override

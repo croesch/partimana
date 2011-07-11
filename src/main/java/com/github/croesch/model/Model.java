@@ -56,8 +56,8 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
   }
 
   @Override
-  public void delete(final Participant p) throws RequiredFieldSetToNullException {
-    this.participantModel.delete(p);
+  public void deleteParticipant(final long id) {
+    this.participantModel.deleteParticipant(id);
     if (this.view != null) {
       this.view.update();
     }

@@ -42,12 +42,12 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
   }
 
   @Override
-  public void delete(final Participant p) {
-    this.participantMap.remove(p.getId());
+  public void deleteParticipant(final long id) {
+    this.participantMap.remove(id);
   }
 
   @Override
-  public void delete(final Camp c) {
+  public void deleteCamp(final long id) {
     // TODO this.campMap.remove(c.getId());
   }
 
