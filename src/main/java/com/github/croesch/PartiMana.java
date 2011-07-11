@@ -79,7 +79,7 @@ public final class PartiMana implements ActionObserver {
       try {
         Thread.sleep(HEARTBEAT_INTERVALL);
       } catch (final InterruptedException e) {
-        LOGGER.warn(e.getMessage(), e);
+        LOGGER.warn(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
       }
     }
     LOGGER.debug(Text.DEBUG_PROGRAM_EXITING.text());
