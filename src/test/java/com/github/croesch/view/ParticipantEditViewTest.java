@@ -6,6 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +38,12 @@ public class ParticipantEditViewTest {
    */
   @Before
   public void setUp() {
-    this.testView = new ParticipantEditView();
+    this.testView = GuiActionRunner.execute(new GuiQuery<ParticipantEditView>() {
+      @Override
+      protected ParticipantEditView executeInEDT() throws Throwable {
+        return new ParticipantEditView();
+      }
+    });
 
     this.participant = new Participant("Mustermann",
                                        "Max",
@@ -75,7 +83,12 @@ public class ParticipantEditViewTest {
     this.participant.setPostCodePostal(3124);
     this.participant.setStreetPostal("street");
 
-    this.testView.setParticipant(this.participant);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        ParticipantEditViewTest.this.testView.setParticipant(ParticipantEditViewTest.this.participant);
+      }
+    });
   }
 
   /**
@@ -92,8 +105,12 @@ public class ParticipantEditViewTest {
                                        12345,
                                        "Musterhausen",
                                        CountyCouncil.OTHER);
-    this.testView.setParticipant(this.participant);
-
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        ParticipantEditViewTest.this.testView.setParticipant(ParticipantEditViewTest.this.participant);
+      }
+    });
   }
 
   /**

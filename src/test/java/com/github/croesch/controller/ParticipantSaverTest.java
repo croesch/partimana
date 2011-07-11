@@ -5,6 +5,9 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.util.Date;
 import java.util.List;
 
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,25 +51,30 @@ public class ParticipantSaverTest {
    */
   @BeforeClass
   public static void setUpOnce() {
-    editView = new View(new IModel4View() {
 
+    editView = GuiActionRunner.execute(new GuiQuery<IParticipantEditView>() {
       @Override
-      public Participant getParticipant(final long id) {
-        return null;
-      }
+      protected IParticipantEditView executeInEDT() throws Throwable {
+        return new View(new IModel4View() {
 
-      @Override
-      public List<Participant> getListOfParticipants() {
-        return null;
-      }
-    }, new ActionObserver() {
+          @Override
+          public Participant getParticipant(final long id) {
+            return null;
+          }
 
-      @Override
-      public void performAction(final UserAction action) {
-        // do nothing
-      }
-    }).getParticipantEditView();
+          @Override
+          public List<Participant> getListOfParticipants() {
+            return null;
+          }
+        }, new ActionObserver() {
 
+          @Override
+          public void performAction(final UserAction action) {
+            // do nothing
+          }
+        }).getParticipantEditView();
+      }
+    });
     statusView = new IStatusView() {
 
       @Override
@@ -116,7 +124,7 @@ public class ParticipantSaverTest {
       }
 
       @Override
-      public void delete(final Participant p) throws RequiredFieldSetToNullException {
+      public void deleteParticipant(final long id) throws RequiredFieldSetToNullException {
         // do nothing
       }
     };
@@ -132,8 +140,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setForeName("fore-name");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -146,8 +159,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setLastName("last-name");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -160,8 +178,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setGender(Gender.FEMALE);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -174,8 +197,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setDenomination(Denomination.ORTHODOX);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -188,8 +216,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setBirthDate(new Date(12000000000l));
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -202,8 +235,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setStreet("street");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -216,8 +254,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPostCode(12554);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -230,8 +273,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setCity("city");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -244,8 +292,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setCountyCouncil(CountyCouncil.COUNTY_KUSEL);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -258,8 +311,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setBank("super bank");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -272,8 +330,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setBankAccountNumber(229678302);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -286,8 +349,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setBankCodeNumber(229678303);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -300,8 +368,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setComment("Comment for this one..");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -314,8 +387,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setDateUpToInSystem(new Date());
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -328,8 +406,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setFax("fax-number");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -342,8 +425,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setMailAddress("address@prov.com");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -356,8 +444,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setMobilePhone("mobile phone number");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -370,8 +463,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPhone("the phone number");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -384,8 +482,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPhoneOfParents("the phone number of the parents");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -398,14 +501,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleAGE(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleAGE(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -418,14 +531,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleBoard(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleBoard(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -438,14 +561,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleExtendedBoard(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleExtendedBoard(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -458,14 +591,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleKitchen(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleKitchen(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -478,14 +621,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleMAK(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleMAK(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -498,14 +651,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleMisc(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleMisc(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -518,14 +681,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleParticipant(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleParticipant(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -538,14 +711,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleSeminar(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleSeminar(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -558,14 +741,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleStaff(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleStaff(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -578,14 +771,24 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPossibleStaffYouth(true);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
     p.setPossibleStaffYouth(false);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -598,8 +801,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setStreetPostal("street for post");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -612,8 +820,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setCityPostal("city for post");
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }
@@ -626,8 +839,13 @@ public class ParticipantSaverTest {
     final Participant p = new Participant(this.dummyParticipant);
     p.setPostCodePostal(84472);
 
-    editView.setParticipant(p);
-    ParticipantSaver.performSave(this.model, editView, statusView);
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        editView.setParticipant(p);
+        ParticipantSaver.performSave(ParticipantSaverTest.this.model, editView, statusView);
+      }
+    });
 
     assertThat(this.stored).isEqualTo(p);
   }

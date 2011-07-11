@@ -1,5 +1,7 @@
 package com.github.croesch.view;
 
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiTask;
 import org.junit.Test;
 
 import com.github.croesch.model.api.IParticipantModel4View;
@@ -18,7 +20,13 @@ public class ParticipantViewTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantView() {
-    new ParticipantView(null);
+    GuiActionRunner.execute(new GuiTask() {
+
+      @Override
+      protected void executeInEDT() throws Throwable {
+        new ParticipantView(null);
+      }
+    });
   }
 
 }

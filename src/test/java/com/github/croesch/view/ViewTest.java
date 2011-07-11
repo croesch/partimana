@@ -2,6 +2,8 @@ package com.github.croesch.view;
 
 import java.util.List;
 
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiTask;
 import org.junit.Test;
 
 import com.github.croesch.actions.ActionObserver;
@@ -23,9 +25,15 @@ public class ViewTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testView_ModelIsNull() {
-    new View(null, new ActionObserver() {
+    GuiActionRunner.execute(new GuiTask() {
+
       @Override
-      public void performAction(final UserAction action) {}
+      protected void executeInEDT() throws Throwable {
+        new View(null, new ActionObserver() {
+          @Override
+          public void performAction(final UserAction action) {}
+        });
+      }
     });
   }
 
@@ -34,18 +42,24 @@ public class ViewTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testView_ObserverIsNull() {
-    new View(new IModel4View() {
+    GuiActionRunner.execute(new GuiTask() {
 
       @Override
-      public Participant getParticipant(final long id) {
-        return null;
-      }
+      protected void executeInEDT() throws Throwable {
+        new View(new IModel4View() {
 
-      @Override
-      public List<Participant> getListOfParticipants() {
-        return null;
+          @Override
+          public Participant getParticipant(final long id) {
+            return null;
+          }
+
+          @Override
+          public List<Participant> getListOfParticipants() {
+            return null;
+          }
+        }, null);
       }
-    }, null);
+    });
   }
 
 }
