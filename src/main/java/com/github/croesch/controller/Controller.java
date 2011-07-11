@@ -60,6 +60,10 @@ public final class Controller implements ActionObserver {
         ParticipantSaver.performSave(this.model, this.view.getParticipantEditView(), this.view);
         break;
 
+      case DELETE_PARTICIPANT:
+        this.model.deleteParticipant(this.view.getParticipantListView().getSelectedParticipantId());
+        break;
+
       default:
         LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
         break;

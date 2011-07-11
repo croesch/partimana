@@ -29,7 +29,7 @@ import com.github.croesch.view.api.IView;
  * The view of the program that is responsible to build the GUI.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:27:41 PM
+ * @since Date: May 29, 2011
  */
 public final class View extends JFrame implements IView, IVersionView, IStatusView, IParticipantView, ICampView,
         ActionObserver {
@@ -131,6 +131,7 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
         break;
 
       case SAVE_PARTICIPANT:
+      case DELETE_PARTICIPANT:
         this.observer.performAction(action);
         break;
 
