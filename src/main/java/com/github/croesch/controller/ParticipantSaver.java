@@ -55,6 +55,7 @@ final class ParticipantSaver {
                             editView.getLivingCity(),
                             editView.getCountyCouncil());
       } else {
+        // FIXME: null value returned
         p = model.getParticipant(editView.getId());
         p.setLastName(editView.getLastName());
         p.setForeName(editView.getFirstName());
