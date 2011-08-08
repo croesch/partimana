@@ -18,6 +18,7 @@ import com.github.croesch.PartiManaDefaultGUITestCase;
 import com.github.croesch.actions.ActionObserver;
 import com.github.croesch.actions.UserAction;
 import com.github.croesch.model.api.IModel4View;
+import com.github.croesch.types.Camp;
 import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
 import com.github.croesch.types.Gender;
@@ -44,6 +45,16 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase implemen
 
     @Override
     public List<Participant> getListOfParticipants() {
+      return null;
+    }
+
+    @Override
+    public Camp getCamp(final long id) {
+      return null;
+    }
+
+    @Override
+    public List<Camp> getListOfCamps() {
       return null;
     }
   };

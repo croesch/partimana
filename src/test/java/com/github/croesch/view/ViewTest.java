@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.github.croesch.actions.ActionObserver;
 import com.github.croesch.actions.UserAction;
 import com.github.croesch.model.api.IModel4View;
+import com.github.croesch.types.Camp;
 import com.github.croesch.types.Participant;
 import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
 
@@ -55,6 +56,16 @@ public class ViewTest {
 
           @Override
           public List<Participant> getListOfParticipants() {
+            return null;
+          }
+
+          @Override
+          public Camp getCamp(final long id) {
+            return null;
+          }
+
+          @Override
+          public List<Camp> getListOfCamps() {
             return null;
           }
         }, null);

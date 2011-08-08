@@ -17,6 +17,7 @@ import com.github.croesch.actions.UserAction;
 import com.github.croesch.i18n.Text;
 import com.github.croesch.model.api.IModel4View;
 import com.github.croesch.model.api.IParticipantModel;
+import com.github.croesch.types.Camp;
 import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
 import com.github.croesch.types.Gender;
@@ -64,6 +65,16 @@ public class ParticipantSaverTest {
 
           @Override
           public List<Participant> getListOfParticipants() {
+            return null;
+          }
+
+          @Override
+          public Camp getCamp(final long id) {
+            return null;
+          }
+
+          @Override
+          public List<Camp> getListOfCamps() {
             return null;
           }
         }, new ActionObserver() {

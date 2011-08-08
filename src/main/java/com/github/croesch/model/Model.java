@@ -67,4 +67,30 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
   public List<Participant> getListOfParticipants() {
     return this.participantModel.getListOfParticipants();
   }
+
+  @Override
+  public Camp getCamp(final long id) {
+    return this.campModel.getCamp(id);
+  }
+
+  @Override
+  public List<Camp> getListOfCamps() {
+    return this.campModel.getListOfCamps();
+  }
+
+  @Override
+  public void store(final Camp c) throws RequiredFieldSetToNullException {
+    this.campModel.store(c);
+    if (this.view != null) {
+      this.view.update();
+    }
+  }
+
+  @Override
+  public void deleteCamp(final long id) {
+    this.campModel.deleteCamp(id);
+    if (this.view != null) {
+      this.view.update();
+    }
+  }
 }

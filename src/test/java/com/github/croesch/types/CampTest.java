@@ -181,4 +181,73 @@ public class CampTest {
     assertThat(this.camp.getRatePerDayChildren()).isEqualTo("");
   }
 
+  /**
+   * Test method for {@link Camp#getId()}.
+   */
+  @Test
+  public final void testGetId() {
+    final long id = this.camp.getId();
+    this.camp = new Camp("n", new Date(), new Date(), "w", "r");
+
+    assertThat(this.camp.getId()).isEqualTo(id + 1);
+
+    this.camp = new Camp(id + 2, "n", new Date(), new Date(), "w", "r");
+    assertThat(this.camp.getId()).isEqualTo(id + 2);
+  }
+
+  /**
+   * Test method for {@link Camp#getId()}.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void testGetIdIAE1() {
+    final long id = this.camp.getId();
+    this.camp = new Camp(id, "n", new Date(), new Date(), "w", "r");
+  }
+
+  /**
+   * Test method for {@link Camp#getId()}.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void testGetIdIAE2() {
+    final long id = this.camp.getId();
+    this.camp = new Camp(id - 1, "n", new Date(), new Date(), "w", "r");
+  }
+
+  /**
+   * Test method for {@link Camp#getId()}.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void testGetIdIAE3() {
+    this.camp = new Camp(-1, "n", new Date(), new Date(), "w", "r");
+  }
+
+  /**
+   * Test method for {@link Camp#toString()}.
+   */
+  @Test
+  public final void testToString() {
+    assertThat(this.camp.toString()).contains(String.valueOf(this.camp.getId()));
+  }
+
+  /**
+   * Test method for {@link Camp#Camp(Camp)}.
+   */
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public final void testCampCampRFSTNE() {
+    new Camp(null);
+  }
+
+  /**
+   * Test method for {@link Camp#Camp(Camp)}.
+   */
+  @Test
+  public final void testCampCamp() {
+    this.camp.setRatePerDayChildren("children-rate");
+
+    final Camp c = new Camp(this.camp);
+    assertThat(c).isEqualTo(this.camp);
+
+    c.setRatePerDayChildren("day-children-rate");
+    assertThat(c).isNotEqualTo(this.camp);
+  }
 }

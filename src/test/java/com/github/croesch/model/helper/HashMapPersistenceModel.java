@@ -28,7 +28,7 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
 
   @Override
   public void update(final Camp c) {
-    // TODO this.campMap.put(Long.valueOf(c.getId()), c);
+    this.campMap.put(Long.valueOf(c.getId()), c);
   }
 
   @Override
@@ -48,7 +48,7 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
 
   @Override
   public void deleteCamp(final long id) {
-    // TODO this.campMap.remove(c.getId());
+    this.campMap.remove(id);
   }
 
   @Override

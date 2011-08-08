@@ -12,6 +12,12 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  */
 public class Camp {
 
+  /** the id of that camp as stored in data base */
+  private final long id;
+
+  /** the highest id to calculate the next id for a new camp */
+  private static long highestId = 0;
+
   /** the name of the camp */
   private String name = null;
 
@@ -42,11 +48,56 @@ public class Camp {
    * @param rate the rate for each participant
    */
   public Camp(final String n, final Date f, final Date t, final String where, final String rate) {
+    this(highestId + 1, n, f, t, where, rate);
+  }
+
+  /**
+   * Constructs a new {@link Camp} with the given parameters.
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   * @param forcedId the number to identify this camp, must be higher than the highest number until now
+   * @param n the name of the camp
+   * @param f the date when the camp starts
+   * @param t the date when the camp ends
+   * @param where the location where the camp will be
+   * @param rate the rate for each participant
+   */
+  public Camp(final long forcedId, final String n, final Date f, final Date t, final String where, final String rate) {
+    if (forcedId <= highestId) {
+      throw new IllegalArgumentException();
+    }
+
     setName(n);
     setFromDate(f);
     setUntilDate(t);
     setLocation(where);
     setRatePerParticipant(rate);
+
+    this.id = forcedId;
+    highestId = forcedId;
+  }
+
+  /**
+   * Constructs a new {@link Camp} that is equal to the given {@link Camp}.
+   * 
+   * @author croesch
+   * @since Date: Aug 8, 2011
+   * @param c the {@link Camp} to fetch the data from.
+   * @throws RequiredFieldSetToNullException if the given {@link Camp} is <code>null</code>
+   */
+  public Camp(final Camp c) throws RequiredFieldSetToNullException {
+    if (c == null) {
+      throw new RequiredFieldSetToNullException();
+    }
+
+    this.from = c.from;
+    this.id = c.id;
+    this.location = c.location;
+    this.name = c.name;
+    this.ratePerDayChildren = c.ratePerDayChildren;
+    this.ratePerParticipant = c.ratePerParticipant;
+    this.until = c.until;
   }
 
   /**
@@ -189,4 +240,109 @@ public class Camp {
     this.ratePerDayChildren = rate;
   }
 
+  /**
+   * Returns the id of this camp as stored in the data base.
+   * 
+   * @author croesch
+   * @since Date: Jun 18, 2011
+   * @return the id that identifies this camp in something like a data base.
+   */
+  public final long getId() {
+    return this.id;
+  }
+
+  @Override
+  public final String toString() {
+    final StringBuilder builder = new StringBuilder();
+    builder.append("Camp [id=");
+    builder.append(this.id);
+    builder.append(", name=");
+    builder.append(this.name);
+    builder.append(", from=");
+    builder.append(this.from);
+    builder.append(", until=");
+    builder.append(this.until);
+    builder.append(", location=");
+    builder.append(this.location);
+    builder.append(", ratePerParticipant=");
+    builder.append(this.ratePerParticipant);
+    builder.append(", ratePerDayChildren=");
+    builder.append(this.ratePerDayChildren);
+    builder.append("]");
+    return builder.toString();
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((this.from == null) ? 0 : this.from.hashCode());
+    result = prime * result + (int) (this.id ^ (this.id >>> 32));
+    result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
+    result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
+    result = prime * result + ((this.ratePerDayChildren == null) ? 0 : this.ratePerDayChildren.hashCode());
+    result = prime * result + ((this.ratePerParticipant == null) ? 0 : this.ratePerParticipant.hashCode());
+    result = prime * result + ((this.until == null) ? 0 : this.until.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Camp)) {
+      return false;
+    }
+    final Camp other = (Camp) obj;
+    if (this.from == null) {
+      if (other.from != null) {
+        return false;
+      }
+    } else if (!this.from.equals(other.from)) {
+      return false;
+    }
+    if (this.id != other.id) {
+      return false;
+    }
+    if (this.location == null) {
+      if (other.location != null) {
+        return false;
+      }
+    } else if (!this.location.equals(other.location)) {
+      return false;
+    }
+    if (this.name == null) {
+      if (other.name != null) {
+        return false;
+      }
+    } else if (!this.name.equals(other.name)) {
+      return false;
+    }
+    if (this.ratePerDayChildren == null) {
+      if (other.ratePerDayChildren != null) {
+        return false;
+      }
+    } else if (!this.ratePerDayChildren.equals(other.ratePerDayChildren)) {
+      return false;
+    }
+    if (this.ratePerParticipant == null) {
+      if (other.ratePerParticipant != null) {
+        return false;
+      }
+    } else if (!this.ratePerParticipant.equals(other.ratePerParticipant)) {
+      return false;
+    }
+    if (this.until == null) {
+      if (other.until != null) {
+        return false;
+      }
+    } else if (!this.until.equals(other.until)) {
+      return false;
+    }
+    return true;
+  }
 }

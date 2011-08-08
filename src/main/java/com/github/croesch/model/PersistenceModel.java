@@ -29,8 +29,7 @@ class PersistenceModel implements IPersistenceModel {
 
   @Override
   public Map<Long, Camp> getMapOfCamps() {
-    // TODO Auto-generated method stub
-    return null;
+    return new HashMap<Long, Camp>();
   }
 
   @Override
