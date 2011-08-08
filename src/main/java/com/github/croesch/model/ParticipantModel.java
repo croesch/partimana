@@ -52,7 +52,7 @@ class ParticipantModel implements IParticipantModel {
     final Participant store = new Participant(p);
 
     if (this.mapOfParticipants.containsKey(store.getId())) {
-      this.persistenceModel.update(p);
+      this.persistenceModel.update(store);
     } else {
       this.persistenceModel.create(store);
     }
