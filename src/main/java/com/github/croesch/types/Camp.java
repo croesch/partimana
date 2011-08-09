@@ -55,7 +55,7 @@ public class Camp {
    * Constructs a new {@link Camp} with the given parameters.
    * 
    * @author croesch
-   * @since Date: Jun 18, 2011
+   * @since Date: Aug 8, 2011
    * @param forcedId the number to identify this camp, must be higher than the highest number until now
    * @param n the name of the camp
    * @param f the date when the camp starts
@@ -131,7 +131,7 @@ public class Camp {
    * @return the date when the camp starts
    */
   public final Date getFromDate() {
-    return this.from;
+    return new Date(this.from.getTime());
   }
 
   /**
@@ -145,7 +145,7 @@ public class Camp {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.from = date;
+    this.from = new Date(date.getTime());
   }
 
   /**
@@ -155,7 +155,7 @@ public class Camp {
    * @return the date when the camp ends
    */
   public final Date getUntilDate() {
-    return this.until;
+    return new Date(this.until.getTime());
   }
 
   /**
@@ -169,7 +169,7 @@ public class Camp {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.until = date;
+    this.until = new Date(date.getTime());
   }
 
   /**
@@ -273,53 +273,44 @@ public class Camp {
   }
 
   @Override
-  public int hashCode() {
+  public final int hashCode() {
     final int prime = 31;
+    final int intSize = 32;
+
     int result = 1;
-    result = prime * result + ((this.from == null) ? 0 : this.from.hashCode());
-    result = prime * result + (int) (this.id ^ (this.id >>> 32));
-    result = prime * result + ((this.location == null) ? 0 : this.location.hashCode());
-    result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
-    result = prime * result + ((this.ratePerDayChildren == null) ? 0 : this.ratePerDayChildren.hashCode());
-    result = prime * result + ((this.ratePerParticipant == null) ? 0 : this.ratePerParticipant.hashCode());
-    result = prime * result + ((this.until == null) ? 0 : this.until.hashCode());
+    result = prime * result + this.from.hashCode();
+    result = prime * result + (int) (this.id ^ (this.id >>> intSize));
+    result = prime * result + this.location.hashCode();
+    result = prime * result + this.name.hashCode();
+    result *= prime;
+    if (this.ratePerDayChildren != null) {
+      result += this.ratePerDayChildren.hashCode();
+    }
+    result = prime * result + this.ratePerParticipant.hashCode();
+    result = prime * result + this.until.hashCode();
     return result;
   }
 
   @Override
-  public boolean equals(final Object obj) {
+  public final boolean equals(final Object obj) {
     if (this == obj) {
       return true;
-    }
-    if (obj == null) {
-      return false;
     }
     if (!(obj instanceof Camp)) {
       return false;
     }
+
     final Camp other = (Camp) obj;
-    if (this.from == null) {
-      if (other.from != null) {
-        return false;
-      }
-    } else if (!this.from.equals(other.from)) {
+    if (!this.from.equals(other.from)) {
       return false;
     }
     if (this.id != other.id) {
       return false;
     }
-    if (this.location == null) {
-      if (other.location != null) {
-        return false;
-      }
-    } else if (!this.location.equals(other.location)) {
+    if (!this.location.equals(other.location)) {
       return false;
     }
-    if (this.name == null) {
-      if (other.name != null) {
-        return false;
-      }
-    } else if (!this.name.equals(other.name)) {
+    if (!this.name.equals(other.name)) {
       return false;
     }
     if (this.ratePerDayChildren == null) {
@@ -329,18 +320,10 @@ public class Camp {
     } else if (!this.ratePerDayChildren.equals(other.ratePerDayChildren)) {
       return false;
     }
-    if (this.ratePerParticipant == null) {
-      if (other.ratePerParticipant != null) {
-        return false;
-      }
-    } else if (!this.ratePerParticipant.equals(other.ratePerParticipant)) {
+    if (!this.ratePerParticipant.equals(other.ratePerParticipant)) {
       return false;
     }
-    if (this.until == null) {
-      if (other.until != null) {
-        return false;
-      }
-    } else if (!this.until.equals(other.until)) {
+    if (!this.until.equals(other.until)) {
       return false;
     }
     return true;

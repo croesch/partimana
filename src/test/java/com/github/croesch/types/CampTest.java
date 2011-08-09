@@ -83,15 +83,22 @@ public class CampTest {
   public final void testSetAndGetFromDate() {
     final Date d1 = new Date();
     this.camp.setFromDate(d1);
-    assertThat(this.camp.getFromDate()).isEqualTo(d1.clone());
+    assertThat(this.camp.getFromDate()).isEqualTo(d1);
 
     final Date d2 = new Date(17);
     this.camp.setFromDate(d2);
-    assertThat(this.camp.getFromDate()).isEqualTo(d2.clone());
+    assertThat(this.camp.getFromDate()).isEqualTo(d2);
 
-    final Date d3 = new Date(99);
+    Date d3 = new Date(99);
     this.camp.setFromDate(d3);
-    assertThat(this.camp.getFromDate()).isEqualTo(d3.clone());
+    assertThat(this.camp.getFromDate()).isEqualTo(d3);
+
+    d3.setTime(98);
+    assertThat(this.camp.getFromDate()).isNotEqualTo(d3);
+
+    d3 = this.camp.getFromDate();
+    d3.setTime(98);
+    assertThat(this.camp.getFromDate()).isNotEqualTo(d3);
   }
 
   /**
@@ -109,15 +116,22 @@ public class CampTest {
   public final void testSetAndGetUntilDate() {
     final Date d1 = new Date();
     this.camp.setUntilDate(d1);
-    assertThat(this.camp.getUntilDate()).isEqualTo(d1.clone());
+    assertThat(this.camp.getUntilDate()).isEqualTo(d1);
 
     final Date d2 = new Date(17);
     this.camp.setUntilDate(d2);
-    assertThat(this.camp.getUntilDate()).isEqualTo(d2.clone());
+    assertThat(this.camp.getUntilDate()).isEqualTo(d2);
 
-    final Date d3 = new Date(99);
+    Date d3 = new Date(99);
     this.camp.setUntilDate(d3);
-    assertThat(this.camp.getUntilDate()).isEqualTo(d3.clone());
+    assertThat(this.camp.getUntilDate()).isEqualTo(d3);
+
+    d3.setTime(98);
+    assertThat(this.camp.getUntilDate()).isNotEqualTo(d3);
+
+    d3 = this.camp.getUntilDate();
+    d3.setTime(98);
+    assertThat(this.camp.getUntilDate()).isNotEqualTo(d3);
   }
 
   /**
@@ -249,5 +263,112 @@ public class CampTest {
 
     c.setRatePerDayChildren("day-children-rate");
     assertThat(c).isNotEqualTo(this.camp);
+  }
+
+  /**
+   * Test method for {@link Camp#equals(Object)}.
+   */
+  @Test
+  public final void testCampEquals() {
+
+    this.camp.setRatePerDayChildren("children-rate");
+
+    Camp c = new Camp(this.camp);
+    assertThat(c).isEqualTo(this.camp);
+    assertThat(this.camp).isEqualTo(this.camp);
+    assertThat(c).isEqualTo(c);
+    assertThat(c).isNotEqualTo(null);
+    assertThat(c).isNotEqualTo("this.camp");
+
+    c.setFromDate(new Date(987));
+    assertThat(c).isNotEqualTo(this.camp);
+
+    c = new Camp(c.getId() + 10,
+                 this.camp.getName(),
+                 this.camp.getFromDate(),
+                 this.camp.getUntilDate(),
+                 this.camp.getLocation(),
+                 this.camp.getRatePerParticipant());
+    c.setRatePerDayChildren(this.camp.getRatePerDayChildren());
+    assertThat(c).isNotEqualTo(this.camp);
+    c = new Camp(this.camp);
+
+    assertThat(c).isEqualTo(this.camp);
+    c.setLocation("nowhere");
+    assertThat(c).isNotEqualTo(this.camp);
+    c.setLocation(this.camp.getLocation());
+
+    assertThat(c).isEqualTo(this.camp);
+    c.setName("no-name");
+    assertThat(c).isNotEqualTo(this.camp);
+    c.setName(this.camp.getName());
+
+    assertThat(c).isEqualTo(this.camp);
+    c.setRatePerDayChildren(null);
+    assertThat(c).isNotEqualTo(this.camp);
+    c.setRatePerDayChildren(this.camp.getRatePerDayChildren());
+
+    assertThat(c).isEqualTo(this.camp);
+    c.setRatePerParticipant("no rate");
+    assertThat(c).isNotEqualTo(this.camp);
+    c.setRatePerParticipant(this.camp.getRatePerParticipant());
+
+    assertThat(c).isEqualTo(this.camp);
+    c.setUntilDate(new Date(987));
+    assertThat(c).isNotEqualTo(this.camp);
+
+  }
+
+  /**
+   * Test method for {@link Camp#hashCode()}.
+   */
+  @Test
+  public final void testCampHashCode() {
+
+    this.camp.setRatePerDayChildren("children-rate");
+
+    Camp c = new Camp(this.camp);
+    assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
+    assertThat(this.camp.hashCode()).isEqualTo(this.camp.hashCode());
+    assertThat(c.hashCode()).isEqualTo(c.hashCode());
+    assertThat(c.hashCode()).isNotNull();
+
+    c.setFromDate(new Date(987));
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+
+    c = new Camp(c.getId() + 10,
+                 this.camp.getName(),
+                 this.camp.getFromDate(),
+                 this.camp.getUntilDate(),
+                 this.camp.getLocation(),
+                 this.camp.getRatePerParticipant());
+    c.setRatePerDayChildren(this.camp.getRatePerDayChildren());
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+    c = new Camp(this.camp);
+
+    assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
+    c.setLocation("nowhere");
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+    c.setLocation(this.camp.getLocation());
+
+    assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
+    c.setName("no-name");
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+    c.setName(this.camp.getName());
+
+    assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
+    c.setRatePerDayChildren(null);
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+    c.setRatePerDayChildren(this.camp.getRatePerDayChildren());
+
+    assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
+    c.setRatePerParticipant("no rate");
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+    c.setRatePerParticipant(this.camp.getRatePerParticipant());
+
+    assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
+    c.setUntilDate(new Date(987));
+    assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+
   }
 }
