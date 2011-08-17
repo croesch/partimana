@@ -14,6 +14,8 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
+import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
+
 /**
  * Implementation of {@link Control} from its javadoc-example for loading XML-based bundles.
  * 
@@ -25,7 +27,7 @@ final class XMLBundleControl extends Control {
   @Override
   public List<String> getFormats(final String baseName) {
     if (baseName == null) {
-      throw new NullPointerException();
+      throw new RequiredFieldSetToNullException();
     }
     return Arrays.asList("xml");
   }
@@ -38,7 +40,7 @@ final class XMLBundleControl extends Control {
                                   final boolean reload) throws IllegalAccessException, InstantiationException,
                                                        IOException {
     if (baseName == null || locale == null || format == null || loader == null) {
-      throw new NullPointerException();
+      throw new RequiredFieldSetToNullException();
     }
     if (!format.equals("xml")) {
       return null;

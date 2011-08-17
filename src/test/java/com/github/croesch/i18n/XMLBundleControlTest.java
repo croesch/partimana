@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 
 import org.junit.Test;
 
+import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
+
 /**
  * Provides test cases for {@link XMLBundleControl} and {@link XMLResourceBundle}.
  * 
@@ -21,8 +23,8 @@ public class XMLBundleControlTest {
   /**
    * Test method for {@link XMLBundleControl#getFormats(String)}.
    */
-  @Test(expected = NullPointerException.class)
-  public void testGetFormatsString_NPE() {
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testGetFormatsString_RFSTNE() {
     final XMLBundleControl control = new XMLBundleControl();
     control.getFormats(null);
   }
@@ -43,9 +45,9 @@ public class XMLBundleControlTest {
    * @throws InstantiationException in case of problems
    * @throws IllegalAccessException in case of problems
    */
-  @Test(expected = NullPointerException.class)
-  public void testNewBundleStringLocaleStringClassLoaderBoolean_NPE1() throws IllegalAccessException,
-                                                                      InstantiationException, IOException {
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testNewBundleStringLocaleStringClassLoaderBoolean_RFSTNE1() throws IllegalAccessException,
+                                                                         InstantiationException, IOException {
     final XMLBundleControl control = new XMLBundleControl();
     control.newBundle(null, Locale.getDefault(), "format", ClassLoader.getSystemClassLoader(), true);
   }
@@ -57,9 +59,9 @@ public class XMLBundleControlTest {
    * @throws InstantiationException in case of problems
    * @throws IllegalAccessException in case of problems
    */
-  @Test(expected = NullPointerException.class)
-  public void testNewBundleStringLocaleStringClassLoaderBoolean_NPE2() throws IllegalAccessException,
-                                                                      InstantiationException, IOException {
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testNewBundleStringLocaleStringClassLoaderBoolean_RFSTNE2() throws IllegalAccessException,
+                                                                         InstantiationException, IOException {
     final XMLBundleControl control = new XMLBundleControl();
     control.newBundle("baseName", null, "format", ClassLoader.getSystemClassLoader(), true);
   }
@@ -71,9 +73,9 @@ public class XMLBundleControlTest {
    * @throws InstantiationException in case of problems
    * @throws IllegalAccessException in case of problems
    */
-  @Test(expected = NullPointerException.class)
-  public void testNewBundleStringLocaleStringClassLoaderBoolean_NPE3() throws IllegalAccessException,
-                                                                      InstantiationException, IOException {
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testNewBundleStringLocaleStringClassLoaderBoolean_RFSTNE3() throws IllegalAccessException,
+                                                                         InstantiationException, IOException {
     final XMLBundleControl control = new XMLBundleControl();
     control.newBundle("baseName", Locale.getDefault(), null, ClassLoader.getSystemClassLoader(), true);
   }
@@ -85,9 +87,9 @@ public class XMLBundleControlTest {
    * @throws InstantiationException in case of problems
    * @throws IllegalAccessException in case of problems
    */
-  @Test(expected = NullPointerException.class)
-  public void testNewBundleStringLocaleStringClassLoaderBoolean_NPE4() throws IllegalAccessException,
-                                                                      InstantiationException, IOException {
+  @Test(expected = RequiredFieldSetToNullException.class)
+  public void testNewBundleStringLocaleStringClassLoaderBoolean_RFSTNE4() throws IllegalAccessException,
+                                                                         InstantiationException, IOException {
     final XMLBundleControl control = new XMLBundleControl();
     control.newBundle("baseName", Locale.getDefault(), "xml", null, true);
   }
