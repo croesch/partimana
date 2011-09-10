@@ -1,9 +1,11 @@
 package com.github.croesch.view;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -15,6 +17,8 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.github.croesch.components.CDateField;
+import com.github.croesch.contents.date.DateContent;
 import com.github.croesch.i18n.Text;
 import com.github.croesch.types.CountyCouncil;
 import com.github.croesch.types.Denomination;
@@ -47,7 +51,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   private final JTextField lastNameTf = new JTextField();
 
   /** the text field to edit the persons birth day */
-  private final JTextField birthDayTf = new JTextField();
+  private final CDateField birthDayTf = new CDateField(Locale.GERMAN);
 
   /** the text field to edit the persons living street */
   private final JTextField livStreetTf = new JTextField();
@@ -92,7 +96,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   private final JTextField bankTf = new JTextField();
 
   /** the text field to edit the persons until-in-db-date */
-  private final JTextField untilInDbTf = new JTextField();
+  private final CDateField untilInDbTf = new CDateField(Locale.GERMAN);
 
   /** the combo box to edit the persons gender */
   private final JComboBox genderCb = new JComboBox(Gender.values());
@@ -426,7 +430,9 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.lastNameTf.setText(participant.getLastName());
       this.genderCb.setSelectedItem(participant.getGender());
       this.denominationCb.setSelectedItem(participant.getDenomination());
-      this.birthDayTf.setText(this.dateFormat.format(participant.getBirthDate()));
+      this.birthDayTf.setDate(participant.getBirthDate());
+      this.birthDayTf.setText(((DateContent) this.birthDayTf.getDocument()).getDateContent());
+      this.birthDayTf.setCaretPosition(0);
       this.posStreetTf.setText(participant.getStreetPostal());
       this.posPostCodeTf.setText(String.valueOf(participant.getPostCodePostal()));
       this.posCityTf.setText(participant.getCityPostal());
@@ -436,7 +442,9 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.bankCodeNumberTf.setText(String.valueOf(participant.getBankCodeNumber()));
       this.commentTa.setText(participant.getComment());
       if (participant.getDateUpToInSystem() != null) {
-        this.untilInDbTf.setText(this.dateFormat.format(participant.getDateUpToInSystem()));
+        this.untilInDbTf.setDate(participant.getDateUpToInSystem());
+        this.untilInDbTf.setText(((DateContent) this.untilInDbTf.getDocument()).getDateContent());
+        this.untilInDbTf.setCaretPosition(0);
       } else {
         this.untilInDbTf.setText(null);
       }
@@ -489,11 +497,28 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
   @Override
   public Date getBirthDate() {
-    try {
-      return this.dateFormat.parse(this.birthDayTf.getText());
-    } catch (final ParseException e) {
+    if (this.birthDayTf.getText() == null || "".equals(this.birthDayTf.getText())) {
       return null;
     }
+    return calculateDateWithoutTime(this.birthDayTf.getDate());
+  }
+
+  /**
+   * Removes the time from a given date and returns the new calculated date.
+   * 
+   * @since Date: Sep 10, 2011
+   * @param d the date to erase the time from
+   * @return the date without time information
+   */
+  private static Date calculateDateWithoutTime(final Date d) {
+    final Calendar cal = new GregorianCalendar();
+    cal.setTime(d);
+    final int year = cal.get(Calendar.YEAR);
+    final int month = cal.get(Calendar.MONTH);
+    final int day = cal.get(Calendar.DAY_OF_MONTH);
+    cal.setTime(new Date(0));
+    cal.set(year, month, day, 0, 0, 0);
+    return cal.getTime();
   }
 
   @Override
@@ -550,11 +575,10 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
   @Override
   public Date getDateUpToInDataBase() {
-    try {
-      return this.dateFormat.parse(this.untilInDbTf.getText());
-    } catch (final ParseException e) {
+    if (this.untilInDbTf.getText() == null || "".equals(this.untilInDbTf.getText())) {
       return null;
     }
+    return calculateDateWithoutTime(this.untilInDbTf.getDate());
   }
 
   @Override
