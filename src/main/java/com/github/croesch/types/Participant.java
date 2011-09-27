@@ -1159,6 +1159,9 @@ public class Participant {
       }
       return true;
     }
+    if (two == null) {
+      return false;
+    }
 
     if (one.equals(two)) {
       return true;

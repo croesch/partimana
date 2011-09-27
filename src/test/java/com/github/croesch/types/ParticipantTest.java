@@ -1088,4 +1088,16 @@ public class ParticipantTest {
     p.setPostCodePostal(177);
     assertThat(this.participant).isNotEqualTo(p);
   }
+
+  /**
+   * Test method for {@link Participant#equals(Object)}.
+   */
+  @Test
+  public final void testEquals_OtherDateNull() {
+    final Participant p = new Participant(this.participant);
+
+    p.setDateUpToInSystem(new Date(24));
+
+    assertThat(p).isNotEqualTo(this.participant);
+  }
 }
