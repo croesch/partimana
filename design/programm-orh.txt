@@ -1,0 +1,144 @@
+﻿Feldname           Erforderlich Datentyp                   Erläuterung
+
+Name               J            Text
+Vorname            J            Text
+Geschlecht         J            Auswahl (m/f)
+Konf               J            Auswahl *1                 Konfession
+GebDat             J            Datum                      Geburtsdatum
+Strasse            J            Text                       Postadresse
+PLZ                J            Zahl fünfstellig           Postadresse
+Wohnort            J            Text                       Postadresse
+Wohnort2           N            Text                       Wohnadresse
+PLZ2               N            Zahl fünfstellig           Wohnadresse
+Str2               N            Text                       Wohnadresse
+Telefon            N            Text
+Fax                N            Text
+Handy              N            Text
+Telefon Eltern     N            Text
+Email              N            Text
+Kreisverwaltung    J            Auswahl *2
+BLZ                N            Zahl (achtstellig)        Bankleitzahl
+BANK               N            Text			  Banknamen
+KONTO              N            Zahl (Zehnstellig)        Kontonummer
+Bemerkung          N            Text			  Krankheiten, Auffälligkeiten, etc.
+AUFDAT             x            Datum                     Aufnahme-Datum (wird automatisch eingetragen bei Eingabe der Adressdaten)
+AUSDAT             N            Datum                     Austritt-Datum
+Kat FTN		   N		Kontrollkästchen	  Freizeit-Teilnehmer
+Kat MAa            N            Kontrollkästchen          Mitarbeiter allgemein
+Kat MAj            N            Kontrollkästchen          Mitarbeiter Jgd.
+Kat Vor            N            Kontrollkästchen          Vorstand
+Kat eVs            N            Kontrollkästchen          erw. Vorstand
+Kat MAK            N            Kontrollkästchen          MAK
+Kat AGE            N            Kontrollkästchen          AGE
+Kat FKü            N            Kontrollkästchen          F-Küche
+Kat Sem            N            Kontrollkästchen          Seminar
+Kat etc            N            Kontrollkästchen          sonstige
+
+{Kontrollkästchen = Kästchen zum abhaken / Mehrfachauswahl möglich / mindestens eins erforderlich}
+
+[Datum]            Text/ DD.MM.YYYY
+[WAHR]             Ja/Nein
+
+
+
++ Teilnehmer sollte man hinzufügen können   JA
+
++ Teilnehmer sollte man entfernen können    JA
+
++ Teilnehmer sollte man bearbeiten können   JA
+
+- Teilnehmer sollte man sperren können      JA (und wieder entsperren können. Bei Sperre keine Anmeldung zu Veranstaltungen möglich)
+
+- Freizeithistorie jedes Teilnehmers        JA (Erfassen von allen Veranstaltungen, an denen er sich jemals angemeldet hat)
+
+- Veranstaltungen sollten erfasst und verwaltet werden können     JA    (Teilnehmerliste, Mitarbeiterliste, Preis (pro TN), Veranstaltungs-Zeitraum, Versanstaltungsort, Freizeitname, Besonderheiten einzelner TN für diese eine Veranstaltung *3)
+  -> Feldname    Erforderlich    Datentyp                Erläuterung
+     
+     Name             J          Text                    Name der Veranstaltung
+     Zeitraum         J          Datum (von-bis)         Zeitraum der Veranstaltung
+     Ort              J          Text                    Veranstaltungsort
+     Preis            J          Text (sechsstellig)     Teilnehmerbeitrag
+     Preis2           N          Text (sechsstellig)     Preis für Tageskinder oder Preisunterschieden
+     Sonderoption     N          Text                    Frei belegbar für Besonderheiten (siehe *3)     
+
+- Zuschusslisten erstellen für Veranstaltungen   JA (allgemeine Liste aller TN einer Veranstaltung ausdrucken *4; ansonsten Adressliste mit Geb.datum sortiert nach den Angaben von *2 pro Veranstaltung)
+
+- Teilnehmer sortieren nach Name, nach PLZ und nach Alter  JA  (und nach Kreis; s.o.)
+
+- Für Etikettendurck: Zusammenfassung von Geschwisterkindern (nur ein Etikett für Geschwister; evtl. durch Geschwisterfeld zum Abhaken)  JA  (vielleicht kann man ja beim Eintragen eines neuen TN, bzw. beim Bearbeiten einer Adresse ein Kästchen hinzufügen zum abhaken mit der Kennung "Geschwister", sodass wenn man dieses aktiviert eine Suchmaske erscheint, in der man nach den Namen der Geschwisterkinder in der Datenbank suchen und auswählen kann - mehrere Auswahlmöglichkeiten bei vielen Geschwistern. Diese Auswahl könnte man ja dann im Profil neben klein anzeigen lassen)
+
+- Ebenso wäre gut, wenn man noch ein Kontrollkästchen im Profil hinzufügt mit der Kennung "Pflegekind". Wenn dieses aktiviert wird werden die Adressaufkleber mit der Adresse2 beschrieben, in der man ja beim Eintragen den Namen der Pflegeeltern eintragen kann. Somit kommt die Post nicht mehr zurück, wenn der Nachname des Kindes nicht am Briefkasten steht. Das kommt hier immer häufiger vor und ich muss die Pflegekinder immer separat raussuchen und auf den Brief schreiben, dass die Post bei Fam X eingeschmissen werden muss. Diese Option wäre auch bei Serienbriefen sinnvoll. Man könnte aber auch bei der Eingabemaske ein Textfeld hinzufügen, dass sich bei dem Kontrollkästchen "Pflegekind" freischaltet, in dem man den Namen der Pflegeeltern eintragen kann und dieser dann beim Druck über dem Namen des Kindes erscheint. Diese Adresse bleibt ja dann gleich, dann bräuchte man in Adresse2 nichts verändern!)
+
+- Ist es nötig zwischen Teilnehmern und Mitarbeitern zu unterscheiden? Oder reicht für euch ein Feld?
+	JA, es wäre nötig zu unterscheiden. Dann kann man nämlich separat den Teilnehmern oder den Mitarbeitern ein Serienbrief schreiben, bzw. auflisten lassen.
+
+- Dürfen Veranstaltungen gelöscht werden können?
+	JA, sollte eine Veranstaltung ausfallen wäre es gut, wenn man diese löschen kann, bzw. wenn sich diese über die Jahre ansammeln und irgendwann nicht mehr benötigt werden.
+
+- Einen TN zu sperren, heißt das er darf auf keine Veranstaltung mehr eingetragen werden?
+	JA, aber man sollte ihn wieder entsperren können, sodass er wieder eingetragen werden kann
+
+- Die Daten, ich bin mir nicht mehr sicher, aber die können doch in einer Datenbank gespeichert werden!? Oder müssen die in Dateien liegen?
+	Das kannst du machen wie es dir am besten erscheint...
+
+
+Ein paar Infos noch von meiner Seite:
+
+- Bisher war es immer so, dass wenn wir bspw. den Rüstbrief rausgeschickt haben, die Adressen der TN, die sich für diese Veranstaltung innerhalb eines bestimmten Zeitraums (wichtig! Wenn Anmeldungen später kommen und diese im Nachhinein noch einen Rüstbrief bekommen sollen, nicht alle TN ausgewählt werden, sonder nur die, die sich zu diesem bestimmten Zeitpunkt angemeldet haben) angemeldet haben, zwischengespeichert werden und dann bei Word in der Briefvorlage automatisch an der richtigen Stelle reinkopiert, und der Brief in entsprechender TN-Zahl dupliziert wird. Der TN wird dann auch schon direkt mit Liebe(r) [je nach Geschlechtsauswahl] Peter [Vorname des TN] angesprochen.
+Es wäre gut, wenn du das eibauen könntest, sodass wir weiterhin unsere Teilnehmerbestätigungen und unsere Rüstbriefe über diesen Weg ausdrucken können. Vielleicht kann man ja in Word im oberen Drittel des Briefes Pfade festlegen, in denen die Adressdaten eingetragen werden (die wären dann fest) und in den unteren zwei Drittel der Text frei gestaltbar bleibt. Ist das möglich?
+
+- Auf unseren Teilnehmerbestätigungen wurden automatisch der zu zahlende Freizeitbeitrag im entsprechenden Feld eingetragen. Darunter hatte er die 10% dieses Preises als Anzahlung eingetragen und wiederum darunter die restlichen 90% als Restzahlung.
+
+- Bei den Veranstaltungen müsste man dann evtl. via Suchmaske die TN aus der Datenbank heraussuchen und hizufügen können. Ebenso sollten auch die Mitarbeiter in einer Extramaske hinzugefügt werden. Die Auswahl könnte ja dann unter den Freizeitdaten angezeigt werden (evtl. mit Anmeldedatum). Auch wenn sich TN von einer Veranstaltung abmelden sollte dies datumsmäßig festgehalten werden.
+
+-----------------------------------------------------------------------------
+*1 (Dropdownmenü:)
+- evangelisch
+- katholisch
+- orthodox
+- muslimisch
+- freikirchlich
+- jüdisch
+- andere Konfession
+- ohne Konfession
+-----------------------------------------------------------------------------
+*2 (Dropdownmenü:)
+- unbekannt
+- Kr Alzey
+- Kr Bad Kreuznach
+- Kr DÜW
+- St FT
+- Kr GER
+- St KL
+- Kr KL
+- Kr KIB
+- Kr KUS
+- St LD
+- St LU
+- Kr Rhein-Pfalz
+- St NW
+- St PS
+- St SP
+- Kr SÜW
+- Kr Südwestpfalz
+- St ZW
+- andere Verwaltung
+------------------------------------------------------------------------------
+*3 (Besonderheiten einzelner TN für diese eine Veranstaltung)
+Bei Auflistung der angemeldeten TN bei jedem eine zusätzliche Option:
+- Mitarbeiterkind (bezahlt keinen Beitrag)
+- Tageskind (bzahlt einen anderen Beitrag)
+- Untergruppierungen (bspw. Zelter und Hausübernachter oder Grundkursler und Aufbaukursler)
+Diese Optionen könnten mit einer kleinen Markierung beim Druck der TN-Liste an den TN erkenntlich gemacht werden.
+------------------------------------------------------------------------------
+*4 (Liste:)
+_____________________________________________________________________________________
+|   (Freizeitname [fett])   |   (Freizeitort [fett])   | (Freizeit-Zeitraum [fett]) |
+|___________________________________________________________________________________|
+|Lfd. Nr.| Vor-Zuname |  PLZ, Wohnort  | Geburtstag | Veranst.tage |  Unterschrift  | 
+|___________________________________________________________________________________|
+|   01   | Max Nuhr   | 23456 Böllen   | 12.23.6789 |       6      | kufdgisdhfi    |
+|___________________________________________________________________________________|
+|   02   |   etc...                                                                 |
+|___________________________________________________________________________________|
+|   03                                                                              |                                                                   

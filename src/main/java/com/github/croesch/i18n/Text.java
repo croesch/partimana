@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
  * This class provides access to the text properties file.
  * 
  * @author croesch
- * @version 2011/03/07
+ * @since Date: Mar 07, 2011
  */
 public enum Text {
 
@@ -111,6 +111,15 @@ public enum Text {
   PARTICIPANT_UNTIL (132),
   /** the name for heading possible functions of the participant */
   PARTICIPANT_FUNCTIONS (133),
+
+  /** the name for camp */
+  CAMP (200),
+  /** the name for the id of the camp */
+  CAMP_ID (201),
+  /** the name for the name of the camp */
+  CAMP_NAME (202),
+  /** the name for the location of the camp */
+  CAMP_LOCATION (203),
 
   /** constant for male */
   MALE (2000),
