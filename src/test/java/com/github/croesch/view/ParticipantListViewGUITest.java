@@ -239,12 +239,43 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
    */
   @Test
   public final void testSorting_Id() throws InterruptedException, InvocationTargetException {
+    final Participant p1 = new Participant(9999,
+                                           "Schmidt",
+                                           "Hans",
+                                           Gender.MALE,
+                                           Denomination.NONE,
+                                           new Date(1200),
+                                           "Strasse 4",
+                                           56789,
+                                           "Stadt",
+                                           CountyCouncil.CITY_NEUSTADT);
+
+    final Participant p2 = new Participant(10000,
+                                           "Müller",
+                                           "Jasmin",
+                                           Gender.FEMALE,
+                                           Denomination.CATHOLIC,
+                                           new Date(6789543),
+                                           "Mittelgasse 3",
+                                           54321,
+                                           "Schimmelhausen",
+                                           CountyCouncil.CITY_ZWEIBRUECKEN);
+
+    final Participant p3 = new Participant(10001,
+                                           "Mauer",
+                                           "Jaqueline",
+                                           Gender.FEMALE,
+                                           Denomination.JEWISH,
+                                           new Date(1297579),
+                                           "Hinterweg 12",
+                                           99384,
+                                           "Hilgen",
+                                           CountyCouncil.UNKNOWN);
+
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
+    list.add(p1);
+    list.add(p2);
+    list.add(p3);
     SwingUtilities.invokeAndWait(new Runnable() {
       @Override
       public void run() {
@@ -252,26 +283,20 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
       }
     });
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    this.testView.table().requireRowCount(3);
+    requireParticipant(this.testView.table(), 0, p1);
+    requireParticipant(this.testView.table(), 1, p2);
+    requireParticipant(this.testView.table(), 2, p3);
 
     this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    requireParticipant(this.testView.table(), 0, p1);
+    requireParticipant(this.testView.table(), 1, p2);
+    requireParticipant(this.testView.table(), 2, p3);
 
     this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 4, this.participant1);
-    requireParticipant(this.testView.table(), 3, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 1, this.participant4);
-    requireParticipant(this.testView.table(), 0, this.participant5);
+    requireParticipant(this.testView.table(), 0, p3);
+    requireParticipant(this.testView.table(), 1, p2);
+    requireParticipant(this.testView.table(), 2, p1);
   }
 
   /**
