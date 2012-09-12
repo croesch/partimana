@@ -293,6 +293,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
     requireParticipant(this.testView.table(), 1, p2);
     requireParticipant(this.testView.table(), 2, p3);
 
+    this.testView.table().click();
     this.testView.table().tableHeader().clickColumn(0);
     requireParticipant(this.testView.table(), 0, p3);
     requireParticipant(this.testView.table(), 1, p2);
@@ -334,6 +335,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
     requireParticipant(this.testView.table(), 2, this.participant4);
     requireParticipant(this.testView.table(), 0, this.participant5);
 
+    this.testView.table().click();
     this.testView.table().tableHeader().clickColumn(1);
     requireParticipant(this.testView.table(), 0, this.participant1);
     requireParticipant(this.testView.table(), 3, this.participant2);
@@ -377,6 +379,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
     requireParticipant(this.testView.table(), 1, this.participant4);
     requireParticipant(this.testView.table(), 0, this.participant5);
 
+    this.testView.table().click();
     this.testView.table().tableHeader().clickColumn(2);
     requireParticipant(this.testView.table(), 1, this.participant1);
     requireParticipant(this.testView.table(), 0, this.participant2);
@@ -515,8 +518,10 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
     this.testView.table().selectRows(4);
     assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant5.getId());
 
-    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
-      .releaseKey(KeyEvent.VK_CONTROL);
+    this.testView.table()
+                 .pressKey(KeyEvent.VK_CONTROL)
+                 .pressAndReleaseKeys(KeyEvent.VK_SPACE)
+                 .releaseKey(KeyEvent.VK_CONTROL);
     this.testView.table().requireNoSelection();
     assertThat(this.listView.getSelectedParticipantId()).isZero();
   }
