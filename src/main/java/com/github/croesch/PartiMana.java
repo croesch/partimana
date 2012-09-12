@@ -26,7 +26,7 @@ import com.github.croesch.i18n.Text;
  * <http://www.gnu.org/licenses/>.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:09:44 PM
+ * @since Date: May 29, 2011
  */
 public final class PartiMana implements ActionObserver {
 
@@ -43,7 +43,7 @@ public final class PartiMana implements ActionObserver {
    * Starts the manager.
    * 
    * @author croesch
-   * @since Date: May 29, 2011 12:09:44 PM
+   * @since Date: May 29, 2011
    * @param args possible command line arguments
    */
   public static void main(final String[] args) {
@@ -65,7 +65,7 @@ public final class PartiMana implements ActionObserver {
    * PartiMana main program.
    * 
    * @author croesch
-   * @since Date: May 29, 2011 3:41:57 PM
+   * @since Date: May 29, 2011
    * @param args arguments that came from command line
    */
   public PartiMana(final String[] args) {

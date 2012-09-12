@@ -15,7 +15,7 @@ import com.github.croesch.view.api.IView;
  * The model of the partimana program.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:19:05 PM
+ * @since Date: May 29, 2011
  */
 public final class Model implements ICampModel, IParticipantModel, IModel4View {
 

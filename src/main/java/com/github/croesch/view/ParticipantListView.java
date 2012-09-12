@@ -25,7 +25,7 @@ import com.github.croesch.view.api.IParticipantListView;
  * Implementation of the table that views the table of participants.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:23:36 AM
+ * @since Date: Jun 8, 2011
  */
 class ParticipantListView extends JPanel implements IParticipantListView {
 

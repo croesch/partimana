@@ -6,7 +6,7 @@ import com.github.croesch.i18n.Text;
  * Represents a Gender.
  * 
  * @author croesch
- * @since Date: Jun 16, 2011 9:08:18 PM
+ * @since Date: Jun 16, 2011
  */
 public enum Gender {
 

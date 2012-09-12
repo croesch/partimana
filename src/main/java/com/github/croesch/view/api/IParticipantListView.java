@@ -8,7 +8,7 @@ import com.github.croesch.types.Participant;
  * Interface for the list view that defines methods that need to be implemented.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:19:45 AM
+ * @since Date: Jun 8, 2011
  */
 public interface IParticipantListView {
 

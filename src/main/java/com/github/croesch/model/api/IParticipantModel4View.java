@@ -8,7 +8,7 @@ import com.github.croesch.types.Participant;
  * Interface for the participant-model that contains all methods that the view should know/see.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:13:50 AM
+ * @since Date: Jun 8, 2011
  */
 public interface IParticipantModel4View {
 

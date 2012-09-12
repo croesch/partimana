@@ -6,7 +6,7 @@ import com.github.croesch.i18n.Text;
  * Represents the types of denomiation.
  * 
  * @author croesch
- * @since Date: Jun 16, 2011 9:19:09 PM
+ * @since Date: Jun 16, 2011
  */
 public enum Denomination {
 

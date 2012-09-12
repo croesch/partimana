@@ -4,7 +4,7 @@ package com.github.croesch.view.api;
  * Interface to provide functionality of the view for {@link com.github.croesch.types.Participant}s.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:19:28 AM
+ * @since Date: Jun 8, 2011
  */
 public interface IParticipantView {
 

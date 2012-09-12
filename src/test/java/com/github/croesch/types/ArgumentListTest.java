@@ -8,7 +8,7 @@ import org.junit.Test;
  * Provides different test methods for {@link ArgumentList}
  * 
  * @author croesch
- * @since Date: Jun 9, 2011 9:39:18 PM
+ * @since Date: Jun 9, 2011
  */
 public class ArgumentListTest {
 

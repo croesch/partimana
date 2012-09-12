@@ -11,7 +11,7 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  * Represents a participant.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:28:42 PM
+ * @since Date: May 29, 2011
  */
 public class Participant {
 
@@ -112,7 +112,7 @@ public class Participant {
    * Constructs a new {@link Participant}.
    * 
    * @author croesch
-   * @since Date: Jun 16, 2011 9:16:04 PM
+   * @since Date: Jun 16, 2011
    * @param forcedId the number to identify this participant, must be higher than the highest number until now
    * @param name the last name of the person
    * @param firstName the first name of the person
@@ -157,7 +157,7 @@ public class Participant {
    * Constructs a new {@link Participant}.
    * 
    * @author croesch
-   * @since Date: Jun 16, 2011 9:16:04 PM
+   * @since Date: Jun 16, 2011
    * @param name the last name of the person
    * @param firstName the first name of the person
    * @param g the gender of the person
@@ -184,7 +184,7 @@ public class Participant {
    * Constructs a new {@link Participant} that is equal to the given {@link Participant}.
    * 
    * @author croesch
-   * @since Date: Jun 16, 2011 9:16:04 PM
+   * @since Date: Jun 16, 2011
    * @param p the {@link Participant} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Participant} is <code>null</code>
    */

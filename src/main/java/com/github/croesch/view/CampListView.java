@@ -22,7 +22,7 @@ import com.github.croesch.view.api.ICampListView;
  * Implementation of the table that views the table of camps.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:24:51 AM
+ * @since Date: Jun 8, 2011
  */
 class CampListView extends JPanel implements ICampListView {
 

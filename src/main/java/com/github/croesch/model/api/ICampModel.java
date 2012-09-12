@@ -7,7 +7,7 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  * Interface for the camp-model.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:17:57 PM
+ * @since Date: May 29, 2011
  */
 public interface ICampModel extends ICampModel4View {
 

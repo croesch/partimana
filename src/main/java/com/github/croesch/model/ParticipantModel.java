@@ -15,7 +15,7 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  * Model responsible for participants.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:19:44 PM
+ * @since Date: May 29, 2011
  */
 class ParticipantModel implements IParticipantModel {
 

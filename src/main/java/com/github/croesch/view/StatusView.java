@@ -15,7 +15,7 @@ import com.github.croesch.view.api.IStatusView;
  * Component to visualise the state of the program.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:22:22 AM
+ * @since Date: Jun 8, 2011
  */
 class StatusView extends JPanel implements IStatusView {
 

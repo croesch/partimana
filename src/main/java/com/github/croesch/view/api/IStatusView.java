@@ -6,7 +6,7 @@ import com.github.croesch.i18n.Text;
  * Interface to visualise the state of the program.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:19:09 AM
+ * @since Date: Jun 8, 2011
  */
 public interface IStatusView {
 

@@ -30,7 +30,7 @@ import com.github.croesch.view.api.IParticipantEditView;
  * A panel to edit an {@link Participant}. Provides text fields to edit the different attributes.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:23:15 AM
+ * @since Date: Jun 8, 2011
  */
 class ParticipantEditView extends JPanel implements IParticipantEditView {
   /**

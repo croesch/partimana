@@ -8,7 +8,7 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  * Represents a single camp.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:28:53 PM
+ * @since Date: May 29, 2011
  */
 public class Camp {
 

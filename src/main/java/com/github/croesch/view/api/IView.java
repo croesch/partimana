@@ -4,7 +4,7 @@ package com.github.croesch.view.api;
  * Interface for the view that implements all methods seen by the model.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:25:10 PM
+ * @since Date: May 29, 2011
  */
 public interface IView {
 

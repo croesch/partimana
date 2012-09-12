@@ -13,7 +13,7 @@ import com.github.croesch.i18n.Text;
  * description.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:25:47 AM
+ * @since Date: Jun 8, 2011
  */
 final class Action extends AbstractAction {
 

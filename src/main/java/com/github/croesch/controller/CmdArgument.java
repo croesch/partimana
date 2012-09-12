@@ -4,7 +4,7 @@
  * TODO Comment here ...
  *
  * @author croesch
- * @since Date: May 29, 2011 12:16:17 PM
+ * @since Date: May 29, 2011
  */
 enum CmdArgument {
 

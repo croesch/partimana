@@ -8,7 +8,7 @@ import com.github.croesch.types.Camp;
  * Interface for the camp-model that contains all methods that the view should know/see.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:13:38 AM
+ * @since Date: Jun 8, 2011
  */
 public interface ICampModel4View {
 

@@ -6,7 +6,7 @@ import com.github.croesch.i18n.Text;
  * Represents the available county councils.
  * 
  * @author croesch
- * @since Date: Jun 16, 2011 9:52:44 PM
+ * @since Date: Jun 16, 2011
  */
 public enum CountyCouncil {
 

@@ -7,7 +7,7 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  * Interface for the participant-model.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:12:52 AM
+ * @since Date: Jun 8, 2011
  */
 public interface IParticipantModel extends IParticipantModel4View {
 

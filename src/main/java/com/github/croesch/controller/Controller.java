@@ -12,7 +12,7 @@ import com.github.croesch.view.View;
  * The controller of the program.
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:15:51 PM
+ * @since Date: May 29, 2011
  */
 public final class Controller implements ActionObserver {
 
@@ -32,7 +32,7 @@ public final class Controller implements ActionObserver {
    * Constructs the core controller with the given action observer and the arguments from command line.
    * 
    * @author croesch
-   * @since Date: May 29, 2011 3:48:41 PM
+   * @since Date: May 29, 2011
    * @param o the {@link ActionObserver}
    * @param args the arguments from command line
    */

@@ -11,7 +11,7 @@ import com.github.croesch.types.Participant;
  * TODO Comment here ...
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:20:27 PM
+ * @since Date: May 29, 2011
  */
 class PersistenceModel implements IPersistenceModel {
 

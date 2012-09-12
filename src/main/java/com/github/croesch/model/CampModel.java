@@ -13,7 +13,7 @@ import com.github.croesch.types.exceptions.RequiredFieldSetToNullException;
  * Model responsible for {@link Camp}s
  * 
  * @author croesch
- * @since Date: May 29, 2011 12:24:16 PM
+ * @since Date: May 29, 2011
  */
 class CampModel implements ICampModel {
 

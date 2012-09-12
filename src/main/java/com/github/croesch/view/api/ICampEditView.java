@@ -4,7 +4,7 @@
  * TODO Comment here ...
  *
  * @author croesch
- * @since Date: Jun 8, 2011 6:20:26 AM
+ * @since Date: Jun 8, 2011
  */
 public interface ICampEditView {
 

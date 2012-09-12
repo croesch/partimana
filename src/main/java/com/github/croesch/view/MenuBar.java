@@ -10,7 +10,7 @@ import com.github.croesch.i18n.Text;
  * Menu bar of the program.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:26:35 AM
+ * @since Date: Jun 8, 2011
  */
 class MenuBar extends JMenuBar {
 

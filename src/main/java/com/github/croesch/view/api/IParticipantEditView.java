@@ -11,7 +11,7 @@ import com.github.croesch.types.Participant;
  * Provides methods for the view that is able to edit a {@link Participant}.
  * 
  * @author croesch
- * @since Date: Jun 8, 2011 6:20:02 AM
+ * @since Date: Jun 8, 2011
  */
 public interface IParticipantEditView {
 
