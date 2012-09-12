@@ -226,7 +226,7 @@ public enum Text {
    * of the key where underscores will be replaced by dots. The prefix is {@code tetris.txt.}.
    * 
    * @author croesch
-   * @since Date: 20.02.2011 11:23:31
+   * @since Date: Feb 2, 2011
    * @param k the key number for the message to lookup
    */
   private Text(final int k) {
