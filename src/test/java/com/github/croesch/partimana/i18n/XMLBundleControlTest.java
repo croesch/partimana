@@ -100,8 +100,7 @@ public class XMLBundleControlTest {
   public void testNewBundleStringLocaleStringClassLoaderBoolean_Null1() throws IllegalAccessException,
                                                                        InstantiationException, IOException {
     final XMLBundleControl control = new XMLBundleControl();
-    assertThat(control.newBundle("baseName", Locale.getDefault(), "XML", ClassLoader.getSystemClassLoader(), true))
-      .isNull();
+    assertThat(control.newBundle("baseName", Locale.getDefault(), "XML", ClassLoader.getSystemClassLoader(), true)).isNull();
   }
 
   /**
@@ -115,7 +114,6 @@ public class XMLBundleControlTest {
   public void testNewBundleStringLocaleStringClassLoaderBoolean_Null2() throws IllegalAccessException,
                                                                        InstantiationException, IOException {
     final XMLBundleControl control = new XMLBundleControl();
-    assertThat(control.newBundle("baseName", Locale.getDefault(), "xml", ClassLoader.getSystemClassLoader(), true))
-      .isNull();
+    assertThat(control.newBundle("baseName", Locale.getDefault(), "xml", ClassLoader.getSystemClassLoader(), true)).isNull();
   }
 }
