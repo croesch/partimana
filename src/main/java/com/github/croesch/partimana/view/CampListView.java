@@ -2,6 +2,7 @@ package com.github.croesch.partimana.view;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -9,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -88,6 +91,16 @@ class CampListView extends JPanel implements ICampListView {
       setModel(tm);
       setAutoCreateRowSorter(true);
       setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+      final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tm);
+      sorter.setComparator(0, new Comparator<Long>() {
+        @Override
+        public int compare(final Long o1, final Long o2) {
+          return (int) (o1 - o2);
+        }
+      });
+      setRowSorter(sorter);
+
       addMouseListener(new TableMouseListener(o));
     }
 
