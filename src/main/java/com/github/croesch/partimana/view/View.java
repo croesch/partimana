@@ -41,7 +41,7 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   private static final Logger LOGGER = Logger.getLogger(View.class);
 
   /** the connector to the model of the program to fetch updates */
-  private final IModel4View model;
+  private final transient IModel4View model;
 
   /** the observer that will handle user actions */
   private final ActionObserver observer;

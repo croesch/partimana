@@ -37,7 +37,7 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
   private final IParticipantListView listView;
 
   /** the model to fetch participants from */
-  private final IParticipantModel4View model;
+  private final transient IParticipantModel4View model;
 
   /**
    * Constructs the view for participants.
