@@ -35,6 +35,7 @@ class StatusView extends JPanel implements IStatusView {
     setLayout(new MigLayout(new LC().fill()));
 
     this.label = new JLabel();
+    this.label.setName("statusTxt");
 
     add(this.label);
   }
