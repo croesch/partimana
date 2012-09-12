@@ -7,7 +7,6 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**

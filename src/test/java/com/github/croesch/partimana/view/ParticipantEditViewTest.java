@@ -16,7 +16,6 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.ParticipantEditView;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
 
 /**

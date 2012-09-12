@@ -10,9 +10,6 @@ import java.util.ResourceBundle;
 
 import org.junit.Test;
 
-import com.github.croesch.partimana.i18n.XMLBundleControl;
-import com.github.croesch.partimana.i18n.XMLResourceBundle;
-
 /**
  * Provides test cases for {@link XMLResourceBundle}.
  * 

@@ -5,8 +5,6 @@ import static org.fest.assertions.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.Address;
-
 /**
  * Provides tests for {@link Address}
  * 

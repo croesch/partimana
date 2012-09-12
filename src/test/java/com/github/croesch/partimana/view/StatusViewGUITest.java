@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.view.StatusView;
 
 /**
  * Provides GUI tests for {@link StatusView}.

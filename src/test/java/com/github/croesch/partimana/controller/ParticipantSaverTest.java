@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.controller.ParticipantSaver;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IModel4View;
 import com.github.croesch.partimana.model.api.IParticipantModel;

@@ -2,9 +2,9 @@ package com.github.croesch.partimana.controller;
 
 import org.apache.log4j.Logger;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.Model;
 import com.github.croesch.partimana.view.View;

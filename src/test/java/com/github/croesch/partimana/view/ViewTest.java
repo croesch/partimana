@@ -12,7 +12,6 @@ import com.github.croesch.partimana.model.api.IModel4View;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-import com.github.croesch.partimana.view.View;
 
 /**
  * Provides test methods for {@link View}.

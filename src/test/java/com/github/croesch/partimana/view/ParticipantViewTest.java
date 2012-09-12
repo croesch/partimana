@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import com.github.croesch.partimana.model.api.IParticipantModel4View;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-import com.github.croesch.partimana.view.ParticipantView;
 
 /**
  * Provides test methods for {@link ParticipantView}.

@@ -3,9 +3,9 @@ package com.github.croesch.partimana.view.listener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.annotate.NotNull;
 
 /**
  * Mouse listener for the table that will fire the given action to the given observer that a row has been selected.

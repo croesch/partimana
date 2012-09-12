@@ -7,7 +7,6 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.model.ParticipantModel;
 import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
