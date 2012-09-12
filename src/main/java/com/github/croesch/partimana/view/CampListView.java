@@ -1,7 +1,5 @@
 package com.github.croesch.partimana.view;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,6 +18,7 @@ import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.view.api.ICampListView;
+import com.github.croesch.partimana.view.listener.TableMouseListener;
 
 /**
  * Implementation of the table that views the table of camps.
@@ -101,42 +100,12 @@ class CampListView extends JPanel implements ICampListView {
       });
       setRowSorter(sorter);
 
-      addMouseListener(new TableMouseListener(o));
+      addMouseListener(new TableMouseListener(o, UserAction.CAMP_SELECTED));
     }
 
     @Override
     public boolean isCellEditable(final int rowIndex, final int colIndex) {
       return false;
-    }
-  }
-
-  /**
-   * Mouse listener for the table that will fire an action to a given observer that a row has been selected.
-   * 
-   * @author croesch
-   * @since Date: Sep 27, 2011
-   */
-  private static class TableMouseListener extends MouseAdapter {
-
-    /** the observer that should be notified about selection events */
-    private final ActionObserver observer;
-
-    /**
-     * Creates new mouse listener for the table of camps. Will fire the action if double click happened on the table.
-     * 
-     * @since Date: Sep 27, 2011
-     * @param o the {@link ActionObserver} to fire the action to.
-     */
-    public TableMouseListener(final ActionObserver o) {
-      this.observer = o;
-    }
-
-    @Override
-    public void mouseClicked(final MouseEvent e) {
-      if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-        this.observer.performAction(UserAction.CAMP_SELECTED);
-      }
-      super.mouseClicked(e);
     }
   }
 }
