@@ -22,7 +22,6 @@ import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
@@ -36,7 +35,7 @@ import com.github.croesch.partimana.view.api.IParticipantEditView;
  * @author croesch
  * @since Date: Jul 10, 2011
  */
-public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase implements ActionObserver {
+public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
 
   private ParticipantListView listView;
 

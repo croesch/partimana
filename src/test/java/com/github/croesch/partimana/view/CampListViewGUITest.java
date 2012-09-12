@@ -21,7 +21,6 @@ import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.types.Camp;
 
@@ -31,7 +30,7 @@ import com.github.croesch.partimana.types.Camp;
  * @author croesch
  * @since Date: Sep 12, 2012
  */
-public class CampListViewGUITest extends PartiManaDefaultGUITestCase implements ActionObserver {
+public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
   private CampListView listView;
 

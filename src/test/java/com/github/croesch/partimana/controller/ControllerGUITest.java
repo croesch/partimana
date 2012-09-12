@@ -10,7 +10,6 @@ import org.fest.swing.fixture.FrameFixture;
 import org.junit.Test;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.view.View;
@@ -21,7 +20,7 @@ import com.github.croesch.partimana.view.View;
  * @author croesch
  * @since Date: Sep 12, 2012
  */
-public class ControllerGUITest extends PartiManaDefaultGUITestCase implements ActionObserver {
+public class ControllerGUITest extends PartiManaDefaultGUITestCase {
 
   private Controller controller;
 
