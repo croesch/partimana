@@ -11,6 +11,7 @@ import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.view.api.ICampListView;
@@ -28,6 +29,7 @@ class CampListView extends JPanel implements ICampListView {
   private static final long serialVersionUID = -96888415800702415L;
 
   /** the table to display the different camps */
+  @NotNull
   private final JTable table;
 
   /**
@@ -37,7 +39,7 @@ class CampListView extends JPanel implements ICampListView {
    * @since Date: Sep 27, 2011
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
-  public CampListView(final ActionObserver o) {
+  public CampListView(@NotNull final ActionObserver o) {
     setLayout(new MigLayout("fill"));
 
     final Object[] columnIdentifiers = new Object[] { Text.CAMP_ID.text(),
@@ -49,7 +51,7 @@ class CampListView extends JPanel implements ICampListView {
   }
 
   @Override
-  public void update(final List<Camp> camps) {
+  public void update(@NotNull final List<Camp> camps) {
     while (this.table.getRowCount() > 0) {
       ((DefaultTableModel) this.table.getModel()).removeRow(0);
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.model.api.ICampModel;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.types.Camp;
@@ -18,9 +19,11 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
 class CampModel implements ICampModel {
 
   /** model that is responsible to store and load data */
+  @NotNull
   private final IPersistenceModel persistenceModel;
 
   /** map of all camps that are available */
+  @NotNull
   private final Map<Long, Camp> mapOfCamps;
 
   /**
@@ -30,8 +33,8 @@ class CampModel implements ICampModel {
    * @since Date: Jun 19, 2011
    * @param pm the model to load the data from (and synchronize afterwards).
    */
-  public CampModel(final IPersistenceModel pm) {
-    this.persistenceModel = pm;
+  public CampModel(@NotNull final IPersistenceModel pm) {
+    this.persistenceModel = pm; //FIXME: null check
     this.mapOfCamps = this.persistenceModel.getMapOfCamps();
   }
 

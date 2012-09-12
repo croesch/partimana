@@ -2,6 +2,8 @@ package com.github.croesch.partimana.model;
 
 import java.util.List;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.model.api.ICampModel;
 import com.github.croesch.partimana.model.api.IModel4View;
 import com.github.croesch.partimana.model.api.IParticipantModel;
@@ -20,15 +22,19 @@ import com.github.croesch.partimana.view.api.IView;
 public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
   /** the model that is responsible for persistence of data */
+  @NotNull
   private final IPersistenceModel persistenceModel = new PersistenceModel();
 
   /** the model that is responsible for actions that have to do with {@link Participant}s */
+  @NotNull
   private final IParticipantModel participantModel = new ParticipantModel(this.persistenceModel);
 
   /** the model that is responsible for actions that have to do with {@link Camp}s */
+  @NotNull
   private final ICampModel campModel = new CampModel(this.persistenceModel);
 
   /** the connection to the view of the program */
+  @MayBeNull
   private IView view;
 
   /**
@@ -38,7 +44,7 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
    * @since Date: Jun 30, 2011
    * @param v the view to set to the model.
    */
-  public void setView(final IView v) {
+  public void setView(@MayBeNull final IView v) {
     this.view = v;
   }
 

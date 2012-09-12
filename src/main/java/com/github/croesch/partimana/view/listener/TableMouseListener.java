@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.NotNull;
 
 /**
  * Mouse listener for the table that will fire the given action to the given observer that a row has been selected.
@@ -15,9 +16,11 @@ import com.github.croesch.partimana.actions.UserAction;
 public final class TableMouseListener extends MouseAdapter {
 
   /** the observer that should be notified about selection events */
+  @NotNull
   private final ActionObserver observer;
 
   /** the action that will be sent to the observer when the event happened */
+  @NotNull
   private final UserAction action;
 
   /**
@@ -28,9 +31,9 @@ public final class TableMouseListener extends MouseAdapter {
    * @param o the {@link ActionObserver} to fire the action to.
    * @param a the action to send to the observer
    */
-  public TableMouseListener(final ActionObserver o, final UserAction a) {
-    this.observer = o;
-    this.action = a;
+  public TableMouseListener(@NotNull final ActionObserver o, @NotNull final UserAction a) {
+    this.observer = o; //FIXME null check
+    this.action = a; // FIXME null check
   }
 
   @Override

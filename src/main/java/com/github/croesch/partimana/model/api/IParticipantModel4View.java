@@ -2,6 +2,8 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.List;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.types.Participant;
 
 /**
@@ -20,6 +22,7 @@ public interface IParticipantModel4View {
    * @param id the id to lookup
    * @return the participant with the given id, or <code>null</code> if no participant has this id.
    */
+  @MayBeNull
   Participant getParticipant(long id);
 
   /**
@@ -29,5 +32,6 @@ public interface IParticipantModel4View {
    * @since Date: Jun 21, 2011
    * @return a list that contains all participants stored in the model.
    */
+  @NotNull
   List<Participant> getListOfParticipants();
 }

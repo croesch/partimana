@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.controller.Controller;
 import com.github.croesch.partimana.i18n.Text;
 
@@ -86,7 +87,7 @@ public final class PartiMana implements ActionObserver {
   }
 
   @Override
-  public void performAction(final UserAction action) {
+  public void performAction(@NotNull final UserAction action) {
     if (action == UserAction.EXIT) {
       LOGGER.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
       this.running = false;

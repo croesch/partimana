@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IModel4View;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
@@ -41,15 +42,19 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   private static final Logger LOGGER = Logger.getLogger(View.class);
 
   /** the connector to the model of the program to fetch updates */
+  @NotNull
   private final transient IModel4View model;
 
   /** the observer that will handle user actions */
+  @NotNull
   private final ActionObserver observer;
 
   /** the part of the view that is responsible for viewing the participants */
+  @NotNull
   private final IParticipantView participantView;
 
   /** the part of the view that is responsible for viewing the status */
+  @NotNull
   private final IStatusView statusView;
 
   /**
@@ -61,7 +66,7 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
    * @param o the observer to notify about actions.
    * @throws RequiredFieldSetToNullException if the given model or the given observer is <code>null</code>
    */
-  public View(final IModel4View m, final ActionObserver o) throws RequiredFieldSetToNullException {
+  public View(@NotNull final IModel4View m, @NotNull final ActionObserver o) throws RequiredFieldSetToNullException {
     if (m == null || o == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -99,32 +104,34 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   }
 
   @Override
+  @NotNull
   public IParticipantEditView getParticipantEditView() {
     return this.participantView.getParticipantEditView();
   }
 
   @Override
+  @NotNull
   public IParticipantListView getParticipantListView() {
     return this.participantView.getParticipantListView();
   }
 
   @Override
-  public void showInformation(final Text info) {
+  public void showInformation(@NotNull final Text info) {
     this.statusView.showInformation(info);
   }
 
   @Override
-  public void showInformation(final Text info, final Object ... args) {
+  public void showInformation(@NotNull final Text info, @NotNull final Object ... args) {
     this.statusView.showInformation(info, args);
   }
 
   @Override
-  public void showError(final Text error) {
+  public void showError(@NotNull final Text error) {
     this.statusView.showError(error);
   }
 
   @Override
-  public void performAction(final UserAction action) {
+  public void performAction(@NotNull final UserAction action) {
     switch (action) {
       case EXIT:
         dispose();

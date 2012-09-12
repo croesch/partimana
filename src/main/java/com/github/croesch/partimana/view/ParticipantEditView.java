@@ -19,6 +19,8 @@ import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.components.CDateField;
 import com.github.croesch.contents.date.DateContent;
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
@@ -42,111 +44,147 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   private static final long serialVersionUID = 5388465740510568296L;
 
   /** the date format to parse the dates entered in the text fields */
+  @NotNull
   private final DateFormat dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM);
 
   /** the text field to edit the persons name */
+  @NotNull
   private final JTextField firstNameTf = new JTextField();
 
   /** the text field to edit the persons name */
+  @NotNull
   private final JTextField lastNameTf = new JTextField();
 
   /** the text field to edit the persons birth day */
+  @NotNull
   private final CDateField birthDayTf = new CDateField(Locale.GERMAN);
 
   /** the text field to edit the persons living street */
+  @NotNull
   private final JTextField livStreetTf = new JTextField();
 
   /** the text field to edit the persons living post code */
+  @NotNull
   private final JTextField livPostCodeTf = new JTextField();
 
   /** the text field to edit the persons living city */
+  @NotNull
   private final JTextField livCityTf = new JTextField();
 
   /** the text field to edit the persons postal street */
+  @NotNull
   private final JTextField posStreetTf = new JTextField();
 
   /** the text field to edit the persons postal post code */
+  @NotNull
   private final JTextField posPostCodeTf = new JTextField();
 
   /** the text field to edit the persons postal city */
+  @NotNull
   private final JTextField posCityTf = new JTextField();
 
   /** the text field to edit the persons phone number */
+  @NotNull
   private final JTextField phoneTf = new JTextField();
 
   /** the text field to edit the persons fax number */
+  @NotNull
   private final JTextField faxTf = new JTextField();
 
   /** the text field to edit the persons mobile phone number */
+  @NotNull
   private final JTextField mobilePhoneTf = new JTextField();
 
   /** the text field to edit the phone of the persons parents */
+  @NotNull
   private final JTextField phoneParentsTf = new JTextField();
 
   /** the text field to edit the persons mail address */
+  @NotNull
   private final JTextField mailAddressTf = new JTextField();
 
   /** the text field to edit the persons bank account number */
+  @NotNull
   private final JTextField bankAccNumberTf = new JTextField();
 
   /** the text field to edit the persons bank code number */
+  @NotNull
   private final JTextField bankCodeNumberTf = new JTextField();
 
   /** the text field to edit the persons bank */
+  @NotNull
   private final JTextField bankTf = new JTextField();
 
   /** the text field to edit the persons until-in-db-date */
+  @NotNull
   private final CDateField untilInDbTf = new CDateField(Locale.GERMAN);
 
   /** the combo box to edit the persons gender */
-  private final JComboBox genderCb = new JComboBox(Gender.values());
+  @NotNull
+  private final JComboBox<Gender> genderCb = new JComboBox<Gender>(Gender.values());
 
   /** the combo box to edit the persons denomination */
-  private final JComboBox denominationCb = new JComboBox(Denomination.values());
+  @NotNull
+  private final JComboBox<Denomination> denominationCb = new JComboBox<Denomination>(Denomination.values());
 
   /** the combo box to edit the persons county council */
-  private final JComboBox countyCouncilCb = new JComboBox(CountyCouncil.values());;
+  @NotNull
+  private final JComboBox<CountyCouncil> countyCouncilCb = new JComboBox<CountyCouncil>(CountyCouncil.values());;
 
   /** the text area to edit the comment about the person */
+  @NotNull
   private final JTextArea commentTa = new JTextArea();
 
   /** the check box to mark that this person can be participant */
+  @NotNull
   private final JCheckBox possParticipantCb = new JCheckBox(Text.PARTICIPANT_CAMP_PARTICIPANT.text());
 
   /** the check box to mark that this person can be staff */
+  @NotNull
   private final JCheckBox possStaffCb = new JCheckBox(Text.PARTICIPANT_STAFF_GENERAL.text());
 
   /** the check box to mark that this person can be staff youth */
+  @NotNull
   private final JCheckBox possStaffYouthCb = new JCheckBox(Text.PARTICIPANT_STAFF_YOUTH.text());
 
   /** the check box to mark that this person can be board member */
+  @NotNull
   private final JCheckBox possBoardCb = new JCheckBox(Text.PARTICIPANT_BOARD.text());
 
   /** the check box to mark that this person can be extended board member */
+  @NotNull
   private final JCheckBox possExtendedBoardCb = new JCheckBox(Text.PARTICIPANT_EXTENDED_BOARD.text());
 
   /** the check box to mark that this person can be MAK */
+  @NotNull
   private final JCheckBox possMakCb = new JCheckBox(Text.PARTICIPANT_MAK.text());
 
   /** the check box to mark that this person can be AGE */
+  @NotNull
   private final JCheckBox possAgeCb = new JCheckBox(Text.PARTICIPANT_AGE.text());
 
   /** the check box to mark that this person can be seminar member */
+  @NotNull
   private final JCheckBox possSeminarCb = new JCheckBox(Text.PARTICIPANT_SEMINAR.text());
 
   /** the check box to mark that this person can be kitchen member */
+  @NotNull
   private final JCheckBox possKitchenCb = new JCheckBox(Text.PARTICIPANT_CAMP_KITCHEN.text());
 
   /** the check box to mark that this person can be misc. */
+  @NotNull
   private final JCheckBox possMiscCb = new JCheckBox(Text.PARTICIPANT_MISC.text());
 
   /** the label that contains the id of the person */
+  @NotNull
   private final JLabel idValueLbl = new JLabel("12345");
 
   /** the label that contains the date since the person is in data base */
+  @NotNull
   private final JLabel sinceInDbValueLbl = new JLabel("12.12.2003");
 
   /** panel that contains components to edit the different functions of the person */
+  @NotNull
   private JPanel possibleFunctionsPanel;
 
   /**
@@ -421,7 +459,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   }
 
   @Override
-  public void setParticipant(final Participant participant) {
+  public void setParticipant(@MayBeNull final Participant participant) {
     if (participant == null) {
       clear();
     } else {
@@ -496,6 +534,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   }
 
   @Override
+  @MayBeNull
   public Date getBirthDate() {
     if (this.birthDayTf.getText() == null || "".equals(this.birthDayTf.getText())) {
       return null;
@@ -510,6 +549,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    * @param d the date to erase the time from
    * @return the date without time information
    */
+  @NotNull
   private static Date calculateDateWithoutTime(final Date d) {
     final Calendar cal = new GregorianCalendar();
     cal.setTime(d);
@@ -574,6 +614,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   }
 
   @Override
+  @MayBeNull
   public Date getDateUpToInDataBase() {
     if (this.untilInDbTf.getText() == null || "".equals(this.untilInDbTf.getText())) {
       return null;

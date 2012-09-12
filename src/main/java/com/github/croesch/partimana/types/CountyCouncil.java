@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
@@ -71,6 +72,7 @@ public enum CountyCouncil {
   OTHER (Text.OTHER);
 
   /** the i18n representation of this county council */
+  @NotNull
   private final String s;
 
   /**
@@ -80,11 +82,12 @@ public enum CountyCouncil {
    * @since Date: Jun 21, 2011
    * @param t the {@link Text} that represents this council.
    */
-  private CountyCouncil(final Text t) {
-    this.s = t.text();
+  private CountyCouncil(@NotNull final Text t) {
+    this.s = t.text(); //FIXME null check!
   }
 
   @Override
+  @NotNull
   public String toString() {
     return this.s;
   }

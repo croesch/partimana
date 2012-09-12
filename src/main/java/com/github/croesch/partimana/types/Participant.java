@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
@@ -13,7 +15,7 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
  * @author croesch
  * @since Date: May 29, 2011
  */
-public class Participant {
+public final class Participant {
 
   /** the id of that participant as stored in data base */
   private final long id;
@@ -22,60 +24,77 @@ public class Participant {
   private static long highestId = 0;
 
   /** the last name of the participant */
+  @NotNull
   private String lastName = null;
 
   /** the first name of the participant */
+  @NotNull
   private String foreName = null;
 
   /** the gender of the participant */
+  @NotNull
   private Gender gender = null;
 
   /** the denomination/confession of the participant */
+  @NotNull
   private Denomination denomination = null;
 
   /** the date of birth of the participant */
+  @NotNull
   private Date birthDate = null;
 
   /** the address where the participant lives */
+  @NotNull
   private final Address livingAddress = new Address();
 
   /** the address to post to, if different to the address where the participant lives */
+  @NotNull
   private final Address postToAddress = new Address();
 
   /** the phone number of the participant */
+  @MayBeNull
   private String phone = null;
 
   /** the fax number of the participant */
+  @MayBeNull
   private String fax = null;
 
   /** the mobile phone number of the participant */
+  @MayBeNull
   private String mobilePhone = null;
 
   /** the phone number of the parents of the participant */
+  @MayBeNull
   private String phoneOfParents = null;
 
   /** the mail address of the participant */
+  @MayBeNull
   private String mailAddress = null;
 
   /** the county council of the participant */
+  @NotNull
   private CountyCouncil countyCouncil = null;
 
   /** the bank code number of the participant */
   private int bankCodeNumber = 0;
 
   /** the name of the bank of the participant */
+  @MayBeNull
   private String bank = null;
 
   /** the bank account number of the participant */
   private int bankAccountNumber = 0;
 
   /** a comment of the staff about the participant, eg about medicine */
+  @MayBeNull
   private String comment = null;
 
   /** date since the participant is registered */
+  @MayBeNull
   private Date dateSinceInDataBase = null;
 
   /** date until the participant is a member in the system */
+  @MayBeNull
   private Date dateUpToInSystem = null;
 
   /** if the participant can be a participant */
@@ -126,15 +145,15 @@ public class Participant {
    * @throws IllegalArgumentException if the id is too small
    */
   public Participant(final long forcedId,
-                     final String name,
-                     final String firstName,
-                     final Gender g,
-                     final Denomination den,
-                     final Date birth,
-                     final String str,
+                     @NotNull final String name,
+                     @NotNull final String firstName,
+                     @NotNull final Gender g,
+                     @NotNull final Denomination den,
+                     @NotNull final Date birth,
+                     @NotNull final String str,
                      final int pc,
-                     final String c,
-                     final CountyCouncil county) throws IllegalArgumentException {
+                     @NotNull final String c,
+                     @NotNull final CountyCouncil county) throws IllegalArgumentException {
     setLastName(name);
     setForeName(firstName);
     setGender(g);
@@ -177,15 +196,15 @@ public class Participant {
    * @param c the city where the person lives
    * @param county the county council for this person
    */
-  public Participant(final String name,
-                     final String firstName,
-                     final Gender g,
-                     final Denomination den,
-                     final Date birth,
-                     final String str,
+  public Participant(@NotNull final String name,
+                     @NotNull final String firstName,
+                     @NotNull final Gender g,
+                     @NotNull final Denomination den,
+                     @NotNull final Date birth,
+                     @NotNull final String str,
                      final int pc,
-                     final String c,
-                     final CountyCouncil county) {
+                     @NotNull final String c,
+                     @NotNull final CountyCouncil county) {
     this(highestId + 1, name, firstName, g, den, birth, str, pc, c, county);
   }
 
@@ -197,7 +216,7 @@ public class Participant {
    * @param p the {@link Participant} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Participant} is <code>null</code>
    */
-  public Participant(final Participant p) throws RequiredFieldSetToNullException {
+  public Participant(@NotNull final Participant p) throws RequiredFieldSetToNullException {
     if (p == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -248,7 +267,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the last name of the participant
    */
-  public final String getLastName() {
+  @NotNull
+  public String getLastName() {
     return this.lastName;
   }
 
@@ -259,7 +279,7 @@ public class Participant {
    * @param name the last name, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
    */
-  public final void setLastName(final String name) throws RequiredFieldSetToNullException {
+  public void setLastName(@NotNull final String name) throws RequiredFieldSetToNullException {
     if (name == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -272,7 +292,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the fore name of the participant
    */
-  public final String getForeName() {
+  @NotNull
+  public String getForeName() {
     return this.foreName;
   }
 
@@ -283,7 +304,7 @@ public class Participant {
    * @param name the first name, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
    */
-  public final void setForeName(final String name) throws RequiredFieldSetToNullException {
+  public void setForeName(@NotNull final String name) throws RequiredFieldSetToNullException {
     if (name == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -296,7 +317,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the gender of the participant
    */
-  public final Gender getGender() {
+  @NotNull
+  public Gender getGender() {
     return this.gender;
   }
 
@@ -307,7 +329,7 @@ public class Participant {
    * @param g the gender of the participant, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
    */
-  public final void setGender(final Gender g) throws RequiredFieldSetToNullException {
+  public void setGender(@NotNull final Gender g) throws RequiredFieldSetToNullException {
     if (g == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -320,7 +342,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the denomination of the participant
    */
-  public final Denomination getDenomination() {
+  @NotNull
+  public Denomination getDenomination() {
     return this.denomination;
   }
 
@@ -331,7 +354,7 @@ public class Participant {
    * @param den the denomination of the participant
    * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
    */
-  public final void setDenomination(final Denomination den) throws RequiredFieldSetToNullException {
+  public void setDenomination(@NotNull final Denomination den) throws RequiredFieldSetToNullException {
     if (den == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -344,7 +367,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the date of birth of the participant
    */
-  public final Date getBirthDate() {
+  @NotNull
+  public Date getBirthDate() {
     return (Date) this.birthDate.clone();
   }
 
@@ -355,7 +379,7 @@ public class Participant {
    * @param birth the date of birth day of the participant, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given birth date is <code>null</code>
    */
-  public final void setBirthDate(final Date birth) throws RequiredFieldSetToNullException {
+  public void setBirthDate(@NotNull final Date birth) throws RequiredFieldSetToNullException {
     if (birth == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -368,7 +392,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the street of the participant (where he lives)
    */
-  public final String getStreet() {
+  @NotNull
+  public String getStreet() {
     return this.livingAddress.getStreet();
   }
 
@@ -379,7 +404,7 @@ public class Participant {
    * @param str the street where the participant lives.
    * @throws RequiredFieldSetToNullException if the given street is <code>null</code>
    */
-  public final void setStreet(final String str) throws RequiredFieldSetToNullException {
+  public void setStreet(@NotNull final String str) throws RequiredFieldSetToNullException {
     if (str == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -392,7 +417,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the post code of the participant (where he lives)
    */
-  public final int getPostCode() {
+  public int getPostCode() {
     return this.livingAddress.getPostCode();
   }
 
@@ -403,7 +428,7 @@ public class Participant {
    * @param pc the post code where the participant lives.
    * @throws IllegalArgumentException if the given post code is less than zero
    */
-  public final void setPostCode(final int pc) throws IllegalArgumentException {
+  public void setPostCode(final int pc) throws IllegalArgumentException {
     final int highestPostCode = 99999;
     if (pc < 0 || pc > highestPostCode) {
       throw new IllegalArgumentException();
@@ -417,7 +442,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the city of the participant (where he lives)
    */
-  public final String getCity() {
+  @NotNull
+  public String getCity() {
     return this.livingAddress.getCity();
   }
 
@@ -428,7 +454,7 @@ public class Participant {
    * @param c the city where the participant lives
    * @throws RequiredFieldSetToNullException if the given city is <code>null</code>
    */
-  public final void setCity(final String c) throws RequiredFieldSetToNullException {
+  public void setCity(@NotNull final String c) throws RequiredFieldSetToNullException {
     if (c == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -441,7 +467,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the street of the participant (where to post to)
    */
-  public final String getStreetPostal() {
+  @MayBeNull
+  public String getStreetPostal() {
     return this.postToAddress.getStreet();
   }
 
@@ -451,7 +478,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param sp the street of the participant (where to post to)
    */
-  public final void setStreetPostal(final String sp) {
+  @MayBeNull
+  public void setStreetPostal(@MayBeNull final String sp) {
     this.postToAddress.setStreet(sp);
   }
 
@@ -461,7 +489,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the post code of the participant (where to post to)
    */
-  public final int getPostCodePostal() {
+  public int getPostCodePostal() {
     return this.postToAddress.getPostCode();
   }
 
@@ -472,7 +500,7 @@ public class Participant {
    * @param pc the post code where to post to, if different to post code where the participant lives.
    * @throws IllegalArgumentException if the given post code is less than zero or greater than 99999
    */
-  public final void setPostCodePostal(final int pc) throws IllegalArgumentException {
+  public void setPostCodePostal(final int pc) throws IllegalArgumentException {
     final int highestPostCode = 99999;
     if (pc < 0 || pc > highestPostCode) {
       throw new IllegalArgumentException();
@@ -486,7 +514,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the city of the participant (where to post to)
    */
-  public final String getCityPostal() {
+  @MayBeNull
+  public String getCityPostal() {
     return this.postToAddress.getCity();
   }
 
@@ -496,7 +525,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param cp the city of the participant (where to post to)
    */
-  public final void setCityPostal(final String cp) {
+  public void setCityPostal(@MayBeNull final String cp) {
     this.postToAddress.setCity(cp);
   }
 
@@ -506,7 +535,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the phone number of the participant
    */
-  public final String getPhone() {
+  @MayBeNull
+  public String getPhone() {
     return this.phone;
   }
 
@@ -516,7 +546,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param p the phone number of the participant
    */
-  public final void setPhone(final String p) {
+  public void setPhone(@MayBeNull final String p) {
     this.phone = p;
   }
 
@@ -526,7 +556,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the fax number of the participant
    */
-  public final String getFax() {
+  @MayBeNull
+  public String getFax() {
     return this.fax;
   }
 
@@ -536,7 +567,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param f the fax number of the participant
    */
-  public final void setFax(final String f) {
+  public void setFax(@MayBeNull final String f) {
     this.fax = f;
   }
 
@@ -546,7 +577,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the mobile phone number of the participant
    */
-  public final String getMobilePhone() {
+  @MayBeNull
+  public String getMobilePhone() {
     return this.mobilePhone;
   }
 
@@ -556,7 +588,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param mobile the mobile phone number of the participant
    */
-  public final void setMobilePhone(final String mobile) {
+  public void setMobilePhone(@MayBeNull final String mobile) {
     this.mobilePhone = mobile;
   }
 
@@ -566,7 +598,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the phone number of the parents of the participant
    */
-  public final String getPhoneOfParents() {
+  @MayBeNull
+  public String getPhoneOfParents() {
     return this.phoneOfParents;
   }
 
@@ -576,7 +609,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param pop the phone number of the parents of the participant
    */
-  public final void setPhoneOfParents(final String pop) {
+  public void setPhoneOfParents(@MayBeNull final String pop) {
     this.phoneOfParents = pop;
   }
 
@@ -586,7 +619,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the mail address of the participant
    */
-  public final String getMailAddress() {
+  @MayBeNull
+  public String getMailAddress() {
     return this.mailAddress;
   }
 
@@ -596,7 +630,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param mail the mail address of the participant
    */
-  public final void setMailAddress(final String mail) {
+  public void setMailAddress(@MayBeNull final String mail) {
     this.mailAddress = mail;
   }
 
@@ -606,7 +640,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the county council of the participant
    */
-  public final CountyCouncil getCountyCouncil() {
+  @NotNull
+  public CountyCouncil getCountyCouncil() {
     return this.countyCouncil;
   }
 
@@ -617,7 +652,7 @@ public class Participant {
    * @param cc the county council of the participant.
    * @throws RequiredFieldSetToNullException if the given county council is <code>null</code>
    */
-  public final void setCountyCouncil(final CountyCouncil cc) throws RequiredFieldSetToNullException {
+  public void setCountyCouncil(@NotNull final CountyCouncil cc) throws RequiredFieldSetToNullException {
     if (cc == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -630,7 +665,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the bank code number of the participant
    */
-  public final int getBankCodeNumber() {
+  public int getBankCodeNumber() {
     return this.bankCodeNumber;
   }
 
@@ -640,7 +675,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param bcn the bank code number of the participant
    */
-  public final void setBankCodeNumber(final int bcn) {
+  public void setBankCodeNumber(final int bcn) {
     this.bankCodeNumber = bcn;
   }
 
@@ -650,7 +685,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the bank of the participant
    */
-  public final String getBank() {
+  @MayBeNull
+  public String getBank() {
     return this.bank;
   }
 
@@ -660,7 +696,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param b the bank of the participant
    */
-  public final void setBank(final String b) {
+  public void setBank(@MayBeNull final String b) {
     this.bank = b;
   }
 
@@ -670,7 +706,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the bank account number of the participant
    */
-  public final int getBankAccountNumber() {
+  public int getBankAccountNumber() {
     return this.bankAccountNumber;
   }
 
@@ -680,7 +716,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param ban the bank account number of the participant
    */
-  public final void setBankAccountNumber(final int ban) {
+  public void setBankAccountNumber(final int ban) {
     this.bankAccountNumber = ban;
   }
 
@@ -690,7 +726,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the comment about the participant
    */
-  public final String getComment() {
+  @MayBeNull
+  public String getComment() {
     return this.comment;
   }
 
@@ -700,7 +737,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param com the comment about the participant
    */
-  public final void setComment(final String com) {
+  public void setComment(@MayBeNull final String com) {
     this.comment = com;
   }
 
@@ -710,7 +747,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the date since the participant is in the system
    */
-  public final Date getDateSinceInDataBase() {
+  @MayBeNull
+  public Date getDateSinceInDataBase() {
     if (this.dateSinceInDataBase == null) {
       return null;
     }
@@ -723,7 +761,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param dsidb the date since the user is in the database
    */
-  public final void setDateSinceInDataBase(final Date dsidb) {
+  public void setDateSinceInDataBase(@MayBeNull final Date dsidb) {
     if (dsidb != null) {
       this.dateSinceInDataBase = new Date(dsidb.getTime());
     } else {
@@ -737,7 +775,8 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the date up to that the user will be in the system
    */
-  public final Date getDateUpToInSystem() {
+  @MayBeNull
+  public Date getDateUpToInSystem() {
     if (this.dateUpToInSystem == null) {
       return null;
     }
@@ -750,7 +789,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param dutis the date up to that the user is in the system.
    */
-  public final void setDateUpToInSystem(final Date dutis) {
+  public void setDateUpToInSystem(@MayBeNull final Date dutis) {
     if (dutis != null) {
       this.dateUpToInSystem = new Date(dutis.getTime());
     } else {
@@ -764,7 +803,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the user can participate as a participant
    */
-  public final boolean isPossibleParticipant() {
+  public boolean isPossibleParticipant() {
     return this.possibleParticipant;
   }
 
@@ -774,7 +813,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param cbp <code>true</code>, if the user can participate as a participant
    */
-  public final void setPossibleParticipant(final boolean cbp) {
+  public void setPossibleParticipant(final boolean cbp) {
     this.possibleParticipant = cbp;
   }
 
@@ -784,7 +823,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the user can participate as a staff member
    */
-  public final boolean isPossibleStaff() {
+  public boolean isPossibleStaff() {
     return this.possibleStaff;
   }
 
@@ -794,7 +833,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param cbs <code>true</code>, if the participant can participate as a staff member
    */
-  public final void setPossibleStaff(final boolean cbs) {
+  public void setPossibleStaff(final boolean cbs) {
     this.possibleStaff = cbs;
   }
 
@@ -804,7 +843,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be staff-youth
    */
-  public final boolean isPossibleStaffYouth() {
+  public boolean isPossibleStaffYouth() {
     return this.possibleStaffYouth;
   }
 
@@ -814,7 +853,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param psy <code>true</code>, if the participant can be staff-youth
    */
-  public final void setPossibleStaffYouth(final boolean psy) {
+  public void setPossibleStaffYouth(final boolean psy) {
     this.possibleStaffYouth = psy;
   }
 
@@ -824,7 +863,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be member of board
    */
-  public final boolean isPossibleBoard() {
+  public boolean isPossibleBoard() {
     return this.possibleBoard;
   }
 
@@ -834,7 +873,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param pb <code>true</code>, if the participant can be member of board
    */
-  public final void setPossibleBoard(final boolean pb) {
+  public void setPossibleBoard(final boolean pb) {
     this.possibleBoard = pb;
   }
 
@@ -844,7 +883,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be member of extended board
    */
-  public final boolean isPossibleExtendedBoard() {
+  public boolean isPossibleExtendedBoard() {
     return this.possibleExtendedBoard;
   }
 
@@ -854,7 +893,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param peb <code>true</code>, if the participant can be member of extended board
    */
-  public final void setPossibleExtendedBoard(final boolean peb) {
+  public void setPossibleExtendedBoard(final boolean peb) {
     this.possibleExtendedBoard = peb;
   }
 
@@ -864,7 +903,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be MAK
    */
-  public final boolean isPossibleMAK() {
+  public boolean isPossibleMAK() {
     return this.possibleMAK;
   }
 
@@ -874,7 +913,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param pMAK <code>true</code>, if the participant can be MAK
    */
-  public final void setPossibleMAK(final boolean pMAK) {
+  public void setPossibleMAK(final boolean pMAK) {
     this.possibleMAK = pMAK;
   }
 
@@ -884,7 +923,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be AGE
    */
-  public final boolean isPossibleAGE() {
+  public boolean isPossibleAGE() {
     return this.possibleAGE;
   }
 
@@ -894,7 +933,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param pAGE <code>true</code>, if the participant can be AGE
    */
-  public final void setPossibleAGE(final boolean pAGE) {
+  public void setPossibleAGE(final boolean pAGE) {
     this.possibleAGE = pAGE;
   }
 
@@ -904,7 +943,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be in kitchen.
    */
-  public final boolean isPossibleKitchen() {
+  public boolean isPossibleKitchen() {
     return this.possibleKitchen;
   }
 
@@ -914,7 +953,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param pk <code>true</code>, if the participant can be in kitchen.
    */
-  public final void setPossibleKitchen(final boolean pk) {
+  public void setPossibleKitchen(final boolean pk) {
     this.possibleKitchen = pk;
   }
 
@@ -924,7 +963,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be in a seminar
    */
-  public final boolean isPossibleSeminar() {
+  public boolean isPossibleSeminar() {
     return this.possibleSeminar;
   }
 
@@ -934,7 +973,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param ps <code>true</code>, if the participant can be in a seminar
    */
-  public final void setPossibleSeminar(final boolean ps) {
+  public void setPossibleSeminar(final boolean ps) {
     this.possibleSeminar = ps;
   }
 
@@ -944,7 +983,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return <code>true</code>, if the participant can be member of anything else.
    */
-  public final boolean isPossibleMisc() {
+  public boolean isPossibleMisc() {
     return this.possibleMisc;
   }
 
@@ -954,7 +993,7 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @param pm <code>true</code>, if the participant can be member of anything else.
    */
-  public final void setPossibleMisc(final boolean pm) {
+  public void setPossibleMisc(final boolean pm) {
     this.possibleMisc = pm;
   }
 
@@ -965,12 +1004,12 @@ public class Participant {
    * @since Date: Jun 18, 2011
    * @return the id that identifies this participant in something like a data base.
    */
-  public final long getId() {
+  public long getId() {
     return this.id;
   }
 
   @Override
-  public final int hashCode() {
+  public int hashCode() {
     final int prime = 31;
     int result = prime + getHash(this.bank);
     result = prime * result + this.bankAccountNumber;
@@ -980,7 +1019,7 @@ public class Participant {
     result = prime * result + this.countyCouncil.hashCode();
     result = prime * result + getHash(this.dateSinceInDataBase);
     result = prime * result + getHash(this.dateUpToInSystem);
-    result = prime * result + getHash(this.denomination);
+    result = prime * result + this.denomination.hashCode();
     result = prime * result + getHash(this.fax);
     result = prime * result + getHash(this.foreName);
     result = prime * result + this.gender.hashCode();
@@ -1013,7 +1052,7 @@ public class Participant {
    * @return the hashcode of the given {@link String}
    * @see String#hashCode()
    */
-  private static int getHash(final String s) {
+  private static int getHash(@MayBeNull final String s) {
     if (s == null) {
       return 0;
     }
@@ -1028,22 +1067,7 @@ public class Participant {
    * @return the hashcode of the given {@link Date}
    * @see Date#hashCode()
    */
-  private static int getHash(final Date d) {
-    if (d == null) {
-      return 0;
-    }
-    return d.hashCode();
-  }
-
-  /**
-   * Returns the hashcode of the given {@link Denomination}
-   * 
-   * @since Date: Jul 8, 2011
-   * @param d the denomination to create a hashcode from
-   * @return the hashcode of the given {@link Denomination}
-   * @see Denomination#hashCode()
-   */
-  private static int getHash(final Denomination d) {
+  private static int getHash(@MayBeNull final Date d) {
     if (d == null) {
       return 0;
     }
@@ -1051,7 +1075,7 @@ public class Participant {
   }
 
   @Override
-  public final boolean equals(final Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }
@@ -1238,7 +1262,7 @@ public class Participant {
   }
 
   @Override
-  public final String toString() {
+  public String toString() {
     final StringBuilder builder = new StringBuilder();
     builder.append(Text.PARTICIPANT);
     builder.append(" [").append(Text.PARTICIPANT_ID).append("=").append(this.id);

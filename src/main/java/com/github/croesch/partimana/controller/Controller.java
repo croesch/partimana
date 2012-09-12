@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.Model;
 import com.github.croesch.partimana.view.View;
@@ -20,12 +21,15 @@ public final class Controller implements ActionObserver {
   private static final Logger LOGGER = Logger.getLogger(Controller.class);
 
   /** the action observer for the main program */
+  @NotNull
   private final ActionObserver observer;
 
   /** the connector to the model of the program */
+  @NotNull
   private final Model model;
 
   /** the connector to the view of the program */
+  @NotNull
   private final View view;
 
   /**
@@ -36,8 +40,8 @@ public final class Controller implements ActionObserver {
    * @param o the {@link ActionObserver}
    * @param args the arguments from command line
    */
-  public Controller(final ActionObserver o, final String[] args) {
-    this.observer = o;
+  public Controller(@NotNull final ActionObserver o, final String[] args) {
+    this.observer = o; //FIXME null check!
     this.model = new Model();
     this.view = new View(this.model, this);
     this.model.setView(this.view);

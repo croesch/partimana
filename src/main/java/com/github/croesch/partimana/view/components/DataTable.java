@@ -8,6 +8,8 @@ import javax.swing.table.TableRowSorter;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.view.listener.TableMouseListener;
 
 /**
@@ -29,7 +31,9 @@ public class DataTable extends JTable {
    * @param identifiers the column identifiers
    * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
    */
-  public DataTable(final ActionObserver o, final Object[] identifiers, final UserAction action) {
+  public DataTable(@NotNull final ActionObserver o,
+                   @MayBeNull final Object[] identifiers,
+                   @NotNull final UserAction action) {
     final DefaultTableModel tm = new DefaultTableModel();
     tm.setColumnIdentifiers(identifiers);
     setModel(tm);

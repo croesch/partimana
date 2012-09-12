@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
@@ -37,6 +38,7 @@ public enum Denomination {
   NONE (Text.NO_DENOMINATION);
 
   /** the i18n representation of this object */
+  @NotNull
   private final String s;
 
   /**
@@ -46,11 +48,12 @@ public enum Denomination {
    * @since Date: Jun 21, 2011
    * @param t the {@link Text} that represents this object.
    */
-  private Denomination(final Text t) {
-    this.s = t.text();
+  private Denomination(@NotNull final Text t) {
+    this.s = t.text(); //FIXME null check!
   }
 
   @Override
+  @NotNull
   public String toString() {
     return this.s;
   }

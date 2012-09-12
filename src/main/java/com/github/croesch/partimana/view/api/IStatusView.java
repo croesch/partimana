@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.view.api;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
@@ -17,7 +18,7 @@ public interface IStatusView {
    * @since Date: Jun 30, 2011
    * @param info the information to visualise.
    */
-  void showInformation(Text info);
+  void showInformation(@NotNull Text info);
 
   /**
    * Visualises the given information.
@@ -27,7 +28,7 @@ public interface IStatusView {
    * @param info the information to visualise.
    * @param args the arguments to put into the information.
    */
-  void showInformation(Text info, Object ... args);
+  void showInformation(@NotNull Text info, @NotNull Object ... args);
 
   /**
    * Visualises the given error.
@@ -36,6 +37,6 @@ public interface IStatusView {
    * @since Date: Jun 30, 2011
    * @param error the error to visualise.
    */
-  void showError(Text error);
+  void showError(@NotNull Text error);
 
 }

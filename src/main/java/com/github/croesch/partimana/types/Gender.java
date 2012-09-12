@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
@@ -17,6 +18,7 @@ public enum Gender {
   FEMALE (Text.FEMALE);
 
   /** the i18n representation of this gender */
+  @NotNull
   private final String s;
 
   /**
@@ -26,11 +28,12 @@ public enum Gender {
    * @since Date: Jun 21, 2011
    * @param t the {@link Text} that represents this object.
    */
-  private Gender(final Text t) {
-    this.s = t.text();
+  private Gender(@NotNull final Text t) {
+    this.s = t.text(); //FIXME null check
   }
 
   @Override
+  @NotNull
   public String toString() {
     return this.s;
   }

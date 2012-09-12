@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.model.api.IParticipantModel;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.types.Participant;
@@ -20,9 +21,11 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
 class ParticipantModel implements IParticipantModel {
 
   /** model that is responsible to store and load data */
+  @NotNull
   private final IPersistenceModel persistenceModel;
 
   /** map of all participants that are available */
+  @NotNull
   private final Map<Long, Participant> mapOfParticipants;
 
   /**
@@ -33,8 +36,8 @@ class ParticipantModel implements IParticipantModel {
    * @since Date: Jun 19, 2011
    * @param pm the model to load the data from (and synchronize afterwards).
    */
-  public ParticipantModel(final IPersistenceModel pm) {
-    this.persistenceModel = pm;
+  public ParticipantModel(@NotNull final IPersistenceModel pm) {
+    this.persistenceModel = pm; //FIXME null check!
     this.mapOfParticipants = this.persistenceModel.getMapOfParticipants();
   }
 

@@ -3,6 +3,8 @@ package com.github.croesch.partimana.i18n;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import com.github.croesch.partimana.annotation.NotNull;
+
 /**
  * This class provides access to the text properties file.
  * 
@@ -214,6 +216,7 @@ public enum Text {
   ERROR_PARTICIPANT_NOT_SAVED (13010);
 
   /** the value of this instance */
+  @NotNull
   private final String string;
 
   /**
@@ -239,6 +242,7 @@ public enum Text {
   }
 
   @Override
+  @NotNull
   public String toString() {
     return text();
   }
@@ -248,6 +252,7 @@ public enum Text {
    * 
    * @return the String that represents the object
    */
+  @NotNull
   public String text() {
     return this.string;
   }
@@ -258,7 +263,8 @@ public enum Text {
    * @param s the replacements
    * @return the String that represents the object with replaced placeholders
    */
-  public String text(final Object ... s) {
+  @NotNull
+  public String text(@NotNull final Object ... s) {
     String text = this.string;
     for (int i = 0; i < s.length; ++i) {
       // prevent exceptions with using $

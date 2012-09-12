@@ -2,6 +2,7 @@ package com.github.croesch.partimana.view.api;
 
 import java.util.List;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -18,6 +19,7 @@ public interface ICampListView {
    * @since Date: Sep 27, 2011
    * @param camps the list of camps that is up to date.
    */
+  @NotNull
   void update(List<Camp> camps);
 
   /**

@@ -2,6 +2,8 @@ package com.github.croesch.partimana.types;
 
 import java.util.Date;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**
@@ -10,7 +12,7 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
  * @author croesch
  * @since Date: May 29, 2011
  */
-public class Camp {
+public final class Camp {
 
   /** the id of that camp as stored in data base */
   private final long id;
@@ -19,21 +21,27 @@ public class Camp {
   private static long highestId = 0;
 
   /** the name of the camp */
+  @NotNull
   private String name = null;
 
   /** the date when the camp starts */
+  @NotNull
   private Date from = null;
 
   /** the date when the camp ends */
+  @NotNull
   private Date until = null;
 
   /** the location where the camp will be */
+  @NotNull
   private String location = null;
 
   /** the rate that each participant has to pay */
+  @NotNull
   private String ratePerParticipant = null;
 
   /** the rate that each day-child has to pay */
+  @MayBeNull
   private String ratePerDayChildren = null;
 
   /**
@@ -47,7 +55,11 @@ public class Camp {
    * @param where the location where the camp will be
    * @param rate the rate for each participant
    */
-  public Camp(final String n, final Date f, final Date t, final String where, final String rate) {
+  public Camp(@NotNull final String n,
+              @NotNull final Date f,
+              @NotNull final Date t,
+              @NotNull final String where,
+              @NotNull final String rate) {
     this(highestId + 1, n, f, t, where, rate);
   }
 
@@ -63,7 +75,12 @@ public class Camp {
    * @param where the location where the camp will be
    * @param rate the rate for each participant
    */
-  public Camp(final long forcedId, final String n, final Date f, final Date t, final String where, final String rate) {
+  public Camp(final long forcedId,
+              @NotNull final String n,
+              @NotNull final Date f,
+              @NotNull final Date t,
+              @NotNull final String where,
+              @NotNull final String rate) {
     setName(n);
     setFromDate(f);
     setUntilDate(t);
@@ -95,7 +112,7 @@ public class Camp {
    * @param c the {@link Camp} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Camp} is <code>null</code>
    */
-  public Camp(final Camp c) throws RequiredFieldSetToNullException {
+  public Camp(@NotNull final Camp c) throws RequiredFieldSetToNullException {
     if (c == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -115,7 +132,8 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the name of the camp
    */
-  public final String getName() {
+  @NotNull
+  public String getName() {
     return this.name;
   }
 
@@ -126,7 +144,7 @@ public class Camp {
    * @param n the name of the camp
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
    */
-  public final void setName(final String n) throws RequiredFieldSetToNullException {
+  public void setName(@NotNull final String n) throws RequiredFieldSetToNullException {
     if (n == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -139,7 +157,8 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the date when the camp starts
    */
-  public final Date getFromDate() {
+  @NotNull
+  public Date getFromDate() {
     return new Date(this.from.getTime());
   }
 
@@ -150,7 +169,7 @@ public class Camp {
    * @param date the date when the camp starts
    * @throws RequiredFieldSetToNullException if the given date is <code>null</code>
    */
-  public final void setFromDate(final Date date) throws RequiredFieldSetToNullException {
+  public void setFromDate(@NotNull final Date date) throws RequiredFieldSetToNullException {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -163,7 +182,8 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the date when the camp ends
    */
-  public final Date getUntilDate() {
+  @NotNull
+  public Date getUntilDate() {
     return new Date(this.until.getTime());
   }
 
@@ -174,7 +194,7 @@ public class Camp {
    * @param date the date when the camp ends
    * @throws RequiredFieldSetToNullException if the given date is <code>null</code>
    */
-  public final void setUntilDate(final Date date) throws RequiredFieldSetToNullException {
+  public void setUntilDate(@NotNull final Date date) throws RequiredFieldSetToNullException {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -187,7 +207,8 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the location of the camp
    */
-  public final String getLocation() {
+  @NotNull
+  public String getLocation() {
     return this.location;
   }
 
@@ -198,7 +219,7 @@ public class Camp {
    * @param loc the location of the camp
    * @throws RequiredFieldSetToNullException if the given location is <code>null</code>
    */
-  public final void setLocation(final String loc) throws RequiredFieldSetToNullException {
+  public void setLocation(@NotNull final String loc) throws RequiredFieldSetToNullException {
     if (loc == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -211,7 +232,8 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the rate per participant
    */
-  public final String getRatePerParticipant() {
+  @NotNull
+  public String getRatePerParticipant() {
     return this.ratePerParticipant;
   }
 
@@ -222,7 +244,7 @@ public class Camp {
    * @param rate the rate per participant
    * @throws RequiredFieldSetToNullException if the given rate is <code>null</code>
    */
-  public final void setRatePerParticipant(final String rate) throws RequiredFieldSetToNullException {
+  public void setRatePerParticipant(@NotNull final String rate) throws RequiredFieldSetToNullException {
     if (rate == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -235,7 +257,8 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the rate per day-children
    */
-  public final String getRatePerDayChildren() {
+  @MayBeNull
+  public String getRatePerDayChildren() {
     return this.ratePerDayChildren;
   }
 
@@ -245,7 +268,7 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @param rate the rate per day-children
    */
-  public final void setRatePerDayChildren(final String rate) {
+  public void setRatePerDayChildren(@MayBeNull final String rate) {
     this.ratePerDayChildren = rate;
   }
 
@@ -256,12 +279,13 @@ public class Camp {
    * @since Date: Jun 18, 2011
    * @return the id that identifies this camp in something like a data base.
    */
-  public final long getId() {
+  public long getId() {
     return this.id;
   }
 
   @Override
-  public final String toString() {
+  @NotNull
+  public String toString() {
     final StringBuilder builder = new StringBuilder();
     builder.append("Camp [id=");
     builder.append(this.id);
@@ -282,7 +306,7 @@ public class Camp {
   }
 
   @Override
-  public final int hashCode() {
+  public int hashCode() {
     final int prime = 31;
     final int intSize = 32;
 
@@ -301,7 +325,7 @@ public class Camp {
   }
 
   @Override
-  public final boolean equals(final Object obj) {
+  public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
     }

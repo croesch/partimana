@@ -2,6 +2,8 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.List;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -20,6 +22,7 @@ public interface ICampModel4View {
    * @param id the id to lookup
    * @return the camp with the given id, or <code>null</code> if no camp has this id.
    */
+  @MayBeNull
   Camp getCamp(long id);
 
   /**
@@ -29,5 +32,6 @@ public interface ICampModel4View {
    * @since Date: Aug 8, 2011
    * @return a list that contains all camps stored in the model.
    */
+  @NotNull
   List<Camp> getListOfCamps();
 }

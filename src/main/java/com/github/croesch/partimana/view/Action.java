@@ -6,6 +6,8 @@ import javax.swing.AbstractAction;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
@@ -21,21 +23,27 @@ final class Action extends AbstractAction {
   private static final long serialVersionUID = -2077864085665141085L;
 
   /** the observer that is able to handle the action */
+  @MayBeNull
   private static ActionObserver observer = null;
 
   /** action to close the program */
+  @NotNull
   private static Action exitAction = new Action(UserAction.EXIT, Text.EXIT);
 
   /** action to save something */
+  @NotNull
   private static Action saveParticipantAction = new Action(UserAction.SAVE_PARTICIPANT, Text.SAVE);
 
   /** action to create a new participant */
+  @NotNull
   private static Action createParticipantAction = new Action(UserAction.CREATE_PARTICIPANT, Text.PARTICIPANT_NEW);
 
   /** action to delete a participant */
+  @NotNull
   private static Action deleteParticipantAction = new Action(UserAction.DELETE_PARTICIPANT, Text.PARTICIPANT_DELETE);
 
   /** the action to pass to the observer */
+  @NotNull
   private final UserAction action;
 
   /**
@@ -47,9 +55,9 @@ final class Action extends AbstractAction {
    * @param act the {@link UserAction} to pass to the observer
    * @param t the {@link Text} as description of this action
    */
-  private Action(final UserAction act, final Text t) {
+  private Action(@NotNull final UserAction act, @NotNull final Text t) {
     super(t.text());
-    this.action = act;
+    this.action = act; // FIXME null check
   }
 
   /**
@@ -59,12 +67,12 @@ final class Action extends AbstractAction {
    * @since Date: Jul 1, 2011
    * @param ao the observer to handle actions
    */
-  static void setObserver(final ActionObserver ao) {
+  static void setObserver(@MayBeNull final ActionObserver ao) {
     observer = ao;
   }
 
   @Override
-  public void actionPerformed(final ActionEvent ev) {
+  public void actionPerformed(@MayBeNull final ActionEvent ev) {
     if (observer != null) {
       observer.performAction(this.action);
     }
@@ -77,6 +85,7 @@ final class Action extends AbstractAction {
    * @since Date: Jul 1, 2011
    * @return the {@link Action} to close the program
    */
+  @NotNull
   static Action getExitAction() {
     return exitAction;
   }
@@ -88,6 +97,7 @@ final class Action extends AbstractAction {
    * @since Date: Jul 1, 2011
    * @return the {@link Action} to save a participant
    */
+  @NotNull
   static Action getSaveParticipantAction() {
     return saveParticipantAction;
   }
@@ -99,6 +109,7 @@ final class Action extends AbstractAction {
    * @since Date: Jul 11, 2011
    * @return the {@link Action} to create a participant
    */
+  @NotNull
   static Action getCreateParticipantAction() {
     return createParticipantAction;
   }
@@ -110,6 +121,7 @@ final class Action extends AbstractAction {
    * @since Date: Jul 11, 2011
    * @return the {@link Action} to delete a participant
    */
+  @NotNull
   static Action getDeleteParticipantAction() {
     return deleteParticipantAction;
   }

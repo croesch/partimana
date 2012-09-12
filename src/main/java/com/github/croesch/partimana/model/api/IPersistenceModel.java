@@ -2,6 +2,7 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.Map;
 
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
 
@@ -38,6 +39,7 @@ public interface IPersistenceModel {
    * @since Date: Jun 19, 2011
    * @return a {@link Map} of all available {@link Camp}s.
    */
+  @NotNull
   Map<Long, Camp> getMapOfCamps();
 
   /**
@@ -47,6 +49,7 @@ public interface IPersistenceModel {
    * @since Date: Jun 19, 2011
    * @return a {@link Map} of all available {@link Participant}s.
    */
+  @NotNull
   Map<Long, Participant> getMapOfParticipants();
 
   /**

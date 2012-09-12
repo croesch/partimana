@@ -1,5 +1,8 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
+
 /**
  * Represents an address. With post code, street and city.
  * 
@@ -9,12 +12,14 @@ package com.github.croesch.partimana.types;
 final class Address {
 
   /** the street */
+  @MayBeNull
   private String street = null;
 
   /** the post code */
   private int postCode = 0;
 
   /** the city */
+  @MayBeNull
   private String city = null;
 
   /**
@@ -36,7 +41,7 @@ final class Address {
    * @param pc the post code
    * @param c the city
    */
-  Address(final String str, final int pc, final String c) {
+  Address(@MayBeNull final String str, final int pc, @MayBeNull final String c) {
     setStreet(str);
     setPostCode(pc);
     setCity(c);
@@ -48,6 +53,7 @@ final class Address {
    * @since Date: Jun 18, 2011
    * @return the street
    */
+  @MayBeNull
   String getStreet() {
     return this.street;
   }
@@ -59,6 +65,7 @@ final class Address {
    * @param str the street.
    * @return the object itself
    */
+  @NotNull
   Address setStreet(final String str) {
     this.street = str;
     return this;
@@ -81,6 +88,7 @@ final class Address {
    * @param pc the post code.
    * @return the object itself
    */
+  @NotNull
   Address setPostCode(final int pc) {
     this.postCode = pc;
     return this;
@@ -92,6 +100,7 @@ final class Address {
    * @since Date: Jun 18, 2011
    * @return the city
    */
+  @MayBeNull
   String getCity() {
     return this.city;
   }
@@ -103,12 +112,14 @@ final class Address {
    * @param c the city
    * @return the object itself
    */
+  @NotNull
   Address setCity(final String c) {
     this.city = c;
     return this;
   }
 
   @Override
+  @NotNull
   public String toString() {
     return getStreet() + ", " + getPostCode() + " " + getCity();
   }

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.annotation.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IParticipantModel4View;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
@@ -31,12 +32,15 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
   private static final Logger LOGGER = Logger.getLogger(ParticipantView.class);
 
   /** the view to edit the participants */
+  @NotNull
   private final IParticipantEditView editView;
 
   /** the view to show list of participants */
+  @NotNull
   private final IParticipantListView listView;
 
   /** the model to fetch participants from */
+  @NotNull
   private final transient IParticipantModel4View model;
 
   /**
@@ -46,7 +50,7 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
    * @param m the model to fetch participant information from
    * @throws RequiredFieldSetToNullException if the given model is <code>null</code>
    */
-  public ParticipantView(final IParticipantModel4View m) throws RequiredFieldSetToNullException {
+  public ParticipantView(@NotNull final IParticipantModel4View m) throws RequiredFieldSetToNullException {
     if (m == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -54,10 +58,10 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
 
     setLayout(new MigLayout("fill", "[][grow, fill]", "[grow, fill]"));
 
+    // sic! because of the add methods below ..
     final ParticipantEditView pev = new ParticipantEditView();
-    this.editView = pev;
-
     final ParticipantListView plv = new ParticipantListView(this);
+    this.editView = pev;
     this.listView = plv;
 
     final JPanel buttonPanel = new JPanel(new MigLayout("fill"));
@@ -77,11 +81,13 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
   }
 
   @Override
+  @NotNull
   public IParticipantEditView getParticipantEditView() {
     return this.editView;
   }
 
   @Override
+  @NotNull
   public IParticipantListView getParticipantListView() {
     return this.listView;
   }

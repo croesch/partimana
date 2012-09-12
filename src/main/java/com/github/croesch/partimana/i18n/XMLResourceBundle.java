@@ -7,6 +7,9 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
+
 /**
  * Resource bundle from javadoc-example of {@link Control} for XML-based bundles.
  * 
@@ -16,6 +19,7 @@ import java.util.ResourceBundle;
 final class XMLResourceBundle extends ResourceBundle {
 
   /** the properties that contain the content of the xml file */
+  @NotNull
   private final Properties props;
 
   /**
@@ -34,11 +38,13 @@ final class XMLResourceBundle extends ResourceBundle {
   }
 
   @Override
+  @MayBeNull
   protected Object handleGetObject(final String key) {
     return this.props.getProperty(key);
   }
 
   @Override
+  @NotNull
   public Enumeration<String> getKeys() {
     return Collections.enumeration(this.props.stringPropertyNames());
   }

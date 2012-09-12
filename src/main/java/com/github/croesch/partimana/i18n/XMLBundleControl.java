@@ -11,6 +11,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
+import com.github.croesch.partimana.annotation.MayBeNull;
+import com.github.croesch.partimana.annotation.NotNull;
+
 /**
  * Implementation of {@link Control} from its javadoc-example for loading XML-based bundles.
  * 
@@ -20,7 +23,8 @@ import java.util.ResourceBundle.Control;
 final class XMLBundleControl extends Control {
 
   @Override
-  public List<String> getFormats(final String baseName) {
+  @NotNull
+  public List<String> getFormats(@NotNull final String baseName) {
     if (baseName == null) {
       throw new IllegalArgumentException();
     }
@@ -28,10 +32,11 @@ final class XMLBundleControl extends Control {
   }
 
   @Override
-  public ResourceBundle newBundle(final String baseName,
-                                  final Locale locale,
-                                  final String format,
-                                  final ClassLoader loader,
+  @MayBeNull
+  public ResourceBundle newBundle(@NotNull final String baseName,
+                                  @NotNull final Locale locale,
+                                  @NotNull final String format,
+                                  @NotNull final ClassLoader loader,
                                   final boolean reload) throws IllegalAccessException, InstantiationException,
                                                        IOException {
     if (baseName == null || locale == null || format == null || loader == null) {
