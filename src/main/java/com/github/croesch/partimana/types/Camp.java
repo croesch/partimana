@@ -64,10 +64,6 @@ public class Camp {
    * @param rate the rate for each participant
    */
   public Camp(final long forcedId, final String n, final Date f, final Date t, final String where, final String rate) {
-    if (forcedId <= highestId) {
-      throw new IllegalArgumentException();
-    }
-
     setName(n);
     setFromDate(f);
     setUntilDate(t);
@@ -75,7 +71,20 @@ public class Camp {
     setRatePerParticipant(rate);
 
     this.id = forcedId;
-    highestId = forcedId;
+    setNewHighestIdTo(forcedId);
+  }
+
+  /**
+   * Sets the new highest id to the given value.
+   * 
+   * @since Date: Sep 12, 2012
+   * @param newId the new highest id of the {@link Camp}s.
+   */
+  private static void setNewHighestIdTo(final long newId) {
+    if (newId <= highestId) {
+      throw new IllegalArgumentException();
+    }
+    highestId = newId;
   }
 
   /**

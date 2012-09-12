@@ -135,10 +135,6 @@ public class Participant {
                      final int pc,
                      final String c,
                      final CountyCouncil county) throws IllegalArgumentException {
-    if (forcedId <= highestId) {
-      throw new IllegalArgumentException();
-    }
-
     setLastName(name);
     setForeName(firstName);
     setGender(g);
@@ -150,7 +146,20 @@ public class Participant {
     setCountyCouncil(county);
 
     this.id = forcedId;
-    highestId = forcedId;
+    setNewHighestIdTo(forcedId);
+  }
+
+  /**
+   * Sets the new highest id to the given value.
+   * 
+   * @since Date: Sep 12, 2012
+   * @param newId the new highest id of the {@link Participant}s.
+   */
+  private static void setNewHighestIdTo(final long newId) {
+    if (newId <= highestId) {
+      throw new IllegalArgumentException();
+    }
+    highestId = newId;
   }
 
   /**
