@@ -2,8 +2,8 @@ package com.github.croesch.partimana.types;
 
 import java.util.Date;
 
-import com.github.croesch.partimana.annotation.MayBeNull;
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**

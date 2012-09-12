@@ -1,7 +1,7 @@
 package com.github.croesch.partimana.types;
 
-import com.github.croesch.partimana.annotation.MayBeNull;
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 
 /**
  * Represents an address. With post code, street and city.

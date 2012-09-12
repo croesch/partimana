@@ -130,7 +130,7 @@
     <dependency>
     	<groupId>com.github.croesch</groupId>
     	<artifactId>crhcomponents</artifactId>
-    	<version>1.3</version>
+    	<version>1.4-SNAPSHOT</version>
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>

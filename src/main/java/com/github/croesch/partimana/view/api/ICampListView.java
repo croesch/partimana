@@ -2,7 +2,7 @@ package com.github.croesch.partimana.view.api;
 
 import java.util.List;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.Camp;
 
 /**

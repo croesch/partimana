@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.model.api.IParticipantModel;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.types.Participant;

@@ -2,8 +2,8 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.List;
 
-import com.github.croesch.partimana.annotation.MayBeNull;
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.Participant;
 
 /**

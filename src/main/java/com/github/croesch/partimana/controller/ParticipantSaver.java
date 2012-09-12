@@ -2,8 +2,8 @@ package com.github.croesch.partimana.controller;
 
 import org.apache.log4j.Logger;
 
-import com.github.croesch.partimana.annotation.MayBeNull;
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IParticipantModel;
 import com.github.croesch.partimana.types.Participant;

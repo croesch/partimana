@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.types;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**

@@ -3,7 +3,7 @@ package com.github.croesch.partimana.i18n;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 
 /**
  * This class provides access to the text properties file.

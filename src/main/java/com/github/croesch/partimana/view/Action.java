@@ -6,8 +6,8 @@ import javax.swing.AbstractAction;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.annotation.MayBeNull;
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**

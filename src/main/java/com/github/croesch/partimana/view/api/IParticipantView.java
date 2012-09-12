@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.view.api;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 
 /**
  * Interface to provide functionality of the view for {@link com.github.croesch.partimana.partimana.types.Participant}s.

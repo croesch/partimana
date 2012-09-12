@@ -3,7 +3,7 @@ package com.github.croesch.partimana.view.components;
 import java.io.Serializable;
 import java.util.Comparator;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 
 /**
  * {@link Comparator} for long values.

@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.actions;
 
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.NotNull;
 
 /**
  * Observer interface for {@link UserAction}s.

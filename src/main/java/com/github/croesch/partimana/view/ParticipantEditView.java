@@ -19,8 +19,8 @@ import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.components.CDateField;
 import com.github.croesch.contents.date.DateContent;
-import com.github.croesch.partimana.annotation.MayBeNull;
-import com.github.croesch.partimana.annotation.NotNull;
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
