@@ -23,8 +23,6 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.Action;
-import com.github.croesch.partimana.view.ParticipantView;
 
 /**
  * Provides gui tests for {@link ParticipantView}.
@@ -32,7 +30,7 @@ import com.github.croesch.partimana.view.ParticipantView;
  * @author croesch
  * @since Date: Jul 11, 2011
  */
-public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase implements ActionObserver {
+public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
 
   private JPanelFixture testView;
 
@@ -66,19 +64,20 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase implemen
   private boolean deleteActionPerformed;
 
   @Override
-  public void performAction(final UserAction action) {
-    if (action == UserAction.CREATE_PARTICIPANT) {
-      this.pView.createParticipant();
-    } else if (action == UserAction.DELETE_PARTICIPANT) {
-      this.deleteActionPerformed = true;
-    } else {
-      Assert.fail();
-    }
-  }
-
-  @Override
   protected void before() {
-    Action.setObserver(this);
+    Action.setObserver(new ActionObserver() {
+
+      @Override
+      public void performAction(final UserAction action) {
+        if (action == UserAction.CREATE_PARTICIPANT) {
+          ParticipantViewGUITest.this.pView.createParticipant();
+        } else if (action == UserAction.DELETE_PARTICIPANT) {
+          ParticipantViewGUITest.this.deleteActionPerformed = true;
+        } else {
+          Assert.fail();
+        }
+      }
+    });
 
     this.pView = GuiActionRunner.execute(new GuiQuery<ParticipantView>() {
       @Override
@@ -130,7 +129,7 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase implemen
       @Override
       protected void executeInEDT() throws Throwable {
         ParticipantViewGUITest.this.pView.getParticipantEditView()
-          .setParticipant(ParticipantViewGUITest.this.participant);
+                                         .setParticipant(ParticipantViewGUITest.this.participant);
       }
     });
     this.pView.setName("view");

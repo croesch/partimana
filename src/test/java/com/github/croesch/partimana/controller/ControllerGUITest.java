@@ -2,9 +2,6 @@ package com.github.croesch.partimana.controller;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -28,8 +25,6 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase implements Ac
 
   private Controller controller;
 
-  private final Queue<UserAction> actions = new ArrayDeque<UserAction>();
-
   @Override
   protected void before() {
     this.controller = GuiActionRunner.execute(new GuiQuery<Controller>() {
@@ -38,7 +33,6 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase implements Ac
         return new Controller(ControllerGUITest.this, null);
       }
     });
-    this.actions.clear();
   }
 
   @Test
@@ -81,12 +75,6 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase implements Ac
     final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
     frame.close();
 
-    assertThat(this.actions.poll()).isEqualTo(UserAction.EXIT);
-    assertThat(this.actions).isEmpty();
-  }
-
-  @Override
-  public void performAction(final UserAction action) {
-    this.actions.add(action);
+    assertThat(poll()).isEqualTo(UserAction.EXIT);
   }
 }

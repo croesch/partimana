@@ -28,7 +28,6 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.ParticipantListView;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
 
 /**
@@ -53,8 +52,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
 
   private Participant participant5;
 
-  private int selectionEventFired = 0;
-
   /**
    * Sets up the {@link IParticipantEditView} and the {@link JPanelFixture} to test it. Will add a participant1 to it to
    * test the functionality.
@@ -70,7 +67,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
         return new ParticipantListView(ParticipantListViewGUITest.this);
       }
     });
-    this.selectionEventFired = 0;
 
     this.participant1 = new Participant("Mustermann",
                                         "Max",
@@ -157,11 +153,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
     window.target.setPreferredSize(new Dimension(800, 400));
     window.show();
     this.testView = window.panel("listView");
-  }
-
-  @Override
-  public void performAction(final UserAction action) {
-    ++this.selectionEventFired;
   }
 
   @Override
@@ -548,51 +539,50 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase impl
       }
     });
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    this.selectionEventFired = 0;
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
   }
 
   private final void requireParticipant(final JTableFixture table, final int row, final Participant p) {

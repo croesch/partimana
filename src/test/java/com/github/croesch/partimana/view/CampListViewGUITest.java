@@ -47,8 +47,6 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase implements 
 
   private Camp camp5;
 
-  private int selectionEventFired = 0;
-
   @Override
   protected void before() {
     final CampListView view = GuiActionRunner.execute(new GuiQuery<CampListView>() {
@@ -57,7 +55,6 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase implements 
         return new CampListView(CampListViewGUITest.this);
       }
     });
-    this.selectionEventFired = 0;
 
     this.camp1 = new Camp("OFZ", new Date(), new Date(), "Raversbeuren", "rate");
     this.camp2 = new Camp("Sommercamp", new Date(99999), new Date(88888888), "Spain", "5,0€");
@@ -71,11 +68,6 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase implements 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(view));
     window.show(new Dimension(800, 400));
     this.testView = window.panel("listView");
-  }
-
-  @Override
-  public void performAction(final UserAction action) {
-    ++this.selectionEventFired;
   }
 
   @Test
@@ -312,51 +304,50 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase implements 
     list.add(this.camp5);
     update(list);
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    this.selectionEventFired = 0;
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
 
-    assertThat(this.selectionEventFired).isZero();
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    this.selectionEventFired = 0;
+    assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(this.selectionEventFired).isEqualTo(1);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
   }
 
   private final void requireCamp(final JTableFixture table, final int row, final Camp c) {
