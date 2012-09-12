@@ -121,15 +121,15 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
   /** the combo box to edit the persons gender */
   @NotNull
-  private final JComboBox<Gender> genderCb = new JComboBox<Gender>(Gender.values());
+  private final JComboBox genderCb = new JComboBox(Gender.values());
 
   /** the combo box to edit the persons denomination */
   @NotNull
-  private final JComboBox<Denomination> denominationCb = new JComboBox<Denomination>(Denomination.values());
+  private final JComboBox denominationCb = new JComboBox(Denomination.values());
 
   /** the combo box to edit the persons county council */
   @NotNull
-  private final JComboBox<CountyCouncil> countyCouncilCb = new JComboBox<CountyCouncil>(CountyCouncil.values());;
+  private final JComboBox countyCouncilCb = new JComboBox(CountyCouncil.values());;
 
   /** the text area to edit the comment about the person */
   @NotNull
