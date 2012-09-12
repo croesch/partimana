@@ -134,9 +134,6 @@ final class Address {
     if (this == obj) {
       return true;
     }
-    if (obj == null) {
-      return false;
-    }
     if (!(obj instanceof Address)) {
       return false;
     }
