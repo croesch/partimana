@@ -122,6 +122,14 @@ public enum Text {
   CAMP_NAME (202),
   /** the name for the location of the camp */
   CAMP_LOCATION (203),
+  /** the text for the beginning date of the camp */
+  CAMP_DATE_FROM (204),
+  /** the text for the ending date of the camp */
+  CAMP_DATE_TO (205),
+  /** the text for the rate of the camp */
+  CAMP_RATE_PER_PARTICIPANT (206),
+  /** the text for the per-day-rate of the camp */
+  CAMP_RATE_PER_DAY (207),
 
   /** constant for male */
   MALE (2000),

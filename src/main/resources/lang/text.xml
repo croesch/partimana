@@ -58,6 +58,10 @@
 	<entry key="201">Nummer</entry>
 	<entry key="202">Name</entry>
 	<entry key="203">Ort</entry>
+	<entry key="204">von</entry>
+	<entry key="205">bis</entry>
+	<entry key="206">Teilnehmerbeitrag</entry>
+	<entry key="207">Preis für Tageskinder</entry>
 
 	<!-- Verschiedenes -->
 	<!-- Geschlecht -->
