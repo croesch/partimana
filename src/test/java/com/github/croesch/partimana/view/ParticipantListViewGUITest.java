@@ -584,9 +584,9 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
   }
 
-  private final void requireParticipant(final JTableFixture table, final int row, final Participant p) {
-    this.testView.table().requireCellValue(TableCell.row(row).column(0), String.valueOf(p.getId()));
-    this.testView.table().requireCellValue(TableCell.row(row).column(1), p.getForeName());
-    this.testView.table().requireCellValue(TableCell.row(row).column(2), p.getLastName());
+  public static void requireParticipant(final JTableFixture table, final int row, final Participant p) {
+    table.requireCellValue(TableCell.row(row).column(0), String.valueOf(p.getId()));
+    table.requireCellValue(TableCell.row(row).column(1), p.getForeName());
+    table.requireCellValue(TableCell.row(row).column(2), p.getLastName());
   }
 }

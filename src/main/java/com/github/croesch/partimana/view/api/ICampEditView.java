@@ -1,8 +1,10 @@
 package com.github.croesch.partimana.view.api;
 
 import java.util.Date;
+import java.util.List;
 
 import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.Participant;
 
 /**
  * Provides methods for the view that is able to edit a {@link Camp}.
@@ -91,4 +93,12 @@ public interface ICampEditView {
    * @return {@link String} that represents the rate of the {@link Camp}.
    */
   String getRatePerParticipant();
+
+  /**
+   * Performs an update of the list of participants and will visualize the information of the given list.
+   * 
+   * @since Date: Sep 13, 2012
+   * @param participants the list of participants that is up to date.
+   */
+  void update(List<Participant> participants);
 }

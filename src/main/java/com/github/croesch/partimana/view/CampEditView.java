@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.view;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JLabel;
@@ -12,8 +13,11 @@ import net.miginfocom.swing.MigLayout;
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CDateField;
+import com.github.croesch.partimana.actions.ActionObserver;
+import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.view.api.ICampEditView;
 
 /**
@@ -22,7 +26,7 @@ import com.github.croesch.partimana.view.api.ICampEditView;
  * @author croesch
  * @since Date: Sep 13, 2012
  */
-class CampEditView extends JPanel implements ICampEditView {
+class CampEditView extends JPanel implements ICampEditView, ActionObserver {
 
   /** generated */
   private static final long serialVersionUID = 2952537980601243913L;
@@ -54,6 +58,10 @@ class CampEditView extends JPanel implements ICampEditView {
   /** the label to show the camps id */
   @NotNull
   private final JLabel idValueLbl = new JLabel("12345");
+
+  /** the list of all possible participants for this camp */
+  @NotNull
+  private final ParticipantListView participantList = new ParticipantListView(this);
 
   /**
    * Initializes the panel to edit a {@link Camp}.
@@ -116,6 +124,8 @@ class CampEditView extends JPanel implements ICampEditView {
     add(perDayLbl, "cell 2 3");
 
     add(this.ratePerDayTf, "cell 3 3");
+
+    add(this.participantList, "cell 0 4, span 2, grow");
   }
 
   /**
@@ -203,5 +213,18 @@ class CampEditView extends JPanel implements ICampEditView {
       return 0; //FIXME should that -1? See also ParticipantEditView!
     }
     return Long.parseLong(text);
+  }
+
+  @Override
+  public void performAction(final UserAction action) {
+    if (action == UserAction.CAMP_SELECTED) {
+      // TODO remove part. and add it to other view
+    }
+  }
+
+  @Override
+  public void update(final List<Participant> participants) {
+    // TODO filter, which are already part of CampParticipant (or whereever to do that)
+    this.participantList.update(participants);
   }
 }
