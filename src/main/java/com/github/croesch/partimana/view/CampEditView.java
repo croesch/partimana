@@ -167,7 +167,7 @@ class CampEditView extends JPanel implements ICampEditView {
   }
 
   @Override
-  public String getName() {
+  public String getNameOfCamp() {
     return this.nameTf.getText();
   }
 

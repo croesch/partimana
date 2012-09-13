@@ -45,7 +45,7 @@ public interface ICampEditView {
    * @since Date: Sep 13, 2012
    * @return {@link String} that represents the name of the {@link Camp}.
    */
-  String getName();
+  String getNameOfCamp();
 
   /**
    * Returns the location the user entered.
@@ -91,5 +91,4 @@ public interface ICampEditView {
    * @return {@link String} that represents the rate of the {@link Camp}.
    */
   String getRatePerParticipant();
-
 }

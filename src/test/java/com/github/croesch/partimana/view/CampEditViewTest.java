@@ -50,7 +50,7 @@ public class CampEditViewTest {
 
   @Test
   public void testGetName() {
-    assertThat(this.testView.getName()).isEqualTo(this.camp.getName());
+    assertThat(this.testView.getNameOfCamp()).isEqualTo(this.camp.getName());
   }
 
   @Test
