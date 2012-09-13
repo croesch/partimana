@@ -1,8 +1,6 @@
 package com.github.croesch.partimana.view;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.swing.JLabel;
@@ -179,38 +177,13 @@ class CampEditView extends JPanel implements ICampEditView {
   @Override
   @MayBeNull
   public Date getFrom() {
-    if (this.fromTf.getText() == null || "".equals(this.fromTf.getText())) {
-      return null;
-    }
-    return calculateDateWithoutTime(this.fromTf.getDate());
+    return this.fromTf.getDateWithoutTimeOrNull();
   }
 
   @Override
   @MayBeNull
   public Date getUntil() {
-    if (this.untilTf.getText() == null || "".equals(this.untilTf.getText())) {
-      return null;
-    }
-    return calculateDateWithoutTime(this.untilTf.getDate());
-  }
-
-  /**
-   * Removes the time from a given date and returns the new calculated date. TODO remove redundandency
-   * 
-   * @since Date: Sep 10, 2011
-   * @param d the date to erase the time from
-   * @return the date without time information
-   */
-  @NotNull
-  private static Date calculateDateWithoutTime(final Date d) {
-    final Calendar cal = new GregorianCalendar();
-    cal.setTime(d);
-    final int year = cal.get(Calendar.YEAR);
-    final int month = cal.get(Calendar.MONTH);
-    final int day = cal.get(Calendar.DAY_OF_MONTH);
-    cal.setTime(new Date(0));
-    cal.set(year, month, day, 0, 0, 0);
-    return cal.getTime();
+    return this.untilTf.getDateWithoutTimeOrNull();
   }
 
   @Override

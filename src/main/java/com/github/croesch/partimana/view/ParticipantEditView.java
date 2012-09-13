@@ -2,9 +2,7 @@ package com.github.croesch.partimana.view;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.swing.JCheckBox;
@@ -531,29 +529,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   @Override
   @MayBeNull
   public Date getBirthDate() {
-    if (this.birthDayTf.getText() == null || "".equals(this.birthDayTf.getText())) {
-      return null;
-    }
-    return calculateDateWithoutTime(this.birthDayTf.getDate());
-  }
-
-  /**
-   * Removes the time from a given date and returns the new calculated date.
-   * 
-   * @since Date: Sep 10, 2011
-   * @param d the date to erase the time from
-   * @return the date without time information
-   */
-  @NotNull
-  private static Date calculateDateWithoutTime(final Date d) {
-    final Calendar cal = new GregorianCalendar();
-    cal.setTime(d);
-    final int year = cal.get(Calendar.YEAR);
-    final int month = cal.get(Calendar.MONTH);
-    final int day = cal.get(Calendar.DAY_OF_MONTH);
-    cal.setTime(new Date(0));
-    cal.set(year, month, day, 0, 0, 0);
-    return cal.getTime();
+    return this.birthDayTf.getDateWithoutTimeOrNull();
   }
 
   @Override
@@ -611,10 +587,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   @Override
   @MayBeNull
   public Date getDateUpToInDataBase() {
-    if (this.untilInDbTf.getText() == null || "".equals(this.untilInDbTf.getText())) {
-      return null;
-    }
-    return calculateDateWithoutTime(this.untilInDbTf.getDate());
+    return this.untilInDbTf.getDateWithoutTimeOrNull();
   }
 
   @Override
