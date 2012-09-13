@@ -20,7 +20,6 @@ import net.miginfocom.swing.MigLayout;
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CDateField;
-import com.github.croesch.contents.date.DateContent;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
@@ -468,9 +467,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.lastNameTf.setText(participant.getLastName());
       this.genderCb.setSelectedItem(participant.getGender());
       this.denominationCb.setSelectedItem(participant.getDenomination());
-      this.birthDayTf.setDate(participant.getBirthDate());
-      this.birthDayTf.setText(((DateContent) this.birthDayTf.getDocument()).getDateContent());
-      this.birthDayTf.setCaretPosition(0);
+      this.birthDayTf.setDateAndDisplay(participant.getBirthDate());
       this.posStreetTf.setText(participant.getStreetPostal());
       this.posPostCodeTf.setText(String.valueOf(participant.getPostCodePostal()));
       this.posCityTf.setText(participant.getCityPostal());
@@ -480,9 +477,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
       this.bankCodeNumberTf.setText(String.valueOf(participant.getBankCodeNumber()));
       this.commentTa.setText(participant.getComment());
       if (participant.getDateUpToInSystem() != null) {
-        this.untilInDbTf.setDate(participant.getDateUpToInSystem());
-        this.untilInDbTf.setText(((DateContent) this.untilInDbTf.getDocument()).getDateContent());
-        this.untilInDbTf.setCaretPosition(0);
+        this.untilInDbTf.setDateAndDisplay(participant.getDateUpToInSystem());
       } else {
         this.untilInDbTf.setText(null);
       }
