@@ -272,7 +272,7 @@ public enum Text {
    * @return the String that represents the object with replaced placeholders
    */
   @NotNull
-  public String text(@NotNull final Object ... s) {
+  public String text(final Object ... s) {
     String text = this.string;
     for (int i = 0; i < s.length; ++i) {
       // prevent exceptions with using $

@@ -66,7 +66,7 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
    * @param o the observer to notify about actions.
    * @throws RequiredFieldSetToNullException if the given model or the given observer is <code>null</code>
    */
-  public View(@NotNull final IModel4View m, @NotNull final ActionObserver o) throws RequiredFieldSetToNullException {
+  public View(final IModel4View m, final ActionObserver o) throws RequiredFieldSetToNullException {
     if (m == null || o == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -116,22 +116,22 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   }
 
   @Override
-  public void showInformation(@NotNull final Text info) {
+  public void showInformation(final Text info) {
     this.statusView.showInformation(info);
   }
 
   @Override
-  public void showInformation(@NotNull final Text info, @NotNull final Object ... args) {
+  public void showInformation(final Text info, final Object ... args) {
     this.statusView.showInformation(info, args);
   }
 
   @Override
-  public void showError(@NotNull final Text error) {
+  public void showError(final Text error) {
     this.statusView.showError(error);
   }
 
   @Override
-  public void performAction(@NotNull final UserAction action) {
+  public void performAction(final UserAction action) {
     switch (action) {
       case EXIT:
         dispose();

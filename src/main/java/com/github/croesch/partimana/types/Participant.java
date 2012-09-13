@@ -145,15 +145,15 @@ public final class Participant {
    * @throws IllegalArgumentException if the id is too small
    */
   public Participant(final long forcedId,
-                     @NotNull final String name,
-                     @NotNull final String firstName,
-                     @NotNull final Gender g,
-                     @NotNull final Denomination den,
-                     @NotNull final Date birth,
-                     @NotNull final String str,
+                     final String name,
+                     final String firstName,
+                     final Gender g,
+                     final Denomination den,
+                     final Date birth,
+                     final String str,
                      final int pc,
-                     @NotNull final String c,
-                     @NotNull final CountyCouncil county) throws IllegalArgumentException {
+                     final String c,
+                     final CountyCouncil county) throws IllegalArgumentException {
     setLastName(name);
     setForeName(firstName);
     setGender(g);
@@ -196,15 +196,15 @@ public final class Participant {
    * @param c the city where the person lives
    * @param county the county council for this person
    */
-  public Participant(@NotNull final String name,
-                     @NotNull final String firstName,
-                     @NotNull final Gender g,
-                     @NotNull final Denomination den,
-                     @NotNull final Date birth,
-                     @NotNull final String str,
+  public Participant(final String name,
+                     final String firstName,
+                     final Gender g,
+                     final Denomination den,
+                     final Date birth,
+                     final String str,
                      final int pc,
-                     @NotNull final String c,
-                     @NotNull final CountyCouncil county) {
+                     final String c,
+                     final CountyCouncil county) {
     this(highestId + 1, name, firstName, g, den, birth, str, pc, c, county);
   }
 
@@ -216,7 +216,7 @@ public final class Participant {
    * @param p the {@link Participant} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Participant} is <code>null</code>
    */
-  public Participant(@NotNull final Participant p) throws RequiredFieldSetToNullException {
+  public Participant(final Participant p) throws RequiredFieldSetToNullException {
     if (p == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -279,7 +279,7 @@ public final class Participant {
    * @param name the last name, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
    */
-  public void setLastName(@NotNull final String name) throws RequiredFieldSetToNullException {
+  public void setLastName(final String name) throws RequiredFieldSetToNullException {
     if (name == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -304,7 +304,7 @@ public final class Participant {
    * @param name the first name, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
    */
-  public void setForeName(@NotNull final String name) throws RequiredFieldSetToNullException {
+  public void setForeName(final String name) throws RequiredFieldSetToNullException {
     if (name == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -329,7 +329,7 @@ public final class Participant {
    * @param g the gender of the participant, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
    */
-  public void setGender(@NotNull final Gender g) throws RequiredFieldSetToNullException {
+  public void setGender(final Gender g) throws RequiredFieldSetToNullException {
     if (g == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -354,7 +354,7 @@ public final class Participant {
    * @param den the denomination of the participant
    * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
    */
-  public void setDenomination(@NotNull final Denomination den) throws RequiredFieldSetToNullException {
+  public void setDenomination(final Denomination den) throws RequiredFieldSetToNullException {
     if (den == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -379,7 +379,7 @@ public final class Participant {
    * @param birth the date of birth day of the participant, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given birth date is <code>null</code>
    */
-  public void setBirthDate(@NotNull final Date birth) throws RequiredFieldSetToNullException {
+  public void setBirthDate(final Date birth) throws RequiredFieldSetToNullException {
     if (birth == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -404,7 +404,7 @@ public final class Participant {
    * @param str the street where the participant lives.
    * @throws RequiredFieldSetToNullException if the given street is <code>null</code>
    */
-  public void setStreet(@NotNull final String str) throws RequiredFieldSetToNullException {
+  public void setStreet(final String str) throws RequiredFieldSetToNullException {
     if (str == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -454,7 +454,7 @@ public final class Participant {
    * @param c the city where the participant lives
    * @throws RequiredFieldSetToNullException if the given city is <code>null</code>
    */
-  public void setCity(@NotNull final String c) throws RequiredFieldSetToNullException {
+  public void setCity(final String c) throws RequiredFieldSetToNullException {
     if (c == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -479,7 +479,7 @@ public final class Participant {
    * @param sp the street of the participant (where to post to)
    */
   @MayBeNull
-  public void setStreetPostal(@MayBeNull final String sp) {
+  public void setStreetPostal(final String sp) {
     this.postToAddress.setStreet(sp);
   }
 
@@ -525,7 +525,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param cp the city of the participant (where to post to)
    */
-  public void setCityPostal(@MayBeNull final String cp) {
+  public void setCityPostal(final String cp) {
     this.postToAddress.setCity(cp);
   }
 
@@ -546,7 +546,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param p the phone number of the participant
    */
-  public void setPhone(@MayBeNull final String p) {
+  public void setPhone(final String p) {
     this.phone = p;
   }
 
@@ -567,7 +567,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param f the fax number of the participant
    */
-  public void setFax(@MayBeNull final String f) {
+  public void setFax(final String f) {
     this.fax = f;
   }
 
@@ -588,7 +588,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param mobile the mobile phone number of the participant
    */
-  public void setMobilePhone(@MayBeNull final String mobile) {
+  public void setMobilePhone(final String mobile) {
     this.mobilePhone = mobile;
   }
 
@@ -609,7 +609,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param pop the phone number of the parents of the participant
    */
-  public void setPhoneOfParents(@MayBeNull final String pop) {
+  public void setPhoneOfParents(final String pop) {
     this.phoneOfParents = pop;
   }
 
@@ -630,7 +630,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param mail the mail address of the participant
    */
-  public void setMailAddress(@MayBeNull final String mail) {
+  public void setMailAddress(final String mail) {
     this.mailAddress = mail;
   }
 
@@ -652,7 +652,7 @@ public final class Participant {
    * @param cc the county council of the participant.
    * @throws RequiredFieldSetToNullException if the given county council is <code>null</code>
    */
-  public void setCountyCouncil(@NotNull final CountyCouncil cc) throws RequiredFieldSetToNullException {
+  public void setCountyCouncil(final CountyCouncil cc) throws RequiredFieldSetToNullException {
     if (cc == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -696,7 +696,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param b the bank of the participant
    */
-  public void setBank(@MayBeNull final String b) {
+  public void setBank(final String b) {
     this.bank = b;
   }
 
@@ -737,7 +737,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param com the comment about the participant
    */
-  public void setComment(@MayBeNull final String com) {
+  public void setComment(final String com) {
     this.comment = com;
   }
 
@@ -761,7 +761,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param dsidb the date since the user is in the database
    */
-  public void setDateSinceInDataBase(@MayBeNull final Date dsidb) {
+  public void setDateSinceInDataBase(final Date dsidb) {
     if (dsidb != null) {
       this.dateSinceInDataBase = new Date(dsidb.getTime());
     } else {
@@ -789,7 +789,7 @@ public final class Participant {
    * @since Date: Jun 18, 2011
    * @param dutis the date up to that the user is in the system.
    */
-  public void setDateUpToInSystem(@MayBeNull final Date dutis) {
+  public void setDateUpToInSystem(final Date dutis) {
     if (dutis != null) {
       this.dateUpToInSystem = new Date(dutis.getTime());
     } else {
@@ -1052,7 +1052,7 @@ public final class Participant {
    * @return the hashcode of the given {@link String}
    * @see String#hashCode()
    */
-  private static int getHash(@MayBeNull final String s) {
+  private static int getHash(final String s) {
     if (s == null) {
       return 0;
     }
@@ -1067,7 +1067,7 @@ public final class Participant {
    * @return the hashcode of the given {@link Date}
    * @see Date#hashCode()
    */
-  private static int getHash(@MayBeNull final Date d) {
+  private static int getHash(final Date d) {
     if (d == null) {
       return 0;
     }

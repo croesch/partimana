@@ -3,7 +3,6 @@ package com.github.croesch.partimana.controller;
 import org.apache.log4j.Logger;
 
 import com.github.croesch.annotate.MayBeNull;
-import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IParticipantModel;
 import com.github.croesch.partimana.types.Participant;
@@ -40,9 +39,9 @@ final class ParticipantSaver {
    * @param editView the {@link IParticipantEditView} that has been editing the participant
    * @param statusView the {@link IStatusView} that is responsible for displaying the status
    */
-  static void performSave(@NotNull final IParticipantModel model,
-                          @NotNull final IParticipantEditView editView,
-                          @NotNull final IStatusView statusView) {
+  static void performSave(final IParticipantModel model,
+                          final IParticipantEditView editView,
+                          final IStatusView statusView) {
 
     try {
       Participant p = null;
@@ -113,7 +112,7 @@ final class ParticipantSaver {
    * @return the given string, if it's not <code>null</code> and not empty, <code>null</code> otherwise.
    */
   @MayBeNull
-  private static String returnValueOrNullIfEmpty(@MayBeNull final String s) {
+  private static String returnValueOrNullIfEmpty(final String s) {
     if (s == null || s.trim().equals("")) {
       return null;
     }

@@ -50,7 +50,7 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
    * @param m the model to fetch participant information from
    * @throws RequiredFieldSetToNullException if the given model is <code>null</code>
    */
-  public ParticipantView(@NotNull final IParticipantModel4View m) throws RequiredFieldSetToNullException {
+  public ParticipantView(final IParticipantModel4View m) throws RequiredFieldSetToNullException {
     if (m == null) {
       throw new RequiredFieldSetToNullException();
     }

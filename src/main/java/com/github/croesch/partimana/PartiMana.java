@@ -87,7 +87,7 @@ public final class PartiMana implements ActionObserver {
   }
 
   @Override
-  public void performAction(@NotNull final UserAction action) {
+  public void performAction(final UserAction action) {
     if (action == UserAction.EXIT) {
       LOGGER.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
       this.running = false;

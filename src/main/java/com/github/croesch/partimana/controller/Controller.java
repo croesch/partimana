@@ -40,7 +40,7 @@ public final class Controller implements ActionObserver {
    * @param o the {@link ActionObserver}
    * @param args the arguments from command line
    */
-  public Controller(@NotNull final ActionObserver o, final String[] args) {
+  public Controller(final ActionObserver o, final String[] args) {
     this.observer = o; //FIXME null check!
     this.model = new Model();
     this.view = new View(this.model, this);

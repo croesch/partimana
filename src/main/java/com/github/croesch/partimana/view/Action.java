@@ -55,7 +55,7 @@ final class Action extends AbstractAction {
    * @param act the {@link UserAction} to pass to the observer
    * @param t the {@link Text} as description of this action
    */
-  private Action(@NotNull final UserAction act, @NotNull final Text t) {
+  private Action(final UserAction act, final Text t) {
     super(t.text());
     this.action = act; // FIXME null check
   }
@@ -67,12 +67,12 @@ final class Action extends AbstractAction {
    * @since Date: Jul 1, 2011
    * @param ao the observer to handle actions
    */
-  static void setObserver(@MayBeNull final ActionObserver ao) {
+  static void setObserver(final ActionObserver ao) {
     observer = ao;
   }
 
   @Override
-  public void actionPerformed(@MayBeNull final ActionEvent ev) {
+  public void actionPerformed(final ActionEvent ev) {
     if (observer != null) {
       observer.performAction(this.action);
     }

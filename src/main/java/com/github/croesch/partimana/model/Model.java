@@ -44,7 +44,7 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
    * @since Date: Jun 30, 2011
    * @param v the view to set to the model.
    */
-  public void setView(@MayBeNull final IView v) {
+  public void setView(final IView v) {
     this.view = v;
   }
 

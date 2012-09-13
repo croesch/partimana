@@ -55,11 +55,11 @@ public final class Camp {
    * @param where the location where the camp will be
    * @param rate the rate for each participant
    */
-  public Camp(@NotNull final String n,
-              @NotNull final Date f,
-              @NotNull final Date t,
-              @NotNull final String where,
-              @NotNull final String rate) {
+  public Camp(final String n,
+              final Date f,
+              final Date t,
+              final String where,
+              final String rate) {
     this(highestId + 1, n, f, t, where, rate);
   }
 
@@ -76,11 +76,11 @@ public final class Camp {
    * @param rate the rate for each participant
    */
   public Camp(final long forcedId,
-              @NotNull final String n,
-              @NotNull final Date f,
-              @NotNull final Date t,
-              @NotNull final String where,
-              @NotNull final String rate) {
+              final String n,
+              final Date f,
+              final Date t,
+              final String where,
+              final String rate) {
     setName(n);
     setFromDate(f);
     setUntilDate(t);
@@ -112,7 +112,7 @@ public final class Camp {
    * @param c the {@link Camp} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Camp} is <code>null</code>
    */
-  public Camp(@NotNull final Camp c) throws RequiredFieldSetToNullException {
+  public Camp(final Camp c) throws RequiredFieldSetToNullException {
     if (c == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -144,7 +144,7 @@ public final class Camp {
    * @param n the name of the camp
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
    */
-  public void setName(@NotNull final String n) throws RequiredFieldSetToNullException {
+  public void setName(final String n) throws RequiredFieldSetToNullException {
     if (n == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -169,7 +169,7 @@ public final class Camp {
    * @param date the date when the camp starts
    * @throws RequiredFieldSetToNullException if the given date is <code>null</code>
    */
-  public void setFromDate(@NotNull final Date date) throws RequiredFieldSetToNullException {
+  public void setFromDate(final Date date) throws RequiredFieldSetToNullException {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -194,7 +194,7 @@ public final class Camp {
    * @param date the date when the camp ends
    * @throws RequiredFieldSetToNullException if the given date is <code>null</code>
    */
-  public void setUntilDate(@NotNull final Date date) throws RequiredFieldSetToNullException {
+  public void setUntilDate(final Date date) throws RequiredFieldSetToNullException {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -219,7 +219,7 @@ public final class Camp {
    * @param loc the location of the camp
    * @throws RequiredFieldSetToNullException if the given location is <code>null</code>
    */
-  public void setLocation(@NotNull final String loc) throws RequiredFieldSetToNullException {
+  public void setLocation(final String loc) throws RequiredFieldSetToNullException {
     if (loc == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -244,7 +244,7 @@ public final class Camp {
    * @param rate the rate per participant
    * @throws RequiredFieldSetToNullException if the given rate is <code>null</code>
    */
-  public void setRatePerParticipant(@NotNull final String rate) throws RequiredFieldSetToNullException {
+  public void setRatePerParticipant(final String rate) throws RequiredFieldSetToNullException {
     if (rate == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -268,7 +268,7 @@ public final class Camp {
    * @since Date: Jun 18, 2011
    * @param rate the rate per day-children
    */
-  public void setRatePerDayChildren(@MayBeNull final String rate) {
+  public void setRatePerDayChildren(final String rate) {
     this.ratePerDayChildren = rate;
   }
 

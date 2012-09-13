@@ -150,7 +150,7 @@ class CampEditView extends JPanel implements ICampEditView {
   }
 
   @Override
-  public void setCamp(@MayBeNull final Camp camp) {
+  public void setCamp(final Camp camp) {
     if (camp == null) {
       clear();
     } else {

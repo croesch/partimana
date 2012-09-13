@@ -24,7 +24,7 @@ final class XMLBundleControl extends Control {
 
   @Override
   @NotNull
-  public List<String> getFormats(@NotNull final String baseName) {
+  public List<String> getFormats(final String baseName) {
     if (baseName == null) {
       throw new IllegalArgumentException();
     }
@@ -33,10 +33,10 @@ final class XMLBundleControl extends Control {
 
   @Override
   @MayBeNull
-  public ResourceBundle newBundle(@NotNull final String baseName,
-                                  @NotNull final Locale locale,
-                                  @NotNull final String format,
-                                  @NotNull final ClassLoader loader,
+  public ResourceBundle newBundle(final String baseName,
+                                  final Locale locale,
+                                  final String format,
+                                  final ClassLoader loader,
                                   final boolean reload) throws IllegalAccessException, InstantiationException,
                                                        IOException {
     if (baseName == null || locale == null || format == null || loader == null) {

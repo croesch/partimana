@@ -31,7 +31,7 @@ public final class TableMouseListener extends MouseAdapter {
    * @param o the {@link ActionObserver} to fire the action to.
    * @param a the action to send to the observer
    */
-  public TableMouseListener(@NotNull final ActionObserver o, @NotNull final UserAction a) {
+  public TableMouseListener(final ActionObserver o, final UserAction a) {
     this.observer = o; //FIXME null check
     this.action = a; // FIXME null check
   }

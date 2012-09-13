@@ -33,7 +33,7 @@ class CampModel implements ICampModel {
    * @since Date: Jun 19, 2011
    * @param pm the model to load the data from (and synchronize afterwards).
    */
-  public CampModel(@NotNull final IPersistenceModel pm) {
+  public CampModel(final IPersistenceModel pm) {
     this.persistenceModel = pm; //FIXME: null check
     this.mapOfCamps = this.persistenceModel.getMapOfCamps();
   }

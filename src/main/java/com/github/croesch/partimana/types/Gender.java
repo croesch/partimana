@@ -28,7 +28,7 @@ public enum Gender {
    * @since Date: Jun 21, 2011
    * @param t the {@link Text} that represents this object.
    */
-  private Gender(@NotNull final Text t) {
+  private Gender(final Text t) {
     this.s = t.text(); //FIXME null check
   }
 

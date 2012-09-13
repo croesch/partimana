@@ -44,18 +44,18 @@ class StatusView extends JPanel implements IStatusView {
   }
 
   @Override
-  public void showInformation(@NotNull final Text info) {
+  public void showInformation(final Text info) {
     showInfo(info.text()); // FIXME null check?
   }
 
   @Override
-  public void showError(@NotNull final Text error) {
+  public void showError(final Text error) {
     this.label.setForeground(Color.RED);
     this.label.setText(error.text()); // FIXME null check?
   }
 
   @Override
-  public void showInformation(@NotNull final Text info, @NotNull final Object ... args) {
+  public void showInformation(final Text info, final Object ... args) {
     showInfo(info.text(args)); //FIXME null check?
   }
 
@@ -66,7 +66,7 @@ class StatusView extends JPanel implements IStatusView {
    * @since Date: Jul 1, 2011
    * @param txt the text to display.
    */
-  private void showInfo(@MayBeNull final String txt) {
+  private void showInfo(final String txt) {
     this.label.setForeground(Color.BLACK);
     this.label.setText(txt);
   }

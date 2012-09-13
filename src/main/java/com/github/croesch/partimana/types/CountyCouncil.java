@@ -82,7 +82,7 @@ public enum CountyCouncil {
    * @since Date: Jun 21, 2011
    * @param t the {@link Text} that represents this council.
    */
-  private CountyCouncil(@NotNull final Text t) {
+  private CountyCouncil(final Text t) {
     this.s = t.text(); //FIXME null check!
   }
 

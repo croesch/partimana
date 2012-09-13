@@ -39,7 +39,7 @@ class CampListView extends JPanel implements ICampListView {
    * @since Date: Sep 27, 2011
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
-  public CampListView(@NotNull final ActionObserver o) {
+  public CampListView(final ActionObserver o) {
     setLayout(new MigLayout("fill"));
 
     final Object[] columnIdentifiers = new Object[] { Text.CAMP_ID.text(),
@@ -51,7 +51,7 @@ class CampListView extends JPanel implements ICampListView {
   }
 
   @Override
-  public void update(@NotNull final List<Camp> camps) {
+  public void update(final List<Camp> camps) {
     while (this.table.getRowCount() > 0) {
       ((DefaultTableModel) this.table.getModel()).removeRow(0);
     }

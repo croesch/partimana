@@ -1,6 +1,5 @@
 package com.github.croesch.partimana.actions;
 
-import com.github.croesch.annotate.NotNull;
 
 /**
  * Observer interface for {@link UserAction}s.
@@ -17,6 +16,6 @@ public interface ActionObserver {
    * @since Date: May 29, 2011
    * @param action the {@link UserAction} that happened.
    */
-  void performAction(@NotNull UserAction action);
+  void performAction(UserAction action);
 
 }

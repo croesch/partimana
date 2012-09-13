@@ -458,7 +458,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
   }
 
   @Override
-  public void setParticipant(@MayBeNull final Participant participant) {
+  public void setParticipant(final Participant participant) {
     if (participant == null) {
       clear();
     } else {

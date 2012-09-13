@@ -41,7 +41,7 @@ final class Address {
    * @param pc the post code
    * @param c the city
    */
-  Address(@MayBeNull final String str, final int pc, @MayBeNull final String c) {
+  Address(final String str, final int pc, final String c) {
     setStreet(str);
     setPostCode(pc);
     setCity(c);

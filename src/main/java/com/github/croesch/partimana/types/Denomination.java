@@ -48,7 +48,7 @@ public enum Denomination {
    * @since Date: Jun 21, 2011
    * @param t the {@link Text} that represents this object.
    */
-  private Denomination(@NotNull final Text t) {
+  private Denomination(final Text t) {
     this.s = t.text(); //FIXME null check!
   }
 
