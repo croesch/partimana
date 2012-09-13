@@ -6,7 +6,6 @@ import javax.swing.UIManager;
 
 import org.apache.log4j.Logger;
 
-import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.controller.Controller;
