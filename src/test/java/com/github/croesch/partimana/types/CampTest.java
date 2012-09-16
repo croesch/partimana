@@ -20,21 +20,12 @@ public class CampTest {
   /** object under test */
   private Camp camp;
 
-  /**
-   * Sets up the test object.
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
-   */
   @Before
   public final void setUp() {
     final int untilDate = 100000;
     this.camp = new Camp("Testcamp", new Date(0), new Date(untilDate), "here", "100");
   }
 
-  /**
-   * Test method for {@link Camp}
-   */
   @Test
   public final void testCamp() {
     final int untilDate = 100000;
@@ -45,17 +36,11 @@ public class CampTest {
     assertThat(this.camp.getRatePerParticipant()).isEqualTo("100");
   }
 
-  /**
-   * Test method for {@link Camp#setName(String)} and {@link Camp#getName()}
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testSetAndGetNameRFSTNE() {
     this.camp.setName(null);
   }
 
-  /**
-   * Test method for {@link Camp#setName(String)} and {@link Camp#getName()}
-   */
   @Test
   public final void testSetAndGetName() {
     this.camp.setName("name");
@@ -68,17 +53,11 @@ public class CampTest {
     assertThat(this.camp.getName()).isEqualTo("");
   }
 
-  /**
-   * Test method for {@link Camp#setFromDate(Date)} and {@link Camp#getFromDate()}
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testSetAndGetFromDateRFSTNE() {
     this.camp.setFromDate(null);
   }
 
-  /**
-   * Test method for {@link Camp#setFromDate(Date)} and {@link Camp#getFromDate()}
-   */
   @Test
   public final void testSetAndGetFromDate() {
     final Date d1 = new Date();
@@ -101,17 +80,11 @@ public class CampTest {
     assertThat(this.camp.getFromDate()).isNotEqualTo(d3);
   }
 
-  /**
-   * Test method for {@link Camp#setUntilDate(Date)} and {@link Camp#getUntilDate()}
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testSetAndGetUntilDateRFSTNE() {
     this.camp.setUntilDate(null);
   }
 
-  /**
-   * Test method for {@link Camp#setUntilDate(Date)} and {@link Camp#getUntilDate()}
-   */
   @Test
   public final void testSetAndGetUntilDate() {
     final Date d1 = new Date();
@@ -134,17 +107,11 @@ public class CampTest {
     assertThat(this.camp.getUntilDate()).isNotEqualTo(d3);
   }
 
-  /**
-   * Test method for {@link Camp#setLocation(String)} and {@link Camp#getLocation()}
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testSetAndGetLocationRFSTNE() {
     this.camp.setLocation(null);
   }
 
-  /**
-   * Test method for {@link Camp#setLocation(String)} and {@link Camp#getLocation()}
-   */
   @Test
   public final void testSetAndGetLocation() {
     this.camp.setLocation("loc");
@@ -157,17 +124,11 @@ public class CampTest {
     assertThat(this.camp.getLocation()).isEqualTo("");
   }
 
-  /**
-   * Test method for {@link Camp#setRatePerParticipant(String)} and {@link Camp#getRatePerParticipant()}
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testSetAndGetRatePerParticipantRFSTNE() {
     this.camp.setRatePerParticipant(null);
   }
 
-  /**
-   * Test method for {@link Camp#setRatePerParticipant(String)} and {@link Camp#getRatePerParticipant()}
-   */
   @Test
   public final void testSetAndGetRatePerParticipant() {
     this.camp.setRatePerParticipant("12");
@@ -180,9 +141,6 @@ public class CampTest {
     assertThat(this.camp.getRatePerParticipant()).isEqualTo("");
   }
 
-  /**
-   * Test method for {@link Camp#setRatePerDayChildren(String)} and {@link Camp#getRatePerDayChildren()}
-   */
   @Test
   public final void testSetAndGetRatePerDayChildren() {
     this.camp.setRatePerDayChildren("12");
@@ -195,9 +153,6 @@ public class CampTest {
     assertThat(this.camp.getRatePerDayChildren()).isEqualTo("");
   }
 
-  /**
-   * Test method for {@link Camp#getId()}.
-   */
   @Test
   public final void testGetId() {
     final long id = this.camp.getId();
@@ -209,51 +164,33 @@ public class CampTest {
     assertThat(this.camp.getId()).isEqualTo(id + 2);
   }
 
-  /**
-   * Test method for {@link Camp#getId()}.
-   */
   @Test(expected = IllegalArgumentException.class)
   public final void testGetIdIAE1() {
     final long id = this.camp.getId();
     this.camp = new Camp(id, "n", new Date(), new Date(), "w", "r");
   }
 
-  /**
-   * Test method for {@link Camp#getId()}.
-   */
   @Test(expected = IllegalArgumentException.class)
   public final void testGetIdIAE2() {
     final long id = this.camp.getId();
     this.camp = new Camp(id - 1, "n", new Date(), new Date(), "w", "r");
   }
 
-  /**
-   * Test method for {@link Camp#getId()}.
-   */
   @Test(expected = IllegalArgumentException.class)
   public final void testGetIdIAE3() {
     this.camp = new Camp(-1, "n", new Date(), new Date(), "w", "r");
   }
 
-  /**
-   * Test method for {@link Camp#toString()}.
-   */
   @Test
   public final void testToString() {
     assertThat(this.camp.toString()).contains(String.valueOf(this.camp.getId()));
   }
 
-  /**
-   * Test method for {@link Camp#Camp(Camp)}.
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testCampCampRFSTNE() {
     new Camp(null);
   }
 
-  /**
-   * Test method for {@link Camp#Camp(Camp)}.
-   */
   @Test
   public final void testCampCamp() {
     this.camp.setRatePerDayChildren("children-rate");
@@ -265,9 +202,6 @@ public class CampTest {
     assertThat(c).isNotEqualTo(this.camp);
   }
 
-  /**
-   * Test method for {@link Camp#equals(Object)}.
-   */
   @Test
   public final void testCampEquals() {
 
@@ -319,9 +253,6 @@ public class CampTest {
 
   }
 
-  /**
-   * Test method for {@link Camp#hashCode()}.
-   */
   @Test
   public final void testCampHashCode() {
 
@@ -369,6 +300,72 @@ public class CampTest {
     assertThat(c.hashCode()).isEqualTo(this.camp.hashCode());
     c.setUntilDate(new Date(987));
     assertThat(c.hashCode()).isNotEqualTo(this.camp.hashCode());
+  }
 
+  @Test
+  public void testGetParticipants() {
+    assertThat(this.camp.getParticipants()).isEmpty();
+
+    final Participant participant = new Participant("Mustermann",
+                                                    "Max",
+                                                    Gender.MALE,
+                                                    Denomination.OTHER,
+                                                    new Date(),
+                                                    "Musterstrasse 12",
+                                                    98667,
+                                                    "Musterhausen",
+                                                    CountyCouncil.OTHER);
+    this.camp.getParticipants().add(new CampParticipant(participant));
+    assertThat(this.camp.getParticipants()).isEmpty();
+
+    this.camp.addParticipant(participant);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
+  }
+
+  @Test
+  public void testAddAndRemoveParticipant() {
+    final Participant participant = new Participant("Mustermann",
+                                                    "Max",
+                                                    Gender.MALE,
+                                                    Denomination.OTHER,
+                                                    new Date(),
+                                                    "Musterstrasse 12",
+                                                    98667,
+                                                    "Musterhausen",
+                                                    CountyCouncil.OTHER);
+    final Participant participant2 = new Participant("Mustermann",
+                                                     "Max",
+                                                     Gender.MALE,
+                                                     Denomination.OTHER,
+                                                     new Date(),
+                                                     "Musterstrasse 12",
+                                                     98667,
+                                                     "Musterhausen",
+                                                     CountyCouncil.OTHER);
+
+    this.camp.addParticipant(participant2);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant2));
+
+    this.camp.addParticipant(participant);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant),
+                                                            new CampParticipant(participant2));
+
+    participant.setBank("blub");
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant),
+                                                            new CampParticipant(participant2));
+    this.camp.removeParticipant(participant2);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
+
+    this.camp.addParticipant(null);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
+
+    this.camp.removeParticipant(null);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
+
+    this.camp.removeParticipant(participant2);
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
+
+    this.camp.removeParticipant(participant);
+    assertThat(this.camp.getParticipants()).isEmpty();
   }
 }

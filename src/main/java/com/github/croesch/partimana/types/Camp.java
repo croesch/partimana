@@ -1,6 +1,10 @@
 package com.github.croesch.partimana.types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
@@ -44,6 +48,10 @@ public final class Camp {
   @MayBeNull
   private String ratePerDayChildren = null;
 
+  /** the participants of this camp */
+  @NotNull
+  private final Map<Long, CampParticipant> participants = new HashMap<Long, CampParticipant>();
+
   /**
    * Constructs a new {@link Camp} with the given parameters.
    * 
@@ -55,11 +63,7 @@ public final class Camp {
    * @param where the location where the camp will be
    * @param rate the rate for each participant
    */
-  public Camp(final String n,
-              final Date f,
-              final Date t,
-              final String where,
-              final String rate) {
+  public Camp(final String n, final Date f, final Date t, final String where, final String rate) {
     this(highestId + 1, n, f, t, where, rate);
   }
 
@@ -75,12 +79,7 @@ public final class Camp {
    * @param where the location where the camp will be
    * @param rate the rate for each participant
    */
-  public Camp(final long forcedId,
-              final String n,
-              final Date f,
-              final Date t,
-              final String where,
-              final String rate) {
+  public Camp(final long forcedId, final String n, final Date f, final Date t, final String where, final String rate) {
     setName(n);
     setFromDate(f);
     setUntilDate(t);
@@ -281,6 +280,41 @@ public final class Camp {
    */
   public long getId() {
     return this.id;
+  }
+
+  /**
+   * Returns the {@link Participant}s of this camp.
+   * 
+   * @since Date: Sep 16, 2012
+   * @return the participants of this camp.
+   */
+  @NotNull
+  public List<CampParticipant> getParticipants() {
+    return new ArrayList<CampParticipant>(this.participants.values());
+  }
+
+  /**
+   * Adds the given {@link Participant} to this camp.
+   * 
+   * @since Date: Sep 16, 2012
+   * @param participant the {@link Participant} to add to this camp.
+   */
+  public void addParticipant(final Participant participant) {
+    if (participant != null) {
+      this.participants.put(participant.getId(), new CampParticipant(participant));
+    }
+  }
+
+  /**
+   * Removes the given {@link Participant} from this camp.
+   * 
+   * @since Date: Sep 16, 2012
+   * @param participant the {@link Participant} to remove from this camp.
+   */
+  public void removeParticipant(final Participant participant) {
+    if (participant != null) {
+      this.participants.remove(participant.getId());
+    }
   }
 
   @Override
