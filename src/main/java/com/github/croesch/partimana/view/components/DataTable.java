@@ -29,24 +29,55 @@ public class DataTable extends JTable {
    * @param identifiers the column identifiers
    * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
    */
-  public DataTable(final ActionObserver o,
-                   final Object[] identifiers,
-                   final UserAction action) {
-    final DefaultTableModel tm = new DefaultTableModel();
-    tm.setColumnIdentifiers(identifiers);
-    setModel(tm);
+  public DataTable(final ActionObserver o, final Object[] identifiers, final UserAction action) {
+    this(o, identifiers, action, null);
+  }
+
+  /**
+   * Creates a new table.
+   * 
+   * @since Date: Sep 12, 2012
+   * @param o the {@link ActionObserver} that'll be notified on selection changes.
+   * @param model the table model
+   * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
+   */
+  public DataTable(final ActionObserver o, final UserAction action, final TableModel model) {
+    this(o, null, action, model);
+  }
+
+  /**
+   * Creates a new table.
+   * 
+   * @since Date: Sep 12, 2012
+   * @param o the {@link ActionObserver} that'll be notified on selection changes.
+   * @param identifiers the column identifiers
+   * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
+   * @param model the table model
+   */
+  private DataTable(final ActionObserver o, final Object[] identifiers, final UserAction action, final TableModel model) {
+    if (model == null) {
+      final DefaultTableModel tm = new DefaultTableModel() {
+        /** generated */
+        private static final long serialVersionUID = 619183013847304143L;
+
+        @Override
+        public boolean isCellEditable(final int row, final int column) {
+          return false;
+        }
+      };
+      tm.setColumnIdentifiers(identifiers);
+      setModel(tm);
+    } else {
+      setModel(model);
+    }
+
     setAutoCreateRowSorter(true);
     setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-    final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tm);
+    final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(getModel());
     sorter.setComparator(0, new LongComparator());
     setRowSorter(sorter);
 
     addMouseListener(new TableMouseListener(o, action));
-  }
-
-  @Override
-  public final boolean isCellEditable(final int rowIndex, final int colIndex) {
-    return false;
   }
 }
