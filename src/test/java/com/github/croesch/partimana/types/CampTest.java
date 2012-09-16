@@ -347,12 +347,12 @@ public class CampTest {
     assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant2));
 
     this.camp.addParticipant(participant);
-    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant),
-                                                            new CampParticipant(participant2));
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant2),
+                                                            new CampParticipant(participant));
 
     participant.setBank("blub");
-    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant),
-                                                            new CampParticipant(participant2));
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant2),
+                                                            new CampParticipant(participant));
     this.camp.removeParticipant(participant2);
     assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
 
