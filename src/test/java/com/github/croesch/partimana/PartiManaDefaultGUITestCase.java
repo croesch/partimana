@@ -3,6 +3,7 @@ package com.github.croesch.partimana;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Queue;
 
 import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
@@ -19,6 +20,8 @@ import com.github.croesch.partimana.actions.UserAction;
 public abstract class PartiManaDefaultGUITestCase extends FestSwingJUnitTestCase implements ActionObserver {
 
   private final Queue<UserAction> actions = new ArrayDeque<UserAction>();
+
+  protected static Queue<Integer> pIds = new ArrayDeque<Integer>(Arrays.asList(999, 9999));
 
   @Override
   protected final void onSetUp() {

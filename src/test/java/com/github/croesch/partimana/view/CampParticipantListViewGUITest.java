@@ -195,7 +195,8 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
 
   @Test
   public final void testSorting_Id() throws InterruptedException, InvocationTargetException {
-    final Participant p1 = new Participant(999,
+    final int id = pIds.poll();
+    final Participant p1 = new Participant(id,
                                            "Schmidt",
                                            "Hans",
                                            Gender.MALE,
@@ -205,7 +206,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            56789,
                                            "Stadt",
                                            CountyCouncil.CITY_NEUSTADT);
-    final Participant p2 = new Participant(1000,
+    final Participant p2 = new Participant(id + 1,
                                            "Müller",
                                            "Jasmin",
                                            Gender.FEMALE,
@@ -215,7 +216,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            54321,
                                            "Schimmelhausen",
                                            CountyCouncil.CITY_ZWEIBRUECKEN);
-    final Participant p3 = new Participant(1001,
+    final Participant p3 = new Participant(id + 2,
                                            "Mauer",
                                            "Jaqueline",
                                            Gender.FEMALE,
