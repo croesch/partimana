@@ -173,6 +173,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     update(list);
     this.testView.table().requireNotEditable(TableCell.row(0).column(0));
     this.testView.table().requireNotEditable(TableCell.row(0).column(1));
+    this.testView.table().requireNotEditable(TableCell.row(0).column(2));
   }
 
   @Test
