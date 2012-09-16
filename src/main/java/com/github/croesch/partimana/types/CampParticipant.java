@@ -357,4 +357,29 @@ public final class CampParticipant {
   public void setStaffYouth(final boolean staffYouth) {
     this.isStaffYouth = staffYouth;
   }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + this.participant.hashCode();
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    if (!this.participant.equals(((CampParticipant) obj).participant)) {
+      return false;
+    }
+    return true;
+  }
 }

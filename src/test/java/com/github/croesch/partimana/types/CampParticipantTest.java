@@ -236,4 +236,33 @@ public class CampParticipantTest {
     this.campParticipant.setStaff(false);
     assertThat(this.campParticipant.isStaff()).isFalse();
   }
+
+  @Test
+  public final void testEquals() {
+    assertThat(this.campParticipant).isNotEqualTo(this.participant);
+    assertThat(this.campParticipant).isNotEqualTo(null);
+    assertThat(this.campParticipant).isEqualTo(this.campParticipant);
+    assertThat(this.campParticipant).isEqualTo(new CampParticipant(this.participant));
+
+    final Participant p2 = new Participant(this.participant);
+
+    assertThat(this.campParticipant).isEqualTo(new CampParticipant(p2));
+
+    p2.setBank("blub");
+    assertThat(this.campParticipant).isNotEqualTo(new CampParticipant(p2));
+  }
+
+  @Test
+  public final void testHashCode() {
+    assertThat(this.campParticipant.hashCode()).isNotEqualTo(this.participant.hashCode());
+    assertThat(this.campParticipant.hashCode()).isEqualTo(this.campParticipant.hashCode());
+    assertThat(this.campParticipant.hashCode()).isEqualTo(new CampParticipant(this.participant).hashCode());
+
+    final Participant p2 = new Participant(this.participant);
+
+    assertThat(this.campParticipant.hashCode()).isEqualTo(new CampParticipant(p2).hashCode());
+
+    p2.setBank("blub");
+    assertThat(this.campParticipant.hashCode()).isNotEqualTo(new CampParticipant(p2).hashCode());
+  }
 }
