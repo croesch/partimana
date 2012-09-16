@@ -87,6 +87,8 @@ public class CampParticipantTest {
     this.participant.setPossibleSeminar(true);
     this.participant.setPossibleStaff(true);
     this.participant.setPossibleStaffYouth(true);
+    this.participant.setForeName("Hanz");
+    this.participant.setLastName("Decker");
 
     assertCampParticipantCallsParticipant(this.campParticipant);
 
@@ -100,6 +102,8 @@ public class CampParticipantTest {
     this.participant.setPossibleSeminar(false);
     this.participant.setPossibleStaff(false);
     this.participant.setPossibleStaffYouth(false);
+    this.participant.setForeName("Hans");
+    this.participant.setLastName("Becker");
 
     assertCampParticipantCallsParticipant(this.campParticipant);
   }
@@ -115,6 +119,9 @@ public class CampParticipantTest {
     assertThat(cp.isPossibleSeminar()).isEqualTo(this.participant.isPossibleSeminar());
     assertThat(cp.isPossibleStaff()).isEqualTo(this.participant.isPossibleStaff());
     assertThat(cp.isPossibleStaffYouth()).isEqualTo(this.participant.isPossibleStaffYouth());
+    assertThat(cp.getId()).isEqualTo(this.participant.getId());
+    assertThat(cp.getForeName()).isEqualTo(this.participant.getForeName());
+    assertThat(cp.getLastName()).isEqualTo(this.participant.getLastName());
   }
 
   @Test

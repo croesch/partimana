@@ -382,4 +382,34 @@ public final class CampParticipant {
     }
     return true;
   }
+
+  /**
+   * Returns the id of the {@link Participant}.
+   * 
+   * @since Date: Sep 16, 2012
+   * @return the id of the {@link Participant}.
+   */
+  public long getId() {
+    return this.participant.getId();
+  }
+
+  /**
+   * Returns the fore name of the {@link Participant}.
+   * 
+   * @since Date: Sep 16, 2012
+   * @return the fore name of the {@link Participant}.
+   */
+  public String getForeName() {
+    return this.participant.getForeName();
+  }
+
+  /**
+   * Returns the last name of the {@link Participant}.
+   * 
+   * @since Date: Sep 16, 2012
+   * @return the last name of the {@link Participant}.
+   */
+  public String getLastName() {
+    return this.participant.getLastName();
+  }
 }
