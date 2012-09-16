@@ -141,9 +141,6 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     this.deleteActionPerformed = false;
   }
 
-  /**
-   * Test method for creation of new participant.
-   */
   @Test
   public void testCreateNewParticipant_Button() {
 
@@ -186,9 +183,6 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.label("dateSinceInDBLbl").requireText(n);
   }
 
-  /**
-   * Test method for creation of new participant.
-   */
   @Test
   public void testCreateNewParticipant_Method() {
 
@@ -236,9 +230,6 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.label("dateSinceInDBLbl").requireText(n);
   }
 
-  /**
-   * Test method for deletion of a participant.
-   */
   @Test
   public void testDeleteParticipant() {
     assertThat(this.deleteActionPerformed).isFalse();

@@ -51,13 +51,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     Locale.setDefault(Locale.GERMAN);
   }
 
-  /**
-   * Sets up the {@link IParticipantEditView} and the {@link JPanelFixture} to test it. Will add a participant to it to
-   * test the functionality.
-   * 
-   * @author croesch
-   * @since Date: Jun 26, 2011
-   */
   @Override
   protected void before() {
     final ParticipantEditView view = GuiActionRunner.execute(new GuiQuery<ParticipantEditView>() {
@@ -126,9 +119,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     cleanUp();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#clear()}.
-   */
   @Test
   public void testClear() {
     GuiActionRunner.execute(new GuiTask() {
@@ -207,9 +197,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPostalStreet()).isEmpty();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#setParticipant(Participant)}.
-   */
   @Test
   public void testSetParticipant() {
     GuiActionRunner.execute(new GuiTask() {
@@ -288,9 +275,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPostalStreet()).isEmpty();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getFirstName()}.
-   */
   @Test
   public void testGetFirstName() {
     final JTextComponentFixture testObj = this.testView.textBox("firstNameTF");
@@ -301,9 +285,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getFirstName()).isEqualTo("Heinz");
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getLastName()}.
-   */
   @Test
   public void testGetLastName() {
     final JTextComponentFixture testObj = this.testView.textBox("lastNameTF");
@@ -314,9 +295,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getLastName()).isEqualTo("Becker");
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getGender()}.
-   */
   @Test
   public void testGetGender() {
     final JComboBoxFixture testObj = this.testView.comboBox("genderCB");
@@ -326,9 +304,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getGender()).isEqualTo(Gender.MALE);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getDenomination()}.
-   */
   @Test
   public final void testGetDenomination() {
     final JComboBoxFixture testObj = this.testView.comboBox("denominationCB");
@@ -338,11 +313,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getDenomination()).isEqualTo(Denomination.MUSLIM);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getBirthDate()}.
-   * 
-   * @throws ParseException
-   */
   @Test
   public final void testGetBirthDate() throws ParseException {
     final JTextComponentFixture testObj = this.testView.textBox("birthTF");
@@ -354,9 +324,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getBirthDate()).isEqualTo(sdf.parse("24.03.1978"));
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPostalStreet()}.
-   */
   @Test
   public final void testGetPostalStreet() {
     final JTextComponentFixture testObj = this.testView.textBox("postalStreetTF");
@@ -368,9 +335,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPostalStreet()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPostalPostCode()}.
-   */
   @Test
   public final void testGetPostalPostCode() {
     final JTextComponentFixture testObj = this.testView.textBox("postalPostCodeTF");
@@ -382,9 +346,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPostalPostCode()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPostalCity()}.
-   */
   @Test
   public final void testGetPostalCity() {
     final JTextComponentFixture testObj = this.testView.textBox("postalCityTF");
@@ -396,9 +357,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPostalCity()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getCountyCouncil()}.
-   */
   @Test
   public final void testGetCountyCouncil() {
     final JComboBoxFixture testObj = this.testView.comboBox("countyCouncilCB");
@@ -408,9 +366,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getCountyCouncil()).isEqualTo(CountyCouncil.CITY_SPEYER);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getBank()}.
-   */
   @Test
   public final void testGetBank() {
     final JTextComponentFixture testObj = this.testView.textBox("bankTF");
@@ -422,9 +377,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getBank()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getBankAccountNumber()}.
-   */
   @Test
   public final void testGetBankAccountNumber() {
     final JTextComponentFixture testObj = this.testView.textBox("bankAccountNumberTF");
@@ -436,9 +388,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getBankAccountNumber()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getBankCodeNumber()}.
-   */
   @Test
   public final void testGetBankCodeNumber() {
     final JTextComponentFixture testObj = this.testView.textBox("bankCodeNumberTF");
@@ -450,9 +399,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getBankCodeNumber()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getComment()}.
-   */
   @Test
   public final void testGetComment() {
     final JTextComponentFixture testObj = this.testView.textBox("commentTF");
@@ -464,11 +410,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getComment()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getDateUpToInDataBase()}.
-   * 
-   * @throws ParseException
-   */
   @Test
   public final void testGetDateUpToInDataBase() throws ParseException {
     final JTextComponentFixture testObj = this.testView.textBox("dateUpToInDBTF");
@@ -480,11 +421,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getDateUpToInDataBase()).isEqualTo(sdf.parse("14.03.1978"));
   }
 
-  /**
-   * Test method for {@link IParticipantEditView}.
-   * 
-   * @throws ParseException
-   */
   @Test
   public final void testGetDateSinceInDataBase() throws ParseException {
     final JLabelFixture testObj = this.testView.label("dateSinceInDBLbl");
@@ -493,9 +429,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     testObj.requireText(sdf.format(this.participant.getDateSinceInDataBase()));
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getFax()}.
-   */
   @Test
   public final void testGetFax() {
     final JTextComponentFixture testObj = this.testView.textBox("faxTF");
@@ -507,11 +440,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getFax()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getMailAddress()}.
-   * 
-   * @throws Throwable
-   */
   @Test
   public final void testGetMailAddress() throws Throwable {
     final JTextComponentFixture testObj = this.testView.textBox("mailTF");
@@ -545,9 +473,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     });
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getMobilePhone()}.
-   */
   @Test
   public final void testGetMobilePhone() {
     final JTextComponentFixture testObj = this.testView.textBox("mobilePhoneTF");
@@ -559,9 +484,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getMobilePhone()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPhone()}.
-   */
   @Test
   public final void testGetPhone() {
     final JTextComponentFixture testObj = this.testView.textBox("phoneTF");
@@ -573,9 +495,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPhone()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPhoneOfParents()}.
-   */
   @Test
   public final void testGetPhoneOfParents() {
     final JTextComponentFixture testObj = this.testView.textBox("phoneOfParentsTF");
@@ -587,9 +506,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPhoneOfParents()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleAGE()}.
-   */
   @Test
   public final void testGetPossibleAGE() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleAGECB");
@@ -609,9 +525,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     }
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleBoard()}.
-   */
   @Test
   public final void testGetPossibleBoard() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleBoardCB");
@@ -623,9 +536,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleBoard()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleExtendedBoard()}.
-   */
   @Test
   public final void testGetPossibleExtendedBoard() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleExtendedBoardCB");
@@ -637,9 +547,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleExtendedBoard()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleKitchen()}.
-   */
   @Test
   public final void testGetPossibleKitchen() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleKitchenCB");
@@ -651,9 +558,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleKitchen()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleMAK()}.
-   */
   @Test
   public final void testGetPossibleMAK() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleMAKCB");
@@ -665,9 +569,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleMAK()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleMisc()}.
-   */
   @Test
   public final void testGetPossibleMisc() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleMiscCB");
@@ -679,9 +580,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleMisc()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleParticipant()}.
-   */
   @Test
   public final void testGetPossibleParticipant() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleParticipantCB");
@@ -693,9 +591,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleParticipant()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleSeminar()}.
-   */
   @Test
   public final void testGetPossibleSeminar() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleSeminarCB");
@@ -707,9 +602,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleSeminar()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleStaff()}.
-   */
   @Test
   public final void testGetPossibleStaff() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleStaffCB");
@@ -721,9 +613,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleStaff()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getPossibleStaffYouth()}.
-   */
   @Test
   public final void testGetPossibleStaffYouth() {
     final JCheckBoxFixture testObj = this.testView.checkBox("possibleStaffYouthCB");
@@ -735,9 +624,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getPossibleStaffYouth()).isTrue();
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getLivingStreet()}.
-   */
   @Test
   public final void testGetLivingStreet() {
     final JTextComponentFixture testObj = this.testView.textBox("livingStreetTF");
@@ -749,9 +635,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getLivingStreet()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getLivingPostCode()}.
-   */
   @Test
   public final void testGetLivingPostCode() {
     final JTextComponentFixture testObj = this.testView.textBox("livingPostCodeTF");
@@ -763,9 +646,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getLivingPostCode()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getLivingCity()}.
-   */
   @Test
   public final void testGetLivingCity() {
     final JTextComponentFixture testObj = this.testView.textBox("livingCityTF");
@@ -777,14 +657,10 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getLivingCity()).isEqualTo(expected);
   }
 
-  /**
-   * Test method for {@link IParticipantEditView#getID()}.
-   */
   @Test
   public final void testGetID() {
     final JLabelFixture testObj = this.testView.label("idLbl");
     testObj.requireText(String.valueOf(this.participant.getId()));
     assertThat(this.editView.getId()).isEqualTo(this.participant.getId());
   }
-
 }

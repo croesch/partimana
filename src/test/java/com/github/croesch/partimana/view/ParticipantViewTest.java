@@ -4,7 +4,6 @@ import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiTask;
 import org.junit.Test;
 
-import com.github.croesch.partimana.model.api.IParticipantModel4View;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**
@@ -15,9 +14,6 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
  */
 public class ParticipantViewTest {
 
-  /**
-   * Test method for {@link ParticipantView#ParticipantView(IParticipantModel4View)}.
-   */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantView() {
     GuiActionRunner.execute(new GuiTask() {

@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.swing.SwingUtilities;
 
@@ -159,61 +158,28 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     cleanUp();
   }
 
-  /**
-   * Test method for {@link ParticipantListView#update(List)}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testUpdateListOfParticipant() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
     list.add(this.participant1);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
     requireParticipant(this.testView.table(), 0, this.participant1);
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testTableEditable() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
     list.add(this.participant1);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
     this.testView.table().requireNotEditable(TableCell.row(0).column(0));
     this.testView.table().requireNotEditable(TableCell.row(0).column(1));
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSelection() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
     list.add(this.participant1);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
     this.testView.table().selectRows(0);
     this.testView.table().requireSelectedRows(0);
     assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant1.getId());
@@ -222,12 +188,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.testView.table().component().isCellSelected(0, 1)).isTrue();
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSorting_Id() throws InterruptedException, InvocationTargetException {
     final int id = pIds.poll();
@@ -268,12 +228,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(p1);
     list.add(p2);
     list.add(p3);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(3);
     requireParticipant(this.testView.table(), 0, p1);
@@ -292,12 +247,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table(), 2, p1);
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSorting_FirstName() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
@@ -306,12 +255,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -336,12 +280,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table(), 4, this.participant5);
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSorting_LastName() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
@@ -350,12 +288,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -380,12 +313,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table(), 4, this.participant5);
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSelection_CountOfRows() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
@@ -394,12 +321,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().selectRows(1, 2, 3);
     this.testView.table().requireSelectedRows(3);
@@ -407,12 +329,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant4.getId());
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSelection_MultipleUpdate() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
@@ -421,12 +337,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -437,12 +348,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.participant4);
     list.remove(this.participant3);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(3);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -451,12 +357,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.participant1);
     list.remove(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(1);
     requireParticipant(this.testView.table(), 0, this.participant2);
@@ -465,12 +366,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 1, this.participant1);
@@ -480,12 +376,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table(), 4, this.participant5);
   }
 
-  /**
-   * Test method for {@link ParticipantListView#getSelectedParticipantId()}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testGetSelectedParticipantId() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
@@ -494,12 +384,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     this.testView.table().selectRows(1);
     assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant2.getId());
@@ -518,12 +403,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.listView.getSelectedParticipantId()).isZero();
   }
 
-  /**
-   * Test method for {@link ParticipantListView}.
-   * 
-   * @throws InvocationTargetException
-   * @throws InterruptedException
-   */
   @Test
   public final void testSelection_EventAfterDoubleClick() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
@@ -532,12 +411,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    SwingUtilities.invokeAndWait(new Runnable() {
-      @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
-      }
-    });
+    update(list);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
@@ -583,6 +457,15 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+  }
+
+  private void update(final ArrayList<Participant> list) throws InterruptedException, InvocationTargetException {
+    SwingUtilities.invokeAndWait(new Runnable() {
+      @Override
+      public void run() {
+        ParticipantListViewGUITest.this.listView.update(list);
+      }
+    });
   }
 
   public static void requireParticipant(final JTableFixture table, final int row, final Participant p) {
