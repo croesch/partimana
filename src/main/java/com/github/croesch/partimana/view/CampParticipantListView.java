@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
@@ -72,7 +74,7 @@ class CampParticipantListView extends JPanel implements ICampParticipantListView
    * @author croesch
    * @since Date: Sep 16, 2012
    */
-  private static class MyTableModel extends DefaultTableModel {
+  private static class MyTableModel extends DefaultTableModel implements TableModelListener {
     /** generated */
     private static final long serialVersionUID = 4361064994767610933L;
 
@@ -98,6 +100,7 @@ class CampParticipantListView extends JPanel implements ICampParticipantListView
                                          Text.PARTICIPANT_SEMINAR.text(),
                                          Text.PARTICIPANT_STAFF_GENERAL.text(),
                                          Text.PARTICIPANT_STAFF_YOUTH.text() });
+      addTableModelListener(this);
     }
 
     @Override
@@ -177,6 +180,54 @@ class CampParticipantListView extends JPanel implements ICampParticipantListView
                                  p.isSeminar(),
                                  p.isStaff(),
                                  p.isStaffYouth() });
+    }
+
+    @Override
+    public void tableChanged(final TableModelEvent e) {
+      if (e.getType() == TableModelEvent.UPDATE) {
+        if (e.getFirstRow() != e.getLastRow()) {
+          System.out.println("oooops!");
+        }
+
+        final CampParticipant participant = this.participants.get(e.getFirstRow());
+        final Boolean value = (Boolean) getValueAt(e.getFirstRow(), e.getColumn());
+
+        switch (e.getColumn()) {
+          case 3:
+            participant.setAGE(value);
+            break;
+          case 4:
+            participant.setBoard(value);
+            break;
+          case 5:
+            participant.setExtendedBoard(value);
+            break;
+          case 6:
+            participant.setKitchen(value);
+            break;
+          case 7:
+            participant.setMAK(value);
+            break;
+          case 8:
+            participant.setMisc(value);
+            break;
+          case 9:
+            participant.setParticipant(value);
+            break;
+          case 10:
+            participant.setSeminar(value);
+            break;
+          case 11:
+            participant.setStaff(value);
+            break;
+          case 12:
+            participant.setStaffYouth(value);
+            break;
+          default:
+            System.out.println("strange column");
+            break;
+        }
+      }
     }
   }
 }

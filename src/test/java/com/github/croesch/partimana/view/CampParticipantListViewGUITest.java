@@ -83,59 +83,58 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     participant1.setMobilePhone("mobile");
     participant1.setPhone("phone");
     participant1.setPhoneOfParents("phone");
-    participant1.setPossibleAGE(true);
-    participant1.setPossibleBoard(true);
-    participant1.setPossibleExtendedBoard(true);
-    participant1.setPossibleKitchen(true);
-    participant1.setPossibleMAK(true);
-    participant1.setPossibleMisc(true);
-    participant1.setPossibleParticipant(true);
-    participant1.setPossibleSeminar(true);
-    participant1.setPossibleStaff(true);
-    participant1.setPossibleStaffYouth(true);
+    selectAllPossibilities(participant1);
     participant1.setCityPostal("city");
     participant1.setPostCodePostal(3124);
     participant1.setStreetPostal("street");
 
-    this.campParticipant2 = new CampParticipant(new Participant("Schmidt",
-                                                                "Hans",
-                                                                Gender.MALE,
-                                                                Denomination.NONE,
-                                                                new Date(1200),
-                                                                "Strasse 4",
-                                                                56789,
-                                                                "Stadt",
-                                                                CountyCouncil.CITY_NEUSTADT));
+    final Participant p2 = new Participant("Schmidt",
+                                           "Hans",
+                                           Gender.MALE,
+                                           Denomination.NONE,
+                                           new Date(1200),
+                                           "Strasse 4",
+                                           56789,
+                                           "Stadt",
+                                           CountyCouncil.CITY_NEUSTADT);
+    selectAllPossibilities(p2);
+    this.campParticipant2 = new CampParticipant(p2);
 
-    this.campParticipant3 = new CampParticipant(new Participant("Müller",
-                                                                "Jasmin",
-                                                                Gender.FEMALE,
-                                                                Denomination.CATHOLIC,
-                                                                new Date(6789543),
-                                                                "Mittelgasse 3",
-                                                                54321,
-                                                                "Schimmelhausen",
-                                                                CountyCouncil.CITY_ZWEIBRUECKEN));
+    final Participant p3 = new Participant("Müller",
+                                           "Jasmin",
+                                           Gender.FEMALE,
+                                           Denomination.CATHOLIC,
+                                           new Date(6789543),
+                                           "Mittelgasse 3",
+                                           54321,
+                                           "Schimmelhausen",
+                                           CountyCouncil.CITY_ZWEIBRUECKEN);
+    selectAllPossibilities(p3);
+    this.campParticipant3 = new CampParticipant(p3);
 
-    this.campParticipant4 = new CampParticipant(new Participant("Mauer",
-                                                                "Jaqueline",
-                                                                Gender.FEMALE,
-                                                                Denomination.JEWISH,
-                                                                new Date(1297579),
-                                                                "Hinterweg 12",
-                                                                99384,
-                                                                "Hilgen",
-                                                                CountyCouncil.UNKNOWN));
+    final Participant p4 = new Participant("Mauer",
+                                           "Jaqueline",
+                                           Gender.FEMALE,
+                                           Denomination.JEWISH,
+                                           new Date(1297579),
+                                           "Hinterweg 12",
+                                           99384,
+                                           "Hilgen",
+                                           CountyCouncil.UNKNOWN);
+    selectAllPossibilities(p4);
+    this.campParticipant4 = new CampParticipant(p4);
 
-    this.campParticipant5 = new CampParticipant(new Participant("Bauer",
-                                                                "Andreas",
-                                                                Gender.MALE,
-                                                                Denomination.EVANGELIC,
-                                                                new Date(9876543),
-                                                                "Julgenweg 76",
-                                                                21228,
-                                                                "Mildeningen",
-                                                                CountyCouncil.CITY_NEUSTADT));
+    final Participant p5 = new Participant("Bauer",
+                                           "Andreas",
+                                           Gender.MALE,
+                                           Denomination.EVANGELIC,
+                                           new Date(9876543),
+                                           "Julgenweg 76",
+                                           21228,
+                                           "Mildeningen",
+                                           CountyCouncil.CITY_NEUSTADT);
+    selectAllPossibilities(p5);
+    this.campParticipant5 = new CampParticipant(p5);
 
     this.campParticipant1 = new CampParticipant(participant1);
 
@@ -146,6 +145,19 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     window.target.setPreferredSize(new Dimension(800, 400));
     window.show();
     this.testView = window.panel("listView");
+  }
+
+  private void selectAllPossibilities(final Participant participant) {
+    participant.setPossibleAGE(true);
+    participant.setPossibleBoard(true);
+    participant.setPossibleExtendedBoard(true);
+    participant.setPossibleKitchen(true);
+    participant.setPossibleMAK(true);
+    participant.setPossibleMisc(true);
+    participant.setPossibleParticipant(true);
+    participant.setPossibleSeminar(true);
+    participant.setPossibleStaff(true);
+    participant.setPossibleStaffYouth(true);
   }
 
   @Override
@@ -246,16 +258,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     p2.setPossibleSeminar(false);
     p2.setPossibleStaff(true);
     p2.setPossibleStaffYouth(false);
-    p3.setPossibleAGE(true);
-    p3.setPossibleBoard(true);
-    p3.setPossibleExtendedBoard(true);
-    p3.setPossibleKitchen(true);
-    p3.setPossibleMAK(true);
-    p3.setPossibleMisc(true);
-    p3.setPossibleParticipant(true);
-    p3.setPossibleSeminar(true);
-    p3.setPossibleStaff(true);
-    p3.setPossibleStaffYouth(true);
+    selectAllPossibilities(p3);
 
     final CampParticipant cp1 = new CampParticipant(p1);
     final CampParticipant cp2 = new CampParticipant(p2);
@@ -348,6 +351,106 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     requireParticipant(this.testView.table(), 2, this.campParticipant3);
     requireParticipant(this.testView.table(), 3, this.campParticipant4);
     requireParticipant(this.testView.table(), 4, this.campParticipant5);
+  }
+
+  @Test
+  public final void testValueChanging() throws InterruptedException, InvocationTargetException {
+    final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
+    list.add(this.campParticipant1);
+    list.add(this.campParticipant2);
+    list.add(this.campParticipant3);
+    list.add(this.campParticipant4);
+    list.add(this.campParticipant5);
+    update(list);
+
+    this.testView.table().requireRowCount(5);
+    slct(this.testView.table(), 0, this.campParticipant1);
+    slct(this.testView.table(), 1, this.campParticipant2);
+    slct(this.testView.table(), 2, this.campParticipant3);
+    slct(this.testView.table(), 3, this.campParticipant4);
+    slct(this.testView.table(), 4, this.campParticipant5);
+
+    this.testView.table().tableHeader().clickColumn(1);
+    slct(this.testView.table(), 4, this.campParticipant1);
+    slct(this.testView.table(), 1, this.campParticipant2);
+    slct(this.testView.table(), 3, this.campParticipant3);
+    slct(this.testView.table(), 2, this.campParticipant4);
+    slct(this.testView.table(), 0, this.campParticipant5);
+
+    this.testView.table().click();
+    this.testView.table().tableHeader().clickColumn(1);
+    slct(this.testView.table(), 0, this.campParticipant1);
+    slct(this.testView.table(), 3, this.campParticipant2);
+    slct(this.testView.table(), 1, this.campParticipant3);
+    slct(this.testView.table(), 2, this.campParticipant4);
+    slct(this.testView.table(), 4, this.campParticipant5);
+  }
+
+  private void slct(final JTableFixture table, final int row, final CampParticipant cp) {
+    requireParticipant(table, row, cp);
+
+    table.enterValue(TableCell.row(row).column(3), Boolean.TRUE.toString());
+    assertThat(cp.isAGE()).isTrue();
+    table.enterValue(TableCell.row(row).column(4), Boolean.TRUE.toString());
+    assertThat(cp.isBoard()).isTrue();
+    table.enterValue(TableCell.row(row).column(5), Boolean.TRUE.toString());
+    assertThat(cp.isExtendedBoard()).isTrue();
+    table.enterValue(TableCell.row(row).column(6), Boolean.TRUE.toString());
+    assertThat(cp.isKitchen()).isTrue();
+    table.enterValue(TableCell.row(row).column(7), Boolean.TRUE.toString());
+    assertThat(cp.isMAK()).isTrue();
+    table.enterValue(TableCell.row(row).column(8), Boolean.TRUE.toString());
+    assertThat(cp.isMisc()).isTrue();
+    table.enterValue(TableCell.row(row).column(9), Boolean.TRUE.toString());
+    assertThat(cp.isParticipant()).isTrue();
+    table.enterValue(TableCell.row(row).column(10), Boolean.TRUE.toString());
+    assertThat(cp.isSeminar()).isTrue();
+    table.enterValue(TableCell.row(row).column(11), Boolean.TRUE.toString());
+    assertThat(cp.isStaff()).isTrue();
+    table.enterValue(TableCell.row(row).column(12), Boolean.TRUE.toString());
+    assertThat(cp.isStaffYouth()).isTrue();
+
+    table.enterValue(TableCell.row(row).column(3), Boolean.TRUE.toString());
+    assertThat(cp.isAGE()).isTrue();
+    table.enterValue(TableCell.row(row).column(4), Boolean.FALSE.toString());
+    assertThat(cp.isBoard()).isFalse();
+    table.enterValue(TableCell.row(row).column(5), Boolean.TRUE.toString());
+    assertThat(cp.isExtendedBoard()).isTrue();
+    table.enterValue(TableCell.row(row).column(6), Boolean.FALSE.toString());
+    assertThat(cp.isKitchen()).isFalse();
+    table.enterValue(TableCell.row(row).column(7), Boolean.TRUE.toString());
+    assertThat(cp.isMAK()).isTrue();
+    table.enterValue(TableCell.row(row).column(8), Boolean.FALSE.toString());
+    assertThat(cp.isMisc()).isFalse();
+    table.enterValue(TableCell.row(row).column(9), Boolean.TRUE.toString());
+    assertThat(cp.isParticipant()).isTrue();
+    table.enterValue(TableCell.row(row).column(10), Boolean.FALSE.toString());
+    assertThat(cp.isSeminar()).isFalse();
+    table.enterValue(TableCell.row(row).column(11), Boolean.TRUE.toString());
+    assertThat(cp.isStaff()).isTrue();
+    table.enterValue(TableCell.row(row).column(12), Boolean.FALSE.toString());
+    assertThat(cp.isStaffYouth()).isFalse();
+
+    table.enterValue(TableCell.row(row).column(3), Boolean.FALSE.toString());
+    assertThat(cp.isAGE()).isFalse();
+    table.enterValue(TableCell.row(row).column(4), Boolean.TRUE.toString());
+    assertThat(cp.isBoard()).isTrue();
+    table.enterValue(TableCell.row(row).column(5), Boolean.FALSE.toString());
+    assertThat(cp.isExtendedBoard()).isFalse();
+    table.enterValue(TableCell.row(row).column(6), Boolean.TRUE.toString());
+    assertThat(cp.isKitchen()).isTrue();
+    table.enterValue(TableCell.row(row).column(7), Boolean.FALSE.toString());
+    assertThat(cp.isMAK()).isFalse();
+    table.enterValue(TableCell.row(row).column(8), Boolean.TRUE.toString());
+    assertThat(cp.isMisc()).isTrue();
+    table.enterValue(TableCell.row(row).column(9), Boolean.FALSE.toString());
+    assertThat(cp.isParticipant()).isFalse();
+    table.enterValue(TableCell.row(row).column(10), Boolean.TRUE.toString());
+    assertThat(cp.isSeminar()).isTrue();
+    table.enterValue(TableCell.row(row).column(11), Boolean.FALSE.toString());
+    assertThat(cp.isStaff()).isFalse();
+    table.enterValue(TableCell.row(row).column(12), Boolean.TRUE.toString());
+    assertThat(cp.isStaffYouth()).isTrue();
   }
 
   @Test
