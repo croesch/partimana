@@ -305,7 +305,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     update(list);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
+    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
     assertNoActionPerformed();

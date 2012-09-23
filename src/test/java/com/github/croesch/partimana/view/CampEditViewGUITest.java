@@ -420,7 +420,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
                                                                             new CampParticipant(participant3)));
 
-    this.testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    this.testView.table("participants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
     requireParticipant(this.testView.table("participants"), 0, participant1);
     requireParticipant(this.testView.table("participants"), 1, participant2);
     requireParticipant(this.testView.table("participants"), 2, participant5);
@@ -431,7 +431,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                                                             new CampParticipant(participant3),
                                                                             new CampParticipant(participant4)));
 
-    this.testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    this.testView.table("participants").click(TableCell.row(2).column(1), MouseClickInfo.leftButton().times(2));
     requireParticipant(this.testView.table("participants"), 0, participant1);
     requireParticipant(this.testView.table("participants"), 1, participant2);
     requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));

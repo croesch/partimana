@@ -555,7 +555,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
-    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
@@ -580,23 +580,23 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
-    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
-    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
-    assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
+    assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
   }
 
   public static void requireParticipant(final JTableFixture table, final int row, final CampParticipant p) {
