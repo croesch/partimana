@@ -6,6 +6,7 @@ import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.ICampModel;
 import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.view.api.ICampEditView;
 import com.github.croesch.partimana.view.api.IStatusView;
 
@@ -60,7 +61,10 @@ final class CampSaver {
       }
 
       c.setRatePerDayChildren(editView.getRatePerDay());
-      // TODO add participants!
+      c.removeAllParticipants();
+      for (final CampParticipant cp : editView.getCampParticipants()) {
+        c.addParticipant(cp);
+      }
 
       editView.setCamp(c);
       model.store(c);
