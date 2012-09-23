@@ -60,7 +60,7 @@ final class CampSaver {
         c.setRatePerParticipant(editView.getRatePerParticipant());
       }
 
-      c.setRatePerDayChildren(editView.getRatePerDay());
+      c.setRatePerDayChildren(returnValueOrNullIfEmpty(editView.getRatePerDay()));
       c.removeAllParticipants();
       for (final CampParticipant cp : editView.getCampParticipants()) {
         c.addParticipant(cp);
