@@ -118,15 +118,15 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     requireCamp(this.testView.table(), 2, c3);
 
     this.testView.table().tableHeader().clickColumn(0);
-    requireCamp(this.testView.table(), 0, c1);
-    requireCamp(this.testView.table(), 1, c2);
-    requireCamp(this.testView.table(), 2, c3);
-
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(0);
     requireCamp(this.testView.table(), 0, c3);
     requireCamp(this.testView.table(), 1, c2);
     requireCamp(this.testView.table(), 2, c1);
+
+    this.testView.table().click();
+    this.testView.table().tableHeader().clickColumn(0);
+    requireCamp(this.testView.table(), 0, c1);
+    requireCamp(this.testView.table(), 1, c2);
+    requireCamp(this.testView.table(), 2, c3);
   }
 
   private void update(final ArrayList<Camp> list) throws InterruptedException, InvocationTargetException {
@@ -260,8 +260,8 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     update(list);
 
     this.testView.table().requireRowCount(5);
-    requireCamp(this.testView.table(), 1, this.camp1);
-    requireCamp(this.testView.table(), 0, this.camp2);
+    requireCamp(this.testView.table(), 0, this.camp1);
+    requireCamp(this.testView.table(), 1, this.camp2);
     requireCamp(this.testView.table(), 2, this.camp3);
     requireCamp(this.testView.table(), 3, this.camp4);
     requireCamp(this.testView.table(), 4, this.camp5);

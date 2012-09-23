@@ -237,15 +237,15 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table(), 2, p3);
 
     this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, p1);
-    requireParticipant(this.testView.table(), 1, p2);
-    requireParticipant(this.testView.table(), 2, p3);
-
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(0);
     requireParticipant(this.testView.table(), 0, p3);
     requireParticipant(this.testView.table(), 1, p2);
     requireParticipant(this.testView.table(), 2, p1);
+
+    this.testView.table().click();
+    this.testView.table().tableHeader().clickColumn(0);
+    requireParticipant(this.testView.table(), 0, p1);
+    requireParticipant(this.testView.table(), 1, p2);
+    requireParticipant(this.testView.table(), 2, p3);
   }
 
   @Test
@@ -370,8 +370,8 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     update(list);
 
     this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 1, this.participant1);
-    requireParticipant(this.testView.table(), 0, this.participant2);
+    requireParticipant(this.testView.table(), 0, this.participant1);
+    requireParticipant(this.testView.table(), 1, this.participant2);
     requireParticipant(this.testView.table(), 2, this.participant3);
     requireParticipant(this.testView.table(), 3, this.participant4);
     requireParticipant(this.testView.table(), 4, this.participant5);

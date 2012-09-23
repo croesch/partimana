@@ -76,6 +76,7 @@ public class DataTable extends JTable {
 
     final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(getModel());
     sorter.setComparator(0, new LongComparator());
+    sorter.toggleSortOrder(0);
     setRowSorter(sorter);
 
     addMouseListener(new TableMouseListener(o, action));

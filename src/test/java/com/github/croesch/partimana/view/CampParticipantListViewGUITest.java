@@ -276,15 +276,15 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     requireParticipant(this.testView.table(), 2, cp3);
 
     this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, cp1);
-    requireParticipant(this.testView.table(), 1, cp2);
-    requireParticipant(this.testView.table(), 2, cp3);
-
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(0);
     requireParticipant(this.testView.table(), 0, cp3);
     requireParticipant(this.testView.table(), 1, cp2);
     requireParticipant(this.testView.table(), 2, cp1);
+
+    this.testView.table().click();
+    this.testView.table().tableHeader().clickColumn(0);
+    requireParticipant(this.testView.table(), 0, cp1);
+    requireParticipant(this.testView.table(), 1, cp2);
+    requireParticipant(this.testView.table(), 2, cp3);
   }
 
   @Test
@@ -509,8 +509,8 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     update(list);
 
     this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 1, this.campParticipant1);
-    requireParticipant(this.testView.table(), 0, this.campParticipant2);
+    requireParticipant(this.testView.table(), 0, this.campParticipant1);
+    requireParticipant(this.testView.table(), 1, this.campParticipant2);
     requireParticipant(this.testView.table(), 2, this.campParticipant3);
     requireParticipant(this.testView.table(), 3, this.campParticipant4);
     requireParticipant(this.testView.table(), 4, this.campParticipant5);
