@@ -21,7 +21,7 @@ public enum CountyCouncil {
   COUNTY_BAD_KREUZNACH (Text.COUNTY_BAD_KREUZNACH),
 
   /** county of bad duerkheim */
-  COUNTY_BAD_DUERKHEIM (Text.COUNTY_BAD_KREUZNACH),
+  COUNTY_BAD_DUERKHEIM (Text.COUNTY_BAD_DUERKHEIM),
 
   /** city of frankenthal */
   CITY_FRANKENTHAL (Text.CITY_FRANKENTHAL),
