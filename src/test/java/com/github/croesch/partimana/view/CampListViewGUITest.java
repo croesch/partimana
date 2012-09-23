@@ -350,9 +350,13 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
   }
 
-  private final void requireCamp(final JTableFixture table, final int row, final Camp c) {
-    this.testView.table().requireCellValue(TableCell.row(row).column(0), String.valueOf(c.getId()));
-    this.testView.table().requireCellValue(TableCell.row(row).column(1), c.getLocation());
-    this.testView.table().requireCellValue(TableCell.row(row).column(2), c.getName());
+  public static void requireCamp(final JTableFixture table, final int row, final Camp c) {
+    table.requireCellValue(TableCell.row(row).column(0), String.valueOf(c.getId()));
+    requireCamp(table, row, c.getName(), c.getLocation());
+  }
+
+  public static void requireCamp(final JTableFixture table, final int row, final String name, final String location) {
+    table.requireCellValue(TableCell.row(row).column(1), location);
+    table.requireCellValue(TableCell.row(row).column(2), name);
   }
 }

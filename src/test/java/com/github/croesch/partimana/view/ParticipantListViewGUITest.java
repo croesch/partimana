@@ -471,7 +471,11 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
 
   public static void requireParticipant(final JTableFixture table, final int row, final Participant p) {
     table.requireCellValue(TableCell.row(row).column(0), String.valueOf(p.getId()));
-    table.requireCellValue(TableCell.row(row).column(1), p.getForeName());
-    table.requireCellValue(TableCell.row(row).column(2), p.getLastName());
+    requireParticipant(table, row, p.getForeName(), p.getLastName());
+  }
+
+  public static void requireParticipant(final JTableFixture table, final int row, final String fName, final String lName) {
+    table.requireCellValue(TableCell.row(row).column(1), fName);
+    table.requireCellValue(TableCell.row(row).column(2), lName);
   }
 }

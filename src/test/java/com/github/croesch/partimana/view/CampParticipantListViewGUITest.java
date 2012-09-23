@@ -601,8 +601,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
 
   public static void requireParticipant(final JTableFixture table, final int row, final CampParticipant p) {
     table.requireCellValue(TableCell.row(row).column(0), String.valueOf(p.getId()));
-    table.requireCellValue(TableCell.row(row).column(1), p.getForeName());
-    table.requireCellValue(TableCell.row(row).column(2), p.getLastName());
+    requireParticipant(table, row, p.getForeName(), p.getLastName());
     table.requireCellValue(TableCell.row(row).column(3), String.valueOf(p.isAGE()));
     table.requireCellValue(TableCell.row(row).column(4), String.valueOf(p.isBoard()));
     table.requireCellValue(TableCell.row(row).column(5), String.valueOf(p.isExtendedBoard()));
@@ -624,6 +623,11 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     requireEditable(table, row, 10, p.isPossibleSeminar());
     requireEditable(table, row, 11, p.isPossibleStaff());
     requireEditable(table, row, 12, p.isPossibleStaffYouth());
+  }
+
+  public static void requireParticipant(final JTableFixture table, final int row, final String fName, final String lName) {
+    table.requireCellValue(TableCell.row(row).column(1), fName);
+    table.requireCellValue(TableCell.row(row).column(2), lName);
   }
 
   private static void requireEditable(final JTableFixture table, final int row, final int column, final boolean editable) {
