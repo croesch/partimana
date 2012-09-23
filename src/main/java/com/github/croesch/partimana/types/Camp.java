@@ -1,7 +1,9 @@
 package com.github.croesch.partimana.types;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import com.github.croesch.annotate.MayBeNull;
@@ -366,7 +368,7 @@ public final class Camp {
     }
 
     final Camp other = (Camp) obj;
-    if (!this.from.equals(other.from)) {
+    if (!areDatesEqual(this.from, other.from)) {
       return false;
     }
     if (this.id != other.id) {
@@ -388,7 +390,49 @@ public final class Camp {
     if (!this.ratePerParticipant.equals(other.ratePerParticipant)) {
       return false;
     }
-    if (!this.until.equals(other.until)) {
+    if (!areDatesEqual(this.until, other.until)) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns whether two dates are equal, ignoring the time.
+   * 
+   * @since Date: Jul 10, 2011
+   * @param one the date one to compare
+   * @param two the date two to compare
+   * @return <code>true</code>, if the dates are equal.
+   */
+  private boolean areDatesEqual(final Date one, final Date two) {
+    if (one == null) {
+      if (two != null) {
+        return false;
+      }
+      return true;
+    }
+    if (two == null) {
+      return false;
+    }
+
+    if (one.equals(two)) {
+      return true;
+    }
+    final Calendar cal1 = new GregorianCalendar();
+    cal1.setTime(one);
+
+    final Calendar cal2 = new GregorianCalendar();
+    cal2.setTime(two);
+
+    if (cal1.get(Calendar.DAY_OF_MONTH) != cal2.get(Calendar.DAY_OF_MONTH)) {
+      return false;
+    }
+
+    if (cal1.get(Calendar.MONTH) != cal2.get(Calendar.MONTH)) {
+      return false;
+    }
+
+    if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR)) {
       return false;
     }
     return true;

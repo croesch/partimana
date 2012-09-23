@@ -42,6 +42,19 @@ final class Action extends AbstractAction {
   @NotNull
   private static Action deleteParticipantAction = new Action(UserAction.DELETE_PARTICIPANT, Text.PARTICIPANT_DELETE);
 
+  /** action to save something */
+
+  @NotNull
+  private static Action saveCampAction = new Action(UserAction.SAVE_CAMP, Text.SAVE);
+
+  /** action to create a new camp */
+  @NotNull
+  private static Action createCampAction = new Action(UserAction.CREATE_CAMP, Text.CAMP_NEW);
+
+  /** action to delete a camp */
+  @NotNull
+  private static Action deleteCampAction = new Action(UserAction.DELETE_CAMP, Text.CAMP_DELETE);
+
   /** the action to pass to the observer */
   @NotNull
   private final UserAction action;
@@ -124,5 +137,41 @@ final class Action extends AbstractAction {
   @NotNull
   static Action getDeleteParticipantAction() {
     return deleteParticipantAction;
+  }
+
+  /**
+   * Returns the action to save a camp.
+   * 
+   * @author croesch
+   * @since Date: Sep 23, 2012
+   * @return the {@link Action} to save a camp
+   */
+  @NotNull
+  static Action getSaveCampAction() {
+    return saveCampAction;
+  }
+
+  /**
+   * Returns the action to create a camp.
+   * 
+   * @author croesch
+   * @since Date: Sep 23, 2012
+   * @return the {@link Action} to create a camp
+   */
+  @NotNull
+  static Action getCreateCampAction() {
+    return createCampAction;
+  }
+
+  /**
+   * Returns the action to delete a camp.
+   * 
+   * @author croesch
+   * @since Date: Sep 23, 2012
+   * @return the {@link Action} to delete a camp
+   */
+  @NotNull
+  static Action getDeleteCampAction() {
+    return deleteCampAction;
   }
 }

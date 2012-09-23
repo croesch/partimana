@@ -114,6 +114,7 @@
 	
 	<!-- Informationen -->
 	<entry key="11010">Teilnehmer #{0} erfolgreich gespeichert.</entry>
+	<entry key="11011">Freizeit #{0} erfolgreich gespeichert.</entry>
 
 	<!-- Warnungen -->	
 	<entry key="12000">Unbekannte Aktion: '{0}'</entry>
@@ -121,4 +122,5 @@
 	<!-- Fehler -->
 	<entry key="13000">Exception aufgetreten: '{0}'</entry>
 	<entry key="13010">Teilnehmer konnte nicht gespeichert werden ...</entry>
+	<entry key="13011">Freizeit konnte nicht gespeichert werden ...</entry>
 </properties> 

@@ -41,6 +41,26 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
   }
 
   @Test
+  public void testSaveCamp() {
+    final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
+
+    performActionInEDT(UserAction.SAVE_CAMP);
+
+    frame.label("statusTxt").requireText(Text.ERROR_CAMP_NOT_SAVED.text());
+    frame.close();
+  }
+
+  @Test
+  public void testDeleteCamp() {
+    final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
+
+    performActionInEDT(UserAction.DELETE_CAMP);
+    // TODO ...
+
+    frame.close();
+  }
+
+  @Test
   public void testSaveParticipant() {
     final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
 

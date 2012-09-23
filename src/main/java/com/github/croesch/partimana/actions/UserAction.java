@@ -21,6 +21,12 @@ public enum UserAction {
   /** the action that notifies about a selection change of camp participants */
   CAMP_PARTICIPANT_SELECTED,
   /** the action that notifies about a selection change of camps */
-  CAMP_SELECTED;
+  CAMP_SELECTED,
+  /** the action to save a camp */
+  SAVE_CAMP,
+  /** the action to delete a camp */
+  DELETE_CAMP,
+  /** the action to create a camp */
+  CREATE_CAMP;
 
 }

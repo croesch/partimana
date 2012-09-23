@@ -68,6 +68,14 @@ public final class Controller implements ActionObserver {
         this.model.deleteParticipant(this.view.getParticipantListView().getSelectedParticipantId());
         break;
 
+      case SAVE_CAMP:
+        CampSaver.performSave(this.model, this.view.getCampEditView(), this.view);
+        break;
+
+      case DELETE_CAMP:
+        this.model.deleteCamp(this.view.getCampListView().getSelectedCampId());
+        break;
+
       default:
         LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
         break;

@@ -114,6 +114,11 @@ public enum Text {
   /** the name for heading possible functions of the participant */
   PARTICIPANT_FUNCTIONS (133),
 
+  /** the name for entry create new camp */
+  CAMP_NEW (31),
+  /** the name for entry delete selected camp */
+  CAMP_DELETE (32),
+
   /** the name for camp */
   CAMP (200),
   /** the name for the id of the camp */
@@ -214,6 +219,8 @@ public enum Text {
 
   /** information that participant has been saved */
   INFO_PARTICIPANT_SAVED (11010),
+  /** information that camp has been saved */
+  INFO_CAMP_SAVED (11011),
 
   /** warning for an unknown action */
   WARN_UNKNOWN_ACTION (12000),
@@ -221,7 +228,9 @@ public enum Text {
   /** error - an exception */
   ERROR_EXCEPTION (13000),
   /** error when participant cannot be saved */
-  ERROR_PARTICIPANT_NOT_SAVED (13010);
+  ERROR_PARTICIPANT_NOT_SAVED (13010),
+  /** error when camp cannot be saved */
+  ERROR_CAMP_NOT_SAVED (13011);
 
   /** the value of this instance */
   @NotNull

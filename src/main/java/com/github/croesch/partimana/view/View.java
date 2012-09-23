@@ -18,6 +18,8 @@ import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IModel4View;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import com.github.croesch.partimana.view.api.ICampEditView;
+import com.github.croesch.partimana.view.api.ICampListView;
 import com.github.croesch.partimana.view.api.ICampView;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
 import com.github.croesch.partimana.view.api.IParticipantListView;
@@ -53,6 +55,10 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   @NotNull
   private final IParticipantView participantView;
 
+  /** the part of the view that is responsible for viewing the camps */
+  @NotNull
+  private final ICampView campView;
+
   /** the part of the view that is responsible for viewing the status */
   @NotNull
   private final IStatusView statusView;
@@ -82,7 +88,9 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
     setLayout(new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
 
     final ParticipantView pv = new ParticipantView(this.model);
+    final CampView cv = new CampView(this.model);
     this.participantView = pv;
+    this.campView = cv;
     add(pv, "top");
 
     final JPanel buttonPanel = new JPanel();
@@ -139,11 +147,17 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
 
       case SAVE_PARTICIPANT:
       case DELETE_PARTICIPANT:
+      case SAVE_CAMP:
+      case DELETE_CAMP:
         this.observer.performAction(action);
         break;
 
       case CREATE_PARTICIPANT:
         createParticipant();
+        break;
+
+      case CREATE_CAMP:
+        createCamp();
         break;
 
       default:
@@ -161,5 +175,20 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   @Override
   public void createParticipant() {
     this.participantView.createParticipant();
+  }
+
+  @Override
+  public ICampEditView getCampEditView() {
+    return this.campView.getCampEditView();
+  }
+
+  @Override
+  public ICampListView getCampListView() {
+    return this.campView.getCampListView();
+  }
+
+  @Override
+  public void createCamp() {
+    this.campView.createCamp();
   }
 }
