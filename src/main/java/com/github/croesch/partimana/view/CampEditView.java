@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.view;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -17,6 +18,7 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.view.api.ICampEditView;
 
@@ -59,9 +61,15 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
   @NotNull
   private final JLabel idValueLbl = new JLabel("12345");
 
+  @NotNull
+  private final List<CampParticipant> campParticipants = new ArrayList<CampParticipant>();
+
   /** the list of all possible participants for this camp */
   @NotNull
   private final ParticipantListView participantList = new ParticipantListView(this);
+
+  @NotNull
+  private final CampParticipantListView campParticipantList = new CampParticipantListView(this);
 
   /**
    * Initializes the panel to edit a {@link Camp}.
@@ -126,6 +134,7 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
     add(this.ratePerDayTf, "cell 3 3");
 
     add(this.participantList, "cell 0 4, span 2, grow");
+    add(this.campParticipantList, "cell 2 4, span 2, grow");
   }
 
   /**
@@ -155,6 +164,7 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
     this.untilTf.setText(null);
     this.ratePerDayTf.setText(null);
     this.ratePerParticipantTf.setText(null);
+    setCampParticipants(null);
   }
 
   @Override
@@ -171,7 +181,18 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
       this.untilTf.setDateAndDisplay(camp.getUntilDate());
       this.ratePerDayTf.setText(camp.getRatePerDayChildren());
       this.ratePerParticipantTf.setText(camp.getRatePerParticipant());
+      setCampParticipants(camp.getParticipants());
     }
+  }
+
+  private void setCampParticipants(final List<CampParticipant> cp) {
+    this.campParticipants.clear();
+    if (cp != null) {
+      for (final CampParticipant part : cp) {
+        this.campParticipants.add(part);
+      }
+    }
+    this.campParticipantList.update(this.campParticipants);
   }
 
   @Override
@@ -226,5 +247,10 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
   public void update(final List<Participant> participants) {
     // TODO filter, which are already part of CampParticipant (or whereever to do that)
     this.participantList.update(participants);
+  }
+
+  @Override
+  public List<CampParticipant> getCampParticipants() {
+    return this.campParticipants;
   }
 }

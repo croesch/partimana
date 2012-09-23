@@ -318,7 +318,7 @@ public class CampTest {
     this.camp.getParticipants().add(new CampParticipant(participant));
     assertThat(this.camp.getParticipants()).isEmpty();
 
-    this.camp.addParticipant(participant);
+    this.camp.addParticipant(new CampParticipant(participant));
     assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant));
   }
 
@@ -343,17 +343,17 @@ public class CampTest {
                                                      "Musterhausen",
                                                      CountyCouncil.OTHER);
 
-    this.camp.addParticipant(participant2);
+    this.camp.addParticipant(new CampParticipant(participant2));
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2));
 
-    this.camp.addParticipant(participant);
+    this.camp.addParticipant(new CampParticipant(participant));
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2),
                                                          new CampParticipant(participant));
 
     participant.setBank("blub");
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2),
                                                          new CampParticipant(participant));
-    this.camp.removeParticipant(participant2);
+    this.camp.removeParticipant(new CampParticipant(participant2));
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant));
 
     this.camp.addParticipant(null);
@@ -362,10 +362,10 @@ public class CampTest {
     this.camp.removeParticipant(null);
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant));
 
-    this.camp.removeParticipant(participant2);
+    this.camp.removeParticipant(new CampParticipant(participant2));
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant));
 
-    this.camp.removeParticipant(participant);
+    this.camp.removeParticipant(new CampParticipant(participant));
     assertThat(this.camp.getParticipants()).isEmpty();
   }
 }

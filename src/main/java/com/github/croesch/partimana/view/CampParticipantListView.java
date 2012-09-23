@@ -48,6 +48,7 @@ class CampParticipantListView extends JPanel implements ICampParticipantListView
     setLayout(new MigLayout("fill"));
 
     this.table = new DataTable(o, UserAction.PARTICIPANT_SELECTED, this.tableModel);
+    this.table.setName("campParticipants");
 
     add(new JScrollPane(this.table), "grow");
   }

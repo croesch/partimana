@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.types.Participant;
 
 /**
@@ -101,4 +102,6 @@ public interface ICampEditView {
    * @param participants the list of participants that is up to date.
    */
   void update(List<Participant> participants);
+
+  List<CampParticipant> getCampParticipants();
 }

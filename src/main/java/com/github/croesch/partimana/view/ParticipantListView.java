@@ -44,6 +44,7 @@ class ParticipantListView extends JPanel implements IParticipantListView {
                                                      Text.PARTICIPANT_FORENAME.text(),
                                                      Text.PARTICIPANT_LASTNAME.text() };
     this.table = new DataTable(o, columnIdentifiers, UserAction.PARTICIPANT_SELECTED);
+    this.table.setName("participants");
 
     add(new JScrollPane(this.table), "grow");
   }

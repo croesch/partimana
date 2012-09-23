@@ -2,9 +2,7 @@ package com.github.croesch.partimana.types;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
@@ -50,7 +48,7 @@ public final class Camp {
 
   /** the participants of this camp */
   @NotNull
-  private final Map<Long, CampParticipant> participants = new HashMap<Long, CampParticipant>();
+  private final List<CampParticipant> participants = new ArrayList<CampParticipant>();
 
   /**
    * Constructs a new {@link Camp} with the given parameters.
@@ -290,30 +288,30 @@ public final class Camp {
    */
   @NotNull
   public List<CampParticipant> getParticipants() {
-    return new ArrayList<CampParticipant>(this.participants.values());
+    return new ArrayList<CampParticipant>(this.participants);
   }
 
   /**
-   * Adds the given {@link Participant} to this camp.
+   * Adds the given {@link CampParticipant} to this camp.
    * 
    * @since Date: Sep 16, 2012
-   * @param participant the {@link Participant} to add to this camp.
+   * @param participant the {@link CampParticipant} to add to this camp.
    */
-  public void addParticipant(final Participant participant) {
+  public void addParticipant(final CampParticipant participant) {
     if (participant != null) {
-      this.participants.put(participant.getId(), new CampParticipant(participant));
+      this.participants.add(participant);
     }
   }
 
   /**
-   * Removes the given {@link Participant} from this camp.
+   * Removes the given {@link CampParticipant} from this camp.
    * 
    * @since Date: Sep 16, 2012
-   * @param participant the {@link Participant} to remove from this camp.
+   * @param participant the {@link CampParticipant} to remove from this camp.
    */
-  public void removeParticipant(final Participant participant) {
+  public void removeParticipant(final CampParticipant participant) {
     if (participant != null) {
-      this.participants.remove(participant.getId());
+      this.participants.remove(participant);
     }
   }
 
