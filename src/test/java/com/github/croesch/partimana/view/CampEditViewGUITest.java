@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.fest.swing.core.MouseClickInfo;
+import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -313,6 +315,133 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table("participants"), 2, participant3);
     requireParticipant(this.testView.table("participants"), 3, participant4);
     requireParticipant(this.testView.table("participants"), 4, participant5);
+  }
+
+  @Test
+  public final void testParticipantAdding() {
+
+    final Participant participant1 = new Participant("Mustermann",
+                                                     "Max",
+                                                     Gender.MALE,
+                                                     Denomination.OTHER,
+                                                     new Date(),
+                                                     "Musterstrasse 12",
+                                                     12345,
+                                                     "Musterhausen",
+                                                     CountyCouncil.OTHER);
+
+    final Date d1 = new Date(123);
+
+    participant1.setBank("bank");
+    participant1.setBankAccountNumber(1);
+    participant1.setBankCodeNumber(12);
+    participant1.setComment("comment");
+    participant1.setDateSinceInDataBase(d1);
+    participant1.setDateUpToInSystem(d1);
+    participant1.setDenomination(Denomination.JEWISH);
+    participant1.setFax("fax");
+    participant1.setMailAddress("mail");
+    participant1.setMobilePhone("mobile");
+    participant1.setPhone("phone");
+    participant1.setPhoneOfParents("phone");
+    participant1.setPossibleAGE(true);
+    participant1.setPossibleBoard(true);
+    participant1.setPossibleExtendedBoard(true);
+    participant1.setPossibleKitchen(true);
+    participant1.setPossibleMAK(true);
+    participant1.setPossibleMisc(true);
+    participant1.setPossibleParticipant(true);
+    participant1.setPossibleSeminar(true);
+    participant1.setPossibleStaff(true);
+    participant1.setPossibleStaffYouth(true);
+    participant1.setCityPostal("city");
+    participant1.setPostCodePostal(3124);
+    participant1.setStreetPostal("street");
+
+    final Participant participant2 = new Participant("Schmidt",
+                                                     "Hans",
+                                                     Gender.MALE,
+                                                     Denomination.NONE,
+                                                     new Date(1200),
+                                                     "Strasse 4",
+                                                     56789,
+                                                     "Stadt",
+                                                     CountyCouncil.CITY_NEUSTADT);
+
+    final Participant participant3 = new Participant("Müller",
+                                                     "Jasmin",
+                                                     Gender.FEMALE,
+                                                     Denomination.CATHOLIC,
+                                                     new Date(6789543),
+                                                     "Mittelgasse 3",
+                                                     54321,
+                                                     "Schimmelhausen",
+                                                     CountyCouncil.CITY_ZWEIBRUECKEN);
+
+    final Participant participant4 = new Participant("Mauer",
+                                                     "Jaqueline",
+                                                     Gender.FEMALE,
+                                                     Denomination.JEWISH,
+                                                     new Date(1297579),
+                                                     "Hinterweg 12",
+                                                     99384,
+                                                     "Hilgen",
+                                                     CountyCouncil.UNKNOWN);
+
+    final Participant participant5 = new Participant("Bauer",
+                                                     "Andreas",
+                                                     Gender.MALE,
+                                                     Denomination.EVANGELIC,
+                                                     new Date(9876543),
+                                                     "Julgenweg 76",
+                                                     21228,
+                                                     "Mildeningen",
+                                                     CountyCouncil.CITY_NEUSTADT);
+
+    final List<Participant> participants = Arrays.asList(participant1, participant2, participant3, participant4,
+                                                         participant5);
+    update(participants);
+
+    requireParticipant(this.testView.table("participants"), 0, participant1);
+    requireParticipant(this.testView.table("participants"), 1, participant2);
+    requireParticipant(this.testView.table("participants"), 2, participant3);
+    requireParticipant(this.testView.table("participants"), 3, participant4);
+    requireParticipant(this.testView.table("participants"), 4, participant5);
+    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
+    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant)));
+
+    this.testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    requireParticipant(this.testView.table("participants"), 0, participant1);
+    requireParticipant(this.testView.table("participants"), 1, participant2);
+    requireParticipant(this.testView.table("participants"), 2, participant4);
+    requireParticipant(this.testView.table("participants"), 3, participant5);
+    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
+    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
+    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
+                                                                            new CampParticipant(participant3)));
+
+    this.testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    requireParticipant(this.testView.table("participants"), 0, participant1);
+    requireParticipant(this.testView.table("participants"), 1, participant2);
+    requireParticipant(this.testView.table("participants"), 2, participant5);
+    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
+    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
+    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant4));
+    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
+                                                                            new CampParticipant(participant3),
+                                                                            new CampParticipant(participant4)));
+
+    this.testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    requireParticipant(this.testView.table("participants"), 0, participant1);
+    requireParticipant(this.testView.table("participants"), 1, participant2);
+    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
+    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
+    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant4));
+    requireParticipant(this.testView.table("campParticipants"), 3, new CampParticipant(participant5));
+    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
+                                                                            new CampParticipant(participant3),
+                                                                            new CampParticipant(participant4),
+                                                                            new CampParticipant(participant5)));
   }
 
   @Test

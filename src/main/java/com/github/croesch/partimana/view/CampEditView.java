@@ -61,13 +61,19 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
   @NotNull
   private final JLabel idValueLbl = new JLabel("12345");
 
+  /** reference to the list of {@link CampParticipant}s viewed by the {@link CampParticipantListView} */
   @NotNull
   private final List<CampParticipant> campParticipants = new ArrayList<CampParticipant>();
+
+  /** reference to the list of {@link Participant}s viewed by the {@link ParticipantListView} */
+  @NotNull
+  private final List<Participant> participants = new ArrayList<Participant>();
 
   /** the list of all possible participants for this camp */
   @NotNull
   private final ParticipantListView participantList = new ParticipantListView(this);
 
+  /** the list of all participants for this camp */
   @NotNull
   private final CampParticipantListView campParticipantList = new CampParticipantListView(this);
 
@@ -185,6 +191,12 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
     }
   }
 
+  /**
+   * Sets the given list of {@link CampParticipant}s.
+   * 
+   * @since Date: Sep 23, 2012
+   * @param cp the list of {@link CampParticipant}s to visualize.
+   */
   private void setCampParticipants(final List<CampParticipant> cp) {
     this.campParticipants.clear();
     if (cp != null) {
@@ -238,15 +250,25 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
 
   @Override
   public void performAction(final UserAction action) {
-    if (action == UserAction.CAMP_SELECTED) {
-      // TODO remove part. and add it to other view
+    if (action == UserAction.PARTICIPANT_SELECTED) {
+      final long id = this.participantList.getSelectedParticipantId();
+      for (final Participant p : this.participants) {
+        if (p.getId() == id) {
+          this.participants.remove(p);
+          this.campParticipants.add(new CampParticipant(p));
+          this.participantList.update(this.participants);
+          this.campParticipantList.update(this.campParticipants);
+          break;
+        }
+      }
     }
   }
 
   @Override
-  public void update(final List<Participant> participants) {
-    // TODO filter, which are already part of CampParticipant (or whereever to do that)
-    this.participantList.update(participants);
+  public void update(final List<Participant> p) {
+    this.participants.clear();
+    this.participants.addAll(p);
+    this.participantList.update(p);
   }
 
   @Override

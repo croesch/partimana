@@ -18,6 +18,8 @@ public enum UserAction {
   CREATE_PARTICIPANT,
   /** the action that notifies about a selection change of participants */
   PARTICIPANT_SELECTED,
+  /** the action that notifies about a selection change of camp participants */
+  CAMP_PARTICIPANT_SELECTED,
   /** the action that notifies about a selection change of camps */
   CAMP_SELECTED;
 
