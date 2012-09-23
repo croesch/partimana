@@ -46,6 +46,7 @@ class CampListView extends JPanel implements ICampListView {
                                                      Text.CAMP_LOCATION.text(),
                                                      Text.CAMP_NAME.text() };
     this.table = new DataTable(o, columnIdentifiers, UserAction.CAMP_SELECTED);
+    this.table.setName("camps");
 
     add(new JScrollPane(this.table), "grow");
   }

@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -7,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -85,22 +87,44 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
     // TODO change the default size of the view.
     setSize(new Dimension(1200, 650));
     setTitle(Text.PARTIMANA.text());
-    setLayout(new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
+    setLayout(new BorderLayout());
+
+    final JTabbedPane pane = new JTabbedPane();
+    final JPanel partPanel = new JPanel(new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
 
     final ParticipantView pv = new ParticipantView(this.model);
-    final CampView cv = new CampView(this.model);
     this.participantView = pv;
-    this.campView = cv;
-    add(pv, "top");
+    partPanel.add(pv, "top");
 
-    final JPanel buttonPanel = new JPanel();
-    buttonPanel.setLayout(new MigLayout("fill, ins 0 n 0 n", "[grow][]", "[]"));
-    buttonPanel.add(new JButton(Action.getSaveParticipantAction()), "cell 1 0");
-    add(buttonPanel);
+    final JPanel partButtonPanel = new JPanel();
+    partButtonPanel.setLayout(new MigLayout("fill, ins 0 n 0 n", "[grow][]", "[]"));
+    final JButton partSaveButton = new JButton(Action.getSaveParticipantAction());
+    partSaveButton.setName("saveParticipant");
+    partButtonPanel.add(partSaveButton, "cell 1 0");
+    partPanel.add(partButtonPanel);
+
+    pane.addTab(Text.PARTICIPANT.text(), partPanel);
+
+    final CampView cv = new CampView(this.model);
+    this.campView = cv;
+
+    final JPanel campPanel = new JPanel(new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
+    campPanel.add(cv, "top");
+
+    final JPanel campButtonPanel = new JPanel();
+    campButtonPanel.setLayout(new MigLayout("fill, ins 0 n 0 n", "[grow][]", "[]"));
+    final JButton campSaveButton = new JButton(Action.getSaveCampAction());
+    campSaveButton.setName("saveCamp");
+    campButtonPanel.add(campSaveButton, "cell 1 0");
+    campPanel.add(campButtonPanel);
+
+    pane.addTab(Text.CAMP.text(), campPanel);
+
+    add(pane);
 
     final StatusView sv = new StatusView();
     this.statusView = sv;
-    add(sv, "dock south");
+    add(sv, BorderLayout.SOUTH);
 
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     addWindowListener(new WindowAdapter() {
@@ -170,6 +194,8 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
   @Override
   public void update() {
     getParticipantListView().update(this.model.getListOfParticipants());
+    getCampEditView().update(this.model.getListOfParticipants());
+    getCampListView().update(this.model.getListOfCamps());
   }
 
   @Override
