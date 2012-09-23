@@ -103,5 +103,11 @@ public interface ICampEditView {
    */
   void update(List<Participant> participants);
 
+  /**
+   * Returns the participants the user has added to this camp.
+   * 
+   * @since Date: Sep 23, 2012
+   * @return the {@link List} of {@link CampParticipant}s the user added to this {@link Camp}.
+   */
   List<CampParticipant> getCampParticipants();
 }
