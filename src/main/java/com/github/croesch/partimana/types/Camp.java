@@ -123,6 +123,7 @@ public final class Camp {
     this.ratePerDayChildren = c.ratePerDayChildren;
     this.ratePerParticipant = c.ratePerParticipant;
     this.until = c.until;
+    this.participants.addAll(c.participants);
   }
 
   /**
@@ -317,6 +318,15 @@ public final class Camp {
     }
   }
 
+  /**
+   * Removes all {@link CampParticipant}s from this camp.
+   * 
+   * @since Date: Sep 24, 2012
+   */
+  public void removeAllParticipants() {
+    this.participants.clear();
+  }
+
   @Override
   @NotNull
   public String toString() {
@@ -378,6 +388,9 @@ public final class Camp {
       return false;
     }
     if (!this.name.equals(other.name)) {
+      return false;
+    }
+    if (!this.participants.equals(other.participants)) {
       return false;
     }
     if (this.ratePerDayChildren == null) {

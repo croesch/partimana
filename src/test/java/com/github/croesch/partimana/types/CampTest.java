@@ -193,9 +193,24 @@ public class CampTest {
 
   @Test
   public final void testCampCamp() {
+    final Participant p = new Participant("Mustermann",
+                                          "Max",
+                                          Gender.MALE,
+                                          Denomination.OTHER,
+                                          new Date(),
+                                          "Musterstrasse 12",
+                                          98667,
+                                          "Musterhausen",
+                                          CountyCouncil.OTHER);
+
+    this.camp.addParticipant(new CampParticipant(p));
     this.camp.setRatePerDayChildren("children-rate");
 
     final Camp c = new Camp(this.camp);
+    assertThat(c).isEqualTo(this.camp);
+    this.camp.removeAllParticipants();
+    assertThat(c).isNotEqualTo(this.camp);
+    this.camp.addParticipant(new CampParticipant(p));
     assertThat(c).isEqualTo(this.camp);
 
     c.setRatePerDayChildren("day-children-rate");
@@ -214,7 +229,7 @@ public class CampTest {
     assertThat(c).isNotEqualTo(null);
     assertThat(c).isNotEqualTo("this.camp");
 
-    c.setFromDate(new Date(987));
+    c.setFromDate(new Date(1444234567987l));
     assertThat(c).isNotEqualTo(this.camp);
 
     c = new Camp(c.getId() + 10,
@@ -248,7 +263,7 @@ public class CampTest {
     c.setRatePerParticipant(this.camp.getRatePerParticipant());
 
     assertThat(c).isEqualTo(this.camp);
-    c.setUntilDate(new Date(987));
+    c.setUntilDate(new Date(1444234567987l));
     assertThat(c).isNotEqualTo(this.camp);
 
   }
@@ -366,6 +381,15 @@ public class CampTest {
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant));
 
     this.camp.removeParticipant(new CampParticipant(participant));
+    assertThat(this.camp.getParticipants()).isEmpty();
+
+    this.camp.addParticipant(new CampParticipant(participant2));
+    this.camp.addParticipant(new CampParticipant(participant));
+    assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2),
+                                                         new CampParticipant(participant));
+    this.camp.removeAllParticipants();
+    assertThat(this.camp.getParticipants()).isEmpty();
+    this.camp.removeAllParticipants();
     assertThat(this.camp.getParticipants()).isEmpty();
   }
 }
