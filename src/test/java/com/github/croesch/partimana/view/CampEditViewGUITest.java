@@ -442,6 +442,15 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                                                             new CampParticipant(participant3),
                                                                             new CampParticipant(participant4),
                                                                             new CampParticipant(participant5)));
+
+    clear();
+    requireParticipant(this.testView.table("participants"), 0, participant1);
+    requireParticipant(this.testView.table("participants"), 1, participant2);
+    requireParticipant(this.testView.table("participants"), 2, participant3);
+    requireParticipant(this.testView.table("participants"), 3, participant4);
+    requireParticipant(this.testView.table("participants"), 4, participant5);
+    assertThat(this.editView.getCampParticipants()).isEmpty();
+    this.testView.table("campParticipants").requireRowCount(0);
   }
 
   @Test

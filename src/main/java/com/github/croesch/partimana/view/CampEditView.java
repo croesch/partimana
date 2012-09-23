@@ -69,6 +69,10 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
   @NotNull
   private final List<Participant> participants = new ArrayList<Participant>();
 
+  /** reference to the list of all {@link Participant}s available */
+  @NotNull
+  private List<Participant> allParticipants = new ArrayList<Participant>();
+
   /** the list of all possible participants for this camp */
   @NotNull
   private final ParticipantListView participantList = new ParticipantListView(this);
@@ -171,6 +175,7 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
     this.ratePerDayTf.setText(null);
     this.ratePerParticipantTf.setText(null);
     setCampParticipants(null);
+    update(this.allParticipants);
   }
 
   @Override
@@ -188,6 +193,7 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
       this.ratePerDayTf.setText(camp.getRatePerDayChildren());
       this.ratePerParticipantTf.setText(camp.getRatePerParticipant());
       setCampParticipants(camp.getParticipants());
+      update(this.allParticipants);
     }
   }
 
@@ -266,9 +272,16 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
 
   @Override
   public void update(final List<Participant> p) {
+    this.allParticipants = p;
     this.participants.clear();
-    this.participants.addAll(p);
-    this.participantList.update(p);
+
+    for (final Participant part : p) {
+      if (!this.campParticipants.contains(new CampParticipant(part))) {
+        this.participants.add(part);
+      }
+    }
+
+    this.participantList.update(this.participants);
   }
 
   @Override
