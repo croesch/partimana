@@ -61,6 +61,7 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
     // sic! because of the add methods below ..
     final ParticipantEditView pev = new ParticipantEditView();
     final ParticipantListView plv = new ParticipantListView(this);
+    plv.update(m.getListOfParticipants());//TODO test it
     this.editView = pev;
     this.listView = plv;
 

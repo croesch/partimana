@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
@@ -36,5 +37,20 @@ public enum Gender {
   @NotNull
   public String toString() {
     return this.s;
+  }
+
+  @NotNull
+  public String getStorableString() {
+    return name().substring(0, 1);
+  }
+
+  @MayBeNull
+  public static Gender of(final String c) {
+    for (final Gender g : values()) {
+      if (g.name().startsWith(c)) {
+        return g;
+      }
+    }
+    return null;
   }
 }
