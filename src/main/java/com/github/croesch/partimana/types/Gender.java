@@ -46,9 +46,11 @@ public enum Gender {
 
   @MayBeNull
   public static Gender of(final String c) {
-    for (final Gender g : values()) {
-      if (g.name().startsWith(c)) {
-        return g;
+    if (c != null && !c.isEmpty()) {
+      for (final Gender g : values()) {
+        if (g.name().startsWith(c)) {
+          return g;
+        }
       }
     }
     return null;
