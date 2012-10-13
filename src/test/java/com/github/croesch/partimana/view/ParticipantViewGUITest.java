@@ -3,6 +3,7 @@ package com.github.croesch.partimana.view;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
 
     @Override
     public List<Participant> getListOfParticipants() {
-      return new ArrayList<Participant>();
+      return Arrays.asList(ParticipantViewGUITest.this.participant);
     }
 
     @Override
@@ -77,13 +78,6 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
         } else {
           Assert.fail();
         }
-      }
-    });
-
-    this.pView = GuiActionRunner.execute(new GuiQuery<ParticipantView>() {
-      @Override
-      protected ParticipantView executeInEDT() throws Throwable {
-        return new ParticipantView(ParticipantViewGUITest.this.model);
       }
     });
 
@@ -125,14 +119,21 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     this.participant.setPostCodePostal(3124);
     this.participant.setStreetPostal("street");
 
-    GuiActionRunner.execute(new GuiTask() {
+    this.pView = GuiActionRunner.execute(new GuiQuery<ParticipantView>() {
+      @Override
+      protected ParticipantView executeInEDT() throws Throwable {
+        return new ParticipantView(ParticipantViewGUITest.this.model);
+      }
+    });
 
+    GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
         ParticipantViewGUITest.this.pView.getParticipantEditView()
                                          .setParticipant(ParticipantViewGUITest.this.participant);
       }
     });
+
     this.pView.setName("view");
 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(this.pView));
@@ -140,6 +141,14 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView = window.panel("view");
 
     this.deleteActionPerformed = false;
+  }
+
+  @Test
+  public void testView() {
+    this.testView.textBox("firstNameTF").requireText(this.participant.getForeName());
+    this.testView.textBox("lastNameTF").requireText(this.participant.getLastName());
+
+    ParticipantListViewGUITest.requireParticipant(this.testView.table(), 0, this.participant);
   }
 
   @Test
