@@ -2,6 +2,7 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
 
     @Override
     public List<Participant> getListOfParticipants() {
-      return null;
+      return new ArrayList<Participant>();
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
 
     @Override
     public List<Camp> getListOfCamps() {
-      return null;
+      return new ArrayList<Camp>();
     }
   };
 

@@ -2,6 +2,7 @@ package com.github.croesch.partimana.controller;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class ParticipantSaverTest {
 
           @Override
           public List<Participant> getListOfParticipants() {
-            return null;
+            return new ArrayList<Participant>();
           }
 
           @Override
@@ -75,7 +76,7 @@ public class ParticipantSaverTest {
 
           @Override
           public List<Camp> getListOfCamps() {
-            return null;
+            return new ArrayList<Camp>();
           }
         }, new ActionObserver() {
 
