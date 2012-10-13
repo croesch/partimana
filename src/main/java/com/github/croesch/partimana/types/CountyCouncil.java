@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
@@ -75,7 +76,8 @@ public enum CountyCouncil {
   @NotNull
   private final String s;
 
-  private final int r;
+  /** the database representation of this county council */
+  private final int dbRepresentation;
 
   /**
    * Constructs a {@link CountyCouncil} with the given i18n representation of the specific county council.
@@ -86,8 +88,8 @@ public enum CountyCouncil {
    * @param r the storable representation of this council.
    */
   private CountyCouncil(final Text t, final int r) {
-    this.s = t.text(); //FIXME null check!
-    this.r = r;
+    this.s = t.text();
+    this.dbRepresentation = r;
   }
 
   @Override
@@ -96,10 +98,25 @@ public enum CountyCouncil {
     return this.s;
   }
 
+  /**
+   * Returns the representation of this county council for a database.
+   * 
+   * @since Date: Oct 14, 2012
+   * @return the representation of this county council for a database.
+   */
   public int getStorableRepresentation() {
-    return this.r;
+    return this.dbRepresentation;
   }
 
+  /**
+   * Returns the county council that is represented by the given database value.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param idx the value of the database that represents a county council
+   * @return the county council represented by the given value,<br>
+   *         or <code>null</code> if no county council is represented by the given value
+   */
+  @MayBeNull
   public static CountyCouncil of(final int idx) {
     for (final CountyCouncil cc : values()) {
       if (cc.getStorableRepresentation() == idx) {

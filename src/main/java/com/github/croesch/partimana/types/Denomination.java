@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.types;
 
+import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
@@ -37,10 +38,10 @@ public enum Denomination {
 
   /** the i18n representation of this object */
   @NotNull
-  private final String t;
+  private final String text;
 
-  /** the representation of this object */
-  private final int s;
+  /** the database representation of this object */
+  private final int dbRepresentation;
 
   /**
    * Constructs a {@link Denomination} with the given i18n representation of the specific object.
@@ -51,20 +52,35 @@ public enum Denomination {
    * @param r the storable representation of that object.
    */
   private Denomination(final Text t, final int r) {
-    this.t = t.text(); //FIXME null check!
-    this.s = r;
+    this.text = t.text();
+    this.dbRepresentation = r;
   }
 
   @Override
   @NotNull
   public String toString() {
-    return this.t;
+    return this.text;
   }
 
+  /**
+   * Returns the representation of this denomination for a database.
+   * 
+   * @since Date: Oct 14, 2012
+   * @return the representation of this denomination for a database.
+   */
   public int getStorableRepresentation() {
-    return this.s;
+    return this.dbRepresentation;
   }
 
+  /**
+   * Returns the denomination that is represented by the given database value.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param idx the value of the database that represents a denomination
+   * @return the denomination represented by the given value,<br>
+   *         or <code>null</code> if no denomination is represented by the given value
+   */
+  @MayBeNull
   public static Denomination of(final int idx) {
     for (final Denomination d : values()) {
       if (d.getStorableRepresentation() == idx) {
