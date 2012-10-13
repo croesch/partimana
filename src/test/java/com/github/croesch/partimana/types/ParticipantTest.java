@@ -869,59 +869,6 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getId()}.
-   */
-  @Test(expected = IllegalArgumentException.class)
-  public final void testGetIdIAE1() {
-    final long id = this.participant.getId();
-    this.participant = new Participant(id,
-                                       "name",
-                                       "first",
-                                       Gender.FEMALE,
-                                       Denomination.EVANGELIC,
-                                       new Date(),
-                                       "street",
-                                       SAMPLE_POSTCODE,
-                                       "city",
-                                       CountyCouncil.COUNTY_GERMERSHEIM);
-  }
-
-  /**
-   * Test method for {@link Participant#getId()}.
-   */
-  @Test(expected = IllegalArgumentException.class)
-  public final void testGetIdIAE2() {
-    final long id = this.participant.getId();
-    this.participant = new Participant(id - 1,
-                                       "name",
-                                       "first",
-                                       Gender.FEMALE,
-                                       Denomination.EVANGELIC,
-                                       new Date(),
-                                       "street",
-                                       SAMPLE_POSTCODE,
-                                       "city",
-                                       CountyCouncil.COUNTY_GERMERSHEIM);
-  }
-
-  /**
-   * Test method for {@link Participant#getId()}.
-   */
-  @Test(expected = IllegalArgumentException.class)
-  public final void testGetIdIAE3() {
-    this.participant = new Participant(-1,
-                                       "name",
-                                       "first",
-                                       Gender.FEMALE,
-                                       Denomination.EVANGELIC,
-                                       new Date(),
-                                       "street",
-                                       SAMPLE_POSTCODE,
-                                       "city",
-                                       CountyCouncil.COUNTY_GERMERSHEIM);
-  }
-
-  /**
    * Test method for {@link Participant#toString()}.
    */
   @Test

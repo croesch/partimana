@@ -176,7 +176,7 @@ public final class Participant {
    */
   private static void setNewHighestIdTo(final long newId) {
     if (newId <= highestId) {
-      throw new IllegalArgumentException();
+      return;
     }
     highestId = newId;
   }

@@ -98,7 +98,7 @@ public final class Camp {
    */
   private static void setNewHighestIdTo(final long newId) {
     if (newId <= highestId) {
-      throw new IllegalArgumentException();
+      return;
     }
     highestId = newId;
   }
