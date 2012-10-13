@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.settings.DataBaseSettings;
@@ -24,18 +25,26 @@ import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
 
 /**
- * TODO Comment here ...
+ * The persistence model to store participants and camps.
  * 
  * @author croesch
  * @since Date: May 29, 2011
  */
-public class PersistenceModel implements IPersistenceModel {
-
-  private Connection con;
+public final class PersistenceModel implements IPersistenceModel {
 
   /** logging class */
   private static final Logger LOGGER = Logger.getLogger(PersistenceModel.class);
 
+  /** the database connection that contains all the stored objects */
+  @NotNull
+  private Connection con;
+
+  /**
+   * Creates the persistence model to store participants and camps. Creates a connection to the database defined by
+   * {@link DataBaseSettings}.
+   * 
+   * @since Date: Oct 13, 2012
+   */
   public PersistenceModel() {
     try {
       this.con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(), DataBaseSettings.DB_USER.value(),
@@ -47,43 +56,72 @@ public class PersistenceModel implements IPersistenceModel {
 
   @Override
   public void update(final Participant p) {
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("UPDATE `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
-                                                               + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
-                                                               + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
-                                                               + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
-                                                               + "canBeParticipant=?, canBeStaff=?, canBeStaffYouth=?, canBeBoard=?, canBeExtendedBoard=?, "
-                                                               + "canBeMAK=?, canBeAGE=?, canBeKitchen=?, canBeSeminar=?, canBeMisc=? WHERE id=?");
+      stmt = this.con.prepareStatement("UPDATE `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
+                                       + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
+                                       + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
+                                       + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
+                                       + "canBeParticipant=?, canBeStaff=?, canBeStaffYouth=?, canBeBoard=?, canBeExtendedBoard=?, "
+                                       + "canBeMAK=?, canBeAGE=?, canBeKitchen=?, canBeSeminar=?, canBeMisc=? WHERE id=?");
       insertParticipantIntoStatement(p, stmt);
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
+    }
+  }
+
+  /**
+   * Releases the resources of the given statement.
+   * 
+   * @since Date: Oct 13, 2012
+   * @param stmt releases database connections of the given statement.
+   */
+  private void close(final PreparedStatement stmt) {
+    if (stmt != null) {
+      try {
+        stmt.close();
+      } catch (final SQLException e) {
+        LOGGER.warn(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+      }
     }
   }
 
   @Override
   public void update(final Camp c) {
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("UPDATE `camps` SET name=?, fromDate=?, until=?, location=?, "
-                                                               + "ratePerParticipant=?, ratePerDayChild=? WHERE id=?");
+      stmt = this.con.prepareStatement("UPDATE `camps` SET name=?, fromDate=?, until=?, location=?, "
+                                       + "ratePerParticipant=?, ratePerDayChild=? WHERE id=?");
       insertCampIntoStatement(c, stmt);
       stmt.executeUpdate();
 
       updateCampParticipants(c.getParticipants(), c.getId());
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
+  /**
+   * Adds all participants to the given camp that are stored in the database.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param camp the camp to fill with its participants from the database
+   */
   private void updateCampParticipants(final Camp camp) {
     final Map<Long, Participant> mapOfParticipants = getMapOfParticipants();
 
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("SELECT id, isParticipant, "
-                                                               + "isStaff, isStaffYouth, isBoard, isExtendedBoard, "
-                                                               + "isMAK, isAGE, isKitchen, isSeminar, isMisc "
-                                                               + "FROM `campParticipants` WHERE camp=?");
+      stmt = this.con.prepareStatement("SELECT id, isParticipant, "
+                                       + "isStaff, isStaffYouth, isBoard, isExtendedBoard, "
+                                       + "isMAK, isAGE, isKitchen, isSeminar, isMisc "
+                                       + "FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, camp.getId());
       final ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
@@ -110,45 +148,63 @@ public class PersistenceModel implements IPersistenceModel {
       }
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
+  /**
+   * Updates the participants of the camp with the given id to the given list of participants.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param campParticipants the participants to store in the database
+   * @param id the id of the camp the participants belong to
+   */
   private void updateCampParticipants(final List<CampParticipant> campParticipants, final long id) {
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
+      stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, id);
       stmt.executeUpdate();
 
       for (final CampParticipant part : campParticipants) {
-        final PreparedStatement s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?, isParticipant=?, "
-                                                              + "isStaff=?, isStaffYouth=?, isBoard=?, isExtendedBoard=?, "
-                                                              + "isMAK=?, isAGE=?, isKitchen=?, isSeminar=?, isMisc=?");
-        int i = 0;
-        s.setLong(++i, part.getId());
-        s.setLong(++i, id);
-        s.setBoolean(++i, part.isParticipant());
-        s.setBoolean(++i, part.isStaff());
-        s.setBoolean(++i, part.isStaffYouth());
-        s.setBoolean(++i, part.isBoard());
-        s.setBoolean(++i, part.isExtendedBoard());
-        s.setBoolean(++i, part.isMAK());
-        s.setBoolean(++i, part.isAGE());
-        s.setBoolean(++i, part.isKitchen());
-        s.setBoolean(++i, part.isSeminar());
-        s.setBoolean(++i, part.isMisc());
-        s.executeUpdate();
+        PreparedStatement s = null;
+        try {
+          s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?, isParticipant=?, "
+                                        + "isStaff=?, isStaffYouth=?, isBoard=?, isExtendedBoard=?, "
+                                        + "isMAK=?, isAGE=?, isKitchen=?, isSeminar=?, isMisc=?");
+          int i = 0;
+          s.setLong(++i, part.getId());
+          s.setLong(++i, id);
+          s.setBoolean(++i, part.isParticipant());
+          s.setBoolean(++i, part.isStaff());
+          s.setBoolean(++i, part.isStaffYouth());
+          s.setBoolean(++i, part.isBoard());
+          s.setBoolean(++i, part.isExtendedBoard());
+          s.setBoolean(++i, part.isMAK());
+          s.setBoolean(++i, part.isAGE());
+          s.setBoolean(++i, part.isKitchen());
+          s.setBoolean(++i, part.isSeminar());
+          s.setBoolean(++i, part.isMisc());
+          s.executeUpdate();
+        } finally {
+          close(s);
+        }
       }
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
   @Override
   public Map<Long, Camp> getMapOfCamps() {
+    PreparedStatement stmt = null;
     try {
-      final ResultSet rs = this.con.prepareStatement("SELECT id, name, fromDate, until, location, "
-                                                             + "ratePerParticipant, ratePerDayChild FROM `camps` ORDER BY id")
-                                   .executeQuery();
+      stmt = this.con.prepareStatement("SELECT id, name, fromDate, until, location, "
+                                       + "ratePerParticipant, ratePerDayChild FROM `camps` ORDER BY id");
+      final ResultSet rs = stmt.executeQuery();
 
       final HashMap<Long, Camp> hashMap = new HashMap<Long, Camp>();
 
@@ -169,6 +225,8 @@ public class PersistenceModel implements IPersistenceModel {
       return hashMap;
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
 
     return new HashMap<Long, Camp>();
@@ -176,15 +234,16 @@ public class PersistenceModel implements IPersistenceModel {
 
   @Override
   public Map<Long, Participant> getMapOfParticipants() {
+    PreparedStatement stmt = null;
     try {
-      final ResultSet rs = this.con.prepareStatement("SELECT id, lastName, foreName, gender, denomination, birth, livingStreet, "
-                                                             + "livingCity, livingPlz, postStreet, postCity, postPlz, "
-                                                             + "phone, fax, mobilePhone, phoneParents, mailAddress, countyCouncil, "
-                                                             + "bankCodeNumber, bank, bankAccountNumber, commentar, sinceInDb, "
-                                                             + "dateUpInDb, canBeParticipant, canBeStaff, canBeStaffYouth, canBeBoard, "
-                                                             + "canBeExtendedBoard, canBeMAK, canBeAGE, canBeKitchen, "
-                                                             + "canBeSeminar, canBeMisc FROM `participants` ORDER BY id")
-                                   .executeQuery();
+      stmt = this.con.prepareStatement("SELECT id, lastName, foreName, gender, denomination, birth, livingStreet, "
+                                       + "livingCity, livingPlz, postStreet, postCity, postPlz, "
+                                       + "phone, fax, mobilePhone, phoneParents, mailAddress, countyCouncil, "
+                                       + "bankCodeNumber, bank, bankAccountNumber, commentar, sinceInDb, "
+                                       + "dateUpInDb, canBeParticipant, canBeStaff, canBeStaffYouth, canBeBoard, "
+                                       + "canBeExtendedBoard, canBeMAK, canBeAGE, canBeKitchen, "
+                                       + "canBeSeminar, canBeMisc FROM `participants` ORDER BY id");
+      final ResultSet rs = stmt.executeQuery();
 
       final HashMap<Long, Participant> hashMap = new HashMap<Long, Participant>();
 
@@ -230,6 +289,8 @@ public class PersistenceModel implements IPersistenceModel {
       return hashMap;
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
 
     return new HashMap<Long, Participant>();
@@ -237,22 +298,26 @@ public class PersistenceModel implements IPersistenceModel {
 
   @Override
   public void deleteParticipant(final long id) {
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("DELETE FROM `participants` WHERE id=?");
+      stmt = this.con.prepareStatement("DELETE FROM `participants` WHERE id=?");
 
       stmt.setLong(1, id);
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
   @Override
   public void deleteCamp(final long id) {
 
+    PreparedStatement stmt = null;
     try {
-      PreparedStatement stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
+      stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, id);
 
       stmt.executeUpdate();
@@ -263,26 +328,39 @@ public class PersistenceModel implements IPersistenceModel {
       stmt.executeUpdate();
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
   @Override
   public void create(final Participant p) {
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("INSERT INTO `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
-                                                               + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
-                                                               + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
-                                                               + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
-                                                               + "canBeParticipant=?, canBeStaff=?, canBeStaffYouth=?, canBeBoard=?, canBeExtendedBoard=?, "
-                                                               + "canBeMAK=?, canBeAGE=?, canBeKitchen=?, canBeSeminar=?, canBeMisc=?, id=?");
+      stmt = this.con.prepareStatement("INSERT INTO `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
+                                       + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
+                                       + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
+                                       + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
+                                       + "canBeParticipant=?, canBeStaff=?, canBeStaffYouth=?, canBeBoard=?, canBeExtendedBoard=?, "
+                                       + "canBeMAK=?, canBeAGE=?, canBeKitchen=?, canBeSeminar=?, canBeMisc=?, id=?");
       insertParticipantIntoStatement(p, stmt);
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
+  /**
+   * Fills the given statement with the information fetched from the given camp.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param c the camp that provides the attributes to store with the given statement
+   * @param stmt the statement used to store the attributes of the given camp
+   * @throws SQLException if the attributes couldn't be set to the statement
+   */
   private void insertCampIntoStatement(final Camp c, final PreparedStatement stmt) throws SQLException {
     int i = 0;
     stmt.setString(++i, c.getName());
@@ -294,6 +372,14 @@ public class PersistenceModel implements IPersistenceModel {
     stmt.setLong(++i, c.getId());
   }
 
+  /**
+   * Fills the given statement with the information fetched from the given participant.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param p the participant that provides the attributes to store with the given statement
+   * @param stmt the statement used to store the attributes of the given participant
+   * @throws SQLException if the attributes couldn't be set to the statement
+   */
   private void insertParticipantIntoStatement(final Participant p, final PreparedStatement stmt) throws SQLException {
     int i = 0;
     stmt.setString(++i, p.getLastName());
@@ -332,6 +418,13 @@ public class PersistenceModel implements IPersistenceModel {
     stmt.setLong(++i, p.getId());
   }
 
+  /**
+   * Converts the date of the util package to a sql date.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param date the date in util package format
+   * @return the date in sql package format
+   */
   private Date getSqlDate(final java.util.Date date) {
     if (date == null) {
       return null;
@@ -339,6 +432,13 @@ public class PersistenceModel implements IPersistenceModel {
     return new Date(date.getTime());
   }
 
+  /**
+   * Converts the date of the sql package to a util package based date.
+   * 
+   * @since Date: Oct 14, 2012
+   * @param date the date in sql package format
+   * @return the date in util package format
+   */
   private java.util.Date getUtilDate(final Date date) {
     if (date == null) {
       return null;
@@ -348,15 +448,18 @@ public class PersistenceModel implements IPersistenceModel {
 
   @Override
   public void create(final Camp c) {
+    PreparedStatement stmt = null;
     try {
-      final PreparedStatement stmt = this.con.prepareStatement("INSERT INTO `camps` SET name=?, fromDate=?, until=?, location=?, "
-                                                               + "ratePerParticipant=?, ratePerDayChild=?, id=?");
+      stmt = this.con.prepareStatement("INSERT INTO `camps` SET name=?, fromDate=?, until=?, location=?, "
+                                       + "ratePerParticipant=?, ratePerDayChild=?, id=?");
       insertCampIntoStatement(c, stmt);
       stmt.executeUpdate();
 
       updateCampParticipants(c.getParticipants(), c.getId());
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    } finally {
+      close(stmt);
     }
   }
 
