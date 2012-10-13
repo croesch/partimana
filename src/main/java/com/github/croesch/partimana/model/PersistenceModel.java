@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.model;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -10,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.settings.DataBaseSettings;
 import com.github.croesch.partimana.types.Camp;
@@ -25,16 +29,19 @@ import com.github.croesch.partimana.types.Participant;
  * @author croesch
  * @since Date: May 29, 2011
  */
-class PersistenceModel implements IPersistenceModel {
+public class PersistenceModel implements IPersistenceModel {
 
   private Connection con;
+
+  /** logging class */
+  private static final Logger LOGGER = Logger.getLogger(PersistenceModel.class);
 
   public PersistenceModel() {
     try {
       this.con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(), DataBaseSettings.DB_USER.value(),
                                              DataBaseSettings.DB_PASSWORD.value());
     } catch (final SQLException e) {
-      e.printStackTrace(); // TODO
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
@@ -51,8 +58,7 @@ class PersistenceModel implements IPersistenceModel {
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
@@ -66,8 +72,44 @@ class PersistenceModel implements IPersistenceModel {
 
       updateCampParticipants(c.getParticipants(), c.getId());
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    }
+  }
+
+  private void updateCampParticipants(final Camp camp) {
+    final Map<Long, Participant> mapOfParticipants = getMapOfParticipants();
+
+    try {
+      final PreparedStatement stmt = this.con.prepareStatement("SELECT id, isParticipant, "
+                                                               + "isStaff, isStaffYouth, isBoard, isExtendedBoard, "
+                                                               + "isMAK, isAGE, isKitchen, isSeminar, isMisc "
+                                                               + "FROM `campParticipants` WHERE camp=?");
+      stmt.setLong(1, camp.getId());
+      final ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        int i = 0;
+        final Participant p = mapOfParticipants.get(rs.getLong(++i));
+        if (p == null) {
+          // participant isn't in the database
+          LOGGER.error(Text.ERROR_PARTICIPANT_NOT_IN_DB);
+          continue;
+        }
+        final CampParticipant cp = new CampParticipant(p);
+        cp.setParticipant(rs.getBoolean(++i));
+        cp.setStaff(rs.getBoolean(++i));
+        cp.setStaffYouth(rs.getBoolean(++i));
+        cp.setBoard(rs.getBoolean(++i));
+        cp.setExtendedBoard(rs.getBoolean(++i));
+        cp.setMAK(rs.getBoolean(++i));
+        cp.setAGE(rs.getBoolean(++i));
+        cp.setKitchen(rs.getBoolean(++i));
+        cp.setSeminar(rs.getBoolean(++i));
+        cp.setMisc(rs.getBoolean(++i));
+
+        camp.addParticipant(cp);
+      }
+    } catch (final SQLException e) {
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
@@ -97,8 +139,7 @@ class PersistenceModel implements IPersistenceModel {
         s.executeUpdate();
       }
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
@@ -120,13 +161,14 @@ class PersistenceModel implements IPersistenceModel {
                                 rs.getString("ratePerParticipant"));
         c.setRatePerDayChildren(rs.getString("ratePerDayChild"));
 
+        updateCampParticipants(c);
+
         hashMap.put(c.getId(), c);
       }
 
       return hashMap;
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
 
     return new HashMap<Long, Camp>();
@@ -187,8 +229,7 @@ class PersistenceModel implements IPersistenceModel {
 
       return hashMap;
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
 
     return new HashMap<Long, Participant>();
@@ -203,22 +244,25 @@ class PersistenceModel implements IPersistenceModel {
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
   @Override
   public void deleteCamp(final long id) {
-    try {
-      final PreparedStatement stmt = this.con.prepareStatement("DELETE FROM `camps` WHERE id=?");
 
+    try {
+      PreparedStatement stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
+      stmt.setLong(1, id);
+
+      stmt.executeUpdate();
+
+      stmt = this.con.prepareStatement("DELETE FROM `camps` WHERE id=?");
       stmt.setLong(1, id);
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
@@ -235,8 +279,7 @@ class PersistenceModel implements IPersistenceModel {
 
       stmt.executeUpdate();
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 
@@ -313,8 +356,16 @@ class PersistenceModel implements IPersistenceModel {
 
       updateCampParticipants(c.getParticipants(), c.getId());
     } catch (final SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+    }
+  }
+
+  @Override
+  public void close() throws IOException {
+    try {
+      this.con.close();
+    } catch (final SQLException e) {
+      LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
   }
 }

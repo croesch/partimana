@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.model.api;
 
+import java.io.Closeable;
 import java.util.Map;
 
 import com.github.croesch.annotate.NotNull;
@@ -12,7 +13,7 @@ import com.github.croesch.partimana.types.Participant;
  * @author croesch
  * @since Date: May 29, 2011
  */
-public interface IPersistenceModel {
+public interface IPersistenceModel extends Closeable {
 
   /**
    * Updates the stored data of the given {@link Participant}.

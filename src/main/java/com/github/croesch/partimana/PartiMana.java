@@ -10,6 +10,7 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.controller.Controller;
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.PersistenceModel;
 
 /**
  * partimana - a program to manage camps and their participants. <br>
@@ -73,7 +74,7 @@ public final class PartiMana implements ActionObserver {
     LOGGER.debug(Text.DEBUG_SELECTED_LANGUAGE.text(Text.LANGUAGE));
 
     // start 'real' program
-    new Controller(this, args);
+    new Controller(this, new PersistenceModel(), args);
 
     while (this.running) {
       try {

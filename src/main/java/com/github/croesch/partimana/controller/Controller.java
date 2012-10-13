@@ -7,6 +7,7 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.Model;
+import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.view.View;
 
 /**
@@ -38,11 +39,12 @@ public final class Controller implements ActionObserver {
    * @author croesch
    * @since Date: May 29, 2011
    * @param o the {@link ActionObserver}
+   * @param pModel the persistence model to store participants and camps with
    * @param args the arguments from command line
    */
-  public Controller(final ActionObserver o, final String[] args) {
+  public Controller(final ActionObserver o, final IPersistenceModel pModel, final String[] args) {
     this.observer = o; //FIXME null check!
-    this.model = new Model();
+    this.model = new Model(pModel);
     this.view = new View(this.model, this);
     this.model.setView(this.view);
 

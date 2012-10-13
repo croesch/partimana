@@ -7,6 +7,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
@@ -33,7 +34,7 @@ public class ModelTest implements IView {
    */
   @Before
   public void setUp() {
-    this.model = new Model();
+    this.model = new Model(new HashMapPersistenceModel());
     this.model.setView(this);
 
     this.updateCalled = false;

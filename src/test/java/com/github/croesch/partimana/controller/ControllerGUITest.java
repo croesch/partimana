@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.view.View;
 
 /**
@@ -29,7 +30,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
     this.controller = GuiActionRunner.execute(new GuiQuery<Controller>() {
       @Override
       protected Controller executeInEDT() throws Throwable {
-        return new Controller(ControllerGUITest.this, null);
+        return new Controller(ControllerGUITest.this, new HashMapPersistenceModel(), null);
       }
     });
   }

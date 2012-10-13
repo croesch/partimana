@@ -8,6 +8,7 @@ import org.fest.swing.fixture.FrameFixture;
 import org.junit.Test;
 
 import com.github.croesch.partimana.controller.Controller;
+import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -32,21 +33,21 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiQuery<Controller>() {
       @Override
       protected Controller executeInEDT() throws Throwable {
-        return new Controller(WorkflowTest.this, null);
+        return new Controller(WorkflowTest.this, new HashMapPersistenceModel(), null);
       }
     });
 
     final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
     frame.maximize();
 
-    enterPart(frame, "Mario", "Müller", Gender.MALE, "08.8.88", Denomination.ORTHODOX, CountyCouncil.CITY_PIRMASENS);
+    enterPart(frame, "Mario", "Müller", Gender.MALE, "0808.88", Denomination.ORTHODOX, CountyCouncil.CITY_PIRMASENS);
     frame.button("saveParticipant").click();
 
     reqPart(frame, "Mario", "Müller", Gender.MALE, "08.08.1988", Denomination.ORTHODOX, CountyCouncil.CITY_PIRMASENS);
     ParticipantListViewGUITest.requireParticipant(frame.table(), 0, "Mario", "Müller");
 
     frame.button("newParticipant").click();
-    enterPart(frame, "Marianne", "Schmidt", Gender.FEMALE, "03.4.1930", Denomination.JEWISH, CountyCouncil.CITY_LANDAU);
+    enterPart(frame, "Marianne", "Schmidt", Gender.FEMALE, "0304.1930", Denomination.JEWISH, CountyCouncil.CITY_LANDAU);
     frame.button("saveParticipant").click();
 
     reqPart(frame, "Marianne", "Schmidt", Gender.FEMALE, "03.04.1930", Denomination.JEWISH, CountyCouncil.CITY_LANDAU);
@@ -57,7 +58,7 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 0, "Mario", "Müller");
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 1, "Marianne", "Schmidt");
 
-    enterCamp(frame, "OFZ", "Raversbeuren", "08.8.2000", "24.8.2000", "100 EUR");
+    enterCamp(frame, "OFZ", "Raversbeuren", "0808.2000", "2408.2000", "100 EUR");
     frame.button("saveCamp").click();
     reqCamp(frame, "OFZ", "Raversbeuren", "08.08.2000", "24.08.2000", "100 EUR");
     CampListViewGUITest.requireCamp(frame.table("camps"), 0, "OFZ", "Raversbeuren");
@@ -103,7 +104,7 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     ParticipantListViewGUITest.requireParticipant(frame.table(), 1, "Marianne", "Schmidt");
 
     frame.button("newParticipant").click();
-    enterPart(frame, "Peter", "Maurer", Gender.MALE, "05.7.1957", Denomination.CATHOLIC,
+    enterPart(frame, "Peter", "Maurer", Gender.MALE, "05.07.1957", Denomination.CATHOLIC,
               CountyCouncil.CITY_LUDWIGSHAFEN);
     frame.button("saveParticipant").click();
     reqPart(frame, "Peter", "Maurer", Gender.MALE, "05.07.1957", Denomination.CATHOLIC, CountyCouncil.CITY_LUDWIGSHAFEN);

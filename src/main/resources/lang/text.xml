@@ -123,4 +123,6 @@
 	<entry key="13000">Exception aufgetreten: '{0}'</entry>
 	<entry key="13010">Teilnehmer konnte nicht gespeichert werden ...</entry>
 	<entry key="13011">Freizeit konnte nicht gespeichert werden ...</entry>
+    <!-- error when referenced participant couldn't be loaded from database -->
+	<entry key="13020">Referenzierter Teilnehmer konnte nicht aus der Datenbank geladen werden!</entry>
 </properties> 

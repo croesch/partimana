@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.model.helper;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,4 +61,7 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
   public void create(final Camp c) {
     update(c);
   }
+
+  @Override
+  public void close() throws IOException {}
 }

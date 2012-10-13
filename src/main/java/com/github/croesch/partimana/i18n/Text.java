@@ -230,7 +230,9 @@ public enum Text {
   /** error when participant cannot be saved */
   ERROR_PARTICIPANT_NOT_SAVED (13010),
   /** error when camp cannot be saved */
-  ERROR_CAMP_NOT_SAVED (13011);
+  ERROR_CAMP_NOT_SAVED (13011),
+  /** error when referenced participant couldn't be loaded from database */
+  ERROR_PARTICIPANT_NOT_IN_DB (13020);
 
   /** the value of this instance */
   @NotNull

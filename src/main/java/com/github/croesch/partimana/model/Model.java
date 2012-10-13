@@ -23,19 +23,31 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
   /** the model that is responsible for persistence of data */
   @NotNull
-  private final IPersistenceModel persistenceModel = new PersistenceModel();
+  private final IPersistenceModel persistenceModel;
 
   /** the model that is responsible for actions that have to do with {@link Participant}s */
   @NotNull
-  private final IParticipantModel participantModel = new ParticipantModel(this.persistenceModel);
+  private final IParticipantModel participantModel;
 
   /** the model that is responsible for actions that have to do with {@link Camp}s */
   @NotNull
-  private final ICampModel campModel = new CampModel(this.persistenceModel);
+  private final ICampModel campModel;
 
   /** the connection to the view of the program */
   @MayBeNull
   private IView view;
+
+  /**
+   * Creates this model using the given persistence model to store participants and camps.
+   * 
+   * @since Date: Oct 13, 2012
+   * @param persistMdl the model to store participants and camps.
+   */
+  public Model(final IPersistenceModel persistMdl) {
+    this.persistenceModel = persistMdl; // TODO null check
+    this.participantModel = new ParticipantModel(this.persistenceModel);
+    this.campModel = new CampModel(this.persistenceModel);
+  }
 
   /**
    * Sets the view for the model so that it can notify the view to update itself.
