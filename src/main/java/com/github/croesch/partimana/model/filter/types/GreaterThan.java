@@ -1,6 +1,5 @@
 package com.github.croesch.partimana.model.filter.types;
 
-
 /**
  * TODO Comment here ...
  * 
@@ -16,8 +15,7 @@ public class GreaterThan extends AFilterType<Integer> {
 
   @Override
   public boolean matches(final Integer object) {
-    // TODO Auto-generated method stub
-    return false;
+    return object > getFilterValue();
   }
 
 }

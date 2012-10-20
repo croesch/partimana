@@ -1,6 +1,5 @@
 package com.github.croesch.partimana.model.filter.types;
 
-
 /**
  * TODO Comment here ...
  * 
@@ -16,8 +15,7 @@ public class NotEquals<OT extends Object> extends AFilterType<OT> {
 
   @Override
   public boolean matches(final OT object) {
-    // TODO Auto-generated method stub
-    return false;
+    return !object.equals(getFilterValue());
   }
 
 }

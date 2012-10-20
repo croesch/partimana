@@ -1,6 +1,5 @@
 package com.github.croesch.partimana.model.filter.types;
 
-
 /**
  * TODO Comment here ...
  * 
@@ -16,8 +15,7 @@ public class EqualsIgnoreCase extends AFilterType<String> {
 
   @Override
   public boolean matches(final String object) {
-    // TODO Auto-generated method stub
-    return false;
+    return object.equalsIgnoreCase(getFilterValue());
   }
 
 }

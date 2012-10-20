@@ -17,8 +17,7 @@ public class After extends AFilterType<Date> {
 
   @Override
   public boolean matches(final Date object) {
-    // TODO Auto-generated method stub
-    return false;
+    return object.after(getFilterValue());
   }
 
 }

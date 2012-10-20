@@ -9,15 +9,16 @@ import com.github.croesch.partimana.model.api.IFilterType;
  * @since Date: Oct 21, 2012
  */
 public abstract class AFilterType<OT extends Object> implements IFilterType<OT> {
+
+  private OT filterValue = null;
+
   @Override
   public void setFilterValue(final OT value) {
-    // TODO Auto-generated method stub
-
+    this.filterValue = value;
   }
 
   @Override
   public OT getFilterValue() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.filterValue;
   }
 }
