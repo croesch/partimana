@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**
@@ -15,7 +16,7 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
  * @author croesch
  * @since Date: May 29, 2011
  */
-public final class Participant {
+public final class Participant implements IFilterable {
 
   /** the id of that participant as stored in data base */
   private final long id;

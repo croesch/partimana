@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.types;
 
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**
@@ -9,7 +10,7 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
  * @author croesch
  * @since Date: Sep 16, 2012
  */
-public final class CampParticipant {
+public final class CampParticipant implements IFilterable {
 
   /** the {@link Participant} that visits the camp */
   @NotNull

@@ -9,7 +9,7 @@ import com.github.croesch.annotate.NotNull;
  * @author croesch
  * @since Date: Jun 18, 2011
  */
-final class Address {
+public final class Address {
 
   /** the street */
   @MayBeNull

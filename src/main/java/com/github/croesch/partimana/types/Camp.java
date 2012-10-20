@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 
 /**
@@ -16,7 +17,7 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
  * @author croesch
  * @since Date: May 29, 2011
  */
-public final class Camp {
+public final class Camp implements IFilterable {
 
   /** the id of that camp as stored in data base */
   private final long id;
