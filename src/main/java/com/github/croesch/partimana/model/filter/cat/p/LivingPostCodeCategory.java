@@ -9,9 +9,9 @@ import com.github.croesch.partimana.types.Participant;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class LivingZipcodeCategory extends IntegerCategory<Participant> {
+public class LivingPostCodeCategory extends IntegerCategory<Participant> {
 
-  public LivingZipcodeCategory() {
+  public LivingPostCodeCategory() {
     super(null);
     // TODO Auto-generated constructor stub
   }
