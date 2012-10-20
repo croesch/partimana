@@ -1,6 +1,5 @@
 package com.github.croesch.partimana.model.filter.types;
 
-import com.github.croesch.partimana.model.api.IFilterType;
 
 /**
  * TODO Comment here ...
@@ -8,7 +7,7 @@ import com.github.croesch.partimana.model.api.IFilterType;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class NotEqualsIgnoreCase implements IFilterType<String> {
+public class NotEqualsIgnoreCase extends AFilterType<String> {
 
   @Override
   public String getShortDescription() {

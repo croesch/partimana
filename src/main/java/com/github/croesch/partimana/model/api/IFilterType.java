@@ -10,6 +10,10 @@ public interface IFilterType<OT extends Object> {
 
   String getShortDescription();
 
+  void setFilterValue(OT value);
+
+  OT getFilterValue();
+
   boolean matches(OT object);
 
 }

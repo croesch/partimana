@@ -2,15 +2,13 @@ package com.github.croesch.partimana.model.filter.types;
 
 import java.util.Date;
 
-import com.github.croesch.partimana.model.api.IFilterType;
-
 /**
  * TODO Comment here ...
  * 
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class Before implements IFilterType<Date> {
+public class Before extends AFilterType<Date> {
 
   @Override
   public String getShortDescription() {
