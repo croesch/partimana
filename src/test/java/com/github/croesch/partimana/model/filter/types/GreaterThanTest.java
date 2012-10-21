@@ -39,4 +39,37 @@ public class GreaterThanTest {
     assertThat(new GreaterThan().getShortDescription()).isNotNull();
     assertThat(new GreaterThan().getShortDescription()).isEqualTo(Text.FILTER_TYPE_GREATER_THAN.text());
   }
+
+  @Test
+  public void testEquals() {
+    final GreaterThan filterType = new GreaterThan();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo(42);
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new GreaterThan());
+
+    filterType.setFilterValue(42);
+    assertThat(filterType).isNotEqualTo(new GreaterThan());
+    assertThat(new GreaterThan()).isNotEqualTo(filterType);
+
+    final GreaterThan other = new GreaterThan();
+    other.setFilterValue(42);
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final GreaterThan filterType = new GreaterThan();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new GreaterThan().hashCode());
+
+    filterType.setFilterValue(42);
+
+    final GreaterThan other = new GreaterThan();
+    other.setFilterValue(Integer.valueOf(42));
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }

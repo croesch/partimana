@@ -39,4 +39,37 @@ public class NotEqualsIgnoreCaseTest {
     assertThat(new NotEqualsIgnoreCase().getShortDescription()).isNotNull();
     assertThat(new NotEqualsIgnoreCase().getShortDescription()).isEqualTo(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
   }
+
+  @Test
+  public void testEquals() {
+    final NotEqualsIgnoreCase filterType = new NotEqualsIgnoreCase();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo("");
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new NotEqualsIgnoreCase());
+
+    filterType.setFilterValue("filter");
+    assertThat(filterType).isNotEqualTo(new NotEqualsIgnoreCase());
+    assertThat(new NotEqualsIgnoreCase()).isNotEqualTo(filterType);
+
+    final NotEqualsIgnoreCase other = new NotEqualsIgnoreCase();
+    other.setFilterValue("filter");
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final NotEqualsIgnoreCase filterType = new NotEqualsIgnoreCase();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new NotEqualsIgnoreCase().hashCode());
+
+    filterType.setFilterValue("filter");
+
+    final NotEqualsIgnoreCase other = new NotEqualsIgnoreCase();
+    other.setFilterValue("filter");
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }

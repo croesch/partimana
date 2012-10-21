@@ -43,4 +43,39 @@ public abstract class AFilterType<OT extends Object> implements IFilterType<OT> 
    *         <code>false</code> otherwise - the given object should not be viewed/added to the result list
    */
   protected abstract boolean matches(OT object);
+
+  @Override
+  public final int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result;
+    if (this.filterValue != null) {
+      result += this.filterValue.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public final boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    final AFilterType<?> other = (AFilterType<?>) obj;
+    if (this.filterValue == null) {
+      if (other.filterValue != null) {
+        return false;
+      }
+    } else if (!this.filterValue.equals(other.filterValue)) {
+      return false;
+    }
+    return true;
+  }
+
 }

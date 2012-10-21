@@ -38,4 +38,37 @@ public class ContainsTest {
     assertThat(new Contains().getShortDescription()).isNotNull();
     assertThat(new Contains().getShortDescription()).isEqualTo(Text.FILTER_TYPE_CONTAINS.text());
   }
+
+  @Test
+  public void testEquals() {
+    final Contains filterType = new Contains();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo("");
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new Contains());
+
+    filterType.setFilterValue("filter");
+    assertThat(filterType).isNotEqualTo(new Contains());
+    assertThat(new Contains()).isNotEqualTo(filterType);
+
+    final Contains other = new Contains();
+    other.setFilterValue("filter");
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final Contains filterType = new Contains();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new Contains().hashCode());
+
+    filterType.setFilterValue("filter");
+
+    final Contains other = new Contains();
+    other.setFilterValue("filter");
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }

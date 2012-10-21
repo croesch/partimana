@@ -38,4 +38,37 @@ public class StartsWithTest {
     assertThat(new StartsWith().getShortDescription()).isNotNull();
     assertThat(new StartsWith().getShortDescription()).isEqualTo(Text.FILTER_TYPE_STARTS_WITH.text());
   }
+
+  @Test
+  public void testEquals() {
+    final StartsWith filterType = new StartsWith();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo("");
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new StartsWith());
+
+    filterType.setFilterValue("filter");
+    assertThat(filterType).isNotEqualTo(new StartsWith());
+    assertThat(new StartsWith()).isNotEqualTo(filterType);
+
+    final StartsWith other = new StartsWith();
+    other.setFilterValue("filter");
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final StartsWith filterType = new StartsWith();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new StartsWith().hashCode());
+
+    filterType.setFilterValue("filter");
+
+    final StartsWith other = new StartsWith();
+    other.setFilterValue("filter");
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }

@@ -38,4 +38,37 @@ public class EndsWithTest {
     assertThat(new EndsWith().getShortDescription()).isNotNull();
     assertThat(new EndsWith().getShortDescription()).isEqualTo(Text.FILTER_TYPE_ENDS_WITH.text());
   }
+
+  @Test
+  public void testEquals() {
+    final EndsWith filterType = new EndsWith();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo("");
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new EndsWith());
+
+    filterType.setFilterValue("filter");
+    assertThat(filterType).isNotEqualTo(new EndsWith());
+    assertThat(new EndsWith()).isNotEqualTo(filterType);
+
+    final EndsWith other = new EndsWith();
+    other.setFilterValue("filter");
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final EndsWith filterType = new EndsWith();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new EndsWith().hashCode());
+
+    filterType.setFilterValue("filter");
+
+    final EndsWith other = new EndsWith();
+    other.setFilterValue("filter");
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }

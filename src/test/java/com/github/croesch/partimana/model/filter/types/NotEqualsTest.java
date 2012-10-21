@@ -52,4 +52,37 @@ public class NotEqualsTest {
     assertThat(new NotEquals<Integer>().getShortDescription()).isEqualTo(Text.FILTER_TYPE_NOT_EQUALS.text());
     assertThat(new NotEquals<Equals<Test>>().getShortDescription()).isEqualTo(Text.FILTER_TYPE_NOT_EQUALS.text());
   }
+
+  @Test
+  public void testEquals() {
+    final NotEquals<String> filterType = new NotEquals<String>();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo("");
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new NotEquals<Object>());
+
+    filterType.setFilterValue("filter");
+    assertThat(filterType).isNotEqualTo(new NotEquals<String>());
+    assertThat(new NotEquals<String>()).isNotEqualTo(filterType);
+
+    final NotEquals<Object> other = new NotEquals<Object>();
+    other.setFilterValue("filter");
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final NotEquals<String> filterType = new NotEquals<String>();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new NotEquals<Date>().hashCode());
+
+    filterType.setFilterValue("filter");
+
+    final NotEquals<Object> other = new NotEquals<Object>();
+    other.setFilterValue("filter");
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }

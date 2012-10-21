@@ -40,4 +40,39 @@ public class BeforeTest {
     assertThat(new Before().getShortDescription()).isNotNull();
     assertThat(new Before().getShortDescription()).isEqualTo(Text.FILTER_TYPE_BEFORE.text());
   }
+
+  @Test
+  public void testEquals() {
+    final Before filterType = new Before();
+    assertThat(filterType).isNotEqualTo(null);
+    assertThat(filterType).isNotEqualTo(new After());
+    assertThat(filterType).isNotEqualTo(new Date());
+
+    assertThat(filterType).isEqualTo(filterType);
+    assertThat(filterType).isEqualTo(new Before());
+
+    final Date date = new Date();
+    filterType.setFilterValue(date);
+    assertThat(filterType).isNotEqualTo(new Before());
+    assertThat(new Before()).isNotEqualTo(filterType);
+
+    final Before other = new Before();
+    other.setFilterValue(date);
+    assertThat(filterType).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    final Before filterType = new Before();
+
+    assertThat(filterType.hashCode()).isEqualTo(filterType.hashCode());
+    assertThat(filterType.hashCode()).isEqualTo(new Before().hashCode());
+
+    final Date date = new Date();
+    filterType.setFilterValue(date);
+
+    final Before other = new Before();
+    other.setFilterValue(date);
+    assertThat(filterType.hashCode()).isEqualTo(other.hashCode());
+  }
 }
