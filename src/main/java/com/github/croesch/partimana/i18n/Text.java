@@ -165,6 +165,19 @@ public enum Text {
   /** constant for city */
   CITY (2022),
 
+  /** description of category <em>from</em> of a camp */
+  FILTER_CAT_CAMP_FROM (204),
+  /** description of category <em>location</em> of a camp */
+  FILTER_CAT_CAMP_LOCATION (203),
+  /** description of category <em>name</em> of a camp */
+  FILTER_CAT_CAMP_NAME (202),
+  /** description of category <em>rate per day</em> of a camp */
+  FILTER_CAT_CAMP_RATE_PER_DAY (207),
+  /** description of category <em>rate per participant</em> of a camp */
+  FILTER_CAT_CAMP_RATE_PER_PART (206),
+  /** description of category <em>until</em> of a camp */
+  FILTER_CAT_CAMP_UNTIL (205),
+
   /** description of filtering objects equal to a specific object */
   FILTER_TYPE_EQUALS (3300),
   /** description of filtering objects not equal to a specific object */
