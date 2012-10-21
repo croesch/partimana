@@ -12,22 +12,16 @@ import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
- * TODO Comment here ...
+ * A category that describes attributes that have the object type {@link Date}.
  * 
  * @author croesch
+ * @param <F> the {@link IFilterable} element that is filtered
  * @since Date: Oct 20, 2012
  */
 public abstract class DateCategory<F extends IFilterable> extends ACategory<F, Date> {
 
-  private final String description;
-
   public DateCategory(final String descr) {
-    this.description = descr;
-  }
-
-  @Override
-  public final String getShortDescription() {
-    return this.description;
+    super(descr);
   }
 
   @Override

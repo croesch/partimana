@@ -6,21 +6,19 @@ import com.github.croesch.partimana.model.filter.cat.DateCategory;
 import com.github.croesch.partimana.types.Camp;
 
 /**
- * TODO Comment here ...
+ * The category that describes the attribute <em>from</em> of a {@link Camp}.
  * 
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class FromCategory extends DateCategory<Camp> {
+public final class FromCategory extends DateCategory<Camp> {
 
   public FromCategory() {
     super(null);
-    // TODO Auto-generated constructor stub
   }
 
   @Override
   protected Date getValue(final Camp element) {
     return element.getFromDate();
   }
-
 }

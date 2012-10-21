@@ -15,10 +15,8 @@ import com.github.croesch.partimana.types.Participant;
  */
 public class DenominationCategory extends ACategory<Participant, Denomination> {
 
-  @Override
-  public String getShortDescription() {
-    // TODO Auto-generated method stub
-    return null;
+  public DenominationCategory() {
+    super(null);
   }
 
   @Override

@@ -15,10 +15,8 @@ import com.github.croesch.partimana.types.Participant;
  */
 public class GenderCategory extends ACategory<Participant, Gender> {
 
-  @Override
-  public String getShortDescription() {
-    // TODO Auto-generated method stub
-    return null;
+  public GenderCategory() {
+    super(null);
   }
 
   @Override

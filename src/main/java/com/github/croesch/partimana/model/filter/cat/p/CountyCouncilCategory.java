@@ -15,10 +15,8 @@ import com.github.croesch.partimana.types.Participant;
  */
 public class CountyCouncilCategory extends ACategory<Participant, CountyCouncil> {
 
-  @Override
-  public String getShortDescription() {
-    // TODO Auto-generated method stub
-    return null;
+  public CountyCouncilCategory() {
+    super(null);
   }
 
   @Override

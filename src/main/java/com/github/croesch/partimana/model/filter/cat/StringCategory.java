@@ -21,15 +21,8 @@ import com.github.croesch.partimana.types.api.IFilterable;
  */
 public abstract class StringCategory<F extends IFilterable> extends ACategory<F, String> {
 
-  private final String description;
-
   public StringCategory(final String descr) {
-    this.description = descr;
-  }
-
-  @Override
-  public final String getShortDescription() {
-    return this.description;
+    super(descr);
   }
 
   @Override

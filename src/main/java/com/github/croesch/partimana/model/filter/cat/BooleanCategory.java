@@ -16,15 +16,8 @@ import com.github.croesch.partimana.types.api.IFilterable;
  */
 public abstract class BooleanCategory<F extends IFilterable> extends ACategory<F, Boolean> {
 
-  private final String description;
-
   public BooleanCategory(final String descr) {
-    this.description = descr;
-  }
-
-  @Override
-  public final String getShortDescription() {
-    return this.description;
+    super(descr);
   }
 
   @Override

@@ -18,15 +18,8 @@ import com.github.croesch.partimana.types.api.IFilterable;
  */
 public abstract class IntegerCategory<F extends IFilterable> extends ACategory<F, Integer> {
 
-  private final String description;
-
   public IntegerCategory(final String descr) {
-    this.description = descr;
-  }
-
-  @Override
-  public final String getShortDescription() {
-    return this.description;
+    super(descr);
   }
 
   @Override
