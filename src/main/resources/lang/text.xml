@@ -106,7 +106,15 @@
 	<entry key="2049">Andere Kreisverwaltung</entry>
 	
 	<!-- Filtering information -->
+	<entry key="3300">ist</entry>
+	<entry key="3301">ist nicht</entry>
 	<entry key="3310">enthält</entry>
+	<entry key="3311">beginnt mit</entry>
+	<entry key="3312">endet mit</entry>
+	<entry key="3315">ist (c.i.)</entry>
+	<entry key="3316">ist nicht (c.i.)</entry>
+	<entry key="3315">größer als</entry>
+	<entry key="3316">kleiner als</entry>
 	<entry key="3330">früher als</entry>
 	<entry key="3331">später als</entry>
 

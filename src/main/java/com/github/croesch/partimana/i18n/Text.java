@@ -165,8 +165,24 @@ public enum Text {
   /** constant for city */
   CITY (2022),
 
+  /** description of filtering objects equal to a specific object */
+  FILTER_TYPE_EQUALS (3300),
+  /** description of filtering objects not equal to a specific object */
+  FILTER_TYPE_NOT_EQUALS (3301),
   /** description of filtering strings containing a specific string */
   FILTER_TYPE_CONTAINS (3310),
+  /** description of filtering strings starting with a specific string */
+  FILTER_TYPE_STARTS_WITH (3311),
+  /** description of filtering strings ends with a specific string */
+  FILTER_TYPE_ENDS_WITH (3312),
+  /** description of filtering strings equal to a specific string (case-insensitive) */
+  FILTER_TYPE_EQUALS_IGNORE_CASE (3315),
+  /** description of filtering strings not equal to a specific string (case-insensitive) */
+  FILTER_TYPE_NOT_EQUALS_IGNORE_CASE (3316),
+  /** description of filtering integers greater than a specific integer */
+  FILTER_TYPE_GREATER_THAN (3320),
+  /** description of filtering integers less than a specific integer */
+  FILTER_TYPE_LESS_THAN (3321),
   /** description of filtering dates before a specific date */
   FILTER_TYPE_BEFORE (3330),
   /** description of filtering dates after a specific date */
