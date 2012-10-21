@@ -104,6 +104,10 @@
 	<entry key="2047">Kreis Südwestpfalz</entry>
 	<entry key="2048">Stadt Zweibrücken</entry>
 	<entry key="2049">Andere Kreisverwaltung</entry>
+	
+	<!-- Filtering information -->
+	<entry key="3330">früher als</entry>
+	<entry key="3331">später als</entry>
 
 	<!-- Debug-Informationen -->
 	<entry key="10000">Ausgewählte Sprache: '{0}'</entry>

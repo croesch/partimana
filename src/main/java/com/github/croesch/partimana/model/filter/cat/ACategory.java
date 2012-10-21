@@ -28,6 +28,6 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
 
   @Override
   public boolean isMatchingFilter(final F element) {
-    return getFilter().matches(getValue(element));
+    return getFilter().isMatching(getValue(element));
   }
 }

@@ -165,6 +165,11 @@ public enum Text {
   /** constant for city */
   CITY (2022),
 
+  /** description of filtering dates before a specific date */
+  FILTER_TYPE_BEFORE (3330),
+  /** description of filtering dates after a specific date */
+  FILTER_TYPE_AFTER (3331),
+
   /** constant for unknown county council */
   UNKNOWN (2030),
   /** constant for county of alzey */
