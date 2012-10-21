@@ -2,6 +2,7 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.List;
 
+import com.github.croesch.partimana.types.api.IDescribable;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
@@ -12,15 +13,7 @@ import com.github.croesch.partimana.types.api.IFilterable;
  * @param <OT> the type of the objects of this category
  * @since Date: Oct 20, 2012
  */
-public interface IFilterCategory<F extends IFilterable, OT> {
-
-  /**
-   * Returns a short description. May be shown to the user.
-   * 
-   * @since Date: Oct 21, 2012
-   * @return the string representation of this filter
-   */
-  String getShortDescription();
+public interface IFilterCategory<F extends IFilterable, OT> extends IDescribable {
 
   /**
    * Returns all possible types of filtering this category of the filterable object.

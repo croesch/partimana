@@ -2,6 +2,7 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.List;
 
+import com.github.croesch.partimana.types.api.IDescribable;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
@@ -10,7 +11,7 @@ import com.github.croesch.partimana.types.api.IFilterable;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public interface IFilterGroup<F extends IFilterable> {
+public interface IFilterGroup<F extends IFilterable> extends IDescribable {
 
   void add(final IFilter<F> filter);
 
@@ -21,6 +22,4 @@ public interface IFilterGroup<F extends IFilterable> {
   List<IFilterGroup<F>> getFilterGroups();
 
   List<F> filter(List<F> elements);
-
-  String getShortDescription();
 }

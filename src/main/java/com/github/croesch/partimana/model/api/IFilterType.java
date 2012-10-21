@@ -1,7 +1,7 @@
 package com.github.croesch.partimana.model.api;
 
 import com.github.croesch.annotate.MayBeNull;
-import com.github.croesch.annotate.NotNull;
+import com.github.croesch.partimana.types.api.IDescribable;
 
 /**
  * Interface that defines a filter for a specific data type.
@@ -10,16 +10,7 @@ import com.github.croesch.annotate.NotNull;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public interface IFilterType<OT extends Object> {
-
-  /**
-   * Returns a short description. May be shown to the user.
-   * 
-   * @since Date: Oct 21, 2012
-   * @return the string representation of this filter
-   */
-  @NotNull
-  String getShortDescription();
+public interface IFilterType<OT extends Object> extends IDescribable {
 
   /**
    * Sets the value for the filter. Each object to filter will be checked against this value.
