@@ -165,6 +165,8 @@ public enum Text {
   /** constant for city */
   CITY (2022),
 
+  /** description of filtering strings containing a specific string */
+  FILTER_TYPE_CONTAINS (3310),
   /** description of filtering dates before a specific date */
   FILTER_TYPE_BEFORE (3330),
   /** description of filtering dates after a specific date */
