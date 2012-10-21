@@ -1,16 +1,18 @@
 package com.github.croesch.partimana.model.filter.types;
 
+import com.github.croesch.partimana.i18n.Text;
+
 /**
- * TODO Comment here ...
+ * Filters all integers that are less than the given filter value.
  * 
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class LessThan extends AFilterType<Integer> {
+public final class LessThan extends AFilterType<Integer> {
 
   @Override
   public String getShortDescription() {
-    return null;
+    return Text.FILTER_TYPE_LESS_THAN.text();
   }
 
   @Override
