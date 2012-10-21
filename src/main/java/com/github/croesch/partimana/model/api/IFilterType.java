@@ -42,8 +42,9 @@ public interface IFilterType<OT extends Object> {
    * Returns whether the given object matches the filter or should be removed.
    * 
    * @since Date: Oct 21, 2012
-   * @param object the object to check if it should be filtered, mustn't be <code>null</code>
-   * @return <code>true</code> if the given object matches the filter,<br>
+   * @param object the object to check if it should be filtered
+   * @return <code>false</code> if the filter value or the given object is <code>null</code>,<br>
+   *         <code>true</code> if the given object matches the filter,<br>
    *         <code>false</code> otherwise - the given object should not be viewed/added to the result list
    */
   boolean isMatching(OT object);

@@ -1,16 +1,19 @@
 package com.github.croesch.partimana.model.filter.types;
 
+import com.github.croesch.partimana.i18n.Text;
+
 /**
- * TODO Comment here ...
+ * Filters all objects that are equal to the given filter value.
  * 
+ * @param <OT> the type of objects to filter
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class NotEquals<OT extends Object> extends AFilterType<OT> {
+public final class NotEquals<OT extends Object> extends AFilterType<OT> {
 
   @Override
   public String getShortDescription() {
-    return null;
+    return Text.FILTER_TYPE_NOT_EQUALS.text();
   }
 
   @Override
