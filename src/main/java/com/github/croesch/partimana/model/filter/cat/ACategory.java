@@ -56,6 +56,9 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
 
   @Override
   public final boolean isMatchingFilter(final F element) {
+    if (this.filter == null || element == null) {
+      return false;
+    }
     return getFilter().isMatching(getValue(element));
   }
 }

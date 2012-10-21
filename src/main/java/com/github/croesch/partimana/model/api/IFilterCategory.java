@@ -45,7 +45,8 @@ public interface IFilterCategory<F extends IFilterable, OT> extends IDescribable
    * 
    * @since Date: Oct 21, 2012
    * @param element the object to check if it should be filtered
-   * @return <code>false</code> if the filter type or the given element is <code>null</code>,<br>
+   * @return <code>false</code> if the filter type, the filter value, the given element or the object of this category
+   *         is <code>null</code>,<br>
    *         <code>true</code> if the given element matches the filter,<br>
    *         <code>false</code> otherwise - the given element should not be viewed/added to the result list
    */
