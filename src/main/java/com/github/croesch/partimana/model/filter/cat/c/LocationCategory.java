@@ -1,24 +1,28 @@
 package com.github.croesch.partimana.model.filter.cat.c;
 
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.filter.cat.StringCategory;
 import com.github.croesch.partimana.types.Camp;
 
 /**
- * TODO Comment here ...
+ * The category that describes the attribute <em>location</em> of a {@link Camp}.
  * 
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class LocationCategory extends StringCategory<Camp> {
+public final class LocationCategory extends StringCategory<Camp> {
 
+  /**
+   * Constructs the category that describes the attribute <em>location</em> of a {@link Camp}.
+   * 
+   * @since Date: Oct 27, 2012
+   */
   public LocationCategory() {
-    super(null);
-    // TODO Auto-generated constructor stub
+    super(Text.FILTER_CAT_CAMP_LOCATION.text());
   }
 
   @Override
   protected String getValue(final Camp element) {
     return element.getLocation();
   }
-
 }
