@@ -20,6 +20,12 @@ import com.github.croesch.partimana.types.api.IFilterable;
  */
 public abstract class DateCategory<F extends IFilterable> extends ACategory<F, Date> {
 
+  /**
+   * Constructs this category with the given viewable description.
+   * 
+   * @since Date: Oct 27, 2012
+   * @param descr the short description that can be shown to the user
+   */
   public DateCategory(final String descr) {
     super(descr);
   }

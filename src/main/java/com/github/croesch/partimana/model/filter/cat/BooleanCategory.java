@@ -9,13 +9,20 @@ import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
- * TODO Comment here ...
+ * A category that describes attributes that have the object type {@link Boolean}.
  * 
  * @author croesch
+ * @param <F> the {@link IFilterable} element that is filtered
  * @since Date: Oct 20, 2012
  */
 public abstract class BooleanCategory<F extends IFilterable> extends ACategory<F, Boolean> {
 
+  /**
+   * Constructs this category with the given viewable description.
+   * 
+   * @since Date: Oct 27, 2012
+   * @param descr the short description that can be shown to the user
+   */
   public BooleanCategory(final String descr) {
     super(descr);
   }
