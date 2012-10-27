@@ -178,6 +178,61 @@ public enum Text {
   /** description of category <em>until</em> of a camp */
   FILTER_CAT_CAMP_UNTIL (205),
 
+  /** description of category <em>bank account number</em> of a participant */
+  FILTER_CAT_PARTICIPANT_BANK_ACC_NUM (117),
+  /** description of category <em>bank code number</em> of a participant */
+  FILTER_CAT_PARTICIPANT_BANK_CODE_NUM (115),
+  /** description of category <em>bank name</em> of a participant */
+  FILTER_CAT_PARTICIPANT_BANK_NAME (116),
+  /** description of category <em>birthday</em> of a participant */
+  FILTER_CAT_PARTICIPANT_BIRTHDAY (106),
+  /** description of category <em>can be AGE</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_AGE (127),
+  /** description of category <em>can be board</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_BOARD (124),
+  /** description of category <em>can be extended board</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_EXTENDED_BOARD (125),
+  /** description of category <em>can be kitchen</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_KITCHEN (128),
+  /** description of category <em>can be MAK</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_MAK (126),
+  /** description of category <em>can be misc</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_MISC (130),
+  /** description of category <em>can be participant</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_PARTICIPANT (121),
+  /** description of category <em>can be seminar</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_SEMINAR (129),
+  /** description of category <em>can be staff</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_STAFF (122),
+  /** description of category <em>can be staff youth</em> of a participant */
+  FILTER_CAT_PARTICIPANT_CAN_BE_STAFF_YOUTH (123),
+  /** description of category <em>comment</em> of a participant */
+  FILTER_CAT_PARTICIPANT_COMMENT (118),
+  /** description of category <em>county council</em> of a participant */
+  FILTER_CAT_PARTICIPANT_COUNTY_COUNCIL (114),
+  /** description of category <em>date since</em> of a participant */
+  FILTER_CAT_PARTICIPANT_DATE_SINCE (119),
+  /** description of category <em>date until</em> of a participant */
+  FILTER_CAT_PARTICIPANT_DATE_UNTIL (120),
+  /** description of category <em>denomination</em> of a participant */
+  FILTER_CAT_PARTICIPANT_DENOMINATION (105),
+  /** description of category <em>fax</em> of a participant */
+  FILTER_CAT_PARTICIPANT_FAX (110),
+  /** description of category <em>fore name</em> of a participant */
+  FILTER_CAT_PARTICIPANT_FORE_NAME (103),
+  /** description of category <em>gender</em> of a participant */
+  FILTER_CAT_PARTICIPANT_GENDER (104),
+  /** description of category <em>last name</em> of a participant */
+  FILTER_CAT_PARTICIPANT_LAST_NAME (102),
+  /** description of category <em>mail address</em> of a participant */
+  FILTER_CAT_PARTICIPANT_MAIL_ADDRESS (113),
+  /** description of category <em>mobile phone</em> of a participant */
+  FILTER_CAT_PARTICIPANT_MOBILE_PHONE (111),
+  /** description of category <em>phone</em> of a participant */
+  FILTER_CAT_PARTICIPANT_PHONE (109),
+  /** description of category <em>phone of parents</em> of a participant */
+  FILTER_CAT_PARTICIPANT_PHONE_OF_PARENTS (112),
+
   /** description of filtering objects equal to a specific object */
   FILTER_TYPE_EQUALS (3300),
   /** description of filtering objects not equal to a specific object */
