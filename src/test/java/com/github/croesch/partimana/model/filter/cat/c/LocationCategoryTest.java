@@ -57,6 +57,7 @@ public class LocationCategoryTest {
   @Test
   public void testGetShortDescription() {
     assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_CAMP_LOCATION.text());
+    assertThat(this.category.getShortDescription()).isEqualTo(Text.CAMP_LOCATION.text());
   }
 
   @Test

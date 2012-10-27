@@ -57,6 +57,7 @@ public class RatePerDayChildCategoryTest {
   @Test
   public void testGetShortDescription() {
     assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_CAMP_RATE_PER_DAY.text());
+    assertThat(this.category.getShortDescription()).isEqualTo(Text.CAMP_RATE_PER_DAY.text());
   }
 
   @Test

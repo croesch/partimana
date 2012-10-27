@@ -52,6 +52,7 @@ public class FromCategoryTest {
   @Test
   public void testGetShortDescription() {
     assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_CAMP_FROM.text());
+    assertThat(this.category.getShortDescription()).isEqualTo(Text.CAMP_DATE_FROM.text());
   }
 
   @Test

@@ -52,6 +52,7 @@ public class UntilCategoryTest {
   @Test
   public void testGetShortDescription() {
     assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_CAMP_UNTIL.text());
+    assertThat(this.category.getShortDescription()).isEqualTo(Text.CAMP_DATE_TO.text());
   }
 
   @Test
