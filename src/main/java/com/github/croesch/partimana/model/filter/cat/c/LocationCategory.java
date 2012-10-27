@@ -18,7 +18,7 @@ public final class LocationCategory extends StringCategory<Camp> {
    * @since Date: Oct 27, 2012
    */
   public LocationCategory() {
-    super(Text.FILTER_CAT_CAMP_LOCATION.text());
+    super(Text.FILTER_CAT_CAMP_LOCATION);
   }
 
   @Override

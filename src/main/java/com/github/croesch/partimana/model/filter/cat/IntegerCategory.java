@@ -3,6 +3,7 @@ package com.github.croesch.partimana.model.filter.cat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.GreaterThan;
@@ -25,7 +26,7 @@ public abstract class IntegerCategory<F extends IFilterable> extends ACategory<F
    * @since Date: Oct 27, 2012
    * @param descr the short description that can be shown to the user
    */
-  public IntegerCategory(final String descr) {
+  public IntegerCategory(final Text descr) {
     super(descr);
   }
 

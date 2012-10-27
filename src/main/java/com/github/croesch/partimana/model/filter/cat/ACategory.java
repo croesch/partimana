@@ -1,5 +1,7 @@
 package com.github.croesch.partimana.model.filter.cat;
 
+import com.github.croesch.annotate.NotNull;
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.types.api.IFilterable;
@@ -18,7 +20,8 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
   private IFilterType<OT> filter = null;
 
   /** the viewable description of this category */
-  private final String description;
+  @NotNull
+  private final Text description;
 
   /**
    * Constructs this category with the given viewable description.
@@ -26,13 +29,14 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
    * @since Date: Oct 22, 2012
    * @param descr the short description that can be shown to the user
    */
-  protected ACategory(final String descr) {
+  protected ACategory(final Text descr) {
     this.description = descr;
   }
 
   @Override
+  @NotNull
   public final String getShortDescription() {
-    return this.description;
+    return this.description.text();
   }
 
   @Override

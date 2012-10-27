@@ -3,6 +3,7 @@ package com.github.croesch.partimana.model.filter.cat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.NotEquals;
@@ -23,7 +24,7 @@ public abstract class BooleanCategory<F extends IFilterable> extends ACategory<F
    * @since Date: Oct 27, 2012
    * @param descr the short description that can be shown to the user
    */
-  public BooleanCategory(final String descr) {
+  public BooleanCategory(final Text descr) {
     super(descr);
   }
 

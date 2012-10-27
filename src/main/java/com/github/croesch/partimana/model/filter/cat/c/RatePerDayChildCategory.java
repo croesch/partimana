@@ -18,7 +18,7 @@ public final class RatePerDayChildCategory extends StringCategory<Camp> {
    * @since Date: Oct 27, 2012
    */
   public RatePerDayChildCategory() {
-    super(Text.FILTER_CAT_CAMP_RATE_PER_DAY.text());
+    super(Text.FILTER_CAT_CAMP_RATE_PER_DAY);
   }
 
   @Override

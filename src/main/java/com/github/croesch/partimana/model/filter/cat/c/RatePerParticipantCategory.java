@@ -18,7 +18,7 @@ public final class RatePerParticipantCategory extends StringCategory<Camp> {
    * @since Date: Oct 27, 2012
    */
   public RatePerParticipantCategory() {
-    super(Text.FILTER_CAT_CAMP_RATE_PER_PART.text());
+    super(Text.FILTER_CAT_CAMP_RATE_PER_PART);
   }
 
   @Override

@@ -20,7 +20,7 @@ public final class UntilCategory extends DateCategory<Camp> {
    * @since Date: Oct 27, 2012
    */
   public UntilCategory() {
-    super(Text.FILTER_CAT_CAMP_UNTIL.text());
+    super(Text.FILTER_CAT_CAMP_UNTIL);
   }
 
   @Override

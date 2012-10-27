@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.types.After;
 import com.github.croesch.partimana.model.filter.types.Before;
@@ -26,7 +27,7 @@ public abstract class DateCategory<F extends IFilterable> extends ACategory<F, D
    * @since Date: Oct 27, 2012
    * @param descr the short description that can be shown to the user
    */
-  public DateCategory(final String descr) {
+  public DateCategory(final Text descr) {
     super(descr);
   }
 

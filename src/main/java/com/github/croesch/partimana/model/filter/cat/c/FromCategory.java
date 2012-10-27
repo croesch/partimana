@@ -20,7 +20,7 @@ public final class FromCategory extends DateCategory<Camp> {
    * @since Date: Oct 22, 2012
    */
   public FromCategory() {
-    super(Text.FILTER_CAT_CAMP_FROM.text());
+    super(Text.FILTER_CAT_CAMP_FROM);
   }
 
   @Override

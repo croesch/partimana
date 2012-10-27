@@ -18,7 +18,7 @@ public final class NameCategory extends StringCategory<Camp> {
    * @since Date: Oct 27, 2012
    */
   public NameCategory() {
-    super(Text.FILTER_CAT_CAMP_NAME.text());
+    super(Text.FILTER_CAT_CAMP_NAME);
   }
 
   @Override
