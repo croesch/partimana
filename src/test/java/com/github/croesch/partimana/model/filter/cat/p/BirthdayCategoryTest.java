@@ -62,8 +62,8 @@ public class BirthdayCategoryTest {
   public void isMatchingFilter() {
     assertThat(this.category.isMatchingFilter(null)).isFalse();
 
-    final Participant p = new Participant("Maxi",
-                                          "Musterfrau",
+    final Participant p = new Participant("Musterfrau",
+                                          "Maxi",
                                           Gender.FEMALE,
                                           Denomination.CATHOLIC,
                                           new Date(100000000),
