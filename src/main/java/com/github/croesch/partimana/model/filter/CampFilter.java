@@ -13,12 +13,13 @@ import com.github.croesch.partimana.model.filter.cat.c.UntilCategory;
 import com.github.croesch.partimana.types.Camp;
 
 /**
- * TODO Comment here ...
+ * Represents a filter for {@link Camp}-objects. Can have different {@link IFilterCategory}s to filter the camps by
+ * different columns.
  * 
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class CampFilter extends AFilter<Camp> {
+public final class CampFilter extends AFilter<Camp> {
 
   @Override
   public List<IFilterCategory<Camp, ?>> getCategories() {
