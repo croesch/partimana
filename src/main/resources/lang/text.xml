@@ -106,6 +106,13 @@
 	<entry key="2049">Andere Kreisverwaltung</entry>
 	
 	<!-- Filtering information -->
+	<entry key="3100">Ort (Wohnanschrift)</entry>
+	<entry key="3101">PLZ (Wohnanschrift)</entry>
+	<entry key="3102">Straße (Wohnanschrift)</entry>
+	<entry key="3103">Ort (Postanschrift)</entry>
+	<entry key="3104">PLZ (Postanschrift)</entry>
+	<entry key="3105">Straße (Postanschrift)</entry>
+	
 	<entry key="3300">ist</entry>
 	<entry key="3301">ist nicht</entry>
 	<entry key="3310">enthält</entry>

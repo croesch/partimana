@@ -165,19 +165,6 @@ public enum Text {
   /** constant for city */
   CITY (2022),
 
-  /** description of category <em>from</em> of a camp */
-  FILTER_CAT_CAMP_FROM (204),
-  /** description of category <em>location</em> of a camp */
-  FILTER_CAT_CAMP_LOCATION (203),
-  /** description of category <em>name</em> of a camp */
-  FILTER_CAT_CAMP_NAME (202),
-  /** description of category <em>rate per day</em> of a camp */
-  FILTER_CAT_CAMP_RATE_PER_DAY (207),
-  /** description of category <em>rate per participant</em> of a camp */
-  FILTER_CAT_CAMP_RATE_PER_PART (206),
-  /** description of category <em>until</em> of a camp */
-  FILTER_CAT_CAMP_UNTIL (205),
-
   /** description of category <em>bank account number</em> of a participant */
   FILTER_CAT_PARTICIPANT_BANK_ACC_NUM (117),
   /** description of category <em>bank code number</em> of a participant */
@@ -224,6 +211,12 @@ public enum Text {
   FILTER_CAT_PARTICIPANT_GENDER (104),
   /** description of category <em>last name</em> of a participant */
   FILTER_CAT_PARTICIPANT_LAST_NAME (102),
+  /** description of category <em>living city</em> of a participant */
+  FILTER_CAT_PARTICIPANT_LIVING_CITY (3100),
+  /** description of category <em>living postal code</em> of a participant */
+  FILTER_CAT_PARTICIPANT_LIVING_POSTAL_CODE (3101),
+  /** description of category <em>living street</em> of a participant */
+  FILTER_CAT_PARTICIPANT_LIVING_STREET (3102),
   /** description of category <em>mail address</em> of a participant */
   FILTER_CAT_PARTICIPANT_MAIL_ADDRESS (113),
   /** description of category <em>mobile phone</em> of a participant */
@@ -232,6 +225,25 @@ public enum Text {
   FILTER_CAT_PARTICIPANT_PHONE (109),
   /** description of category <em>phone of parents</em> of a participant */
   FILTER_CAT_PARTICIPANT_PHONE_OF_PARENTS (112),
+  /** description of category <em>postal city</em> of a participant */
+  FILTER_CAT_PARTICIPANT_POSTAL_CITY (3103),
+  /** description of category <em>postal postal code</em> of a participant */
+  FILTER_CAT_PARTICIPANT_POSTAL_POSTAL_CODE (3104),
+  /** description of category <em>postal street</em> of a participant */
+  FILTER_CAT_PARTICIPANT_POSTAL_STREET (3105),
+
+  /** description of category <em>from</em> of a camp */
+  FILTER_CAT_CAMP_FROM (204),
+  /** description of category <em>location</em> of a camp */
+  FILTER_CAT_CAMP_LOCATION (203),
+  /** description of category <em>name</em> of a camp */
+  FILTER_CAT_CAMP_NAME (202),
+  /** description of category <em>rate per day</em> of a camp */
+  FILTER_CAT_CAMP_RATE_PER_DAY (207),
+  /** description of category <em>rate per participant</em> of a camp */
+  FILTER_CAT_CAMP_RATE_PER_PART (206),
+  /** description of category <em>until</em> of a camp */
+  FILTER_CAT_CAMP_UNTIL (205),
 
   /** description of filtering objects equal to a specific object */
   FILTER_TYPE_EQUALS (3300),
