@@ -1,24 +1,28 @@
 package com.github.croesch.partimana.model.filter.cat.p;
 
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.filter.cat.IntegerCategory;
 import com.github.croesch.partimana.types.Participant;
 
 /**
- * TODO Comment here ...
+ * The category that describes the attribute <em>postal postal code</em> of a {@link Participant}.
  * 
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class PostalPostCodeCategory extends IntegerCategory<Participant> {
+public final class PostalPostCodeCategory extends IntegerCategory<Participant> {
 
+  /**
+   * Constructs the category that describes the attribute <em>postal postal code</em> of a {@link Participant}.
+   * 
+   * @since Date: Oct 27, 2012
+   */
   public PostalPostCodeCategory() {
-    super(null);
-    // TODO Auto-generated constructor stub
+    super(Text.FILTER_CAT_PARTICIPANT_POSTAL_POSTAL_CODE);
   }
 
   @Override
   protected Integer getValue(final Participant element) {
     return element.getPostCodePostal();
   }
-
 }
