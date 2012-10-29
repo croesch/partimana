@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
+import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
@@ -79,5 +80,44 @@ public class GenderCategoryTest {
     notEquals.setFilterValue(Gender.MALE);
     this.category.setFilter(notEquals);
     assertThat(this.category.isMatchingFilter(p)).isTrue();
+  }
+
+  @Test
+  public void testEquals() {
+    assertThat(this.category).isEqualTo(new GenderCategory());
+    assertThat(this.category).isEqualTo(this.category);
+    assertThat(this.category).isNotEqualTo(null);
+    assertThat(this.category).isEqualTo(new LocationCategory());
+    assertThat(this.category).isNotEqualTo("category");
+
+    this.category.setFilter(new Equals<Gender>());
+    final GenderCategory other = new GenderCategory();
+    assertThat(this.category).isNotEqualTo(other);
+    assertThat(other).isNotEqualTo(this.category);
+    other.setFilter(new Equals<Gender>());
+    assertThat(this.category).isEqualTo(other);
+
+    final LocationCategory different = new LocationCategory();
+    different.setFilter(new Equals<String>());
+    assertThat(this.category).isEqualTo(different);
+    this.category.getFilter().setFilterValue(Gender.MALE);
+    assertThat(this.category).isNotEqualTo(different);
+    assertThat(different).isNotEqualTo(this.category);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertThat(this.category.hashCode()).isEqualTo(new GenderCategory().hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
+
+    this.category.setFilter(new Equals<Gender>());
+    final GenderCategory other = new GenderCategory();
+    other.setFilter(new Equals<Gender>());
+    assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
+
+    final LocationCategory different = new LocationCategory();
+    different.setFilter(new Equals<String>());
+    assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

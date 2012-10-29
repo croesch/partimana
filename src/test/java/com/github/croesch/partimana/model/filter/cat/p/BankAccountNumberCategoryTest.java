@@ -84,4 +84,43 @@ public class BankAccountNumberCategoryTest {
     this.category.setFilter(greater);
     assertThat(this.category.isMatchingFilter(p)).isTrue();
   }
+
+  @Test
+  public void testEquals() {
+    assertThat(this.category).isEqualTo(new BankAccountNumberCategory());
+    assertThat(this.category).isEqualTo(this.category);
+    assertThat(this.category).isNotEqualTo(null);
+    assertThat(this.category).isEqualTo(new ForeNameCategory());
+    assertThat(this.category).isNotEqualTo("category");
+
+    this.category.setFilter(new Equals<Integer>());
+    final BankAccountNumberCategory other = new BankAccountNumberCategory();
+    assertThat(this.category).isNotEqualTo(other);
+    assertThat(other).isNotEqualTo(this.category);
+    other.setFilter(new Equals<Integer>());
+    assertThat(this.category).isEqualTo(other);
+
+    final ForeNameCategory different = new ForeNameCategory();
+    different.setFilter(new Equals<String>());
+    assertThat(this.category).isEqualTo(different);
+    this.category.getFilter().setFilterValue(12);
+    assertThat(this.category).isNotEqualTo(different);
+    assertThat(different).isNotEqualTo(this.category);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertThat(this.category.hashCode()).isEqualTo(new BankAccountNumberCategory().hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(new ForeNameCategory().hashCode());
+
+    this.category.setFilter(new Equals<Integer>());
+    final BankAccountNumberCategory other = new BankAccountNumberCategory();
+    other.setFilter(new Equals<Integer>());
+    assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
+
+    final ForeNameCategory different = new ForeNameCategory();
+    different.setFilter(new Equals<String>());
+    assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
+  }
 }

@@ -65,4 +65,36 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
     }
     return getFilter().isMatching(getValue(element));
   }
+
+  @Override
+  public final int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result;
+    if (this.filter != null) {
+      result += this.filter.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public final boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof ACategory)) {
+      return false;
+    }
+    @SuppressWarnings("rawtypes")
+    final ACategory other = (ACategory) obj;
+    if (this.filter == null) {
+      if (other.filter != null) {
+        return false;
+      }
+    } else if (!this.filter.equals(other.filter)) {
+      return false;
+    }
+    return true;
+  }
+
 }

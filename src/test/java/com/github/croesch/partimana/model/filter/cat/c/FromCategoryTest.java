@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
+import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
 import com.github.croesch.partimana.model.filter.types.After;
 import com.github.croesch.partimana.model.filter.types.Before;
 import com.github.croesch.partimana.model.filter.types.Equals;
@@ -71,5 +72,44 @@ public class FromCategoryTest {
     before.setFilterValue(new Date(7000000));
     this.category.setFilter(before);
     assertThat(this.category.isMatchingFilter(c)).isTrue();
+  }
+
+  @Test
+  public void testEquals() {
+    assertThat(this.category).isEqualTo(new FromCategory());
+    assertThat(this.category).isEqualTo(this.category);
+    assertThat(this.category).isNotEqualTo(null);
+    assertThat(this.category).isEqualTo(new ForeNameCategory());
+    assertThat(this.category).isNotEqualTo("category");
+
+    this.category.setFilter(new Equals<Date>());
+    final FromCategory other = new FromCategory();
+    assertThat(this.category).isNotEqualTo(other);
+    assertThat(other).isNotEqualTo(this.category);
+    other.setFilter(new Equals<Date>());
+    assertThat(this.category).isEqualTo(other);
+
+    final ForeNameCategory different = new ForeNameCategory();
+    different.setFilter(new Equals<String>());
+    assertThat(this.category).isEqualTo(different);
+    this.category.getFilter().setFilterValue(new Date());
+    assertThat(this.category).isNotEqualTo(different);
+    assertThat(different).isNotEqualTo(this.category);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertThat(this.category.hashCode()).isEqualTo(new FromCategory().hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(new ForeNameCategory().hashCode());
+
+    this.category.setFilter(new Equals<Date>());
+    final FromCategory other = new FromCategory();
+    other.setFilter(new Equals<Date>());
+    assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
+
+    final ForeNameCategory different = new ForeNameCategory();
+    different.setFilter(new Equals<String>());
+    assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

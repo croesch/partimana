@@ -77,4 +77,43 @@ public class LocationCategoryTest {
     this.category.setFilter(endsWith);
     assertThat(this.category.isMatchingFilter(c)).isFalse();
   }
+
+  @Test
+  public void testEquals() {
+    assertThat(this.category).isEqualTo(new LocationCategory());
+    assertThat(this.category).isEqualTo(this.category);
+    assertThat(this.category).isNotEqualTo(null);
+    assertThat(this.category).isEqualTo(new FromCategory());
+    assertThat(this.category).isNotEqualTo("category");
+
+    this.category.setFilter(new Equals<String>());
+    final LocationCategory other = new LocationCategory();
+    assertThat(this.category).isNotEqualTo(other);
+    assertThat(other).isNotEqualTo(this.category);
+    other.setFilter(new Equals<String>());
+    assertThat(this.category).isEqualTo(other);
+
+    final FromCategory different = new FromCategory();
+    different.setFilter(new Equals<Date>());
+    assertThat(this.category).isEqualTo(different);
+    this.category.getFilter().setFilterValue("12");
+    assertThat(this.category).isNotEqualTo(different);
+    assertThat(different).isNotEqualTo(this.category);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
+    assertThat(this.category.hashCode()).isEqualTo(new FromCategory().hashCode());
+
+    this.category.setFilter(new Equals<String>());
+    final LocationCategory other = new LocationCategory();
+    other.setFilter(new Equals<String>());
+    assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
+
+    final FromCategory different = new FromCategory();
+    different.setFilter(new Equals<Date>());
+    assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
+  }
 }
