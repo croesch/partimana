@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.p.BirthdayCategory;
+import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
 import com.github.croesch.partimana.model.filter.cat.p.GenderCategory;
 import com.github.croesch.partimana.model.filter.cat.p.LivingCityCategory;
 import com.github.croesch.partimana.model.filter.types.After;
@@ -147,5 +148,62 @@ public class ParticipantFilterTest {
     startsWith.setFilterValue("");
     cat3.setFilter(startsWith);
     assertThat(this.filter.filter(participantList)).containsOnly(this.p1, this.p2, this.p3, this.p4, this.p5);
+  }
+
+  @Test
+  public void testEquals() {
+    assertThat(this.filter).isEqualTo(new ParticipantFilter());
+    final ForeNameCategory category1 = new ForeNameCategory();
+    this.filter.setCategory(category1);
+
+    final ParticipantFilter other = new ParticipantFilter();
+    final CampFilter different = new CampFilter();
+    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(this.filter).isNotEqualTo(different);
+    assertThat(other).isEqualTo(different);
+    final ForeNameCategory category2 = new ForeNameCategory();
+    other.setCategory(category2);
+    assertThat(this.filter).isEqualTo(other);
+    assertThat(other).isNotEqualTo(different);
+
+    final Equals<String> equals1 = new Equals<String>();
+    category1.setFilter(equals1);
+    assertThat(this.filter).isNotEqualTo(other);
+    final Equals<String> equals2 = new Equals<String>();
+    category2.setFilter(equals2);
+    assertThat(this.filter).isEqualTo(other);
+
+    equals1.setFilterValue("Peter");
+    assertThat(this.filter).isNotEqualTo(other);
+    equals2.setFilterValue("peter");
+    assertThat(this.filter).isNotEqualTo(other);
+    equals2.setFilterValue("Peter");
+    assertThat(this.filter).isEqualTo(other);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertThat(this.filter.hashCode()).isEqualTo(new ParticipantFilter().hashCode());
+    final ForeNameCategory category1 = new ForeNameCategory();
+    this.filter.setCategory(category1);
+
+    final ParticipantFilter other = new ParticipantFilter();
+    assertThat(other.hashCode()).isEqualTo(new CampFilter().hashCode());
+    final ForeNameCategory category2 = new ForeNameCategory();
+    other.setCategory(category2);
+    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+
+    final Equals<String> equals1 = new Equals<String>();
+    category1.setFilter(equals1);
+    final Equals<String> equals2 = new Equals<String>();
+    category2.setFilter(equals2);
+    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+
+    equals1.setFilterValue("Peter");
+    assertThat(this.filter).isNotEqualTo(other);
+    equals2.setFilterValue("peter");
+    assertThat(this.filter).isNotEqualTo(other);
+    equals2.setFilterValue("Peter");
+    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
   }
 }

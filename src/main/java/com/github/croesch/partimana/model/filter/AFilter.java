@@ -44,4 +44,37 @@ public abstract class AFilter<F extends IFilterable> implements IFilter<F> {
   public final void setCategory(final IFilterCategory<F, ?> cat) {
     this.category = cat;
   }
+
+  @Override
+  public final int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result;
+    if (this.category != null) {
+      result += this.category.hashCode();
+    }
+
+    return result;
+  }
+
+  @Override
+  public final boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof AFilter)) {
+      return false;
+    }
+    @SuppressWarnings("rawtypes")
+    final AFilter other = (AFilter) obj;
+    if (this.category == null) {
+      if (other.category != null) {
+        return false;
+      }
+    } else if (!this.category.equals(other.category)) {
+      return false;
+    }
+    return true;
+  }
+
 }
