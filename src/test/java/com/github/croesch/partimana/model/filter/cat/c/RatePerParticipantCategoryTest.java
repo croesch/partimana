@@ -62,7 +62,7 @@ public class RatePerParticipantCategoryTest {
   }
 
   @Test
-  public void isMatchingFilter() {
+  public void testIsMatchingFilter() {
     assertThat(this.category.isMatchingFilter(null)).isFalse();
 
     final Camp c = new Camp("OFZ", new Date(5000000), new Date(10000000), "dort", "20");

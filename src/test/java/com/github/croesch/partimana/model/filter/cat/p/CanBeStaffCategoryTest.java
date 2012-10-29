@@ -57,7 +57,7 @@ public class CanBeStaffCategoryTest {
   }
 
   @Test
-  public void isMatchingFilter() {
+  public void testIsMatchingFilter() {
     assertThat(this.category.isMatchingFilter(null)).isFalse();
 
     final Participant p = new Participant("Musterfrau",
