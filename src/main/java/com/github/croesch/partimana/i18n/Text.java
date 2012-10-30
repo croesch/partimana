@@ -165,6 +165,11 @@ public enum Text {
   /** constant for city */
   CITY (2022),
 
+  /** description of the and-filter group */
+  FILTER_AND (3010),
+  /** description of the or-filter group */
+  FILTER_OR (3011),
+
   /** description of category <em>bank account number</em> of a participant */
   FILTER_CAT_PARTICIPANT_BANK_ACC_NUM (117),
   /** description of category <em>bank code number</em> of a participant */

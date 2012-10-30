@@ -15,6 +15,10 @@ import com.github.croesch.partimana.types.api.IFilterable;
  */
 class OrGroup<F extends IFilterable> extends AFilterGroup<F> {
 
+  public OrGroup() {
+    super(null);
+  }
+
   @Override
   public List<F> filter(final List<F> originalElements) {
     final List<F> elements = new ArrayList<F>();
