@@ -7,24 +7,28 @@ import com.github.croesch.partimana.model.api.IFilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
- * TODO Comment here ...
+ * The model for filtering {@link IFilterable} objects.
  * 
+ * @param <F> the type of the objects this model can filter
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public class FilterModel<F extends IFilterable> implements IFilterModel<F> {
+public final class FilterModel<F extends IFilterable> implements IFilterModel<F> {
 
+  /** the group that contains the different filters */
   private final OrGroup<F> filters = new OrGroup<F>();
 
+  /** the list of elements to be filtered */
   private final List<F> originalElements;
 
+  /**
+   * Constructs the model for filtering the given {@link IFilterable} objects.
+   * 
+   * @since Date: Nov 1, 2012
+   * @param elements a list of elements that should be filtered
+   */
   public FilterModel(final List<F> elements) {
-    this.originalElements = elements;//TODO reference
-  }
-
-  @Override
-  public List<IFilter<F>> getFilter() {
-    return this.filters.getFilters();
+    this.originalElements = elements; //TODO reference
   }
 
   @Override

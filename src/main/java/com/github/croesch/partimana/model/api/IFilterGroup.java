@@ -2,6 +2,7 @@ package com.github.croesch.partimana.model.api;
 
 import java.util.List;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.api.IDescribable;
 import com.github.croesch.partimana.types.api.IFilterable;
 
@@ -48,6 +49,7 @@ public interface IFilterGroup<F extends IFilterable> extends IDescribable {
    * @since Date: Oct 30, 2012
    * @return a list of all groups currently contained in that group.
    */
+  @NotNull
   List<IFilterGroup<F>> getFilterGroups();
 
   /**

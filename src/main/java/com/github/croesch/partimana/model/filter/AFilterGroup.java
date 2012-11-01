@@ -3,6 +3,7 @@ package com.github.croesch.partimana.model.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterGroup;
 import com.github.croesch.partimana.types.api.IFilterable;
@@ -17,6 +18,7 @@ import com.github.croesch.partimana.types.api.IFilterable;
 abstract class AFilterGroup<F extends IFilterable> implements IFilterGroup<F> {
 
   /** list of groups inside that group */
+  @NotNull
   private final List<IFilterGroup<F>> filterGroups = new ArrayList<IFilterGroup<F>>();
 
   /** the i18n text that describes this group to the user */
@@ -43,6 +45,7 @@ abstract class AFilterGroup<F extends IFilterable> implements IFilterGroup<F> {
   }
 
   @Override
+  @NotNull
   public final List<IFilterGroup<F>> getFilterGroups() {
     return this.filterGroups;
   }

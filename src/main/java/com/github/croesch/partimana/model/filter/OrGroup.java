@@ -43,7 +43,7 @@ class OrGroup<F extends IFilterable> extends AFilterGroup<F> {
 
   @Override
   public void add(final IFilter<F> filter) {
-    if (getFilterGroups() == null || getFilterGroups().size() == 0) {
+    if (getFilterGroups().size() == 0) {
       add(new AndGroup<F>());
     }
     getFilterGroups().get(getFilterGroups().size() - 1).add(filter);
