@@ -33,17 +33,51 @@ abstract class AFilterGroup<F extends IFilterable> implements IFilterGroup<F> {
   }
 
   @Override
-  public String getShortDescription() {
+  public final String getShortDescription() {
     return this.description.text();
   }
 
   @Override
-  public void add(final IFilterGroup<F> filterGroup) {
+  public final void add(final IFilterGroup<F> filterGroup) {
     this.filterGroups.add(filterGroup);
   }
 
   @Override
-  public List<IFilterGroup<F>> getFilterGroups() {
+  public final List<IFilterGroup<F>> getFilterGroups() {
     return this.filterGroups;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + this.filterGroups.hashCode();
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof AFilterGroup)) {
+      return false;
+    }
+    @SuppressWarnings("rawtypes")
+    final AFilterGroup other = (AFilterGroup) obj;
+    if (!this.filterGroups.equals(other.filterGroups)) {
+      return false;
+    }
+    if (getFilters() == null) {
+      if (other.getFilters() != null) {
+        return false;
+      }
+    } else if (!getFilters().equals(other.getFilters())) {
+      return false;
+    }
+    return true;
   }
 }
