@@ -19,7 +19,7 @@ import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
 
 /**
- * Provides test cases for {@link AndGroupTest}.
+ * Provides test cases for {@link AndGroup}.
  * 
  * @author croesch
  * @since Date: Oct 29, 2012
