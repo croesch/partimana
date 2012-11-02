@@ -61,7 +61,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     final CampEditView view = GuiActionRunner.execute(new GuiQuery<CampEditView>() {
       @Override
       protected CampEditView executeInEDT() throws Throwable {
-        return new CampEditView();
+        return new CampEditView(null);
       }
     });
 

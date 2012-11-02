@@ -55,7 +55,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     final CampParticipantListView view = GuiActionRunner.execute(new GuiQuery<CampParticipantListView>() {
       @Override
       protected CampParticipantListView executeInEDT() throws Throwable {
-        return new CampParticipantListView(CampParticipantListViewGUITest.this);
+        return new CampParticipantListView(null, CampParticipantListViewGUITest.this);
       }
     });
 

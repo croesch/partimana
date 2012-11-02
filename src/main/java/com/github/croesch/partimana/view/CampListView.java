@@ -2,14 +2,14 @@ package com.github.croesch.partimana.view;
 
 import java.util.List;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CScrollPane;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -23,7 +23,7 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class CampListView extends JPanel implements ICampListView {
+class CampListView extends CPanel implements ICampListView {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;
@@ -37,9 +37,11 @@ class CampListView extends JPanel implements ICampListView {
    * about selection changes.
    * 
    * @since Date: Sep 27, 2011
+   * @param name the name of this component
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
-  public CampListView(final ActionObserver o) {
+  public CampListView(final String name, final ActionObserver o) {
+    super(name);
     setLayout(new MigLayout("fill"));
 
     final Object[] columnIdentifiers = new Object[] { Text.CAMP_ID.text(),
@@ -48,7 +50,7 @@ class CampListView extends JPanel implements ICampListView {
     this.table = new DataTable(o, columnIdentifiers, UserAction.CAMP_SELECTED);
     this.table.setName("camps");
 
-    add(new JScrollPane(this.table), "grow");
+    add(new CScrollPane("camps", this.table), "grow");
   }
 
   @Override

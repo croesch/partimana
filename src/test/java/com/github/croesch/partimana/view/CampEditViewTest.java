@@ -32,7 +32,7 @@ public class CampEditViewTest {
     this.testView = GuiActionRunner.execute(new GuiQuery<CampEditView>() {
       @Override
       protected CampEditView executeInEDT() throws Throwable {
-        return new CampEditView();
+        return new CampEditView(null);
       }
     });
 

@@ -62,7 +62,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     final ParticipantListView view = GuiActionRunner.execute(new GuiQuery<ParticipantListView>() {
       @Override
       protected ParticipantListView executeInEDT() throws Throwable {
-        return new ParticipantListView(ParticipantListViewGUITest.this);
+        return new ParticipantListView(null, ParticipantListViewGUITest.this);
       }
     });
 

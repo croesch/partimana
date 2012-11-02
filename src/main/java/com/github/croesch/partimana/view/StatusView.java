@@ -2,13 +2,12 @@ package com.github.croesch.partimana.view;
 
 import java.awt.Color;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.components.CLabel;
+import com.github.croesch.components.CPanel;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.view.api.IStatusView;
 
@@ -18,26 +17,27 @@ import com.github.croesch.partimana.view.api.IStatusView;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class StatusView extends JPanel implements IStatusView {
+class StatusView extends CPanel implements IStatusView {
 
   /** generated */
   private static final long serialVersionUID = 5893311874886856920L;
 
   /** the label that will contain the messages */
   @NotNull
-  private final JLabel label;
+  private final CLabel label;
 
   /**
    * Constructs a new status view to visualise the state of the program.
    * 
    * @author croesch
    * @since Date: Jun 30, 2011
+   * @param name the name of this component
    */
-  public StatusView() {
+  public StatusView(final String name) {
+    super(name);
     setLayout(new MigLayout(new LC().fill()));
 
-    this.label = new JLabel();
-    this.label.setName("statusTxt");
+    this.label = new CLabel("statusTxt");
 
     add(this.label);
   }

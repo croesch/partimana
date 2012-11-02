@@ -79,7 +79,7 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
     this.cView = GuiActionRunner.execute(new GuiQuery<CampView>() {
       @Override
       protected CampView executeInEDT() throws Throwable {
-        return new CampView(CampViewGUITest.this.model);
+        return new CampView(null, CampViewGUITest.this.model);
       }
     });
 

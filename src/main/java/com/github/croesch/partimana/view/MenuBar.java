@@ -1,9 +1,9 @@
 package com.github.croesch.partimana.view;
 
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
+import com.github.croesch.components.CMenu;
+import com.github.croesch.components.CMenuItem;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
@@ -25,8 +25,8 @@ class MenuBar extends JMenuBar {
    */
   public MenuBar() {
 
-    final JMenu file = new JMenu(Text.FILE.text());
-    final JMenuItem exit = new JMenuItem(Action.getExitAction());
+    final CMenu file = new CMenu("file", Text.FILE.text());
+    final CMenuItem exit = new CMenuItem("exit", Action.getExitAction());
 
     file.add(exit);
 

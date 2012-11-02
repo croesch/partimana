@@ -1,13 +1,12 @@
 package com.github.croesch.partimana.view;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
 
 import org.apache.log4j.Logger;
 
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.components.CButton;
+import com.github.croesch.components.CPanel;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -23,7 +22,7 @@ import com.github.croesch.partimana.view.api.IParticipantView;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantView extends JPanel implements IParticipantView, ActionObserver {
+class ParticipantView extends CPanel implements IParticipantView, ActionObserver {
 
   /** generated */
   private static final long serialVersionUID = 3996523912669034625L;
@@ -47,10 +46,12 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
    * Constructs the view for participants.
    * 
    * @since Date: Jul 1, 2011
+   * @param name the name of this component
    * @param m the model to fetch participant information from
    * @throws RequiredFieldSetToNullException if the given model is <code>null</code>
    */
-  public ParticipantView(final IParticipantModel4View m) throws RequiredFieldSetToNullException {
+  public ParticipantView(final String name, final IParticipantModel4View m) throws RequiredFieldSetToNullException {
+    super(name);
     if (m == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -59,21 +60,19 @@ class ParticipantView extends JPanel implements IParticipantView, ActionObserver
     setLayout(new MigLayout("fill", "[][grow, fill]", "[grow, fill]"));
 
     // sic! because of the add methods below ..
-    final ParticipantEditView pev = new ParticipantEditView();
-    final ParticipantListView plv = new ParticipantListView(this);
+    final ParticipantEditView pev = new ParticipantEditView("participantEdit");
+    final ParticipantListView plv = new ParticipantListView("participantList", this);
     plv.update(m.getListOfParticipants());
     this.editView = pev;
     this.listView = plv;
 
-    final JPanel buttonPanel = new JPanel(new MigLayout("fill"));
-    final JButton createButton = new JButton(Action.getCreateParticipantAction());
-    final JButton deleteButton = new JButton(Action.getDeleteParticipantAction());
-    createButton.setName("newParticipant");
-    deleteButton.setName("deleteParticipant");
+    final CPanel buttonPanel = new CPanel("buttons", new MigLayout("fill"));
+    final CButton createButton = new CButton("newParticipant", Action.getCreateParticipantAction());
+    final CButton deleteButton = new CButton("deleteParticipant", Action.getDeleteParticipantAction());
     buttonPanel.add(createButton, "sg one");
     buttonPanel.add(deleteButton, "sg one");
 
-    final JPanel leftPanel = new JPanel(new MigLayout("fill", "[grow, fill]", "[][grow, fill]"));
+    final CPanel leftPanel = new CPanel("participantList", new MigLayout("fill", "[grow, fill]", "[][grow, fill]"));
     leftPanel.add(buttonPanel, "wrap");
     leftPanel.add(plv);
 

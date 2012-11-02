@@ -2,13 +2,13 @@ package com.github.croesch.partimana.view;
 
 import java.util.List;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CScrollPane;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -22,7 +22,7 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantListView extends JPanel implements IParticipantListView {
+class ParticipantListView extends CPanel implements IParticipantListView {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;
@@ -35,9 +35,11 @@ class ParticipantListView extends JPanel implements IParticipantListView {
    * be notified about selection changes.
    * 
    * @since Date: Jul 10, 2011
+   * @param name the name of this component
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
-  public ParticipantListView(final ActionObserver o) {
+  public ParticipantListView(final String name, final ActionObserver o) {
+    super(name);
     setLayout(new MigLayout("fill"));
 
     final Object[] columnIdentifiers = new Object[] { Text.PARTICIPANT_ID.text(),
@@ -46,7 +48,7 @@ class ParticipantListView extends JPanel implements IParticipantListView {
     this.table = new DataTable(o, columnIdentifiers, UserAction.PARTICIPANT_SELECTED);
     this.table.setName("participants");
 
-    add(new JScrollPane(this.table), "grow");
+    add(new CScrollPane("participants", this.table), "grow");
   }
 
   @Override

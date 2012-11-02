@@ -35,7 +35,7 @@ public class ParticipantEditViewTest {
     this.testView = GuiActionRunner.execute(new GuiQuery<ParticipantEditView>() {
       @Override
       protected ParticipantEditView executeInEDT() throws Throwable {
-        return new ParticipantEditView();
+        return new ParticipantEditView(null);
       }
     });
 

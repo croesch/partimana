@@ -56,7 +56,7 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     final ParticipantEditView view = GuiActionRunner.execute(new GuiQuery<ParticipantEditView>() {
       @Override
       protected ParticipantEditView executeInEDT() throws Throwable {
-        return new ParticipantEditView();
+        return new ParticipantEditView(null);
       }
     });
 

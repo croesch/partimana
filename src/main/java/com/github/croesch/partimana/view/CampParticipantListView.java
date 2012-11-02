@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -13,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CScrollPane;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -26,7 +26,7 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Sep 16, 2012
  */
-class CampParticipantListView extends JPanel implements ICampParticipantListView {
+class CampParticipantListView extends CPanel implements ICampParticipantListView {
 
   /** generated */
   private static final long serialVersionUID = -8804248070325729977L;
@@ -42,15 +42,18 @@ class CampParticipantListView extends JPanel implements ICampParticipantListView
    * will be notified about selection changes.
    * 
    * @since Date: Sep 16, 2012
+   * @param name the name of this component
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
-  public CampParticipantListView(final ActionObserver o) {
+  public CampParticipantListView(final String name, final ActionObserver o) {
+    super(name);
+
     setLayout(new MigLayout("fill"));
 
     this.table = new DataTable(o, UserAction.CAMP_PARTICIPANT_SELECTED, this.tableModel);
     this.table.setName("campParticipants");
 
-    add(new JScrollPane(this.table), "grow");
+    add(new CScrollPane("campParticipants", this.table), "grow");
   }
 
   @Override

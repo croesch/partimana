@@ -20,7 +20,7 @@ public class ParticipantViewTest {
 
       @Override
       protected void executeInEDT() throws Throwable {
-        new ParticipantView(null);
+        new ParticipantView(null, null);
       }
     });
   }

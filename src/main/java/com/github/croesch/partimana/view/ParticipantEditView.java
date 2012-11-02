@@ -5,19 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.components.CCheckBox;
 import com.github.croesch.components.CDateField;
+import com.github.croesch.components.CLabel;
+import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CScrollPane;
+import com.github.croesch.components.CTextArea;
+import com.github.croesch.components.CTextField;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
@@ -31,7 +31,7 @@ import com.github.croesch.partimana.view.api.IParticipantEditView;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantEditView extends JPanel implements IParticipantEditView {
+class ParticipantEditView extends CPanel implements IParticipantEditView {
   /**
    * TODO i18n of the labels <br>
    * TODO improve check of numeric text fields
@@ -46,11 +46,11 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
   /** the text field to edit the persons name */
   @NotNull
-  private final JTextField firstNameTf = new JTextField();
+  private final CTextField firstNameTf = new CTextField("firstNameTF");
 
   /** the text field to edit the persons name */
   @NotNull
-  private final JTextField lastNameTf = new JTextField();
+  private final CTextField lastNameTf = new CTextField("lastNameTF");
 
   /** the text field to edit the persons birth day */
   @NotNull
@@ -58,59 +58,59 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
   /** the text field to edit the persons living street */
   @NotNull
-  private final JTextField livStreetTf = new JTextField();
+  private final CTextField livStreetTf = new CTextField("livingStreetTF");
 
   /** the text field to edit the persons living post code */
   @NotNull
-  private final JTextField livPostCodeTf = new JTextField();
+  private final CTextField livPostCodeTf = new CTextField("livingPostCodeTF");
 
   /** the text field to edit the persons living city */
   @NotNull
-  private final JTextField livCityTf = new JTextField();
+  private final CTextField livCityTf = new CTextField("livingCityTF");
 
   /** the text field to edit the persons postal street */
   @NotNull
-  private final JTextField posStreetTf = new JTextField();
+  private final CTextField posStreetTf = new CTextField("postalStreetTF");
 
   /** the text field to edit the persons postal post code */
   @NotNull
-  private final JTextField posPostCodeTf = new JTextField();
+  private final CTextField posPostCodeTf = new CTextField("postalPostCodeTF");
 
   /** the text field to edit the persons postal city */
   @NotNull
-  private final JTextField posCityTf = new JTextField();
+  private final CTextField posCityTf = new CTextField("postalCityTF");
 
   /** the text field to edit the persons phone number */
   @NotNull
-  private final JTextField phoneTf = new JTextField();
+  private final CTextField phoneTf = new CTextField("phoneTF");
 
   /** the text field to edit the persons fax number */
   @NotNull
-  private final JTextField faxTf = new JTextField();
+  private final CTextField faxTf = new CTextField("faxTF");
 
   /** the text field to edit the persons mobile phone number */
   @NotNull
-  private final JTextField mobilePhoneTf = new JTextField();
+  private final CTextField mobilePhoneTf = new CTextField("mobilePhoneTF");
 
   /** the text field to edit the phone of the persons parents */
   @NotNull
-  private final JTextField phoneParentsTf = new JTextField();
+  private final CTextField phoneParentsTf = new CTextField("phoneOfParentsTF");
 
   /** the text field to edit the persons mail address */
   @NotNull
-  private final JTextField mailAddressTf = new JTextField();
+  private final CTextField mailAddressTf = new CTextField("mailTF");
 
   /** the text field to edit the persons bank account number */
   @NotNull
-  private final JTextField bankAccNumberTf = new JTextField();
+  private final CTextField bankAccNumberTf = new CTextField("bankAccountNumberTF");
 
   /** the text field to edit the persons bank code number */
   @NotNull
-  private final JTextField bankCodeNumberTf = new JTextField();
+  private final CTextField bankCodeNumberTf = new CTextField("bankCodeNumberTF");
 
   /** the text field to edit the persons bank */
   @NotNull
-  private final JTextField bankTf = new JTextField();
+  private final CTextField bankTf = new CTextField("bankTF");
 
   /** the text field to edit the persons until-in-db-date */
   @NotNull
@@ -130,59 +130,61 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
   /** the text area to edit the comment about the person */
   @NotNull
-  private final JTextArea commentTa = new JTextArea();
+  private final CTextArea commentTa = new CTextArea("commentTF");
 
   /** the check box to mark that this person can be participant */
   @NotNull
-  private final JCheckBox possParticipantCb = new JCheckBox(Text.PARTICIPANT_CAMP_PARTICIPANT.text());
+  private final CCheckBox possParticipantCb = new CCheckBox("possibleParticipantCB",
+                                                            Text.PARTICIPANT_CAMP_PARTICIPANT.text());
 
   /** the check box to mark that this person can be staff */
   @NotNull
-  private final JCheckBox possStaffCb = new JCheckBox(Text.PARTICIPANT_STAFF_GENERAL.text());
+  private final CCheckBox possStaffCb = new CCheckBox("possibleStaffCB", Text.PARTICIPANT_STAFF_GENERAL.text());
 
   /** the check box to mark that this person can be staff youth */
   @NotNull
-  private final JCheckBox possStaffYouthCb = new JCheckBox(Text.PARTICIPANT_STAFF_YOUTH.text());
+  private final CCheckBox possStaffYouthCb = new CCheckBox("possibleStaffYouthCB", Text.PARTICIPANT_STAFF_YOUTH.text());
 
   /** the check box to mark that this person can be board member */
   @NotNull
-  private final JCheckBox possBoardCb = new JCheckBox(Text.PARTICIPANT_BOARD.text());
+  private final CCheckBox possBoardCb = new CCheckBox("possibleBoardCB", Text.PARTICIPANT_BOARD.text());
 
   /** the check box to mark that this person can be extended board member */
   @NotNull
-  private final JCheckBox possExtendedBoardCb = new JCheckBox(Text.PARTICIPANT_EXTENDED_BOARD.text());
+  private final CCheckBox possExtendedBoardCb = new CCheckBox("possibleExtendedBoardCB",
+                                                              Text.PARTICIPANT_EXTENDED_BOARD.text());
 
   /** the check box to mark that this person can be MAK */
   @NotNull
-  private final JCheckBox possMakCb = new JCheckBox(Text.PARTICIPANT_MAK.text());
+  private final CCheckBox possMakCb = new CCheckBox("possibleMAKCB", Text.PARTICIPANT_MAK.text());
 
   /** the check box to mark that this person can be AGE */
   @NotNull
-  private final JCheckBox possAgeCb = new JCheckBox(Text.PARTICIPANT_AGE.text());
+  private final CCheckBox possAgeCb = new CCheckBox("possibleAGECB", Text.PARTICIPANT_AGE.text());
 
   /** the check box to mark that this person can be seminar member */
   @NotNull
-  private final JCheckBox possSeminarCb = new JCheckBox(Text.PARTICIPANT_SEMINAR.text());
+  private final CCheckBox possSeminarCb = new CCheckBox("possibleSeminarCB", Text.PARTICIPANT_SEMINAR.text());
 
   /** the check box to mark that this person can be kitchen member */
   @NotNull
-  private final JCheckBox possKitchenCb = new JCheckBox(Text.PARTICIPANT_CAMP_KITCHEN.text());
+  private final CCheckBox possKitchenCb = new CCheckBox("possibleKitchenCB", Text.PARTICIPANT_CAMP_KITCHEN.text());
 
   /** the check box to mark that this person can be misc. */
   @NotNull
-  private final JCheckBox possMiscCb = new JCheckBox(Text.PARTICIPANT_MISC.text());
+  private final CCheckBox possMiscCb = new CCheckBox("possibleMiscCB", Text.PARTICIPANT_MISC.text());
 
   /** the label that contains the id of the person */
   @NotNull
-  private final JLabel idValueLbl = new JLabel("12345");
+  private final CLabel idValueLbl = new CLabel("idLbl", "12345");
 
   /** the label that contains the date since the person is in data base */
   @NotNull
-  private final JLabel sinceInDbValueLbl = new JLabel("12.12.2003");
+  private final CLabel sinceInDbValueLbl = new CLabel("dateSinceInDBLbl", "12.12.2003");
 
   /** panel that contains components to edit the different functions of the person */
   @NotNull
-  private JPanel possibleFunctionsPanel;
+  private CPanel possibleFunctionsPanel;
 
   /**
    * Constructs a new panel, that contains all necessary components to edit the attributes of a {@link Participant}.
@@ -191,9 +193,11 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    * 
    * @author croesch
    * @since Date: Jun 28, 2011
+   * @param the name of this component
    * @see #setParticipant(Participant)
    */
-  public ParticipantEditView() {
+  public ParticipantEditView(final String name) {
+    super(name);
 
     final int space = 15;
     setLayout(new MigLayout("fill, insets 0",
@@ -215,61 +219,61 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    * @since Date: Jun 28, 2011
    */
   private void addComponents() {
-    final JLabel idLbl = new JLabel(Text.PARTICIPANT_ID.text());
+    final CLabel idLbl = new CLabel("id", Text.PARTICIPANT_ID.text());
     add(idLbl, "cell 0 0");
 
     add(this.idValueLbl, "cell 1 0");
 
-    final JLabel sinceInDbLbl = new JLabel(Text.PARTICIPANT_SINCE.text());
+    final CLabel sinceInDbLbl = new CLabel("sinceInDb", Text.PARTICIPANT_SINCE.text());
     add(sinceInDbLbl, "cell 2 0");
 
     add(this.sinceInDbValueLbl, "cell 3 0");
 
-    final JLabel untilInDbLbl = new JLabel(Text.PARTICIPANT_UNTIL.text());
+    final CLabel untilInDbLbl = new CLabel("untilInDb", Text.PARTICIPANT_UNTIL.text());
     add(untilInDbLbl, "cell 4 0");
 
     add(this.untilInDbTf, "cell 5 0");
 
-    final JLabel firstNameLbl = new JLabel(Text.PARTICIPANT_FORENAME.text());
+    final CLabel firstNameLbl = new CLabel("firstName", Text.PARTICIPANT_FORENAME.text());
     add(firstNameLbl, "cell 0 1");
 
     add(this.firstNameTf, "cell 1 1");
 
-    final JLabel lastNameLbl = new JLabel(Text.PARTICIPANT_LASTNAME.text());
+    final CLabel lastNameLbl = new CLabel("lastName", Text.PARTICIPANT_LASTNAME.text());
     add(lastNameLbl, "cell 2 1");
 
     add(this.lastNameTf, "cell 3 1");
 
-    final JLabel genderLbl = new JLabel(Text.PARTICIPANT_GENDER.text());
+    final CLabel genderLbl = new CLabel("gender", Text.PARTICIPANT_GENDER.text());
     add(genderLbl, "cell 4 1");
 
     add(this.genderCb, "cell 5 1");
 
-    final JLabel birthDayLbl = new JLabel(Text.PARTICIPANT_BIRTHDAY.text());
+    final CLabel birthDayLbl = new CLabel("birthday", Text.PARTICIPANT_BIRTHDAY.text());
     add(birthDayLbl, "cell 0 2");
 
     add(this.birthDayTf, "cell 1 2");
 
-    final JLabel denominationLbl = new JLabel(Text.PARTICIPANT_DENOMINTAION.text());
+    final CLabel denominationLbl = new CLabel("denomination", Text.PARTICIPANT_DENOMINTAION.text());
     add(denominationLbl, "cell 2 2");
 
     add(this.denominationCb, "cell 3 2");
 
-    final JLabel countyCouncilLbl = new JLabel(Text.PARTICIPANT_COUNTY_COUNCIL.text());
+    final CLabel countyCouncilLbl = new CLabel("countyCouncil", Text.PARTICIPANT_COUNTY_COUNCIL.text());
     add(countyCouncilLbl, "cell 4 2");
 
     add(this.countyCouncilCb, "cell 5 2");
 
-    final JLabel streetLbl = new JLabel(Text.STREET.text());
+    final CLabel streetLbl = new CLabel("street", Text.STREET.text());
     add(streetLbl, "cell 1 3, grow 0, alignx center");
 
-    final JLabel postCodeLbl = new JLabel(Text.POST_CODE.text());
+    final CLabel postCodeLbl = new CLabel("postCode", Text.POST_CODE.text());
     add(postCodeLbl, "cell 3 3, grow 0, alignx center");
 
-    final JLabel cityLbl = new JLabel(Text.CITY.text());
+    final CLabel cityLbl = new CLabel("city", Text.CITY.text());
     add(cityLbl, "cell 5 3, grow 0, alignx center");
 
-    final JLabel livingAddressLbl = new JLabel(Text.PARTICIPANT_ADDRESS_LIVING.text());
+    final CLabel livingAddressLbl = new CLabel("livingAddress", Text.PARTICIPANT_ADDRESS_LIVING.text());
     add(livingAddressLbl, "cell 0 4");
 
     add(this.livStreetTf, "cell 1 4");
@@ -278,7 +282,7 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     add(this.livCityTf, "cell 5 4");
 
-    final JLabel postToAddressLbl = new JLabel(Text.PARTICIPANT_ADDRESS_POSTAL.text());
+    final CLabel postToAddressLbl = new CLabel("postalAddress", Text.PARTICIPANT_ADDRESS_POSTAL.text());
     add(postToAddressLbl, "cell 0 5");
 
     add(this.posStreetTf, "cell 1 5");
@@ -287,52 +291,52 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
 
     add(this.posCityTf, "cell 5 5");
 
-    final JLabel phoneLbl = new JLabel(Text.PARTICIPANT_PHONE.text());
+    final CLabel phoneLbl = new CLabel("phone", Text.PARTICIPANT_PHONE.text());
     add(phoneLbl, "cell 0 6");
 
     add(this.phoneTf, "cell 1 6");
 
-    final JLabel faxLbl = new JLabel(Text.PARTICIPANT_FAX.text());
+    final CLabel faxLbl = new CLabel("fax", Text.PARTICIPANT_FAX.text());
     add(faxLbl, "cell 2 6");
 
     add(this.faxTf, "cell 3 6");
 
-    final JLabel mobilePhoneLbl = new JLabel(Text.PARTICIPANT_MOBILE_PHONE.text());
+    final CLabel mobilePhoneLbl = new CLabel("mobilePhone", Text.PARTICIPANT_MOBILE_PHONE.text());
     add(mobilePhoneLbl, "cell 4 6");
 
     add(this.mobilePhoneTf, "cell 5 6");
 
-    final JLabel phoneParentsLbl = new JLabel(Text.PARTICIPANT_PHONE_OF_PARENTS.text());
+    final CLabel phoneParentsLbl = new CLabel("phoneOfParents", Text.PARTICIPANT_PHONE_OF_PARENTS.text());
     add(phoneParentsLbl, "cell 0 7");
 
     add(this.phoneParentsTf, "cell 1 7");
 
-    final JLabel mailAddressLbl = new JLabel(Text.PARTICIPANT_MAIL_ADDRESS.text());
+    final CLabel mailAddressLbl = new CLabel("mailAddress", Text.PARTICIPANT_MAIL_ADDRESS.text());
     add(mailAddressLbl, "cell 2 7");
 
     add(this.mailAddressTf, "cell 3 7 3 1");
 
-    final JLabel bankAccNumberLbl = new JLabel(Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text());
+    final CLabel bankAccNumberLbl = new CLabel("bankAccountNumber", Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text());
     add(bankAccNumberLbl, "cell 0 8");
 
     add(this.bankAccNumberTf, "cell 1 8");
 
-    final JLabel bankCodNumberLbl = new JLabel(Text.PARTICIPANT_BANK_CODE_NUMBER.text());
-    add(bankCodNumberLbl, "cell 2 8");
+    final CLabel bankeCodNumberLbl = new CLabel("bankCodeNumber", Text.PARTICIPANT_BANK_CODE_NUMBER.text());
+    add(bankeCodNumberLbl, "cell 2 8");
 
     add(this.bankCodeNumberTf, "cell 3 8");
 
-    final JLabel bankLbl = new JLabel(Text.PARTICIPANT_BANK_NAME.text());
+    final CLabel bankLbl = new CLabel("bank", Text.PARTICIPANT_BANK_NAME.text());
     add(bankLbl, "cell 4 8");
 
     add(this.bankTf, "cell 5 8");
 
-    final JScrollPane commentScrollPane = new JScrollPane();
+    final CScrollPane commentScrollPane = new CScrollPane("comment");
     add(commentScrollPane, "cell 1 9 5 3,grow");
 
     commentScrollPane.setViewportView(this.commentTa);
 
-    final JLabel commentLbl = new JLabel(Text.PARTICIPANT_COMMENT.text());
+    final CLabel commentLbl = new CLabel("comment", Text.PARTICIPANT_COMMENT.text());
     add(commentLbl, "cell 0 9");
 
     initPossibleFunctionsPanel();
@@ -347,10 +351,10 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    * @since Date: Jun 28, 2011
    */
   private void initPossibleFunctionsPanel() {
-    this.possibleFunctionsPanel = new JPanel();
+    this.possibleFunctionsPanel = new CPanel("possibleFunctions");
     this.possibleFunctionsPanel.setLayout(new MigLayout("", "[110px!][][][][][]", "[sg][sg]"));
 
-    final JLabel functionsLbl = new JLabel(Text.PARTICIPANT_FUNCTIONS.text());
+    final CLabel functionsLbl = new CLabel("functions", Text.PARTICIPANT_FUNCTIONS.text());
     this.possibleFunctionsPanel.add(functionsLbl, "cell 0 0");
 
     this.possibleFunctionsPanel.add(this.possParticipantCb, "cell 1 0");
@@ -381,23 +385,11 @@ class ParticipantEditView extends JPanel implements IParticipantEditView {
    * @since Date: Jun 28, 2011
    */
   private void initNames() {
-    this.firstNameTf.setName("firstNameTF");
-    this.lastNameTf.setName("lastNameTF");
     this.genderCb.setName("genderCB");
     this.birthDayTf.setName("birthTF");
     this.denominationCb.setName("denominationCB");
-    this.posStreetTf.setName("postalStreetTF");
-    this.posPostCodeTf.setName("postalPostCodeTF");
-    this.posCityTf.setName("postalCityTF");
     this.countyCouncilCb.setName("countyCouncilCB");
-    this.bankTf.setName("bankTF");
-    this.bankAccNumberTf.setName("bankAccountNumberTF");
-    this.bankCodeNumberTf.setName("bankCodeNumberTF");
-    this.commentTa.setName("commentTF");
     this.untilInDbTf.setName("dateUpToInDBTF");
-    this.sinceInDbValueLbl.setName("dateSinceInDBLbl");
-    this.faxTf.setName("faxTF");
-    this.mailAddressTf.setName("mailTF");
     this.mobilePhoneTf.setName("mobilePhoneTF");
     this.phoneTf.setName("phoneTF");
     this.phoneParentsTf.setName("phoneOfParentsTF");

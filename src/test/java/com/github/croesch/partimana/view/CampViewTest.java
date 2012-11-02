@@ -20,7 +20,7 @@ public class CampViewTest {
 
       @Override
       protected void executeInEDT() throws Throwable {
-        new CampView(null);
+        new CampView(null, null);
       }
     });
   }

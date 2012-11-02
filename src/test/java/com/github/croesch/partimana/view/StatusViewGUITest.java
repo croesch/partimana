@@ -29,7 +29,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
     this.statusView = GuiActionRunner.execute(new GuiQuery<StatusView>() {
       @Override
       protected StatusView executeInEDT() throws Throwable {
-        return new StatusView();
+        return new StatusView(null);
       }
     });
     GuiActionRunner.execute(new GuiTask() {

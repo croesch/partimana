@@ -122,7 +122,7 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     this.pView = GuiActionRunner.execute(new GuiQuery<ParticipantView>() {
       @Override
       protected ParticipantView executeInEDT() throws Throwable {
-        return new ParticipantView(ParticipantViewGUITest.this.model);
+        return new ParticipantView(null, ParticipantViewGUITest.this.model);
       }
     });
 

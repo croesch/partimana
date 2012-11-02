@@ -5,15 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CDateField;
+import com.github.croesch.components.CLabel;
+import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CTextField;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -28,18 +27,18 @@ import com.github.croesch.partimana.view.api.ICampEditView;
  * @author croesch
  * @since Date: Sep 13, 2012
  */
-class CampEditView extends JPanel implements ICampEditView, ActionObserver {
+class CampEditView extends CPanel implements ICampEditView, ActionObserver {
 
   /** generated */
   private static final long serialVersionUID = 2952537980601243913L;
 
   /** the text field to edit the camps name */
   @NotNull
-  private final JTextField nameTf = new JTextField();
+  private final CTextField nameTf = new CTextField("nameTF");
 
   /** the text field to edit the camps location */
   @NotNull
-  private final JTextField locationTf = new JTextField();
+  private final CTextField locationTf = new CTextField("locationTF");
 
   /** the text field to edit the camps begin date */
   @NotNull
@@ -51,15 +50,15 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
 
   /** the text field to edit the camps per-day-rate */
   @NotNull
-  private final JTextField ratePerDayTf = new JTextField();
+  private final CTextField ratePerDayTf = new CTextField("ratePerDayTF");
 
   /** the text field to edit the camps rate */
   @NotNull
-  private final JTextField ratePerParticipantTf = new JTextField();
+  private final CTextField ratePerParticipantTf = new CTextField("ratePerParticipantTF");
 
   /** the label to show the camps id */
   @NotNull
-  private final JLabel idValueLbl = new JLabel("12345");
+  private final CLabel idValueLbl = new CLabel("idLbl", "12345");
 
   /** reference to the list of {@link CampParticipant}s viewed by the {@link CampParticipantListView} */
   @NotNull
@@ -75,19 +74,21 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
 
   /** the list of all possible participants for this camp */
   @NotNull
-  private final ParticipantListView participantList = new ParticipantListView(this);
+  private final ParticipantListView participantList = new ParticipantListView("participants", this);
 
   /** the list of all participants for this camp */
   @NotNull
-  private final CampParticipantListView campParticipantList = new CampParticipantListView(this);
+  private final CampParticipantListView campParticipantList = new CampParticipantListView("camps", this);
 
   /**
    * Initializes the panel to edit a {@link Camp}.
    * 
    * @since Date: Sep 13, 2012
+   * @param name the name of this component
    * @see #setCamp(Camp)
    */
-  public CampEditView() {
+  public CampEditView(final String name) {
+    super(name);
 
     final int space = 15;
     setLayout(new MigLayout("fill, insets 0",
@@ -108,37 +109,37 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
    * @since Date: Jun 28, 2011
    */
   private void addComponents() {
-    final JLabel idLbl = new JLabel(Text.CAMP_ID.text());
+    final CLabel idLbl = new CLabel("id", Text.CAMP_ID.text());
     add(idLbl, "cell 0 0");
 
     add(this.idValueLbl, "cell 1 0");
 
-    final JLabel nameLbl = new JLabel(Text.CAMP_NAME.text());
+    final CLabel nameLbl = new CLabel("name", Text.CAMP_NAME.text());
     add(nameLbl, "cell 0 1");
 
     add(this.nameTf, "cell 1 1");
 
-    final JLabel locationLbl = new JLabel(Text.CAMP_LOCATION.text());
+    final CLabel locationLbl = new CLabel("location", Text.CAMP_LOCATION.text());
     add(locationLbl, "cell 2 1");
 
     add(this.locationTf, "cell 3 1");
 
-    final JLabel fromLbl = new JLabel(Text.CAMP_DATE_FROM.text());
+    final CLabel fromLbl = new CLabel("from", Text.CAMP_DATE_FROM.text());
     add(fromLbl, "cell 0 2");
 
     add(this.fromTf, "cell 1 2");
 
-    final JLabel toLbl = new JLabel(Text.CAMP_DATE_TO.text());
+    final CLabel toLbl = new CLabel("until", Text.CAMP_DATE_TO.text());
     add(toLbl, "cell 2 2");
 
     add(this.untilTf, "cell 3 2");
 
-    final JLabel perParticipantLbl = new JLabel(Text.CAMP_RATE_PER_PARTICIPANT.text());
+    final CLabel perParticipantLbl = new CLabel("perParticipant", Text.CAMP_RATE_PER_PARTICIPANT.text());
     add(perParticipantLbl, "cell 0 3");
 
     add(this.ratePerParticipantTf, "cell 1 3");
 
-    final JLabel perDayLbl = new JLabel(Text.CAMP_RATE_PER_DAY.text());
+    final CLabel perDayLbl = new CLabel("perDay", Text.CAMP_RATE_PER_DAY.text());
     add(perDayLbl, "cell 2 3");
 
     add(this.ratePerDayTf, "cell 3 3");
@@ -154,14 +155,9 @@ class CampEditView extends JPanel implements ICampEditView, ActionObserver {
    * @since Date: Jun 28, 2011
    */
   private void initNames() {
-    this.idValueLbl.setName("idLbl");
 
-    this.nameTf.setName("nameTF");
-    this.locationTf.setName("locationTF");
     this.fromTf.setName("fromTF");
     this.untilTf.setName("untilTF");
-    this.ratePerDayTf.setName("ratePerDayTF");
-    this.ratePerParticipantTf.setName("ratePerParticipantTF");
   }
 
   @Override
