@@ -45,7 +45,7 @@ public final class Controller implements ActionObserver {
   public Controller(final ActionObserver o, final IPersistenceModel pModel, final String[] args) {
     this.observer = o; //FIXME null check!
     this.model = new Model(pModel);
-    this.view = new View(this.model, this);
+    this.view = new View("view", this.model, this);
     this.model.setView(this.view);
 
     this.view.setVisible(true);

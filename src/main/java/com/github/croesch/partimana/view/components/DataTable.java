@@ -1,11 +1,11 @@
 package com.github.croesch.partimana.view.components;
 
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.github.croesch.components.CTable;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.view.listener.TableMouseListener;
@@ -16,7 +16,7 @@ import com.github.croesch.partimana.view.listener.TableMouseListener;
  * @author croesch
  * @since Date: Sep 12, 2012
  */
-public class DataTable extends JTable {
+public class DataTable extends CTable {
 
   /** generated */
   private static final long serialVersionUID = -6694984381634664552L;
@@ -25,36 +25,45 @@ public class DataTable extends JTable {
    * Creates a new table.
    * 
    * @since Date: Sep 12, 2012
+   * @param name the name of this table
    * @param o the {@link ActionObserver} that'll be notified on selection changes.
    * @param identifiers the column identifiers
    * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
    */
-  public DataTable(final ActionObserver o, final Object[] identifiers, final UserAction action) {
-    this(o, identifiers, action, null);
+  public DataTable(final String name, final ActionObserver o, final Object[] identifiers, final UserAction action) {
+    this(name, o, identifiers, action, null);
   }
 
   /**
    * Creates a new table.
    * 
    * @since Date: Sep 12, 2012
+   * @param name the name of this table
    * @param o the {@link ActionObserver} that'll be notified on selection changes.
    * @param model the table model
    * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
    */
-  public DataTable(final ActionObserver o, final UserAction action, final TableModel model) {
-    this(o, null, action, model);
+  public DataTable(final String name, final ActionObserver o, final UserAction action, final TableModel model) {
+    this(name, o, null, action, model);
   }
 
   /**
    * Creates a new table.
    * 
    * @since Date: Sep 12, 2012
+   * @param name the name of this table
    * @param o the {@link ActionObserver} that'll be notified on selection changes.
    * @param identifiers the column identifiers
    * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
    * @param model the table model
    */
-  private DataTable(final ActionObserver o, final Object[] identifiers, final UserAction action, final TableModel model) {
+  private DataTable(final String name,
+                    final ActionObserver o,
+                    final Object[] identifiers,
+                    final UserAction action,
+                    final TableModel model) {
+    super(name);
+
     if (model == null) {
       final DefaultTableModel tm = new DefaultTableModel() {
         /** generated */

@@ -5,13 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.swing.JComboBox;
-
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CCheckBox;
+import com.github.croesch.components.CComboBox;
 import com.github.croesch.components.CDateField;
 import com.github.croesch.components.CLabel;
 import com.github.croesch.components.CPanel;
@@ -118,15 +117,15 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
 
   /** the combo box to edit the persons gender */
   @NotNull
-  private final JComboBox genderCb = new JComboBox(Gender.values());
+  private final CComboBox genderCb = new CComboBox("genderCB", Gender.values());
 
   /** the combo box to edit the persons denomination */
   @NotNull
-  private final JComboBox denominationCb = new JComboBox(Denomination.values());
+  private final CComboBox denominationCb = new CComboBox("denominationCB", Denomination.values());
 
   /** the combo box to edit the persons county council */
   @NotNull
-  private final JComboBox countyCouncilCb = new JComboBox(CountyCouncil.values());;
+  private final CComboBox countyCouncilCb = new CComboBox("countyCouncilCB", CountyCouncil.values());;
 
   /** the text area to edit the comment about the person */
   @NotNull
@@ -385,28 +384,8 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
    * @since Date: Jun 28, 2011
    */
   private void initNames() {
-    this.genderCb.setName("genderCB");
     this.birthDayTf.setName("birthTF");
-    this.denominationCb.setName("denominationCB");
-    this.countyCouncilCb.setName("countyCouncilCB");
     this.untilInDbTf.setName("dateUpToInDBTF");
-    this.mobilePhoneTf.setName("mobilePhoneTF");
-    this.phoneTf.setName("phoneTF");
-    this.phoneParentsTf.setName("phoneOfParentsTF");
-    this.possAgeCb.setName("possibleAGECB");
-    this.possBoardCb.setName("possibleBoardCB");
-    this.possExtendedBoardCb.setName("possibleExtendedBoardCB");
-    this.possKitchenCb.setName("possibleKitchenCB");
-    this.possMakCb.setName("possibleMAKCB");
-    this.possMiscCb.setName("possibleMiscCB");
-    this.possParticipantCb.setName("possibleParticipantCB");
-    this.possSeminarCb.setName("possibleSeminarCB");
-    this.possStaffCb.setName("possibleStaffCB");
-    this.possStaffYouthCb.setName("possibleStaffYouthCB");
-    this.livStreetTf.setName("livingStreetTF");
-    this.livPostCodeTf.setName("livingPostCodeTF");
-    this.livCityTf.setName("livingCityTF");
-    this.idValueLbl.setName("idLbl");
   }
 
   @Override

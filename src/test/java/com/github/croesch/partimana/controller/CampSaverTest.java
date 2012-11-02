@@ -53,7 +53,7 @@ public class CampSaverTest {
     editView = GuiActionRunner.execute(new GuiQuery<ICampEditView>() {
       @Override
       protected ICampEditView executeInEDT() throws Throwable {
-        return new View(new IModel4View() {
+        return new View(null, new IModel4View() {
 
           @Override
           public Participant getParticipant(final long id) {

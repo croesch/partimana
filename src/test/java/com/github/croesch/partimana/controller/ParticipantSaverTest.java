@@ -57,7 +57,7 @@ public class ParticipantSaverTest {
     editView = GuiActionRunner.execute(new GuiQuery<IParticipantEditView>() {
       @Override
       protected IParticipantEditView executeInEDT() throws Throwable {
-        return new View(new IModel4View() {
+        return new View(null, new IModel4View() {
 
           @Override
           public Participant getParticipant(final long id) {

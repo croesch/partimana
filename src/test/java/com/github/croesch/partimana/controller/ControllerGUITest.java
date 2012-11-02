@@ -39,6 +39,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
   public void testView() {
     final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
     frame.label("statusTxt").requireText(Text.VERSION.text());
+    assertThat(frame.component().getName()).isEqualTo("view");
   }
 
   @Test

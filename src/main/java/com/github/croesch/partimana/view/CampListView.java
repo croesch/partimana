@@ -2,7 +2,6 @@ package com.github.croesch.partimana.view;
 
 import java.util.List;
 
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
@@ -10,6 +9,7 @@ import net.miginfocom.swing.MigLayout;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CPanel;
 import com.github.croesch.components.CScrollPane;
+import com.github.croesch.components.CTable;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -30,7 +30,7 @@ class CampListView extends CPanel implements ICampListView {
 
   /** the table to display the different camps */
   @NotNull
-  private final JTable table;
+  private final CTable table;
 
   /**
    * Constructs a new {@link CampListView} that is able to visualise a table of camps. The observer will be notified
@@ -47,8 +47,7 @@ class CampListView extends CPanel implements ICampListView {
     final Object[] columnIdentifiers = new Object[] { Text.CAMP_ID.text(),
                                                      Text.CAMP_LOCATION.text(),
                                                      Text.CAMP_NAME.text() };
-    this.table = new DataTable(o, columnIdentifiers, UserAction.CAMP_SELECTED);
-    this.table.setName("camps");
+    this.table = new DataTable("camps", o, columnIdentifiers, UserAction.CAMP_SELECTED);
 
     add(new CScrollPane("camps", this.table), "grow");
   }

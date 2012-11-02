@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +12,7 @@ import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.components.CPanel;
 import com.github.croesch.components.CScrollPane;
+import com.github.croesch.components.CTable;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -32,7 +32,7 @@ class CampParticipantListView extends CPanel implements ICampParticipantListView
   private static final long serialVersionUID = -8804248070325729977L;
 
   /** the table to display the different participants */
-  private final JTable table;
+  private final CTable table;
 
   /** the table model that holds the participants - the data of the table */
   private final MyTableModel tableModel = new MyTableModel();
@@ -50,8 +50,7 @@ class CampParticipantListView extends CPanel implements ICampParticipantListView
 
     setLayout(new MigLayout("fill"));
 
-    this.table = new DataTable(o, UserAction.CAMP_PARTICIPANT_SELECTED, this.tableModel);
-    this.table.setName("campParticipants");
+    this.table = new DataTable("campParticipants", o, UserAction.CAMP_PARTICIPANT_SELECTED, this.tableModel);
 
     add(new CScrollPane("campParticipants", this.table), "grow");
   }

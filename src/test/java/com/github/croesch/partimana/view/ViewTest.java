@@ -30,7 +30,7 @@ public class ViewTest {
 
       @Override
       protected void executeInEDT() throws Throwable {
-        new View(null, new ActionObserver() {
+        new View(null, null, new ActionObserver() {
           @Override
           public void performAction(final UserAction action) {}
         });
@@ -47,7 +47,7 @@ public class ViewTest {
 
       @Override
       protected void executeInEDT() throws Throwable {
-        new View(new IModel4View() {
+        new View(null, new IModel4View() {
 
           @Override
           public Participant getParticipant(final long id) {

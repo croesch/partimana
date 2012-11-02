@@ -2,13 +2,13 @@ package com.github.croesch.partimana.view;
 
 import java.util.List;
 
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.components.CPanel;
 import com.github.croesch.components.CScrollPane;
+import com.github.croesch.components.CTable;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
@@ -28,7 +28,7 @@ class ParticipantListView extends CPanel implements IParticipantListView {
   private static final long serialVersionUID = -96888415800702415L;
 
   /** the table to display the different participants */
-  private final JTable table;
+  private final CTable table;
 
   /**
    * Constructs a new {@link ParticipantListView} that is able to visualise a table of participants. The observer will
@@ -45,8 +45,7 @@ class ParticipantListView extends CPanel implements IParticipantListView {
     final Object[] columnIdentifiers = new Object[] { Text.PARTICIPANT_ID.text(),
                                                      Text.PARTICIPANT_FORENAME.text(),
                                                      Text.PARTICIPANT_LASTNAME.text() };
-    this.table = new DataTable(o, columnIdentifiers, UserAction.PARTICIPANT_SELECTED);
-    this.table.setName("participants");
+    this.table = new DataTable("participants", o, columnIdentifiers, UserAction.PARTICIPANT_SELECTED);
 
     add(new CScrollPane("participants", this.table), "grow");
   }

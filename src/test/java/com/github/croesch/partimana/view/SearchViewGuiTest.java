@@ -1,5 +1,7 @@
 package com.github.croesch.partimana.view;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -42,14 +44,15 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
       @Override
       protected JFrame executeInEDT() throws Throwable {
-        return new SearchView<Camp>(SearchViewGuiTest.this.campFilterModel);
+        return new SearchView<Camp>("searchingView", SearchViewGuiTest.this.campFilterModel);
       }
     }));
     this.searchView.show();
   }
 
   @Test
-  public void testViewClose() {
+  public void testView() {
+    assertThat(this.searchView.component().getName()).isEqualTo("searchingView");
     this.searchView.button("close").requireText(Text.CLOSE.text());
   }
 }

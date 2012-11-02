@@ -5,14 +5,13 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JFrame;
-
 import net.miginfocom.swing.MigLayout;
 
 import org.apache.log4j.Logger;
 
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CButton;
+import com.github.croesch.components.CFrame;
 import com.github.croesch.components.CPanel;
 import com.github.croesch.components.CTabbedPane;
 import com.github.croesch.partimana.actions.ActionObserver;
@@ -36,7 +35,7 @@ import com.github.croesch.partimana.view.api.IView;
  * @author croesch
  * @since Date: May 29, 2011
  */
-public final class View extends JFrame implements IView, IVersionView, IStatusView, IParticipantView, ICampView,
+public final class View extends CFrame implements IView, IVersionView, IStatusView, IParticipantView, ICampView,
         ActionObserver {
 
   /** generated */
@@ -70,11 +69,14 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
    * 
    * @author croesch
    * @since Date: Jun 30, 2011
+   * @param name the name of the view
    * @param m the model to fetch data updates from.
    * @param o the observer to notify about actions.
    * @throws RequiredFieldSetToNullException if the given model or the given observer is <code>null</code>
    */
-  public View(final IModel4View m, final ActionObserver o) throws RequiredFieldSetToNullException {
+  public View(final String name, final IModel4View m, final ActionObserver o) throws RequiredFieldSetToNullException {
+    super(name);
+
     if (m == null || o == null) {
       throw new RequiredFieldSetToNullException();
     }
@@ -82,7 +84,7 @@ public final class View extends JFrame implements IView, IVersionView, IStatusVi
     this.observer = o;
     Action.setObserver(this);
 
-    setJMenuBar(new MenuBar());
+    setJMenuBar(new MenuBar("menuBar"));
 
     // TODO change the default size of the view.
     setSize(new Dimension(1200, 650));
