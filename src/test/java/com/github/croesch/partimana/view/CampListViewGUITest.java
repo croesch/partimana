@@ -31,7 +31,7 @@ import com.github.croesch.partimana.types.Camp;
  */
 public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
-  private ListView listView;
+  private AListView<Camp> aListView;
 
   private JPanelFixture testView;
 
@@ -47,7 +47,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
   @Override
   protected void before() {
-    final ListView view = GuiActionRunner.execute(new GuiQuery<CampListView>() {
+    final AListView<Camp> view = GuiActionRunner.execute(new GuiQuery<CampListView>() {
       @Override
       protected CampListView executeInEDT() throws Throwable {
         return new CampListView(null, CampListViewGUITest.this);
@@ -60,19 +60,19 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     this.camp4 = new Camp("Ostercamp", new Date(444334), new Date(333113333), "France", "1,30 €");
     this.camp5 = new Camp("Herbstcamp", new Date(4422444), new Date(399333333), "Italy", "1,30 €");
 
-    view.setName("listView");
-    this.listView = view;
+    view.setName("aListView");
+    this.aListView = view;
 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(view));
     window.show(new Dimension(800, 400));
-    this.testView = window.panel("listView");
+    this.testView = window.panel("aListView");
   }
 
   @Test
   public final void testUpdateListOfCamps() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
-    update(this.listView, list);
+    update(this.aListView, list);
     requireCamp(this.testView.table(), 0, this.camp1);
   }
 
@@ -80,7 +80,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   public final void testTableEditable() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
-    update(this.listView, list);
+    update(this.aListView, list);
     this.testView.table().requireNotEditable(TableCell.row(0).column(0));
     this.testView.table().requireNotEditable(TableCell.row(0).column(1));
     this.testView.table().requireNotEditable(TableCell.row(0).column(2));
@@ -90,10 +90,10 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   public final void testSelection() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
-    update(this.listView, list);
+    update(this.aListView, list);
     this.testView.table().selectRows(0);
     this.testView.table().requireSelectedRows(0);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp1.getId());
+    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp1.getId());
 
     this.testView.table().selectCell(TableCell.row(0).column(0));
     assertThat(this.testView.table().component().isCellSelected(0, 1)).isTrue();
@@ -109,7 +109,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(c1);
     list.add(c2);
     list.add(c3);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(3);
     requireCamp(this.testView.table(), 0, c1);
@@ -128,7 +128,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     requireCamp(this.testView.table(), 2, c3);
   }
 
-  public static void update(final ListView lView, final List<Camp> list) {
+  public static void update(final AListView<Camp> lView, final List<Camp> list) {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
@@ -145,7 +145,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -178,7 +178,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -211,12 +211,12 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().selectRows(1, 2, 3);
     this.testView.table().requireSelectedRows(3);
     assertThat(this.testView.table().target.getSelectedRowCount()).isEqualTo(1);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp4.getId());
+    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp4.getId());
   }
 
   @Test
@@ -227,7 +227,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -238,7 +238,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.camp4);
     list.remove(this.camp3);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(3);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -247,7 +247,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.camp1);
     list.remove(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(1);
     requireCamp(this.testView.table(), 0, this.camp2);
@@ -256,7 +256,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -274,23 +274,23 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     this.testView.table().selectRows(1);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp2.getId());
+    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp2.getId());
 
     this.testView.table().selectRows(2);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp3.getId());
+    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp3.getId());
 
     this.testView.table().selectRows(4);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp5.getId());
+    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp5.getId());
 
     this.testView.table()
                  .pressKey(KeyEvent.VK_CONTROL)
                  .pressAndReleaseKeys(KeyEvent.VK_SPACE)
                  .releaseKey(KeyEvent.VK_CONTROL);
     this.testView.table().requireNoSelection();
-    assertThat(this.listView.getSelectedElementId()).isZero();
+    assertThat(this.aListView.getSelectedElementId()).isZero();
   }
 
   @Test
@@ -301,7 +301,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(this.listView, list);
+    update(this.aListView, list);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));

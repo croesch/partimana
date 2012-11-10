@@ -14,7 +14,7 @@ import com.github.croesch.partimana.view.api.IListView;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantListView extends ListView<Participant> implements IListView<Participant> {
+class ParticipantListView extends AListView<Participant> implements IListView<Participant> {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;

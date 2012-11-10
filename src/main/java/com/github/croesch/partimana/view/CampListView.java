@@ -13,7 +13,7 @@ import com.github.croesch.partimana.types.Camp;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class CampListView extends ListView<Camp> {
+class CampListView extends AListView<Camp> {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;

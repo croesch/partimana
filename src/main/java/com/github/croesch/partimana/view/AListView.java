@@ -26,7 +26,7 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Nov 10, 2012
  */
-public abstract class ListView<T extends IFilterable> extends CPanel implements IListView<T> {
+public abstract class AListView<T extends IFilterable> extends CPanel implements IListView<T> {
 
   /** generated serial version UID */
   private static final long serialVersionUID = -258243373156061504L;
@@ -34,6 +34,14 @@ public abstract class ListView<T extends IFilterable> extends CPanel implements 
   /** the table to display the different camps */
   @NotNull
   private final CTable table;
+
+  /** the observer that should be informed when a row of the table is selected. */
+  @NotNull
+  private final ActionObserver observer;
+
+  /** the action that notifies an observer that a row of the table has been selected */
+  @NotNull
+  private final UserAction selectionAction;
 
   /**
    * Constructs the view, including the table that can hold the entries.
@@ -45,12 +53,15 @@ public abstract class ListView<T extends IFilterable> extends CPanel implements 
    * @param tableModel the model of the table
    * @param action the action that should be performed, when a row is selected in the table
    */
-  public ListView(final String name,
-                  final String nameOfComps,
-                  final ActionObserver o,
-                  final DefaultTableModel tableModel,
-                  final UserAction action) {
+  public AListView(final String name,
+                   final String nameOfComps,
+                   final ActionObserver o,
+                   final DefaultTableModel tableModel,
+                   final UserAction action) {
     super(name);
+    this.observer = o; // TODO null check
+    this.selectionAction = action; //TODO null check
+
     setLayout(new MigLayout("fill"));
 
     this.table = new DataTable(nameOfComps, o, action, tableModel);
@@ -104,5 +115,15 @@ public abstract class ListView<T extends IFilterable> extends CPanel implements 
    */
   protected final TableModel getTableModel() {
     return this.table.getModel();
+  }
+
+  @Override
+  public final ActionObserver getActionObserver() {
+    return this.observer;
+  }
+
+  @Override
+  public final UserAction getSelectionAction() {
+    return this.selectionAction;
   }
 }

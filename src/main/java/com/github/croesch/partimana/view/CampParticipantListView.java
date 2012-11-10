@@ -20,7 +20,7 @@ import com.github.croesch.partimana.view.api.IListView;
  * @author croesch
  * @since Date: Sep 16, 2012
  */
-class CampParticipantListView extends ListView<CampParticipant> implements IListView<CampParticipant> {
+class CampParticipantListView extends AListView<CampParticipant> implements IListView<CampParticipant> {
 
   /** generated */
   private static final long serialVersionUID = -8804248070325729977L;
