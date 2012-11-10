@@ -36,6 +36,8 @@ public enum Text {
   EXIT (17),
   /** the constant save */
   SAVE (18),
+  /** the constant select */
+  SELECT (19),
 
   /** the name for the file menu */
   FILE (20),
