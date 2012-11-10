@@ -192,7 +192,7 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
    * 
    * @author croesch
    * @since Date: Jun 28, 2011
-   * @param the name of this component
+   * @param name the name of this component
    * @see #setParticipant(Participant)
    */
   public ParticipantEditView(final String name) {
