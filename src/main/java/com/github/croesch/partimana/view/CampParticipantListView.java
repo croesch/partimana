@@ -4,24 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JComponent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
-import net.miginfocom.swing.MigLayout;
-
-import com.github.croesch.annotate.NotNull;
-import com.github.croesch.components.CPanel;
-import com.github.croesch.components.CScrollPane;
-import com.github.croesch.components.CTable;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.view.api.IListView;
-import com.github.croesch.partimana.view.components.DataTable;
 
 /**
  * Implementation of the table that views the table of participants in a camp.
@@ -29,16 +20,13 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Sep 16, 2012
  */
-class CampParticipantListView extends CPanel implements IListView<CampParticipant> {
+class CampParticipantListView extends ListView<CampParticipant> implements IListView<CampParticipant> {
 
   /** generated */
   private static final long serialVersionUID = -8804248070325729977L;
 
-  /** the table to display the different participants */
-  private final CTable table;
-
   /** the table model that holds the participants - the data of the table */
-  private final MyTableModel tableModel = new MyTableModel();
+  private final CampParticipantTableModel tableModel;
 
   /**
    * Constructs a new {@link CampParticipantListView} that is able to visualise a table of participants. The observer
@@ -49,13 +37,8 @@ class CampParticipantListView extends CPanel implements IListView<CampParticipan
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
   public CampParticipantListView(final String name, final ActionObserver o) {
-    super(name);
-
-    setLayout(new MigLayout("fill"));
-
-    this.table = new DataTable("campParticipants", o, UserAction.CAMP_PARTICIPANT_SELECTED, this.tableModel);
-
-    add(new CScrollPane("campParticipants", this.table), "grow");
+    super(name, "campParticipants", o, new CampParticipantTableModel(), UserAction.CAMP_PARTICIPANT_SELECTED);
+    this.tableModel = (CampParticipantTableModel) getTableModel();
   }
 
   @Override
@@ -66,21 +49,13 @@ class CampParticipantListView extends CPanel implements IListView<CampParticipan
     }
   }
 
-  @Override
-  public long getSelectedElementId() {
-    if (this.table.getSelectedRowCount() == 0) {
-      return 0;
-    }
-    return Long.parseLong(this.table.getValueAt(this.table.getSelectedRow(), 0).toString());
-  }
-
   /**
    * Table model that holds {@link CampParticipant}s as rows.
    * 
    * @author croesch
    * @since Date: Sep 16, 2012
    */
-  private static class MyTableModel extends DefaultTableModel implements TableModelListener {
+  private static class CampParticipantTableModel extends DefaultTableModel implements TableModelListener {
     /** generated */
     private static final long serialVersionUID = 4361064994767610933L;
 
@@ -92,7 +67,7 @@ class CampParticipantListView extends CPanel implements IListView<CampParticipan
      * 
      * @since Date: Sep 16, 2012
      */
-    public MyTableModel() {
+    public CampParticipantTableModel() {
       setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
                                          Text.PARTICIPANT_FORENAME.text(),
                                          Text.PARTICIPANT_LASTNAME.text(),
@@ -238,13 +213,7 @@ class CampParticipantListView extends CPanel implements IListView<CampParticipan
   }
 
   @Override
-  @NotNull
-  public JComponent toComponent() {
-    return this;
-  }
-
-  @Override
-  public void addSelectionListener(final ListSelectionListener lst) {
-    this.table.getSelectionModel().addListSelectionListener(lst);
+  protected Object[] getRowArray(final CampParticipant element) {
+    return null;
   }
 }

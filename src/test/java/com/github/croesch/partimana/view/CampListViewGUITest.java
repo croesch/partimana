@@ -31,7 +31,7 @@ import com.github.croesch.partimana.types.Camp;
  */
 public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
-  private CampListView listView;
+  private ListView listView;
 
   private JPanelFixture testView;
 
@@ -47,7 +47,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
   @Override
   protected void before() {
-    final CampListView view = GuiActionRunner.execute(new GuiQuery<CampListView>() {
+    final ListView view = GuiActionRunner.execute(new GuiQuery<CampListView>() {
       @Override
       protected CampListView executeInEDT() throws Throwable {
         return new CampListView(null, CampListViewGUITest.this);
@@ -128,7 +128,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     requireCamp(this.testView.table(), 2, c3);
   }
 
-  public static void update(final CampListView lView, final List<Camp> list) {
+  public static void update(final ListView lView, final List<Camp> list) {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {

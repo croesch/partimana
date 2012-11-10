@@ -1,23 +1,12 @@
 package com.github.croesch.partimana.view;
 
-import java.util.List;
-
-import javax.swing.JComponent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import net.miginfocom.swing.MigLayout;
-
-import com.github.croesch.annotate.NotNull;
-import com.github.croesch.components.CPanel;
-import com.github.croesch.components.CScrollPane;
-import com.github.croesch.components.CTable;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.view.api.IListView;
-import com.github.croesch.partimana.view.components.DataTable;
 
 /**
  * Implementation of the table that views the table of participants.
@@ -25,13 +14,10 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantListView extends CPanel implements IListView<Participant> {
+class ParticipantListView extends ListView<Participant> implements IListView<Participant> {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;
-
-  /** the table to display the different participants */
-  private final CTable table;
 
   /**
    * Constructs a new {@link ParticipantListView} that is able to visualise a table of participants. The observer will
@@ -42,43 +28,40 @@ class ParticipantListView extends CPanel implements IListView<Participant> {
    * @param o the {@link ActionObserver} that listens for the selection change event.
    */
   public ParticipantListView(final String name, final ActionObserver o) {
-    super(name);
-    setLayout(new MigLayout("fill"));
-
-    final Object[] columnIdentifiers = new Object[] { Text.PARTICIPANT_ID.text(),
-                                                     Text.PARTICIPANT_FORENAME.text(),
-                                                     Text.PARTICIPANT_LASTNAME.text() };
-    this.table = new DataTable("participants", o, columnIdentifiers, UserAction.PARTICIPANT_SELECTED);
-
-    add(new CScrollPane("participants", this.table), "grow");
+    super(name, "participants", o, new ParticipantTableModel(), UserAction.PARTICIPANT_SELECTED);
   }
 
-  @Override
-  public void update(final List<Participant> participants) {
-    while (this.table.getRowCount() > 0) {
-      ((DefaultTableModel) this.table.getModel()).removeRow(0);
+  /**
+   * Model for a table holding participant entries.
+   * 
+   * @author croesch
+   * @since Date: Nov 11, 2012
+   */
+  private static class ParticipantTableModel extends DefaultTableModel {
+
+    /** generated serial version UID */
+    private static final long serialVersionUID = -5057192383604854L;
+
+    /**
+     * Constructs a model for a table holding participant entries.
+     * 
+     * @author croesch
+     * @since Date: Nov 11, 2012
+     */
+    public ParticipantTableModel() {
+      setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
+                                         Text.PARTICIPANT_FORENAME.text(),
+                                         Text.PARTICIPANT_LASTNAME.text() });
     }
-    for (final Participant p : participants) {
-      ((DefaultTableModel) this.table.getModel()).addRow(new Object[] { p.getId(), p.getForeName(), p.getLastName() });
+
+    @Override
+    public boolean isCellEditable(final int row, final int column) {
+      return false;
     }
   }
 
   @Override
-  public long getSelectedElementId() {
-    if (this.table.getSelectedRowCount() == 0) {
-      return 0;
-    }
-    return Long.parseLong(this.table.getValueAt(this.table.getSelectedRow(), 0).toString());
-  }
-
-  @Override
-  @NotNull
-  public JComponent toComponent() {
-    return this;
-  }
-
-  @Override
-  public void addSelectionListener(final ListSelectionListener lst) {
-    this.table.getSelectionModel().addListSelectionListener(lst);
+  protected Object[] getRowArray(final Participant p) {
+    return new Object[] { p.getId(), p.getForeName(), p.getLastName() };
   }
 }
