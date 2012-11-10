@@ -253,7 +253,7 @@ class CampEditView extends CPanel implements ICampEditView, ActionObserver {
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.PARTICIPANT_SELECTED) {
-      final long id = this.participantList.getSelectedParticipantId();
+      final long id = this.participantList.getSelectedElementId();
       for (final Participant p : this.participants) {
         if (p.getId() == id) {
           this.participants.remove(p);

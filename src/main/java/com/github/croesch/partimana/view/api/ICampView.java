@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.view.api;
 
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.partimana.types.Camp;
 
 /**
  * TODO Comment here ...
@@ -20,14 +21,14 @@ public interface ICampView {
   ICampEditView getCampEditView();
 
   /**
-   * Returns the instance of {@link ICampListView} that is responsible for viewing the
+   * Returns the instance of {@link IListView} that is responsible for viewing the
    * {@link com.github.croesch.partimana.partimana.types.Camp}s.
    * 
    * @since Date: Sep 23, 2012
-   * @return the {@link ICampListView}
+   * @return the {@link IListView}
    */
   @NotNull
-  ICampListView getCampListView();
+  IListView<Camp> getCampListView();
 
   /**
    * Performs creation of a new {@link com.github.croesch.partimana.partimana.types.Camp}. Means that the view will

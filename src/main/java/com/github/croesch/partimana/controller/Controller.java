@@ -67,7 +67,7 @@ public final class Controller implements ActionObserver {
         break;
 
       case DELETE_PARTICIPANT:
-        this.model.deleteParticipant(this.view.getParticipantListView().getSelectedParticipantId());
+        this.model.deleteParticipant(this.view.getParticipantListView().getSelectedElementId());
         break;
 
       case SAVE_CAMP:
@@ -75,7 +75,7 @@ public final class Controller implements ActionObserver {
         break;
 
       case DELETE_CAMP:
-        this.model.deleteCamp(this.view.getCampListView().getSelectedCampId());
+        this.model.deleteCamp(this.view.getCampListView().getSelectedElementId());
         break;
 
       default:

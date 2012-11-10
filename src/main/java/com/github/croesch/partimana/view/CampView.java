@@ -11,10 +11,11 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.ICampModel4View;
+import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import com.github.croesch.partimana.view.api.ICampEditView;
-import com.github.croesch.partimana.view.api.ICampListView;
 import com.github.croesch.partimana.view.api.ICampView;
+import com.github.croesch.partimana.view.api.IListView;
 
 /**
  * The implementation of {@link ICampView} that is able to view camps.
@@ -36,7 +37,7 @@ class CampView extends CPanel implements ICampView, ActionObserver {
 
   /** the view to show list of camps */
   @NotNull
-  private final ICampListView listView;
+  private final IListView<Camp> listView;
 
   /** the model to fetch camps from */
   @NotNull
@@ -87,14 +88,14 @@ class CampView extends CPanel implements ICampView, ActionObserver {
 
   @Override
   @NotNull
-  public ICampListView getCampListView() {
+  public IListView<Camp> getCampListView() {
     return this.listView;
   }
 
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.CAMP_SELECTED) {
-      this.editView.setCamp(this.model.getCamp(this.listView.getSelectedCampId()));
+      this.editView.setCamp(this.model.getCamp(this.listView.getSelectedElementId()));
     } else {
       LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }

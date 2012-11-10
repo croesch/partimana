@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JComponent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CPanel;
 import com.github.croesch.components.CScrollPane;
 import com.github.croesch.components.CTable;
@@ -17,7 +20,7 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CampParticipant;
-import com.github.croesch.partimana.view.api.ICampParticipantListView;
+import com.github.croesch.partimana.view.api.IListView;
 import com.github.croesch.partimana.view.components.DataTable;
 
 /**
@@ -26,7 +29,7 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Sep 16, 2012
  */
-class CampParticipantListView extends CPanel implements ICampParticipantListView {
+class CampParticipantListView extends CPanel implements IListView<CampParticipant> {
 
   /** generated */
   private static final long serialVersionUID = -8804248070325729977L;
@@ -64,7 +67,7 @@ class CampParticipantListView extends CPanel implements ICampParticipantListView
   }
 
   @Override
-  public long getSelectedParticipantId() {
+  public long getSelectedElementId() {
     if (this.table.getSelectedRowCount() == 0) {
       return 0;
     }
@@ -232,5 +235,16 @@ class CampParticipantListView extends CPanel implements ICampParticipantListView
         }
       }
     }
+  }
+
+  @Override
+  @NotNull
+  public JComponent toComponent() {
+    return this;
+  }
+
+  @Override
+  public void addSelectionListener(final ListSelectionListener lst) {
+    this.table.getSelectionModel().addListSelectionListener(lst);
   }
 }

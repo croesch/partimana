@@ -2,10 +2,13 @@ package com.github.croesch.partimana.view;
 
 import java.util.List;
 
+import javax.swing.JComponent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CPanel;
 import com.github.croesch.components.CScrollPane;
 import com.github.croesch.components.CTable;
@@ -13,7 +16,7 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.api.IParticipantListView;
+import com.github.croesch.partimana.view.api.IListView;
 import com.github.croesch.partimana.view.components.DataTable;
 
 /**
@@ -22,7 +25,7 @@ import com.github.croesch.partimana.view.components.DataTable;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantListView extends CPanel implements IParticipantListView {
+class ParticipantListView extends CPanel implements IListView<Participant> {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;
@@ -61,10 +64,21 @@ class ParticipantListView extends CPanel implements IParticipantListView {
   }
 
   @Override
-  public long getSelectedParticipantId() {
+  public long getSelectedElementId() {
     if (this.table.getSelectedRowCount() == 0) {
       return 0;
     }
     return Long.parseLong(this.table.getValueAt(this.table.getSelectedRow(), 0).toString());
+  }
+
+  @Override
+  @NotNull
+  public JComponent toComponent() {
+    return this;
+  }
+
+  @Override
+  public void addSelectionListener(final ListSelectionListener lst) {
+    this.table.getSelectionModel().addListSelectionListener(lst);
   }
 }

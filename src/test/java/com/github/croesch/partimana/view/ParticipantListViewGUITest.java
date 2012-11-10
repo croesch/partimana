@@ -183,7 +183,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     update(list);
     this.testView.table().selectRows(0);
     this.testView.table().requireSelectedRows(0);
-    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant1.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant1.getId());
 
     this.testView.table().selectCell(TableCell.row(0).column(0));
     assertThat(this.testView.table().component().isCellSelected(0, 1)).isTrue();
@@ -327,7 +327,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.table().selectRows(1, 2, 3);
     this.testView.table().requireSelectedRows(3);
     assertThat(this.testView.table().target.getSelectedRowCount()).isEqualTo(1);
-    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant4.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant4.getId());
   }
 
   @Test
@@ -388,20 +388,20 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     update(list);
 
     this.testView.table().selectRows(1);
-    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant2.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant2.getId());
 
     this.testView.table().selectRows(2);
-    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant3.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant3.getId());
 
     this.testView.table().selectRows(4);
-    assertThat(this.listView.getSelectedParticipantId()).isEqualTo(this.participant5.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant5.getId());
 
     this.testView.table()
                  .pressKey(KeyEvent.VK_CONTROL)
                  .pressAndReleaseKeys(KeyEvent.VK_SPACE)
                  .releaseKey(KeyEvent.VK_CONTROL);
     this.testView.table().requireNoSelection();
-    assertThat(this.listView.getSelectedParticipantId()).isZero();
+    assertThat(this.listView.getSelectedElementId()).isZero();
   }
 
   @Test

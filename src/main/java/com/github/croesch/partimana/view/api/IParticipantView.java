@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.view.api;
 
 import com.github.croesch.annotate.NotNull;
+import com.github.croesch.partimana.types.Participant;
 
 /**
  * Interface to provide functionality of the view for {@link com.github.croesch.partimana.partimana.types.Participant}s.
@@ -28,7 +29,7 @@ public interface IParticipantView {
    * @return the {@link IParticipantListView}
    */
   @NotNull
-  IParticipantListView getParticipantListView();
+  IListView<Participant> getParticipantListView();
 
   /**
    * Performs creation of a new {@link com.github.croesch.partimana.partimana.types.Participant}. Means that the view

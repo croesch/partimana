@@ -18,12 +18,13 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IModel4View;
+import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import com.github.croesch.partimana.view.api.ICampEditView;
-import com.github.croesch.partimana.view.api.ICampListView;
 import com.github.croesch.partimana.view.api.ICampView;
+import com.github.croesch.partimana.view.api.IListView;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
-import com.github.croesch.partimana.view.api.IParticipantListView;
 import com.github.croesch.partimana.view.api.IParticipantView;
 import com.github.croesch.partimana.view.api.IStatusView;
 import com.github.croesch.partimana.view.api.IVersionView;
@@ -145,7 +146,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   @Override
   @NotNull
-  public IParticipantListView getParticipantListView() {
+  public IListView<Participant> getParticipantListView() {
     return this.participantView.getParticipantListView();
   }
 
@@ -211,7 +212,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
   }
 
   @Override
-  public ICampListView getCampListView() {
+  public IListView<Camp> getCampListView() {
     return this.campView.getCampListView();
   }
 

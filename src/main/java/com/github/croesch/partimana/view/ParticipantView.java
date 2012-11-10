@@ -11,9 +11,10 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IParticipantModel4View;
+import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import com.github.croesch.partimana.view.api.IListView;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
-import com.github.croesch.partimana.view.api.IParticipantListView;
 import com.github.croesch.partimana.view.api.IParticipantView;
 
 /**
@@ -36,7 +37,7 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
 
   /** the view to show list of participants */
   @NotNull
-  private final IParticipantListView listView;
+  private final IListView<Participant> listView;
 
   /** the model to fetch participants from */
   @NotNull
@@ -88,14 +89,14 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
 
   @Override
   @NotNull
-  public IParticipantListView getParticipantListView() {
+  public IListView<Participant> getParticipantListView() {
     return this.listView;
   }
 
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.PARTICIPANT_SELECTED) {
-      this.editView.setParticipant(this.model.getParticipant(this.listView.getSelectedParticipantId()));
+      this.editView.setParticipant(this.model.getParticipant(this.listView.getSelectedElementId()));
     } else {
       LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }
