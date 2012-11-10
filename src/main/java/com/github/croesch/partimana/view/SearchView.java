@@ -75,6 +75,12 @@ public class SearchView<T extends IFilterable> extends CFrame {
 
     final CButton selectButton = new CButton("select", Text.SELECT.text());
     updateSelectButtonState(list, selectButton);
+    selectButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        list.getActionObserver().performAction(list.getSelectionAction());
+      }
+    });
     list.addSelectionListener(new ListSelectionListener() {
       @Override
       public void valueChanged(final ListSelectionEvent e) {

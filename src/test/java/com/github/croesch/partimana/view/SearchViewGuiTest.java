@@ -17,6 +17,7 @@ import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.Camp;
@@ -50,7 +51,7 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     this.listView = GuiActionRunner.execute(new GuiQuery<CampListView>() {
       @Override
       protected CampListView executeInEDT() throws Throwable {
-        return new CampListView("list", null);
+        return new CampListView("list", SearchViewGuiTest.this);
       }
     });
     this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
@@ -115,5 +116,9 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     }
     table.requireNoSelection();
     button.requireDisabled();
+
+    table.selectRows(0);
+    button.click();
+    assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
   }
 }
