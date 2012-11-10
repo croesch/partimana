@@ -4,16 +4,15 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.swing.SwingUtilities;
+import java.util.List;
 
 import org.fest.swing.core.MouseClickInfo;
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.fest.swing.fixture.Containers;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JPanelFixture;
@@ -70,38 +69,38 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   }
 
   @Test
-  public final void testUpdateListOfCamps() throws InterruptedException, InvocationTargetException {
+  public final void testUpdateListOfCamps() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
-    update(list);
+    update(this.listView, list);
     requireCamp(this.testView.table(), 0, this.camp1);
   }
 
   @Test
-  public final void testTableEditable() throws InterruptedException, InvocationTargetException {
+  public final void testTableEditable() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
-    update(list);
+    update(this.listView, list);
     this.testView.table().requireNotEditable(TableCell.row(0).column(0));
     this.testView.table().requireNotEditable(TableCell.row(0).column(1));
     this.testView.table().requireNotEditable(TableCell.row(0).column(2));
   }
 
   @Test
-  public final void testSelection() throws InterruptedException, InvocationTargetException {
+  public final void testSelection() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
-    update(list);
+    update(this.listView, list);
     this.testView.table().selectRows(0);
     this.testView.table().requireSelectedRows(0);
-    assertThat(this.listView.getSelectedCampId()).isEqualTo(this.camp1.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp1.getId());
 
     this.testView.table().selectCell(TableCell.row(0).column(0));
     assertThat(this.testView.table().component().isCellSelected(0, 1)).isTrue();
   }
 
   @Test
-  public final void testSorting_Id() throws InterruptedException, InvocationTargetException {
+  public final void testSorting_Id() {
     final Camp c1 = new Camp(9999, "Wintercamp", new Date(444444), new Date(333333333), "Russia", "1,30 €");
     final Camp c2 = new Camp(10001, "Sommercamp", new Date(3333333), new Date(444333333), "Germany", "1,30 €");
     final Camp c3 = new Camp(10010, "Ostercamp", new Date(222222), new Date(555333333), "Denmark", "1,30 €");
@@ -110,7 +109,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(c1);
     list.add(c2);
     list.add(c3);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(3);
     requireCamp(this.testView.table(), 0, c1);
@@ -129,24 +128,24 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     requireCamp(this.testView.table(), 2, c3);
   }
 
-  private void update(final ArrayList<Camp> list) throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  public static void update(final CampListView lView, final List<Camp> list) {
+    GuiActionRunner.execute(new GuiTask() {
       @Override
-      public void run() {
-        CampListViewGUITest.this.listView.update(list);
+      protected void executeInEDT() throws Throwable {
+        lView.update(list);
       }
     });
   }
 
   @Test
-  public final void testSorting_Location() throws InterruptedException, InvocationTargetException {
+  public final void testSorting_Location() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
     list.add(this.camp2);
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -172,14 +171,14 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   }
 
   @Test
-  public final void testSorting_Name() throws InterruptedException, InvocationTargetException {
+  public final void testSorting_Name() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
     list.add(this.camp2);
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -205,30 +204,30 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   }
 
   @Test
-  public final void testSelection_CountOfRows() throws InterruptedException, InvocationTargetException {
+  public final void testSelection_CountOfRows() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
     list.add(this.camp2);
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().selectRows(1, 2, 3);
     this.testView.table().requireSelectedRows(3);
     assertThat(this.testView.table().target.getSelectedRowCount()).isEqualTo(1);
-    assertThat(this.listView.getSelectedCampId()).isEqualTo(this.camp4.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp4.getId());
   }
 
   @Test
-  public final void testSelection_MultipleUpdate() throws InterruptedException, InvocationTargetException {
+  public final void testSelection_MultipleUpdate() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
     list.add(this.camp2);
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -239,7 +238,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.camp4);
     list.remove(this.camp3);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(3);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -248,7 +247,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.camp1);
     list.remove(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(1);
     requireCamp(this.testView.table(), 0, this.camp2);
@@ -257,7 +256,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireCamp(this.testView.table(), 0, this.camp1);
@@ -268,41 +267,41 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   }
 
   @Test
-  public final void testGetSelectedParticipantId() throws InterruptedException, InvocationTargetException {
+  public final void testGetSelectedParticipantId() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
     list.add(this.camp2);
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().selectRows(1);
-    assertThat(this.listView.getSelectedCampId()).isEqualTo(this.camp2.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp2.getId());
 
     this.testView.table().selectRows(2);
-    assertThat(this.listView.getSelectedCampId()).isEqualTo(this.camp3.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp3.getId());
 
     this.testView.table().selectRows(4);
-    assertThat(this.listView.getSelectedCampId()).isEqualTo(this.camp5.getId());
+    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.camp5.getId());
 
     this.testView.table()
                  .pressKey(KeyEvent.VK_CONTROL)
                  .pressAndReleaseKeys(KeyEvent.VK_SPACE)
                  .releaseKey(KeyEvent.VK_CONTROL);
     this.testView.table().requireNoSelection();
-    assertThat(this.listView.getSelectedCampId()).isZero();
+    assertThat(this.listView.getSelectedElementId()).isZero();
   }
 
   @Test
-  public final void testSelection_EventAfterDoubleClick() throws InterruptedException, InvocationTargetException {
+  public final void testSelection_EventAfterDoubleClick() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
     list.add(this.camp1);
     list.add(this.camp2);
     list.add(this.camp3);
     list.add(this.camp4);
     list.add(this.camp5);
-    update(list);
+    update(this.listView, list);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
