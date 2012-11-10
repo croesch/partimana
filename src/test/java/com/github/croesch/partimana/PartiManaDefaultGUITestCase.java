@@ -33,7 +33,7 @@ public abstract class PartiManaDefaultGUITestCase extends FestSwingJUnitTestCase
 
   @Override
   protected final void onTearDown() {
-    assertThat(this.actions.isEmpty());
+    assertNoActionPerformed();
 
     try {
       after();

@@ -50,6 +50,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
 
     frame.label("statusTxt").requireText(Text.ERROR_CAMP_NOT_SAVED.text());
     frame.close();
+    assertThat(poll()).isEqualTo(UserAction.EXIT);
   }
 
   @Test
@@ -60,6 +61,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
     // TODO ...
 
     frame.close();
+    assertThat(poll()).isEqualTo(UserAction.EXIT);
   }
 
   @Test
@@ -70,6 +72,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
 
     frame.label("statusTxt").requireText(Text.ERROR_PARTICIPANT_NOT_SAVED.text());
     frame.close();
+    assertThat(poll()).isEqualTo(UserAction.EXIT);
   }
 
   @Test
@@ -80,6 +83,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
     // TODO ...
 
     frame.close();
+    assertThat(poll()).isEqualTo(UserAction.EXIT);
   }
 
   private void performActionInEDT(final UserAction action) {
