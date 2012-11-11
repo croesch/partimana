@@ -19,7 +19,6 @@ import org.junit.Test;
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -32,11 +31,7 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   private FrameFixture searchView;
 
-  private FilterModel<Camp> campFilterModel;
-
   private Camp[] camps;
-
-  private CampListView listView;
 
   @Override
   protected void before() {
@@ -47,19 +42,10 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     this.camps[3] = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
     this.camps[4] = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
 
-    this.campFilterModel = new FilterModel<Camp>(Arrays.asList(this.camps));
-    this.listView = GuiActionRunner.execute(new GuiQuery<CampListView>() {
-      @Override
-      protected CampListView executeInEDT() throws Throwable {
-        return new CampListView("list", SearchViewGuiTest.this);
-      }
-    });
     this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
       @Override
       protected JFrame executeInEDT() throws Throwable {
-        return new SearchView<Camp>("searchingView",
-                                    SearchViewGuiTest.this.campFilterModel,
-                                    SearchViewGuiTest.this.listView);
+        return new CampSearchView("searchingView", Arrays.asList(SearchViewGuiTest.this.camps), SearchViewGuiTest.this);
       }
     }));
     this.searchView.show();
@@ -76,7 +62,7 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
   @Test
   public void testListInView() {
     this.searchView.panel("list").table("camps").requireRowCount(0);
-    CampListViewGUITest.update(this.listView, Arrays.asList(this.camps));
+    CampListViewGUITest.update(((CampSearchView) this.searchView.component()).getListView(), Arrays.asList(this.camps));
     CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 0, this.camps[0]);
     CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 1, this.camps[1]);
     CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 2, this.camps[2]);
@@ -92,7 +78,7 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     table.requireRowCount(0);
     button.requireText(Text.SELECT.text()).requireDisabled();
 
-    CampListViewGUITest.update(this.listView, Arrays.asList(this.camps));
+    CampListViewGUITest.update(((CampSearchView) this.searchView.component()).getListView(), Arrays.asList(this.camps));
     CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
     CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
     CampListViewGUITest.requireCamp(table, 2, this.camps[2]);

@@ -118,11 +118,6 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
   }
 
   @Override
-  public final ActionObserver getActionObserver() {
-    return this.observer;
-  }
-
-  @Override
   public final UserAction getSelectionAction() {
     return this.selectionAction;
   }

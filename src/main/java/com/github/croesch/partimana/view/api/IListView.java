@@ -6,7 +6,6 @@ import javax.swing.JComponent;
 import javax.swing.event.ListSelectionListener;
 
 import com.github.croesch.annotate.NotNull;
-import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.types.api.IFilterable;
 
@@ -52,14 +51,6 @@ public interface IListView<T extends IFilterable> {
    * @param lst the listener that is notified when table selection changes.
    */
   void addSelectionListener(ListSelectionListener lst);
-
-  /**
-   * Returns the action observer that should be informed, when a row of the table is selected.
-   * 
-   * @since Date: Nov 11, 2012
-   * @return the action observer that should be informed, when a row of the table is selected.
-   */
-  ActionObserver getActionObserver();
 
   /**
    * Returns the action that notifies the observer that one row has been selected.
