@@ -79,7 +79,7 @@ public class FromCategoryTest {
     assertThat(this.category).isEqualTo(new FromCategory());
     assertThat(this.category).isEqualTo(this.category);
     assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isEqualTo(new ForeNameCategory());
+    assertThat(this.category).isNotEqualTo(new ForeNameCategory());
     assertThat(this.category).isNotEqualTo("category");
 
     this.category.setFilter(new Equals<Date>());
@@ -91,7 +91,6 @@ public class FromCategoryTest {
 
     final ForeNameCategory different = new ForeNameCategory();
     different.setFilter(new Equals<String>());
-    assertThat(this.category).isEqualTo(different);
     this.category.getFilter().setFilterValue(new Date());
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);

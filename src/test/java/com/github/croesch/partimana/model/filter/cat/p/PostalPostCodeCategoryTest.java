@@ -92,7 +92,7 @@ public class PostalPostCodeCategoryTest {
     assertThat(this.category).isEqualTo(new PostalPostCodeCategory());
     assertThat(this.category).isEqualTo(this.category);
     assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isEqualTo(new LocationCategory());
+    assertThat(this.category).isNotEqualTo(new LocationCategory());
     assertThat(this.category).isNotEqualTo("category");
 
     this.category.setFilter(new Equals<Integer>());
@@ -104,7 +104,6 @@ public class PostalPostCodeCategoryTest {
 
     final LocationCategory different = new LocationCategory();
     different.setFilter(new Equals<String>());
-    assertThat(this.category).isEqualTo(different);
     this.category.getFilter().setFilterValue(42);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);

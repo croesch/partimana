@@ -83,7 +83,7 @@ public class LocationCategoryTest {
     assertThat(this.category).isEqualTo(new LocationCategory());
     assertThat(this.category).isEqualTo(this.category);
     assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isEqualTo(new FromCategory());
+    assertThat(this.category).isNotEqualTo(new FromCategory());
     assertThat(this.category).isNotEqualTo("category");
 
     this.category.setFilter(new Equals<String>());
@@ -95,7 +95,6 @@ public class LocationCategoryTest {
 
     final FromCategory different = new FromCategory();
     different.setFilter(new Equals<Date>());
-    assertThat(this.category).isEqualTo(different);
     this.category.getFilter().setFilterValue("12");
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);

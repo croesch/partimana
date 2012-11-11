@@ -90,7 +90,7 @@ public class BankAccountNumberCategoryTest {
     assertThat(this.category).isEqualTo(new BankAccountNumberCategory());
     assertThat(this.category).isEqualTo(this.category);
     assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isEqualTo(new ForeNameCategory());
+    assertThat(this.category).isNotEqualTo(new ForeNameCategory());
     assertThat(this.category).isNotEqualTo("category");
 
     this.category.setFilter(new Equals<Integer>());
@@ -102,7 +102,6 @@ public class BankAccountNumberCategoryTest {
 
     final ForeNameCategory different = new ForeNameCategory();
     different.setFilter(new Equals<String>());
-    assertThat(this.category).isEqualTo(different);
     this.category.getFilter().setFilterValue(12);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);

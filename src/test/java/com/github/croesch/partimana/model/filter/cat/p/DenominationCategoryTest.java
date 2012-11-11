@@ -87,7 +87,7 @@ public class DenominationCategoryTest {
     assertThat(this.category).isEqualTo(new DenominationCategory());
     assertThat(this.category).isEqualTo(this.category);
     assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isEqualTo(new LocationCategory());
+    assertThat(this.category).isNotEqualTo(new LocationCategory());
     assertThat(this.category).isNotEqualTo("category");
 
     this.category.setFilter(new Equals<Denomination>());
@@ -99,7 +99,6 @@ public class DenominationCategoryTest {
 
     final LocationCategory different = new LocationCategory();
     different.setFilter(new Equals<String>());
-    assertThat(this.category).isEqualTo(different);
     this.category.getFilter().setFilterValue(Denomination.MUSLIM);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
