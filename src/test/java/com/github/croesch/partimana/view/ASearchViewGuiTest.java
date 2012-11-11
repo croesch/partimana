@@ -13,6 +13,7 @@ import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JButtonFixture;
+import org.fest.swing.fixture.JComboBoxFixture;
 import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
@@ -27,7 +28,7 @@ import com.github.croesch.partimana.types.Camp;
  * @author croesch
  * @since Date: Nov 2, 2012
  */
-public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
+public class ASearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   private FrameFixture searchView;
 
@@ -45,7 +46,7 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
       @Override
       protected JFrame executeInEDT() throws Throwable {
-        return new CampSearchView("searchingView", Arrays.asList(SearchViewGuiTest.this.camps), SearchViewGuiTest.this);
+        return new CampSearchView("searchingView", Arrays.asList(ASearchViewGuiTest.this.camps), ASearchViewGuiTest.this);
       }
     }));
     this.searchView.show();
@@ -106,5 +107,22 @@ public class SearchViewGuiTest extends PartiManaDefaultGUITestCase {
     table.selectRows(0);
     button.click();
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
+  }
+
+  @Test
+  public void testFilterComposition() {
+    final JComboBoxFixture categoryComboBox = this.searchView.panel("filterComposition").comboBox("category");
+    final JComboBoxFixture filterComboBox = this.searchView.panel("filterComposition").comboBox("filterType");
+    assertThat(categoryComboBox.contents()).containsOnly(Text.FILTER_CAT_CAMP_FROM.text(),
+                                                         Text.FILTER_CAT_CAMP_LOCATION.text(),
+                                                         Text.FILTER_CAT_CAMP_NAME.text(),
+                                                         Text.FILTER_CAT_CAMP_RATE_PER_DAY.text(),
+                                                         Text.FILTER_CAT_CAMP_RATE_PER_PART.text(),
+                                                         Text.FILTER_CAT_CAMP_UNTIL.text());
+    categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_FROM.text());
+
+    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(), Text.FILTER_TYPE_BEFORE.text(),
+                                                       Text.FILTER_TYPE_EQUALS.text(),
+                                                       Text.FILTER_TYPE_NOT_EQUALS.text());
   }
 }

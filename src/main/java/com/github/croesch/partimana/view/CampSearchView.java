@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.model.filter.FilterModel;
+import com.github.croesch.partimana.model.filter.cat.c.FromCategory;
+import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
+import com.github.croesch.partimana.model.filter.cat.c.NameCategory;
+import com.github.croesch.partimana.model.filter.cat.c.RatePerDayChildCategory;
+import com.github.croesch.partimana.model.filter.cat.c.RatePerParticipantCategory;
+import com.github.croesch.partimana.model.filter.cat.c.UntilCategory;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -19,6 +25,9 @@ public final class CampSearchView extends ASearchView<Camp> {
 
   /** the view that visualizes the filter matching camps */
   private AListView<Camp> lView;
+
+  /** contains the possible categories the camps can be searched for */
+  private Object[] objects;
 
   /**
    * Constructs the camp search view that allows the user to search stored camps.
@@ -38,5 +47,18 @@ public final class CampSearchView extends ASearchView<Camp> {
       this.lView = new CampListView("list", getObserver());
     }
     return this.lView;
+  }
+
+  @Override
+  protected Object[] getPossibleCategories() {
+    if (this.objects == null) {
+      this.objects = new Object[] { new NameCategory(),
+                                   new LocationCategory(),
+                                   new FromCategory(),
+                                   new UntilCategory(),
+                                   new RatePerParticipantCategory(),
+                                   new RatePerDayChildCategory() };
+    }
+    return this.objects;
   }
 }

@@ -14,6 +14,8 @@ import com.github.croesch.components.CFrame;
 import com.github.croesch.components.CPanel;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.api.IFilterCategory;
+import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
 
@@ -31,6 +33,12 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /** the observer that will be notified when a selection has been made */
   private final ActionObserver observer;
+
+  /** the combobox that holds the filter type */
+  private CComboBox filterTypeCBox;
+
+  /** the combobox that holds the filter category */
+  private CComboBox categoryCBox;
 
   /**
    * Constructs the search view with the given model. The model provides the different filters the user can use and
@@ -80,10 +88,41 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   private void addFilterComposition() {
     final CPanel panel = new CPanel("filterComposition");
-    final CComboBox cBox = new CComboBox("category");
-    panel.add(cBox);
+    this.categoryCBox = new CComboBox("category", getPossibleCategories());
+    this.categoryCBox.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        updateFilterTypeComboBox();
+      }
+    });
+    panel.add(this.categoryCBox);
+
+    this.filterTypeCBox = new CComboBox("filterType");
+    updateFilterTypeComboBox();
+    panel.add(this.filterTypeCBox);
     add(panel);
   }
+
+  /**
+   * Updates the combobox that holds the filter types base on the currently selected filter category.
+   * 
+   * @since Date: Nov 11, 2012
+   */
+  @SuppressWarnings("unchecked")
+  private void updateFilterTypeComboBox() {
+    this.filterTypeCBox.removeAllItems();
+    for (final IFilterType<?> filterType : ((IFilterCategory<T, ?>) this.categoryCBox.getSelectedItem()).getFilterTypes()) {
+      this.filterTypeCBox.addItem(filterType);
+    }
+  }
+
+  /**
+   * Returns all possible categories this filter can filter.
+   * 
+   * @since Date: Nov 11, 2012
+   * @return all possible categories this filter can filter.
+   */
+  protected abstract Object[] getPossibleCategories();
 
   /**
    * Adds the different buttons to the view.

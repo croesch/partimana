@@ -40,6 +40,11 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
   }
 
   @Override
+  public final String toString() {
+    return getShortDescription();
+  }
+
+  @Override
   public final IFilterType<OT> getFilter() {
     return this.filter;
   }
@@ -82,7 +87,10 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
     if (this == obj) {
       return true;
     }
-    if (!(obj instanceof ACategory)) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
       return false;
     }
     @SuppressWarnings("rawtypes")
@@ -96,5 +104,4 @@ public abstract class ACategory<F extends IFilterable, OT extends Object> implem
     }
     return true;
   }
-
 }

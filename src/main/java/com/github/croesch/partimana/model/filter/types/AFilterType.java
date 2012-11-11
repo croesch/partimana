@@ -17,6 +17,11 @@ public abstract class AFilterType<OT extends Object> implements IFilterType<OT> 
   private OT filterValue = null;
 
   @Override
+  public final String toString() {
+    return getShortDescription();
+  }
+
+  @Override
   public final void setFilterValue(final OT value) {
     this.filterValue = value;
   }
