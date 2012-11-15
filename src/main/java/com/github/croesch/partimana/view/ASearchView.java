@@ -122,8 +122,6 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
         filter.setCategory(category);
         ASearchView.this.filterModel.and(filter);
         getListView().update(ASearchView.this.filterModel.getFilterMatchingElements());
-
-        System.out.println(category.getShortDescription());
       }
     });
     panel.add(andButton);
