@@ -12,8 +12,10 @@ import com.github.croesch.components.CButton;
 import com.github.croesch.components.CComboBox;
 import com.github.croesch.components.CFrame;
 import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CTextField;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.FilterModel;
@@ -40,6 +42,9 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   /** the combobox that holds the filter category */
   private CComboBox categoryCBox;
 
+  /** the model that filters the stored data */
+  private final FilterModel<T> filterModel;
+
   /**
    * Constructs the search view with the given model. The model provides the different filters the user can use and
    * provides access to all objects that matches the settings the user set up.
@@ -52,6 +57,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   public ASearchView(final String name, final FilterModel<T> model, final ActionObserver o) {
     super(name);
+    this.filterModel = model;
     this.observer = o;
     builUI();
   }
@@ -100,8 +106,38 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
     this.filterTypeCBox = new CComboBox("filterType");
     updateFilterTypeComboBox();
     panel.add(this.filterTypeCBox);
+
+    final CTextField filterValue = new CTextField("filterValue");
+    panel.add(filterValue);
+
+    final CButton andButton = new CButton("and", Text.FILTER_AND.text());
+    andButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        final IFilter<T> filter = createEmptyFilter();
+        final IFilterCategory<T, ?> category = (IFilterCategory<T, ?>) ASearchView.this.categoryCBox.getSelectedItem();
+        final IFilterType filterType = (IFilterType) ASearchView.this.filterTypeCBox.getSelectedItem();
+        filterType.setFilterValue(filterValue.getText());
+        category.setFilter(filterType);
+        filter.setCategory(category);
+        ASearchView.this.filterModel.and(filter);
+        getListView().update(ASearchView.this.filterModel.getFilterMatchingElements());
+
+        System.out.println(category.getShortDescription());
+      }
+    });
+    panel.add(andButton);
+
     add(panel);
   }
+
+  /**
+   * Creates an empty new filter.
+   * 
+   * @since Date: Nov 15, 2012
+   * @return an empty new filter.
+   */
+  protected abstract IFilter<T> createEmptyFilter();
 
   /**
    * Updates the combobox that holds the filter types base on the currently selected filter category.

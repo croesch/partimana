@@ -3,6 +3,8 @@ package com.github.croesch.partimana.view;
 import java.util.List;
 
 import com.github.croesch.partimana.actions.ActionObserver;
+import com.github.croesch.partimana.model.api.IFilter;
+import com.github.croesch.partimana.model.filter.CampFilter;
 import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.model.filter.cat.c.FromCategory;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
@@ -60,5 +62,10 @@ public final class CampSearchView extends ASearchView<Camp> {
                                    new RatePerDayChildCategory() };
     }
     return this.objects;
+  }
+
+  @Override
+  protected IFilter<Camp> createEmptyFilter() {
+    return new CampFilter();
   }
 }
