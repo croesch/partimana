@@ -123,23 +123,15 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
                                                          Text.FILTER_CAT_CAMP_UNTIL.text());
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_FROM.text());
 
-    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(), Text.FILTER_TYPE_BEFORE.text(),
-                                                       Text.FILTER_TYPE_EQUALS.text(),
-                                                       Text.FILTER_TYPE_NOT_EQUALS.text());
+    assertComboboxContainsDateFilterTypes(filterComboBox);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_RATE_PER_PART.text());
-    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_EQUALS.text(),
-                                                       Text.FILTER_TYPE_CONTAINS.text(),
-                                                       Text.FILTER_TYPE_EQUALS_IGNORE_CASE.text(),
-                                                       Text.FILTER_TYPE_NOT_EQUALS.text(),
-                                                       Text.FILTER_TYPE_STARTS_WITH.text(),
-                                                       Text.FILTER_TYPE_ENDS_WITH.text(),
-                                                       Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
+    assertComboboxContainsStringFilterTypes(filterComboBox);
 
+    filterComboBox.selectItem(Text.FILTER_TYPE_CONTAINS.text());
     this.searchView.textBox("filterValue").enterText("2");
     this.searchView.panel("list").table("camps").requireRowCount(0);
 
-    filterComboBox.selectItem(Text.FILTER_TYPE_CONTAINS.text());
     this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
     final JTableFixture table = this.searchView.panel("list").table("camps");
     CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
@@ -147,5 +139,60 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
     CampListViewGUITest.requireCamp(table, 3, this.camps[4]);
 
+    categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_LOCATION.text());
+    assertComboboxContainsStringFilterTypes(filterComboBox);
+
+    filterComboBox.selectItem(Text.FILTER_TYPE_ENDS_WITH.text());
+    this.searchView.textBox("filterValue").deleteText().enterText("t");
+    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
+    CampListViewGUITest.requireCamp(table, 3, this.camps[4]);
+    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
+    CampListViewGUITest.requireCamp(table, 0, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[2]);
+
+    categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_NAME.text());
+    assertComboboxContainsStringFilterTypes(filterComboBox);
+
+    filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
+    this.searchView.textBox("filterValue").deleteText().enterText("caMp");
+    CampListViewGUITest.requireCamp(table, 0, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[2]);
+    this.searchView.button("or").requireText(Text.FILTER_OR.text()).click();
+    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
+    CampListViewGUITest.requireCamp(table, 3, this.camps[3]);
+
+    categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_FROM.text());
+    assertComboboxContainsDateFilterTypes(filterComboBox);
+
+    filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
+    this.searchView.textBox("filterValue").deleteText().enterText("44999999");
+    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
+    CampListViewGUITest.requireCamp(table, 3, this.camps[3]);
+    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
+    CampListViewGUITest.requireCamp(table, 0, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[2]);
+    CampListViewGUITest.requireCamp(table, 2, this.camps[3]);
+  }
+
+  private void assertComboboxContainsDateFilterTypes(final JComboBoxFixture filterComboBox) {
+    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(), Text.FILTER_TYPE_BEFORE.text(),
+                                                       Text.FILTER_TYPE_EQUALS.text(),
+                                                       Text.FILTER_TYPE_NOT_EQUALS.text());
+  }
+
+  private void assertComboboxContainsStringFilterTypes(final JComboBoxFixture filterComboBox) {
+    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_EQUALS.text(),
+                                                       Text.FILTER_TYPE_CONTAINS.text(),
+                                                       Text.FILTER_TYPE_EQUALS_IGNORE_CASE.text(),
+                                                       Text.FILTER_TYPE_NOT_EQUALS.text(),
+                                                       Text.FILTER_TYPE_STARTS_WITH.text(),
+                                                       Text.FILTER_TYPE_ENDS_WITH.text(),
+                                                       Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
   }
 }

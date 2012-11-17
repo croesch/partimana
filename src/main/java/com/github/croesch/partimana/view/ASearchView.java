@@ -37,10 +37,13 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   private final ActionObserver observer;
 
   /** the combobox that holds the filter type */
-  private CComboBox filterTypeCBox;
+  private final CComboBox filterTypeCBox = new CComboBox("filterType");
 
   /** the combobox that holds the filter category */
-  private CComboBox categoryCBox;
+  private final CComboBox categoryCBox = new CComboBox("category", getPossibleCategories());
+
+  /** the text box that holds the value for the filter */
+  private final CTextField filterValueTBox = new CTextField("filterValue");
 
   /** the model that filters the stored data */
   private final FilterModel<T> filterModel;
@@ -94,7 +97,6 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   private void addFilterComposition() {
     final CPanel panel = new CPanel("filterComposition");
-    this.categoryCBox = new CComboBox("category", getPossibleCategories());
     this.categoryCBox.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
@@ -103,30 +105,59 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
     });
     panel.add(this.categoryCBox);
 
-    this.filterTypeCBox = new CComboBox("filterType");
     updateFilterTypeComboBox();
     panel.add(this.filterTypeCBox);
 
-    final CTextField filterValue = new CTextField("filterValue");
-    panel.add(filterValue);
+    panel.add(this.filterValueTBox);
 
     final CButton andButton = new CButton("and", Text.FILTER_AND.text());
     andButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
-        final IFilter<T> filter = createEmptyFilter();
-        final IFilterCategory<T, ?> category = (IFilterCategory<T, ?>) ASearchView.this.categoryCBox.getSelectedItem();
-        final IFilterType filterType = (IFilterType) ASearchView.this.filterTypeCBox.getSelectedItem();
-        filterType.setFilterValue(filterValue.getText());
-        category.setFilter(filterType);
-        filter.setCategory(category);
+        final IFilter<T> filter = createAdministeredFilter();
         ASearchView.this.filterModel.and(filter);
-        getListView().update(ASearchView.this.filterModel.getFilterMatchingElements());
+        updateListView();
       }
     });
     panel.add(andButton);
 
+    final CButton orButton = new CButton("or", Text.FILTER_OR.text());
+    orButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(final ActionEvent e) {
+        final IFilter<T> filter = createAdministeredFilter();
+        ASearchView.this.filterModel.or(filter);
+        updateListView();
+      }
+    });
+    panel.add(orButton);
+
     add(panel);
+  }
+
+  /**
+   * Updates the contents of the list view with the current result of the filter model.
+   * 
+   * @since Date: Nov 17, 2012
+   */
+  private void updateListView() {
+    getListView().update(ASearchView.this.filterModel.getFilterMatchingElements());
+  }
+
+  /**
+   * Creates and returns the filter based on the values of the text and combo boxes.
+   * 
+   * @since Date: Nov 17, 2012
+   * @return the filter based on the values of the text and combo boxes.
+   */
+  private <OT extends Object> IFilter<T> createAdministeredFilter() {
+    final IFilter<T> filter = createEmptyFilter();
+    final IFilterCategory<T, OT> category = (IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem();
+    final IFilterType<OT> filterType = (IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem();
+    filterType.parseFilterValue(this.filterValueTBox.getText());
+    category.setFilter(filterType);
+    filter.setCategory(category);
+    return filter;
   }
 
   /**
