@@ -28,7 +28,7 @@ import com.github.croesch.partimana.types.Camp;
  * @author croesch
  * @since Date: Nov 2, 2012
  */
-public class ASearchViewGuiTest extends PartiManaDefaultGUITestCase {
+public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   private FrameFixture searchView;
 
@@ -47,8 +47,8 @@ public class ASearchViewGuiTest extends PartiManaDefaultGUITestCase {
       @Override
       protected JFrame executeInEDT() throws Throwable {
         return new CampSearchView("searchingView",
-                                  Arrays.asList(ASearchViewGuiTest.this.camps),
-                                  ASearchViewGuiTest.this);
+                                  Arrays.asList(CampSearchViewGuiTest.this.camps),
+                                  CampSearchViewGuiTest.this);
       }
     }));
     this.searchView.show();
