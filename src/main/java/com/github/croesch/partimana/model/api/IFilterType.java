@@ -21,6 +21,17 @@ public interface IFilterType<OT extends Object> extends IDescribable {
   void setFilterValue(OT value);
 
   /**
+   * Parses and sets the value for the filter. Each object to filter will be checked against this value. Returns whether
+   * the given value could be parsed to a valid value.
+   * 
+   * @since Date: Oct 21, 2012
+   * @param value the object this filter should check objects against - may be null
+   * @return <code>true</code>, if the given value could be parsed to a valid value,<br>
+   *         or <code>false</code> otherwise
+   */
+  boolean parseFilterValue(String value);
+
+  /**
    * Returns the value of the filter. Each object to filter is checked against this value.
    * 
    * @since Date: Oct 21, 2012

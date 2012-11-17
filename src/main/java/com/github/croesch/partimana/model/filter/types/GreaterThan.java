@@ -8,7 +8,7 @@ import com.github.croesch.partimana.i18n.Text;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public final class GreaterThan extends AFilterType<Integer> {
+public final class GreaterThan extends IntegerFilterType {
 
   @Override
   public String getShortDescription() {

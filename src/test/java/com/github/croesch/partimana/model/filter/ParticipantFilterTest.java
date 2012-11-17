@@ -17,8 +17,9 @@ import com.github.croesch.partimana.model.filter.cat.p.GenderCategory;
 import com.github.croesch.partimana.model.filter.cat.p.LivingCityCategory;
 import com.github.croesch.partimana.model.filter.types.After;
 import com.github.croesch.partimana.model.filter.types.Contains;
-import com.github.croesch.partimana.model.filter.types.Equals;
+import com.github.croesch.partimana.model.filter.types.GenderEquals;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -130,7 +131,7 @@ public class ParticipantFilterTest {
     assertThat(this.filter.filter(participantList)).containsOnly(this.p3, this.p4, this.p5);
 
     final IFilterCategory<Participant, Gender> cat2 = new GenderCategory();
-    final IFilterType<Gender> filterType2 = new Equals<Gender>();
+    final IFilterType<Gender> filterType2 = new GenderEquals();
     cat2.setFilter(filterType2);
     this.filter.setCategory(cat2);
     assertThat(this.filter.filter(participantList)).isEmpty();
@@ -166,10 +167,10 @@ public class ParticipantFilterTest {
     assertThat(this.filter).isEqualTo(other);
     assertThat(other).isNotEqualTo(different);
 
-    final Equals<String> equals1 = new Equals<String>();
+    final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
     assertThat(this.filter).isNotEqualTo(other);
-    final Equals<String> equals2 = new Equals<String>();
+    final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
     assertThat(this.filter).isEqualTo(other);
 
@@ -193,9 +194,9 @@ public class ParticipantFilterTest {
     other.setCategory(category2);
     assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
 
-    final Equals<String> equals1 = new Equals<String>();
+    final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
-    final Equals<String> equals2 = new Equals<String>();
+    final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
     assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
 

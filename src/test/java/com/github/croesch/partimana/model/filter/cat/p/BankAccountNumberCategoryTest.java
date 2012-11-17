@@ -8,10 +8,11 @@ import org.junit.Test;
 
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.GreaterThan;
+import com.github.croesch.partimana.model.filter.types.IntegerEquals;
+import com.github.croesch.partimana.model.filter.types.IntegerNotEquals;
 import com.github.croesch.partimana.model.filter.types.LessThan;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -34,7 +35,7 @@ public class BankAccountNumberCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>(),
+    assertThat(this.category.getFilterTypes()).containsOnly(new IntegerEquals(), new IntegerNotEquals(),
                                                             new LessThan(), new GreaterThan());
 
     final IFilterType<Integer> filterType = this.category.getFilterTypes().get(0);
@@ -46,8 +47,8 @@ public class BankAccountNumberCategoryTest {
   @Test
   public void testSetAndGetFilter() {
     assertThat(this.category.getFilter()).isNull();
-    this.category.setFilter(new Equals<Integer>());
-    assertThat(this.category.getFilter()).isEqualTo(new Equals<Integer>());
+    this.category.setFilter(new IntegerEquals());
+    assertThat(this.category.getFilter()).isEqualTo(new IntegerEquals());
     this.category.setFilter(null);
     assertThat(this.category.getFilter()).isNull();
   }
@@ -93,15 +94,15 @@ public class BankAccountNumberCategoryTest {
     assertThat(this.category).isNotEqualTo(new ForeNameCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<Integer>());
+    this.category.setFilter(new IntegerEquals());
     final BankAccountNumberCategory other = new BankAccountNumberCategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<Integer>());
+    other.setFilter(new IntegerEquals());
     assertThat(this.category).isEqualTo(other);
 
     final ForeNameCategory different = new ForeNameCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     this.category.getFilter().setFilterValue(12);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -113,13 +114,13 @@ public class BankAccountNumberCategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new ForeNameCategory().hashCode());
 
-    this.category.setFilter(new Equals<Integer>());
+    this.category.setFilter(new IntegerEquals());
     final BankAccountNumberCategory other = new BankAccountNumberCategory();
-    other.setFilter(new Equals<Integer>());
+    other.setFilter(new IntegerEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final ForeNameCategory different = new ForeNameCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

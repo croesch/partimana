@@ -10,7 +10,7 @@ import com.github.croesch.partimana.i18n.Text;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public final class After extends AFilterType<Date> {
+public final class After extends DateFilterType {
 
   @Override
   public String getShortDescription() {

@@ -12,11 +12,11 @@ import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
 import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.EqualsIgnoreCase;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.model.filter.types.NotEqualsIgnoreCase;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.StringNotEquals;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -36,7 +36,7 @@ public class RatePerDayChildCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>(),
+    assertThat(this.category.getFilterTypes()).containsOnly(new StringEquals(), new StringNotEquals(),
                                                             new StartsWith(), new EndsWith(), new EqualsIgnoreCase(),
                                                             new NotEqualsIgnoreCase(), new Contains());
 
@@ -92,15 +92,15 @@ public class RatePerDayChildCategoryTest {
     assertThat(this.category).isNotEqualTo(new ForeNameCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<String>());
+    this.category.setFilter(new StringEquals());
     final RatePerDayChildCategory other = new RatePerDayChildCategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<String>());
+    other.setFilter(new StringEquals());
     assertThat(this.category).isEqualTo(other);
 
     final ForeNameCategory different = new ForeNameCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     this.category.getFilter().setFilterValue("12");
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -112,13 +112,13 @@ public class RatePerDayChildCategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new ForeNameCategory().hashCode());
 
-    this.category.setFilter(new Equals<String>());
+    this.category.setFilter(new StringEquals());
     final RatePerDayChildCategory other = new RatePerDayChildCategory();
-    other.setFilter(new Equals<String>());
+    other.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final ForeNameCategory different = new ForeNameCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

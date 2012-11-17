@@ -16,8 +16,8 @@ import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.cat.c.UntilCategory;
 import com.github.croesch.partimana.model.filter.types.After;
 import com.github.croesch.partimana.model.filter.types.Contains;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -119,10 +119,10 @@ public class CampFilterTest {
     assertThat(this.filter).isEqualTo(other);
     assertThat(other).isNotEqualTo(different);
 
-    final Equals<String> equals1 = new Equals<String>();
+    final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
     assertThat(this.filter).isNotEqualTo(other);
-    final Equals<String> equals2 = new Equals<String>();
+    final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
     assertThat(this.filter).isEqualTo(other);
 
@@ -146,9 +146,9 @@ public class CampFilterTest {
     other.setCategory(category2);
     assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
 
-    final Equals<String> equals1 = new Equals<String>();
+    final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
-    final Equals<String> equals2 = new Equals<String>();
+    final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
     assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
 

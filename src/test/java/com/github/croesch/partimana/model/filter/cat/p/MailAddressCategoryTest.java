@@ -12,11 +12,11 @@ import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.EqualsIgnoreCase;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.model.filter.types.NotEqualsIgnoreCase;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.StringNotEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -39,7 +39,7 @@ public class MailAddressCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>(),
+    assertThat(this.category.getFilterTypes()).containsOnly(new StringEquals(), new StringNotEquals(),
                                                             new StartsWith(), new EndsWith(), new EqualsIgnoreCase(),
                                                             new NotEqualsIgnoreCase(), new Contains());
 
@@ -99,15 +99,15 @@ public class MailAddressCategoryTest {
     assertThat(this.category).isNotEqualTo(new LocationCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<String>());
+    this.category.setFilter(new StringEquals());
     final MailAddressCategory other = new MailAddressCategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<String>());
+    other.setFilter(new StringEquals());
     assertThat(this.category).isEqualTo(other);
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     this.category.getFilter().setFilterValue("juppi <- :)");
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -119,13 +119,13 @@ public class MailAddressCategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
 
-    this.category.setFilter(new Equals<String>());
+    this.category.setFilter(new StringEquals());
     final MailAddressCategory other = new MailAddressCategory();
-    other.setFilter(new Equals<String>());
+    other.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

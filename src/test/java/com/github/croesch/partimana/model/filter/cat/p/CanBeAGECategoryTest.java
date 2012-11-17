@@ -9,8 +9,9 @@ import org.junit.Test;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.BooleanEquals;
+import com.github.croesch.partimana.model.filter.types.BooleanNotEquals;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -33,7 +34,7 @@ public class CanBeAGECategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>());
+    assertThat(this.category.getFilterTypes()).containsOnly(new BooleanEquals(), new BooleanNotEquals());
 
     final IFilterType<Boolean> filterType = this.category.getFilterTypes().get(0);
     filterType.setFilterValue(false);
@@ -44,8 +45,8 @@ public class CanBeAGECategoryTest {
   @Test
   public void testSetAndGetFilter() {
     assertThat(this.category.getFilter()).isNull();
-    this.category.setFilter(new Equals<Boolean>());
-    assertThat(this.category.getFilter()).isEqualTo(new Equals<Boolean>());
+    this.category.setFilter(new BooleanEquals());
+    assertThat(this.category.getFilter()).isEqualTo(new BooleanEquals());
     this.category.setFilter(null);
     assertThat(this.category.getFilter()).isNull();
   }
@@ -72,12 +73,12 @@ public class CanBeAGECategoryTest {
     p.setPossibleAGE(true);
     assertThat(this.category.isMatchingFilter(p)).isFalse();
 
-    final Equals<Boolean> equals = new Equals<Boolean>();
+    final BooleanEquals equals = new BooleanEquals();
     equals.setFilterValue(true);
     this.category.setFilter(equals);
     assertThat(this.category.isMatchingFilter(p)).isTrue();
 
-    final NotEquals<Boolean> notEquals = new NotEquals<Boolean>();
+    final BooleanNotEquals notEquals = new BooleanNotEquals();
     notEquals.setFilterValue(true);
     this.category.setFilter(notEquals);
     assertThat(this.category.isMatchingFilter(p)).isFalse();
@@ -91,15 +92,15 @@ public class CanBeAGECategoryTest {
     assertThat(this.category).isNotEqualTo(new LocationCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<Boolean>());
+    this.category.setFilter(new BooleanEquals());
     final CanBeAGECategory other = new CanBeAGECategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<Boolean>());
+    other.setFilter(new BooleanEquals());
     assertThat(this.category).isEqualTo(other);
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     this.category.getFilter().setFilterValue(false);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -111,13 +112,13 @@ public class CanBeAGECategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
 
-    this.category.setFilter(new Equals<Boolean>());
+    this.category.setFilter(new BooleanEquals());
     final CanBeAGECategory other = new CanBeAGECategory();
-    other.setFilter(new Equals<Boolean>());
+    other.setFilter(new BooleanEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

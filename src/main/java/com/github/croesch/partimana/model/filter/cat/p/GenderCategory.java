@@ -6,8 +6,8 @@ import java.util.List;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.ACategory;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.GenderEquals;
+import com.github.croesch.partimana.model.filter.types.GenderNotEquals;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
 
@@ -31,8 +31,8 @@ public final class GenderCategory extends ACategory<Participant, Gender> {
   @Override
   public List<IFilterType<Gender>> getFilterTypes() {
     final List<IFilterType<Gender>> l = new ArrayList<IFilterType<Gender>>();
-    l.add(new Equals<Gender>());
-    l.add(new NotEquals<Gender>());
+    l.add(new GenderEquals());
+    l.add(new GenderNotEquals());
     return l;
   }
 

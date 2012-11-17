@@ -1,15 +1,15 @@
 package com.github.croesch.partimana.model.filter.types;
 
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.types.Denomination;
 
 /**
  * Filters all objects that are equal to the given filter value.
  * 
- * @param <OT> the type of objects to filter
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public final class NotEquals<OT extends Object> extends AFilterType<OT> {
+public final class DenominationNotEquals extends DenominationFilterType {
 
   @Override
   public String getShortDescription() {
@@ -17,8 +17,7 @@ public final class NotEquals<OT extends Object> extends AFilterType<OT> {
   }
 
   @Override
-  public boolean matches(final OT object) {
+  public boolean matches(final Denomination object) {
     return !object.equals(getFilterValue());
   }
-
 }

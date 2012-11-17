@@ -14,7 +14,7 @@ import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.cat.c.NameCategory;
 import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
 import com.github.croesch.partimana.model.filter.types.Contains;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.StringNotEquals;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
 
@@ -98,7 +98,7 @@ public class AndGroupTest {
     campFilter2.setCategory(category2);
     assertThat(group.filter(campList)).isEmpty();
 
-    final NotEquals<String> notEquals = new NotEquals<String>();
+    final StringNotEquals notEquals = new StringNotEquals();
     category2.setFilter(notEquals);
     assertThat(group.filter(campList)).isEmpty();
 

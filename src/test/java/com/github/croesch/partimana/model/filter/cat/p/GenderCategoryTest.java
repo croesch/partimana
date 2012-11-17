@@ -9,8 +9,9 @@ import org.junit.Test;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.GenderEquals;
+import com.github.croesch.partimana.model.filter.types.GenderNotEquals;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -33,7 +34,7 @@ public class GenderCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>());
+    assertThat(this.category.getFilterTypes()).containsOnly(new GenderEquals(), new GenderNotEquals());
 
     final IFilterType<Gender> filterType = this.category.getFilterTypes().get(0);
     filterType.setFilterValue(Gender.FEMALE);
@@ -44,8 +45,8 @@ public class GenderCategoryTest {
   @Test
   public void testSetAndGetFilter() {
     assertThat(this.category.getFilter()).isNull();
-    this.category.setFilter(new Equals<Gender>());
-    assertThat(this.category.getFilter()).isEqualTo(new Equals<Gender>());
+    this.category.setFilter(new GenderEquals());
+    assertThat(this.category.getFilter()).isEqualTo(new GenderEquals());
     this.category.setFilter(null);
     assertThat(this.category.getFilter()).isNull();
   }
@@ -71,12 +72,12 @@ public class GenderCategoryTest {
                                           CountyCouncil.COUNTY_RHEIN_PFALZ);
     assertThat(this.category.isMatchingFilter(p)).isFalse();
 
-    final Equals<Gender> equals = new Equals<Gender>();
+    final GenderEquals equals = new GenderEquals();
     equals.setFilterValue(Gender.MALE);
     this.category.setFilter(equals);
     assertThat(this.category.isMatchingFilter(p)).isFalse();
 
-    final NotEquals<Gender> notEquals = new NotEquals<Gender>();
+    final GenderNotEquals notEquals = new GenderNotEquals();
     notEquals.setFilterValue(Gender.MALE);
     this.category.setFilter(notEquals);
     assertThat(this.category.isMatchingFilter(p)).isTrue();
@@ -90,15 +91,15 @@ public class GenderCategoryTest {
     assertThat(this.category).isNotEqualTo(new LocationCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<Gender>());
+    this.category.setFilter(new GenderEquals());
     final GenderCategory other = new GenderCategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<Gender>());
+    other.setFilter(new GenderEquals());
     assertThat(this.category).isEqualTo(other);
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     this.category.getFilter().setFilterValue(Gender.MALE);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -110,13 +111,13 @@ public class GenderCategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
 
-    this.category.setFilter(new Equals<Gender>());
+    this.category.setFilter(new GenderEquals());
     final GenderCategory other = new GenderCategory();
-    other.setFilter(new Equals<Gender>());
+    other.setFilter(new GenderEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.GreaterThan;
+import com.github.croesch.partimana.model.filter.types.IntegerEquals;
+import com.github.croesch.partimana.model.filter.types.IntegerNotEquals;
 import com.github.croesch.partimana.model.filter.types.LessThan;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
@@ -33,8 +33,8 @@ public abstract class IntegerCategory<F extends IFilterable> extends ACategory<F
   @Override
   public final List<IFilterType<Integer>> getFilterTypes() {
     final List<IFilterType<Integer>> l = new ArrayList<IFilterType<Integer>>();
-    l.add(new Equals<Integer>());
-    l.add(new NotEquals<Integer>());
+    l.add(new IntegerEquals());
+    l.add(new IntegerNotEquals());
     l.add(new LessThan());
     l.add(new GreaterThan());
     return l;

@@ -8,7 +8,7 @@ import com.github.croesch.partimana.i18n.Text;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public final class NotEqualsIgnoreCase extends AFilterType<String> {
+public final class NotEqualsIgnoreCase extends StringFilterType {
 
   @Override
   public String getShortDescription() {

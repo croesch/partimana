@@ -7,11 +7,11 @@ import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.EqualsIgnoreCase;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.model.filter.types.NotEqualsIgnoreCase;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.StringNotEquals;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
@@ -36,8 +36,8 @@ public abstract class StringCategory<F extends IFilterable> extends ACategory<F,
   @Override
   public final List<IFilterType<String>> getFilterTypes() {
     final List<IFilterType<String>> l = new ArrayList<IFilterType<String>>();
-    l.add(new Equals<String>());
-    l.add(new NotEquals<String>());
+    l.add(new StringEquals());
+    l.add(new StringNotEquals());
     l.add(new Contains());
     l.add(new EndsWith());
     l.add(new EqualsIgnoreCase());

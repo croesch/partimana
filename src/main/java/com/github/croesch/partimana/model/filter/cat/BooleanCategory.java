@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.BooleanEquals;
+import com.github.croesch.partimana.model.filter.types.BooleanNotEquals;
 import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
@@ -31,8 +31,8 @@ public abstract class BooleanCategory<F extends IFilterable> extends ACategory<F
   @Override
   public final List<IFilterType<Boolean>> getFilterTypes() {
     final List<IFilterType<Boolean>> l = new ArrayList<IFilterType<Boolean>>();
-    l.add(new Equals<Boolean>());
-    l.add(new NotEquals<Boolean>());
+    l.add(new BooleanEquals());
+    l.add(new BooleanNotEquals());
     return l;
   }
 }

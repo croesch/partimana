@@ -9,8 +9,9 @@ import org.junit.Test;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.DenominationEquals;
+import com.github.croesch.partimana.model.filter.types.DenominationNotEquals;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
@@ -33,7 +34,7 @@ public class DenominationCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>());
+    assertThat(this.category.getFilterTypes()).containsOnly(new DenominationEquals(), new DenominationNotEquals());
 
     final IFilterType<Denomination> filterType = this.category.getFilterTypes().get(0);
     filterType.setFilterValue(Denomination.OTHER);
@@ -44,8 +45,8 @@ public class DenominationCategoryTest {
   @Test
   public void testSetAndGetFilter() {
     assertThat(this.category.getFilter()).isNull();
-    this.category.setFilter(new Equals<Denomination>());
-    assertThat(this.category.getFilter()).isEqualTo(new Equals<Denomination>());
+    this.category.setFilter(new DenominationEquals());
+    assertThat(this.category.getFilter()).isEqualTo(new DenominationEquals());
     this.category.setFilter(null);
     assertThat(this.category.getFilter()).isNull();
   }
@@ -71,12 +72,12 @@ public class DenominationCategoryTest {
                                           CountyCouncil.COUNTY_RHEIN_PFALZ);
     assertThat(this.category.isMatchingFilter(p)).isFalse();
 
-    final Equals<Denomination> equals = new Equals<Denomination>();
+    final DenominationEquals equals = new DenominationEquals();
     equals.setFilterValue(Denomination.EVANGELIC);
     this.category.setFilter(equals);
     assertThat(this.category.isMatchingFilter(p)).isFalse();
 
-    final NotEquals<Denomination> notEquals = new NotEquals<Denomination>();
+    final DenominationNotEquals notEquals = new DenominationNotEquals();
     notEquals.setFilterValue(Denomination.EVANGELIC);
     this.category.setFilter(notEquals);
     assertThat(this.category.isMatchingFilter(p)).isTrue();
@@ -90,15 +91,15 @@ public class DenominationCategoryTest {
     assertThat(this.category).isNotEqualTo(new LocationCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<Denomination>());
+    this.category.setFilter(new DenominationEquals());
     final DenominationCategory other = new DenominationCategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<Denomination>());
+    other.setFilter(new DenominationEquals());
     assertThat(this.category).isEqualTo(other);
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     this.category.getFilter().setFilterValue(Denomination.MUSLIM);
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -110,13 +111,13 @@ public class DenominationCategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
 
-    this.category.setFilter(new Equals<Denomination>());
+    this.category.setFilter(new DenominationEquals());
     final DenominationCategory other = new DenominationCategory();
-    other.setFilter(new Equals<Denomination>());
+    other.setFilter(new DenominationEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final LocationCategory different = new LocationCategory();
-    different.setFilter(new Equals<String>());
+    different.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }

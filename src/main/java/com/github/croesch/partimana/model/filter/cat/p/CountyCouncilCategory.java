@@ -6,8 +6,8 @@ import java.util.List;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.ACategory;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.CountyCouncilEquals;
+import com.github.croesch.partimana.model.filter.types.CountyCouncilNotEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Participant;
 
@@ -31,8 +31,8 @@ public final class CountyCouncilCategory extends ACategory<Participant, CountyCo
   @Override
   public List<IFilterType<CountyCouncil>> getFilterTypes() {
     final List<IFilterType<CountyCouncil>> l = new ArrayList<IFilterType<CountyCouncil>>();
-    l.add(new Equals<CountyCouncil>());
-    l.add(new NotEquals<CountyCouncil>());
+    l.add(new CountyCouncilEquals());
+    l.add(new CountyCouncilNotEquals());
     return l;
   }
 

@@ -6,8 +6,8 @@ import java.util.List;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.ACategory;
-import com.github.croesch.partimana.model.filter.types.Equals;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
+import com.github.croesch.partimana.model.filter.types.DenominationEquals;
+import com.github.croesch.partimana.model.filter.types.DenominationNotEquals;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Participant;
 
@@ -31,8 +31,8 @@ public final class DenominationCategory extends ACategory<Participant, Denominat
   @Override
   public List<IFilterType<Denomination>> getFilterTypes() {
     final List<IFilterType<Denomination>> l = new ArrayList<IFilterType<Denomination>>();
-    l.add(new Equals<Denomination>());
-    l.add(new NotEquals<Denomination>());
+    l.add(new DenominationEquals());
+    l.add(new DenominationNotEquals());
     return l;
   }
 

@@ -10,12 +10,13 @@ import org.junit.Test;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.types.Contains;
+import com.github.croesch.partimana.model.filter.types.DateEquals;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
-import com.github.croesch.partimana.model.filter.types.Equals;
 import com.github.croesch.partimana.model.filter.types.EqualsIgnoreCase;
-import com.github.croesch.partimana.model.filter.types.NotEquals;
 import com.github.croesch.partimana.model.filter.types.NotEqualsIgnoreCase;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
+import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.StringNotEquals;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -35,7 +36,7 @@ public class LocationCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new Equals<Object>(), new NotEquals<Object>(),
+    assertThat(this.category.getFilterTypes()).containsOnly(new StringEquals(), new StringNotEquals(),
                                                             new StartsWith(), new EndsWith(), new EqualsIgnoreCase(),
                                                             new NotEqualsIgnoreCase(), new Contains());
 
@@ -86,15 +87,15 @@ public class LocationCategoryTest {
     assertThat(this.category).isNotEqualTo(new FromCategory());
     assertThat(this.category).isNotEqualTo("category");
 
-    this.category.setFilter(new Equals<String>());
+    this.category.setFilter(new StringEquals());
     final LocationCategory other = new LocationCategory();
     assertThat(this.category).isNotEqualTo(other);
     assertThat(other).isNotEqualTo(this.category);
-    other.setFilter(new Equals<String>());
+    other.setFilter(new StringEquals());
     assertThat(this.category).isEqualTo(other);
 
     final FromCategory different = new FromCategory();
-    different.setFilter(new Equals<Date>());
+    different.setFilter(new DateEquals());
     this.category.getFilter().setFilterValue("12");
     assertThat(this.category).isNotEqualTo(different);
     assertThat(different).isNotEqualTo(this.category);
@@ -106,13 +107,13 @@ public class LocationCategoryTest {
     assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
     assertThat(this.category.hashCode()).isEqualTo(new FromCategory().hashCode());
 
-    this.category.setFilter(new Equals<String>());
+    this.category.setFilter(new StringEquals());
     final LocationCategory other = new LocationCategory();
-    other.setFilter(new Equals<String>());
+    other.setFilter(new StringEquals());
     assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
 
     final FromCategory different = new FromCategory();
-    different.setFilter(new Equals<Date>());
+    different.setFilter(new DateEquals());
     assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
   }
 }
