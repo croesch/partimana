@@ -11,7 +11,9 @@ import net.miginfocom.swing.MigLayout;
 import com.github.croesch.components.CButton;
 import com.github.croesch.components.CComboBox;
 import com.github.croesch.components.CFrame;
+import com.github.croesch.components.CLabel;
 import com.github.croesch.components.CPanel;
+import com.github.croesch.components.CScrollPane;
 import com.github.croesch.components.CTextField;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.i18n.Text;
@@ -35,6 +37,14 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /** the observer that will be notified when a selection has been made */
   private final ActionObserver observer;
+
+  /** the number of filters currently active */
+  private int filters = 0;
+
+  /** the panel that holds the representation of the different filters */
+  private final CPanel filterPanel = new CPanel("filters", new MigLayout("fill,wrap 4",
+                                                                         "[grow,fill][40%][][fill,grow]",
+                                                                         "[fill]"));
 
   /** the combobox that holds the filter type */
   private final CComboBox filterTypeCBox = new CComboBox("filterType");
@@ -81,13 +91,23 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @since Date: Nov 2, 2012
    */
   private void builUI() {
-    setLayout(new MigLayout());
+    setLayout(new MigLayout("fill,wrap 1"));
 
     addFilterComposition();
+    addFilterRepresentation();
     add(getListView().toComponent());
     addButtons();
 
     pack();
+  }
+
+  /**
+   * Adds the panel for representing the filters to the view.
+   * 
+   * @since Date: Nov 23, 2012
+   */
+  private void addFilterRepresentation() {
+    add(new CScrollPane("filters", this.filterPanel), "grow");
   }
 
   /**
@@ -96,43 +116,83 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @since Date: Nov 11, 2012
    */
   private void addFilterComposition() {
-    final CPanel panel = new CPanel("filterComposition");
+    final CPanel panel = new CPanel("filterComposition", new MigLayout("fill"));
     this.categoryCBox.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
         updateFilterTypeComboBox();
       }
     });
-    panel.add(this.categoryCBox);
+    panel.add(this.categoryCBox, "shrink");
 
     updateFilterTypeComboBox();
-    panel.add(this.filterTypeCBox);
+    panel.add(this.filterTypeCBox, "shrink");
 
-    panel.add(this.filterValueTBox);
+    panel.add(this.filterValueTBox, "grow");
+
+    final CPanel buttons = new CPanel("buttons");
 
     final CButton andButton = new CButton("and", Text.FILTER_AND.text());
     andButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
         final IFilter<T> filter = createAdministeredFilter();
+        addRepresentation(filter, Text.FILTER_AND);
         ASearchView.this.filterModel.and(filter);
         updateListView();
       }
     });
-    panel.add(andButton);
+    buttons.add(andButton);
 
     final CButton orButton = new CButton("or", Text.FILTER_OR.text());
     orButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
         final IFilter<T> filter = createAdministeredFilter();
+        addRepresentation(filter, Text.FILTER_OR);
         ASearchView.this.filterModel.or(filter);
         updateListView();
       }
     });
-    panel.add(orButton);
+    buttons.add(orButton);
 
-    add(panel);
+    panel.add(buttons, "newline, span 3");
+    add(panel, "grow");
+  }
+
+  /**
+   * Adds the representation for the given filter to the view.
+   * 
+   * @since Date: Nov 23, 2012
+   * @param filter the filter to represent
+   * @param connection the text that visualizes the connection of this filter to the previous filter
+   */
+  private void addRepresentation(final IFilter<T> filter, final Text connection) {
+    final String namePrefix = "f" + ++this.filters + "-";
+
+    final CLabel connLabel = new CLabel(namePrefix + "connection");
+    if (this.filters > 1) {
+      connLabel.setText(connection.text());
+    }
+
+    this.filterPanel.add(connLabel);
+
+    final CComboBox categoryBox = new CComboBox(namePrefix + "category", getPossibleCategories());
+    categoryBox.setEnabled(false);
+    categoryBox.setSelectedItem(filter.getCategory());
+    this.filterPanel.add(categoryBox);
+
+    final CComboBox filterTypeBox = new CComboBox(namePrefix + "filterType");
+    for (int i = 0; i < this.filterTypeCBox.getItemCount(); ++i) {
+      filterTypeBox.addItem(this.filterTypeCBox.getItemAt(i));
+    }
+    filterTypeBox.setEnabled(false);
+    filterTypeBox.setSelectedItem(filter.getCategory().getFilter());
+    this.filterPanel.add(filterTypeBox);
+
+    final CTextField filterValueField = new CTextField(namePrefix + "filterValue", this.filterValueTBox.getText());
+    filterValueField.setEnabled(false);
+    this.filterPanel.add(filterValueField);
   }
 
   /**
@@ -148,6 +208,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * Creates and returns the filter based on the values of the text and combo boxes.
    * 
    * @since Date: Nov 17, 2012
+   * @param <OT> the type of the objects the filter type filters
    * @return the filter based on the values of the text and combo boxes.
    */
   private <OT extends Object> IFilter<T> createAdministeredFilter() {
@@ -195,6 +256,8 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @since Date: Nov 10, 2012
    */
   private void addButtons() {
+    final CPanel buttonPanel = new CPanel("buttons");
+
     final CButton closeButton = new CButton("close", Text.CANCEL.text());
     closeButton.addActionListener(new ActionListener() {
       @Override
@@ -202,7 +265,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
         dispose();
       }
     });
-    add(closeButton);
+    buttonPanel.add(closeButton);
 
     final CButton selectButton = new CButton("select", Text.SELECT.text());
     updateSelectButtonState(selectButton);
@@ -218,7 +281,9 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
         updateSelectButtonState(selectButton);
       }
     });
-    add(selectButton);
+    buttonPanel.add(selectButton);
+
+    add(buttonPanel);
   }
 
   /**
