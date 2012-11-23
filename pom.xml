@@ -65,6 +65,13 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.1</version>
 				<configuration>
+					<excludes>
+						<exclude>*.properties</exclude>
+						<exclude>*.sql</exclude>
+						<exclude>*.xml</exclude>
+						<exclude>*.sh</exclude>
+						<exclude>*.bat</exclude>
+					</excludes>
 					<archive>
 						<manifest>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
