@@ -136,6 +136,9 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
         View.this.observer.performAction(UserAction.EXIT);
       }
     });
+
+    //TODO test
+    update();
   }
 
   @Override
