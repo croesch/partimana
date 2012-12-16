@@ -55,6 +55,10 @@ final class Action extends AbstractAction {
   @NotNull
   private static Action deleteCampAction = new Action(UserAction.DELETE_CAMP, Text.CAMP_DELETE);
 
+  /** action to search a camp */
+  @NotNull
+  private static Action searchCampAction = new Action(UserAction.SEARCH_CAMP, Text.SEARCH_CAMP);
+
   /** the action to pass to the observer */
   @NotNull
   private final UserAction action;
@@ -63,7 +67,6 @@ final class Action extends AbstractAction {
    * Constructs an action that will fire the given {@link UserAction} to the {@link ActionObserver} and contains a
    * {@link Text} as description.
    * 
-   * @author croesch
    * @since Date: Jun 30, 2011
    * @param act the {@link UserAction} to pass to the observer
    * @param t the {@link Text} as description of this action
@@ -76,7 +79,6 @@ final class Action extends AbstractAction {
   /**
    * Sets the observer that is able to handle the actions.
    * 
-   * @author croesch
    * @since Date: Jul 1, 2011
    * @param ao the observer to handle actions
    */
@@ -94,7 +96,6 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to close the program.
    * 
-   * @author croesch
    * @since Date: Jul 1, 2011
    * @return the {@link Action} to close the program
    */
@@ -106,7 +107,6 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to save a participant.
    * 
-   * @author croesch
    * @since Date: Jul 1, 2011
    * @return the {@link Action} to save a participant
    */
@@ -118,7 +118,6 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to create a participant.
    * 
-   * @author croesch
    * @since Date: Jul 11, 2011
    * @return the {@link Action} to create a participant
    */
@@ -130,7 +129,6 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to delete a participant.
    * 
-   * @author croesch
    * @since Date: Jul 11, 2011
    * @return the {@link Action} to delete a participant
    */
@@ -142,7 +140,6 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to save a camp.
    * 
-   * @author croesch
    * @since Date: Sep 23, 2012
    * @return the {@link Action} to save a camp
    */
@@ -154,7 +151,6 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to create a camp.
    * 
-   * @author croesch
    * @since Date: Sep 23, 2012
    * @return the {@link Action} to create a camp
    */
@@ -166,12 +162,22 @@ final class Action extends AbstractAction {
   /**
    * Returns the action to delete a camp.
    * 
-   * @author croesch
    * @since Date: Sep 23, 2012
    * @return the {@link Action} to delete a camp
    */
   @NotNull
   static Action getDeleteCampAction() {
     return deleteCampAction;
+  }
+
+  /**
+   * Returns the action to search a camp.
+   * 
+   * @since Date: Dec 16, 2012
+   * @return the {@link Action} to search a camp.
+   */
+  @NotNull
+  static Action getSearchCampAction() {
+    return searchCampAction;
   }
 }

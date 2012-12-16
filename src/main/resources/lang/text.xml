@@ -18,6 +18,12 @@
 	<entry key="20">Datei</entry>
 	<entry key="31">Neu</entry>
 	<entry key="32">Löschen</entry>
+
+	<entry key="50">Suchen</entry>
+	<!-- the title of the search frame -->
+	<!-- {0} will contain the default title -->
+	<!-- {1} will contain the search keyword -->
+	<entry key="51">{0} - {1}</entry>
 	
 	<!-- Teilnehmer-Daten -->
 	<entry key="100">Teilnehmer</entry>

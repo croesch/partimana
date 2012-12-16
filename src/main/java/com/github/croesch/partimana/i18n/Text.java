@@ -47,6 +47,15 @@ public enum Text {
   /** the name for entry delete selected participant */
   PARTICIPANT_DELETE (32),
 
+  /** the name for the search menu */
+  SEARCH (50),
+  /** the title of the search frame */
+  SEARCH_TITLE (51),
+  /** the name for the menu item to search for participants */
+  SEARCH_PARTICIPANT (100),
+  /** the name for the menu item to search for camps */
+  SEARCH_CAMP (200),
+
   /** the name for participant */
   PARTICIPANT (100),
   /** the name for the id of participant */

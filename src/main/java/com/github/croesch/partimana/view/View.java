@@ -5,10 +5,16 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import net.miginfocom.swing.MigLayout;
 
 import org.apache.log4j.Logger;
 
+import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CButton;
 import com.github.croesch.components.CFrame;
@@ -65,6 +71,10 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
   @NotNull
   private final IStatusView statusView;
 
+  /** the view to search for a camp */
+  @MayBeNull
+  private CampSearchView campSearchView = null;
+
   /**
    * Constructs the view of the program with the given model.
    * 
@@ -93,6 +103,16 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
     setLayout(new BorderLayout());
 
     final CTabbedPane pane = new CTabbedPane("partCampSwitcher");
+    pane.addChangeListener(new ChangeListener() {
+
+      @Override
+      public void stateChanged(final ChangeEvent e) {
+        if (e.getSource() instanceof JTabbedPane) {
+          Action.getSearchCampAction().setEnabled(((JTabbedPane) e.getSource()).getSelectedIndex() == 1);
+        }
+      }
+    });
+
     final CPanel partPanel = new CPanel("partPanel", new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
 
     final ParticipantView pv = new ParticipantView("participantView", this.model);
@@ -170,6 +190,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   @Override
   public void performAction(final UserAction action) {
+    LOGGER.debug("executing: " + action);
     switch (action) {
       case EXIT:
         dispose();
@@ -188,6 +209,19 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
       case CREATE_CAMP:
         createCamp();
+        break;
+
+      case SEARCH_CAMP:
+        this.campSearchView = new CampSearchView("camp-search", this.model.getListOfCamps(), this);
+        this.campSearchView.setVisible(true);
+        this.campSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        break;
+
+      // assert the event happened from the search view
+      case CAMP_SELECTED:
+        this.campView.getCampEditView().setCamp(this.model.getCamp(this.campSearchView.getSelectedId()));
+        this.campSearchView.dispose();
+        this.campSearchView = null;
         break;
 
       default:

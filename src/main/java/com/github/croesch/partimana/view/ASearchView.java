@@ -69,7 +69,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @param o the observer that will be notified when a selection has been made
    */
   public ASearchView(final String name, final FilterModel<T> model, final ActionObserver o) {
-    super(name);
+    super(name, Text.SEARCH_TITLE.text(Text.PARTIMANA, Text.SEARCH));
     this.filterModel = model;
     this.observer = o;
     builUI();

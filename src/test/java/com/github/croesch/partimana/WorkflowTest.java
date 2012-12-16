@@ -40,6 +40,8 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
     frame.maximize();
 
+    selectParticipantTab(frame);
+
     enterPart(frame, "Mario", "Müller", Gender.MALE, "0808.88", Denomination.ORTHODOX, CountyCouncil.CITY_PIRMASENS);
     frame.button("saveParticipant").click();
 
@@ -54,7 +56,7 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     ParticipantListViewGUITest.requireParticipant(frame.table(), 0, "Mario", "Müller");
     ParticipantListViewGUITest.requireParticipant(frame.table(), 1, "Marianne", "Schmidt");
 
-    frame.tabbedPane().selectTab(1);
+    selectCampTab(frame);
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 0, "Mario", "Müller");
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 1, "Marianne", "Schmidt");
 
@@ -99,7 +101,7 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     CampParticipantListViewGUITest.requireParticipant(frame.table("campParticipants"), 0, "Mario", "Müller");
     CampParticipantListViewGUITest.requireParticipant(frame.table("campParticipants"), 1, "Marianne", "Schmidt");
 
-    frame.tabbedPane().selectTab(0);
+    selectParticipantTab(frame);
     ParticipantListViewGUITest.requireParticipant(frame.table(), 0, "Mario", "Müller");
     ParticipantListViewGUITest.requireParticipant(frame.table(), 1, "Marianne", "Schmidt");
 
@@ -112,7 +114,7 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     ParticipantListViewGUITest.requireParticipant(frame.table(), 1, "Marianne", "Schmidt");
     ParticipantListViewGUITest.requireParticipant(frame.table(), 2, "Peter", "Maurer");
 
-    frame.tabbedPane().selectTab(1);
+    selectCampTab(frame);
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 0, "Peter", "Maurer");
     CampParticipantListViewGUITest.requireParticipant(frame.table("campParticipants"), 0, "Mario", "Müller");
     CampParticipantListViewGUITest.requireParticipant(frame.table("campParticipants"), 1, "Marianne", "Schmidt");
@@ -135,6 +137,18 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 1, "Marianne", "Schmidt");
     ParticipantListViewGUITest.requireParticipant(frame.table("participants"), 2, "Peter", "Maurer");
     frame.table("campParticipants").requireRowCount(0);
+
+    frame.menuItem("searchCamp").click();
+  }
+
+  private void selectParticipantTab(final FrameFixture frame) {
+    frame.tabbedPane().selectTab(0);
+    frame.menuItem("searchCamp").requireDisabled();
+  }
+
+  private void selectCampTab(final FrameFixture frame) {
+    frame.tabbedPane().selectTab(1);
+    frame.menuItem("searchCamp").requireEnabled();
   }
 
   private void enterCamp(final FrameFixture frame,

@@ -30,8 +30,13 @@ class MenuBar extends CMenuBar {
     final CMenuItem exit = new CMenuItem("exit", Action.getExitAction());
 
     file.add(exit);
-
     add(file);
+
+    final CMenu search = new CMenu("search", Text.SEARCH.text());
+    final CMenuItem camp = new CMenuItem("searchCamp", Action.getSearchCampAction());
+
+    search.add(camp);
+    add(search);
 
   }
 
