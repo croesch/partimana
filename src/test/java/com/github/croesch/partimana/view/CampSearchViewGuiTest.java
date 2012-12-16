@@ -99,6 +99,8 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     table.requireSelectedRows(3);
     button.requireEnabled();
 
+    robot().waitForIdle();
+
     try {
       table.pressKey(KeyEvent.VK_CONTROL);
       table.cell(TableCell.row(3).column(0)).click();
