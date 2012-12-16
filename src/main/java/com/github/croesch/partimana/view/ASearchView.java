@@ -304,4 +304,15 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   private void updateSelectButtonState(final CButton selectButton) {
     selectButton.setEnabled(getListView().getSelectedElementId() != 0);
   }
+
+  /**
+   * Returns the id of the selected item.
+   * 
+   * @since Date: Dec 16, 2012
+   * @return the id of the selected item,<br>
+   *         or <code>0</code> if no element is selected.
+   */
+  public final long getSelectedId() {
+    return getListView().getSelectedElementId();
+  }
 }

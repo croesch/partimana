@@ -111,6 +111,22 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     table.selectRows(0);
     button.click();
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
+
+    assertThat(this.searchView.component()).isInstanceOf(CampSearchView.class);
+    assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isEqualTo(this.camps[0].getId());
+
+    table.selectRows(2);
+    assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isEqualTo(this.camps[2].getId());
+
+    try {
+      table.pressKey(KeyEvent.VK_CONTROL);
+      table.cell(TableCell.row(2).column(1)).click();
+    } finally {
+      table.releaseKey(KeyEvent.VK_CONTROL);
+    }
+    table.requireSelectedRows(new int[] {});
+    button.requireDisabled();
+    assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isZero();
   }
 
   @Test
