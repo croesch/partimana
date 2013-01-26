@@ -34,8 +34,10 @@ class MenuBar extends CMenuBar {
 
     final CMenu search = new CMenu("search", Text.SEARCH.text());
     final CMenuItem camp = new CMenuItem("searchCamp", Action.getSearchCampAction());
+    final CMenuItem participant = new CMenuItem("searchParticipant", Action.getSearchParticipantAction());
 
     search.add(camp);
+    search.add(participant);
     add(search);
 
   }

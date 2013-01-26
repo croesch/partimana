@@ -75,6 +75,10 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
   @MayBeNull
   private CampSearchView campSearchView = null;
 
+  /** the view to search for a participant */
+  @MayBeNull
+  private ParticipantSearchView participantSearchView = null;
+
   /**
    * Constructs the view of the program with the given model.
    * 
@@ -108,6 +112,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
       @Override
       public void stateChanged(final ChangeEvent e) {
         if (e.getSource() instanceof JTabbedPane) {
+          Action.getSearchParticipantAction().setEnabled(((JTabbedPane) e.getSource()).getSelectedIndex() == 0);
           Action.getSearchCampAction().setEnabled(((JTabbedPane) e.getSource()).getSelectedIndex() == 1);
         }
       }
@@ -222,6 +227,22 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
         this.campView.getCampEditView().setCamp(this.model.getCamp(this.campSearchView.getSelectedId()));
         this.campSearchView.dispose();
         this.campSearchView = null;
+        break;
+
+      case SEARCH_PARTICIPANT:
+        this.participantSearchView = new ParticipantSearchView("participant-search",
+                                                               this.model.getListOfParticipants(),
+                                                               this);
+        this.participantSearchView.setVisible(true);
+        this.participantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        break;
+
+      // assert the event happened from the search view
+      case PARTICIPANT_SELECTED:
+        this.participantView.getParticipantEditView()
+                            .setParticipant(this.model.getParticipant(this.participantSearchView.getSelectedId()));
+        this.participantSearchView.dispose();
+        this.participantSearchView = null;
         break;
 
       default:

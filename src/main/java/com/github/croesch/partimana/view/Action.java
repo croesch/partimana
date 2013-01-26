@@ -59,6 +59,10 @@ final class Action extends AbstractAction {
   @NotNull
   private static Action searchCampAction = new Action(UserAction.SEARCH_CAMP, Text.SEARCH_CAMP);
 
+  /** action to search a participant */
+  @NotNull
+  private static Action searchParticipantAction = new Action(UserAction.SEARCH_PARTICIPANT, Text.SEARCH_PARTICIPANT);
+
   /** the action to pass to the observer */
   @NotNull
   private final UserAction action;
@@ -179,5 +183,16 @@ final class Action extends AbstractAction {
   @NotNull
   static Action getSearchCampAction() {
     return searchCampAction;
+  }
+
+  /**
+   * Returns the action to search a participant.
+   * 
+   * @since Date: Jan 26, 2013
+   * @return the {@link Action} to search a participant.
+   */
+  @NotNull
+  static Action getSearchParticipantAction() {
+    return searchParticipantAction;
   }
 }

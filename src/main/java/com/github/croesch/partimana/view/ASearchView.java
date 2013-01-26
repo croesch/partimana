@@ -213,7 +213,9 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   private <OT extends Object> IFilter<T> createAdministeredFilter() {
     final IFilter<T> filter = createEmptyFilter();
+    @SuppressWarnings("unchecked")
     final IFilterCategory<T, OT> category = (IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem();
+    @SuppressWarnings("unchecked")
     final IFilterType<OT> filterType = (IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem();
     filterType.parseFilterValue(this.filterValueTBox.getText());
     category.setFilter(filterType);
