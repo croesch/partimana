@@ -7,13 +7,13 @@ import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.swing.SwingUtilities;
+import java.util.List;
 
 import org.fest.swing.core.MouseClickInfo;
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
 import org.fest.swing.fixture.Containers;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JPanelFixture;
@@ -162,7 +162,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
   public final void testUpdateListOfParticipant() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
     list.add(this.participant1);
-    update(list);
+    update(this.listView, list);
     requireParticipant(this.testView.table(), 0, this.participant1);
   }
 
@@ -170,7 +170,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
   public final void testTableEditable() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
     list.add(this.participant1);
-    update(list);
+    update(this.listView, list);
     this.testView.table().requireNotEditable(TableCell.row(0).column(0));
     this.testView.table().requireNotEditable(TableCell.row(0).column(1));
     this.testView.table().requireNotEditable(TableCell.row(0).column(2));
@@ -180,7 +180,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
   public final void testSelection() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
     list.add(this.participant1);
-    update(list);
+    update(this.listView, list);
     this.testView.table().selectRows(0);
     this.testView.table().requireSelectedRows(0);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant1.getId());
@@ -229,7 +229,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(p1);
     list.add(p2);
     list.add(p3);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(3);
     requireParticipant(this.testView.table(), 0, p1);
@@ -256,7 +256,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -289,7 +289,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -322,7 +322,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().selectRows(1, 2, 3);
     this.testView.table().requireSelectedRows(3);
@@ -338,7 +338,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -349,7 +349,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.participant4);
     list.remove(this.participant3);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(3);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -358,7 +358,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
 
     list.remove(this.participant1);
     list.remove(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(1);
     requireParticipant(this.testView.table(), 0, this.participant2);
@@ -367,7 +367,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().requireRowCount(5);
     requireParticipant(this.testView.table(), 0, this.participant1);
@@ -385,7 +385,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     this.testView.table().selectRows(1);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant2.getId());
@@ -412,7 +412,7 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(this.participant3);
     list.add(this.participant4);
     list.add(this.participant5);
-    update(list);
+    update(this.listView, list);
 
     assertNoActionPerformed();
     this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
@@ -460,11 +460,11 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
   }
 
-  private void update(final ArrayList<Participant> list) throws InterruptedException, InvocationTargetException {
-    SwingUtilities.invokeAndWait(new Runnable() {
+  public static void update(final AListView<Participant> lView, final List<Participant> list) {
+    GuiActionRunner.execute(new GuiTask() {
       @Override
-      public void run() {
-        ParticipantListViewGUITest.this.listView.update(list);
+      protected void executeInEDT() throws Throwable {
+        lView.update(list);
       }
     });
   }
