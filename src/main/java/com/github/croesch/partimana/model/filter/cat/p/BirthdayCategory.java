@@ -28,4 +28,12 @@ public final class BirthdayCategory extends DateCategory<Participant> {
     return element.getBirthDate();
   }
 
+  @Override
+  public BirthdayCategory getCopy() {
+    final BirthdayCategory copy = new BirthdayCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

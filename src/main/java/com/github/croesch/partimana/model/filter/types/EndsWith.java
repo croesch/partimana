@@ -19,4 +19,13 @@ public final class EndsWith extends StringFilterType {
   public boolean matches(final String object) {
     return object.endsWith(getFilterValue());
   }
+
+  @Override
+  public EndsWith getCopy() {
+    final EndsWith copy = new EndsWith();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

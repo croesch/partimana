@@ -26,4 +26,12 @@ public final class BankNameCategory extends StringCategory<Participant> {
     return element.getBank();
   }
 
+  @Override
+  public BankNameCategory getCopy() {
+    final BankNameCategory copy = new BankNameCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

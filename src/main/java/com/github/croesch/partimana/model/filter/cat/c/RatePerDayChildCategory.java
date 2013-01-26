@@ -25,4 +25,13 @@ public final class RatePerDayChildCategory extends StringCategory<Camp> {
   protected String getValue(final Camp element) {
     return element.getRatePerDayChildren();
   }
+
+  @Override
+  public RatePerDayChildCategory getCopy() {
+    final RatePerDayChildCategory copy = new RatePerDayChildCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

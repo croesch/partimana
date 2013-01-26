@@ -40,4 +40,13 @@ public final class CountyCouncilCategory extends ACategory<Participant, CountyCo
   protected CountyCouncil getValue(final Participant element) {
     return element.getCountyCouncil();
   }
+
+  @Override
+  public CountyCouncilCategory getCopy() {
+    final CountyCouncilCategory copy = new CountyCouncilCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

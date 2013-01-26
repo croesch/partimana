@@ -27,4 +27,13 @@ public final class DateUntilCategory extends DateCategory<Participant> {
   protected Date getValue(final Participant element) {
     return element.getDateUpToInSystem();
   }
+
+  @Override
+  public DateUntilCategory getCopy() {
+    final DateUntilCategory copy = new DateUntilCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

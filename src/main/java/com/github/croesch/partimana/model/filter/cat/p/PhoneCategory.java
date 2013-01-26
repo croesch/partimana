@@ -25,4 +25,13 @@ public final class PhoneCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getPhone();
   }
+
+  @Override
+  public PhoneCategory getCopy() {
+    final PhoneCategory copy = new PhoneCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

@@ -20,4 +20,13 @@ public final class CountyCouncilEquals extends CountyCouncilFilterType {
   public boolean matches(final CountyCouncil object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public CountyCouncilEquals getCopy() {
+    final CountyCouncilEquals copy = new CountyCouncilEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

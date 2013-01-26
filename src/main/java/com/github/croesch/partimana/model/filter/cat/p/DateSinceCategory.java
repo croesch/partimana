@@ -27,4 +27,13 @@ public final class DateSinceCategory extends DateCategory<Participant> {
   protected Date getValue(final Participant element) {
     return element.getDateSinceInDataBase();
   }
+
+  @Override
+  public DateSinceCategory getCopy() {
+    final DateSinceCategory copy = new DateSinceCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

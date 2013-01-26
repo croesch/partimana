@@ -25,4 +25,13 @@ public final class MailAddressCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getMailAddress();
   }
+
+  @Override
+  public MailAddressCategory getCopy() {
+    final MailAddressCategory copy = new MailAddressCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

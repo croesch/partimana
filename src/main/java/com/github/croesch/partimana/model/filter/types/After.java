@@ -21,4 +21,13 @@ public final class After extends DateFilterType {
   public boolean matches(final Date object) {
     return object.after(getFilterValue());
   }
+
+  @Override
+  public After getCopy() {
+    final After copy = new After();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(new Date(getFilterValue().getTime()));
+    }
+    return copy;
+  }
 }

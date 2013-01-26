@@ -25,4 +25,13 @@ public final class NameCategory extends StringCategory<Camp> {
   protected String getValue(final Camp element) {
     return element.getName();
   }
+
+  @Override
+  public NameCategory getCopy() {
+    final NameCategory copy = new NameCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

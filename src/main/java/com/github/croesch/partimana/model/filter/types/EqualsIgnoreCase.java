@@ -19,4 +19,13 @@ public final class EqualsIgnoreCase extends StringFilterType {
   public boolean matches(final String object) {
     return object.equalsIgnoreCase(getFilterValue());
   }
+
+  @Override
+  public EqualsIgnoreCase getCopy() {
+    final EqualsIgnoreCase copy = new EqualsIgnoreCase();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

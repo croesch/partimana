@@ -19,4 +19,13 @@ public final class BooleanEquals extends BooleanFilterType {
   public boolean matches(final Boolean object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public BooleanEquals getCopy() {
+    final BooleanEquals copy = new BooleanEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

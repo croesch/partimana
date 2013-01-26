@@ -19,4 +19,13 @@ public final class GreaterThan extends IntegerFilterType {
   public boolean matches(final Integer object) {
     return object > getFilterValue();
   }
+
+  @Override
+  public GreaterThan getCopy() {
+    final GreaterThan copy = new GreaterThan();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

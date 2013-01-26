@@ -25,4 +25,13 @@ public final class LocationCategory extends StringCategory<Camp> {
   protected String getValue(final Camp element) {
     return element.getLocation();
   }
+
+  @Override
+  public LocationCategory getCopy() {
+    final LocationCategory copy = new LocationCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

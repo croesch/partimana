@@ -25,4 +25,13 @@ public final class BankAccountNumberCategory extends IntegerCategory<Participant
   protected Integer getValue(final Participant element) {
     return element.getBankAccountNumber();
   }
+
+  @Override
+  public BankAccountNumberCategory getCopy() {
+    final BankAccountNumberCategory copy = new BankAccountNumberCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

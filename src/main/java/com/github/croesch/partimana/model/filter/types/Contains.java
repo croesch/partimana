@@ -19,4 +19,13 @@ public final class Contains extends StringFilterType {
   public boolean matches(final String object) {
     return object.contains(getFilterValue());
   }
+
+  @Override
+  public Contains getCopy() {
+    final Contains copy = new Contains();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

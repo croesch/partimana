@@ -25,4 +25,13 @@ public final class LastNameCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getLastName();
   }
+
+  @Override
+  public LastNameCategory getCopy() {
+    final LastNameCategory copy = new LastNameCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

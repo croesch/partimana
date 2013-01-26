@@ -21,4 +21,13 @@ public final class DateEquals extends DateFilterType {
   public boolean matches(final Date object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public DateEquals getCopy() {
+    final DateEquals copy = new DateEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(new Date(getFilterValue().getTime()));
+    }
+    return copy;
+  }
 }

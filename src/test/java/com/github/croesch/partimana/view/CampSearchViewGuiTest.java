@@ -132,6 +132,29 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
   }
 
   @Test
+  public void testFilterTwoFirstCamps() {
+    final JComboBoxFixture categoryComboBox = this.searchView.panel(FC).comboBox("category");
+    final JComboBoxFixture filterComboBox = this.searchView.panel(FC).comboBox("filterType");
+    categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_NAME.text());
+
+    assertComboboxContainsStringFilterTypes(filterComboBox);
+    filterComboBox.selectItem(Text.FILTER_TYPE_STARTS_WITH.text());
+    this.searchView.textBox("filterValue").enterText("O");
+    this.searchView.panel("list").table("camps").requireRowCount(0);
+
+    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
+    final JTableFixture table = this.searchView.panel("list").table("camps");
+    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+
+    filterComboBox.selectItem(Text.FILTER_TYPE_STARTS_WITH.text());
+    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("H");
+    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+    this.searchView.button("or").requireText(Text.FILTER_OR.text()).click();
+    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
+  }
+
+  @Test
   public void testFilterComposition() {
     final JComboBoxFixture categoryComboBox = this.searchView.panel(FC).comboBox("category");
     final JComboBoxFixture filterComboBox = this.searchView.panel(FC).comboBox("filterType");

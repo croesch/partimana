@@ -20,4 +20,13 @@ public final class DenominationEquals extends DenominationFilterType {
   public boolean matches(final Denomination object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public DenominationEquals getCopy() {
+    final DenominationEquals copy = new DenominationEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

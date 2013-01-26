@@ -26,4 +26,12 @@ public final class RatePerParticipantCategory extends StringCategory<Camp> {
     return element.getRatePerParticipant();
   }
 
+  @Override
+  public RatePerParticipantCategory getCopy() {
+    final RatePerParticipantCategory copy = new RatePerParticipantCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

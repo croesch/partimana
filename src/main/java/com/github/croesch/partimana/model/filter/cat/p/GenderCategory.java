@@ -40,4 +40,13 @@ public final class GenderCategory extends ACategory<Participant, Gender> {
   protected Gender getValue(final Participant element) {
     return element.getGender();
   }
+
+  @Override
+  public GenderCategory getCopy() {
+    final GenderCategory copy = new GenderCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

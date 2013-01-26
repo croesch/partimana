@@ -25,4 +25,13 @@ public final class LivingPostCodeCategory extends IntegerCategory<Participant> {
   protected Integer getValue(final Participant element) {
     return element.getPostCode();
   }
+
+  @Override
+  public LivingPostCodeCategory getCopy() {
+    final LivingPostCodeCategory copy = new LivingPostCodeCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

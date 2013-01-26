@@ -20,4 +20,12 @@ public final class LessThan extends IntegerFilterType {
     return object < getFilterValue();
   }
 
+  @Override
+  public LessThan getCopy() {
+    final LessThan copy = new LessThan();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

@@ -27,4 +27,13 @@ public final class UntilCategory extends DateCategory<Camp> {
   protected Date getValue(final Camp element) {
     return element.getUntilDate();
   }
+
+  @Override
+  public UntilCategory getCopy() {
+    final UntilCategory copy = new UntilCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

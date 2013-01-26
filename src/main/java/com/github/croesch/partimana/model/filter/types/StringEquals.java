@@ -19,4 +19,13 @@ public final class StringEquals extends StringFilterType {
   public boolean matches(final String object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public StringEquals getCopy() {
+    final StringEquals copy = new StringEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

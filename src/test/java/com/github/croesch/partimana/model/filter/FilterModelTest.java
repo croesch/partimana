@@ -13,6 +13,7 @@ import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.cat.c.NameCategory;
 import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
+import com.github.croesch.partimana.model.filter.types.StartsWith;
 import com.github.croesch.partimana.types.Camp;
 
 /**
@@ -40,6 +41,18 @@ public class FilterModelTest {
     this.c3 = new Camp("Freizeit", new Date(35000000), new Date(310000000), "Stuttgart", "2");
     this.c4 = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
     this.c5 = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
+  }
+
+  @Test
+  public void testOrWithToDisjunctSets() {
+    final FilterModel<Camp> fm = new FilterModel<Camp>(Arrays.asList(this.c1, this.c2, this.c3, this.c4, this.c5));
+    assertThat(fm.getFilterMatchingElements()).isEmpty();
+
+    fm.and(createFilter1());
+    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1);
+
+    fm.or(createFilter2());
+    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c2);
   }
 
   @Test
@@ -106,4 +119,25 @@ public class FilterModelTest {
     return filter234;
   }
 
+  private IFilter<Camp> createFilter1() {
+    final CampFilter filter1 = new CampFilter();
+    final NameCategory cat1 = new NameCategory();
+    final StartsWith startsWidthO = new StartsWith();
+    startsWidthO.setFilterValue("O");
+    cat1.setFilter(startsWidthO);
+    filter1.setCategory(cat1);
+
+    return filter1;
+  }
+
+  private IFilter<Camp> createFilter2() {
+    final CampFilter filter2 = new CampFilter();
+    final NameCategory cat2 = new NameCategory();
+    final StartsWith startsWidthH = new StartsWith();
+    startsWidthH.setFilterValue("H");
+    cat2.setFilter(startsWidthH);
+    filter2.setCategory(cat2);
+
+    return filter2;
+  }
 }

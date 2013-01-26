@@ -27,4 +27,13 @@ public final class FromCategory extends DateCategory<Camp> {
   protected Date getValue(final Camp element) {
     return element.getFromDate();
   }
+
+  @Override
+  public FromCategory getCopy() {
+    final FromCategory copy = new FromCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

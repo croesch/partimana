@@ -52,4 +52,11 @@ public interface IFilterCategory<F extends IFilterable, OT> extends IDescribable
    */
   boolean isMatchingFilter(F element);
 
+  /**
+   * Returns a copy of this category. It is equal to this category, but doesn't share references.
+   * 
+   * @since Date: Jan 26, 2013
+   * @return a copy of this category.
+   */
+  IFilterCategory<F, OT> getCopy();
 }

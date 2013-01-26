@@ -25,4 +25,13 @@ public final class CommentCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getComment();
   }
+
+  @Override
+  public CommentCategory getCopy() {
+    final CommentCategory copy = new CommentCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

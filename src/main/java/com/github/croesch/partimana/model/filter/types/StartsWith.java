@@ -19,4 +19,13 @@ public final class StartsWith extends StringFilterType {
   public boolean matches(final String object) {
     return object.startsWith(getFilterValue());
   }
+
+  @Override
+  public StartsWith getCopy() {
+    final StartsWith copy = new StartsWith();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

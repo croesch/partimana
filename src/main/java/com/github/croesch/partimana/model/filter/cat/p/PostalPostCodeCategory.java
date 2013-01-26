@@ -25,4 +25,13 @@ public final class PostalPostCodeCategory extends IntegerCategory<Participant> {
   protected Integer getValue(final Participant element) {
     return element.getPostCodePostal();
   }
+
+  @Override
+  public PostalPostCodeCategory getCopy() {
+    final PostalPostCodeCategory copy = new PostalPostCodeCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

@@ -25,4 +25,13 @@ public final class LivingCityCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getCity();
   }
+
+  @Override
+  public LivingCityCategory getCopy() {
+    final LivingCityCategory copy = new LivingCityCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

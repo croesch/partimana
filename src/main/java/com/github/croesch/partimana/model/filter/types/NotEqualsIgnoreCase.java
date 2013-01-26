@@ -20,4 +20,12 @@ public final class NotEqualsIgnoreCase extends StringFilterType {
     return !object.equalsIgnoreCase(getFilterValue());
   }
 
+  @Override
+  public NotEqualsIgnoreCase getCopy() {
+    final NotEqualsIgnoreCase copy = new NotEqualsIgnoreCase();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

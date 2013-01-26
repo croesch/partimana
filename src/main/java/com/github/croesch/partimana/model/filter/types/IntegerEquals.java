@@ -19,4 +19,13 @@ public final class IntegerEquals extends IntegerFilterType {
   public boolean matches(final Integer object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public IntegerEquals getCopy() {
+    final IntegerEquals copy = new IntegerEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

@@ -179,7 +179,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
     final CComboBox categoryBox = new CComboBox(namePrefix + "category", getPossibleCategories());
     categoryBox.setEnabled(false);
-    categoryBox.setSelectedItem(filter.getCategory());
+    categoryBox.setSelectedItem(this.categoryCBox.getSelectedItem());
     this.filterPanel.add(categoryBox);
 
     final CComboBox filterTypeBox = new CComboBox(namePrefix + "filterType");
@@ -187,7 +187,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
       filterTypeBox.addItem(this.filterTypeCBox.getItemAt(i));
     }
     filterTypeBox.setEnabled(false);
-    filterTypeBox.setSelectedItem(filter.getCategory().getFilter());
+    filterTypeBox.setSelectedItem(this.filterTypeCBox.getSelectedItem());
     this.filterPanel.add(filterTypeBox);
 
     final CTextField filterValueField = new CTextField(namePrefix + "filterValue", this.filterValueTBox.getText());
@@ -214,9 +214,9 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   private <OT extends Object> IFilter<T> createAdministeredFilter() {
     final IFilter<T> filter = createEmptyFilter();
     @SuppressWarnings("unchecked")
-    final IFilterCategory<T, OT> category = (IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem();
+    final IFilterCategory<T, OT> category = ((IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem()).getCopy();
     @SuppressWarnings("unchecked")
-    final IFilterType<OT> filterType = (IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem();
+    final IFilterType<OT> filterType = ((IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem()).getCopy();
     filterType.parseFilterValue(this.filterValueTBox.getText());
     category.setFilter(filterType);
     filter.setCategory(category);

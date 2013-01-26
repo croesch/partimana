@@ -25,4 +25,13 @@ public final class PostalStreetCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getStreetPostal();
   }
+
+  @Override
+  public PostalStreetCategory getCopy() {
+    final PostalStreetCategory copy = new PostalStreetCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

@@ -20,4 +20,13 @@ public final class GenderEquals extends GenderFilterType {
   public boolean matches(final Gender object) {
     return object.equals(getFilterValue());
   }
+
+  @Override
+  public GenderEquals getCopy() {
+    final GenderEquals copy = new GenderEquals();
+    if (getFilterValue() != null) {
+      copy.setFilterValue(getFilterValue());
+    }
+    return copy;
+  }
 }

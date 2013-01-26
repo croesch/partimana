@@ -25,4 +25,13 @@ public final class ForeNameCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getForeName();
   }
+
+  @Override
+  public ForeNameCategory getCopy() {
+    final ForeNameCategory copy = new ForeNameCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

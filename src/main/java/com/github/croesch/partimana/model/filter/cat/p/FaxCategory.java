@@ -25,4 +25,13 @@ public final class FaxCategory extends StringCategory<Participant> {
   protected String getValue(final Participant element) {
     return element.getFax();
   }
+
+  @Override
+  public FaxCategory getCopy() {
+    final FaxCategory copy = new FaxCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

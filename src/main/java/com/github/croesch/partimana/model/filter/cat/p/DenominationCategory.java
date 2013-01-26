@@ -40,4 +40,13 @@ public final class DenominationCategory extends ACategory<Participant, Denominat
   protected Denomination getValue(final Participant element) {
     return element.getDenomination();
   }
+
+  @Override
+  public DenominationCategory getCopy() {
+    final DenominationCategory copy = new DenominationCategory();
+    if (getFilter() != null) {
+      copy.setFilter(getFilter().getCopy());
+    }
+    return copy;
+  }
 }

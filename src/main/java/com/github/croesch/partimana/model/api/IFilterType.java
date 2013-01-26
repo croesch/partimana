@@ -51,4 +51,11 @@ public interface IFilterType<OT extends Object> extends IDescribable {
    */
   boolean isMatching(OT object);
 
+  /**
+   * Returns a copy of this filter type. It is equal to this filter type, but doesn't share references.
+   * 
+   * @since Date: Jan 26, 2013
+   * @return a copy of this filter type.
+   */
+  IFilterType<OT> getCopy();
 }
