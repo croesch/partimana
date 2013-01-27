@@ -5,7 +5,7 @@
 	<groupId>com.github.croesch</groupId>
 	<artifactId>partimana</artifactId>
 	<packaging>jar</packaging>
-	<version>0.9.2-SNAPSHOT</version>
+	<version>0.9.2</version>
 
 	<name>partimana</name>
 	<description>partimana - a program to manage camps and their participants.</description>
