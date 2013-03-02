@@ -9,7 +9,6 @@ import net.miginfocom.swing.MigLayout;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
-import com.github.croesch.components.CCheckBox;
 import com.github.croesch.components.CComboBox;
 import com.github.croesch.components.CDateField;
 import com.github.croesch.components.CLabel;
@@ -131,48 +130,6 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
   @NotNull
   private final CTextArea commentTa = new CTextArea("commentTF");
 
-  /** the check box to mark that this person can be participant */
-  @NotNull
-  private final CCheckBox possParticipantCb = new CCheckBox("possibleParticipantCB",
-                                                            Text.PARTICIPANT_CAMP_PARTICIPANT.text());
-
-  /** the check box to mark that this person can be staff */
-  @NotNull
-  private final CCheckBox possStaffCb = new CCheckBox("possibleStaffCB", Text.PARTICIPANT_STAFF_GENERAL.text());
-
-  /** the check box to mark that this person can be staff youth */
-  @NotNull
-  private final CCheckBox possStaffYouthCb = new CCheckBox("possibleStaffYouthCB", Text.PARTICIPANT_STAFF_YOUTH.text());
-
-  /** the check box to mark that this person can be board member */
-  @NotNull
-  private final CCheckBox possBoardCb = new CCheckBox("possibleBoardCB", Text.PARTICIPANT_BOARD.text());
-
-  /** the check box to mark that this person can be extended board member */
-  @NotNull
-  private final CCheckBox possExtendedBoardCb = new CCheckBox("possibleExtendedBoardCB",
-                                                              Text.PARTICIPANT_EXTENDED_BOARD.text());
-
-  /** the check box to mark that this person can be MAK */
-  @NotNull
-  private final CCheckBox possMakCb = new CCheckBox("possibleMAKCB", Text.PARTICIPANT_MAK.text());
-
-  /** the check box to mark that this person can be AGE */
-  @NotNull
-  private final CCheckBox possAgeCb = new CCheckBox("possibleAGECB", Text.PARTICIPANT_AGE.text());
-
-  /** the check box to mark that this person can be seminar member */
-  @NotNull
-  private final CCheckBox possSeminarCb = new CCheckBox("possibleSeminarCB", Text.PARTICIPANT_SEMINAR.text());
-
-  /** the check box to mark that this person can be kitchen member */
-  @NotNull
-  private final CCheckBox possKitchenCb = new CCheckBox("possibleKitchenCB", Text.PARTICIPANT_CAMP_KITCHEN.text());
-
-  /** the check box to mark that this person can be misc. */
-  @NotNull
-  private final CCheckBox possMiscCb = new CCheckBox("possibleMiscCB", Text.PARTICIPANT_MISC.text());
-
   /** the label that contains the id of the person */
   @NotNull
   private final CLabel idValueLbl = new CLabel("idLbl", "12345");
@@ -180,10 +137,6 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
   /** the label that contains the date since the person is in data base */
   @NotNull
   private final CLabel sinceInDbValueLbl = new CLabel("dateSinceInDBLbl", "12.12.2003");
-
-  /** panel that contains components to edit the different functions of the person */
-  @NotNull
-  private CPanel possibleFunctionsPanel;
 
   /**
    * Constructs a new panel, that contains all necessary components to edit the attributes of a {@link Participant}.
@@ -337,44 +290,6 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
 
     final CLabel commentLbl = new CLabel("comment", Text.PARTICIPANT_COMMENT.text());
     add(commentLbl, "cell 0 9");
-
-    initPossibleFunctionsPanel();
-
-    add(this.possibleFunctionsPanel, "cell 0 12 6 1, alignx leading");
-  }
-
-  /**
-   * Initializes the {@link #possibleFunctionsPanel} and adds the components to it.
-   * 
-   * @author croesch
-   * @since Date: Jun 28, 2011
-   */
-  private void initPossibleFunctionsPanel() {
-    this.possibleFunctionsPanel = new CPanel("possibleFunctions");
-    this.possibleFunctionsPanel.setLayout(new MigLayout("", "[110px!][][][][][]", "[sg][sg]"));
-
-    final CLabel functionsLbl = new CLabel("functions", Text.PARTICIPANT_FUNCTIONS.text());
-    this.possibleFunctionsPanel.add(functionsLbl, "cell 0 0");
-
-    this.possibleFunctionsPanel.add(this.possParticipantCb, "cell 1 0");
-
-    this.possibleFunctionsPanel.add(this.possStaffCb, "cell 2 0");
-
-    this.possibleFunctionsPanel.add(this.possStaffYouthCb, "cell 3 0");
-
-    this.possibleFunctionsPanel.add(this.possBoardCb, "cell 4 0");
-
-    this.possibleFunctionsPanel.add(this.possExtendedBoardCb, "cell 5 0");
-
-    this.possibleFunctionsPanel.add(this.possMakCb, "cell 1 1");
-
-    this.possibleFunctionsPanel.add(this.possAgeCb, "cell 2 1");
-
-    this.possibleFunctionsPanel.add(this.possSeminarCb, "cell 3 1");
-
-    this.possibleFunctionsPanel.add(this.possKitchenCb, "cell 4 1");
-
-    this.possibleFunctionsPanel.add(this.possMiscCb, "cell 5 1");
   }
 
   /**
@@ -410,16 +325,6 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
     this.mobilePhoneTf.setText(null);
     this.phoneTf.setText(null);
     this.phoneParentsTf.setText(null);
-    this.possAgeCb.setSelected(false);
-    this.possBoardCb.setSelected(false);
-    this.possExtendedBoardCb.setSelected(false);
-    this.possKitchenCb.setSelected(false);
-    this.possMakCb.setSelected(false);
-    this.possMiscCb.setSelected(false);
-    this.possParticipantCb.setSelected(false);
-    this.possSeminarCb.setSelected(false);
-    this.possStaffCb.setSelected(false);
-    this.possStaffYouthCb.setSelected(false);
     this.livCityTf.setText(null);
     this.livPostCodeTf.setText(null);
     this.livStreetTf.setText(null);
@@ -460,16 +365,6 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
       this.mobilePhoneTf.setText(participant.getMobilePhone());
       this.phoneTf.setText(participant.getPhone());
       this.phoneParentsTf.setText(participant.getPhoneOfParents());
-      this.possAgeCb.setSelected(participant.isPossibleAGE());
-      this.possBoardCb.setSelected(participant.isPossibleBoard());
-      this.possExtendedBoardCb.setSelected(participant.isPossibleExtendedBoard());
-      this.possKitchenCb.setSelected(participant.isPossibleKitchen());
-      this.possMakCb.setSelected(participant.isPossibleMAK());
-      this.possMiscCb.setSelected(participant.isPossibleMisc());
-      this.possParticipantCb.setSelected(participant.isPossibleParticipant());
-      this.possSeminarCb.setSelected(participant.isPossibleSeminar());
-      this.possStaffCb.setSelected(participant.isPossibleStaff());
-      this.possStaffYouthCb.setSelected(participant.isPossibleStaffYouth());
       this.livCityTf.setText(participant.getCity());
       this.livPostCodeTf.setText(String.valueOf(participant.getPostCode()));
       this.livStreetTf.setText(participant.getStreet());
@@ -584,56 +479,6 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
   @Override
   public String getPhoneOfParents() {
     return this.phoneParentsTf.getText();
-  }
-
-  @Override
-  public boolean getPossibleAGE() {
-    return this.possAgeCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleBoard() {
-    return this.possBoardCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleExtendedBoard() {
-    return this.possExtendedBoardCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleKitchen() {
-    return this.possKitchenCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleMAK() {
-    return this.possMakCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleMisc() {
-    return this.possMiscCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleParticipant() {
-    return this.possParticipantCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleSeminar() {
-    return this.possSeminarCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleStaff() {
-    return this.possStaffCb.isSelected();
-  }
-
-  @Override
-  public boolean getPossibleStaffYouth() {
-    return this.possStaffYouthCb.isSelected();
   }
 
   @Override

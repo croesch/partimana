@@ -83,7 +83,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     participant1.setMobilePhone("mobile");
     participant1.setPhone("phone");
     participant1.setPhoneOfParents("phone");
-    selectAllPossibilities(participant1);
     participant1.setCityPostal("city");
     participant1.setPostCodePostal(3124);
     participant1.setStreetPostal("street");
@@ -97,7 +96,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            56789,
                                            "Stadt",
                                            CountyCouncil.CITY_NEUSTADT);
-    selectAllPossibilities(p2);
     this.campParticipant2 = new CampParticipant(p2);
 
     final Participant p3 = new Participant("Müller",
@@ -109,7 +107,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            54321,
                                            "Schimmelhausen",
                                            CountyCouncil.CITY_ZWEIBRUECKEN);
-    selectAllPossibilities(p3);
     this.campParticipant3 = new CampParticipant(p3);
 
     final Participant p4 = new Participant("Mauer",
@@ -121,7 +118,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            99384,
                                            "Hilgen",
                                            CountyCouncil.UNKNOWN);
-    selectAllPossibilities(p4);
     this.campParticipant4 = new CampParticipant(p4);
 
     final Participant p5 = new Participant("Bauer",
@@ -133,7 +129,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            21228,
                                            "Mildeningen",
                                            CountyCouncil.CITY_NEUSTADT);
-    selectAllPossibilities(p5);
     this.campParticipant5 = new CampParticipant(p5);
 
     this.campParticipant1 = new CampParticipant(participant1);
@@ -145,19 +140,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     window.target.setPreferredSize(new Dimension(800, 400));
     window.show();
     this.testView = window.panel("listView");
-  }
-
-  private void selectAllPossibilities(final Participant participant) {
-    participant.setPossibleAGE(true);
-    participant.setPossibleBoard(true);
-    participant.setPossibleExtendedBoard(true);
-    participant.setPossibleKitchen(true);
-    participant.setPossibleMAK(true);
-    participant.setPossibleMisc(true);
-    participant.setPossibleParticipant(true);
-    participant.setPossibleSeminar(true);
-    participant.setPossibleStaff(true);
-    participant.setPossibleStaffYouth(true);
   }
 
   @Override
@@ -238,27 +220,6 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            99384,
                                            "Hilgen",
                                            CountyCouncil.UNKNOWN);
-    p1.setPossibleAGE(false);
-    p1.setPossibleBoard(true);
-    p1.setPossibleExtendedBoard(false);
-    p1.setPossibleKitchen(true);
-    p1.setPossibleMAK(false);
-    p1.setPossibleMisc(true);
-    p1.setPossibleParticipant(false);
-    p1.setPossibleSeminar(true);
-    p1.setPossibleStaff(false);
-    p1.setPossibleStaffYouth(true);
-    p2.setPossibleAGE(true);
-    p2.setPossibleBoard(false);
-    p2.setPossibleExtendedBoard(true);
-    p2.setPossibleKitchen(false);
-    p2.setPossibleMAK(true);
-    p2.setPossibleMisc(false);
-    p2.setPossibleParticipant(true);
-    p2.setPossibleSeminar(false);
-    p2.setPossibleStaff(true);
-    p2.setPossibleStaffYouth(false);
-    selectAllPossibilities(p3);
 
     final CampParticipant cp1 = new CampParticipant(p1);
     final CampParticipant cp2 = new CampParticipant(p2);
@@ -612,29 +573,10 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     table.requireCellValue(TableCell.row(row).column(10), String.valueOf(p.isSeminar()));
     table.requireCellValue(TableCell.row(row).column(11), String.valueOf(p.isStaff()));
     table.requireCellValue(TableCell.row(row).column(12), String.valueOf(p.isStaffYouth()));
-
-    requireEditable(table, row, 3, p.isPossibleAGE());
-    requireEditable(table, row, 4, p.isPossibleBoard());
-    requireEditable(table, row, 5, p.isPossibleExtendedBoard());
-    requireEditable(table, row, 6, p.isPossibleKitchen());
-    requireEditable(table, row, 7, p.isPossibleMAK());
-    requireEditable(table, row, 8, p.isPossibleMisc());
-    requireEditable(table, row, 9, p.isPossibleParticipant());
-    requireEditable(table, row, 10, p.isPossibleSeminar());
-    requireEditable(table, row, 11, p.isPossibleStaff());
-    requireEditable(table, row, 12, p.isPossibleStaffYouth());
   }
 
   public static void requireParticipant(final JTableFixture table, final int row, final String fName, final String lName) {
     table.requireCellValue(TableCell.row(row).column(1), fName);
     table.requireCellValue(TableCell.row(row).column(2), lName);
-  }
-
-  private static void requireEditable(final JTableFixture table, final int row, final int column, final boolean editable) {
-    if (editable) {
-      table.requireEditable(TableCell.row(row).column(column));
-    } else {
-      table.requireNotEditable(TableCell.row(row).column(column));
-    }
   }
 }

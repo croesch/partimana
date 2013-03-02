@@ -80,17 +80,6 @@ final class ParticipantSaver {
       p.setPhone(returnValueOrNullIfEmpty(editView.getPhone()));
       p.setPhoneOfParents(returnValueOrNullIfEmpty(editView.getPhoneOfParents()));
 
-      p.setPossibleAGE(editView.getPossibleAGE());
-      p.setPossibleBoard(editView.getPossibleBoard());
-      p.setPossibleExtendedBoard(editView.getPossibleExtendedBoard());
-      p.setPossibleKitchen(editView.getPossibleKitchen());
-      p.setPossibleMAK(editView.getPossibleMAK());
-      p.setPossibleMisc(editView.getPossibleMisc());
-      p.setPossibleParticipant(editView.getPossibleParticipant());
-      p.setPossibleSeminar(editView.getPossibleSeminar());
-      p.setPossibleStaff(editView.getPossibleStaff());
-      p.setPossibleStaffYouth(editView.getPossibleStaffYouth());
-
       p.setStreetPostal(returnValueOrNullIfEmpty(editView.getPostalStreet()));
       p.setCityPostal(returnValueOrNullIfEmpty(editView.getPostalCity()));
       p.setPostCodePostal(editView.getPostalPostCode());

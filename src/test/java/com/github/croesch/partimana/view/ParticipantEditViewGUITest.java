@@ -15,7 +15,6 @@ import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
 import org.fest.swing.fixture.Containers;
 import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JCheckBoxFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
 import org.fest.swing.fixture.JLabelFixture;
 import org.fest.swing.fixture.JPanelFixture;
@@ -84,16 +83,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     this.participant.setMobilePhone("mobile");
     this.participant.setPhone("phone");
     this.participant.setPhoneOfParents("phone");
-    this.participant.setPossibleAGE(true);
-    this.participant.setPossibleBoard(true);
-    this.participant.setPossibleExtendedBoard(true);
-    this.participant.setPossibleKitchen(true);
-    this.participant.setPossibleMAK(true);
-    this.participant.setPossibleMisc(true);
-    this.participant.setPossibleParticipant(true);
-    this.participant.setPossibleSeminar(true);
-    this.participant.setPossibleStaff(true);
-    this.participant.setPossibleStaffYouth(true);
     this.participant.setCityPostal("city");
     this.participant.setPostCodePostal(3124);
     this.participant.setStreetPostal("street");
@@ -146,16 +135,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.textBox("mobilePhoneTF").requireEmpty();
     this.testView.textBox("phoneTF").requireEmpty();
     this.testView.textBox("phoneOfParentsTF").requireEmpty();
-    this.testView.checkBox("possibleAGECB").requireNotSelected();
-    this.testView.checkBox("possibleBoardCB").requireNotSelected();
-    this.testView.checkBox("possibleExtendedBoardCB").requireNotSelected();
-    this.testView.checkBox("possibleKitchenCB").requireNotSelected();
-    this.testView.checkBox("possibleMAKCB").requireNotSelected();
-    this.testView.checkBox("possibleMiscCB").requireNotSelected();
-    this.testView.checkBox("possibleParticipantCB").requireNotSelected();
-    this.testView.checkBox("possibleSeminarCB").requireNotSelected();
-    this.testView.checkBox("possibleStaffCB").requireNotSelected();
-    this.testView.checkBox("possibleStaffYouthCB").requireNotSelected();
     this.testView.textBox("livingStreetTF").requireEmpty();
     this.testView.textBox("livingPostCodeTF").requireEmpty();
     this.testView.textBox("livingCityTF").requireEmpty();
@@ -182,16 +161,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getMobilePhone()).isEmpty();
     assertThat(this.editView.getPhone()).isEmpty();
     assertThat(this.editView.getPhoneOfParents()).isEmpty();
-    assertThat(this.editView.getPossibleAGE()).isFalse();
-    assertThat(this.editView.getPossibleBoard()).isFalse();
-    assertThat(this.editView.getPossibleExtendedBoard()).isFalse();
-    assertThat(this.editView.getPossibleKitchen()).isFalse();
-    assertThat(this.editView.getPossibleMAK()).isFalse();
-    assertThat(this.editView.getPossibleMisc()).isFalse();
-    assertThat(this.editView.getPossibleParticipant()).isFalse();
-    assertThat(this.editView.getPossibleSeminar()).isFalse();
-    assertThat(this.editView.getPossibleStaff()).isFalse();
-    assertThat(this.editView.getPossibleStaffYouth()).isFalse();
     assertThat(this.editView.getPostalCity()).isEmpty();
     assertThat(this.editView.getPostalPostCode()).isEqualTo(0);
     assertThat(this.editView.getPostalStreet()).isEmpty();
@@ -224,16 +193,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.textBox("mobilePhoneTF").requireEmpty();
     this.testView.textBox("phoneTF").requireEmpty();
     this.testView.textBox("phoneOfParentsTF").requireEmpty();
-    this.testView.checkBox("possibleAGECB").requireNotSelected();
-    this.testView.checkBox("possibleBoardCB").requireNotSelected();
-    this.testView.checkBox("possibleExtendedBoardCB").requireNotSelected();
-    this.testView.checkBox("possibleKitchenCB").requireNotSelected();
-    this.testView.checkBox("possibleMAKCB").requireNotSelected();
-    this.testView.checkBox("possibleMiscCB").requireNotSelected();
-    this.testView.checkBox("possibleParticipantCB").requireNotSelected();
-    this.testView.checkBox("possibleSeminarCB").requireNotSelected();
-    this.testView.checkBox("possibleStaffCB").requireNotSelected();
-    this.testView.checkBox("possibleStaffYouthCB").requireNotSelected();
     this.testView.textBox("livingStreetTF").requireEmpty();
     this.testView.textBox("livingPostCodeTF").requireEmpty();
     this.testView.textBox("livingCityTF").requireEmpty();
@@ -260,16 +219,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getMobilePhone()).isEmpty();
     assertThat(this.editView.getPhone()).isEmpty();
     assertThat(this.editView.getPhoneOfParents()).isEmpty();
-    assertThat(this.editView.getPossibleAGE()).isFalse();
-    assertThat(this.editView.getPossibleBoard()).isFalse();
-    assertThat(this.editView.getPossibleExtendedBoard()).isFalse();
-    assertThat(this.editView.getPossibleKitchen()).isFalse();
-    assertThat(this.editView.getPossibleMAK()).isFalse();
-    assertThat(this.editView.getPossibleMisc()).isFalse();
-    assertThat(this.editView.getPossibleParticipant()).isFalse();
-    assertThat(this.editView.getPossibleSeminar()).isFalse();
-    assertThat(this.editView.getPossibleStaff()).isFalse();
-    assertThat(this.editView.getPossibleStaffYouth()).isFalse();
     assertThat(this.editView.getPostalCity()).isEmpty();
     assertThat(this.editView.getPostalPostCode()).isEqualTo(0);
     assertThat(this.editView.getPostalStreet()).isEmpty();
@@ -504,124 +453,6 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     testObj.deleteText();
     testObj.enterText(expected);
     assertThat(this.editView.getPhoneOfParents()).isEqualTo(expected);
-  }
-
-  @Test
-  public final void testGetPossibleAGE() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleAGECB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleAGE());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleAGE()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleAGE()).isTrue();
-  }
-
-  private static void requireCheckBoxSelected(final JCheckBoxFixture cb, final boolean selected) {
-    if (selected) {
-      cb.requireSelected();
-    } else {
-      cb.requireNotSelected();
-    }
-  }
-
-  @Test
-  public final void testGetPossibleBoard() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleBoardCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleBoard());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleBoard()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleBoard()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleExtendedBoard() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleExtendedBoardCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleExtendedBoard());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleExtendedBoard()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleExtendedBoard()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleKitchen() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleKitchenCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleKitchen());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleKitchen()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleKitchen()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleMAK() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleMAKCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleMAK());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleMAK()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleMAK()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleMisc() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleMiscCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleMisc());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleMisc()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleMisc()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleParticipant() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleParticipantCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleParticipant());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleParticipant()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleParticipant()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleSeminar() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleSeminarCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleSeminar());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleSeminar()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleSeminar()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleStaff() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleStaffCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleStaff());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleStaff()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleStaff()).isTrue();
-  }
-
-  @Test
-  public final void testGetPossibleStaffYouth() {
-    final JCheckBoxFixture testObj = this.testView.checkBox("possibleStaffYouthCB");
-
-    requireCheckBoxSelected(testObj, this.participant.isPossibleStaffYouth());
-    testObj.uncheck();
-    assertThat(this.editView.getPossibleStaffYouth()).isFalse();
-    testObj.check();
-    assertThat(this.editView.getPossibleStaffYouth()).isTrue();
   }
 
   @Test

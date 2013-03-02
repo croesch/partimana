@@ -61,47 +61,17 @@ public class CampParticipantTest {
     this.participant.setMobilePhone("mobile");
     this.participant.setPhone("phone");
     this.participant.setPhoneOfParents("phone");
-    this.participant.setPossibleAGE(true);
-    this.participant.setPossibleBoard(false);
-    this.participant.setPossibleExtendedBoard(false);
-    this.participant.setPossibleKitchen(true);
-    this.participant.setPossibleMAK(true);
-    this.participant.setPossibleMisc(false);
-    this.participant.setPossibleParticipant(false);
-    this.participant.setPossibleSeminar(false);
-    this.participant.setPossibleStaff(false);
-    this.participant.setPossibleStaffYouth(true);
     this.participant.setCityPostal("city");
     this.participant.setPostCodePostal(3124);
     this.participant.setStreetPostal("street");
 
     assertCampParticipantCallsParticipant(this.campParticipant);
 
-    this.participant.setPossibleAGE(true);
-    this.participant.setPossibleBoard(true);
-    this.participant.setPossibleExtendedBoard(true);
-    this.participant.setPossibleKitchen(true);
-    this.participant.setPossibleMAK(true);
-    this.participant.setPossibleMisc(true);
-    this.participant.setPossibleParticipant(true);
-    this.participant.setPossibleSeminar(true);
-    this.participant.setPossibleStaff(true);
-    this.participant.setPossibleStaffYouth(true);
     this.participant.setForeName("Hanz");
     this.participant.setLastName("Decker");
 
     assertCampParticipantCallsParticipant(this.campParticipant);
 
-    this.participant.setPossibleAGE(false);
-    this.participant.setPossibleBoard(false);
-    this.participant.setPossibleExtendedBoard(false);
-    this.participant.setPossibleKitchen(false);
-    this.participant.setPossibleMAK(false);
-    this.participant.setPossibleMisc(false);
-    this.participant.setPossibleParticipant(false);
-    this.participant.setPossibleSeminar(false);
-    this.participant.setPossibleStaff(false);
-    this.participant.setPossibleStaffYouth(false);
     this.participant.setForeName("Hans");
     this.participant.setLastName("Becker");
 
@@ -109,16 +79,6 @@ public class CampParticipantTest {
   }
 
   private void assertCampParticipantCallsParticipant(final CampParticipant cp) {
-    assertThat(cp.isPossibleAGE()).isEqualTo(this.participant.isPossibleAGE());
-    assertThat(cp.isPossibleBoard()).isEqualTo(this.participant.isPossibleBoard());
-    assertThat(cp.isPossibleExtendedBoard()).isEqualTo(this.participant.isPossibleExtendedBoard());
-    assertThat(cp.isPossibleKitchen()).isEqualTo(this.participant.isPossibleKitchen());
-    assertThat(cp.isPossibleMAK()).isEqualTo(this.participant.isPossibleMAK());
-    assertThat(cp.isPossibleMisc()).isEqualTo(this.participant.isPossibleMisc());
-    assertThat(cp.isPossibleParticipant()).isEqualTo(this.participant.isPossibleParticipant());
-    assertThat(cp.isPossibleSeminar()).isEqualTo(this.participant.isPossibleSeminar());
-    assertThat(cp.isPossibleStaff()).isEqualTo(this.participant.isPossibleStaff());
-    assertThat(cp.isPossibleStaffYouth()).isEqualTo(this.participant.isPossibleStaffYouth());
     assertThat(cp.getId()).isEqualTo(this.participant.getId());
     assertThat(cp.getForeName()).isEqualTo(this.participant.getForeName());
     assertThat(cp.getLastName()).isEqualTo(this.participant.getLastName());

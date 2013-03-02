@@ -122,8 +122,6 @@ public enum Text {
   PARTICIPANT_SINCE (131),
   /** the name for heading until when the participant is in the system */
   PARTICIPANT_UNTIL (132),
-  /** the name for heading possible functions of the participant */
-  PARTICIPANT_FUNCTIONS (133),
 
   /** the name for entry create new camp */
   CAMP_NEW (31),

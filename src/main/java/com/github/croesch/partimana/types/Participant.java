@@ -98,36 +98,6 @@ public final class Participant implements IFilterable {
   @MayBeNull
   private Date dateUpToInSystem = null;
 
-  /** if the participant can be a participant */
-  private boolean possibleParticipant = false;
-
-  /** if the participant can be staff */
-  private boolean possibleStaff = false;
-
-  /** if the participant can be staff-youth */
-  private boolean possibleStaffYouth = false;
-
-  /** if the participant can be member of board */
-  private boolean possibleBoard = false;
-
-  /** if the participant can be member of extended board */
-  private boolean possibleExtendedBoard = false;
-
-  /** if the participant can be mak */
-  private boolean possibleMAK = false;
-
-  /** if the participant can be age */
-  private boolean possibleAGE = false;
-
-  /** if the participant can be in kitchen */
-  private boolean possibleKitchen = false;
-
-  /** if the participant can be seminar */
-  private boolean possibleSeminar = false;
-
-  /** if the participant can be misc. */
-  private boolean possibleMisc = false;
-
   /**
    * Constructs a new {@link Participant}.
    * 
@@ -247,16 +217,6 @@ public final class Participant implements IFilterable {
     this.mobilePhone = p.mobilePhone;
     this.phone = p.phone;
     this.phoneOfParents = p.phoneOfParents;
-    this.possibleAGE = p.possibleAGE;
-    this.possibleBoard = p.possibleBoard;
-    this.possibleExtendedBoard = p.possibleExtendedBoard;
-    this.possibleKitchen = p.possibleKitchen;
-    this.possibleMAK = p.possibleMAK;
-    this.possibleMisc = p.possibleMisc;
-    this.possibleParticipant = p.possibleParticipant;
-    this.possibleSeminar = p.possibleSeminar;
-    this.possibleStaff = p.possibleStaff;
-    this.possibleStaffYouth = p.possibleStaffYouth;
     this.postToAddress.setCity(p.postToAddress.getCity());
     this.postToAddress.setPostCode(p.postToAddress.getPostCode());
     this.postToAddress.setStreet(p.postToAddress.getStreet());
@@ -799,206 +759,6 @@ public final class Participant implements IFilterable {
   }
 
   /**
-   * Gets whether the participant can participate as a participant.
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the user can participate as a participant
-   */
-  public boolean isPossibleParticipant() {
-    return this.possibleParticipant;
-  }
-
-  /**
-   * Sets whether the participant can participate as a participant.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param cbp <code>true</code>, if the user can participate as a participant
-   */
-  public void setPossibleParticipant(final boolean cbp) {
-    this.possibleParticipant = cbp;
-  }
-
-  /**
-   * Gets whether the user can participate as a staff member.
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the user can participate as a staff member
-   */
-  public boolean isPossibleStaff() {
-    return this.possibleStaff;
-  }
-
-  /**
-   * Sets whether the participant can participate as a staff member.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param cbs <code>true</code>, if the participant can participate as a staff member
-   */
-  public void setPossibleStaff(final boolean cbs) {
-    this.possibleStaff = cbs;
-  }
-
-  /**
-   * Returns the participant can be staff-youth
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be staff-youth
-   */
-  public boolean isPossibleStaffYouth() {
-    return this.possibleStaffYouth;
-  }
-
-  /**
-   * Sets whether the participant can be staff-youth
-   * 
-   * @since Date: Jun 18, 2011
-   * @param psy <code>true</code>, if the participant can be staff-youth
-   */
-  public void setPossibleStaffYouth(final boolean psy) {
-    this.possibleStaffYouth = psy;
-  }
-
-  /**
-   * Returns whether the participant can be member of board
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be member of board
-   */
-  public boolean isPossibleBoard() {
-    return this.possibleBoard;
-  }
-
-  /**
-   * Sets whether the participant can be member of board.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param pb <code>true</code>, if the participant can be member of board
-   */
-  public void setPossibleBoard(final boolean pb) {
-    this.possibleBoard = pb;
-  }
-
-  /**
-   * Returns whether the participant can be member of extended board
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be member of extended board
-   */
-  public boolean isPossibleExtendedBoard() {
-    return this.possibleExtendedBoard;
-  }
-
-  /**
-   * Sets whether the participant can be member of extended board.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param peb <code>true</code>, if the participant can be member of extended board
-   */
-  public void setPossibleExtendedBoard(final boolean peb) {
-    this.possibleExtendedBoard = peb;
-  }
-
-  /**
-   * Returns whether the participant can be MAK
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be MAK
-   */
-  public boolean isPossibleMAK() {
-    return this.possibleMAK;
-  }
-
-  /**
-   * Sets whether the participant can be MAK
-   * 
-   * @since Date: Jun 18, 2011
-   * @param pMAK <code>true</code>, if the participant can be MAK
-   */
-  public void setPossibleMAK(final boolean pMAK) {
-    this.possibleMAK = pMAK;
-  }
-
-  /**
-   * Returns whether the participant can be AGE
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be AGE
-   */
-  public boolean isPossibleAGE() {
-    return this.possibleAGE;
-  }
-
-  /**
-   * Sets whether the participant can be AGE
-   * 
-   * @since Date: Jun 18, 2011
-   * @param pAGE <code>true</code>, if the participant can be AGE
-   */
-  public void setPossibleAGE(final boolean pAGE) {
-    this.possibleAGE = pAGE;
-  }
-
-  /**
-   * Returns whether the participant can be in kitchen.
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be in kitchen.
-   */
-  public boolean isPossibleKitchen() {
-    return this.possibleKitchen;
-  }
-
-  /**
-   * Sets whether the participant can be in kitchen.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param pk <code>true</code>, if the participant can be in kitchen.
-   */
-  public void setPossibleKitchen(final boolean pk) {
-    this.possibleKitchen = pk;
-  }
-
-  /**
-   * Returns whether the participant can be in a seminar.
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be in a seminar
-   */
-  public boolean isPossibleSeminar() {
-    return this.possibleSeminar;
-  }
-
-  /**
-   * Sets whether the participant can be in a seminar.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param ps <code>true</code>, if the participant can be in a seminar
-   */
-  public void setPossibleSeminar(final boolean ps) {
-    this.possibleSeminar = ps;
-  }
-
-  /**
-   * Returns whether the participant can be member of something else.
-   * 
-   * @since Date: Jun 18, 2011
-   * @return <code>true</code>, if the participant can be member of anything else.
-   */
-  public boolean isPossibleMisc() {
-    return this.possibleMisc;
-  }
-
-  /**
-   * Sets whether the participant can be member of anything else.
-   * 
-   * @since Date: Jun 18, 2011
-   * @param pm <code>true</code>, if the participant can be member of anything else.
-   */
-  public void setPossibleMisc(final boolean pm) {
-    this.possibleMisc = pm;
-  }
-
-  /**
    * Returns the id of this participant as stored in the data base.
    * 
    * @author croesch
@@ -1031,16 +791,6 @@ public final class Participant implements IFilterable {
     result = prime * result + getHash(this.mobilePhone);
     result = prime * result + getHash(this.phone);
     result = prime * result + getHash(this.phoneOfParents);
-    result = prime * result + Boolean.valueOf(this.possibleAGE).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleBoard).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleExtendedBoard).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleKitchen).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleMAK).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleMisc).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleParticipant).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleSeminar).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleStaff).hashCode();
-    result = prime * result + Boolean.valueOf(this.possibleStaffYouth).hashCode();
     result = prime * result + this.postToAddress.hashCode();
     return result;
   }
@@ -1175,7 +925,7 @@ public final class Participant implements IFilterable {
     if (!this.postToAddress.equals(other.postToAddress)) {
       return false;
     }
-    return arePossibilitiesEqual(other);
+    return true;
   }
 
   /**
@@ -1215,48 +965,6 @@ public final class Participant implements IFilterable {
     }
 
     if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR)) {
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * Returns whether the possible functions of this {@link Participant} are equal to the possible functions of the given
-   * {@link Participant}.
-   * 
-   * @since Date: Jul 8, 2011
-   * @param other {@link Participant} to compare with, must not be <code>null</code>!
-   * @return <code>true</code>, if all possibilities are the same.
-   */
-  private boolean arePossibilitiesEqual(final Participant other) {
-    if (this.possibleAGE != other.possibleAGE) {
-      return false;
-    }
-    if (this.possibleBoard != other.possibleBoard) {
-      return false;
-    }
-    if (this.possibleExtendedBoard != other.possibleExtendedBoard) {
-      return false;
-    }
-    if (this.possibleKitchen != other.possibleKitchen) {
-      return false;
-    }
-    if (this.possibleMAK != other.possibleMAK) {
-      return false;
-    }
-    if (this.possibleMisc != other.possibleMisc) {
-      return false;
-    }
-    if (this.possibleParticipant != other.possibleParticipant) {
-      return false;
-    }
-    if (this.possibleSeminar != other.possibleSeminar) {
-      return false;
-    }
-    if (this.possibleStaff != other.possibleStaff) {
-      return false;
-    }
-    if (this.possibleStaffYouth != other.possibleStaffYouth) {
       return false;
     }
     return true;
@@ -1305,26 +1013,6 @@ public final class Participant implements IFilterable {
     builder.append(this.dateSinceInDataBase);
     builder.append(", ").append(Text.PARTICIPANT_DATE_UNTIL).append("=");
     builder.append(this.dateUpToInSystem);
-    builder.append(", ").append(Text.PARTICIPANT_CAMP_PARTICIPANT).append("=");
-    builder.append(this.possibleParticipant);
-    builder.append(", ").append(Text.PARTICIPANT_STAFF_GENERAL).append("=");
-    builder.append(this.possibleStaff);
-    builder.append(", ").append(Text.PARTICIPANT_STAFF_YOUTH).append("=");
-    builder.append(this.possibleStaffYouth);
-    builder.append(", ").append(Text.PARTICIPANT_BOARD).append("=");
-    builder.append(this.possibleBoard);
-    builder.append(", ").append(Text.PARTICIPANT_EXTENDED_BOARD).append("=");
-    builder.append(this.possibleExtendedBoard);
-    builder.append(", ").append(Text.PARTICIPANT_MAK).append("=");
-    builder.append(this.possibleMAK);
-    builder.append(", ").append(Text.PARTICIPANT_AGE).append("=");
-    builder.append(this.possibleAGE);
-    builder.append(", ").append(Text.PARTICIPANT_CAMP_KITCHEN).append("=");
-    builder.append(this.possibleKitchen);
-    builder.append(", ").append(Text.PARTICIPANT_SEMINAR).append("=");
-    builder.append(this.possibleSeminar);
-    builder.append(", ").append(Text.PARTICIPANT_MISC).append("=");
-    builder.append(this.possibleMisc);
     builder.append("]");
     return builder.toString();
   }

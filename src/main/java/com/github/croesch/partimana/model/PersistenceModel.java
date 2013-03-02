@@ -240,9 +240,7 @@ public final class PersistenceModel implements IPersistenceModel {
                                        + "livingCity, livingPlz, postStreet, postCity, postPlz, "
                                        + "phone, fax, mobilePhone, phoneParents, mailAddress, countyCouncil, "
                                        + "bankCodeNumber, bank, bankAccountNumber, commentar, sinceInDb, "
-                                       + "dateUpInDb, canBeParticipant, canBeStaff, canBeStaffYouth, canBeBoard, "
-                                       + "canBeExtendedBoard, canBeMAK, canBeAGE, canBeKitchen, "
-                                       + "canBeSeminar, canBeMisc FROM `participants` ORDER BY id");
+                                       + "dateUpInDb FROM `participants` ORDER BY id");
       final ResultSet rs = stmt.executeQuery();
 
       final HashMap<Long, Participant> hashMap = new HashMap<Long, Participant>();
@@ -270,16 +268,6 @@ public final class PersistenceModel implements IPersistenceModel {
         p.setMobilePhone(rs.getString("mobilePhone"));
         p.setPhone(rs.getString("phone"));
         p.setPhoneOfParents(rs.getString("phoneParents"));
-        p.setPossibleAGE(rs.getBoolean("canBeAGE"));
-        p.setPossibleBoard(rs.getBoolean("canBeBoard"));
-        p.setPossibleExtendedBoard(rs.getBoolean("canBeExtendedBoard"));
-        p.setPossibleKitchen(rs.getBoolean("canBeKitchen"));
-        p.setPossibleMAK(rs.getBoolean("canBeMAK"));
-        p.setPossibleMisc(rs.getBoolean("canBeMisc"));
-        p.setPossibleParticipant(rs.getBoolean("canBeParticipant"));
-        p.setPossibleSeminar(rs.getBoolean("canBeSeminar"));
-        p.setPossibleStaff(rs.getBoolean("canBeStaff"));
-        p.setPossibleStaffYouth(rs.getBoolean("canBeStaffYouth"));
         p.setPostCodePostal(rs.getInt("postPlz"));
         p.setStreetPostal(rs.getString("postStreet"));
 
@@ -405,16 +393,6 @@ public final class PersistenceModel implements IPersistenceModel {
     stmt.setString(++i, p.getComment());
     stmt.setDate(++i, getSqlDate(p.getDateSinceInDataBase()));
     stmt.setDate(++i, getSqlDate(p.getDateUpToInSystem()));
-    stmt.setBoolean(++i, p.isPossibleParticipant());
-    stmt.setBoolean(++i, p.isPossibleStaff());
-    stmt.setBoolean(++i, p.isPossibleStaffYouth());
-    stmt.setBoolean(++i, p.isPossibleBoard());
-    stmt.setBoolean(++i, p.isPossibleExtendedBoard());
-    stmt.setBoolean(++i, p.isPossibleMAK());
-    stmt.setBoolean(++i, p.isPossibleAGE());
-    stmt.setBoolean(++i, p.isPossibleKitchen());
-    stmt.setBoolean(++i, p.isPossibleSeminar());
-    stmt.setBoolean(++i, p.isPossibleMisc());
     stmt.setLong(++i, p.getId());
   }
 

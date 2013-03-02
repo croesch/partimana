@@ -63,16 +63,6 @@ public class ParticipantEditViewTest {
     this.participant.setMobilePhone("mobile");
     this.participant.setPhone("phone");
     this.participant.setPhoneOfParents("phone");
-    this.participant.setPossibleAGE(true);
-    this.participant.setPossibleBoard(false);
-    this.participant.setPossibleExtendedBoard(false);
-    this.participant.setPossibleKitchen(true);
-    this.participant.setPossibleMAK(true);
-    this.participant.setPossibleMisc(false);
-    this.participant.setPossibleParticipant(false);
-    this.participant.setPossibleSeminar(false);
-    this.participant.setPossibleStaff(false);
-    this.participant.setPossibleStaffYouth(false);
     this.participant.setCityPostal("city");
     this.participant.setPostCodePostal(3124);
     this.participant.setStreetPostal("street");
@@ -201,56 +191,6 @@ public class ParticipantEditViewTest {
   @Test
   public final void testGetPhoneOfParents() {
     assertThat(this.testView.getPhoneOfParents()).isEqualTo(this.participant.getPhoneOfParents());
-  }
-
-  @Test
-  public final void testGetPossibleAGE() {
-    assertThat(this.testView.getPossibleAGE()).isEqualTo(this.participant.isPossibleAGE());
-  }
-
-  @Test
-  public final void testGetPossibleBoard() {
-    assertThat(this.testView.getPossibleBoard()).isEqualTo(this.participant.isPossibleBoard());
-  }
-
-  @Test
-  public final void testGetPossibleExtendedBoard() {
-    assertThat(this.testView.getPossibleExtendedBoard()).isEqualTo(this.participant.isPossibleExtendedBoard());
-  }
-
-  @Test
-  public final void testGetPossibleKitchen() {
-    assertThat(this.testView.getPossibleKitchen()).isEqualTo(this.participant.isPossibleKitchen());
-  }
-
-  @Test
-  public final void testGetPossibleMAK() {
-    assertThat(this.testView.getPossibleMAK()).isEqualTo(this.participant.isPossibleMAK());
-  }
-
-  @Test
-  public final void testGetPossibleMisc() {
-    assertThat(this.testView.getPossibleMisc()).isEqualTo(this.participant.isPossibleMisc());
-  }
-
-  @Test
-  public final void testGetPossibleParticipant() {
-    assertThat(this.testView.getPossibleParticipant()).isEqualTo(this.participant.isPossibleParticipant());
-  }
-
-  @Test
-  public final void testGetPossibleSeminar() {
-    assertThat(this.testView.getPossibleSeminar()).isEqualTo(this.participant.isPossibleSeminar());
-  }
-
-  @Test
-  public final void testGetPossibleStaff() {
-    assertThat(this.testView.getPossibleStaff()).isEqualTo(this.participant.isPossibleStaff());
-  }
-
-  @Test
-  public final void testGetPossibleStaffYouth() {
-    assertThat(this.testView.getPossibleStaffYouth()).isEqualTo(this.participant.isPossibleStaffYouth());
   }
 
   @Test

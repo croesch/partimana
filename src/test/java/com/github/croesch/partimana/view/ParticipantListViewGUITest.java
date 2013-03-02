@@ -90,16 +90,6 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     this.participant1.setMobilePhone("mobile");
     this.participant1.setPhone("phone");
     this.participant1.setPhoneOfParents("phone");
-    this.participant1.setPossibleAGE(true);
-    this.participant1.setPossibleBoard(true);
-    this.participant1.setPossibleExtendedBoard(true);
-    this.participant1.setPossibleKitchen(true);
-    this.participant1.setPossibleMAK(true);
-    this.participant1.setPossibleMisc(true);
-    this.participant1.setPossibleParticipant(true);
-    this.participant1.setPossibleSeminar(true);
-    this.participant1.setPossibleStaff(true);
-    this.participant1.setPossibleStaffYouth(true);
     this.participant1.setCityPostal("city");
     this.participant1.setPostCodePostal(3124);
     this.participant1.setStreetPostal("street");

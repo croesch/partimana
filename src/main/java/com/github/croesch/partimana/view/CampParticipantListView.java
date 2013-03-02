@@ -97,30 +97,7 @@ class CampParticipantListView extends AListView<CampParticipant> implements ILis
 
     @Override
     public boolean isCellEditable(final int row, final int column) {
-      switch (column) {
-        case 3:
-          return this.participants.get(row).isPossibleAGE();
-        case 4:
-          return this.participants.get(row).isPossibleBoard();
-        case 5:
-          return this.participants.get(row).isPossibleExtendedBoard();
-        case 6:
-          return this.participants.get(row).isPossibleKitchen();
-        case 7:
-          return this.participants.get(row).isPossibleMAK();
-        case 8:
-          return this.participants.get(row).isPossibleMisc();
-        case 9:
-          return this.participants.get(row).isPossibleParticipant();
-        case 10:
-          return this.participants.get(row).isPossibleSeminar();
-        case 11:
-          return this.participants.get(row).isPossibleStaff();
-        case 12:
-          return this.participants.get(row).isPossibleStaffYouth();
-        default:
-          return false;
-      }
+      return false;
     }
 
     /**
