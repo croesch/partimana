@@ -47,18 +47,8 @@
 	<entry key="118">Kommentar</entry>
 	<entry key="119">Aufnahmedatum</entry>
 	<entry key="120">Austrittsdatum</entry>
-	<entry key="121">Freizeit-Teilnehmer</entry>
-	<entry key="122">Mitarbeiter allgemein</entry>
-	<entry key="123">Mitarbeiter Jugend</entry>
-	<entry key="124">Vorstand</entry>
-	<entry key="125">erw. Vorstand</entry>
-	<entry key="126">MAK</entry>
-	<entry key="127">AGE</entry>
-	<entry key="128">Freizeit-Küche</entry>
-	<entry key="129">Seminar</entry>
-	<entry key="130">Sonstige</entry>
-	<entry key="131">Seit</entry>
-	<entry key="132">Bis</entry>
+	<entry key="121">Seit</entry>
+	<entry key="122">Bis</entry>
 	
 	<entry key="200">Freizeit</entry>
 	<entry key="201">Nummer</entry>
@@ -70,6 +60,10 @@
 	<entry key="207">Preis für Tageskinder</entry>
 
 	<entry key="300">Funktion</entry>
+	<entry key="301">Leitung</entry>
+	<entry key="302">Mitarbeiter</entry>
+	<entry key="303">Küche</entry>
+	<entry key="304">Teilnehmer</entry>
 
 	<!-- Verschiedenes -->
 	<!-- Geschlecht -->

@@ -98,30 +98,10 @@ public enum Text {
   PARTICIPANT_DATE_SINCE (119),
   /** the name for date until in */
   PARTICIPANT_DATE_UNTIL (120),
-  /** the name for camp participant */
-  PARTICIPANT_CAMP_PARTICIPANT (121),
-  /** the name for staff general */
-  PARTICIPANT_STAFF_GENERAL (122),
-  /** the name for staff youth */
-  PARTICIPANT_STAFF_YOUTH (123),
-  /** the name for board */
-  PARTICIPANT_BOARD (124),
-  /** the name for extended board */
-  PARTICIPANT_EXTENDED_BOARD (125),
-  /** the name for MAK */
-  PARTICIPANT_MAK (126),
-  /** the name for AGE */
-  PARTICIPANT_AGE (127),
-  /** the name for camp kitchen */
-  PARTICIPANT_CAMP_KITCHEN (128),
-  /** the name for seminar */
-  PARTICIPANT_SEMINAR (129),
-  /** the name for misc */
-  PARTICIPANT_MISC (130),
   /** the name for heading since when the participant is in the system */
-  PARTICIPANT_SINCE (131),
+  PARTICIPANT_SINCE (121),
   /** the name for heading until when the participant is in the system */
-  PARTICIPANT_UNTIL (132),
+  PARTICIPANT_UNTIL (122),
 
   /** the name for entry create new camp */
   CAMP_NEW (31),
@@ -147,6 +127,14 @@ public enum Text {
 
   /** the text for the role the participant has in a camp */
   CAMP_PARTICIPANT_ROLE (300),
+  /** the text for the role direction */
+  CAMP_PARTICIPANT_DIRECTION (301),
+  /** the text for the role staff */
+  CAMP_PARTICIPANT_STAFF (302),
+  /** the text for the role kitchen staff */
+  CAMP_PARTICIPANT_KITCHEN_STAFF (303),
+  /** the text for the role participant */
+  CAMP_PARTICIPANT_PARTICIPANT (304),
 
   /** constant for male */
   MALE (2000),
