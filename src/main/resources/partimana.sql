@@ -24,16 +24,6 @@ CREATE TABLE participants
     commentar           TEXT,
     sinceInDb           DATE,
     dateUpInDb          DATE,
-    canBeParticipant    BOOL,
-    canBeStaff          BOOL,
-    canBeStaffYouth     BOOL,
-    canBeBoard          BOOL,
-    canBeExtendedBoard  BOOL,
-    canBeMAK            BOOL,
-    canBeAGE            BOOL,
-    canBeKitchen        BOOL,
-    canBeSeminar        BOOL,
-    canBeMisc           BOOL,
     Primary Key (id)
 );
 
@@ -53,16 +43,7 @@ CREATE TABLE campParticipants
 (
     id                  INTEGER NOT NULL,
     camp                INTEGER NOT NULL,
-    isParticipant       BOOL,
-    isStaff             BOOL,
-    isStaffYouth        BOOL,
-    isBoard             BOOL,
-    isExtendedBoard     BOOL,
-    isMAK               BOOL,
-    isAGE               BOOL,
-    isKitchen           BOOL,
-    isSeminar           BOOL,
-    isMisc              BOOL,
+    role                INTEGER DEFAULT 3,
     Primary Key (id, camp),
     Foreign Key (camp) references camps(id)
     
