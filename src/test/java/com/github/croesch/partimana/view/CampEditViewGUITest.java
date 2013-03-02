@@ -31,6 +31,7 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import com.github.croesch.partimana.types.Role;
 import com.github.croesch.partimana.view.api.ICampEditView;
 
 /**
@@ -505,7 +506,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                                      CountyCouncil.CITY_NEUSTADT);
 
     final CampParticipant campParticipant = new CampParticipant(participant1);
-    campParticipant.setAGE(true);
+    campParticipant.setRole(Role.DIRECTION);
     this.camp.addParticipant(campParticipant);
     this.camp.addParticipant(new CampParticipant(participant2));
     this.camp.addParticipant(new CampParticipant(participant3));
@@ -522,7 +523,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table("campParticipants"), 5, new CampParticipant(participant5));
 
     final CampParticipant cParticipant = new CampParticipant(participant1);
-    cParticipant.setAGE(false);
+    campParticipant.setRole(Role.STAFF);
     this.camp.removeParticipant(cParticipant);
     setCamp();
     requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));

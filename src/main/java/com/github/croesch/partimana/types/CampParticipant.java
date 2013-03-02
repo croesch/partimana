@@ -16,35 +16,8 @@ public final class CampParticipant implements IFilterable {
   @NotNull
   private final Participant participant;
 
-  /** if the participant is isAGE */
-  private boolean isAGE = false;
-
-  /** if the participant is isBoard */
-  private boolean isBoard = false;
-
-  /** if the participant is extended isBoard */
-  private boolean isExtendedBoard = false;
-
-  /** if the participant is isKitchen */
-  private boolean isKitchen = false;
-
-  /** if the participant is isMAK */
-  private boolean isMAK = false;
-
-  /** if the participant is isMisc */
-  private boolean isMisc = false;
-
-  /** if the participant is normal participant */
-  private boolean isNormalParticipant = false;
-
-  /** if the participant is isSeminar */
-  private boolean isSeminar = false;
-
-  /** if the participant is isStaff */
-  private boolean isStaff = false;
-
-  /** if the participant is isStaff of youth */
-  private boolean isStaffYouth = false;
+  /** the role of the participant in the camp */
+  private Role role = Role.PARTICIPANT;
 
   /**
    * Constructs this wrapper for the given {@link Participant} that visits a camp.
@@ -60,203 +33,21 @@ public final class CampParticipant implements IFilterable {
   }
 
   /**
-   * Returns whether the participant is AGE.
+   * Defines which role this participant has in this camp.
    * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> AGE.
+   * @since Date: Mar 2, 2013
+   * @param newRole the role of the participant in the camp
    */
-  public boolean isAGE() {
-    return this.isAGE;
+  public void setRole(final Role newRole) {
+    this.role = newRole;
   }
 
   /**
-   * Sets whether the participant is AGE.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param age <code>true</code>, if the participant <b>is</b> AGE.
+   * @since Date: Mar 2, 2013
+   * @return the role this participant has while participating in this camp
    */
-  public void setAGE(final boolean age) {
-    this.isAGE = age;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> board.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> board.
-   */
-  public boolean isBoard() {
-    return this.isBoard;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> board.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param board <code>true</code>, if the participant <b>is</b> AGE.
-   */
-  public void setBoard(final boolean board) {
-    this.isBoard = board;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> extended board.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> extended board.
-   */
-  public boolean isExtendedBoard() {
-    return this.isExtendedBoard;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> extended board.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param extendedBoard <code>true</code>, if the participant <b>is</b> extended board.
-   */
-  public void setExtendedBoard(final boolean extendedBoard) {
-    this.isExtendedBoard = extendedBoard;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> kitchen.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> kitchen.
-   */
-  public boolean isKitchen() {
-    return this.isKitchen;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> kitchen.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param kitchen <code>true</code>, if the participant <b>is</b> kitchen.
-   */
-  public void setKitchen(final boolean kitchen) {
-    this.isKitchen = kitchen;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> MAK.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> MAK.
-   */
-  public boolean isMAK() {
-    return this.isMAK;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> MAK.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param mak <code>true</code>, if the participant <b>is</b> MAK.
-   */
-  public void setMAK(final boolean mak) {
-    this.isMAK = mak;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> Misc.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> Misc.
-   */
-  public boolean isMisc() {
-    return this.isMisc;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> Misc.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param misc <code>true</code>, if the participant <b>is</b> Misc.
-   */
-  public void setMisc(final boolean misc) {
-    this.isMisc = misc;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> normal participant.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> participant.
-   */
-  public boolean isParticipant() {
-    return this.isNormalParticipant;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> normal participant.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param normalParticipant <code>true</code>, if the participant <b>is</b> normal participant.
-   */
-  public void setParticipant(final boolean normalParticipant) {
-    this.isNormalParticipant = normalParticipant;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> seminar.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> seminar.
-   */
-  public boolean isSeminar() {
-    return this.isSeminar;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> seminar.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param seminar <code>true</code>, if the participant <b>is</b> seminar.
-   */
-  public void setSeminar(final boolean seminar) {
-    this.isSeminar = seminar;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> staff.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> staff.
-   */
-  public boolean isStaff() {
-    return this.isStaff;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> staff.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param staff <code>true</code>, if the participant <b>is</b> staff.
-   */
-  public void setStaff(final boolean staff) {
-    this.isStaff = staff;
-  }
-
-  /**
-   * Returns whether the participant <b>is</b> staff youth.
-   * 
-   * @since Date: Sep 16, 2012
-   * @return <code>true</code>, if the participant <b>is</b> staff youth.
-   */
-  public boolean isStaffYouth() {
-    return this.isStaffYouth;
-  }
-
-  /**
-   * Sets whether the participant <b>is</b> staff youth.
-   * 
-   * @since Date: Sep 16, 2012
-   * @param staffYouth <code>true</code>, if the participant <b>is</b> staff youth.
-   */
-  public void setStaffYouth(final boolean staffYouth) {
-    this.isStaffYouth = staffYouth;
+  public Role getRole() {
+    return this.role;
   }
 
   @Override

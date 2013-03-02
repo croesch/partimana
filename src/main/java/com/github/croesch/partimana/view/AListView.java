@@ -2,6 +2,7 @@ package com.github.croesch.partimana.view;
 
 import java.util.List;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -115,6 +116,17 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
    */
   protected final TableModel getTableModel() {
     return this.table.getModel();
+  }
+
+  /**
+   * Sets the given new cell editor for the given cell.
+   * 
+   * @since Date: Mar 2, 2013
+   * @param column the id of the column that gets the new cell editor
+   * @param cellEditor the cell editor
+   */
+  protected final void setCellEditor(final int column, final DefaultCellEditor cellEditor) {
+    this.table.getColumnModel().getColumn(column).setCellEditor(cellEditor);
   }
 
   @Override

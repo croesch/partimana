@@ -20,9 +20,10 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import com.github.croesch.partimana.types.Role;
 
 /**
- * TODO Comment here ...
+ * Provides test cases for {@link PersistenceModel}.
  * 
  * @author croesch
  * @since Date: Oct 13, 2012
@@ -191,14 +192,14 @@ public class PersistenceModelTest {
     this.pm.create(p);
     this.pm.create(c);
     c.setName("FREIZEIT");
-    cp.setKitchen(true);
+    cp.setRole(Role.KITCHEN_STAFF);
 
     final PersistenceModel pm2 = new PersistenceModel();
     assertThat(pm2.getMapOfParticipants().get(p.getId())).isEqualTo(p);
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
     Camp storedCamp = pm2.getMapOfCamps().get(c.getId());
     assertThat(storedCamp).isNotEqualTo(c);
-    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).isKitchen()).isFalse();
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.PARTICIPANT);
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
     this.pm.update(c);
@@ -207,7 +208,7 @@ public class PersistenceModelTest {
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
     storedCamp = pm2.getMapOfCamps().get(c.getId());
     assertThat(storedCamp).isEqualTo(c);
-    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).isKitchen()).isTrue();
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.KITCHEN_STAFF);
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
     pm2.deleteCamp(c.getId());

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -12,6 +14,7 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CampParticipant;
+import com.github.croesch.partimana.types.Role;
 import com.github.croesch.partimana.view.api.IListView;
 
 /**
@@ -38,6 +41,7 @@ class CampParticipantListView extends AListView<CampParticipant> implements ILis
    */
   public CampParticipantListView(final String name, final ActionObserver o) {
     super(name, "campParticipants", o, new CampParticipantTableModel(), UserAction.CAMP_PARTICIPANT_SELECTED);
+    setCellEditor(3, new DefaultCellEditor(new JComboBox(Role.values())));
     this.tableModel = (CampParticipantTableModel) getTableModel();
   }
 
@@ -71,33 +75,13 @@ class CampParticipantListView extends AListView<CampParticipant> implements ILis
       setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
                                          Text.PARTICIPANT_FORENAME.text(),
                                          Text.PARTICIPANT_LASTNAME.text(),
-                                         Text.PARTICIPANT_AGE.text(),
-                                         Text.PARTICIPANT_BOARD.text(),
-                                         Text.PARTICIPANT_EXTENDED_BOARD.text(),
-                                         Text.PARTICIPANT_CAMP_KITCHEN.text(),
-                                         Text.PARTICIPANT_MAK.text(),
-                                         Text.PARTICIPANT_MISC.text(),
-                                         Text.PARTICIPANT_CAMP_PARTICIPANT.text(),
-                                         Text.PARTICIPANT_SEMINAR.text(),
-                                         Text.PARTICIPANT_STAFF_GENERAL.text(),
-                                         Text.PARTICIPANT_STAFF_YOUTH.text() });
+                                         Text.CAMP_PARTICIPANT_ROLE.text() });
       addTableModelListener(this);
     }
 
     @Override
-    public Class<?> getColumnClass(final int columnIndex) {
-      if (columnIndex == 0) {
-        return Long.class;
-      } else if (columnIndex == 1 || columnIndex == 2) {
-        return String.class;
-      } else {
-        return Boolean.class;
-      }
-    }
-
-    @Override
     public boolean isCellEditable(final int row, final int column) {
-      return false;
+      return column == 3;
     }
 
     /**
@@ -125,19 +109,7 @@ class CampParticipantListView extends AListView<CampParticipant> implements ILis
      */
     public void addRow(final CampParticipant p) {
       this.participants.put(getRowCount(), p);
-      super.addRow(new Object[] { p.getId(),
-                                 p.getForeName(),
-                                 p.getLastName(),
-                                 p.isAGE(),
-                                 p.isBoard(),
-                                 p.isExtendedBoard(),
-                                 p.isKitchen(),
-                                 p.isMAK(),
-                                 p.isMisc(),
-                                 p.isParticipant(),
-                                 p.isSeminar(),
-                                 p.isStaff(),
-                                 p.isStaffYouth() });
+      super.addRow(new Object[] { p.getId(), p.getForeName(), p.getLastName(), p.getRole() });
     }
 
     @Override
@@ -147,43 +119,11 @@ class CampParticipantListView extends AListView<CampParticipant> implements ILis
           System.out.println("oooops!");
         }
 
-        final CampParticipant participant = this.participants.get(e.getFirstRow());
-        final Boolean value = (Boolean) getValueAt(e.getFirstRow(), e.getColumn());
+        if (e.getColumn() == 3) {
+          final CampParticipant participant = this.participants.get(e.getFirstRow());
+          final Role value = (Role) getValueAt(e.getFirstRow(), e.getColumn());
 
-        switch (e.getColumn()) {
-          case 3:
-            participant.setAGE(value);
-            break;
-          case 4:
-            participant.setBoard(value);
-            break;
-          case 5:
-            participant.setExtendedBoard(value);
-            break;
-          case 6:
-            participant.setKitchen(value);
-            break;
-          case 7:
-            participant.setMAK(value);
-            break;
-          case 8:
-            participant.setMisc(value);
-            break;
-          case 9:
-            participant.setParticipant(value);
-            break;
-          case 10:
-            participant.setSeminar(value);
-            break;
-          case 11:
-            participant.setStaff(value);
-            break;
-          case 12:
-            participant.setStaffYouth(value);
-            break;
-          default:
-            System.out.println("strange column");
-            break;
+          participant.setRole(value);
         }
       }
     }

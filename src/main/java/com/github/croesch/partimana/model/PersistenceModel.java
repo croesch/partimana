@@ -23,6 +23,7 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import com.github.croesch.partimana.types.Role;
 
 /**
  * The persistence model to store participants and camps.
@@ -61,9 +62,8 @@ public final class PersistenceModel implements IPersistenceModel {
       stmt = this.con.prepareStatement("UPDATE `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
                                        + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
                                        + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
-                                       + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
-                                       + "canBeParticipant=?, canBeStaff=?, canBeStaffYouth=?, canBeBoard=?, canBeExtendedBoard=?, "
-                                       + "canBeMAK=?, canBeAGE=?, canBeKitchen=?, canBeSeminar=?, canBeMisc=? WHERE id=?");
+                                       + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, "
+                                       + "dateUpInDb=? WHERE id=?");
       insertParticipantIntoStatement(p, stmt);
 
       stmt.executeUpdate();
@@ -118,10 +118,7 @@ public final class PersistenceModel implements IPersistenceModel {
 
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("SELECT id, isParticipant, "
-                                       + "isStaff, isStaffYouth, isBoard, isExtendedBoard, "
-                                       + "isMAK, isAGE, isKitchen, isSeminar, isMisc "
-                                       + "FROM `campParticipants` WHERE camp=?");
+      stmt = this.con.prepareStatement("SELECT id, role FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, camp.getId());
       final ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
@@ -133,16 +130,7 @@ public final class PersistenceModel implements IPersistenceModel {
           continue;
         }
         final CampParticipant cp = new CampParticipant(p);
-        cp.setParticipant(rs.getBoolean(++i));
-        cp.setStaff(rs.getBoolean(++i));
-        cp.setStaffYouth(rs.getBoolean(++i));
-        cp.setBoard(rs.getBoolean(++i));
-        cp.setExtendedBoard(rs.getBoolean(++i));
-        cp.setMAK(rs.getBoolean(++i));
-        cp.setAGE(rs.getBoolean(++i));
-        cp.setKitchen(rs.getBoolean(++i));
-        cp.setSeminar(rs.getBoolean(++i));
-        cp.setMisc(rs.getBoolean(++i));
+        cp.setRole(Role.valueOf(rs.getInt(++i)));
 
         camp.addParticipant(cp);
       }
@@ -170,22 +158,11 @@ public final class PersistenceModel implements IPersistenceModel {
       for (final CampParticipant part : campParticipants) {
         PreparedStatement s = null;
         try {
-          s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?, isParticipant=?, "
-                                        + "isStaff=?, isStaffYouth=?, isBoard=?, isExtendedBoard=?, "
-                                        + "isMAK=?, isAGE=?, isKitchen=?, isSeminar=?, isMisc=?");
+          s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?, role=?");
           int i = 0;
           s.setLong(++i, part.getId());
           s.setLong(++i, id);
-          s.setBoolean(++i, part.isParticipant());
-          s.setBoolean(++i, part.isStaff());
-          s.setBoolean(++i, part.isStaffYouth());
-          s.setBoolean(++i, part.isBoard());
-          s.setBoolean(++i, part.isExtendedBoard());
-          s.setBoolean(++i, part.isMAK());
-          s.setBoolean(++i, part.isAGE());
-          s.setBoolean(++i, part.isKitchen());
-          s.setBoolean(++i, part.isSeminar());
-          s.setBoolean(++i, part.isMisc());
+          s.setInt(++i, part.getRole().getId());
           s.executeUpdate();
         } finally {
           close(s);
@@ -329,8 +306,7 @@ public final class PersistenceModel implements IPersistenceModel {
                                        + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
                                        + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
                                        + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
-                                       + "canBeParticipant=?, canBeStaff=?, canBeStaffYouth=?, canBeBoard=?, canBeExtendedBoard=?, "
-                                       + "canBeMAK=?, canBeAGE=?, canBeKitchen=?, canBeSeminar=?, canBeMisc=?, id=?");
+                                       + "id=?");
       insertParticipantIntoStatement(p, stmt);
 
       stmt.executeUpdate();

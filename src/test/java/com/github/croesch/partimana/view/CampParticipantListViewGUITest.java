@@ -27,6 +27,7 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import com.github.croesch.partimana.types.Role;
 
 /**
  * Provides gui tests for {@link CampParticipantListView}
@@ -350,68 +351,14 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
   private void slct(final JTableFixture table, final int row, final CampParticipant cp) {
     requireParticipant(table, row, cp);
 
-    table.enterValue(TableCell.row(row).column(3), Boolean.TRUE.toString());
-    assertThat(cp.isAGE()).isTrue();
-    table.enterValue(TableCell.row(row).column(4), Boolean.TRUE.toString());
-    assertThat(cp.isBoard()).isTrue();
-    table.enterValue(TableCell.row(row).column(5), Boolean.TRUE.toString());
-    assertThat(cp.isExtendedBoard()).isTrue();
-    table.enterValue(TableCell.row(row).column(6), Boolean.TRUE.toString());
-    assertThat(cp.isKitchen()).isTrue();
-    table.enterValue(TableCell.row(row).column(7), Boolean.TRUE.toString());
-    assertThat(cp.isMAK()).isTrue();
-    table.enterValue(TableCell.row(row).column(8), Boolean.TRUE.toString());
-    assertThat(cp.isMisc()).isTrue();
-    table.enterValue(TableCell.row(row).column(9), Boolean.TRUE.toString());
-    assertThat(cp.isParticipant()).isTrue();
-    table.enterValue(TableCell.row(row).column(10), Boolean.TRUE.toString());
-    assertThat(cp.isSeminar()).isTrue();
-    table.enterValue(TableCell.row(row).column(11), Boolean.TRUE.toString());
-    assertThat(cp.isStaff()).isTrue();
-    table.enterValue(TableCell.row(row).column(12), Boolean.TRUE.toString());
-    assertThat(cp.isStaffYouth()).isTrue();
-
-    table.enterValue(TableCell.row(row).column(3), Boolean.TRUE.toString());
-    assertThat(cp.isAGE()).isTrue();
-    table.enterValue(TableCell.row(row).column(4), Boolean.FALSE.toString());
-    assertThat(cp.isBoard()).isFalse();
-    table.enterValue(TableCell.row(row).column(5), Boolean.TRUE.toString());
-    assertThat(cp.isExtendedBoard()).isTrue();
-    table.enterValue(TableCell.row(row).column(6), Boolean.FALSE.toString());
-    assertThat(cp.isKitchen()).isFalse();
-    table.enterValue(TableCell.row(row).column(7), Boolean.TRUE.toString());
-    assertThat(cp.isMAK()).isTrue();
-    table.enterValue(TableCell.row(row).column(8), Boolean.FALSE.toString());
-    assertThat(cp.isMisc()).isFalse();
-    table.enterValue(TableCell.row(row).column(9), Boolean.TRUE.toString());
-    assertThat(cp.isParticipant()).isTrue();
-    table.enterValue(TableCell.row(row).column(10), Boolean.FALSE.toString());
-    assertThat(cp.isSeminar()).isFalse();
-    table.enterValue(TableCell.row(row).column(11), Boolean.TRUE.toString());
-    assertThat(cp.isStaff()).isTrue();
-    table.enterValue(TableCell.row(row).column(12), Boolean.FALSE.toString());
-    assertThat(cp.isStaffYouth()).isFalse();
-
-    table.enterValue(TableCell.row(row).column(3), Boolean.FALSE.toString());
-    assertThat(cp.isAGE()).isFalse();
-    table.enterValue(TableCell.row(row).column(4), Boolean.TRUE.toString());
-    assertThat(cp.isBoard()).isTrue();
-    table.enterValue(TableCell.row(row).column(5), Boolean.FALSE.toString());
-    assertThat(cp.isExtendedBoard()).isFalse();
-    table.enterValue(TableCell.row(row).column(6), Boolean.TRUE.toString());
-    assertThat(cp.isKitchen()).isTrue();
-    table.enterValue(TableCell.row(row).column(7), Boolean.FALSE.toString());
-    assertThat(cp.isMAK()).isFalse();
-    table.enterValue(TableCell.row(row).column(8), Boolean.TRUE.toString());
-    assertThat(cp.isMisc()).isTrue();
-    table.enterValue(TableCell.row(row).column(9), Boolean.FALSE.toString());
-    assertThat(cp.isParticipant()).isFalse();
-    table.enterValue(TableCell.row(row).column(10), Boolean.TRUE.toString());
-    assertThat(cp.isSeminar()).isTrue();
-    table.enterValue(TableCell.row(row).column(11), Boolean.FALSE.toString());
-    assertThat(cp.isStaff()).isFalse();
-    table.enterValue(TableCell.row(row).column(12), Boolean.TRUE.toString());
-    assertThat(cp.isStaffYouth()).isTrue();
+    table.enterValue(TableCell.row(row).column(3), Role.DIRECTION.toString());
+    assertThat(cp.getRole()).isEqualTo(Role.DIRECTION);
+    table.enterValue(TableCell.row(row).column(3), Role.KITCHEN_STAFF.toString());
+    assertThat(cp.getRole()).isEqualTo(Role.KITCHEN_STAFF);
+    table.enterValue(TableCell.row(row).column(3), Role.STAFF.toString());
+    assertThat(cp.getRole()).isEqualTo(Role.STAFF);
+    table.enterValue(TableCell.row(row).column(3), Role.PARTICIPANT.toString());
+    assertThat(cp.getRole()).isEqualTo(Role.PARTICIPANT);
   }
 
   @Test
@@ -563,16 +510,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
   public static void requireParticipant(final JTableFixture table, final int row, final CampParticipant p) {
     table.requireCellValue(TableCell.row(row).column(0), String.valueOf(p.getId()));
     requireParticipant(table, row, p.getForeName(), p.getLastName());
-    table.requireCellValue(TableCell.row(row).column(3), String.valueOf(p.isAGE()));
-    table.requireCellValue(TableCell.row(row).column(4), String.valueOf(p.isBoard()));
-    table.requireCellValue(TableCell.row(row).column(5), String.valueOf(p.isExtendedBoard()));
-    table.requireCellValue(TableCell.row(row).column(6), String.valueOf(p.isKitchen()));
-    table.requireCellValue(TableCell.row(row).column(7), String.valueOf(p.isMAK()));
-    table.requireCellValue(TableCell.row(row).column(8), String.valueOf(p.isMisc()));
-    table.requireCellValue(TableCell.row(row).column(9), String.valueOf(p.isParticipant()));
-    table.requireCellValue(TableCell.row(row).column(10), String.valueOf(p.isSeminar()));
-    table.requireCellValue(TableCell.row(row).column(11), String.valueOf(p.isStaff()));
-    table.requireCellValue(TableCell.row(row).column(12), String.valueOf(p.isStaffYouth()));
+    table.requireCellValue(TableCell.row(row).column(3), String.valueOf(p.getRole()));
   }
 
   public static void requireParticipant(final JTableFixture table, final int row, final String fName, final String lName) {
