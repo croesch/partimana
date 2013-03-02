@@ -145,6 +145,9 @@ public enum Text {
   /** the text for the per-day-rate of the camp */
   CAMP_RATE_PER_DAY (207),
 
+  /** the text for the role the participant has in a camp */
+  CAMP_PARTICIPANT_ROLE (300),
+
   /** constant for male */
   MALE (2000),
   /** constant for female */
