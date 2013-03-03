@@ -6,7 +6,6 @@ import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.api.IListView;
 
 /**
  * Implementation of the table that views the table of participants.
@@ -14,7 +13,7 @@ import com.github.croesch.partimana.view.api.IListView;
  * @author croesch
  * @since Date: Jun 8, 2011
  */
-class ParticipantListView extends AListView<Participant> implements IListView<Participant> {
+class ParticipantListView extends AListView<Participant> {
 
   /** generated */
   private static final long serialVersionUID = -96888415800702415L;

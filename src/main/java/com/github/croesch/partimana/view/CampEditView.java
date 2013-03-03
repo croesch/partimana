@@ -62,15 +62,15 @@ class CampEditView extends CPanel implements ICampEditView, ActionObserver {
 
   /** reference to the list of {@link CampParticipant}s viewed by the {@link CampParticipantListView} */
   @NotNull
-  private final List<CampParticipant> campParticipants = new ArrayList<CampParticipant>();
+  private final transient List<CampParticipant> campParticipants = new ArrayList<CampParticipant>();
 
   /** reference to the list of {@link Participant}s viewed by the {@link ParticipantListView} */
   @NotNull
-  private final List<Participant> participants = new ArrayList<Participant>();
+  private final transient List<Participant> participants = new ArrayList<Participant>();
 
   /** reference to the list of all {@link Participant}s available */
   @NotNull
-  private List<Participant> allParticipants = new ArrayList<Participant>();
+  private transient List<Participant> allParticipants = new ArrayList<Participant>();
 
   /** the list of all possible participants for this camp */
   @NotNull

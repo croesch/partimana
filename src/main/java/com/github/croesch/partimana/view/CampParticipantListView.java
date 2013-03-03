@@ -10,12 +10,12 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.types.Role;
-import com.github.croesch.partimana.view.api.IListView;
 
 /**
  * Implementation of the table that views the table of participants in a camp.
@@ -23,7 +23,7 @@ import com.github.croesch.partimana.view.api.IListView;
  * @author croesch
  * @since Date: Sep 16, 2012
  */
-class CampParticipantListView extends AListView<CampParticipant> implements IListView<CampParticipant> {
+class CampParticipantListView extends AListView<CampParticipant> {
 
   /** generated */
   private static final long serialVersionUID = -8804248070325729977L;
@@ -64,7 +64,8 @@ class CampParticipantListView extends AListView<CampParticipant> implements ILis
     private static final long serialVersionUID = 4361064994767610933L;
 
     /** the rows of the model */
-    private final Map<Integer, CampParticipant> participants = new HashMap<Integer, CampParticipant>();
+    @NotNull
+    private final transient Map<Integer, CampParticipant> participants = new HashMap<Integer, CampParticipant>();
 
     /**
      * Creates the table model that holds {@link CampParticipant}s as rows.

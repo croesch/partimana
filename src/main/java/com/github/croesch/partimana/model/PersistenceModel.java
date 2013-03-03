@@ -90,6 +90,22 @@ public final class PersistenceModel implements IPersistenceModel {
     }
   }
 
+  /**
+   * Releases the resources of the given result set.
+   * 
+   * @since Date: Mar 3, 2013
+   * @param rs the result set that should be closed
+   */
+  private void close(final ResultSet rs) {
+    if (rs != null) {
+      try {
+        rs.close();
+      } catch (final SQLException e) {
+        LOGGER.warn(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
+      }
+    }
+  }
+
   @Override
   public void update(final Camp c) {
     PreparedStatement stmt = null;
@@ -117,10 +133,11 @@ public final class PersistenceModel implements IPersistenceModel {
     final Map<Long, Participant> mapOfParticipants = getMapOfParticipants();
 
     PreparedStatement stmt = null;
+    ResultSet rs = null;
     try {
       stmt = this.con.prepareStatement("SELECT id, role FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, camp.getId());
-      final ResultSet rs = stmt.executeQuery();
+      rs = stmt.executeQuery();
       while (rs.next()) {
         int i = 0;
         final Participant p = mapOfParticipants.get(rs.getLong(++i));
@@ -138,6 +155,7 @@ public final class PersistenceModel implements IPersistenceModel {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     } finally {
       close(stmt);
+      close(rs);
     }
   }
 
@@ -178,10 +196,11 @@ public final class PersistenceModel implements IPersistenceModel {
   @Override
   public Map<Long, Camp> getMapOfCamps() {
     PreparedStatement stmt = null;
+    ResultSet rs = null;
     try {
       stmt = this.con.prepareStatement("SELECT id, name, fromDate, until, location, "
                                        + "ratePerParticipant, ratePerDayChild FROM `camps` ORDER BY id");
-      final ResultSet rs = stmt.executeQuery();
+      rs = stmt.executeQuery();
 
       final HashMap<Long, Camp> hashMap = new HashMap<Long, Camp>();
 
@@ -204,6 +223,7 @@ public final class PersistenceModel implements IPersistenceModel {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     } finally {
       close(stmt);
+      close(rs);
     }
 
     return new HashMap<Long, Camp>();
@@ -212,13 +232,14 @@ public final class PersistenceModel implements IPersistenceModel {
   @Override
   public Map<Long, Participant> getMapOfParticipants() {
     PreparedStatement stmt = null;
+    ResultSet rs = null;
     try {
       stmt = this.con.prepareStatement("SELECT id, lastName, foreName, gender, denomination, birth, livingStreet, "
                                        + "livingCity, livingPlz, postStreet, postCity, postPlz, "
                                        + "phone, fax, mobilePhone, phoneParents, mailAddress, countyCouncil, "
                                        + "bankCodeNumber, bank, bankAccountNumber, commentar, sinceInDb, "
                                        + "dateUpInDb FROM `participants` ORDER BY id");
-      final ResultSet rs = stmt.executeQuery();
+      rs = stmt.executeQuery();
 
       final HashMap<Long, Participant> hashMap = new HashMap<Long, Participant>();
 
@@ -256,6 +277,7 @@ public final class PersistenceModel implements IPersistenceModel {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     } finally {
       close(stmt);
+      close(rs);
     }
 
     return new HashMap<Long, Participant>();

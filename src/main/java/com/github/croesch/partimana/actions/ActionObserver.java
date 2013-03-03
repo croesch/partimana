@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.actions;
 
+import java.io.Serializable;
 
 /**
  * Observer interface for {@link UserAction}s.
@@ -7,7 +8,7 @@ package com.github.croesch.partimana.actions;
  * @author croesch
  * @since Date: May 29, 2011
  */
-public interface ActionObserver {
+public interface ActionObserver extends Serializable {
 
   /**
    * Tells the observer that the given action happened and that it should react.

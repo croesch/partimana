@@ -155,7 +155,7 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
     setLayout(new MigLayout("fill, insets 0",
                             "[110px!, sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, sg f]",
                             "[sg]" + space + "[sg][sg]" + space + "[sg][sg][sg]" + space + "[sg][sg]" + space + "[sg]"
-                                    + space + "[sg][sg][sg]" + space + "[][grow]"));
+                                    + space + "[sg][sg][sg][grow]"));
 
     initNames();
 
@@ -171,125 +171,78 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
    * @since Date: Jun 28, 2011
    */
   private void addComponents() {
-    final CLabel idLbl = new CLabel("id", Text.PARTICIPANT_ID.text());
-    add(idLbl, "cell 0 0");
-
+    add(new CLabel("id", Text.PARTICIPANT_ID.text()), "cell 0 0");
     add(this.idValueLbl, "cell 1 0");
 
-    final CLabel sinceInDbLbl = new CLabel("sinceInDb", Text.PARTICIPANT_SINCE.text());
-    add(sinceInDbLbl, "cell 2 0");
-
+    add(new CLabel("sinceInDb", Text.PARTICIPANT_SINCE.text()), "cell 2 0");
     add(this.sinceInDbValueLbl, "cell 3 0");
 
-    final CLabel untilInDbLbl = new CLabel("untilInDb", Text.PARTICIPANT_UNTIL.text());
-    add(untilInDbLbl, "cell 4 0");
-
+    add(new CLabel("untilInDb", Text.PARTICIPANT_UNTIL.text()), "cell 4 0");
     add(this.untilInDbTf, "cell 5 0");
 
-    final CLabel firstNameLbl = new CLabel("firstName", Text.PARTICIPANT_FORENAME.text());
-    add(firstNameLbl, "cell 0 1");
-
+    add(new CLabel("firstName", Text.PARTICIPANT_FORENAME.text()), "cell 0 1");
     add(this.firstNameTf, "cell 1 1");
 
-    final CLabel lastNameLbl = new CLabel("lastName", Text.PARTICIPANT_LASTNAME.text());
-    add(lastNameLbl, "cell 2 1");
-
+    add(new CLabel("lastName", Text.PARTICIPANT_LASTNAME.text()), "cell 2 1");
     add(this.lastNameTf, "cell 3 1");
 
-    final CLabel genderLbl = new CLabel("gender", Text.PARTICIPANT_GENDER.text());
-    add(genderLbl, "cell 4 1");
-
+    add(new CLabel("gender", Text.PARTICIPANT_GENDER.text()), "cell 4 1");
     add(this.genderCb, "cell 5 1");
 
-    final CLabel birthDayLbl = new CLabel("birthday", Text.PARTICIPANT_BIRTHDAY.text());
-    add(birthDayLbl, "cell 0 2");
-
+    add(new CLabel("birthday", Text.PARTICIPANT_BIRTHDAY.text()), "cell 0 2");
     add(this.birthDayTf, "cell 1 2");
 
-    final CLabel denominationLbl = new CLabel("denomination", Text.PARTICIPANT_DENOMINTAION.text());
-    add(denominationLbl, "cell 2 2");
-
+    add(new CLabel("denomination", Text.PARTICIPANT_DENOMINTAION.text()), "cell 2 2");
     add(this.denominationCb, "cell 3 2");
 
-    final CLabel countyCouncilLbl = new CLabel("countyCouncil", Text.PARTICIPANT_COUNTY_COUNCIL.text());
-    add(countyCouncilLbl, "cell 4 2");
-
+    add(new CLabel("countyCouncil", Text.PARTICIPANT_COUNTY_COUNCIL.text()), "cell 4 2");
     add(this.countyCouncilCb, "cell 5 2");
 
-    final CLabel streetLbl = new CLabel("street", Text.STREET.text());
-    add(streetLbl, "cell 1 3, grow 0, alignx center");
+    add(new CLabel("street", Text.STREET.text()), "cell 1 3, grow 0, alignx center");
+    add(new CLabel("postCode", Text.POST_CODE.text()), "cell 3 3, grow 0, alignx center");
+    add(new CLabel("city", Text.CITY.text()), "cell 5 3, grow 0, alignx center");
 
-    final CLabel postCodeLbl = new CLabel("postCode", Text.POST_CODE.text());
-    add(postCodeLbl, "cell 3 3, grow 0, alignx center");
-
-    final CLabel cityLbl = new CLabel("city", Text.CITY.text());
-    add(cityLbl, "cell 5 3, grow 0, alignx center");
-
-    final CLabel livingAddressLbl = new CLabel("livingAddress", Text.PARTICIPANT_ADDRESS_LIVING.text());
-    add(livingAddressLbl, "cell 0 4");
+    add(new CLabel("livingAddress", Text.PARTICIPANT_ADDRESS_LIVING.text()), "cell 0 4");
 
     add(this.livStreetTf, "cell 1 4");
-
     add(this.livPostCodeTf, "cell 3 4");
-
     add(this.livCityTf, "cell 5 4");
 
-    final CLabel postToAddressLbl = new CLabel("postalAddress", Text.PARTICIPANT_ADDRESS_POSTAL.text());
-    add(postToAddressLbl, "cell 0 5");
+    add(new CLabel("postalAddress", Text.PARTICIPANT_ADDRESS_POSTAL.text()), "cell 0 5");
 
     add(this.posStreetTf, "cell 1 5");
-
     add(this.posPostCodeTf, "cell 3 5");
-
     add(this.posCityTf, "cell 5 5");
 
-    final CLabel phoneLbl = new CLabel("phone", Text.PARTICIPANT_PHONE.text());
-    add(phoneLbl, "cell 0 6");
-
+    add(new CLabel("phone", Text.PARTICIPANT_PHONE.text()), "cell 0 6");
     add(this.phoneTf, "cell 1 6");
 
-    final CLabel faxLbl = new CLabel("fax", Text.PARTICIPANT_FAX.text());
-    add(faxLbl, "cell 2 6");
-
+    add(new CLabel("fax", Text.PARTICIPANT_FAX.text()), "cell 2 6");
     add(this.faxTf, "cell 3 6");
 
-    final CLabel mobilePhoneLbl = new CLabel("mobilePhone", Text.PARTICIPANT_MOBILE_PHONE.text());
-    add(mobilePhoneLbl, "cell 4 6");
-
+    add(new CLabel("mobilePhone", Text.PARTICIPANT_MOBILE_PHONE.text()), "cell 4 6");
     add(this.mobilePhoneTf, "cell 5 6");
 
-    final CLabel phoneParentsLbl = new CLabel("phoneOfParents", Text.PARTICIPANT_PHONE_OF_PARENTS.text());
-    add(phoneParentsLbl, "cell 0 7");
-
+    add(new CLabel("phoneOfParents", Text.PARTICIPANT_PHONE_OF_PARENTS.text()), "cell 0 7");
     add(this.phoneParentsTf, "cell 1 7");
 
-    final CLabel mailAddressLbl = new CLabel("mailAddress", Text.PARTICIPANT_MAIL_ADDRESS.text());
-    add(mailAddressLbl, "cell 2 7");
-
+    add(new CLabel("mailAddress", Text.PARTICIPANT_MAIL_ADDRESS.text()), "cell 2 7");
     add(this.mailAddressTf, "cell 3 7 3 1");
 
-    final CLabel bankAccNumberLbl = new CLabel("bankAccountNumber", Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text());
-    add(bankAccNumberLbl, "cell 0 8");
-
+    add(new CLabel("bankAccountNumber", Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text()), "cell 0 8");
     add(this.bankAccNumberTf, "cell 1 8");
 
-    final CLabel bankeCodNumberLbl = new CLabel("bankCodeNumber", Text.PARTICIPANT_BANK_CODE_NUMBER.text());
-    add(bankeCodNumberLbl, "cell 2 8");
-
+    add(new CLabel("bankCodeNumber", Text.PARTICIPANT_BANK_CODE_NUMBER.text()), "cell 2 8");
     add(this.bankCodeNumberTf, "cell 3 8");
 
-    final CLabel bankLbl = new CLabel("bank", Text.PARTICIPANT_BANK_NAME.text());
-    add(bankLbl, "cell 4 8");
-
+    add(new CLabel("bank", Text.PARTICIPANT_BANK_NAME.text()), "cell 4 8");
     add(this.bankTf, "cell 5 8");
 
     final CScrollPane commentScrollPane = new CScrollPane("comment");
+    commentScrollPane.setViewportView(this.commentTa);
     add(commentScrollPane, "cell 1 9 5 3,grow");
 
-    commentScrollPane.setViewportView(this.commentTa);
-
-    final CLabel commentLbl = new CLabel("comment", Text.PARTICIPANT_COMMENT.text());
-    add(commentLbl, "cell 0 9");
+    add(new CLabel("comment", Text.PARTICIPANT_COMMENT.text()), "cell 0 9");
   }
 
   /**
