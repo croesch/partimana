@@ -33,7 +33,7 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiQuery<Controller>() {
       @Override
       protected Controller executeInEDT() throws Throwable {
-        return new Controller(WorkflowTest.this, new HashMapPersistenceModel(), null);
+        return new Controller(WorkflowTest.this, new HashMapPersistenceModel());
       }
     });
 

@@ -27,7 +27,7 @@ import com.github.croesch.partimana.view.api.ICampEditView;
  * @author croesch
  * @since Date: Sep 13, 2012
  */
-class CampEditView extends CPanel implements ICampEditView, ActionObserver {
+final class CampEditView extends CPanel implements ICampEditView, ActionObserver {
 
   /** generated */
   private static final long serialVersionUID = 2952537980601243913L;
@@ -161,7 +161,7 @@ class CampEditView extends CPanel implements ICampEditView, ActionObserver {
   }
 
   @Override
-  public final void clear() {
+  public void clear() {
     this.idValueLbl.setText(null);
 
     this.nameTf.setText(null);

@@ -36,10 +36,6 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
   @NotNull
   private final CTable table;
 
-  /** the observer that should be informed when a row of the table is selected. */
-  @NotNull
-  private final ActionObserver observer;
-
   /** the action that notifies an observer that a row of the table has been selected */
   @NotNull
   private final UserAction selectionAction;
@@ -50,22 +46,21 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
    * @since Date: Nov 11, 2012
    * @param name the name of this view
    * @param nameOfComps the name of the constructed table
-   * @param o the observer listening for action events
+   * @param observer the observer listening for action events
    * @param tableModel the model of the table
    * @param action the action that should be performed, when a row is selected in the table
    */
   public AListView(final String name,
                    final String nameOfComps,
-                   final ActionObserver o,
+                   final ActionObserver observer,
                    final DefaultTableModel tableModel,
                    final UserAction action) {
     super(name);
-    this.observer = o; // TODO null check
     this.selectionAction = action; //TODO null check
 
     setLayout(new MigLayout("fill"));
 
-    this.table = new DataTable(nameOfComps, o, action, tableModel);
+    this.table = new DataTable(nameOfComps, observer, action, tableModel);
 
     add(new CScrollPane(nameOfComps, this.table), "grow");
   }

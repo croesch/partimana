@@ -217,32 +217,24 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
         break;
 
       case SEARCH_CAMP:
-        this.campSearchView = new CampSearchView("camp-search", this.model.getListOfCamps(), this);
-        this.campSearchView.setVisible(true);
-        this.campSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        openCampSearchView();
         break;
 
       // assert the event happened from the search view
       case CAMP_SELECTED:
         this.campView.getCampEditView().setCamp(this.model.getCamp(this.campSearchView.getSelectedId()));
-        this.campSearchView.dispose();
-        this.campSearchView = null;
+        closeCampSearchView();
         break;
 
       case SEARCH_PARTICIPANT:
-        this.participantSearchView = new ParticipantSearchView("participant-search",
-                                                               this.model.getListOfParticipants(),
-                                                               this);
-        this.participantSearchView.setVisible(true);
-        this.participantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        openParticipantSearchView();
         break;
 
       // assert the event happened from the search view
       case PARTICIPANT_SELECTED:
         this.participantView.getParticipantEditView()
                             .setParticipant(this.model.getParticipant(this.participantSearchView.getSelectedId()));
-        this.participantSearchView.dispose();
-        this.participantSearchView = null;
+        closeParticipantSearchView();
         break;
 
       default:
@@ -250,6 +242,50 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
         break;
 
     }
+  }
+
+  /**
+   * Closes the opened participant search view.
+   * 
+   * @since Date: Mar 3, 2013
+   */
+  private void closeParticipantSearchView() {
+    this.participantSearchView.dispose();
+    this.participantSearchView = null;
+  }
+
+  /**
+   * Opens the search view for participants.
+   * 
+   * @since Date: Mar 3, 2013
+   */
+  private void openParticipantSearchView() {
+    this.participantSearchView = new ParticipantSearchView("participant-search",
+                                                           this.model.getListOfParticipants(),
+                                                           this);
+    this.participantSearchView.setVisible(true);
+    this.participantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+  }
+
+  /**
+   * Closes the opened camp search view.
+   * 
+   * @since Date: Mar 3, 2013
+   */
+  private void closeCampSearchView() {
+    this.campSearchView.dispose();
+    this.campSearchView = null;
+  }
+
+  /**
+   * Opens the search view for camps.
+   * 
+   * @since Date: Mar 3, 2013
+   */
+  private void openCampSearchView() {
+    this.campSearchView = new CampSearchView("camp-search", this.model.getListOfCamps(), this);
+    this.campSearchView.setVisible(true);
+    this.campSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   }
 
   @Override

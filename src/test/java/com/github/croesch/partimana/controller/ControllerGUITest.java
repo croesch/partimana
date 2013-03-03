@@ -30,7 +30,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
     this.controller = GuiActionRunner.execute(new GuiQuery<Controller>() {
       @Override
       protected Controller executeInEDT() throws Throwable {
-        return new Controller(ControllerGUITest.this, new HashMapPersistenceModel(), null);
+        return new Controller(ControllerGUITest.this, new HashMapPersistenceModel());
       }
     });
   }

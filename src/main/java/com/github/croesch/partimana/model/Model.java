@@ -21,10 +21,6 @@ import com.github.croesch.partimana.view.api.IView;
  */
 public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
-  /** the model that is responsible for persistence of data */
-  @NotNull
-  private final IPersistenceModel persistenceModel;
-
   /** the model that is responsible for actions that have to do with {@link Participant}s */
   @NotNull
   private final IParticipantModel participantModel;
@@ -41,12 +37,11 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
    * Creates this model using the given persistence model to store participants and camps.
    * 
    * @since Date: Oct 13, 2012
-   * @param persistMdl the model to store participants and camps.
+   * @param persistenceModel the model to store participants and camps.
    */
-  public Model(final IPersistenceModel persistMdl) {
-    this.persistenceModel = persistMdl; // TODO null check
-    this.participantModel = new ParticipantModel(this.persistenceModel);
-    this.campModel = new CampModel(this.persistenceModel);
+  public Model(final IPersistenceModel persistenceModel) {
+    this.participantModel = new ParticipantModel(persistenceModel);
+    this.campModel = new CampModel(persistenceModel);
   }
 
   /**

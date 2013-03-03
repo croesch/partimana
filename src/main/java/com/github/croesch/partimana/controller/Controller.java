@@ -40,9 +40,8 @@ public final class Controller implements ActionObserver {
    * @since Date: May 29, 2011
    * @param o the {@link ActionObserver}
    * @param pModel the persistence model to store participants and camps with
-   * @param args the arguments from command line
    */
-  public Controller(final ActionObserver o, final IPersistenceModel pModel, final String[] args) {
+  public Controller(final ActionObserver o, final IPersistenceModel pModel) {
     this.observer = o; //FIXME null check!
     this.model = new Model(pModel);
     this.view = new View("view", this.model, this);

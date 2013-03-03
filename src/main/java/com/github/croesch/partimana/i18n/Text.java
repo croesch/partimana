@@ -332,6 +332,8 @@ public enum Text {
 
   /** warning for an unknown action */
   WARN_UNKNOWN_ACTION (12000),
+  /** warning for an unconsidered case */
+  WARN_UNCONSIDERED_CASE (12001),
 
   /** error - an exception */
   ERROR_EXCEPTION (13000),

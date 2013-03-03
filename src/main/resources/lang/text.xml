@@ -141,8 +141,9 @@
 	<entry key="11010">Teilnehmer #{0} erfolgreich gespeichert.</entry>
 	<entry key="11011">Freizeit #{0} erfolgreich gespeichert.</entry>
 
-	<!-- Warnungen -->	
+	<!-- Warnungen -->
 	<entry key="12000">Unbekannte Aktion: '{0}'</entry>
+	<entry key="12001">Unvorhergesener Fall: '{0}'</entry>
 
 	<!-- Fehler -->
 	<entry key="13000">Exception aufgetreten: '{0}'</entry>

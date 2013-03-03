@@ -10,6 +10,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
@@ -27,6 +29,9 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
   /** generated */
   private static final long serialVersionUID = -8804248070325729977L;
+
+  /** logging class */
+  private static final Logger LOGGER = Logger.getLogger(CampParticipantListView.class);
 
   /** the table model that holds the participants - the data of the table */
   private final CampParticipantTableModel tableModel;
@@ -117,7 +122,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
     public void tableChanged(final TableModelEvent e) {
       if (e.getType() == TableModelEvent.UPDATE) {
         if (e.getFirstRow() != e.getLastRow()) {
-          System.out.println("oooops!");
+          LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(e.getFirstRow() + " != " + e.getLastRow()));
         }
 
         if (e.getColumn() == 3) {

@@ -74,7 +74,7 @@ public final class PartiMana implements ActionObserver {
     LOGGER.debug(Text.DEBUG_SELECTED_LANGUAGE.text(Text.LANGUAGE));
 
     // start 'real' program
-    new Controller(this, new PersistenceModel(), args);
+    new Controller(this, new PersistenceModel());
 
     while (this.running) {
       try {
