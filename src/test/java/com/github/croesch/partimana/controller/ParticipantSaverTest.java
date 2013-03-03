@@ -131,8 +131,9 @@ public class ParticipantSaverTest {
       }
 
       @Override
-      public void store(final Participant p) throws RequiredFieldSetToNullException {
+      public Participant store(final Participant p) throws RequiredFieldSetToNullException {
         ParticipantSaverTest.this.stored = p;
+        return p;
       }
 
       @Override

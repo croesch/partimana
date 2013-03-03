@@ -138,8 +138,9 @@ public final class ParticipantModelTest {
    */
   @Test
   public void testStoreParticipant() {
-    this.pModel.store(this.p1);
+    final Participant stored = this.pModel.store(this.p1);
     assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(this.p1);
+    assertThat(this.pModel.getParticipant(this.p1.getId())).isEqualTo(stored);
     assertThat(this.persistenceModel.getMapOfParticipants().get(this.p1.getId())).isEqualTo(this.p1);
     this.p1.setBank("new bank");
     assertThat(this.pModel.getParticipant(this.p1.getId())).isNotEqualTo(this.p1);

@@ -329,6 +329,7 @@ public final class PersistenceModel implements IPersistenceModel {
                                        + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
                                        + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
                                        + "id=?");
+      p.setDateSinceInDataBase(new java.util.Date());
       insertParticipantIntoStatement(p, stmt);
 
       stmt.executeUpdate();

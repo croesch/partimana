@@ -84,8 +84,8 @@ final class ParticipantSaver {
       p.setCityPostal(returnValueOrNullIfEmpty(editView.getPostalCity()));
       p.setPostCodePostal(editView.getPostalPostCode());
 
-      editView.setParticipant(p);
-      model.store(p);
+      final Participant stored = model.store(p);
+      editView.setParticipant(stored);
       statusView.showInformation(Text.INFO_PARTICIPANT_SAVED, p.getId());
     } catch (final Exception e) {
       LOGGER.debug(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);

@@ -51,7 +51,7 @@ class ParticipantModel implements IParticipantModel {
   }
 
   @Override
-  public void store(final Participant p) throws KeyAlreadyExistsException, RequiredFieldSetToNullException {
+  public Participant store(final Participant p) throws KeyAlreadyExistsException, RequiredFieldSetToNullException {
     final Participant store = new Participant(p);
 
     if (this.mapOfParticipants.containsKey(store.getId())) {
@@ -60,6 +60,8 @@ class ParticipantModel implements IParticipantModel {
       this.persistenceModel.create(store);
     }
     this.mapOfParticipants.put(store.getId(), store);
+
+    return store;
   }
 
   @Override

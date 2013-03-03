@@ -18,9 +18,10 @@ public interface IParticipantModel extends IParticipantModel4View {
    * @author croesch
    * @since Date: Jun 21, 2011
    * @param p the {@link Participant} to store
+   * @return the instance of the stored participant
    * @throws RequiredFieldSetToNullException if the given {@link Participant} is <code>null</code>
    */
-  void store(Participant p) throws RequiredFieldSetToNullException;
+  Participant store(Participant p) throws RequiredFieldSetToNullException;
 
   /**
    * Tries to delete the {@link Participant} from the stored data. If it doesn't exist nothing will be done. So after

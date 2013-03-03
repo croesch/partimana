@@ -95,7 +95,12 @@ public class PersistenceModelTest {
                                           4031,
                                           "City",
                                           CountyCouncil.CITY_KAISERSLAUTERN);
+    final Date before = new Date();
     this.pm.create(p);
+    final Date after = new Date();
+
+    assertThat(p.getDateSinceInDataBase().before(before)).isFalse();
+    assertThat(p.getDateSinceInDataBase().after(after)).isFalse();
     assertThat(this.pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
     assertThat(this.pm.getMapOfParticipants().size()).isEqualTo(1);
 

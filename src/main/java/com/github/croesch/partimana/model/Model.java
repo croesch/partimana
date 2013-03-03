@@ -61,11 +61,12 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
   }
 
   @Override
-  public void store(final Participant p) throws RequiredFieldSetToNullException {
-    this.participantModel.store(p);
+  public Participant store(final Participant p) throws RequiredFieldSetToNullException {
+    final Participant participant = this.participantModel.store(p);
     if (this.view != null) {
       this.view.update();
     }
+    return participant;
   }
 
   @Override
