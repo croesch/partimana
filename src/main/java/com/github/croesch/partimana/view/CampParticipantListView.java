@@ -65,7 +65,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
     /** the rows of the model */
     @NotNull
-    private final transient Map<Integer, CampParticipant> participants = new HashMap<Integer, CampParticipant>();
+    private final Map<Integer, CampParticipant> participants = new HashMap<Integer, CampParticipant>();
 
     /**
      * Creates the table model that holds {@link CampParticipant}s as rows.

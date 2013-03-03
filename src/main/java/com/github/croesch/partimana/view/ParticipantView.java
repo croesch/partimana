@@ -41,7 +41,7 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
 
   /** the model to fetch participants from */
   @NotNull
-  private final transient IParticipantModel4View model;
+  private final IParticipantModel4View model;
 
   /**
    * Constructs the view for participants.

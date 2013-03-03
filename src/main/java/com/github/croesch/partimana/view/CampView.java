@@ -41,7 +41,7 @@ class CampView extends CPanel implements ICampView, ActionObserver {
 
   /** the model to fetch camps from */
   @NotNull
-  private final transient ICampModel4View model;
+  private final ICampModel4View model;
 
   /**
    * Constructs the view for camp.

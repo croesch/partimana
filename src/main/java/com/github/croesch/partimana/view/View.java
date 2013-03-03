@@ -53,7 +53,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   /** the connector to the model of the program to fetch updates */
   @NotNull
-  private final transient IModel4View model;
+  private final IModel4View model;
 
   /** the observer that will handle user actions */
   @NotNull
