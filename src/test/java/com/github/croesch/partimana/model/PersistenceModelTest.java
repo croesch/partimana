@@ -21,6 +21,7 @@ import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.Role;
+import com.github.croesch.util.DateUtil;
 
 /**
  * Provides test cases for {@link PersistenceModel}.
@@ -193,11 +194,14 @@ public class PersistenceModelTest {
                                           "City",
                                           CountyCouncil.CITY_KAISERSLAUTERN);
     final CampParticipant cp = new CampParticipant(p);
+    cp.setSignedIn(new Date(0));
     c.addParticipant(cp);
     this.pm.create(p);
     this.pm.create(c);
     c.setName("FREIZEIT");
     cp.setRole(Role.KITCHEN_STAFF);
+    final Date date = new Date();
+    cp.setSignedIn(date);
 
     final PersistenceModel pm2 = new PersistenceModel();
     assertThat(pm2.getMapOfParticipants().get(p.getId())).isEqualTo(p);
@@ -205,6 +209,8 @@ public class PersistenceModelTest {
     Camp storedCamp = pm2.getMapOfCamps().get(c.getId());
     assertThat(storedCamp).isNotEqualTo(c);
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.PARTICIPANT);
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn()).isEqualTo(new DateUtil(new Date(0)).getDateWithoutTime());
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedOff()).isNull();
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
     this.pm.update(c);
@@ -214,6 +220,9 @@ public class PersistenceModelTest {
     storedCamp = pm2.getMapOfCamps().get(c.getId());
     assertThat(storedCamp).isEqualTo(c);
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.KITCHEN_STAFF);
+    final Date dateWithoutTime = new DateUtil(date).getDateWithoutTime();
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn()).isEqualTo(dateWithoutTime);
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedOff()).isNull();
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
     pm2.deleteCamp(c.getId());

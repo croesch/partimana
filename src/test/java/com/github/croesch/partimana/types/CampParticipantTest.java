@@ -85,11 +85,48 @@ public class CampParticipantTest {
   }
 
   @Test
-  public final void testSetAndIsParticipant() {
+  public final void testRole() {
     for (final Role role : Role.values()) {
       this.campParticipant.setRole(role);
       assertThat(this.campParticipant.getRole()).isEqualTo(role);
     }
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testSignedIn_Null() {
+    this.campParticipant.setSignedIn(null);
+  }
+
+  @Test
+  public final void testSignedIn() {
+    final Date before = new Date();
+    this.campParticipant = new CampParticipant(this.participant);
+    final Date after = new Date();
+
+    assertThat(this.campParticipant.getSignedIn()).isNotNull();
+    assertThat(this.campParticipant.getSignedIn().before(before)).isFalse();
+    assertThat(this.campParticipant.getSignedIn().after(after)).isFalse();
+
+    Date signedIn = new Date(12345678901L);
+    this.campParticipant.setSignedIn(signedIn);
+    assertThat(this.campParticipant.getSignedIn()).isEqualTo(signedIn);
+
+    signedIn = new Date(22345678901L);
+    this.campParticipant.setSignedIn(signedIn);
+    assertThat(this.campParticipant.getSignedIn()).isEqualTo(signedIn);
+  }
+
+  @Test
+  public final void testSignedOff() {
+    assertThat(this.campParticipant.getSignedOff()).isNull();
+
+    Date signedOff = new Date(12345678901L);
+    this.campParticipant.setSignedOff(signedOff);
+    assertThat(this.campParticipant.getSignedOff()).isEqualTo(signedOff);
+
+    signedOff = new Date(22345678901L);
+    this.campParticipant.setSignedOff(signedOff);
+    assertThat(this.campParticipant.getSignedOff()).isEqualTo(signedOff);
   }
 
   @Test

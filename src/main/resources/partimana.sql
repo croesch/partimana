@@ -36,6 +36,7 @@ CREATE TABLE camps
     location            VARCHAR(255) NOT NULL,
     ratePerParticipant  VARCHAR(50) NOT NULL,
     ratePerDayChild     VARCHAR(50),
+    cancelledSince      DATE,
     Primary Key (id)
 );
 
@@ -44,8 +45,9 @@ CREATE TABLE campParticipants
     id                  INTEGER NOT NULL,
     camp                INTEGER NOT NULL,
     role                INTEGER DEFAULT 3,
+    sinceInCamp         DATE NOT NULL,
+    sinceNotInCamp      DATE,
     Primary Key (id, camp),
     Foreign Key (camp) references camps(id)
-    
 );
 

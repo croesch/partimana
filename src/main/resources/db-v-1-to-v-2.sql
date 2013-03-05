@@ -20,4 +20,10 @@ ALTER TABLE campParticipants DROP COLUMN isParticipant,
                              DROP COLUMN isSeminar,
                              DROP COLUMN isMisc;
 
-ALTER TABLE campParticipants ADD COLUMN role INTEGER DEFAULT 3;
+ALTER TABLE campParticipants ADD COLUMN sinceInCamp DATE NOT NULL,
+                             ADD COLUMN sinceNotInCamp DATE,
+                             ADD COLUMN role INTEGER DEFAULT 3;
+
+UPDATE campParticipants SET sinceInCamp=CURDATE();
+
+ALTER TABLE camps ADD COLUMN cancelledSince DATE;

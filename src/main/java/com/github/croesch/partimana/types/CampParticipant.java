@@ -1,5 +1,8 @@
 package com.github.croesch.partimana.types;
 
+import java.util.Date;
+
+import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
@@ -19,6 +22,14 @@ public final class CampParticipant implements IFilterable {
   /** the role of the participant in the camp */
   private Role role = Role.PARTICIPANT;
 
+  /** the date since when the participant is included in the camp */
+  @NotNull
+  private Date signedIn = new Date();
+
+  /** if the participant decided to not participate this holds the date */
+  @MayBeNull
+  private Date signedOff;
+
   /**
    * Constructs this wrapper for the given {@link Participant} that visits a camp.
    * 
@@ -30,6 +41,45 @@ public final class CampParticipant implements IFilterable {
       throw new RequiredFieldSetToNullException();
     }
     this.participant = p;
+  }
+
+  /**
+   * @since Date: Mar 5, 2013
+   * @return the date since when the participant is included in the camp
+   */
+  public Date getSignedIn() {
+    return this.signedIn;
+  }
+
+  /**
+   * @since Date: Mar 5, 2013
+   * @param date the date since when the participant is included in the camp
+   */
+  public void setSignedIn(final Date date) {
+    if (date == null) {
+      throw new IllegalArgumentException();
+    }
+    this.signedIn = date;
+  }
+
+  /**
+   * @since Date: Mar 5, 2013
+   * @return if the participant decided to not participate the date,<br>
+   *         otherwise <code>null</code>
+   */
+  public Date getSignedOff() {
+    return this.signedOff;
+  }
+
+  /**
+   * Sets when this participant decided to not take part in the camp.
+   * 
+   * @since Date: Mar 5, 2013
+   * @param date the date when the participant decided to not take part in the camp,<br>
+   *        or <code>null</code> if the participant didn't decide to not take part in the camp
+   */
+  public void setSignedOff(final Date date) {
+    this.signedOff = date;
   }
 
   /**

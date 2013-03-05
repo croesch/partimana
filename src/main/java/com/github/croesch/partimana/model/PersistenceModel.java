@@ -135,7 +135,8 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try {
-      stmt = this.con.prepareStatement("SELECT id, role FROM `campParticipants` WHERE camp=?");
+      stmt = this.con.prepareStatement("SELECT id, role, sinceInCamp, sinceNotInCamp"
+                                       + " FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, camp.getId());
       rs = stmt.executeQuery();
       while (rs.next()) {
@@ -148,6 +149,8 @@ public final class PersistenceModel implements IPersistenceModel {
         }
         final CampParticipant cp = new CampParticipant(p);
         cp.setRole(Role.valueOf(rs.getInt(++i)));
+        cp.setSignedIn(getUtilDate(rs.getDate(++i)));
+        cp.setSignedOff(getUtilDate(rs.getDate(++i)));
 
         camp.addParticipant(cp);
       }
@@ -176,11 +179,14 @@ public final class PersistenceModel implements IPersistenceModel {
       for (final CampParticipant part : campParticipants) {
         PreparedStatement s = null;
         try {
-          s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?, role=?");
+          s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?,"
+                                        + " role=?, sinceInCamp=?, sinceNotInCamp=?");
           int i = 0;
           s.setLong(++i, part.getId());
           s.setLong(++i, id);
           s.setInt(++i, part.getRole().getId());
+          s.setDate(++i, getSqlDate(part.getSignedIn()));
+          s.setDate(++i, getSqlDate(part.getSignedOff()));
           s.executeUpdate();
         } finally {
           close(s);
@@ -207,8 +213,8 @@ public final class PersistenceModel implements IPersistenceModel {
       while (rs.next()) {
         final Camp c = new Camp(rs.getLong("id"),
                                 rs.getString("name"),
-                                new java.util.Date(rs.getDate("fromDate").getTime()),
-                                new java.util.Date(rs.getDate("until").getTime()),
+                                getUtilDate(rs.getDate("fromDate")),
+                                getUtilDate(rs.getDate("until")),
                                 rs.getString("location"),
                                 rs.getString("ratePerParticipant"));
         c.setRatePerDayChildren(rs.getString("ratePerDayChild"));
@@ -249,7 +255,7 @@ public final class PersistenceModel implements IPersistenceModel {
                                               rs.getString("foreName"),
                                               Gender.of(rs.getString("gender")),
                                               Denomination.of(rs.getInt("denomination")),
-                                              new java.util.Date(rs.getDate("birth").getTime()),
+                                              getUtilDate(rs.getDate("birth")),
                                               rs.getString("livingStreet"),
                                               rs.getInt("livingPlz"),
                                               rs.getString("livingCity"),
