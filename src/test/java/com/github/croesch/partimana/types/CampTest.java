@@ -80,6 +80,31 @@ public class CampTest {
     assertThat(this.camp.getFromDate()).isNotEqualTo(d3);
   }
 
+  @Test
+  public final void testSetAndGetCancelDate() {
+    final Date d1 = new Date();
+    this.camp.setCancelDate(d1);
+    assertThat(this.camp.getCancelDate()).isEqualTo(d1);
+
+    final Date d2 = new Date(17);
+    this.camp.setCancelDate(d2);
+    assertThat(this.camp.getCancelDate()).isEqualTo(d2);
+
+    Date d3 = new Date(99);
+    this.camp.setCancelDate(d3);
+    assertThat(this.camp.getCancelDate()).isEqualTo(d3);
+
+    d3.setTime(98);
+    assertThat(this.camp.getCancelDate()).isNotEqualTo(d3);
+
+    d3 = this.camp.getCancelDate();
+    d3.setTime(98);
+    assertThat(this.camp.getCancelDate()).isNotEqualTo(d3);
+
+    this.camp.setCancelDate(null);
+    assertThat(this.camp.getCancelDate()).isNull();
+  }
+
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testSetAndGetUntilDateRFSTNE() {
     this.camp.setUntilDate(null);
@@ -188,9 +213,12 @@ public class CampTest {
 
     this.camp.addParticipant(new CampParticipant(p));
     this.camp.setRatePerDayChildren("children-rate");
+    this.camp.setCancelDate(new Date(20013));
 
     final Camp c = new Camp(this.camp);
     assertThat(c).isEqualTo(this.camp);
+    assertThat(c.getCancelDate()).isEqualTo(this.camp.getCancelDate());
+
     this.camp.removeAllParticipants();
     assertThat(c).isNotEqualTo(this.camp);
     this.camp.addParticipant(new CampParticipant(p));

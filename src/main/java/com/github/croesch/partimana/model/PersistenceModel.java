@@ -111,7 +111,7 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     try {
       stmt = this.con.prepareStatement("UPDATE `camps` SET name=?, fromDate=?, until=?, location=?, "
-                                       + "ratePerParticipant=?, ratePerDayChild=? WHERE id=?");
+                                       + "ratePerParticipant=?, ratePerDayChild=?, cancelledSince=? WHERE id=?");
       insertCampIntoStatement(c, stmt);
       stmt.executeUpdate();
 
@@ -205,7 +205,7 @@ public final class PersistenceModel implements IPersistenceModel {
     ResultSet rs = null;
     try {
       stmt = this.con.prepareStatement("SELECT id, name, fromDate, until, location, "
-                                       + "ratePerParticipant, ratePerDayChild FROM `camps` ORDER BY id");
+                                       + "ratePerParticipant, ratePerDayChild, cancelledSince FROM `camps` ORDER BY id");
       rs = stmt.executeQuery();
 
       final HashMap<Long, Camp> hashMap = new HashMap<Long, Camp>();
@@ -218,6 +218,7 @@ public final class PersistenceModel implements IPersistenceModel {
                                 rs.getString("location"),
                                 rs.getString("ratePerParticipant"));
         c.setRatePerDayChildren(rs.getString("ratePerDayChild"));
+        c.setCancelDate(getUtilDate(rs.getDate("cancelledSince")));
 
         updateCampParticipants(c);
 
@@ -362,6 +363,7 @@ public final class PersistenceModel implements IPersistenceModel {
     stmt.setString(++i, c.getLocation());
     stmt.setString(++i, c.getRatePerParticipant());
     stmt.setString(++i, c.getRatePerDayChildren());
+    stmt.setDate(++i, getSqlDate(c.getCancelDate()));
     stmt.setLong(++i, c.getId());
   }
 
@@ -434,7 +436,7 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     try {
       stmt = this.con.prepareStatement("INSERT INTO `camps` SET name=?, fromDate=?, until=?, location=?, "
-                                       + "ratePerParticipant=?, ratePerDayChild=?, id=?");
+                                       + "ratePerParticipant=?, ratePerDayChild=?, cancelledSince=?, id=?");
       insertCampIntoStatement(c, stmt);
       stmt.executeUpdate();
 

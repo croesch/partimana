@@ -199,6 +199,7 @@ public class PersistenceModelTest {
     this.pm.create(p);
     this.pm.create(c);
     c.setName("FREIZEIT");
+    c.setCancelDate(new Date(1234567887654L));
     cp.setRole(Role.KITCHEN_STAFF);
     final Date date = new Date();
     cp.setSignedIn(date);
@@ -211,6 +212,7 @@ public class PersistenceModelTest {
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.PARTICIPANT);
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn()).isEqualTo(new DateUtil(new Date(0)).getDateWithoutTime());
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedOff()).isNull();
+    assertThat(storedCamp.getCancelDate()).isNull();
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
     this.pm.update(c);
@@ -223,6 +225,7 @@ public class PersistenceModelTest {
     final Date dateWithoutTime = new DateUtil(date).getDateWithoutTime();
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn()).isEqualTo(dateWithoutTime);
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedOff()).isNull();
+    assertThat(storedCamp.getCancelDate()).isEqualTo(new DateUtil(new Date(1234567887654L)).getDateWithoutTime());
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
     pm2.deleteCamp(c.getId());

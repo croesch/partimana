@@ -49,6 +49,10 @@ public final class Camp implements IFilterable {
   @MayBeNull
   private String ratePerDayChildren = null;
 
+  /** the date when this camp has been cancelled, or <code>null</code> if not cancelled */
+  @MayBeNull
+  private Date cancelDate = null;
+
   /** the participants of this camp */
   @NotNull
   private final List<CampParticipant> participants = new ArrayList<CampParticipant>();
@@ -125,6 +129,7 @@ public final class Camp implements IFilterable {
     this.ratePerParticipant = c.ratePerParticipant;
     this.until = c.until;
     this.participants.addAll(c.participants);
+    this.cancelDate = c.cancelDate;
   }
 
   /**
@@ -450,5 +455,31 @@ public final class Camp implements IFilterable {
       return false;
     }
     return true;
+  }
+
+  /**
+   * @since Date: Mar 11, 2013
+   * @return the date, when the camp has been cancelled, or <code>null</code> if the camp hasn't been cancelled
+   */
+  @MayBeNull
+  public Date getCancelDate() {
+    if (this.cancelDate == null) {
+      return null;
+    }
+    return new Date(this.cancelDate.getTime());
+  }
+
+  /**
+   * Sets the date when the camp has been cancelled, or <code>null</code> if not cancelled.
+   * 
+   * @since Date: Mar 11, 2013
+   * @param date the date when the camp has been cancelled, or <code>null</code> if not cancelled
+   */
+  public void setCancelDate(final Date date) {
+    if (date == null) {
+      this.cancelDate = null;
+    } else {
+      this.cancelDate = new Date(date.getTime());
+    }
   }
 }
