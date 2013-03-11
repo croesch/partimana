@@ -25,6 +25,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.types.CountyCouncil;
@@ -80,19 +81,22 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                        CountyCouncil.CITY_NEUSTADT);
     this.camp.addParticipant(new CampParticipant(this.participant));
 
-    GuiActionRunner.execute(new GuiTask() {
-
-      @Override
-      protected void executeInEDT() throws Throwable {
-        view.setCamp(CampEditViewGUITest.this.camp);
-      }
-    });
     view.setName("editView");
     this.editView = view;
+    updateCamp();
 
     this.window = new FrameFixture(robot(), Containers.frameFor(view));
     this.window.show();
     this.testView = this.window.panel("editView");
+  }
+
+  private void updateCamp() {
+    GuiActionRunner.execute(new GuiTask() {
+      @Override
+      protected void executeInEDT() throws Throwable {
+        CampEditViewGUITest.this.editView.setCamp(CampEditViewGUITest.this.camp);
+      }
+    });
   }
 
   @Override
@@ -224,6 +228,22 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     final JLabelFixture testObj = this.testView.label("idLbl");
     testObj.requireText(String.valueOf(this.camp.getId()));
     assertThat(this.editView.getId()).isEqualTo(this.camp.getId());
+  }
+
+  @Test
+  public final void testCancelDate() {
+    final JLabelFixture testObj = this.testView.label("cancelledLbl");
+    testObj.requireText((String) null);
+
+    this.camp.setCancelDate(new Date(1234));
+    testObj.requireText((String) null);
+    updateCamp();
+    testObj.requireText(Text.CAMP_CANCELLED_ON.text(new SimpleDateFormat().format(new Date(1234))));
+
+    this.camp.setCancelDate(null);
+    clear();
+    updateCamp();
+    testObj.requireText((String) null);
   }
 
   @Test
