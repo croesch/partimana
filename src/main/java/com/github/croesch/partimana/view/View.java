@@ -205,6 +205,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
       case DELETE_PARTICIPANT:
       case SAVE_CAMP:
       case DELETE_CAMP:
+      case CANCEL_CAMP:
         this.observer.performAction(action);
         break;
 

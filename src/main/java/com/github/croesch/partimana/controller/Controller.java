@@ -1,5 +1,7 @@
 package com.github.croesch.partimana.controller;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 import com.github.croesch.annotate.NotNull;
@@ -8,6 +10,7 @@ import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.Model;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
+import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.view.View;
 
 /**
@@ -67,6 +70,12 @@ public final class Controller implements ActionObserver {
 
       case DELETE_PARTICIPANT:
         this.model.deleteParticipant(this.view.getParticipantListView().getSelectedElementId());
+        break;
+
+      case CANCEL_CAMP:
+        final Camp c = this.model.getCamp(this.view.getCampListView().getSelectedElementId());
+        c.setCancelDate(new Date());
+        this.model.store(c);
         break;
 
       case SAVE_CAMP:

@@ -60,6 +60,8 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
 
   private boolean deleteActionPerformed;
 
+  private boolean cancelActionPerformed;
+
   @Override
   protected void before() {
     Action.setObserver(new ActionObserver() {
@@ -70,6 +72,8 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
           CampViewGUITest.this.cView.createCamp();
         } else if (action == UserAction.DELETE_CAMP) {
           CampViewGUITest.this.deleteActionPerformed = true;
+        } else if (action == UserAction.CANCEL_CAMP) {
+          CampViewGUITest.this.cancelActionPerformed = true;
         } else {
           Assert.fail();
         }
@@ -99,6 +103,7 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView = window.panel("view");
 
     this.deleteActionPerformed = false;
+    this.cancelActionPerformed = false;
   }
 
   @Test
@@ -142,5 +147,13 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.button("deleteCamp").click();
 
     assertThat(this.deleteActionPerformed).isTrue();
+  }
+
+  @Test
+  public void testCancelCamp() {
+    assertThat(this.cancelActionPerformed).isFalse();
+    this.testView.button("cancelCamp").click();
+
+    assertThat(this.cancelActionPerformed).isTrue();
   }
 }

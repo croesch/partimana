@@ -66,11 +66,13 @@ class CampView extends CPanel implements ICampView, ActionObserver {
     this.editView = pev;
     this.listView = clv;
 
-    final CPanel buttonPanel = new CPanel("buttons", new MigLayout("fill"));
+    final CPanel buttonPanel = new CPanel("buttons", new MigLayout());
     final CButton createButton = new CButton("newCamp", Action.getCreateCampAction());
     final CButton deleteButton = new CButton("deleteCamp", Action.getDeleteCampAction());
+    final CButton cancelButton = new CButton("cancelCamp", Action.getCancelCampAction());
     buttonPanel.add(createButton, "sg one");
     buttonPanel.add(deleteButton, "sg one");
+    buttonPanel.add(cancelButton, "sg one");
 
     final CPanel leftPanel = new CPanel("campList", new MigLayout("fill", "[grow, fill]", "[][grow, fill]"));
     leftPanel.add(buttonPanel, "wrap");

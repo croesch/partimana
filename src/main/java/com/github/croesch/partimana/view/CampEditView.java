@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.view;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,6 +61,10 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
   @NotNull
   private final CLabel idValueLbl = new CLabel("idLbl", "12345");
 
+  /** the label to show the date when a camp has been cancelled */
+  @NotNull
+  private final CLabel cancelledLbl = new CLabel("cancelledLbl", "12345");
+
   /** reference to the list of {@link CampParticipant}s viewed by the {@link CampParticipantListView} */
   @NotNull
   private final List<CampParticipant> campParticipants = new ArrayList<CampParticipant>();
@@ -114,6 +119,8 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
 
     add(this.idValueLbl, "cell 1 0");
 
+    add(this.cancelledLbl, "cell 2 0, span 2");
+
     final CLabel nameLbl = new CLabel("name", Text.CAMP_NAME.text());
     add(nameLbl, "cell 0 1");
 
@@ -163,6 +170,7 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
   @Override
   public void clear() {
     this.idValueLbl.setText(null);
+    this.cancelledLbl.setText(null);
 
     this.nameTf.setText(null);
     this.locationTf.setText(null);
@@ -181,6 +189,10 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
     } else {
 
       this.idValueLbl.setText(String.valueOf(camp.getId()));
+
+      if (camp.getCancelDate() != null) {
+        this.cancelledLbl.setText(Text.CAMP_CANCELLED_ON.text(new SimpleDateFormat().format(camp.getCancelDate())));
+      }
 
       this.nameTf.setText(camp.getName());
       this.locationTf.setText(camp.getLocation());
