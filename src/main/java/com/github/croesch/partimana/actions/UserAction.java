@@ -30,6 +30,8 @@ public enum UserAction {
   SEARCH_CAMP,
   /** the action to delete a camp */
   DELETE_CAMP,
+  /** the action to cancel a camp */
+  CANCEL_CAMP,
   /** the action to create a camp */
   CREATE_CAMP;
 

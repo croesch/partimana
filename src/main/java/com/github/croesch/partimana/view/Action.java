@@ -55,6 +55,10 @@ final class Action extends AbstractAction {
   @NotNull
   private static Action deleteCampAction = new Action(UserAction.DELETE_CAMP, Text.CAMP_DELETE);
 
+  /** action to cancel a camp */
+  @NotNull
+  private static Action cancelCampAction = new Action(UserAction.CANCEL_CAMP, Text.CAMP_CANCEL);
+
   /** action to search a camp */
   @NotNull
   private static Action searchCampAction = new Action(UserAction.SEARCH_CAMP, Text.SEARCH_CAMP);
@@ -172,6 +176,15 @@ final class Action extends AbstractAction {
   @NotNull
   static Action getDeleteCampAction() {
     return deleteCampAction;
+  }
+
+  /**
+   * @since Date: Mar 11, 2013
+   * @return the {@link Action} to cancel a camp
+   */
+  @NotNull
+  static Action getCancelCampAction() {
+    return cancelCampAction;
   }
 
   /**

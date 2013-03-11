@@ -107,6 +107,8 @@ public enum Text {
   CAMP_NEW (31),
   /** the name for entry delete selected camp */
   CAMP_DELETE (32),
+  /** the name for entry cancel selected camp */
+  CAMP_CANCEL (33),
 
   /** the name for camp */
   CAMP (200),
@@ -124,6 +126,8 @@ public enum Text {
   CAMP_RATE_PER_PARTICIPANT (206),
   /** the text for the per-day-rate of the camp */
   CAMP_RATE_PER_DAY (207),
+  /** the text for the date when a date has been cancelled */
+  CAMP_CANCELLED_ON (208),
 
   /** the text for the role the participant has in a camp */
   CAMP_PARTICIPANT_ROLE (300),
