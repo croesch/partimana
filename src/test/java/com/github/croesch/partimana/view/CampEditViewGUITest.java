@@ -250,73 +250,11 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
   @Test
   public final void testParticipantList() {
 
-    final Participant participant1 = new Participant("Mustermann",
-                                                     "Max",
-                                                     Gender.MALE,
-                                                     Denomination.OTHER,
-                                                     new Date(),
-                                                     "Musterstrasse 12",
-                                                     12345,
-                                                     "Musterhausen",
-                                                     CountyCouncil.OTHER);
-
-    final Date d1 = new Date(123);
-
-    participant1.setBank("bank");
-    participant1.setBankAccountNumber(1);
-    participant1.setBankCodeNumber(12);
-    participant1.setComment("comment");
-    participant1.setDateSinceInDataBase(d1);
-    participant1.setDateUpToInSystem(d1);
-    participant1.setDenomination(Denomination.JEWISH);
-    participant1.setFax("fax");
-    participant1.setMailAddress("mail");
-    participant1.setMobilePhone("mobile");
-    participant1.setPhone("phone");
-    participant1.setPhoneOfParents("phone");
-    participant1.setCityPostal("city");
-    participant1.setPostCodePostal(3124);
-    participant1.setStreetPostal("street");
-
-    final Participant participant2 = new Participant("Schmidt",
-                                                     "Hans",
-                                                     Gender.MALE,
-                                                     Denomination.NONE,
-                                                     new Date(1200),
-                                                     "Strasse 4",
-                                                     56789,
-                                                     "Stadt",
-                                                     CountyCouncil.CITY_NEUSTADT);
-
-    final Participant participant3 = new Participant("Müller",
-                                                     "Jasmin",
-                                                     Gender.FEMALE,
-                                                     Denomination.CATHOLIC,
-                                                     new Date(6789543),
-                                                     "Mittelgasse 3",
-                                                     54321,
-                                                     "Schimmelhausen",
-                                                     CountyCouncil.CITY_ZWEIBRUECKEN);
-
-    final Participant participant4 = new Participant("Mauer",
-                                                     "Jaqueline",
-                                                     Gender.FEMALE,
-                                                     Denomination.JEWISH,
-                                                     new Date(1297579),
-                                                     "Hinterweg 12",
-                                                     99384,
-                                                     "Hilgen",
-                                                     CountyCouncil.UNKNOWN);
-
-    final Participant participant5 = new Participant("Bauer",
-                                                     "Andreas",
-                                                     Gender.MALE,
-                                                     Denomination.EVANGELIC,
-                                                     new Date(9876543),
-                                                     "Julgenweg 76",
-                                                     21228,
-                                                     "Mildeningen",
-                                                     CountyCouncil.CITY_NEUSTADT);
+    final Participant participant1 = createParticipant1();
+    final Participant participant2 = createParticipant2();
+    final Participant participant3 = createParticipant3();
+    final Participant participant4 = createParticipant4();
+    final Participant participant5 = createParticipant5();
 
     final List<Participant> participants = Arrays.asList(participant1, participant2, participant3, participant4,
                                                          participant5);
@@ -332,73 +270,11 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
   @Test
   public final void testParticipantAdding() {
 
-    final Participant participant1 = new Participant("Mustermann",
-                                                     "Max",
-                                                     Gender.MALE,
-                                                     Denomination.OTHER,
-                                                     new Date(),
-                                                     "Musterstrasse 12",
-                                                     12345,
-                                                     "Musterhausen",
-                                                     CountyCouncil.OTHER);
-
-    final Date d1 = new Date(123);
-
-    participant1.setBank("bank");
-    participant1.setBankAccountNumber(1);
-    participant1.setBankCodeNumber(12);
-    participant1.setComment("comment");
-    participant1.setDateSinceInDataBase(d1);
-    participant1.setDateUpToInSystem(d1);
-    participant1.setDenomination(Denomination.JEWISH);
-    participant1.setFax("fax");
-    participant1.setMailAddress("mail");
-    participant1.setMobilePhone("mobile");
-    participant1.setPhone("phone");
-    participant1.setPhoneOfParents("phone");
-    participant1.setCityPostal("city");
-    participant1.setPostCodePostal(3124);
-    participant1.setStreetPostal("street");
-
-    final Participant participant2 = new Participant("Schmidt",
-                                                     "Hans",
-                                                     Gender.MALE,
-                                                     Denomination.NONE,
-                                                     new Date(1200),
-                                                     "Strasse 4",
-                                                     56789,
-                                                     "Stadt",
-                                                     CountyCouncil.CITY_NEUSTADT);
-
-    final Participant participant3 = new Participant("Müller",
-                                                     "Jasmin",
-                                                     Gender.FEMALE,
-                                                     Denomination.CATHOLIC,
-                                                     new Date(6789543),
-                                                     "Mittelgasse 3",
-                                                     54321,
-                                                     "Schimmelhausen",
-                                                     CountyCouncil.CITY_ZWEIBRUECKEN);
-
-    final Participant participant4 = new Participant("Mauer",
-                                                     "Jaqueline",
-                                                     Gender.FEMALE,
-                                                     Denomination.JEWISH,
-                                                     new Date(1297579),
-                                                     "Hinterweg 12",
-                                                     99384,
-                                                     "Hilgen",
-                                                     CountyCouncil.UNKNOWN);
-
-    final Participant participant5 = new Participant("Bauer",
-                                                     "Andreas",
-                                                     Gender.MALE,
-                                                     Denomination.EVANGELIC,
-                                                     new Date(9876543),
-                                                     "Julgenweg 76",
-                                                     21228,
-                                                     "Mildeningen",
-                                                     CountyCouncil.CITY_NEUSTADT);
+    final Participant participant1 = createParticipant1();
+    final Participant participant2 = createParticipant2();
+    final Participant participant3 = createParticipant3();
+    final Participant participant4 = createParticipant4();
+    final Participant participant5 = createParticipant5();
 
     final List<Participant> participants = Arrays.asList(participant1, participant2, participant3, participant4,
                                                          participant5);
@@ -458,73 +334,11 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
   @Test
   public final void testCampParticipantList() {
 
-    final Participant participant1 = new Participant("Mustermann",
-                                                     "Max",
-                                                     Gender.MALE,
-                                                     Denomination.OTHER,
-                                                     new Date(),
-                                                     "Musterstrasse 12",
-                                                     12345,
-                                                     "Musterhausen",
-                                                     CountyCouncil.OTHER);
-
-    final Date d1 = new Date(123);
-
-    participant1.setBank("bank");
-    participant1.setBankAccountNumber(1);
-    participant1.setBankCodeNumber(12);
-    participant1.setComment("comment");
-    participant1.setDateSinceInDataBase(d1);
-    participant1.setDateUpToInSystem(d1);
-    participant1.setDenomination(Denomination.JEWISH);
-    participant1.setFax("fax");
-    participant1.setMailAddress("mail");
-    participant1.setMobilePhone("mobile");
-    participant1.setPhone("phone");
-    participant1.setPhoneOfParents("phone");
-    participant1.setCityPostal("city");
-    participant1.setPostCodePostal(3124);
-    participant1.setStreetPostal("street");
-
-    final Participant participant2 = new Participant("Schmidt",
-                                                     "Hans",
-                                                     Gender.MALE,
-                                                     Denomination.NONE,
-                                                     new Date(1200),
-                                                     "Strasse 4",
-                                                     56789,
-                                                     "Stadt",
-                                                     CountyCouncil.CITY_NEUSTADT);
-
-    final Participant participant3 = new Participant("Müller",
-                                                     "Jasmin",
-                                                     Gender.FEMALE,
-                                                     Denomination.CATHOLIC,
-                                                     new Date(6789543),
-                                                     "Mittelgasse 3",
-                                                     54321,
-                                                     "Schimmelhausen",
-                                                     CountyCouncil.CITY_ZWEIBRUECKEN);
-
-    final Participant participant4 = new Participant("Mauer",
-                                                     "Jaqueline",
-                                                     Gender.FEMALE,
-                                                     Denomination.JEWISH,
-                                                     new Date(1297579),
-                                                     "Hinterweg 12",
-                                                     99384,
-                                                     "Hilgen",
-                                                     CountyCouncil.UNKNOWN);
-
-    final Participant participant5 = new Participant("Bauer",
-                                                     "Andreas",
-                                                     Gender.MALE,
-                                                     Denomination.EVANGELIC,
-                                                     new Date(9876543),
-                                                     "Julgenweg 76",
-                                                     21228,
-                                                     "Mildeningen",
-                                                     CountyCouncil.CITY_NEUSTADT);
+    final Participant participant1 = createParticipant1();
+    final Participant participant2 = createParticipant2();
+    final Participant participant3 = createParticipant3();
+    final Participant participant4 = createParticipant4();
+    final Participant participant5 = createParticipant5();
 
     final CampParticipant campParticipant = new CampParticipant(participant1);
     campParticipant.setRole(Role.DIRECTION);
@@ -572,5 +386,84 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
         CampEditViewGUITest.this.editView.update(participants);
       }
     });
+  }
+
+  private Participant createParticipant1() {
+    final Participant participant1 = new Participant("Mustermann",
+                                                     "Max",
+                                                     Gender.MALE,
+                                                     Denomination.OTHER,
+                                                     new Date(),
+                                                     "Musterstrasse 12",
+                                                     12345,
+                                                     "Musterhausen",
+                                                     CountyCouncil.OTHER);
+
+    final Date d1 = new Date(123);
+
+    participant1.setBank("bank");
+    participant1.setBankAccountNumber(1);
+    participant1.setBankCodeNumber(12);
+    participant1.setComment("comment");
+    participant1.setDateSinceInDataBase(d1);
+    participant1.setDateUpToInSystem(d1);
+    participant1.setDenomination(Denomination.JEWISH);
+    participant1.setFax("fax");
+    participant1.setMailAddress("mail");
+    participant1.setMobilePhone("mobile");
+    participant1.setPhone("phone");
+    participant1.setPhoneOfParents("phone");
+    participant1.setCityPostal("city");
+    participant1.setPostCodePostal(3124);
+    participant1.setStreetPostal("street");
+    return participant1;
+  }
+
+  private Participant createParticipant2() {
+    return new Participant("Schmidt",
+                           "Hans",
+                           Gender.MALE,
+                           Denomination.NONE,
+                           new Date(1200),
+                           "Strasse 4",
+                           56789,
+                           "Stadt",
+                           CountyCouncil.CITY_NEUSTADT);
+  }
+
+  private Participant createParticipant3() {
+    return new Participant("Müller",
+                           "Jasmin",
+                           Gender.FEMALE,
+                           Denomination.CATHOLIC,
+                           new Date(6789543),
+                           "Mittelgasse 3",
+                           54321,
+                           "Schimmelhausen",
+                           CountyCouncil.CITY_ZWEIBRUECKEN);
+  }
+
+  private Participant createParticipant4() {
+    return new Participant("Mauer",
+                           "Jaqueline",
+                           Gender.FEMALE,
+                           Denomination.JEWISH,
+                           new Date(1297579),
+                           "Hinterweg 12",
+                           99384,
+                           "Hilgen",
+                           CountyCouncil.UNKNOWN);
+  }
+
+  private Participant createParticipant5() {
+    return new Participant("Bauer",
+                           "Andreas",
+                           Gender.MALE,
+                           Denomination.EVANGELIC,
+                           new Date(9876543),
+                           "Julgenweg 76",
+                           21228,
+                           "Mildeningen",
+                           CountyCouncil.CITY_NEUSTADT);
   }
 }
