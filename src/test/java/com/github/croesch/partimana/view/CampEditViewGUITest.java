@@ -116,6 +116,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.textBox("ratePerDayTF").requireEmpty();
     this.testView.label("idLbl").requireText((String) null);
     this.testView.table("campParticipants").requireRowCount(0);
+    this.testView.label("cancelledLbl").requireText((String) null);
 
     assertThat(this.editView.getNameOfCamp()).isEmpty();
     assertThat(this.editView.getLocationOfCamp()).isEmpty();
