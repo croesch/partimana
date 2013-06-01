@@ -69,11 +69,17 @@ public class CampParticipantTest {
 
     this.participant.setForeName("Hanz");
     this.participant.setLastName("Decker");
+    this.participant.setStreet("a new street 42");
+    this.participant.setPostCode(12500);
+    this.participant.setCity("a new city");
 
     assertCampParticipantCallsParticipant(this.campParticipant);
 
     this.participant.setForeName("Hans");
     this.participant.setLastName("Becker");
+    this.participant.setStreet("Examplestreet 12");
+    this.participant.setPostCode(12345);
+    this.participant.setCity("Examplecity");
 
     assertCampParticipantCallsParticipant(this.campParticipant);
   }
@@ -82,6 +88,9 @@ public class CampParticipantTest {
     assertThat(cp.getId()).isEqualTo(this.participant.getId());
     assertThat(cp.getForeName()).isEqualTo(this.participant.getForeName());
     assertThat(cp.getLastName()).isEqualTo(this.participant.getLastName());
+    assertThat(cp.getStreet()).isEqualTo(this.participant.getStreet());
+    assertThat(cp.getPostCode()).isEqualTo(String.valueOf(this.participant.getPostCode()));
+    assertThat(cp.getCity()).isEqualTo(this.participant.getCity());
   }
 
   @Test

@@ -126,8 +126,6 @@ public final class CampParticipant implements IFilterable {
   }
 
   /**
-   * Returns the id of the {@link Participant}.
-   * 
    * @since Date: Sep 16, 2012
    * @return the id of the {@link Participant}.
    */
@@ -136,22 +134,47 @@ public final class CampParticipant implements IFilterable {
   }
 
   /**
-   * Returns the fore name of the {@link Participant}.
-   * 
    * @since Date: Sep 16, 2012
    * @return the fore name of the {@link Participant}.
    */
+  @NotNull
   public String getForeName() {
     return this.participant.getForeName();
   }
 
   /**
-   * Returns the last name of the {@link Participant}.
-   * 
    * @since Date: Sep 16, 2012
    * @return the last name of the {@link Participant}.
    */
+  @NotNull
   public String getLastName() {
     return this.participant.getLastName();
+  }
+
+  /**
+   * @since Date: Jun 1, 2013
+   * @return the street of the {@link Participant}.
+   */
+  @NotNull
+  public String getStreet() {
+    return this.participant.getStreet();
+  }
+
+  /**
+   * @since Date: Jun 1, 2013
+   * @return the string representation of the post code of the {@link Participant}.
+   */
+  @NotNull
+  public String getPostCode() {
+    return String.valueOf(this.participant.getPostCode());
+  }
+
+  /**
+   * @since Date: Jun 1, 2013
+   * @return the city of the {@link Participant}.
+   */
+  @NotNull
+  public String getCity() {
+    return this.participant.getCity();
   }
 }
