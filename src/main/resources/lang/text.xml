@@ -19,12 +19,16 @@
 	<entry key="31">Neu</entry>
 	<entry key="32">Löschen</entry>
 	<entry key="33">Absagen</entry>
+	<entry key="34">Freizeit als Serienbrief-Datei speichern</entry>
 
 	<entry key="50">Suchen</entry>
 	<!-- the title of the search frame -->
 	<!-- {0} will contain the default title -->
 	<!-- {1} will contain the search keyword -->
 	<entry key="51">{0} - {1}</entry>
+	
+	<entry key="60">Achtung</entry>
+	<entry key="61">Die Datei '{0}' wird überschrieben!</entry>
 	
 	<!-- Teilnehmer-Daten -->
 	<entry key="100">Teilnehmer</entry>
@@ -143,6 +147,8 @@
 	<!-- Informationen -->
 	<entry key="11010">Teilnehmer #{0} erfolgreich gespeichert.</entry>
 	<entry key="11011">Freizeit #{0} erfolgreich gespeichert.</entry>
+	<entry key="11012">Keine Freizeit ausgewählt.</entry>
+	<entry key="11013">Freizeit #{0} erfolgreich in Datei '{1}' gespeichert.</entry>
 
 	<!-- Warnungen -->
 	<entry key="12000">Unbekannte Aktion: '{0}'</entry>

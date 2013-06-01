@@ -26,6 +26,8 @@ public enum UserAction {
   CAMP_SELECTED,
   /** the action to save a camp */
   SAVE_CAMP,
+  /** the action to save a camp as csv */
+  SAVE_CAMP_TO_CSV,
   /** the action to search a camp */
   SEARCH_CAMP,
   /** the action to delete a camp */

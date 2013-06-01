@@ -43,9 +43,12 @@ final class Action extends AbstractAction {
   private static Action deleteParticipantAction = new Action(UserAction.DELETE_PARTICIPANT, Text.PARTICIPANT_DELETE);
 
   /** action to save something */
-
   @NotNull
   private static Action saveCampAction = new Action(UserAction.SAVE_CAMP, Text.SAVE);
+
+  /** action to save camp to csv */
+  @NotNull
+  private static Action saveCamp2CSVAction = new Action(UserAction.SAVE_CAMP_TO_CSV, Text.CAMP_TO_CSV);
 
   /** action to create a new camp */
   @NotNull
@@ -207,5 +210,14 @@ final class Action extends AbstractAction {
   @NotNull
   static Action getSearchParticipantAction() {
     return searchParticipantAction;
+  }
+
+  /**
+   * @since Date: Jun 1, 2013
+   * @return the {@link Action} to save a camp to csv.
+   */
+  @NotNull
+  static Action getSaveCampToCSVAction() {
+    return saveCamp2CSVAction;
   }
 }

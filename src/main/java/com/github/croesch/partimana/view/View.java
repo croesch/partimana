@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -113,7 +118,9 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
       public void stateChanged(final ChangeEvent e) {
         if (e.getSource() instanceof JTabbedPane) {
           Action.getSearchParticipantAction().setEnabled(((JTabbedPane) e.getSource()).getSelectedIndex() == 0);
-          Action.getSearchCampAction().setEnabled(((JTabbedPane) e.getSource()).getSelectedIndex() == 1);
+          final boolean campTab = ((JTabbedPane) e.getSource()).getSelectedIndex() == 1;
+          Action.getSearchCampAction().setEnabled(campTab);
+          Action.getSaveCampToCSVAction().setEnabled(campTab);
         }
       }
     });
@@ -221,6 +228,10 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
         openCampSearchView();
         break;
 
+      case SAVE_CAMP_TO_CSV:
+        saveCampToCSV();
+        break;
+
       // assert the event happened from the search view
       case CAMP_SELECTED:
         this.campView.getCampEditView().setCamp(this.model.getCamp(this.campSearchView.getSelectedId()));
@@ -242,6 +253,46 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
         LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
         break;
 
+    }
+  }
+
+  /**
+   * Writes the data of the currently selected camp to a csv file. The user can choose the file and then the content is
+   * written to the file.
+   * 
+   * @since Date: Jun 1, 2013
+   */
+  private void saveCampToCSV() {
+    final Camp selectedCamp = this.model.getCamp(this.campView.getCampListView().getSelectedElementId());
+    if (selectedCamp == null) {
+      showInformation(Text.INFO_NO_CAMP_SELECTED);
+      return;
+    }
+    final JFileChooser fileChooser = new JFileChooser();
+    if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+      final File selectedFile = fileChooser.getSelectedFile();
+      if (!selectedFile.exists()
+          || JOptionPane.showConfirmDialog(this, Text.CONTINUE_OVERRIDES_FILE.text(selectedFile.getAbsolutePath()),
+                                           Text.USER_WARNING.text(), JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+        FileWriter fileWriter = null;
+        try {
+          fileWriter = new FileWriter(selectedFile);
+          fileWriter.write(selectedCamp.toCSV());
+          fileWriter.flush();
+          showInformation(Text.INFO_CAMP_SAVED_TO_CSV, selectedCamp.getId(), selectedFile.getAbsolutePath());
+        } catch (final IOException e) {
+          e.printStackTrace();
+          showError(Text.ERROR_CAMP_NOT_SAVED);
+        } finally {
+          try {
+            if (fileWriter != null) {
+              fileWriter.close();
+            }
+          } catch (final IOException e) {
+            e.printStackTrace();
+          }
+        }
+      }
     }
   }
 

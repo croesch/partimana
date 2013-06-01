@@ -27,8 +27,11 @@ class MenuBar extends CMenuBar {
     super(name);
 
     final CMenu file = new CMenu("file", Text.FILE.text());
+    final CMenuItem camp2CSV = new CMenuItem("camp2csv", Action.getSaveCampToCSVAction());
     final CMenuItem exit = new CMenuItem("exit", Action.getExitAction());
 
+    file.add(camp2CSV);
+    file.addSeparator();
     file.add(exit);
     add(file);
 

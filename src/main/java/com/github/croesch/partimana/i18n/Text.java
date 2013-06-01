@@ -56,6 +56,11 @@ public enum Text {
   /** the name for the menu item to search for camps */
   SEARCH_CAMP (200),
 
+  /** warning title for the user */
+  USER_WARNING (60),
+  /** message that continueing leads in overriding a file */
+  CONTINUE_OVERRIDES_FILE (61),
+
   /** the name for participant */
   PARTICIPANT (100),
   /** the name for the id of participant */
@@ -109,6 +114,8 @@ public enum Text {
   CAMP_DELETE (32),
   /** the name for entry cancel selected camp */
   CAMP_CANCEL (33),
+  /** the name for entry save camp to csv */
+  CAMP_TO_CSV (34),
 
   /** the name for camp */
   CAMP (200),
@@ -333,6 +340,10 @@ public enum Text {
   INFO_PARTICIPANT_SAVED (11010),
   /** information that camp has been saved */
   INFO_CAMP_SAVED (11011),
+  /** no camp selected to be saved */
+  INFO_NO_CAMP_SELECTED (11012),
+  /** camp successfully saved to csv */
+  INFO_CAMP_SAVED_TO_CSV (11013),
 
   /** warning for an unknown action */
   WARN_UNKNOWN_ACTION (12000),
