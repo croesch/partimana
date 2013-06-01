@@ -403,4 +403,51 @@ public class CampTest {
     this.camp.removeAllParticipants();
     assertThat(this.camp.getParticipants()).isEmpty();
   }
+
+  @Test
+  public void testToCSV() {
+    final Participant participant = new Participant("Kleemann",
+                                                    "Lorenz",
+                                                    Gender.MALE,
+                                                    Denomination.OTHER,
+                                                    new Date(),
+                                                    "Lehmweg 28",
+                                                    67688,
+                                                    "Rodenbach",
+                                                    CountyCouncil.OTHER);
+    final Participant participant2 = new Participant("Eichhorn",
+                                                     "Sosaya",
+                                                     Gender.FEMALE,
+                                                     Denomination.OTHER,
+                                                     new Date(),
+                                                     "Eisenkehlstr. 37",
+                                                     67475,
+                                                     "Weidenthal",
+                                                     CountyCouncil.OTHER);
+    final Participant participant3 = new Participant("Eichhorn",
+                                                     "Cosima",
+                                                     Gender.FEMALE,
+                                                     Denomination.OTHER,
+                                                     new Date(),
+                                                     "Eisenkehlstr. 37",
+                                                     67475,
+                                                     "Weidenthal",
+                                                     CountyCouncil.OTHER);
+
+    this.camp.addParticipant(new CampParticipant(participant));
+    this.camp.addParticipant(new CampParticipant(participant2));
+    this.camp.addParticipant(new CampParticipant(participant3));
+    assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant),
+                                                            new CampParticipant(participant2),
+                                                            new CampParticipant(participant3));
+
+    assertThat(this.camp.toCSV()).isEqualTo("vorname;name;strasse;plz;wohnort" + System.getProperty("line.separator")
+                                                    + "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach"
+                                                    + System.getProperty("line.separator")
+                                                    + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal"
+                                                    + System.getProperty("line.separator")
+                                                    + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal"
+                                                    + System.getProperty("line.separator"));
+    System.out.println(this.camp.toCSV());
+  }
 }

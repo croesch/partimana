@@ -482,4 +482,25 @@ public final class Camp implements IFilterable {
       this.cancelDate = new Date(date.getTime());
     }
   }
+
+  /**
+   * @since Date: Jun 1, 2013
+   * @return a string being a CSV representation of this camp
+   */
+  public String toCSV() {
+    final String separator = ";";
+    final String lf = System.getProperty("line.separator");
+
+    final StringBuilder sb = new StringBuilder("vorname" + separator + "name" + separator + "strasse" + separator
+                                               + "plz" + separator + "wohnort");
+    sb.append(lf);
+    for (final CampParticipant cp : getParticipants()) {
+      sb.append(cp.getForeName()).append(separator);
+      sb.append(cp.getLastName()).append(separator);
+      sb.append(cp.getStreet()).append(separator);
+      sb.append(cp.getPostCode()).append(separator);
+      sb.append(cp.getCity()).append(lf);
+    }
+    return sb.toString();
+  }
 }
