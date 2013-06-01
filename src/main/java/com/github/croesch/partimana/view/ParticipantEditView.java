@@ -180,17 +180,17 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
     add(new CLabel("untilInDb", Text.PARTICIPANT_UNTIL.text()), "cell 4 0");
     add(this.untilInDbTf, "cell 5 0");
 
-    add(new CLabel("firstName", Text.PARTICIPANT_FORENAME.text()), "cell 0 1");
-    add(this.firstNameTf, "cell 1 1");
+    add(new CLabel("lastName", Text.PARTICIPANT_LASTNAME.text()), "cell 0 1");
+    add(this.lastNameTf, "cell 1 1");
 
-    add(new CLabel("lastName", Text.PARTICIPANT_LASTNAME.text()), "cell 2 1");
-    add(this.lastNameTf, "cell 3 1");
+    add(new CLabel("firstName", Text.PARTICIPANT_FORENAME.text()), "cell 2 1");
+    add(this.firstNameTf, "cell 3 1");
 
-    add(new CLabel("gender", Text.PARTICIPANT_GENDER.text()), "cell 4 1");
-    add(this.genderCb, "cell 5 1");
+    add(new CLabel("birthday", Text.PARTICIPANT_BIRTHDAY.text()), "cell 4 1");
+    add(this.birthDayTf, "cell 5 1");
 
-    add(new CLabel("birthday", Text.PARTICIPANT_BIRTHDAY.text()), "cell 0 2");
-    add(this.birthDayTf, "cell 1 2");
+    add(new CLabel("gender", Text.PARTICIPANT_GENDER.text()), "cell 0 2");
+    add(this.genderCb, "cell 1 2");
 
     add(new CLabel("denomination", Text.PARTICIPANT_DENOMINTAION.text()), "cell 2 2");
     add(this.denominationCb, "cell 3 2");
