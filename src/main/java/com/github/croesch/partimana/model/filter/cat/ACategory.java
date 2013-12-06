@@ -14,7 +14,7 @@ import com.github.croesch.partimana.types.api.IFilterable;
  * @param <OT> the type of the objects of this category
  * @since Date: Oct 21, 2012
  */
-public abstract class ACategory<F extends IFilterable, OT extends Object> implements IFilterCategory<F, OT> {
+public abstract class ACategory<F extends IFilterable, OT> implements IFilterCategory<F, OT> {
 
   /** the current filter type */
   private IFilterType<OT> filter = null;

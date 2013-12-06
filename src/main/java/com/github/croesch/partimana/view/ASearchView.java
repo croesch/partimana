@@ -211,7 +211,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @param <OT> the type of the objects the filter type filters
    * @return the filter based on the values of the text and combo boxes.
    */
-  private <OT extends Object> IFilter<T> createAdministeredFilter() {
+  private <OT> IFilter<T> createAdministeredFilter() {
     final IFilter<T> filter = createEmptyFilter();
     @SuppressWarnings("unchecked")
     final IFilterCategory<T, OT> category = ((IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem()).getCopy();

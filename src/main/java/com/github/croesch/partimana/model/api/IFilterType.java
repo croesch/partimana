@@ -10,7 +10,7 @@ import com.github.croesch.partimana.types.api.IDescribable;
  * @author croesch
  * @since Date: Oct 20, 2012
  */
-public interface IFilterType<OT extends Object> extends IDescribable {
+public interface IFilterType<OT> extends IDescribable {
 
   /**
    * Sets the value for the filter. Each object to filter will be checked against this value.

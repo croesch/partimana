@@ -10,7 +10,7 @@ import com.github.croesch.partimana.model.api.IFilterType;
  * @author croesch
  * @since Date: Oct 21, 2012
  */
-public abstract class AFilterType<OT extends Object> implements IFilterType<OT> {
+public abstract class AFilterType<OT> implements IFilterType<OT> {
 
   /** the value this filter is filtering */
   @MayBeNull
