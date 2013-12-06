@@ -409,7 +409,7 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getMailAddress()).isEqualTo("mail@address.com");
   }
 
-  private static final void copy(final String toCopy) throws Throwable {
+  private static void copy(final String toCopy) throws Throwable {
     GuiActionRunner.execute(new GuiTask() {
 
       @Override
