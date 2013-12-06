@@ -32,7 +32,7 @@ import com.github.croesch.partimana.model.PersistenceModel;
 public final class PartiMana implements ActionObserver {
 
   /** the time to sleep until the next check will happen if the program should exit */
-  private static final int HEARTBEAT_INTERVALL = 1000;
+  private static final int HEARTBEAT_INTERVAL = 1000;
 
   /** logging class */
   private static final Logger LOGGER = Logger.getLogger(PartiMana.class);
@@ -78,7 +78,7 @@ public final class PartiMana implements ActionObserver {
 
     while (this.running) {
       try {
-        Thread.sleep(HEARTBEAT_INTERVALL);
+        Thread.sleep(HEARTBEAT_INTERVAL);
       } catch (final InterruptedException e) {
         LOGGER.warn(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
       }
