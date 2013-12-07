@@ -922,10 +922,7 @@ public final class Participant implements IFilterable {
     } else if (!this.phoneOfParents.equals(other.phoneOfParents)) {
       return false;
     }
-    if (!this.postToAddress.equals(other.postToAddress)) {
-      return false;
-    }
-    return true;
+    return this.postToAddress.equals(other.postToAddress);
   }
 
   /**
@@ -938,10 +935,7 @@ public final class Participant implements IFilterable {
    */
   private boolean areDatesEqual(final Date one, final Date two) {
     if (one == null) {
-      if (two != null) {
-        return false;
-      }
-      return true;
+      return two == null;
     }
     if (two == null) {
       return false;
@@ -964,10 +958,7 @@ public final class Participant implements IFilterable {
       return false;
     }
 
-    if (cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR)) {
-      return false;
-    }
-    return true;
+    return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
   }
 
   @Override

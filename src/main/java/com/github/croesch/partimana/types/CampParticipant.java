@@ -119,10 +119,7 @@ public final class CampParticipant implements IFilterable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    if (!this.participant.equals(((CampParticipant) obj).participant)) {
-      return false;
-    }
-    return true;
+    return this.participant.equals(((CampParticipant) obj).participant);
   }
 
   /**
