@@ -850,7 +850,7 @@ public final class Participant implements IFilterable {
     if (this.bankCodeNumber != other.bankCodeNumber) {
       return false;
     }
-    if (!areDatesEqual(this.birthDate, other.birthDate)) {
+    if (areDatesDifferent(this.birthDate, other.birthDate)) {
       return false;
     }
     if (this.comment == null) {
@@ -863,10 +863,10 @@ public final class Participant implements IFilterable {
     if (this.countyCouncil != other.countyCouncil) {
       return false;
     }
-    if (!areDatesEqual(this.dateSinceInDataBase, other.dateSinceInDataBase)) {
+    if (areDatesDifferent(this.dateSinceInDataBase, other.dateSinceInDataBase)) {
       return false;
     }
-    if (!areDatesEqual(this.dateUpToInSystem, other.dateUpToInSystem)) {
+    if (areDatesDifferent(this.dateUpToInSystem, other.dateUpToInSystem)) {
       return false;
     }
     if (this.denomination != other.denomination) {
@@ -933,16 +933,16 @@ public final class Participant implements IFilterable {
    * @param two the date two to compare
    * @return <code>true</code>, if the dates are equal.
    */
-  private boolean areDatesEqual(final Date one, final Date two) {
+  private boolean areDatesDifferent(final Date one, final Date two) {
     if (one == null) {
-      return two == null;
+      return two != null;
     }
     if (two == null) {
-      return false;
+      return true;
     }
 
     if (one.equals(two)) {
-      return true;
+      return false;
     }
     final Calendar cal1 = new GregorianCalendar();
     cal1.setTime(one);
@@ -951,14 +951,14 @@ public final class Participant implements IFilterable {
     cal2.setTime(two);
 
     if (cal1.get(Calendar.DAY_OF_MONTH) != cal2.get(Calendar.DAY_OF_MONTH)) {
-      return false;
+      return true;
     }
 
     if (cal1.get(Calendar.MONTH) != cal2.get(Calendar.MONTH)) {
-      return false;
+      return true;
     }
 
-    return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+    return cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR);
   }
 
   @Override
