@@ -42,7 +42,7 @@ public abstract class PartiManaDefaultGUITestCase extends FestSwingJUnitTestCase
     }
   }
 
-  protected void after() {};
+  protected void after() {}
 
   @Override
   public final void performAction(final UserAction action) {

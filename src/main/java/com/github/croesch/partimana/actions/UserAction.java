@@ -35,6 +35,6 @@ public enum UserAction {
   /** the action to cancel a camp */
   CANCEL_CAMP,
   /** the action to create a camp */
-  CREATE_CAMP;
+  CREATE_CAMP
 
 }

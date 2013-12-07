@@ -124,7 +124,7 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
 
   /** the combo box to edit the persons county council */
   @NotNull
-  private final CComboBox countyCouncilCb = new CComboBox("countyCouncilCB", CountyCouncil.values());;
+  private final CComboBox countyCouncilCb = new CComboBox("countyCouncilCB", CountyCouncil.values());
 
   /** the text area to edit the comment about the person */
   @NotNull
