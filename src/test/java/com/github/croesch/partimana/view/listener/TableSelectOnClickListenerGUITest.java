@@ -41,6 +41,7 @@ public class TableSelectOnClickListenerGUITest extends PartiManaDefaultGUITestCa
         return tableFixture;
       }
     });
+    robot().waitForIdle();
   }
 
   @Test
