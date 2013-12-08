@@ -13,23 +13,30 @@ import com.github.croesch.partimana.i18n.Text;
 public enum Gender {
 
   /** the male gender */
-  MALE(Text.MALE),
+  MALE(Text.MALE, "m"),
 
   /** the female gender */
-  FEMALE(Text.FEMALE);
+  FEMALE(Text.FEMALE, "w");
 
   /** the i18n representation of this gender */
   @NotNull
   private final String s;
 
+  /** the technical representation of this gender. */
+  @NotNull
+  private final String representation;
+
   /**
    * Constructs a {@link Gender} with the given i18n representation of the specific object.
    *
-   * @param t the {@link Text} that represents this object.
+   * @param representation the representation of this object. This is ensured to be not changed frequently as it may be
+   *                       stored in the database or something like that.
+   * @param t              the {@link Text} that represents this object.
    * @since Date: Jun 21, 2011
    */
-  private Gender(final Text t) {
+  private Gender(final Text t, String representation) {
     this.s = t.text();
+    this.representation = representation;
   }
 
   @Override
@@ -37,6 +44,7 @@ public enum Gender {
   public String toString() {
     return this.s;
   }
+
 
   /**
    * Returns the representation of this gender for a database.
@@ -67,5 +75,14 @@ public enum Gender {
       }
     }
     return null;
+  }
+
+  /**
+   * @return the technical representation of this gender.
+   * @since Date: Dec 8, 2013
+   */
+  @NotNull
+  public String getRepresentation() {
+    return representation;
   }
 }

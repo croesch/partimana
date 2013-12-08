@@ -22,4 +22,10 @@ public class GenderTest {
     assertThat(Gender.of("")).isNull();
     assertThat(Gender.of(" ")).isNull();
   }
+
+  @Test
+  public void testTechnicalRepresentation() {
+    assertThat(Gender.MALE.getRepresentation()).isEqualTo("m");
+    assertThat(Gender.FEMALE.getRepresentation()).isEqualTo("w");
+  }
 }
