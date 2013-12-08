@@ -3,6 +3,7 @@ package com.github.croesch.partimana.types;
 import static org.fest.assertions.Assertions.assertThat;
 
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
@@ -438,12 +439,16 @@ public class CampTest {
                                                             new CampParticipant(participant2),
                                                             new CampParticipant(participant3));
 
-    assertThat(this.camp.toCSV()).isEqualTo("vorname;name;strasse;plz;wohnort" + System.getProperty("line.separator")
-                                            + "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach" + System
-        .getProperty("line.separator") + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal" + System
-                                                .getProperty("line.separator")
-                                            + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal" + System
-        .getProperty("line.separator"));
-    System.out.println(this.camp.toCSV());
+    String lf = System.getProperty("line.separator");
+    String from = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getFromDate());
+    String until = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getUntilDate());
+    assertThat(this.camp.toCSV()).isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf
+                                            + "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;Testcamp;100;" + from + ";"
+                                            + until + lf
+                                            + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from
+                                            + ";" + until + lf
+                                            + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from
+                                            + ";" + until + lf);
+    // System.out.println(this.camp.toCSV());
   }
 }

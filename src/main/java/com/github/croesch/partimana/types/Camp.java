@@ -4,6 +4,8 @@ import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -474,15 +476,33 @@ public final class Camp implements IFilterable {
     final String lf = System.getProperty("line.separator");
 
     final StringBuilder sb = new StringBuilder(
-        "vorname" + separator + "name" + separator + "strasse" + separator + "plz" + separator + "wohnort");
+        "vorname" + separator + "name" + separator + "strasse" + separator + "plz" + separator + "wohnort" + separator
+        + "geschlecht" + separator + "freizeit" + separator + "preis" + separator + "von" + separator + "bis");
     sb.append(lf);
     for (final CampParticipant cp : getParticipants()) {
       sb.append(cp.getForeName()).append(separator);
       sb.append(cp.getLastName()).append(separator);
       sb.append(cp.getStreet()).append(separator);
       sb.append(cp.getPostCode()).append(separator);
-      sb.append(cp.getCity()).append(lf);
+      sb.append(cp.getCity()).append(separator);
+      sb.append(cp.getGender().getRepresentation()).append(separator);
+      sb.append(getName()).append(separator);
+      sb.append(getRatePerParticipant()).append(separator);
+      sb.append(getFormattedDate(getFromDate())).append(separator);
+      sb.append(getFormattedDate(getUntilDate())).append(lf);
     }
     return sb.toString();
+  }
+
+  /**
+   * TODO extract to a util class. Or a class where at least somebody would expect date formatting facility.
+   *
+   * @param date the date that should be formatted
+   * @return the formatted string of the given date.
+   * @since Date: Dec 8, 2013
+   */
+  private String getFormattedDate(Date date) {
+    DateFormat dateFormat = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG);
+    return dateFormat.format(date);
   }
 }

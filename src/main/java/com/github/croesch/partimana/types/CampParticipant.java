@@ -172,4 +172,13 @@ public final class CampParticipant implements IFilterable {
   public String getCity() {
     return this.participant.getCity();
   }
+
+  /**
+   * @return the gender of the {@link Participant}.
+   * @since Date: Dec 8, 2013
+   */
+  @NotNull
+  public Gender getGender() {
+    return this.participant.getGender();
+  }
 }

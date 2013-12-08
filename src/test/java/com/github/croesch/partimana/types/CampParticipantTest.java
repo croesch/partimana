@@ -164,4 +164,13 @@ public class CampParticipantTest {
     p2.setBank("blub");
     assertThat(this.campParticipant.hashCode()).isNotEqualTo(new CampParticipant(p2).hashCode());
   }
+
+
+  @Test
+  public final void testGetGender() {
+    assertThat(this.campParticipant.getGender()).isEqualTo(Gender.MALE);
+
+    participant.setGender(Gender.FEMALE);
+    assertThat(this.campParticipant.getGender()).isEqualTo(Gender.FEMALE);
+  }
 }
