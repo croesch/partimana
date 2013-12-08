@@ -1,27 +1,24 @@
 package com.github.croesch.partimana.view;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-
-import org.apache.log4j.Logger;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.types.Role;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import org.apache.log4j.Logger;
 
 /**
  * Implementation of the table that views the table of participants in a camp.
- * 
+ *
  * @author croesch
  * @since Date: Sep 16, 2012
  */
@@ -39,10 +36,10 @@ class CampParticipantListView extends AListView<CampParticipant> {
   /**
    * Constructs a new {@link CampParticipantListView} that is able to visualise a table of participants. The observer
    * will be notified about selection changes.
-   * 
-   * @since Date: Sep 16, 2012
+   *
    * @param name the name of this component
-   * @param o the {@link ActionObserver} that listens for the selection change event.
+   * @param o    the {@link ActionObserver} that listens for the selection change event.
+   * @since Date: Sep 16, 2012
    */
   public CampParticipantListView(final String name, final ActionObserver o) {
     super(name, "campParticipants", o, new CampParticipantTableModel(), UserAction.CAMP_PARTICIPANT_SELECTED);
@@ -60,7 +57,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
   /**
    * Table model that holds {@link CampParticipant}s as rows.
-   * 
+   *
    * @author croesch
    * @since Date: Sep 16, 2012
    */
@@ -74,14 +71,14 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
     /**
      * Creates the table model that holds {@link CampParticipant}s as rows.
-     * 
+     *
      * @since Date: Sep 16, 2012
      */
     public CampParticipantTableModel() {
       setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
-                                         Text.PARTICIPANT_FORENAME.text(),
-                                         Text.PARTICIPANT_LASTNAME.text(),
-                                         Text.CAMP_PARTICIPANT_ROLE.text() });
+                                          Text.PARTICIPANT_FORENAME.text(),
+                                          Text.PARTICIPANT_LASTNAME.text(),
+                                          Text.CAMP_PARTICIPANT_ROLE.text() });
       addTableModelListener(this);
     }
 
@@ -92,7 +89,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
     /**
      * Removes all data from the table.
-     * 
+     *
      * @since Date: Sep 16, 2012
      */
     public void removeAll() {
@@ -109,9 +106,9 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
     /**
      * Adds the given {@link CampParticipant} as row to the table.
-     * 
-     * @since Date: Sep 16, 2012
+     *
      * @param p the new row for the table.
+     * @since Date: Sep 16, 2012
      */
     public void addRow(final CampParticipant p) {
       this.participants.put(getRowCount(), p);

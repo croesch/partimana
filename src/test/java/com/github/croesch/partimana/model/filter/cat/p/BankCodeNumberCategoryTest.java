@@ -2,27 +2,21 @@ package com.github.croesch.partimana.model.filter.cat.p;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
-import com.github.croesch.partimana.model.filter.types.GreaterThan;
-import com.github.croesch.partimana.model.filter.types.IntegerEquals;
-import com.github.croesch.partimana.model.filter.types.IntegerNotEquals;
-import com.github.croesch.partimana.model.filter.types.LessThan;
-import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.*;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import java.util.Date;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link BankCodeNumberCategory}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 27, 2012
  */
@@ -37,8 +31,8 @@ public class BankCodeNumberCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new IntegerEquals(), new IntegerNotEquals(),
-                                                            new LessThan(), new GreaterThan());
+    assertThat(this.category.getFilterTypes())
+        .containsOnly(new IntegerEquals(), new IntegerNotEquals(), new LessThan(), new GreaterThan());
 
     final IFilterType<Integer> filterType = this.category.getFilterTypes().get(0);
     filterType.setFilterValue(12345);

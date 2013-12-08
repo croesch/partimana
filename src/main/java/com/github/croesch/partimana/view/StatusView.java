@@ -1,19 +1,17 @@
 package com.github.croesch.partimana.view;
 
-import java.awt.Color;
-
-import net.miginfocom.layout.LC;
-import net.miginfocom.swing.MigLayout;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CLabel;
 import com.github.croesch.components.CPanel;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.view.api.IStatusView;
+import java.awt.Color;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
 
 /**
  * Component to visualise the state of the program.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -28,10 +26,9 @@ class StatusView extends CPanel implements IStatusView {
 
   /**
    * Constructs a new status view to visualise the state of the program.
-   * 
-   * @author croesch
-   * @since Date: Jun 30, 2011
+   *
    * @param name the name of this component
+   * @since Date: Jun 30, 2011
    */
   public StatusView(final String name) {
     super(name);
@@ -54,16 +51,15 @@ class StatusView extends CPanel implements IStatusView {
   }
 
   @Override
-  public void showInformation(final Text info, final Object ... args) {
+  public void showInformation(final Text info, final Object... args) {
     showInfo(info.text(args)); //FIXME null check?
   }
 
   /**
    * Sets the color to black and visualises the given text.
-   * 
-   * @author croesch
-   * @since Date: Jul 1, 2011
+   *
    * @param txt the text to display.
+   * @since Date: Jul 1, 2011
    */
   private void showInfo(final String txt) {
     this.label.setForeground(Color.BLACK);

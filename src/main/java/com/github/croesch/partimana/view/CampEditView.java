@@ -1,13 +1,5 @@
 package com.github.croesch.partimana.view;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import net.miginfocom.swing.MigLayout;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CDateField;
@@ -21,10 +13,16 @@ import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.view.api.ICampEditView;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import net.miginfocom.swing.MigLayout;
 
 /**
  * A panel to edit a {@link Camp}. Provides text fields to edit the different attributes.
- * 
+ *
  * @author croesch
  * @since Date: Sep 13, 2012
  */
@@ -87,10 +85,10 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
 
   /**
    * Initializes the panel to edit a {@link Camp}.
-   * 
-   * @since Date: Sep 13, 2012
+   *
    * @param name the name of this component
    * @see #setCamp(Camp)
+   * @since Date: Sep 13, 2012
    */
   public CampEditView(final String name) {
     super(name);
@@ -109,8 +107,7 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
 
   /**
    * Adds all components to this panel.
-   * 
-   * @author croesch
+   *
    * @since Date: Jun 28, 2011
    */
   private void addComponents() {
@@ -157,8 +154,7 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
 
   /**
    * Initializes the names of all components.
-   * 
-   * @author croesch
+   *
    * @since Date: Jun 28, 2011
    */
   private void initNames() {
@@ -207,9 +203,9 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
 
   /**
    * Sets the given list of {@link CampParticipant}s.
-   * 
-   * @since Date: Sep 23, 2012
+   *
    * @param cp the list of {@link CampParticipant}s to visualize.
+   * @since Date: Sep 23, 2012
    */
   private void setCampParticipants(final List<CampParticipant> cp) {
     this.campParticipants.clear();

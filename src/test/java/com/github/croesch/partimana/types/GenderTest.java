@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * Provides test cases for {@link Gender}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 14, 2012
  */
@@ -22,5 +22,4 @@ public class GenderTest {
     assertThat(Gender.of("")).isNull();
     assertThat(Gender.of(" ")).isNull();
   }
-
 }

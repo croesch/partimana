@@ -4,40 +4,28 @@ import static com.github.croesch.partimana.view.CampParticipantListViewGUITest.r
 import static com.github.croesch.partimana.view.ParticipantListViewGUITest.requireParticipant;
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.types.*;
+import com.github.croesch.partimana.view.api.ICampEditView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import org.fest.swing.core.MouseClickInfo;
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
-import org.fest.swing.fixture.Containers;
-import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JLabelFixture;
-import org.fest.swing.fixture.JPanelFixture;
-import org.fest.swing.fixture.JTextComponentFixture;
+import org.fest.swing.fixture.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CampParticipant;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.types.Role;
-import com.github.croesch.partimana.view.api.ICampEditView;
-
 /**
  * Provides gui tests for {@link CampEditView}
- * 
+ *
  * @author croesch
  * @since Date: Sep 13, 2012
  */
@@ -256,8 +244,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     final Participant participant4 = createParticipant4();
     final Participant participant5 = createParticipant5();
 
-    final List<Participant> participants = Arrays.asList(participant1, participant2, participant3, participant4,
-                                                         participant5);
+    final List<Participant> participants =
+        Arrays.asList(participant1, participant2, participant3, participant4, participant5);
     update(participants);
 
     requireParticipant(this.testView.table("participants"), 0, participant1);
@@ -276,8 +264,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     final Participant participant4 = createParticipant4();
     final Participant participant5 = createParticipant5();
 
-    final List<Participant> participants = Arrays.asList(participant1, participant2, participant3, participant4,
-                                                         participant5);
+    final List<Participant> participants =
+        Arrays.asList(participant1, participant2, participant3, participant4, participant5);
     update(participants);
 
     requireParticipant(this.testView.table("participants"), 0, participant1);
@@ -295,8 +283,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     requireParticipant(this.testView.table("participants"), 3, participant5);
     requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
     requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant3)));
+    assertThat(this.editView.getCampParticipants())
+        .isEqualTo(Arrays.asList(new CampParticipant(this.participant), new CampParticipant(participant3)));
 
     this.testView.table("participants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
     requireParticipant(this.testView.table("participants"), 0, participant1);

@@ -7,7 +7,7 @@ import com.github.croesch.partimana.i18n.Text;
 
 /**
  * Menu bar of the program.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -18,10 +18,9 @@ class MenuBar extends CMenuBar {
 
   /**
    * Constructs the menu bar for this program with the observer to notify about actions of the menu.
-   * 
-   * @author croesch
-   * @since Date: Jun 30, 2011
+   *
    * @param name the name of the menu bar
+   * @since Date: Jun 30, 2011
    */
   public MenuBar(final String name) {
     super(name);
@@ -42,7 +41,5 @@ class MenuBar extends CMenuBar {
     search.add(camp);
     search.add(participant);
     add(search);
-
   }
-
 }

@@ -1,16 +1,15 @@
 package com.github.croesch.partimana.model.helper;
 
+import com.github.croesch.partimana.model.api.IPersistenceModel;
+import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.types.Participant;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.croesch.partimana.model.api.IPersistenceModel;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.Participant;
-
 /**
  * Helper class to have a simple {@link IPersistenceModel}.
- * 
+ *
  * @author croesch
  * @since Date: Jun 19, 2011
  */
@@ -63,5 +62,6 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
   }
 
   @Override
-  public void close() throws IOException {}
+  public void close() throws IOException {
+  }
 }

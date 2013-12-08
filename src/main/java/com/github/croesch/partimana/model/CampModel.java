@@ -1,18 +1,17 @@
 package com.github.croesch.partimana.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.model.api.ICampModel;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Model responsible for {@link Camp}s
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
@@ -28,10 +27,9 @@ class CampModel implements ICampModel {
 
   /**
    * Creates a {@link CampModel} that will load all {@link Camp}s from the given {@link IPersistenceModel} .
-   * 
-   * @author croesch
-   * @since Date: Jun 19, 2011
+   *
    * @param pm the model to load the data from (and synchronize afterwards).
+   * @since Date: Jun 19, 2011
    */
   public CampModel(final IPersistenceModel pm) {
     this.persistenceModel = pm; //FIXME: null check

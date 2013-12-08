@@ -1,33 +1,20 @@
 package com.github.croesch.partimana.model;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.settings.DataBaseSettings;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CampParticipant;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.types.Role;
+import com.github.croesch.partimana.types.*;
+import java.io.IOException;
+import java.sql.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.log4j.Logger;
 
 /**
  * The persistence model to store participants and camps.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
@@ -43,12 +30,13 @@ public final class PersistenceModel implements IPersistenceModel {
   /**
    * Creates the persistence model to store participants and camps. Creates a connection to the database defined by
    * {@link DataBaseSettings}.
-   * 
+   *
    * @since Date: Oct 13, 2012
    */
   public PersistenceModel() {
     try {
-      this.con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(), DataBaseSettings.DB_USER.value(),
+      this.con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(),
+                                             DataBaseSettings.DB_USER.value(),
                                              DataBaseSettings.DB_PASSWORD.value());
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
@@ -59,11 +47,11 @@ public final class PersistenceModel implements IPersistenceModel {
   public void update(final Participant p) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("UPDATE `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
-                                       + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
-                                       + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
-                                       + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, "
-                                       + "dateUpInDb=? WHERE id=?");
+      stmt = this.con.prepareStatement(
+          "UPDATE `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
+          + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
+          + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
+          + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, " + "dateUpInDb=? WHERE id=?");
       insertParticipantIntoStatement(p, stmt);
 
       stmt.executeUpdate();
@@ -76,9 +64,9 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Releases the resources of the given statement.
-   * 
-   * @since Date: Oct 13, 2012
+   *
    * @param stmt releases database connections of the given statement.
+   * @since Date: Oct 13, 2012
    */
   private void close(final PreparedStatement stmt) {
     if (stmt != null) {
@@ -92,9 +80,9 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Releases the resources of the given result set.
-   * 
-   * @since Date: Mar 3, 2013
+   *
    * @param rs the result set that should be closed
+   * @since Date: Mar 3, 2013
    */
   private void close(final ResultSet rs) {
     if (rs != null) {
@@ -125,9 +113,9 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Adds all participants to the given camp that are stored in the database.
-   * 
-   * @since Date: Oct 14, 2012
+   *
    * @param camp the camp to fill with its participants from the database
+   * @since Date: Oct 14, 2012
    */
   private void updateCampParticipants(final Camp camp) {
     final Map<Long, Participant> mapOfParticipants = getMapOfParticipants();
@@ -135,8 +123,8 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try {
-      stmt = this.con.prepareStatement("SELECT id, role, sinceInCamp, sinceNotInCamp"
-                                       + " FROM `campParticipants` WHERE camp=?");
+      stmt = this.con
+          .prepareStatement("SELECT id, role, sinceInCamp, sinceNotInCamp" + " FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, camp.getId());
       rs = stmt.executeQuery();
       while (rs.next()) {
@@ -164,10 +152,10 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Updates the participants of the camp with the given id to the given list of participants.
-   * 
-   * @since Date: Oct 14, 2012
+   *
    * @param campParticipants the participants to store in the database
-   * @param id the id of the camp the participants belong to
+   * @param id               the id of the camp the participants belong to
+   * @since Date: Oct 14, 2012
    */
   private void updateCampParticipants(final List<CampParticipant> campParticipants, final long id) {
     PreparedStatement stmt = null;
@@ -179,8 +167,8 @@ public final class PersistenceModel implements IPersistenceModel {
       for (final CampParticipant part : campParticipants) {
         PreparedStatement s = null;
         try {
-          s = this.con.prepareStatement("INSERT INTO `campParticipants` SET id=?, camp=?,"
-                                        + " role=?, sinceInCamp=?, sinceNotInCamp=?");
+          s = this.con.prepareStatement(
+              "INSERT INTO `campParticipants` SET id=?, camp=?," + " role=?, sinceInCamp=?, sinceNotInCamp=?");
           int i = 0;
           s.setLong(++i, part.getId());
           s.setLong(++i, id);
@@ -205,7 +193,8 @@ public final class PersistenceModel implements IPersistenceModel {
     ResultSet rs = null;
     try {
       stmt = this.con.prepareStatement("SELECT id, name, fromDate, until, location, "
-                                       + "ratePerParticipant, ratePerDayChild, cancelledSince FROM `camps` ORDER BY id");
+                                       + "ratePerParticipant, ratePerDayChild, cancelledSince FROM `camps` ORDER BY " +
+                                       "id");
       rs = stmt.executeQuery();
 
       final HashMap<Long, Camp> hashMap = new HashMap<Long, Camp>();
@@ -331,11 +320,11 @@ public final class PersistenceModel implements IPersistenceModel {
   public void create(final Participant p) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("INSERT INTO `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
-                                       + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
-                                       + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
-                                       + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, "
-                                       + "id=?");
+      stmt = this.con.prepareStatement(
+          "INSERT INTO `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
+          + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
+          + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
+          + "bankCodeNumber=?, bank=?, bankAccountNumber=?, commentar=?, sinceInDb=?, dateUpInDb=?, " + "id=?");
       p.setDateSinceInDataBase(new java.util.Date());
       insertParticipantIntoStatement(p, stmt);
 
@@ -349,11 +338,11 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Fills the given statement with the information fetched from the given camp.
-   * 
-   * @since Date: Oct 14, 2012
-   * @param c the camp that provides the attributes to store with the given statement
+   *
+   * @param c    the camp that provides the attributes to store with the given statement
    * @param stmt the statement used to store the attributes of the given camp
    * @throws SQLException if the attributes couldn't be set to the statement
+   * @since Date: Oct 14, 2012
    */
   private void insertCampIntoStatement(final Camp c, final PreparedStatement stmt) throws SQLException {
     int i = 0;
@@ -369,11 +358,11 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Fills the given statement with the information fetched from the given participant.
-   * 
-   * @since Date: Oct 14, 2012
-   * @param p the participant that provides the attributes to store with the given statement
+   *
+   * @param p    the participant that provides the attributes to store with the given statement
    * @param stmt the statement used to store the attributes of the given participant
    * @throws SQLException if the attributes couldn't be set to the statement
+   * @since Date: Oct 14, 2012
    */
   private void insertParticipantIntoStatement(final Participant p, final PreparedStatement stmt) throws SQLException {
     int i = 0;
@@ -405,10 +394,10 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Converts the date of the util package to a sql date.
-   * 
-   * @since Date: Oct 14, 2012
+   *
    * @param date the date in util package format
    * @return the date in sql package format
+   * @since Date: Oct 14, 2012
    */
   private Date getSqlDate(final java.util.Date date) {
     if (date == null) {
@@ -419,10 +408,10 @@ public final class PersistenceModel implements IPersistenceModel {
 
   /**
    * Converts the date of the sql package to a util package based date.
-   * 
-   * @since Date: Oct 14, 2012
+   *
    * @param date the date in sql package format
    * @return the date in util package format
+   * @since Date: Oct 14, 2012
    */
   private java.util.Date getUtilDate(final Date date) {
     if (date == null) {

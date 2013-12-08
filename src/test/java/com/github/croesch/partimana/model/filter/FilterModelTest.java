@@ -2,12 +2,6 @@ package com.github.croesch.partimana.model.filter;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.cat.c.NameCategory;
@@ -15,10 +9,14 @@ import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
 import com.github.croesch.partimana.types.Camp;
+import java.util.Arrays;
+import java.util.Date;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link FilterModel}.
- * 
+ *
  * @author croesch
  * @since Date: Nov 1, 2012
  */

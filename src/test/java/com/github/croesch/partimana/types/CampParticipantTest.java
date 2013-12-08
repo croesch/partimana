@@ -2,16 +2,14 @@ package com.github.croesch.partimana.types;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-
 /**
  * Provides different test methods for {@link CampParticipant}
- * 
+ *
  * @author croesch
  * @since Date: Sep 16, 2012
  */

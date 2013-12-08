@@ -1,14 +1,13 @@
 package com.github.croesch.partimana.view;
 
+import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiTask;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-
 /**
  * Provides test methods for {@link ParticipantView}.
- * 
+ *
  * @author croesch
  * @since Date: Jul 11, 2011
  */
@@ -24,5 +23,4 @@ public class ParticipantViewTest {
       }
     });
   }
-
 }

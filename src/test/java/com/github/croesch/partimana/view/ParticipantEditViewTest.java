@@ -2,25 +2,23 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.types.CountyCouncil;
+import com.github.croesch.partimana.types.Denomination;
+import com.github.croesch.partimana.types.Gender;
+import com.github.croesch.partimana.types.Participant;
+import com.github.croesch.partimana.view.api.IParticipantEditView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.api.IParticipantEditView;
-
 /**
  * Provides tests for {@link IParticipantEditView}
- * 
+ *
  * @author croesch
  * @since Date: Jun 26, 2011
  */
@@ -207,5 +205,4 @@ public class ParticipantEditViewTest {
   public final void testGetLivingCity() {
     assertThat(this.testView.getLivingCity()).isEqualTo(this.participant.getCity());
   }
-
 }

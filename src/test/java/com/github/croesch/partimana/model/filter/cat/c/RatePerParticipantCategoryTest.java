@@ -2,26 +2,18 @@ package com.github.croesch.partimana.model.filter.cat.c;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
-import com.github.croesch.partimana.model.filter.types.Contains;
-import com.github.croesch.partimana.model.filter.types.EndsWith;
-import com.github.croesch.partimana.model.filter.types.EqualsIgnoreCase;
-import com.github.croesch.partimana.model.filter.types.NotEqualsIgnoreCase;
-import com.github.croesch.partimana.model.filter.types.StartsWith;
-import com.github.croesch.partimana.model.filter.types.StringEquals;
-import com.github.croesch.partimana.model.filter.types.StringNotEquals;
+import com.github.croesch.partimana.model.filter.types.*;
 import com.github.croesch.partimana.types.Camp;
+import java.util.Date;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link RatePerParticipantCategory}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 27, 2012
  */
@@ -36,9 +28,13 @@ public class RatePerParticipantCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new StringEquals(), new StringNotEquals(),
-                                                            new StartsWith(), new EndsWith(), new EqualsIgnoreCase(),
-                                                            new NotEqualsIgnoreCase(), new Contains());
+    assertThat(this.category.getFilterTypes()).containsOnly(new StringEquals(),
+                                                            new StringNotEquals(),
+                                                            new StartsWith(),
+                                                            new EndsWith(),
+                                                            new EqualsIgnoreCase(),
+                                                            new NotEqualsIgnoreCase(),
+                                                            new Contains());
 
     final IFilterType<String> filterType = this.category.getFilterTypes().get(0);
     filterType.setFilterValue("12345");

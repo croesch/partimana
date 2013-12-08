@@ -1,15 +1,14 @@
 package com.github.croesch.partimana.view;
 
-import javax.swing.table.DefaultTableModel;
-
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Camp;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Implementation of the table that views the table of camps.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -21,10 +20,10 @@ class CampListView extends AListView<Camp> {
   /**
    * Constructs a new {@link CampListView} that is able to visualise a table of camps. The observer will be notified
    * about selection changes.
-   * 
-   * @since Date: Sep 27, 2011
+   *
    * @param name the name of this component
-   * @param o the {@link ActionObserver} that listens for the selection change event.
+   * @param o    the {@link ActionObserver} that listens for the selection change event.
+   * @since Date: Sep 27, 2011
    */
   public CampListView(final String name, final ActionObserver o) {
     super(name, "camps", o, new CampTableModel(), UserAction.CAMP_SELECTED);
@@ -32,7 +31,7 @@ class CampListView extends AListView<Camp> {
 
   /**
    * Model for a table holding camp entries.
-   * 
+   *
    * @author croesch
    * @since Date: Nov 11, 2012
    */
@@ -43,8 +42,7 @@ class CampListView extends AListView<Camp> {
 
     /**
      * Constructs a model for a table holding camp entries.
-     * 
-     * @author croesch
+     *
      * @since Date: Nov 11, 2012
      */
     public CampTableModel() {

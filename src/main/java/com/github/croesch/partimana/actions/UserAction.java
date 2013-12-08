@@ -2,7 +2,7 @@ package com.github.croesch.partimana.actions;
 
 /**
  * Enumeration that contains some different actions to pass to someone to react on the action.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */

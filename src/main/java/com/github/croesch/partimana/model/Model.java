@@ -1,7 +1,5 @@
 package com.github.croesch.partimana.model;
 
-import java.util.List;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.model.api.ICampModel;
@@ -12,10 +10,11 @@ import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import com.github.croesch.partimana.view.api.IView;
+import java.util.List;
 
 /**
  * The model of the partimana program.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
@@ -35,9 +34,9 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
   /**
    * Creates this model using the given persistence model to store participants and camps.
-   * 
-   * @since Date: Oct 13, 2012
+   *
    * @param persistenceModel the model to store participants and camps.
+   * @since Date: Oct 13, 2012
    */
   public Model(final IPersistenceModel persistenceModel) {
     this.participantModel = new ParticipantModel(persistenceModel);
@@ -46,10 +45,9 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
 
   /**
    * Sets the view for the model so that it can notify the view to update itself.
-   * 
-   * @author croesch
-   * @since Date: Jun 30, 2011
+   *
    * @param v the view to set to the model.
+   * @since Date: Jun 30, 2011
    */
   public void setView(final IView v) {
     this.view = v;

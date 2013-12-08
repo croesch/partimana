@@ -2,14 +2,15 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.types.*;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.SwingUtilities;
-
 import org.fest.swing.core.MouseClickInfo;
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
@@ -20,18 +21,9 @@ import org.fest.swing.fixture.JPanelFixture;
 import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.types.CampParticipant;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.types.Role;
-
 /**
  * Provides gui tests for {@link CampParticipantListView}
- * 
+ *
  * @author croesch
  * @since Date: Sep 16, 2012
  */
@@ -443,9 +435,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     this.testView.table().selectRows(4);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant5.getId());
 
-    this.testView.table()
-                 .pressKey(KeyEvent.VK_CONTROL)
-                 .pressAndReleaseKeys(KeyEvent.VK_SPACE)
+    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
                  .releaseKey(KeyEvent.VK_CONTROL);
     this.testView.table().requireNoSelection();
     assertThat(this.listView.getSelectedElementId()).isZero();
@@ -513,7 +503,10 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     table.requireCellValue(TableCell.row(row).column(3), String.valueOf(p.getRole()));
   }
 
-  public static void requireParticipant(final JTableFixture table, final int row, final String fName, final String lName) {
+  public static void requireParticipant(final JTableFixture table,
+                                        final int row,
+                                        final String fName,
+                                        final String lName) {
     table.requireCellValue(TableCell.row(row).column(1), fName);
     table.requireCellValue(TableCell.row(row).column(2), lName);
   }

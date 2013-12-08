@@ -6,17 +6,17 @@ import com.github.croesch.partimana.i18n.Text;
 
 /**
  * Represents a Gender.
- * 
+ *
  * @author croesch
  * @since Date: Jun 16, 2011
  */
 public enum Gender {
 
   /** the male gender */
-  MALE (Text.MALE),
+  MALE(Text.MALE),
 
   /** the female gender */
-  FEMALE (Text.FEMALE);
+  FEMALE(Text.FEMALE);
 
   /** the i18n representation of this gender */
   @NotNull
@@ -24,10 +24,9 @@ public enum Gender {
 
   /**
    * Constructs a {@link Gender} with the given i18n representation of the specific object.
-   * 
-   * @author croesch
-   * @since Date: Jun 21, 2011
+   *
    * @param t the {@link Text} that represents this object.
+   * @since Date: Jun 21, 2011
    */
   private Gender(final Text t) {
     this.s = t.text();
@@ -41,9 +40,9 @@ public enum Gender {
 
   /**
    * Returns the representation of this gender for a database.
-   * 
-   * @since Date: Oct 14, 2012
+   *
    * @return the representation of this gender for a database.
+   * @since Date: Oct 14, 2012
    */
   @NotNull
   public String getStorableString() {
@@ -52,11 +51,11 @@ public enum Gender {
 
   /**
    * Returns the gender that is represented by the given database value.
-   * 
-   * @since Date: Oct 14, 2012
+   *
    * @param c the value of the database that represents a gender
-   * @return the gender represented by the given value,<br>
-   *         or <code>null</code> if no gender is represented by the given value
+   * @return the gender represented by the given value,<br> or <code>null</code> if no gender is represented by the
+   * given value
+   * @since Date: Oct 14, 2012
    */
   @MayBeNull
   public static Gender of(final String c) {

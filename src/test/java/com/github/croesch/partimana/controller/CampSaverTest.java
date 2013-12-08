@@ -2,10 +2,19 @@ package com.github.croesch.partimana.controller;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.actions.ActionObserver;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.api.ICampModel;
+import com.github.croesch.partimana.model.api.IModel4View;
+import com.github.croesch.partimana.types.*;
+import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import com.github.croesch.partimana.view.View;
+import com.github.croesch.partimana.view.api.ICampEditView;
+import com.github.croesch.partimana.view.api.IStatusView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -13,25 +22,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.github.croesch.partimana.actions.ActionObserver;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.model.api.ICampModel;
-import com.github.croesch.partimana.model.api.IModel4View;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CampParticipant;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-import com.github.croesch.partimana.view.View;
-import com.github.croesch.partimana.view.api.ICampEditView;
-import com.github.croesch.partimana.view.api.IStatusView;
-
 /**
  * Provides test methods for {@link CampSaver}
- * 
+ *
  * @author croesch
  * @since Date: Sep 23, 2012
  */
@@ -80,21 +73,24 @@ public class CampSaverTest {
           public void performAction(final UserAction action) {
             // do nothing
           }
-        }).getCampEditView();
+        }
+        ).getCampEditView();
       }
     });
     statusView = new IStatusView() {
 
       @Override
-      public void showInformation(final Text info, final Object ... args) {}
+      public void showInformation(final Text info, final Object... args) {
+      }
 
       @Override
-      public void showInformation(final Text info) {}
+      public void showInformation(final Text info) {
+      }
 
       @Override
-      public void showError(final Text error) {}
+      public void showError(final Text error) {
+      }
     };
-
   }
 
   @Before

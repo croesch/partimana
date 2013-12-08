@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * Provides test cases for {@link LongComparator}.
- * 
+ *
  * @author croesch
  * @since Date: Sep 12, 2012
  */
@@ -48,5 +48,4 @@ public class LongComparatorTest {
     assertThat(comp.compare(Long.valueOf(-1), Long.valueOf(5555))).isLessThan(0);
     assertThat(comp.compare(Long.valueOf(5555), Long.valueOf(-1))).isGreaterThan(0);
   }
-
 }

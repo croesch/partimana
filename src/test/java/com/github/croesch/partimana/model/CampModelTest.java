@@ -2,18 +2,16 @@ package com.github.croesch.partimana.model;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.util.Date;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Test methods for {@link CampModel}
- * 
+ *
  * @author croesch
  * @since Date: Aug 8, 2011
  */
@@ -31,8 +29,7 @@ public final class CampModelTest {
 
   /**
    * Sets up the two models.
-   * 
-   * @author croesch
+   *
    * @since Date: Aug 8, 2011
    */
   @Before
@@ -155,6 +152,5 @@ public final class CampModelTest {
     this.cModel.store(this.c1);
     this.cModel.store(this.c1);
     assertThat(this.cModel.getListOfCamps()).contains(this.c2, this.c1);
-
   }
 }

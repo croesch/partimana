@@ -1,15 +1,14 @@
 package com.github.croesch.partimana.view;
 
-import javax.swing.table.DefaultTableModel;
-
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.Participant;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Implementation of the table that views the table of participants.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -21,10 +20,10 @@ class ParticipantListView extends AListView<Participant> {
   /**
    * Constructs a new {@link ParticipantListView} that is able to visualise a table of participants. The observer will
    * be notified about selection changes.
-   * 
-   * @since Date: Jul 10, 2011
+   *
    * @param name the name of this component
-   * @param o the {@link ActionObserver} that listens for the selection change event.
+   * @param o    the {@link ActionObserver} that listens for the selection change event.
+   * @since Date: Jul 10, 2011
    */
   public ParticipantListView(final String name, final ActionObserver o) {
     super(name, "participants", o, new ParticipantTableModel(), UserAction.PARTICIPANT_SELECTED);
@@ -32,7 +31,7 @@ class ParticipantListView extends AListView<Participant> {
 
   /**
    * Model for a table holding participant entries.
-   * 
+   *
    * @author croesch
    * @since Date: Nov 11, 2012
    */
@@ -43,14 +42,13 @@ class ParticipantListView extends AListView<Participant> {
 
     /**
      * Constructs a model for a table holding participant entries.
-     * 
-     * @author croesch
+     *
      * @since Date: Nov 11, 2012
      */
     public ParticipantTableModel() {
       setColumnIdentifiers(new Object[] { Text.PARTICIPANT_ID.text(),
-                                         Text.PARTICIPANT_FORENAME.text(),
-                                         Text.PARTICIPANT_LASTNAME.text() });
+                                          Text.PARTICIPANT_FORENAME.text(),
+                                          Text.PARTICIPANT_LASTNAME.text() });
     }
 
     @Override

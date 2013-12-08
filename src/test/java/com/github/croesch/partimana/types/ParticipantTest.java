@@ -2,16 +2,14 @@ package com.github.croesch.partimana.types;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-
 /**
  * Provides different test methods for {@link Participant}
- * 
+ *
  * @author croesch
  * @since Date: Jun 18, 2011
  */
@@ -25,10 +23,9 @@ public class ParticipantTest {
 
   /**
    * Sets up an object of {@link Participant}
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
+   *
    * @throws java.lang.Exception
+   * @since Date: Jun 18, 2011
    */
   @Before
   public final void setUp() {
@@ -84,12 +81,11 @@ public class ParticipantTest {
 
     p.setBirthDate(d1);
     assertThat(p).isNotEqualTo(this.participant);
-
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE1() {
@@ -105,8 +101,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE2() {
@@ -122,8 +118,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE3() {
@@ -139,8 +135,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE4() {
@@ -156,8 +152,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE5() {
@@ -173,8 +169,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE6() {
@@ -190,8 +186,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE7() {
@@ -207,8 +203,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE8() {
@@ -224,8 +220,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testParticipantIAE() {
@@ -241,8 +237,8 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for
-   * {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String, CountyCouncil)} .
+   * Test method for {@link Participant#Participant(String, String, Gender, Denomination, Date, String, int, String,
+   * CountyCouncil)} .
    */
   @Test
   public final void testParticipant() {

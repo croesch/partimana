@@ -7,12 +7,11 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
 import org.junit.Test;
 
 /**
  * Provides test cases for {@link XMLResourceBundle}.
- * 
+ *
  * @author croesch
  * @since Date: Aug 17, 2011
  */

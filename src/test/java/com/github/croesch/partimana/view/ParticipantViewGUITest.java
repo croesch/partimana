@@ -2,11 +2,15 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.ActionObserver;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.model.api.IModel4View;
+import com.github.croesch.partimana.types.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -16,19 +20,9 @@ import org.fest.swing.fixture.JPanelFixture;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.ActionObserver;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.model.api.IModel4View;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-
 /**
  * Provides gui tests for {@link ParticipantView}.
- * 
+ *
  * @author croesch
  * @since Date: Jul 11, 2011
  */

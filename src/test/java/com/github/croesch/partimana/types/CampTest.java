@@ -2,16 +2,14 @@ package com.github.croesch.partimana.types;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-
 /**
  * Provides test methods for {@link Camp}
- * 
+ *
  * @author croesch
  * @since Date: Jun 18, 2011
  */
@@ -276,7 +274,6 @@ public class CampTest {
     assertThat(c).isEqualTo(this.camp);
     c.setUntilDate(new Date(1444234567987l));
     assertThat(c).isNotEqualTo(this.camp);
-
   }
 
   @Test
@@ -373,12 +370,12 @@ public class CampTest {
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2));
 
     this.camp.addParticipant(new CampParticipant(participant));
-    assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2),
-                                                         new CampParticipant(participant));
+    assertThat(this.camp.getParticipants())
+        .containsOnly(new CampParticipant(participant2), new CampParticipant(participant));
 
     participant.setBank("blub");
-    assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2),
-                                                         new CampParticipant(participant));
+    assertThat(this.camp.getParticipants())
+        .containsOnly(new CampParticipant(participant2), new CampParticipant(participant));
     this.camp.removeParticipant(new CampParticipant(participant2));
     assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant));
 
@@ -396,8 +393,8 @@ public class CampTest {
 
     this.camp.addParticipant(new CampParticipant(participant2));
     this.camp.addParticipant(new CampParticipant(participant));
-    assertThat(this.camp.getParticipants()).containsOnly(new CampParticipant(participant2),
-                                                         new CampParticipant(participant));
+    assertThat(this.camp.getParticipants())
+        .containsOnly(new CampParticipant(participant2), new CampParticipant(participant));
     this.camp.removeAllParticipants();
     assertThat(this.camp.getParticipants()).isEmpty();
     this.camp.removeAllParticipants();
@@ -442,12 +439,11 @@ public class CampTest {
                                                             new CampParticipant(participant3));
 
     assertThat(this.camp.toCSV()).isEqualTo("vorname;name;strasse;plz;wohnort" + System.getProperty("line.separator")
-                                                    + "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach"
-                                                    + System.getProperty("line.separator")
-                                                    + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal"
-                                                    + System.getProperty("line.separator")
-                                                    + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal"
-                                                    + System.getProperty("line.separator"));
+                                            + "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach" + System
+        .getProperty("line.separator") + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal" + System
+                                                .getProperty("line.separator")
+                                            + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal" + System
+        .getProperty("line.separator"));
     System.out.println(this.camp.toCSV());
   }
 }

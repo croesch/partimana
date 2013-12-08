@@ -2,23 +2,17 @@ package com.github.croesch.partimana.model.filter.cat.c;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
-import com.github.croesch.partimana.model.filter.types.After;
-import com.github.croesch.partimana.model.filter.types.Before;
-import com.github.croesch.partimana.model.filter.types.DateEquals;
-import com.github.croesch.partimana.model.filter.types.DateNotEquals;
-import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.*;
 import com.github.croesch.partimana.types.Camp;
+import java.util.Date;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link UntilCategory}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 27, 2012
  */
@@ -33,8 +27,8 @@ public class UntilCategoryTest {
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new After(), new Before(), new DateEquals(),
-                                                            new DateNotEquals());
+    assertThat(this.category.getFilterTypes())
+        .containsOnly(new After(), new Before(), new DateEquals(), new DateNotEquals());
 
     final IFilterType<Date> filterType = this.category.getFilterTypes().get(0);
     filterType.setFilterValue(new Date(12345));

@@ -2,10 +2,6 @@ package com.github.croesch.partimana.model.filter.cat.p;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
@@ -16,10 +12,12 @@ import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import java.util.Date;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link DenominationCategory}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 27, 2012
  */

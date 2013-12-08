@@ -1,14 +1,13 @@
 package com.github.croesch.partimana.model.filter;
 
-import java.util.List;
-
 import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.api.IFilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
+import java.util.List;
 
 /**
  * The model for filtering {@link IFilterable} objects.
- * 
+ *
  * @param <F> the type of the objects this model can filter
  * @author croesch
  * @since Date: Oct 20, 2012
@@ -23,9 +22,9 @@ public final class FilterModel<F extends IFilterable> implements IFilterModel<F>
 
   /**
    * Constructs the model for filtering the given {@link IFilterable} objects.
-   * 
-   * @since Date: Nov 1, 2012
+   *
    * @param elements a list of elements that should be filtered
+   * @since Date: Nov 1, 2012
    */
   public FilterModel(final List<F> elements) {
     this.originalElements = elements; //TODO reference

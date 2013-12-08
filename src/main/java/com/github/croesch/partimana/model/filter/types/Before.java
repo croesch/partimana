@@ -1,12 +1,11 @@
 package com.github.croesch.partimana.model.filter.types;
 
-import java.util.Date;
-
 import com.github.croesch.partimana.i18n.Text;
+import java.util.Date;
 
 /**
  * Filters all date values that are before the given filter value.
- * 
+ *
  * @author croesch
  * @since Date: Oct 20, 2012
  */

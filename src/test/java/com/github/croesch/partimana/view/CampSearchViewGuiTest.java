@@ -2,12 +2,14 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.types.Camp;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Date;
-
 import javax.swing.JFrame;
-
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
@@ -17,14 +19,9 @@ import org.fest.swing.fixture.JComboBoxFixture;
 import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.types.Camp;
-
 /**
  * Provides test cases for the {@link SearchView}.
- * 
+ *
  * @author croesch
  * @since Date: Nov 2, 2012
  */
@@ -126,7 +123,7 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     } finally {
       table.releaseKey(KeyEvent.VK_CONTROL);
     }
-    table.requireSelectedRows(new int[] {});
+    table.requireSelectedRows(new int[] { });
     button.requireDisabled();
     assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isZero();
   }
@@ -239,29 +236,47 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("t");
     this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
     requireFilterRepresentation("f1", "", Text.FILTER_CAT_CAMP_RATE_PER_PART, Text.FILTER_TYPE_CONTAINS, "2");
-    requireFilterRepresentation("f2", Text.FILTER_AND.text(), Text.FILTER_CAT_CAMP_LOCATION,
-                                Text.FILTER_TYPE_ENDS_WITH, "t");
+    requireFilterRepresentation("f2",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_CAMP_LOCATION,
+                                Text.FILTER_TYPE_ENDS_WITH,
+                                "t");
 
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_NAME.text());
     filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("caMp");
     this.searchView.button("or").requireText(Text.FILTER_OR.text()).click();
     requireFilterRepresentation("f1", "", Text.FILTER_CAT_CAMP_RATE_PER_PART, Text.FILTER_TYPE_CONTAINS, "2");
-    requireFilterRepresentation("f2", Text.FILTER_AND.text(), Text.FILTER_CAT_CAMP_LOCATION,
-                                Text.FILTER_TYPE_ENDS_WITH, "t");
-    requireFilterRepresentation("f3", Text.FILTER_OR.text(), Text.FILTER_CAT_CAMP_NAME,
-                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE, "caMp");
+    requireFilterRepresentation("f2",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_CAMP_LOCATION,
+                                Text.FILTER_TYPE_ENDS_WITH,
+                                "t");
+    requireFilterRepresentation("f3",
+                                Text.FILTER_OR.text(),
+                                Text.FILTER_CAT_CAMP_NAME,
+                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE,
+                                "caMp");
 
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_FROM.text());
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("44999999");
     this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
     requireFilterRepresentation("f1", "", Text.FILTER_CAT_CAMP_RATE_PER_PART, Text.FILTER_TYPE_CONTAINS, "2");
-    requireFilterRepresentation("f2", Text.FILTER_AND.text(), Text.FILTER_CAT_CAMP_LOCATION,
-                                Text.FILTER_TYPE_ENDS_WITH, "t");
-    requireFilterRepresentation("f3", Text.FILTER_OR.text(), Text.FILTER_CAT_CAMP_NAME,
-                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE, "caMp");
-    requireFilterRepresentation("f4", Text.FILTER_AND.text(), Text.FILTER_CAT_CAMP_FROM, Text.FILTER_TYPE_AFTER,
+    requireFilterRepresentation("f2",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_CAMP_LOCATION,
+                                Text.FILTER_TYPE_ENDS_WITH,
+                                "t");
+    requireFilterRepresentation("f3",
+                                Text.FILTER_OR.text(),
+                                Text.FILTER_CAT_CAMP_NAME,
+                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE,
+                                "caMp");
+    requireFilterRepresentation("f4",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_CAMP_FROM,
+                                Text.FILTER_TYPE_AFTER,
                                 "44999999");
   }
 
@@ -277,7 +292,8 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
   }
 
   private void assertComboboxContainsDateFilterTypes(final JComboBoxFixture filterComboBox) {
-    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(), Text.FILTER_TYPE_BEFORE.text(),
+    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(),
+                                                       Text.FILTER_TYPE_BEFORE.text(),
                                                        Text.FILTER_TYPE_EQUALS.text(),
                                                        Text.FILTER_TYPE_NOT_EQUALS.text());
   }

@@ -8,10 +8,10 @@ import com.github.croesch.partimana.types.api.IFilterable;
 
 /**
  * Abstract class that describes a category to filter.
- * 
- * @author croesch
- * @param <F> the {@link IFilterable} element that is filtered
+ *
+ * @param <F>  the {@link IFilterable} element that is filtered
  * @param <OT> the type of the objects of this category
+ * @author croesch
  * @since Date: Oct 21, 2012
  */
 public abstract class ACategory<F extends IFilterable, OT> implements IFilterCategory<F, OT> {
@@ -25,9 +25,9 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
 
   /**
    * Constructs this category with the given viewable description.
-   * 
-   * @since Date: Oct 22, 2012
+   *
    * @param descr the short description that can be shown to the user
+   * @since Date: Oct 22, 2012
    */
   protected ACategory(final Text descr) {
     this.description = descr;
@@ -56,10 +56,10 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
 
   /**
    * Returns the object value of this category from the given element.
-   * 
-   * @since Date: Oct 22, 2012
+   *
    * @param element the element that'll be filtered
    * @return the object value of this category from the given element.
+   * @since Date: Oct 22, 2012
    */
   protected abstract OT getValue(F element);
 

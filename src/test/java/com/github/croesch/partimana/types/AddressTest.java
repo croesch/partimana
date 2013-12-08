@@ -7,7 +7,7 @@ import org.junit.Test;
 
 /**
  * Provides tests for {@link Address}
- * 
+ *
  * @author croesch
  * @since Date: Jun 18, 2011
  */
@@ -18,8 +18,7 @@ public class AddressTest {
 
   /**
    * Sets up the test object.
-   * 
-   * @author croesch
+   *
    * @since Date: Jun 18, 2011
    */
   @Before

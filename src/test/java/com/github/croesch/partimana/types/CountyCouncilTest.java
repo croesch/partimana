@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * Provides test cases for {@link CountyCouncil}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 14, 2012
  */
@@ -20,5 +20,4 @@ public class CountyCouncilTest {
 
     assertThat(CountyCouncil.of(-42)).isNull();
   }
-
 }

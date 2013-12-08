@@ -2,15 +2,13 @@ package com.github.croesch.partimana.model.filter.types;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
+import java.util.Date;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link Before}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 21, 2012
  */

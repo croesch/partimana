@@ -1,15 +1,14 @@
 package com.github.croesch.partimana.view.listener;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Mouse listener for the table that will fire the given action to the given observer that a row has been selected.
- * 
+ *
  * @author croesch
  * @since Date: Sep 12, 2012
  */
@@ -26,10 +25,10 @@ public final class TableMouseListener extends MouseAdapter {
   /**
    * Creates new mouse listener that'll send the given action to the given observer if double click happened on the
    * table.
-   * 
-   * @since Date: Sep 12, 2012
+   *
    * @param o the {@link ActionObserver} to fire the action to.
    * @param a the action to send to the observer
+   * @since Date: Sep 12, 2012
    */
   public TableMouseListener(final ActionObserver o, final UserAction a) {
     this.observer = o; //FIXME null check

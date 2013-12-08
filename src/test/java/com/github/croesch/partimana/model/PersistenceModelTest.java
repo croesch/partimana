@@ -2,30 +2,22 @@ package com.github.croesch.partimana.model;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.settings.DataBaseSettings;
+import com.github.croesch.partimana.types.*;
+import com.github.croesch.util.DateUtil;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.settings.DataBaseSettings;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CampParticipant;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.types.Role;
-import com.github.croesch.util.DateUtil;
-
 /**
  * Provides test cases for {@link PersistenceModel}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 13, 2012
  */
@@ -42,12 +34,12 @@ public class PersistenceModelTest {
   public void tearDown() throws IOException, SQLException {
     Connection con = null;
     try {
-      con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(), DataBaseSettings.DB_USER.value(),
+      con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(),
+                                        DataBaseSettings.DB_USER.value(),
                                         DataBaseSettings.DB_PASSWORD.value());
       con.prepareStatement("DELETE FROM `campParticipants`").execute();
       con.prepareStatement("DELETE FROM `participants`").execute();
       con.prepareStatement("DELETE FROM `camps`").execute();
-
     } finally {
       try {
         if (con != null) {
@@ -66,7 +58,8 @@ public class PersistenceModelTest {
 
     Connection con = null;
     try {
-      con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(), DataBaseSettings.DB_USER.value(),
+      con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(),
+                                        DataBaseSettings.DB_USER.value(),
                                         DataBaseSettings.DB_PASSWORD.value());
       ResultSet resultSet = con.prepareStatement("SELECT COUNT(*) FROM `camps`").executeQuery();
       resultSet.first();
@@ -77,7 +70,6 @@ public class PersistenceModelTest {
       resultSet = con.prepareStatement("SELECT COUNT(*) FROM `campParticipants`").executeQuery();
       resultSet.first();
       assertThat(resultSet.getInt(1)).isZero();
-
     } finally {
       if (con != null) {
         con.close();
@@ -209,8 +201,10 @@ public class PersistenceModelTest {
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
     Camp storedCamp = pm2.getMapOfCamps().get(c.getId());
     assertThat(storedCamp).isNotEqualTo(c);
-    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.PARTICIPANT);
-    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn()).isEqualTo(new DateUtil(new Date(0)).getDateWithoutTime());
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole())
+        .isEqualTo(Role.PARTICIPANT);
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn())
+        .isEqualTo(new DateUtil(new Date(0)).getDateWithoutTime());
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedOff()).isNull();
     assertThat(storedCamp.getCancelDate()).isNull();
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
@@ -221,9 +215,11 @@ public class PersistenceModelTest {
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
     storedCamp = pm2.getMapOfCamps().get(c.getId());
     assertThat(storedCamp).isEqualTo(c);
-    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole()).isEqualTo(Role.KITCHEN_STAFF);
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getRole())
+        .isEqualTo(Role.KITCHEN_STAFF);
     final Date dateWithoutTime = new DateUtil(date).getDateWithoutTime();
-    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn()).isEqualTo(dateWithoutTime);
+    assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedIn())
+        .isEqualTo(dateWithoutTime);
     assertThat(storedCamp.getParticipants().get(storedCamp.getParticipants().indexOf(cp)).getSignedOff()).isNull();
     assertThat(storedCamp.getCancelDate()).isEqualTo(new DateUtil(new Date(1234567887654L)).getDateWithoutTime());
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);

@@ -1,8 +1,5 @@
 package com.github.croesch.partimana.model.filter.cat.p;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.ACategory;
@@ -10,10 +7,12 @@ import com.github.croesch.partimana.model.filter.types.GenderEquals;
 import com.github.croesch.partimana.model.filter.types.GenderNotEquals;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The category that describes the attribute <em>gender</em> of a {@link Participant}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 20, 2012
  */
@@ -21,7 +20,7 @@ public final class GenderCategory extends ACategory<Participant, Gender> {
 
   /**
    * Constructs the category that describes the attribute <em>gender</em> of a {@link Participant}.
-   * 
+   *
    * @since Date: Oct 27, 2012
    */
   public GenderCategory() {

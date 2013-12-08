@@ -1,9 +1,5 @@
 package com.github.croesch.partimana.view;
 
-import net.miginfocom.swing.MigLayout;
-
-import org.apache.log4j.Logger;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CButton;
 import com.github.croesch.components.CPanel;
@@ -16,10 +12,12 @@ import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullExcep
 import com.github.croesch.partimana.view.api.ICampEditView;
 import com.github.croesch.partimana.view.api.ICampView;
 import com.github.croesch.partimana.view.api.IListView;
+import net.miginfocom.swing.MigLayout;
+import org.apache.log4j.Logger;
 
 /**
  * The implementation of {@link ICampView} that is able to view camps.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -45,11 +43,11 @@ class CampView extends CPanel implements ICampView, ActionObserver {
 
   /**
    * Constructs the view for camp.
-   * 
-   * @since Date: Sep 23, 2012
-   * @param m the model to fetch camp information from
-   * @throws RequiredFieldSetToNullException if the given model is <code>null</code>
+   *
+   * @param m    the model to fetch camp information from
    * @param name the name of this component
+   * @throws RequiredFieldSetToNullException if the given model is <code>null</code>
+   * @since Date: Sep 23, 2012
    */
   public CampView(final String name, final ICampModel4View m) throws RequiredFieldSetToNullException {
     super(name);

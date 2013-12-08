@@ -2,10 +2,19 @@ package com.github.croesch.partimana.controller;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.actions.ActionObserver;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.api.IModel4View;
+import com.github.croesch.partimana.model.api.IParticipantModel;
+import com.github.croesch.partimana.types.*;
+import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import com.github.croesch.partimana.view.View;
+import com.github.croesch.partimana.view.api.IParticipantEditView;
+import com.github.croesch.partimana.view.api.IStatusView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -13,24 +22,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.github.croesch.partimana.actions.ActionObserver;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.model.api.IModel4View;
-import com.github.croesch.partimana.model.api.IParticipantModel;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-import com.github.croesch.partimana.view.View;
-import com.github.croesch.partimana.view.api.IParticipantEditView;
-import com.github.croesch.partimana.view.api.IStatusView;
-
 /**
  * Provides test methods for {@link ParticipantSaver}
- * 
+ *
  * @author croesch
  * @since Date: Jul 9, 2011
  */
@@ -48,7 +42,7 @@ public class ParticipantSaverTest {
 
   /**
    * Sets up the editView
-   * 
+   *
    * @since Date: Jul 9, 2011
    */
   @BeforeClass
@@ -84,26 +78,29 @@ public class ParticipantSaverTest {
           public void performAction(final UserAction action) {
             // do nothing
           }
-        }).getParticipantEditView();
+        }
+        ).getParticipantEditView();
       }
     });
     statusView = new IStatusView() {
 
       @Override
-      public void showInformation(final Text info, final Object ... args) {}
+      public void showInformation(final Text info, final Object... args) {
+      }
 
       @Override
-      public void showInformation(final Text info) {}
+      public void showInformation(final Text info) {
+      }
 
       @Override
-      public void showError(final Text error) {}
+      public void showError(final Text error) {
+      }
     };
-
   }
 
   /**
    * Sets up the model, the editView and the statusView
-   * 
+   *
    * @since Date: Jul 9, 2011
    */
   @Before

@@ -1,5 +1,7 @@
 package com.github.croesch.partimana.i18n;
 
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -7,12 +9,9 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import com.github.croesch.annotate.MayBeNull;
-import com.github.croesch.annotate.NotNull;
-
 /**
  * Resource bundle from javadoc-example of {@link Control} for XML-based bundles.
- * 
+ *
  * @author croesch
  * @since Date: Aug 17, 2011
  */
@@ -24,10 +23,10 @@ final class XMLResourceBundle extends ResourceBundle {
 
   /**
    * Constructs the resource bundle from javadoc-example of {@link Control} for XML-based bundles.
-   * 
-   * @since Date: Aug 17, 2011
+   *
    * @param stream the xml-stream to read the data from
    * @throws IOException in case of IO problem, or if stream is <code>null</code>
+   * @since Date: Aug 17, 2011
    */
   XMLResourceBundle(final InputStream stream) throws IOException {
     if (stream == null) {

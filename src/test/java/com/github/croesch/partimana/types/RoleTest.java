@@ -2,13 +2,12 @@ package com.github.croesch.partimana.types;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link Role}.
- * 
+ *
  * @author croesch
  * @since Date: Mar 2, 2013
  */

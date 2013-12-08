@@ -1,16 +1,15 @@
 package com.github.croesch.partimana.model.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.types.api.IFilterable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a generic filter for {@link IFilterable}-objects. Can have different {@link IFilterCategory}s to filter
  * the objects by different columns.
- * 
+ *
  * @param <F> the type of {@link IFilterable} this filter filters.
  * @author croesch
  * @since Date: Oct 21, 2012
@@ -76,5 +75,4 @@ public abstract class AFilter<F extends IFilterable> implements IFilter<F> {
     }
     return true;
   }
-
 }

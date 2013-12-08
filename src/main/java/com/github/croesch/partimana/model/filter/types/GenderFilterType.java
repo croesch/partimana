@@ -4,7 +4,7 @@ import com.github.croesch.partimana.types.Gender;
 
 /**
  * Abstract gender filter that filters gender-objects based on the filter value.
- * 
+ *
  * @author croesch
  * @since Date: Nov 17, 2012
  */
@@ -23,11 +23,11 @@ public abstract class GenderFilterType extends AFilterType<Gender> {
   /**
    * Parses the gender from the given string and returns it. If the given string is not a valid gender, it returns
    * <code>null</code>.
-   * 
-   * @since Date: Nov 17, 2012
+   *
    * @param value the string to parse to an gender
-   * @return the gender value of the given string,<br>
-   *         or <code>null</code> if the given string cannot be parsed to a valid gender
+   * @return the gender value of the given string,<br> or <code>null</code> if the given string cannot be parsed to a
+   * valid gender
+   * @since Date: Nov 17, 2012
    */
   private Gender parse(final String value) {
     for (final Gender cc : Gender.values()) {

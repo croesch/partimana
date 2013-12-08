@@ -2,6 +2,11 @@ package com.github.croesch.partimana.controller;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
+import com.github.croesch.partimana.view.View;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -9,15 +14,9 @@ import org.fest.swing.finder.WindowFinder;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
-import com.github.croesch.partimana.view.View;
-
 /**
  * Provides test cases for {@link Controller}.
- * 
+ *
  * @author croesch
  * @since Date: Sep 12, 2012
  */

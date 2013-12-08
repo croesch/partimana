@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * Provides test cases for {@link Denomination}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 14, 2012
  */
@@ -20,5 +20,4 @@ public class DenominationTest {
 
     assertThat(Denomination.of(-42)).isNull();
   }
-
 }

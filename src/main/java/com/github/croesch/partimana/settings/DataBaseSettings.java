@@ -22,7 +22,7 @@ import com.github.croesch.properties.PropertiesProvider;
 
 /**
  * An enumeration of some database settings that are made in a property-file.<br>
- * 
+ *
  * @author croesch
  * @since Date: Jan 14, 2012
  */
@@ -41,7 +41,7 @@ public enum DataBaseSettings {
   /**
    * Constructs this setting. Loads the properties from file, if not yet done and fetches the value for this setting.
    * The key is the name of the setting.
-   * 
+   *
    * @since Date: Jan 15, 2012
    */
   private DataBaseSettings() {
@@ -50,9 +50,9 @@ public enum DataBaseSettings {
 
   /**
    * Returns the value of this setting.
-   * 
-   * @since Date: Jan 15, 2012
+   *
    * @return the value of this setting, read from the properties file.
+   * @since Date: Jan 15, 2012
    */
   public String value() {
     return this.value;

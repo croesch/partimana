@@ -5,7 +5,7 @@ import com.github.croesch.partimana.types.CountyCouncil;
 
 /**
  * Filters all objects that are equal to the given filter value.
- * 
+ *
  * @author croesch
  * @since Date: Oct 20, 2012
  */

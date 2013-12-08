@@ -5,7 +5,7 @@ import com.github.croesch.annotate.NotNull;
 
 /**
  * Represents an address. With post code, street and city.
- * 
+ *
  * @author croesch
  * @since Date: Jun 18, 2011
  */
@@ -24,8 +24,7 @@ public final class Address {
 
   /**
    * Constructs an address with all field set to <code>null</code> or zero.
-   * 
-   * @author croesch
+   *
    * @since Date: Jun 18, 2011
    */
   Address() {
@@ -34,12 +33,11 @@ public final class Address {
 
   /**
    * Constructs a new address with the given values.
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
+   *
    * @param str the street
-   * @param pc the post code
-   * @param c the city
+   * @param pc  the post code
+   * @param c   the city
+   * @since Date: Jun 18, 2011
    */
   Address(final String str, final int pc, final String c) {
     setStreet(str);
@@ -49,9 +47,9 @@ public final class Address {
 
   /**
    * Returns the street.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the street
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   String getStreet() {
@@ -60,10 +58,10 @@ public final class Address {
 
   /**
    * Sets the street.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param str the street.
    * @return the object itself
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   Address setStreet(final String str) {
@@ -73,9 +71,9 @@ public final class Address {
 
   /**
    * Returns the post code.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the post code
+   * @since Date: Jun 18, 2011
    */
   int getPostCode() {
     return this.postCode;
@@ -83,10 +81,10 @@ public final class Address {
 
   /**
    * Sets the post code.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param pc the post code.
    * @return the object itself
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   Address setPostCode(final int pc) {
@@ -96,9 +94,9 @@ public final class Address {
 
   /**
    * Returns the city.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the city
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   String getCity() {
@@ -107,10 +105,10 @@ public final class Address {
 
   /**
    * Sets the city.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param c the city
    * @return the object itself
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   Address setCity(final String c) {

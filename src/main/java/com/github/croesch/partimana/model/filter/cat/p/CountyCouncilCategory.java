@@ -1,8 +1,5 @@
 package com.github.croesch.partimana.model.filter.cat.p;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.ACategory;
@@ -10,10 +7,12 @@ import com.github.croesch.partimana.model.filter.types.CountyCouncilEquals;
 import com.github.croesch.partimana.model.filter.types.CountyCouncilNotEquals;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Participant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The category that describes the attribute <em>county council</em> of a {@link Participant}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 20, 2012
  */
@@ -21,7 +20,7 @@ public final class CountyCouncilCategory extends ACategory<Participant, CountyCo
 
   /**
    * Constructs the category that describes the attribute <em>county council</em> of a {@link Participant}.
-   * 
+   *
    * @since Date: Oct 27, 2012
    */
   public CountyCouncilCategory() {

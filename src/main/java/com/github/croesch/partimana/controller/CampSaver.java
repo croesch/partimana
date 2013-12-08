@@ -1,7 +1,5 @@
 package com.github.croesch.partimana.controller;
 
-import org.apache.log4j.Logger;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.ICampModel;
@@ -9,10 +7,11 @@ import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.CampParticipant;
 import com.github.croesch.partimana.view.api.ICampEditView;
 import com.github.croesch.partimana.view.api.IStatusView;
+import org.apache.log4j.Logger;
 
 /**
  * Component that is able to fetch the information from the {@link ICampEditView} and to store it in the model.
- * 
+ *
  * @author croesch
  * @since Date: Sep 23, 2012
  */
@@ -23,8 +22,7 @@ final class CampSaver {
 
   /**
    * Hidden constructor.
-   * 
-   * @author croesch
+   *
    * @since Date: Sep 23, 2012
    */
   private CampSaver() {
@@ -33,12 +31,11 @@ final class CampSaver {
 
   /**
    * Tries saving the camp currently being edited in the {@link ICampEditView}.
-   * 
-   * @author croesch
-   * @since Date: Sep 23, 2012
-   * @param model the {@link ICampModel} to store the data with
-   * @param editView the {@link ICampEditView} that has been editing the camp
+   *
+   * @param model      the {@link ICampModel} to store the data with
+   * @param editView   the {@link ICampEditView} that has been editing the camp
    * @param statusView the {@link IStatusView} that is responsible for displaying the status
+   * @since Date: Sep 23, 2012
    */
   static void performSave(final ICampModel model, final ICampEditView editView, final IStatusView statusView) {
 
@@ -77,10 +74,10 @@ final class CampSaver {
 
   /**
    * Returns <code>null</code>, if the given {@link String} is null or empty.
-   * 
-   * @since Date: Jul 10, 2011
+   *
    * @param s the string to test
    * @return the given string, if it's not <code>null</code> and not empty, <code>null</code> otherwise.
+   * @since Date: Jul 10, 2011
    */
   @MayBeNull
   private static String returnValueOrNullIfEmpty(final String s) {

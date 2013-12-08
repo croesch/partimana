@@ -2,13 +2,18 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.partimana.types.CountyCouncil;
+import com.github.croesch.partimana.types.Denomination;
+import com.github.croesch.partimana.types.Gender;
+import com.github.croesch.partimana.types.Participant;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Date;
-
 import javax.swing.JFrame;
-
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
@@ -18,17 +23,9 @@ import org.fest.swing.fixture.JComboBoxFixture;
 import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.i18n.Text;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-
 /**
  * Provides test cases for the {@link SearchView}.
- * 
+ *
  * @author croesch
  * @since Date: Nov 2, 2012
  */
@@ -111,18 +108,18 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
   @Test
   public void testListInView() throws InterruptedException, InvocationTargetException {
     this.searchView.panel("list").table("participants").requireRowCount(0);
-    ParticipantListViewGUITest.update(((ParticipantSearchView) this.searchView.component()).getListView(),
-                                      Arrays.asList(this.participants));
-    ParticipantListViewGUITest.requireParticipant(this.searchView.panel("list").table("participants"), 0,
-                                                  this.participants[0]);
-    ParticipantListViewGUITest.requireParticipant(this.searchView.panel("list").table("participants"), 1,
-                                                  this.participants[1]);
-    ParticipantListViewGUITest.requireParticipant(this.searchView.panel("list").table("participants"), 2,
-                                                  this.participants[2]);
-    ParticipantListViewGUITest.requireParticipant(this.searchView.panel("list").table("participants"), 3,
-                                                  this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(this.searchView.panel("list").table("participants"), 4,
-                                                  this.participants[4]);
+    ParticipantListViewGUITest
+        .update(((ParticipantSearchView) this.searchView.component()).getListView(), Arrays.asList(this.participants));
+    ParticipantListViewGUITest
+        .requireParticipant(this.searchView.panel("list").table("participants"), 0, this.participants[0]);
+    ParticipantListViewGUITest
+        .requireParticipant(this.searchView.panel("list").table("participants"), 1, this.participants[1]);
+    ParticipantListViewGUITest
+        .requireParticipant(this.searchView.panel("list").table("participants"), 2, this.participants[2]);
+    ParticipantListViewGUITest
+        .requireParticipant(this.searchView.panel("list").table("participants"), 3, this.participants[3]);
+    ParticipantListViewGUITest
+        .requireParticipant(this.searchView.panel("list").table("participants"), 4, this.participants[4]);
   }
 
   @Test
@@ -133,8 +130,8 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     table.requireRowCount(0);
     button.requireText(Text.SELECT.text()).requireDisabled();
 
-    ParticipantListViewGUITest.update(((ParticipantSearchView) this.searchView.component()).getListView(),
-                                      Arrays.asList(this.participants));
+    ParticipantListViewGUITest
+        .update(((ParticipantSearchView) this.searchView.component()).getListView(), Arrays.asList(this.participants));
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[0]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[1]);
     ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[2]);
@@ -166,10 +163,12 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
     assertThat(this.searchView.component()).isInstanceOf(ParticipantSearchView.class);
-    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId()).isEqualTo(this.participants[0].getId());
+    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId())
+        .isEqualTo(this.participants[0].getId());
 
     table.selectRows(2);
-    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId()).isEqualTo(this.participants[2].getId());
+    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId())
+        .isEqualTo(this.participants[2].getId());
 
     try {
       table.pressKey(KeyEvent.VK_CONTROL);
@@ -177,7 +176,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     } finally {
       table.releaseKey(KeyEvent.VK_CONTROL);
     }
-    table.requireSelectedRows(new int[] {});
+    table.requireSelectedRows(new int[] { });
     button.requireDisabled();
     assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId()).isZero();
   }
@@ -275,37 +274,71 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     filterComboBox.selectItem(Text.FILTER_TYPE_GREATER_THAN.text());
     this.searchView.textBox("filterValue").enterText("2");
     this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
-    requireFilterRepresentation("f1", "", Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM, Text.FILTER_TYPE_GREATER_THAN, "2");
+    requireFilterRepresentation("f1",
+                                "",
+                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
+                                Text.FILTER_TYPE_GREATER_THAN,
+                                "2");
 
     categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_COMMENT.text());
     filterComboBox.selectItem(Text.FILTER_TYPE_ENDS_WITH.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("t");
     this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
-    requireFilterRepresentation("f1", "", Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM, Text.FILTER_TYPE_GREATER_THAN, "2");
-    requireFilterRepresentation("f2", Text.FILTER_AND.text(), Text.FILTER_CAT_PARTICIPANT_COMMENT,
-                                Text.FILTER_TYPE_ENDS_WITH, "t");
+    requireFilterRepresentation("f1",
+                                "",
+                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
+                                Text.FILTER_TYPE_GREATER_THAN,
+                                "2");
+    requireFilterRepresentation("f2",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_PARTICIPANT_COMMENT,
+                                Text.FILTER_TYPE_ENDS_WITH,
+                                "t");
 
     categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_LAST_NAME.text());
     filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("MüLLEr");
     this.searchView.button("or").requireText(Text.FILTER_OR.text()).click();
-    requireFilterRepresentation("f1", "", Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM, Text.FILTER_TYPE_GREATER_THAN, "2");
-    requireFilterRepresentation("f2", Text.FILTER_AND.text(), Text.FILTER_CAT_PARTICIPANT_COMMENT,
-                                Text.FILTER_TYPE_ENDS_WITH, "t");
-    requireFilterRepresentation("f3", Text.FILTER_OR.text(), Text.FILTER_CAT_PARTICIPANT_LAST_NAME,
-                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE, "MüLLEr");
+    requireFilterRepresentation("f1",
+                                "",
+                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
+                                Text.FILTER_TYPE_GREATER_THAN,
+                                "2");
+    requireFilterRepresentation("f2",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_PARTICIPANT_COMMENT,
+                                Text.FILTER_TYPE_ENDS_WITH,
+                                "t");
+    requireFilterRepresentation("f3",
+                                Text.FILTER_OR.text(),
+                                Text.FILTER_CAT_PARTICIPANT_LAST_NAME,
+                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE,
+                                "MüLLEr");
 
     categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_DATE_SINCE.text());
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("44999999");
     this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
-    requireFilterRepresentation("f1", "", Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM, Text.FILTER_TYPE_GREATER_THAN, "2");
-    requireFilterRepresentation("f2", Text.FILTER_AND.text(), Text.FILTER_CAT_PARTICIPANT_COMMENT,
-                                Text.FILTER_TYPE_ENDS_WITH, "t");
-    requireFilterRepresentation("f3", Text.FILTER_OR.text(), Text.FILTER_CAT_PARTICIPANT_LAST_NAME,
-                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE, "MüLLEr");
-    requireFilterRepresentation("f4", Text.FILTER_AND.text(), Text.FILTER_CAT_PARTICIPANT_DATE_SINCE,
-                                Text.FILTER_TYPE_AFTER, "44999999");
+    requireFilterRepresentation("f1",
+                                "",
+                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
+                                Text.FILTER_TYPE_GREATER_THAN,
+                                "2");
+    requireFilterRepresentation("f2",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_PARTICIPANT_COMMENT,
+                                Text.FILTER_TYPE_ENDS_WITH,
+                                "t");
+    requireFilterRepresentation("f3",
+                                Text.FILTER_OR.text(),
+                                Text.FILTER_CAT_PARTICIPANT_LAST_NAME,
+                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE,
+                                "MüLLEr");
+    requireFilterRepresentation("f4",
+                                Text.FILTER_AND.text(),
+                                Text.FILTER_CAT_PARTICIPANT_DATE_SINCE,
+                                Text.FILTER_TYPE_AFTER,
+                                "44999999");
   }
 
   private void requireFilterRepresentation(final String filter,
@@ -320,7 +353,8 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
   }
 
   private void assertComboboxContainsDateFilterTypes(final JComboBoxFixture filterComboBox) {
-    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(), Text.FILTER_TYPE_BEFORE.text(),
+    assertThat(filterComboBox.contents()).containsOnly(Text.FILTER_TYPE_AFTER.text(),
+                                                       Text.FILTER_TYPE_BEFORE.text(),
                                                        Text.FILTER_TYPE_EQUALS.text(),
                                                        Text.FILTER_TYPE_NOT_EQUALS.text());
   }

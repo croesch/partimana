@@ -1,19 +1,17 @@
 package com.github.croesch.partimana.view;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
 
 /**
  * An action that will fire the given {@link UserAction} to the {@link ActionObserver} and contains a {@link Text} as
  * description.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -77,10 +75,10 @@ final class Action extends AbstractAction {
   /**
    * Constructs an action that will fire the given {@link UserAction} to the {@link ActionObserver} and contains a
    * {@link Text} as description.
-   * 
-   * @since Date: Jun 30, 2011
+   *
    * @param act the {@link UserAction} to pass to the observer
-   * @param t the {@link Text} as description of this action
+   * @param t   the {@link Text} as description of this action
+   * @since Date: Jun 30, 2011
    */
   private Action(final UserAction act, final Text t) {
     super(t.text());
@@ -89,9 +87,9 @@ final class Action extends AbstractAction {
 
   /**
    * Sets the observer that is able to handle the actions.
-   * 
-   * @since Date: Jul 1, 2011
+   *
    * @param ao the observer to handle actions
+   * @since Date: Jul 1, 2011
    */
   static void setObserver(final ActionObserver ao) {
     observer = ao;
@@ -106,9 +104,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to close the program.
-   * 
-   * @since Date: Jul 1, 2011
+   *
    * @return the {@link Action} to close the program
+   * @since Date: Jul 1, 2011
    */
   @NotNull
   static Action getExitAction() {
@@ -117,9 +115,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to save a participant.
-   * 
-   * @since Date: Jul 1, 2011
+   *
    * @return the {@link Action} to save a participant
+   * @since Date: Jul 1, 2011
    */
   @NotNull
   static Action getSaveParticipantAction() {
@@ -128,9 +126,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to create a participant.
-   * 
-   * @since Date: Jul 11, 2011
+   *
    * @return the {@link Action} to create a participant
+   * @since Date: Jul 11, 2011
    */
   @NotNull
   static Action getCreateParticipantAction() {
@@ -139,9 +137,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to delete a participant.
-   * 
-   * @since Date: Jul 11, 2011
+   *
    * @return the {@link Action} to delete a participant
+   * @since Date: Jul 11, 2011
    */
   @NotNull
   static Action getDeleteParticipantAction() {
@@ -150,9 +148,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to save a camp.
-   * 
-   * @since Date: Sep 23, 2012
+   *
    * @return the {@link Action} to save a camp
+   * @since Date: Sep 23, 2012
    */
   @NotNull
   static Action getSaveCampAction() {
@@ -161,9 +159,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to create a camp.
-   * 
-   * @since Date: Sep 23, 2012
+   *
    * @return the {@link Action} to create a camp
+   * @since Date: Sep 23, 2012
    */
   @NotNull
   static Action getCreateCampAction() {
@@ -172,9 +170,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to delete a camp.
-   * 
-   * @since Date: Sep 23, 2012
+   *
    * @return the {@link Action} to delete a camp
+   * @since Date: Sep 23, 2012
    */
   @NotNull
   static Action getDeleteCampAction() {
@@ -182,8 +180,8 @@ final class Action extends AbstractAction {
   }
 
   /**
-   * @since Date: Mar 11, 2013
    * @return the {@link Action} to cancel a camp
+   * @since Date: Mar 11, 2013
    */
   @NotNull
   static Action getCancelCampAction() {
@@ -192,9 +190,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to search a camp.
-   * 
-   * @since Date: Dec 16, 2012
+   *
    * @return the {@link Action} to search a camp.
+   * @since Date: Dec 16, 2012
    */
   @NotNull
   static Action getSearchCampAction() {
@@ -203,9 +201,9 @@ final class Action extends AbstractAction {
 
   /**
    * Returns the action to search a participant.
-   * 
-   * @since Date: Jan 26, 2013
+   *
    * @return the {@link Action} to search a participant.
+   * @since Date: Jan 26, 2013
    */
   @NotNull
   static Action getSearchParticipantAction() {
@@ -213,8 +211,8 @@ final class Action extends AbstractAction {
   }
 
   /**
-   * @since Date: Jun 1, 2013
    * @return the {@link Action} to save a camp to csv.
+   * @since Date: Jun 1, 2013
    */
   @NotNull
   static Action getSaveCampToCSVAction() {

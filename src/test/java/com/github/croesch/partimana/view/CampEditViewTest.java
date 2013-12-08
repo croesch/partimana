@@ -2,22 +2,20 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.types.Camp;
+import com.github.croesch.partimana.view.api.ICampEditView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.view.api.ICampEditView;
-
 /**
  * Provides tests for {@link ICampEditView}
- * 
+ *
  * @author croesch
  * @since Date: Sep 13, 2012
  */

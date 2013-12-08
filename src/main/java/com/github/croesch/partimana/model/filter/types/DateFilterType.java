@@ -1,14 +1,12 @@
 package com.github.croesch.partimana.model.filter.types;
 
-import java.util.Date;
-
-import org.apache.log4j.Logger;
-
 import com.github.croesch.partimana.i18n.Text;
+import java.util.Date;
+import org.apache.log4j.Logger;
 
 /**
  * Abstract date filter that filters date-objects based on the filter value.
- * 
+ *
  * @author croesch
  * @since Date: Nov 17, 2012
  */

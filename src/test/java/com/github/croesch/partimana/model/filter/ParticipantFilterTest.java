@@ -2,32 +2,26 @@ package com.github.croesch.partimana.model.filter;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.cat.p.BirthdayCategory;
 import com.github.croesch.partimana.model.filter.cat.p.ForeNameCategory;
 import com.github.croesch.partimana.model.filter.cat.p.GenderCategory;
 import com.github.croesch.partimana.model.filter.cat.p.LivingCityCategory;
-import com.github.croesch.partimana.model.filter.types.After;
-import com.github.croesch.partimana.model.filter.types.Contains;
-import com.github.croesch.partimana.model.filter.types.GenderEquals;
-import com.github.croesch.partimana.model.filter.types.StartsWith;
-import com.github.croesch.partimana.model.filter.types.StringEquals;
+import com.github.croesch.partimana.model.filter.types.*;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link ParticipantFilter}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 29, 2012
  */

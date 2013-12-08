@@ -4,7 +4,7 @@ import com.github.croesch.partimana.i18n.Text;
 
 /**
  * Filters all string values that ends with the given filter value.
- * 
+ *
  * @author croesch
  * @since Date: Oct 20, 2012
  */

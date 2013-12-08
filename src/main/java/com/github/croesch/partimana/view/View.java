@@ -1,24 +1,5 @@
 package com.github.croesch.partimana.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import net.miginfocom.swing.MigLayout;
-
-import org.apache.log4j.Logger;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.CButton;
@@ -32,23 +13,31 @@ import com.github.croesch.partimana.model.api.IModel4View;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-import com.github.croesch.partimana.view.api.ICampEditView;
-import com.github.croesch.partimana.view.api.ICampView;
-import com.github.croesch.partimana.view.api.IListView;
-import com.github.croesch.partimana.view.api.IParticipantEditView;
-import com.github.croesch.partimana.view.api.IParticipantView;
-import com.github.croesch.partimana.view.api.IStatusView;
-import com.github.croesch.partimana.view.api.IVersionView;
-import com.github.croesch.partimana.view.api.IView;
+import com.github.croesch.partimana.view.api.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import net.miginfocom.swing.MigLayout;
+import org.apache.log4j.Logger;
 
 /**
  * The view of the program that is responsible to build the GUI.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
-public final class View extends CFrame implements IView, IVersionView, IStatusView, IParticipantView, ICampView,
-        ActionObserver {
+public final class View extends CFrame
+    implements IView, IVersionView, IStatusView, IParticipantView, ICampView, ActionObserver {
 
   /** generated */
   private static final long serialVersionUID = -5242901770081600903L;
@@ -86,13 +75,12 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   /**
    * Constructs the view of the program with the given model.
-   * 
-   * @author croesch
-   * @since Date: Jun 30, 2011
+   *
    * @param name the name of the view
-   * @param m the model to fetch data updates from.
-   * @param o the observer to notify about actions.
+   * @param m    the model to fetch data updates from.
+   * @param o    the observer to notify about actions.
    * @throws RequiredFieldSetToNullException if the given model or the given observer is <code>null</code>
+   * @since Date: Jun 30, 2011
    */
   public View(final String name, final IModel4View m, final ActionObserver o) throws RequiredFieldSetToNullException {
     super(name);
@@ -191,7 +179,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
   }
 
   @Override
-  public void showInformation(final Text info, final Object ... args) {
+  public void showInformation(final Text info, final Object... args) {
     this.statusView.showInformation(info, args);
   }
 
@@ -252,14 +240,13 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
       default:
         LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
         break;
-
     }
   }
 
   /**
    * Writes the data of the currently selected camp to a csv file. The user can choose the file and then the content is
    * written to the file.
-   * 
+   *
    * @since Date: Jun 1, 2013
    */
   private void saveCampToCSV() {
@@ -271,9 +258,12 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
     final JFileChooser fileChooser = new JFileChooser();
     if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
       final File selectedFile = fileChooser.getSelectedFile();
-      if (!selectedFile.exists()
-          || JOptionPane.showConfirmDialog(this, Text.CONTINUE_OVERRIDES_FILE.text(selectedFile.getAbsolutePath()),
-                                           Text.USER_WARNING.text(), JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+      if (!selectedFile.exists() || JOptionPane.showConfirmDialog(this,
+                                                                  Text.CONTINUE_OVERRIDES_FILE
+                                                                      .text(selectedFile.getAbsolutePath()),
+                                                                  Text.USER_WARNING.text(),
+                                                                  JOptionPane.OK_CANCEL_OPTION)
+                                    == JOptionPane.OK_OPTION) {
         FileWriter fileWriter = null;
         try {
           fileWriter = new FileWriter(selectedFile);
@@ -298,7 +288,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   /**
    * Closes the opened participant search view.
-   * 
+   *
    * @since Date: Mar 3, 2013
    */
   private void closeParticipantSearchView() {
@@ -308,20 +298,19 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   /**
    * Opens the search view for participants.
-   * 
+   *
    * @since Date: Mar 3, 2013
    */
   private void openParticipantSearchView() {
-    this.participantSearchView = new ParticipantSearchView("participant-search",
-                                                           this.model.getListOfParticipants(),
-                                                           this);
+    this.participantSearchView =
+        new ParticipantSearchView("participant-search", this.model.getListOfParticipants(), this);
     this.participantSearchView.setVisible(true);
     this.participantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   }
 
   /**
    * Closes the opened camp search view.
-   * 
+   *
    * @since Date: Mar 3, 2013
    */
   private void closeCampSearchView() {
@@ -331,7 +320,7 @@ public final class View extends CFrame implements IView, IVersionView, IStatusVi
 
   /**
    * Opens the search view for camps.
-   * 
+   *
    * @since Date: Mar 3, 2013
    */
   private void openCampSearchView() {

@@ -1,19 +1,14 @@
 package com.github.croesch.partimana.types;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.util.*;
 
 /**
  * Represents a single camp.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
@@ -59,14 +54,13 @@ public final class Camp implements IFilterable {
 
   /**
    * Constructs a new {@link Camp} with the given parameters.
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
-   * @param n the name of the camp
-   * @param f the date when the camp starts
-   * @param t the date when the camp ends
+   *
+   * @param n     the name of the camp
+   * @param f     the date when the camp starts
+   * @param t     the date when the camp ends
    * @param where the location where the camp will be
-   * @param rate the rate for each participant
+   * @param rate  the rate for each participant
+   * @since Date: Jun 18, 2011
    */
   public Camp(final String n, final Date f, final Date t, final String where, final String rate) {
     this(highestId + 1, n, f, t, where, rate);
@@ -74,15 +68,14 @@ public final class Camp implements IFilterable {
 
   /**
    * Constructs a new {@link Camp} with the given parameters.
-   * 
-   * @author croesch
-   * @since Date: Aug 8, 2011
+   *
    * @param forcedId the number to identify this camp, must be higher than the highest number until now
-   * @param n the name of the camp
-   * @param f the date when the camp starts
-   * @param t the date when the camp ends
-   * @param where the location where the camp will be
-   * @param rate the rate for each participant
+   * @param n        the name of the camp
+   * @param f        the date when the camp starts
+   * @param t        the date when the camp ends
+   * @param where    the location where the camp will be
+   * @param rate     the rate for each participant
+   * @since Date: Aug 8, 2011
    */
   public Camp(final long forcedId, final String n, final Date f, final Date t, final String where, final String rate) {
     setName(n);
@@ -97,9 +90,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the new highest id to the given value.
-   * 
-   * @since Date: Sep 12, 2012
+   *
    * @param newId the new highest id of the {@link Camp}s.
+   * @since Date: Sep 12, 2012
    */
   private static void setNewHighestIdTo(final long newId) {
     if (newId <= highestId) {
@@ -110,11 +103,10 @@ public final class Camp implements IFilterable {
 
   /**
    * Constructs a new {@link Camp} that is equal to the given {@link Camp}.
-   * 
-   * @author croesch
-   * @since Date: Aug 8, 2011
+   *
    * @param c the {@link Camp} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Camp} is <code>null</code>
+   * @since Date: Aug 8, 2011
    */
   public Camp(final Camp c) throws RequiredFieldSetToNullException {
     if (c == null) {
@@ -134,9 +126,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the name of the camp
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the name of the camp
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getName() {
@@ -145,10 +137,10 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the name of the camp.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param n the name of the camp
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setName(final String n) throws RequiredFieldSetToNullException {
     if (n == null) {
@@ -159,9 +151,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the date from that the camp starts
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the date when the camp starts
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public Date getFromDate() {
@@ -170,10 +162,10 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the date when the camp starts
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param date the date when the camp starts
    * @throws RequiredFieldSetToNullException if the given date is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setFromDate(final Date date) throws RequiredFieldSetToNullException {
     if (date == null) {
@@ -184,9 +176,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the date when the camp ends
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the date when the camp ends
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public Date getUntilDate() {
@@ -195,10 +187,10 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the date when the camp ends
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param date the date when the camp ends
    * @throws RequiredFieldSetToNullException if the given date is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setUntilDate(final Date date) throws RequiredFieldSetToNullException {
     if (date == null) {
@@ -209,9 +201,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the location of the camp
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the location of the camp
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getLocation() {
@@ -220,10 +212,10 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the location of the camp
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param loc the location of the camp
    * @throws RequiredFieldSetToNullException if the given location is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setLocation(final String loc) throws RequiredFieldSetToNullException {
     if (loc == null) {
@@ -234,9 +226,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the rate per participant
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the rate per participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getRatePerParticipant() {
@@ -245,10 +237,10 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the rate per participant
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param rate the rate per participant
    * @throws RequiredFieldSetToNullException if the given rate is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setRatePerParticipant(final String rate) throws RequiredFieldSetToNullException {
     if (rate == null) {
@@ -259,9 +251,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the rate per day-children
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the rate per day-children
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getRatePerDayChildren() {
@@ -270,9 +262,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the rate per day-children
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param rate the rate per day-children
+   * @since Date: Jun 18, 2011
    */
   public void setRatePerDayChildren(final String rate) {
     this.ratePerDayChildren = rate;
@@ -280,10 +272,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the id of this camp as stored in the data base.
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
+   *
    * @return the id that identifies this camp in something like a data base.
+   * @since Date: Jun 18, 2011
    */
   public long getId() {
     return this.id;
@@ -291,9 +282,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns the {@link Participant}s of this camp.
-   * 
-   * @since Date: Sep 16, 2012
+   *
    * @return the participants of this camp.
+   * @since Date: Sep 16, 2012
    */
   @NotNull
   public List<CampParticipant> getParticipants() {
@@ -302,9 +293,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Adds the given {@link CampParticipant} to this camp.
-   * 
-   * @since Date: Sep 16, 2012
+   *
    * @param participant the {@link CampParticipant} to add to this camp.
+   * @since Date: Sep 16, 2012
    */
   public void addParticipant(final CampParticipant participant) {
     if (participant != null) {
@@ -314,9 +305,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Removes the given {@link CampParticipant} from this camp.
-   * 
-   * @since Date: Sep 16, 2012
+   *
    * @param participant the {@link CampParticipant} to remove from this camp.
+   * @since Date: Sep 16, 2012
    */
   public void removeParticipant(final CampParticipant participant) {
     if (participant != null) {
@@ -326,7 +317,7 @@ public final class Camp implements IFilterable {
 
   /**
    * Removes all {@link CampParticipant}s from this camp.
-   * 
+   *
    * @since Date: Sep 24, 2012
    */
   public void removeAllParticipants() {
@@ -414,11 +405,11 @@ public final class Camp implements IFilterable {
 
   /**
    * Returns whether two dates are equal, ignoring the time.
-   * 
-   * @since Date: Jul 10, 2011
+   *
    * @param one the date one to compare
    * @param two the date two to compare
    * @return <code>true</code>, if the dates are equal.
+   * @since Date: Jul 10, 2011
    */
   private boolean areDatesEqual(final Date one, final Date two) {
     if (one == null) {
@@ -449,8 +440,8 @@ public final class Camp implements IFilterable {
   }
 
   /**
-   * @since Date: Mar 11, 2013
    * @return the date, when the camp has been cancelled, or <code>null</code> if the camp hasn't been cancelled
+   * @since Date: Mar 11, 2013
    */
   @MayBeNull
   public Date getCancelDate() {
@@ -462,9 +453,9 @@ public final class Camp implements IFilterable {
 
   /**
    * Sets the date when the camp has been cancelled, or <code>null</code> if not cancelled.
-   * 
-   * @since Date: Mar 11, 2013
+   *
    * @param date the date when the camp has been cancelled, or <code>null</code> if not cancelled
+   * @since Date: Mar 11, 2013
    */
   public void setCancelDate(final Date date) {
     if (date == null) {
@@ -475,15 +466,15 @@ public final class Camp implements IFilterable {
   }
 
   /**
-   * @since Date: Jun 1, 2013
    * @return a string being a CSV representation of this camp
+   * @since Date: Jun 1, 2013
    */
   public String toCSV() {
     final String separator = ";";
     final String lf = System.getProperty("line.separator");
 
-    final StringBuilder sb = new StringBuilder("vorname" + separator + "name" + separator + "strasse" + separator
-                                               + "plz" + separator + "wohnort");
+    final StringBuilder sb = new StringBuilder(
+        "vorname" + separator + "name" + separator + "strasse" + separator + "plz" + separator + "wohnort");
     sb.append(lf);
     for (final CampParticipant cp : getParticipants()) {
       sb.append(cp.getForeName()).append(separator);

@@ -1,12 +1,11 @@
 package com.github.croesch.partimana.model.filter.types;
 
-import org.apache.log4j.Logger;
-
 import com.github.croesch.partimana.i18n.Text;
+import org.apache.log4j.Logger;
 
 /**
  * Abstract integer filter that filters integer-objects based on the filter value.
- * 
+ *
  * @author croesch
  * @since Date: Nov 17, 2012
  */

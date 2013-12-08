@@ -2,13 +2,6 @@ package com.github.croesch.partimana.model.filter;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.cat.c.NameCategory;
@@ -17,10 +10,15 @@ import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.StringNotEquals;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.types.Participant;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Provides test cases for {@link AndGroup}.
- * 
+ *
  * @author croesch
  * @since Date: Oct 29, 2012
  */

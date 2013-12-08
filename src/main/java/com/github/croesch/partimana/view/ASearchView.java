@@ -1,20 +1,6 @@
 package com.github.croesch.partimana.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import net.miginfocom.swing.MigLayout;
-
-import com.github.croesch.components.CButton;
-import com.github.croesch.components.CComboBox;
-import com.github.croesch.components.CFrame;
-import com.github.croesch.components.CLabel;
-import com.github.croesch.components.CPanel;
-import com.github.croesch.components.CScrollPane;
-import com.github.croesch.components.CTextField;
+import com.github.croesch.components.*;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.api.IFilter;
@@ -22,10 +8,15 @@ import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import net.miginfocom.swing.MigLayout;
 
 /**
  * A view to allow users to search the stored data.
- * 
+ *
  * @param <T> the type of the objects to search for
  * @author croesch
  * @since Date: Nov 2, 2012
@@ -42,9 +33,8 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   private int filters = 0;
 
   /** the panel that holds the representation of the different filters */
-  private final CPanel filterPanel = new CPanel("filters", new MigLayout("fill,wrap 4",
-                                                                         "[grow,fill][40%][][fill,grow]",
-                                                                         "[fill]"));
+  private final CPanel filterPanel =
+      new CPanel("filters", new MigLayout("fill,wrap 4", "[grow,fill][40%][][fill,grow]", "[fill]"));
 
   /** the combobox that holds the filter type */
   private final CComboBox filterTypeCBox = new CComboBox("filterType");
@@ -61,12 +51,12 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   /**
    * Constructs the search view with the given model. The model provides the different filters the user can use and
    * provides access to all objects that matches the settings the user set up.
-   * 
-   * @since Date: Nov 2, 2012
-   * @param name the name of the view
+   *
+   * @param name  the name of the view
    * @param model provides all filters the user can use and provides access to a list of elements that match the current
-   *        filter settings
-   * @param o the observer that will be notified when a selection has been made
+   *              filter settings
+   * @param o     the observer that will be notified when a selection has been made
+   * @since Date: Nov 2, 2012
    */
   public ASearchView(final String name, final FilterModel<T> model, final ActionObserver o) {
     super(name, Text.SEARCH_TITLE.text(Text.PARTIMANA, Text.SEARCH));
@@ -77,9 +67,9 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Returns the observer that will be notified when a selection has been made
-   * 
-   * @since Date: Nov 11, 2012
+   *
    * @return the observer that will be notified when a selection has been made
+   * @since Date: Nov 11, 2012
    */
   protected final ActionObserver getObserver() {
     return this.observer;
@@ -87,7 +77,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Constructs the user interface of the search view.
-   * 
+   *
    * @since Date: Nov 2, 2012
    */
   private void builUI() {
@@ -103,7 +93,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Adds the panel for representing the filters to the view.
-   * 
+   *
    * @since Date: Nov 23, 2012
    */
   private void addFilterRepresentation() {
@@ -112,7 +102,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Adds components to create the next filter.
-   * 
+   *
    * @since Date: Nov 11, 2012
    */
   private void addFilterComposition() {
@@ -162,10 +152,10 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Adds the representation for the given filter to the view.
-   * 
-   * @since Date: Nov 23, 2012
-   * @param filter the filter to represent
+   *
+   * @param filter     the filter to represent
    * @param connection the text that visualizes the connection of this filter to the previous filter
+   * @since Date: Nov 23, 2012
    */
   private void addRepresentation(final IFilter<T> filter, final Text connection) {
     final String namePrefix = "f" + ++this.filters + "-";
@@ -197,7 +187,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Updates the contents of the list view with the current result of the filter model.
-   * 
+   *
    * @since Date: Nov 17, 2012
    */
   private void updateListView() {
@@ -206,15 +196,16 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Creates and returns the filter based on the values of the text and combo boxes.
-   * 
-   * @since Date: Nov 17, 2012
+   *
    * @param <OT> the type of the objects the filter type filters
    * @return the filter based on the values of the text and combo boxes.
+   * @since Date: Nov 17, 2012
    */
   private <OT> IFilter<T> createAdministeredFilter() {
     final IFilter<T> filter = createEmptyFilter();
     @SuppressWarnings("unchecked")
-    final IFilterCategory<T, OT> category = ((IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem()).getCopy();
+    final IFilterCategory<T, OT> category =
+        ((IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem()).getCopy();
     @SuppressWarnings("unchecked")
     final IFilterType<OT> filterType = ((IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem()).getCopy();
     filterType.parseFilterValue(this.filterValueTBox.getText());
@@ -225,36 +216,37 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Creates an empty new filter.
-   * 
-   * @since Date: Nov 15, 2012
+   *
    * @return an empty new filter.
+   * @since Date: Nov 15, 2012
    */
   protected abstract IFilter<T> createEmptyFilter();
 
   /**
    * Updates the combobox that holds the filter types base on the currently selected filter category.
-   * 
+   *
    * @since Date: Nov 11, 2012
    */
   @SuppressWarnings("unchecked")
   private void updateFilterTypeComboBox() {
     this.filterTypeCBox.removeAllItems();
-    for (final IFilterType<?> filterType : ((IFilterCategory<T, ?>) this.categoryCBox.getSelectedItem()).getFilterTypes()) {
+    for (final IFilterType<?> filterType : ((IFilterCategory<T, ?>) this.categoryCBox.getSelectedItem())
+        .getFilterTypes()) {
       this.filterTypeCBox.addItem(filterType);
     }
   }
 
   /**
    * Returns all possible categories this filter can filter.
-   * 
-   * @since Date: Nov 11, 2012
+   *
    * @return all possible categories this filter can filter.
+   * @since Date: Nov 11, 2012
    */
   protected abstract Object[] getPossibleCategories();
 
   /**
    * Adds the different buttons to the view.
-   * 
+   *
    * @since Date: Nov 10, 2012
    */
   private void addButtons() {
@@ -290,18 +282,18 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Returns the view that visualizes the current filter matching elements.
-   * 
-   * @since Date: Nov 11, 2012
+   *
    * @return the view that visualizes the current filter matching elements.
+   * @since Date: Nov 11, 2012
    */
   protected abstract AListView<T> getListView();
 
   /**
    * Updates the state of the select button. The given button (assumed to be the select button) will be enabled if the
    * given list has a selectable selection.
-   * 
-   * @since Date: Nov 10, 2012
+   *
    * @param selectButton the button to enable, if the selection in the list is selectable or disable otherwise
+   * @since Date: Nov 10, 2012
    */
   private void updateSelectButtonState(final CButton selectButton) {
     selectButton.setEnabled(getListView().getSelectedElementId() != 0);
@@ -309,10 +301,9 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /**
    * Returns the id of the selected item.
-   * 
+   *
+   * @return the id of the selected item,<br> or <code>0</code> if no element is selected.
    * @since Date: Dec 16, 2012
-   * @return the id of the selected item,<br>
-   *         or <code>0</code> if no element is selected.
    */
   public final long getSelectedId() {
     return getListView().getSelectedElementId();

@@ -2,21 +2,19 @@ package com.github.croesch.partimana.model;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.util.Date;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Test methods for {@link ParticipantModel}
- * 
+ *
  * @author croesch
  * @since Date: Jun 19, 2011
  */
@@ -34,10 +32,9 @@ public final class ParticipantModelTest {
 
   /**
    * Sets up the two models.
-   * 
-   * @author croesch
-   * @since Date: Jun 19, 2011
+   *
    * @throws java.lang.Exception
+   * @since Date: Jun 19, 2011
    */
   @Before
   public void setUp() {
@@ -176,6 +173,5 @@ public final class ParticipantModelTest {
     this.pModel.store(this.p1);
     this.pModel.store(this.p1);
     assertThat(this.pModel.getListOfParticipants()).contains(this.p2, this.p1);
-
   }
 }

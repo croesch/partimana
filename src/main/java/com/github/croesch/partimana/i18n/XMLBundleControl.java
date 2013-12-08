@@ -1,5 +1,7 @@
 package com.github.croesch.partimana.i18n;
 
+import com.github.croesch.annotate.MayBeNull;
+import com.github.croesch.annotate.NotNull;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,12 +13,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
-import com.github.croesch.annotate.MayBeNull;
-import com.github.croesch.annotate.NotNull;
-
 /**
  * Implementation of {@link Control} from its javadoc-example for loading XML-based bundles.
- * 
+ *
  * @author croesch
  * @since Date: Aug 17, 2011
  */
@@ -37,8 +36,8 @@ final class XMLBundleControl extends Control {
                                   final Locale locale,
                                   final String format,
                                   final ClassLoader loader,
-                                  final boolean reload) throws IllegalAccessException, InstantiationException,
-                                                       IOException {
+                                  final boolean reload)
+      throws IllegalAccessException, InstantiationException, IOException {
     if (baseName == null || locale == null || format == null || loader == null) {
       throw new IllegalArgumentException();
     }

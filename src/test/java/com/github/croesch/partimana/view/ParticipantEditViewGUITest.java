@@ -2,36 +2,28 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.swing.JTextArea;
-import javax.swing.text.JTextComponent;
-
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.edt.GuiTask;
-import org.fest.swing.fixture.Containers;
-import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JComboBoxFixture;
-import org.fest.swing.fixture.JLabelFixture;
-import org.fest.swing.fixture.JPanelFixture;
-import org.fest.swing.fixture.JTextComponentFixture;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JTextArea;
+import javax.swing.text.JTextComponent;
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.edt.GuiTask;
+import org.fest.swing.fixture.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * Provides gui tests for {@link ParticipantEditView}
- * 
+ *
  * @author croesch
  * @since Date: Jun 26, 2011
  */

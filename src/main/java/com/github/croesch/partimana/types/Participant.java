@@ -1,18 +1,17 @@
 package com.github.croesch.partimana.types;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Represents a participant.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
@@ -100,20 +99,19 @@ public final class Participant implements IFilterable {
 
   /**
    * Constructs a new {@link Participant}.
-   * 
-   * @author croesch
-   * @since Date: Jun 16, 2011
-   * @param forcedId the number to identify this participant, must be higher than the highest number until now
-   * @param name the last name of the person
+   *
+   * @param forcedId  the number to identify this participant, must be higher than the highest number until now
+   * @param name      the last name of the person
    * @param firstName the first name of the person
-   * @param g the gender of the person
-   * @param den the denomination/confession of the person
-   * @param birth the birthday of the person
-   * @param str the street where the person lives
-   * @param pc the post code of the city where the person lives
-   * @param c the city where the person lives
-   * @param county the county council for this person
+   * @param g         the gender of the person
+   * @param den       the denomination/confession of the person
+   * @param birth     the birthday of the person
+   * @param str       the street where the person lives
+   * @param pc        the post code of the city where the person lives
+   * @param c         the city where the person lives
+   * @param county    the county council for this person
    * @throws IllegalArgumentException if the id is too small
+   * @since Date: Jun 16, 2011
    */
   public Participant(final long forcedId,
                      final String name,
@@ -141,9 +139,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the new highest id to the given value.
-   * 
-   * @since Date: Sep 12, 2012
+   *
    * @param newId the new highest id of the {@link Participant}s.
+   * @since Date: Sep 12, 2012
    */
   private static void setNewHighestIdTo(final long newId) {
     if (newId <= highestId) {
@@ -154,18 +152,17 @@ public final class Participant implements IFilterable {
 
   /**
    * Constructs a new {@link Participant}.
-   * 
-   * @author croesch
-   * @since Date: Jun 16, 2011
-   * @param name the last name of the person
+   *
+   * @param name      the last name of the person
    * @param firstName the first name of the person
-   * @param g the gender of the person
-   * @param den the denomination/confession of the person
-   * @param birth the birthday of the person
-   * @param str the street where the person lives
-   * @param pc the post code of the city where the person lives
-   * @param c the city where the person lives
-   * @param county the county council for this person
+   * @param g         the gender of the person
+   * @param den       the denomination/confession of the person
+   * @param birth     the birthday of the person
+   * @param str       the street where the person lives
+   * @param pc        the post code of the city where the person lives
+   * @param c         the city where the person lives
+   * @param county    the county council for this person
+   * @since Date: Jun 16, 2011
    */
   public Participant(final String name,
                      final String firstName,
@@ -181,11 +178,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Constructs a new {@link Participant} that is equal to the given {@link Participant}.
-   * 
-   * @author croesch
-   * @since Date: Jun 16, 2011
+   *
    * @param p the {@link Participant} to fetch the data from.
    * @throws RequiredFieldSetToNullException if the given {@link Participant} is <code>null</code>
+   * @since Date: Jun 16, 2011
    */
   public Participant(final Participant p) throws RequiredFieldSetToNullException {
     if (p == null) {
@@ -224,9 +220,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the last name of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the last name of the participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getLastName() {
@@ -235,10 +231,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the last name of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param name the last name, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setLastName(final String name) throws RequiredFieldSetToNullException {
     if (name == null) {
@@ -249,9 +245,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the fore name of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the fore name of the participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getForeName() {
@@ -260,10 +256,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the first name of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param name the first name, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given name is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setForeName(final String name) throws RequiredFieldSetToNullException {
     if (name == null) {
@@ -274,9 +270,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the gender of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the gender of the participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public Gender getGender() {
@@ -285,10 +281,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the gender of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param g the gender of the participant, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setGender(final Gender g) throws RequiredFieldSetToNullException {
     if (g == null) {
@@ -299,9 +295,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the denomination of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the denomination of the participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public Denomination getDenomination() {
@@ -310,10 +306,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the denomination of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param den the denomination of the participant
    * @throws RequiredFieldSetToNullException if the given gender is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setDenomination(final Denomination den) throws RequiredFieldSetToNullException {
     if (den == null) {
@@ -324,9 +320,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the date of birth of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the date of birth of the participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public Date getBirthDate() {
@@ -335,10 +331,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the birth day date of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param birth the date of birth day of the participant, mustn't be <code>null</code>
    * @throws RequiredFieldSetToNullException if the given birth date is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setBirthDate(final Date birth) throws RequiredFieldSetToNullException {
     if (birth == null) {
@@ -349,9 +345,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the street of the participant (where he lives).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the street of the participant (where he lives)
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getStreet() {
@@ -360,10 +356,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the street where the participant lives.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param str the street where the participant lives.
    * @throws RequiredFieldSetToNullException if the given street is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setStreet(final String str) throws RequiredFieldSetToNullException {
     if (str == null) {
@@ -374,9 +370,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the post code of the participant (where he lives).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the post code of the participant (where he lives)
+   * @since Date: Jun 18, 2011
    */
   public int getPostCode() {
     return this.livingAddress.getPostCode();
@@ -384,10 +380,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the post code where the participant lives.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param pc the post code where the participant lives.
    * @throws IllegalArgumentException if the given post code is less than zero
+   * @since Date: Jun 18, 2011
    */
   public void setPostCode(final int pc) throws IllegalArgumentException {
     final int highestPostCode = 99999;
@@ -399,9 +395,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the city of the participant (where he lives).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the city of the participant (where he lives)
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public String getCity() {
@@ -410,10 +406,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the city where the participant lives.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param c the city where the participant lives
    * @throws RequiredFieldSetToNullException if the given city is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setCity(final String c) throws RequiredFieldSetToNullException {
     if (c == null) {
@@ -424,9 +420,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the street of the participant (where to post to).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the street of the participant (where to post to)
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getStreetPostal() {
@@ -435,9 +431,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the street of the participant (where to post to).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param sp the street of the participant (where to post to)
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public void setStreetPostal(final String sp) {
@@ -446,9 +442,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the post code of the participant (where to post to).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the post code of the participant (where to post to)
+   * @since Date: Jun 18, 2011
    */
   public int getPostCodePostal() {
     return this.postToAddress.getPostCode();
@@ -456,10 +452,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the post code where to post to.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param pc the post code where to post to, if different to post code where the participant lives.
    * @throws IllegalArgumentException if the given post code is less than zero or greater than 99999
+   * @since Date: Jun 18, 2011
    */
   public void setPostCodePostal(final int pc) throws IllegalArgumentException {
     final int highestPostCode = 99999;
@@ -471,9 +467,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the city of the participant (where to post to).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the city of the participant (where to post to)
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getCityPostal() {
@@ -482,9 +478,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the city of the participant (where to post to).
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param cp the city of the participant (where to post to)
+   * @since Date: Jun 18, 2011
    */
   public void setCityPostal(final String cp) {
     this.postToAddress.setCity(cp);
@@ -492,9 +488,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the phone number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the phone number of the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getPhone() {
@@ -503,9 +499,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the phone number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param p the phone number of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setPhone(final String p) {
     this.phone = p;
@@ -513,9 +509,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the fax number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the fax number of the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getFax() {
@@ -524,9 +520,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the fax number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param f the fax number of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setFax(final String f) {
     this.fax = f;
@@ -534,9 +530,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the mobile phone number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the mobile phone number of the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getMobilePhone() {
@@ -545,9 +541,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the mobile phone number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param mobile the mobile phone number of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setMobilePhone(final String mobile) {
     this.mobilePhone = mobile;
@@ -555,9 +551,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the phone number of the parents of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the phone number of the parents of the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getPhoneOfParents() {
@@ -566,9 +562,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the phone number of the parents of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param pop the phone number of the parents of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setPhoneOfParents(final String pop) {
     this.phoneOfParents = pop;
@@ -576,9 +572,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the mail address of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the mail address of the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getMailAddress() {
@@ -587,9 +583,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the mail address of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param mail the mail address of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setMailAddress(final String mail) {
     this.mailAddress = mail;
@@ -597,9 +593,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the county council of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the county council of the participant
+   * @since Date: Jun 18, 2011
    */
   @NotNull
   public CountyCouncil getCountyCouncil() {
@@ -608,10 +604,10 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the county council of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param cc the county council of the participant.
    * @throws RequiredFieldSetToNullException if the given county council is <code>null</code>
+   * @since Date: Jun 18, 2011
    */
   public void setCountyCouncil(final CountyCouncil cc) throws RequiredFieldSetToNullException {
     if (cc == null) {
@@ -622,9 +618,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the bank code number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the bank code number of the participant
+   * @since Date: Jun 18, 2011
    */
   public int getBankCodeNumber() {
     return this.bankCodeNumber;
@@ -632,9 +628,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the bank code number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param bcn the bank code number of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setBankCodeNumber(final int bcn) {
     this.bankCodeNumber = bcn;
@@ -642,9 +638,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the bank of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the bank of the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getBank() {
@@ -653,9 +649,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the bank of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param b the bank of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setBank(final String b) {
     this.bank = b;
@@ -663,9 +659,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the bank account number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the bank account number of the participant
+   * @since Date: Jun 18, 2011
    */
   public int getBankAccountNumber() {
     return this.bankAccountNumber;
@@ -673,9 +669,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the bank account number of the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param ban the bank account number of the participant
+   * @since Date: Jun 18, 2011
    */
   public void setBankAccountNumber(final int ban) {
     this.bankAccountNumber = ban;
@@ -683,9 +679,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the comment about the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the comment about the participant
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public String getComment() {
@@ -694,9 +690,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the comment about the participant.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param com the comment about the participant
+   * @since Date: Jun 18, 2011
    */
   public void setComment(final String com) {
     this.comment = com;
@@ -704,9 +700,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the date since the participant is in the system.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the date since the participant is in the system
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public Date getDateSinceInDataBase() {
@@ -718,9 +714,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the date since the user is in the data base.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param dsidb the date since the user is in the database
+   * @since Date: Jun 18, 2011
    */
   public void setDateSinceInDataBase(final Date dsidb) {
     if (dsidb != null) {
@@ -732,9 +728,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Gets the date up to that the user will be in the system.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @return the date up to that the user will be in the system
+   * @since Date: Jun 18, 2011
    */
   @MayBeNull
   public Date getDateUpToInSystem() {
@@ -746,9 +742,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Sets the date up to that the user is in the system.
-   * 
-   * @since Date: Jun 18, 2011
+   *
    * @param dutis the date up to that the user is in the system.
+   * @since Date: Jun 18, 2011
    */
   public void setDateUpToInSystem(final Date dutis) {
     if (dutis != null) {
@@ -760,10 +756,9 @@ public final class Participant implements IFilterable {
 
   /**
    * Returns the id of this participant as stored in the data base.
-   * 
-   * @author croesch
-   * @since Date: Jun 18, 2011
+   *
    * @return the id that identifies this participant in something like a data base.
+   * @since Date: Jun 18, 2011
    */
   public long getId() {
     return this.id;
@@ -797,11 +792,11 @@ public final class Participant implements IFilterable {
 
   /**
    * Returns the hashcode of the given {@link String}
-   * 
-   * @since Date: Jul 8, 2011
+   *
    * @param s the string to create a hashcode from
    * @return the hashcode of the given {@link String}
    * @see String#hashCode()
+   * @since Date: Jul 8, 2011
    */
   private static int getHash(final String s) {
     if (s == null) {
@@ -812,11 +807,11 @@ public final class Participant implements IFilterable {
 
   /**
    * Returns the hashcode of the given {@link Date}
-   * 
-   * @since Date: Jul 8, 2011
+   *
    * @param d the date to create a hashcode from
    * @return the hashcode of the given {@link Date}
    * @see Date#hashCode()
+   * @since Date: Jul 8, 2011
    */
   private static int getHash(final Date d) {
     if (d == null) {
@@ -927,11 +922,11 @@ public final class Participant implements IFilterable {
 
   /**
    * Returns whether two dates are equal, ignoring the time.
-   * 
-   * @since Date: Jul 10, 2011
+   *
    * @param one the date one to compare
    * @param two the date two to compare
    * @return <code>true</code>, if the dates are equal.
+   * @since Date: Jul 10, 2011
    */
   private boolean areDatesDifferent(final Date one, final Date two) {
     if (one == null) {
@@ -1007,5 +1002,4 @@ public final class Participant implements IFilterable {
     builder.append("]");
     return builder.toString();
   }
-
 }

@@ -4,7 +4,7 @@ import com.github.croesch.partimana.i18n.Text;
 
 /**
  * Filters all strings that are equal (ignoring case) to the given filter value.
- * 
+ *
  * @author croesch
  * @since Date: Oct 20, 2012
  */

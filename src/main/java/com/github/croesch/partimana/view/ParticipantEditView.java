@@ -1,31 +1,23 @@
 package com.github.croesch.partimana.view;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import net.miginfocom.swing.MigLayout;
-
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.annotate.NotNull;
-import com.github.croesch.components.CComboBox;
-import com.github.croesch.components.CDateField;
-import com.github.croesch.components.CLabel;
-import com.github.croesch.components.CPanel;
-import com.github.croesch.components.CScrollPane;
-import com.github.croesch.components.CTextArea;
-import com.github.croesch.components.CTextField;
+import com.github.croesch.components.*;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.Denomination;
 import com.github.croesch.partimana.types.Gender;
 import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.view.api.IParticipantEditView;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import net.miginfocom.swing.MigLayout;
 
 /**
  * A panel to edit an {@link Participant}. Provides text fields to edit the different attributes.
- * 
+ *
  * @author croesch
  * @since Date: Jun 8, 2011
  */
@@ -140,22 +132,22 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
 
   /**
    * Constructs a new panel, that contains all necessary components to edit the attributes of a {@link Participant}.
-   * Also it is able to fill the content of the different components with the values fetched from a given
-   * {@link Participant}. Therefore see {@link #setParticipant(Participant)}.
-   * 
-   * @author croesch
-   * @since Date: Jun 28, 2011
+   * Also it is able to fill the content of the different components with the values fetched from a given {@link
+   * Participant}. Therefore see {@link #setParticipant(Participant)}.
+   *
    * @param name the name of this component
    * @see #setParticipant(Participant)
+   * @since Date: Jun 28, 2011
    */
   public ParticipantEditView(final String name) {
     super(name);
 
     final int space = 15;
     setLayout(new MigLayout("fill, insets 0",
-                            "[110px!, sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, sg f]",
+                            "[110px!, sg t, align trailing][grow, fill, sg f][sg t, align trailing][grow, fill, "
+                            + "sg f][sg t, align trailing][grow, fill, sg f]",
                             "[sg]" + space + "[sg][sg]" + space + "[sg][sg][sg]" + space + "[sg][sg]" + space + "[sg]"
-                                    + space + "[sg][sg][sg][grow]"));
+                            + space + "[sg][sg][sg][grow]"));
 
     initNames();
 
@@ -166,8 +158,7 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
 
   /**
    * Adds all components to this panel.
-   * 
-   * @author croesch
+   *
    * @since Date: Jun 28, 2011
    */
   private void addComponents() {
@@ -247,8 +238,7 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
 
   /**
    * Initializes the names of all components.
-   * 
-   * @author croesch
+   *
    * @since Date: Jun 28, 2011
    */
   private void initNames() {
@@ -461,5 +451,4 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
     }
     return Long.parseLong(text);
   }
-
 }

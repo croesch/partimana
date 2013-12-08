@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 /**
  * {@link Comparator} for long values.
- * 
+ *
  * @author croesch
  * @since Date: Sep 12, 2012
  */

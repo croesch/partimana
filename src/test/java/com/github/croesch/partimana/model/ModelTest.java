@@ -2,22 +2,16 @@ package com.github.croesch.partimana.model;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
+import com.github.croesch.partimana.types.*;
+import com.github.croesch.partimana.view.api.IView;
 import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
-import com.github.croesch.partimana.types.Camp;
-import com.github.croesch.partimana.types.CountyCouncil;
-import com.github.croesch.partimana.types.Denomination;
-import com.github.croesch.partimana.types.Gender;
-import com.github.croesch.partimana.types.Participant;
-import com.github.croesch.partimana.view.api.IView;
-
 /**
  * Provides test methods for {@link Model}.
- * 
+ *
  * @author croesch
  * @since Date: Jul 10, 2011
  */
@@ -29,7 +23,7 @@ public class ModelTest implements IView {
 
   /**
    * Initialises the model.
-   * 
+   *
    * @since Date: Jul 10, 2011
    */
   @Before

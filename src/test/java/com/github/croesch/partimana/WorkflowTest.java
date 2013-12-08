@@ -1,12 +1,5 @@
 package com.github.croesch.partimana;
 
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.finder.WindowFinder;
-import org.fest.swing.fixture.FrameFixture;
-import org.junit.Test;
-
 import com.github.croesch.partimana.controller.Controller;
 import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.types.CountyCouncil;
@@ -16,17 +9,24 @@ import com.github.croesch.partimana.view.CampListViewGUITest;
 import com.github.croesch.partimana.view.CampParticipantListViewGUITest;
 import com.github.croesch.partimana.view.ParticipantListViewGUITest;
 import com.github.croesch.partimana.view.View;
+import org.fest.swing.data.TableCell;
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
+import org.fest.swing.finder.WindowFinder;
+import org.fest.swing.fixture.FrameFixture;
+import org.junit.Test;
 
 /**
  * Provides a testcase that tests a workflow while using partimana.
- * 
+ *
  * @author croesch
  * @since Date: Sep 23, 2012
  */
 public class WorkflowTest extends PartiManaDefaultGUITestCase {
 
   @Override
-  protected void before() {}
+  protected void before() {
+  }
 
   @Test
   public void test() {
@@ -106,10 +106,21 @@ public class WorkflowTest extends PartiManaDefaultGUITestCase {
     ParticipantListViewGUITest.requireParticipant(frame.table(), 1, "Marianne", "Schmidt");
 
     frame.button("newParticipant").click();
-    enterPart(frame, "Peter", "Maurer", Gender.MALE, "05.07.1957", Denomination.CATHOLIC,
+    enterPart(frame,
+              "Peter",
+              "Maurer",
+              Gender.MALE,
+              "05.07.1957",
+              Denomination.CATHOLIC,
               CountyCouncil.CITY_LUDWIGSHAFEN);
     frame.button("saveParticipant").click();
-    reqPart(frame, "Peter", "Maurer", Gender.MALE, "05.07.1957", Denomination.CATHOLIC, CountyCouncil.CITY_LUDWIGSHAFEN);
+    reqPart(frame,
+            "Peter",
+            "Maurer",
+            Gender.MALE,
+            "05.07.1957",
+            Denomination.CATHOLIC,
+            CountyCouncil.CITY_LUDWIGSHAFEN);
     ParticipantListViewGUITest.requireParticipant(frame.table(), 0, "Mario", "Müller");
     ParticipantListViewGUITest.requireParticipant(frame.table(), 1, "Marianne", "Schmidt");
     ParticipantListViewGUITest.requireParticipant(frame.table(), 2, "Peter", "Maurer");

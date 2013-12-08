@@ -2,12 +2,14 @@ package com.github.croesch.partimana.view;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.actions.UserAction;
+import com.github.croesch.partimana.types.Camp;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.fest.swing.core.MouseClickInfo;
 import org.fest.swing.data.TableCell;
 import org.fest.swing.edt.GuiActionRunner;
@@ -19,13 +21,9 @@ import org.fest.swing.fixture.JPanelFixture;
 import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.actions.UserAction;
-import com.github.croesch.partimana.types.Camp;
-
 /**
  * Provides gui tests for {@link CampListView}
- * 
+ *
  * @author croesch
  * @since Date: Sep 12, 2012
  */
@@ -285,9 +283,7 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     this.testView.table().selectRows(4);
     assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp5.getId());
 
-    this.testView.table()
-                 .pressKey(KeyEvent.VK_CONTROL)
-                 .pressAndReleaseKeys(KeyEvent.VK_SPACE)
+    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
                  .releaseKey(KeyEvent.VK_CONTROL);
     this.testView.table().requireNoSelection();
     assertThat(this.aListView.getSelectedElementId()).isZero();

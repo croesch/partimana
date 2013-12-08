@@ -1,9 +1,9 @@
 package com.github.croesch.partimana.view;
 
+import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
+import com.github.croesch.partimana.i18n.Text;
 import java.awt.Color;
-
 import javax.swing.JFrame;
-
 import org.fest.swing.edt.GuiActionRunner;
 import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.edt.GuiTask;
@@ -11,12 +11,9 @@ import org.fest.swing.fixture.JLabelFixture;
 import org.fest.swing.fixture.JPanelFixture;
 import org.junit.Test;
 
-import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
-import com.github.croesch.partimana.i18n.Text;
-
 /**
  * Provides GUI tests for {@link StatusView}.
- * 
+ *
  * @author croesch
  * @since Date: Sep 12, 2012
  */
@@ -85,7 +82,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
     });
   }
 
-  private void showInformation(final Text txt, final Object ... args) {
+  private void showInformation(final Text txt, final Object... args) {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {

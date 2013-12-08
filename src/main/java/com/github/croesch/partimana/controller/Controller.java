@@ -1,9 +1,5 @@
 package com.github.croesch.partimana.controller;
 
-import java.util.Date;
-
-import org.apache.log4j.Logger;
-
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
@@ -12,10 +8,12 @@ import com.github.croesch.partimana.model.Model;
 import com.github.croesch.partimana.model.api.IPersistenceModel;
 import com.github.croesch.partimana.types.Camp;
 import com.github.croesch.partimana.view.View;
+import java.util.Date;
+import org.apache.log4j.Logger;
 
 /**
  * The controller of the program.
- * 
+ *
  * @author croesch
  * @since Date: May 29, 2011
  */
@@ -38,11 +36,10 @@ public final class Controller implements ActionObserver {
 
   /**
    * Constructs the core controller with the given action observer and the arguments from command line.
-   * 
-   * @author croesch
-   * @since Date: May 29, 2011
-   * @param o the {@link ActionObserver}
+   *
+   * @param o      the {@link ActionObserver}
    * @param pModel the persistence model to store participants and camps with
+   * @since Date: May 29, 2011
    */
   public Controller(final ActionObserver o, final IPersistenceModel pModel) {
     this.observer = o; //FIXME null check!
@@ -91,5 +88,4 @@ public final class Controller implements ActionObserver {
         break;
     }
   }
-
 }

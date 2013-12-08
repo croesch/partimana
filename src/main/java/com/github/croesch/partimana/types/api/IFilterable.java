@@ -1,5 +1,5 @@
- package com.github.croesch.partimana.types.api;
-        
+package com.github.croesch.partimana.types.api;
+
 /**
  * TODO Comment here ...
  *
