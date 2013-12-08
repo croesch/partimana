@@ -35,7 +35,7 @@ public class TableSelectOnClickListenerGUITest extends PartiManaDefaultGUITestCa
         final JTableFixture tableFixture = new JTableFixture(robot(), table);
         final JFrame f = new JFrame();
         f.add(table);
-        f.setBounds(100, 100, 500, 500);
+        f.setBounds(50, 50, 500, 500);
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setVisible(true);
         return tableFixture;
