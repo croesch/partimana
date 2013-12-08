@@ -422,7 +422,16 @@ public class CampTest {
                                                      67475,
                                                      "Weidenthal",
                                                      CountyCouncil.OTHER);
-    final Participant participant3 = new Participant("Eichhorn",
+    final Participant participant3 = new Participant("Duck",
+                                                     "Donald",
+                                                     Gender.MALE,
+                                                     Denomination.JEWISH,
+                                                     new Date(),
+                                                     "Entenstraße 2",
+                                                     12345,
+                                                     "Entenhausen",
+                                                     CountyCouncil.OTHER);
+    final Participant participant4 = new Participant("Eichhorn",
                                                      "Cosima",
                                                      Gender.FEMALE,
                                                      Denomination.OTHER,
@@ -434,10 +443,16 @@ public class CampTest {
 
     this.camp.addParticipant(new CampParticipant(participant));
     this.camp.addParticipant(new CampParticipant(participant2));
-    this.camp.addParticipant(new CampParticipant(participant3));
+    CampParticipant campParticipant3 = new CampParticipant(participant3);
+    campParticipant3.setRole(Role.DAY_CHILD);
+    this.camp.addParticipant(campParticipant3);
+    this.camp.addParticipant(new CampParticipant(participant4));
     assertThat(this.camp.getParticipants()).containsExactly(new CampParticipant(participant),
                                                             new CampParticipant(participant2),
-                                                            new CampParticipant(participant3));
+                                                            campParticipant3,
+                                                            new CampParticipant(participant4));
+
+    camp.setRatePerDayChildren("22");
 
     String lf = System.getProperty("line.separator");
     String from = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getFromDate());
@@ -447,6 +462,8 @@ public class CampTest {
                                             + until + lf
                                             + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from
                                             + ";" + until + lf
+                                            + "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;Testcamp;22;" + from + ";"
+                                            + until + lf
                                             + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from
                                             + ";" + until + lf);
     // System.out.println(this.camp.toCSV());

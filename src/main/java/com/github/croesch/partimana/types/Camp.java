@@ -487,8 +487,12 @@ public final class Camp implements IFilterable {
       sb.append(cp.getCity()).append(separator);
       sb.append(cp.getGender().getRepresentation()).append(separator);
       sb.append(getName()).append(separator);
-      sb.append(getRatePerParticipant()).append(separator);
-      sb.append(getFormattedDate(getFromDate())).append(separator);
+      if (cp.getRole() == Role.DAY_CHILD) {
+        sb.append(getRatePerDayChildren());
+      } else {
+        sb.append(getRatePerParticipant());
+      }
+      sb.append(separator).append(getFormattedDate(getFromDate())).append(separator);
       sb.append(getFormattedDate(getUntilDate())).append(lf);
     }
     return sb.toString();
