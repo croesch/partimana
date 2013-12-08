@@ -15,7 +15,6 @@ import com.github.croesch.partimana.types.Participant;
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import com.github.croesch.partimana.view.api.*;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -94,8 +93,6 @@ public final class View extends CFrame
 
     setJMenuBar(new MenuBar("menuBar"));
 
-    // TODO change the default size of the view.
-    setSize(new Dimension(1200, 650));
     setTitle(Text.PARTIMANA.text());
     setLayout(new BorderLayout());
 
@@ -156,6 +153,9 @@ public final class View extends CFrame
         View.this.observer.performAction(UserAction.EXIT);
       }
     });
+
+    pack();
+    setLocationByPlatform(true);
 
     //TODO test
     update();
