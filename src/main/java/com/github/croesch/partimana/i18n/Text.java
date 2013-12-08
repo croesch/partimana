@@ -145,6 +145,8 @@ public enum Text {
   CAMP_PARTICIPANT_KITCHEN_STAFF(303),
   /** the text for the role participant */
   CAMP_PARTICIPANT_PARTICIPANT(304),
+  /** the text for the role day-child. */
+  CAMP_PARTICIPANT_DAY_CHILD(305),
 
   /** constant for male */
   MALE(2000),

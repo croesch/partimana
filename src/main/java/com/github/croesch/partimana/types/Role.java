@@ -17,7 +17,9 @@ public enum Role {
   /** the participant works in the kitchen of the camp */
   KITCHEN_STAFF(2, Text.CAMP_PARTICIPANT_KITCHEN_STAFF),
   /** the participant is a simple participant */
-  PARTICIPANT(3, Text.CAMP_PARTICIPANT_PARTICIPANT);
+  PARTICIPANT(3, Text.CAMP_PARTICIPANT_PARTICIPANT),
+  /** the participant participates only for one day. */
+  DAY_CHILD(4, Text.CAMP_PARTICIPANT_DAY_CHILD);
 
   /** the id of this role to store in a database */
   private final int id;
