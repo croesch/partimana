@@ -24,7 +24,6 @@ public class ParticipantTest {
   /**
    * Sets up an object of {@link Participant}
    *
-   * @throws java.lang.Exception
    * @since Date: Jun 18, 2011
    */
   @Before
@@ -264,7 +263,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getLastName()} and {@link Participant#setLastName()}.
+   * Test method for {@link Participant#getLastName()} and {@link Participant#setLastName(String)}.
    */
   @Test
   public final void testSetAndGetLastName() {
@@ -279,7 +278,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getForeName()} and {@link Participant#setForeName()}.
+   * Test method for {@link Participant#getForeName()} and {@link Participant#setForeName(String)}.
    */
   @Test
   public final void testSetAndGetForeName() {
@@ -294,7 +293,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getGender()} and {@link Participant#setGender()}.
+   * Test method for {@link Participant#getGender()} and {@link Participant#setGender(Gender)}.
    */
   @Test
   public final void testSetAndGetGender() {
@@ -306,7 +305,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getDenomination()} and {@link Participant#setDenomination()}.
+   * Test method for {@link Participant#getDenomination()} and {@link Participant#setDenomination(Denomination)}.
    */
   @Test
   public final void testSetAndGetDenomination() {
@@ -321,7 +320,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getBirthDate()} and {@link Participant#setBirthDate()}.
+   * Test method for {@link Participant#getBirthDate()} and {@link Participant#setBirthDate(Date)}.
    */
   @Test
   public final void testSetAndGetBirthDate() {
@@ -340,7 +339,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getStreet()} and {@link Participant#setStreet()}.
+   * Test method for {@link Participant#getStreet()} and {@link Participant#setStreet(String)}.
    */
   @Test
   public final void testSetAndGetStreet() {
@@ -355,7 +354,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPostCode()} and {@link Participant#setPostCode()}.
+   * Test method for {@link Participant#getPostCode()} and {@link Participant#setPostCode(int)}.
    */
   @Test
   public final void testSetAndGetPostCode() {
@@ -373,7 +372,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPostCode()} and {@link Participant#setPostCode()}.
+   * Test method for {@link Participant#getPostCode()} and {@link Participant#setPostCode(int)}.
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodeIAE1() {
@@ -381,7 +380,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPostCode()} and {@link Participant#setPostCode()}.
+   * Test method for {@link Participant#getPostCode()} and {@link Participant#setPostCode(int)}.
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodeIAE2() {
@@ -390,7 +389,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getCity()} and {@link Participant#setCity()}.
+   * Test method for {@link Participant#getCity()} and {@link Participant#setCity(String)}.
    */
   @Test
   public final void testSetAndGetCity() {
@@ -405,7 +404,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getStreetPostal()} and {@link Participant#setStreetPostal()}.
+   * Test method for {@link Participant#getStreetPostal()} and {@link Participant#setStreetPostal(String)}.
    */
   @Test
   public final void testSetAndGetStreetPostal() {
@@ -420,7 +419,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPostCodePostal()} and {@link Participant#setPostCodePostal()}.
+   * Test method for {@link Participant#getPostCodePostal()} and {@link Participant#setPostCodePostal(int)}.
    */
   @Test
   public final void testSetAndGetPostCodePostal() {
@@ -438,7 +437,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPostCodePostal()} and {@link Participant#setPostCodePostal()}.
+   * Test method for {@link Participant#getPostCodePostal()} and {@link Participant#setPostCodePostal(int)}.
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodePostalIAE1() {
@@ -446,7 +445,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPostCodePostal()} and {@link Participant#setPostCodePostal()}.
+   * Test method for {@link Participant#getPostCodePostal()} and {@link Participant#setPostCodePostal(int)}.
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodePostalIAE2() {
@@ -455,7 +454,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getCityPostal()} and {@link Participant#setCityPostal()}.
+   * Test method for {@link Participant#getCityPostal()} and {@link Participant#setCityPostal(String)}.
    */
   @Test
   public final void testSetAndGetCityPostal() {
@@ -470,7 +469,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPhone()} and {@link Participant#setPhone()}.
+   * Test method for {@link Participant#getPhone()} and {@link Participant#setPhone(String)}.
    */
   @Test
   public final void testSetAndGetPhone() {
@@ -485,7 +484,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getFax()} and {@link Participant#setFax()}.
+   * Test method for {@link Participant#getFax()} and {@link Participant#setFax(String)}.
    */
   @Test
   public final void testSetAndGetFax() {
@@ -500,7 +499,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getMobilePhone()} and {@link Participant#setMobilePhone()}.
+   * Test method for {@link Participant#getMobilePhone()} and {@link Participant#setMobilePhone(String)}.
    */
   @Test
   public final void testSetAndGetMobilePhone() {
@@ -515,7 +514,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getPhoneOfParents()} and {@link Participant#setPhoneOfParents()}.
+   * Test method for {@link Participant#getPhoneOfParents()} and {@link Participant#setPhoneOfParents(String)}.
    */
   @Test
   public final void testSetAndGetPhoneOfParents() {
@@ -530,7 +529,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getMailAddress()} and {@link Participant#setMailAddress()}.
+   * Test method for {@link Participant#getMailAddress()} and {@link Participant#setMailAddress(String)}.
    */
   @Test
   public final void testSetAndGetMailAddress() {
@@ -545,7 +544,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getCountyCouncil()} and {@link Participant#setCountyCouncil()}.
+   * Test method for {@link Participant#getCountyCouncil()} and {@link Participant#setCountyCouncil(CountyCouncil)}.
    */
   @Test
   public final void testSetAndGetCountyCouncil() {
@@ -560,7 +559,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getBankCodeNumber()} and {@link Participant#setBankCodeNumber()}.
+   * Test method for {@link Participant#getBankCodeNumber()} and {@link Participant#setBankCodeNumber(int)}.
    */
   @Test
   public final void testSetAndGetBankCodeNumber() {
@@ -578,7 +577,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getBank()} and {@link Participant#setBank()}.
+   * Test method for {@link Participant#getBank()} and {@link Participant#setBank(String)}.
    */
   @Test
   public final void testSetAndGetBank() {
@@ -593,7 +592,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getBankAccountNumber()} and {@link Participant#setBankAccountNumber()}.
+   * Test method for {@link Participant#getBankAccountNumber()} and {@link Participant#setBankAccountNumber(int)}.
    */
   @Test
   public final void testSetAndGetBankAccountNumber() {
@@ -611,7 +610,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getComment()} and {@link Participant#setComment()}.
+   * Test method for {@link Participant#getComment()} and {@link Participant#setComment(String)}.
    */
   @Test
   public final void testSetAndGetComment() {
@@ -626,7 +625,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getDateSinceInDataBase()} and {@link Participant#setDateSinceInDataBase()}.
+   * Test method for {@link Participant#getDateSinceInDataBase()} and {@link Participant#setDateSinceInDataBase(Date)}.
    */
   @Test
   public final void testSetAndGetDateSinceInDataBase() {
@@ -650,7 +649,7 @@ public class ParticipantTest {
   }
 
   /**
-   * Test method for {@link Participant#getDateUpToInSystem()} and {@link Participant#setDateUpToInSystem()}.
+   * Test method for {@link Participant#getDateUpToInSystem()} and {@link Participant#setDateUpToInSystem(Date)}.
    */
   @Test
   public final void testSetAndGetDateUpToInSystem() {

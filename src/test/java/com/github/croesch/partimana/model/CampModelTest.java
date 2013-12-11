@@ -77,7 +77,7 @@ public final class CampModelTest {
   }
 
   /**
-   * Test method for {@link CampModel#delete(Camp)}.
+   * Test method for {@link CampModel#deleteCamp(long)}.
    */
   @Test
   public void testDeleteCamp() {

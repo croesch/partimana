@@ -20,7 +20,7 @@ import org.junit.Test;
 public class ViewTest {
 
   /**
-   * Test method for {@link View#View(IModel4View, ActionObserver)}.
+   * Test method for {@link View#View(String, IModel4View, ActionObserver)}.
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testView_ModelIsNull() {
@@ -38,7 +38,7 @@ public class ViewTest {
   }
 
   /**
-   * Test method for {@link View#View(IModel4View, ActionObserver)}.
+   * Test method for {@link View#View(String, IModel4View, ActionObserver)}.
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testView_ObserverIsNull() {

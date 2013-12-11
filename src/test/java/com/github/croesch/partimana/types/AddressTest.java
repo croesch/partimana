@@ -48,7 +48,7 @@ public class AddressTest {
   }
 
   /**
-   * Test method for {@link Address#getStreet()} and {@link Address#setStreet()}.
+   * Test method for {@link Address#getStreet()} and {@link Address#setStreet(String)}.
    */
   @Test
   public final void testSetAndGetStreet() {
@@ -63,7 +63,7 @@ public class AddressTest {
   }
 
   /**
-   * Test method for {@link Address#getPostCode()} and {@link Address#setPostCode()}.
+   * Test method for {@link Address#getPostCode()} and {@link Address#setPostCode(int)}.
    */
   @Test
   public final void testSetAndGetPostCode() {
@@ -79,7 +79,7 @@ public class AddressTest {
   }
 
   /**
-   * Test method for {@link Address#getCity()} and {@link Address#setCity()}.
+   * Test method for {@link Address#getCity()} and {@link Address#setCity(String)}.
    */
   @Test
   public final void testSetAndGetCity() {

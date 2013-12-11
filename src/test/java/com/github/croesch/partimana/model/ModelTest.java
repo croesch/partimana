@@ -205,7 +205,7 @@ public class ModelTest implements IView {
   }
 
   /**
-   * Test method for {@link Model#delete(Participant)}.
+   * Test method for {@link Model#deleteParticipant(long)}.
    */
   @Test
   public final void testDeleteParticipant() {
@@ -225,7 +225,7 @@ public class ModelTest implements IView {
   }
 
   /**
-   * Test method for {@link Model#delete(Camp)}.
+   * Test method for {@link Model#deleteCamp(long)}.
    */
   @Test
   public final void testDeleteCamp() {
@@ -237,7 +237,7 @@ public class ModelTest implements IView {
   }
 
   /**
-   * Test method for {@link Model#delete(Participant)}.
+   * Test method for {@link Model#deleteParticipant(long)}.
    */
   @Test
   public final void testDeleteParticipant_ViewIsNull() {
@@ -258,7 +258,7 @@ public class ModelTest implements IView {
   }
 
   /**
-   * Test method for {@link Model#delete(Camp)}.
+   * Test method for {@link Model#deleteCamp(long)}.
    */
   @Test
   public final void testDeleteCamp_ViewIsNull() {

@@ -33,7 +33,6 @@ public final class ParticipantModelTest {
   /**
    * Sets up the two models.
    *
-   * @throws java.lang.Exception
    * @since Date: Jun 19, 2011
    */
   @Before
@@ -97,7 +96,7 @@ public final class ParticipantModelTest {
   }
 
   /**
-   * Test method for {@link ParticipantModel#delete(Participant)}.
+   * Test method for {@link ParticipantModel#deleteParticipant(long)}.
    */
   @Test
   public void testDeleteParticipant() {

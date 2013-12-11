@@ -24,7 +24,7 @@ import org.fest.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 /**
- * Provides test cases for the {@link SearchView}.
+ * Provides test cases for the {@link ParticipantSearchView}.
  *
  * @author croesch
  * @since Date: Nov 2, 2012

@@ -65,7 +65,7 @@ public interface IPersistenceModel extends Closeable {
   void deleteCamp(long id);
 
   /**
-   * Creates the given {@linkp Participant} in the stored data.
+   * Creates the given {@link Participant} in the stored data.
    *
    * @param p the participant to create.
    * @since Date: Jun 19, 2011
@@ -73,7 +73,7 @@ public interface IPersistenceModel extends Closeable {
   void create(Participant p);
 
   /**
-   * Creates the given {@linkp Camp} in the stored data.
+   * Creates the given {@link Camp} in the stored data.
    *
    * @param c the camp to create.
    * @since Date: Jun 19, 2011
