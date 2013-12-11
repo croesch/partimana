@@ -958,48 +958,18 @@ public final class Participant implements IFilterable {
 
   @Override
   public String toString() {
-    final StringBuilder builder = new StringBuilder();
-    builder.append(Text.PARTICIPANT);
-    builder.append(" [").append(Text.PARTICIPANT_ID).append("=").append(this.id);
-    builder.append(", ").append(Text.PARTICIPANT_LASTNAME).append("=");
-    builder.append(this.lastName);
-    builder.append(", ").append(Text.PARTICIPANT_FORENAME).append("=");
-    builder.append(this.foreName);
-    builder.append(", ").append(Text.PARTICIPANT_GENDER).append("=");
-    builder.append(this.gender);
-    builder.append(", ").append(Text.PARTICIPANT_DENOMINTAION).append("=");
-    builder.append(this.denomination);
-    builder.append(", ").append(Text.PARTICIPANT_BIRTHDAY).append("=");
-    builder.append(this.birthDate);
-    builder.append(", ").append(Text.PARTICIPANT_ADDRESS_LIVING).append("=");
-    builder.append(this.livingAddress);
-    builder.append(", ").append(Text.PARTICIPANT_ADDRESS_POSTAL).append("=");
-    builder.append(this.postToAddress);
-    builder.append(", ").append(Text.PARTICIPANT_PHONE).append("=");
-    builder.append(this.phone);
-    builder.append(", ").append(Text.PARTICIPANT_FAX).append("=");
-    builder.append(this.fax);
-    builder.append(", ").append(Text.PARTICIPANT_MOBILE_PHONE).append("=");
-    builder.append(this.mobilePhone);
-    builder.append(", ").append(Text.PARTICIPANT_PHONE_OF_PARENTS).append("=");
-    builder.append(this.phoneOfParents);
-    builder.append(", ").append(Text.PARTICIPANT_MAIL_ADDRESS).append("=");
-    builder.append(this.mailAddress);
-    builder.append(", ").append(Text.PARTICIPANT_COUNTY_COUNCIL).append("=");
-    builder.append(this.countyCouncil);
-    builder.append(", ").append(Text.PARTICIPANT_BANK_CODE_NUMBER).append("=");
-    builder.append(this.bankCodeNumber);
-    builder.append(", ").append(Text.PARTICIPANT_BANK_NAME).append("=");
-    builder.append(this.bank);
-    builder.append(", ").append(Text.PARTICIPANT_BANK_ACCOUNT_NUMBER).append("=");
-    builder.append(this.bankAccountNumber);
-    builder.append(", ").append(Text.PARTICIPANT_COMMENT).append("=");
-    builder.append(this.comment);
-    builder.append(", ").append(Text.PARTICIPANT_DATE_SINCE).append("=");
-    builder.append(this.dateSinceInDataBase);
-    builder.append(", ").append(Text.PARTICIPANT_DATE_UNTIL).append("=");
-    builder.append(this.dateUpToInSystem);
-    builder.append("]");
-    return builder.toString();
+    return String.valueOf(Text.PARTICIPANT) + " [" + Text.PARTICIPANT_ID + "=" + this.id + ", "
+           + Text.PARTICIPANT_LASTNAME + "=" + this.lastName + ", " + Text.PARTICIPANT_FORENAME + "=" + this.foreName
+           + ", " + Text.PARTICIPANT_GENDER + "=" + this.gender + ", " + Text.PARTICIPANT_DENOMINTAION + "="
+           + this.denomination + ", " + Text.PARTICIPANT_BIRTHDAY + "=" + this.birthDate + ", "
+           + Text.PARTICIPANT_ADDRESS_LIVING + "=" + this.livingAddress + ", " + Text.PARTICIPANT_ADDRESS_POSTAL + "="
+           + this.postToAddress + ", " + Text.PARTICIPANT_PHONE + "=" + this.phone + ", " + Text.PARTICIPANT_FAX + "="
+           + this.fax + ", " + Text.PARTICIPANT_MOBILE_PHONE + "=" + this.mobilePhone + ", "
+           + Text.PARTICIPANT_PHONE_OF_PARENTS + "=" + this.phoneOfParents + ", " + Text.PARTICIPANT_MAIL_ADDRESS + "="
+           + this.mailAddress + ", " + Text.PARTICIPANT_COUNTY_COUNCIL + "=" + this.countyCouncil + ", "
+           + Text.PARTICIPANT_BANK_CODE_NUMBER + "=" + this.bankCodeNumber + ", " + Text.PARTICIPANT_BANK_NAME + "="
+           + this.bank + ", " + Text.PARTICIPANT_BANK_ACCOUNT_NUMBER + "=" + this.bankAccountNumber + ", "
+           + Text.PARTICIPANT_COMMENT + "=" + this.comment + ", " + Text.PARTICIPANT_DATE_SINCE + "="
+           + this.dateSinceInDataBase + ", " + Text.PARTICIPANT_DATE_UNTIL + "=" + this.dateUpToInSystem + "]";
   }
 }
