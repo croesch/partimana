@@ -26,11 +26,11 @@ abstract class AFilterGroup<F extends IFilterable> implements IFilterGroup<F> {
   /**
    * Constructs a new group with the given description.
    *
-   * @param descr the i18n value that describes this group
+   * @param description the i18n value that describes this group
    * @since Date: Oct 30, 2012
    */
-  public AFilterGroup(final Text descr) {
-    this.description = descr;
+  public AFilterGroup(final Text description) {
+    this.description = description;
   }
 
   @Override

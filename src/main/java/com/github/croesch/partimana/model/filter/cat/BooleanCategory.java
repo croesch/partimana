@@ -20,11 +20,11 @@ public abstract class BooleanCategory<F extends IFilterable> extends ACategory<F
   /**
    * Constructs this category with the given viewable description.
    *
-   * @param descr the short description that can be shown to the user
+   * @param description the short description that can be shown to the user
    * @since Date: Oct 27, 2012
    */
-  public BooleanCategory(final Text descr) {
-    super(descr);
+  public BooleanCategory(final Text description) {
+    super(description);
   }
 
   @Override

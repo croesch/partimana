@@ -62,7 +62,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
     super(name, Text.SEARCH_TITLE.text(Text.PARTIMANA, Text.SEARCH));
     this.filterModel = model;
     this.observer = o;
-    builUI();
+    buildUI();
   }
 
   /**
@@ -80,7 +80,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    *
    * @since Date: Nov 2, 2012
    */
-  private void builUI() {
+  private void buildUI() {
     setLayout(new MigLayout("fill,wrap 1"));
 
     addFilterComposition();

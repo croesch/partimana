@@ -26,11 +26,11 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
   /**
    * Constructs this category with the given viewable description.
    *
-   * @param descr the short description that can be shown to the user
+   * @param description the short description that can be shown to the user
    * @since Date: Oct 22, 2012
    */
-  protected ACategory(final Text descr) {
-    this.description = descr;
+  protected ACategory(final Text description) {
+    this.description = description;
   }
 
   @Override
@@ -57,7 +57,7 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
   /**
    * Returns the object value of this category from the given element.
    *
-   * @param element the element that'll be filtered
+   * @param element the element that will be filtered
    * @return the object value of this category from the given element.
    * @since Date: Oct 22, 2012
    */
