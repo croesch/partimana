@@ -46,7 +46,7 @@ final class XMLBundleControl extends Control {
     }
     ResourceBundle bundle = null;
     final String resourceName = toResourceName(toBundleName(baseName, locale), format);
-    InputStream stream = null;
+    InputStream stream;
     if (reload) {
       final URL url = loader.getResource(resourceName);
       if (url == null) {

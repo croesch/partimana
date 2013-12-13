@@ -41,7 +41,7 @@ final class ParticipantSaver {
                           final IStatusView statusView) {
 
     try {
-      Participant p = null;
+      Participant p;
       if (editView.getId() <= 0) {
         p = new Participant(editView.getLastName(),
                             editView.getFirstName(),

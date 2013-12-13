@@ -40,7 +40,7 @@ final class CampSaver {
   static void performSave(final ICampModel model, final ICampEditView editView, final IStatusView statusView) {
 
     try {
-      Camp c = null;
+      Camp c;
       if (editView.getId() <= 0) {
         c = new Camp(editView.getNameOfCamp(),
                      editView.getFrom(),

@@ -17,7 +17,7 @@ public abstract class DateFilterType extends AFilterType<Date> {
 
   @Override
   public final boolean parseFilterValue(final String value) {
-    Date date = null;
+    Date date;
     try {
       date = new Date(Long.parseLong(value));
     } catch (final NumberFormatException nfe) {
@@ -25,9 +25,7 @@ public abstract class DateFilterType extends AFilterType<Date> {
       // TODO information for the user
       return false;
     }
-    if (date != null) {
-      setFilterValue(date);
-    }
+    setFilterValue(date);
     return true;
   }
 }

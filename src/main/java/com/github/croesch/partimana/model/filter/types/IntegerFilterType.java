@@ -16,7 +16,7 @@ public abstract class IntegerFilterType extends AFilterType<Integer> {
 
   @Override
   public final boolean parseFilterValue(final String value) {
-    Integer integer = null;
+    Integer integer;
     try {
       integer = Integer.valueOf(value);
     } catch (final NumberFormatException nfe) {
