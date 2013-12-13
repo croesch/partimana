@@ -9,7 +9,7 @@ package com.github.croesch.partimana.view.api;
 public interface IView {
 
   /**
-   * Performs an update of the view. Means that the view'll fetch all displayed information from the model to get the
+   * Performs an update of the view. Means that the view will fetch all displayed information from the model to get the
    * version up to date.
    *
    * @since Date: Jul 10, 2011

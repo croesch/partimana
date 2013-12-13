@@ -5,7 +5,7 @@ import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.i18n.Text;
 
 /**
- * Represents the types of denomiation.
+ * Represents the types of denomination.
  *
  * @author croesch
  * @since Date: Jun 16, 2011

@@ -23,11 +23,11 @@ public abstract class DateCategory<F extends IFilterable> extends ACategory<F, D
   /**
    * Constructs this category with the given viewable description.
    *
-   * @param descr the short description that can be shown to the user
+   * @param description the short description that can be shown to the user
    * @since Date: Oct 27, 2012
    */
-  public DateCategory(final Text descr) {
-    super(descr);
+  public DateCategory(final Text description) {
+    super(description);
   }
 
   @Override

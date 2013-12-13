@@ -23,7 +23,7 @@ public final class TableMouseListener extends MouseAdapter {
   private final UserAction action;
 
   /**
-   * Creates new mouse listener that'll send the given action to the given observer if double click happened on the
+   * Creates new mouse listener that will send the given action to the given observer if double click happened on the
    * table.
    *
    * @param o the {@link ActionObserver} to fire the action to.

@@ -22,11 +22,11 @@ public abstract class IntegerCategory<F extends IFilterable> extends ACategory<F
   /**
    * Constructs this category with the given viewable description.
    *
-   * @param descr the short description that can be shown to the user
+   * @param description the short description that can be shown to the user
    * @since Date: Oct 27, 2012
    */
-  public IntegerCategory(final Text descr) {
-    super(descr);
+  public IntegerCategory(final Text description) {
+    super(description);
   }
 
   @Override

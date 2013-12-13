@@ -6,7 +6,7 @@ import com.github.croesch.partimana.types.api.IDescribable;
 /**
  * Interface that defines a filter for a specific data type.
  *
- * @param <OT> the type of the objects that'll be filtered
+ * @param <OT> the type of the objects that will be filtered
  * @author croesch
  * @since Date: Oct 20, 2012
  */

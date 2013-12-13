@@ -715,12 +715,12 @@ public final class Participant implements IFilterable {
   /**
    * Sets the date since the user is in the data base.
    *
-   * @param dsidb the date since the user is in the database
+   * @param since the date since the user is in the database
    * @since Date: Jun 18, 2011
    */
-  public void setDateSinceInDataBase(final Date dsidb) {
-    if (dsidb != null) {
-      this.dateSinceInDataBase = new Date(dsidb.getTime());
+  public void setDateSinceInDataBase(final Date since) {
+    if (since != null) {
+      this.dateSinceInDataBase = new Date(since.getTime());
     } else {
       this.dateSinceInDataBase = null;
     }
@@ -743,12 +743,12 @@ public final class Participant implements IFilterable {
   /**
    * Sets the date up to that the user is in the system.
    *
-   * @param dutis the date up to that the user is in the system.
+   * @param until the date up to that the user is in the system.
    * @since Date: Jun 18, 2011
    */
-  public void setDateUpToInSystem(final Date dutis) {
-    if (dutis != null) {
-      this.dateUpToInSystem = new Date(dutis.getTime());
+  public void setDateUpToInSystem(final Date until) {
+    if (until != null) {
+      this.dateUpToInSystem = new Date(until.getTime());
     } else {
       this.dateUpToInSystem = null;
     }
@@ -791,10 +791,10 @@ public final class Participant implements IFilterable {
   }
 
   /**
-   * Returns the hashcode of the given {@link String}
+   * Returns the hash code of the given {@link String}
    *
-   * @param s the string to create a hashcode from
-   * @return the hashcode of the given {@link String}
+   * @param s the string to create a hash code from
+   * @return the hash code of the given {@link String}
    * @see String#hashCode()
    * @since Date: Jul 8, 2011
    */
@@ -806,10 +806,10 @@ public final class Participant implements IFilterable {
   }
 
   /**
-   * Returns the hashcode of the given {@link Date}
+   * Returns the hash code of the given {@link Date}
    *
-   * @param d the date to create a hashcode from
-   * @return the hashcode of the given {@link Date}
+   * @param d the date to create a hash code from
+   * @return the hash code of the given {@link Date}
    * @see Date#hashCode()
    * @since Date: Jul 8, 2011
    */

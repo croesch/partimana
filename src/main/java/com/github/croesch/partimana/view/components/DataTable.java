@@ -24,9 +24,9 @@ public class DataTable extends CTable {
    * Creates a new table.
    *
    * @param name        the name of this table
-   * @param o           the {@link ActionObserver} that'll be notified on selection changes.
+   * @param o           the {@link ActionObserver} that will be notified on selection changes.
    * @param identifiers the column identifiers
-   * @param action      the action that'll be send to the observer, when a row is selected (via double click) by the
+   * @param action      the action that will be send to the observer, when a row is selected (via double click) by the
    *                    user
    * @since Date: Sep 12, 2012
    */
@@ -38,9 +38,9 @@ public class DataTable extends CTable {
    * Creates a new table.
    *
    * @param name   the name of this table
-   * @param o      the {@link ActionObserver} that'll be notified on selection changes.
+   * @param o      the {@link ActionObserver} that will be notified on selection changes.
    * @param model  the table model
-   * @param action the action that'll be send to the observer, when a row is selected (via double click) by the user
+   * @param action the action that will be send to the observer, when a row is selected (via double click) by the user
    * @since Date: Sep 12, 2012
    */
   public DataTable(final String name, final ActionObserver o, final UserAction action, final TableModel model) {
@@ -51,9 +51,9 @@ public class DataTable extends CTable {
    * Creates a new table.
    *
    * @param name        the name of this table
-   * @param o           the {@link ActionObserver} that'll be notified on selection changes.
+   * @param o           the {@link ActionObserver} that will be notified on selection changes.
    * @param identifiers the column identifiers
-   * @param action      the action that'll be send to the observer, when a row is selected (via double click) by the
+   * @param action      the action that will be send to the observer, when a row is selected (via double click) by the
    *                    user
    * @param model       the table model
    * @since Date: Sep 12, 2012
