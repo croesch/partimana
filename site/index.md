@@ -5,4 +5,4 @@ title: Partimana
 
 # Work in progress
 
-Content might appear here ...
+Content might appear here.
