@@ -3,12 +3,22 @@ layout: default
 title: Downloads
 ---
 
+# Version 0.11
+## Download
+Packaged: [partimana-0.11.zip](https://github.com/croesch/partimana/releases/download/v-0.11.0/partimana-0.11.zip)
+
+Source: [v-0.11.0.zip](https://github.com/croesch/partimana/archive/v-0.11.0.zip) /  [v-0.11.0.tar.gz](https://github.com/croesch/partimana/archive/v-0.11.0.tar.gz)
+
+## Changelog
+* [#50](https://github.com/croesch/partimana/issues/50) Add day child as possible function of a member
+
+
 # Version 0.10
 ## Download
 Source: [v-0.10.0.zip](https://github.com/croesch/partimana/archive/v-0.10.0.zip) /  [v-0.10.0.tar.gz](https://github.com/croesch/partimana/archive/v-0.10.0.tar.gz)
 
 ## Changelog
-* [#52](https://github.com/croesch/partimana/issues/52) Add attributes to CSV export.
+* [#52](https://github.com/croesch/partimana/issues/52) Add attributes to CSV export
 
 
 # Version 0.9.4
