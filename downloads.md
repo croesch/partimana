@@ -3,6 +3,10 @@ layout: default
 title: Downloads
 ---
 
+# Version 0.11.1 - not released
+## Changelog
+* Rename *Kreis Kirchheimbolanden* to *Donnersbergkreis*
+
 # Version 0.11
 ## Download
 Packaged: [partimana-0.11.zip](https://github.com/croesch/partimana/releases/download/v-0.11.0/partimana-0.11.zip)
