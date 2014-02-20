@@ -3,6 +3,19 @@ layout: default
 title: Downloads
 ---
 
+# Version 0.9.4
+## Download
+Packaged: [partimana-0.9.4.zip](https://github.com/croesch/partimana/releases/download/v-0.9.4/partimana-0.9.4.zip)
+
+Source: [v-0.9.4.zip](https://github.com/croesch/partimana/archive/v-0.9.4.zip) /  [v-0.9.4.tar.gz](https://github.com/croesch/partimana/archive/v-0.9.4.tar.gz)
+
+## Changelog
+* [#15](https://github.com/croesch/partimana/issues/15) Implement output functionality
+* [#33](https://github.com/croesch/partimana/issues/33) Swap gender and birthday
+* [#39](https://github.com/croesch/partimana/issues/39) Swap fields forename and surname
+* Minor UI improvements
+
+
 # Version 0.9.3
 ## Download
 Source: [v-0.9.3.zip](https://github.com/croesch/partimana/archive/v-0.9.3.zip) / [v-0.9.3.tar.gz](https://github.com/croesch/partimana/archive/v-0.9.3.tar.gz)
