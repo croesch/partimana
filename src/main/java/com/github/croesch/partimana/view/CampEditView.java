@@ -271,6 +271,22 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
           break;
         }
       }
+    } else if (action == UserAction.CAMP_PARTICIPANT_SELECTED) {
+      final long id = this.campParticipantList.getSelectedElementId();
+      for (final CampParticipant cp : this.campParticipants) {
+        if (cp.getId() == id) {
+          for (Participant p : allParticipants) {
+            if (p.getId() == id) {
+              this.participants.add(p);
+              break;
+            }
+          }
+          this.campParticipants.remove(cp);
+          this.participantList.update(this.participants);
+          this.campParticipantList.update(this.campParticipants);
+          break;
+        }
+      }
     }
   }
 
