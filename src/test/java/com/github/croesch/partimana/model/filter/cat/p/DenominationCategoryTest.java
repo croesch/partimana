@@ -52,7 +52,7 @@ public class DenominationCategoryTest {
   @Test
   public void testGetShortDescription() {
     assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_PARTICIPANT_DENOMINATION.text());
-    assertThat(this.category.getShortDescription()).isEqualTo(Text.PARTICIPANT_DENOMINTAION.text());
+    assertThat(this.category.getShortDescription()).isEqualTo(Text.PARTICIPANT_DENOMINATION.text());
   }
 
   @Test

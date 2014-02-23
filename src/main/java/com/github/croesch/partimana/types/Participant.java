@@ -960,7 +960,7 @@ public final class Participant implements IFilterable {
   public String toString() {
     return String.valueOf(Text.PARTICIPANT) + " [" + Text.PARTICIPANT_ID + "=" + this.id + ", "
            + Text.PARTICIPANT_LASTNAME + "=" + this.lastName + ", " + Text.PARTICIPANT_FORENAME + "=" + this.foreName
-           + ", " + Text.PARTICIPANT_GENDER + "=" + this.gender + ", " + Text.PARTICIPANT_DENOMINTAION + "="
+           + ", " + Text.PARTICIPANT_GENDER + "=" + this.gender + ", " + Text.PARTICIPANT_DENOMINATION + "="
            + this.denomination + ", " + Text.PARTICIPANT_BIRTHDAY + "=" + this.birthDate + ", "
            + Text.PARTICIPANT_ADDRESS_LIVING + "=" + this.livingAddress + ", " + Text.PARTICIPANT_ADDRESS_POSTAL + "="
            + this.postToAddress + ", " + Text.PARTICIPANT_PHONE + "=" + this.phone + ", " + Text.PARTICIPANT_FAX + "="

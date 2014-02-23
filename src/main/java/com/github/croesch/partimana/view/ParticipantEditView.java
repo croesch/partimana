@@ -183,7 +183,7 @@ class ParticipantEditView extends CPanel implements IParticipantEditView {
     add(new CLabel("gender", Text.PARTICIPANT_GENDER.text()), "cell 0 2");
     add(this.genderCb, "cell 1 2");
 
-    add(new CLabel("denomination", Text.PARTICIPANT_DENOMINTAION.text()), "cell 2 2");
+    add(new CLabel("denomination", Text.PARTICIPANT_DENOMINATION.text()), "cell 2 2");
     add(this.denominationCb, "cell 3 2");
 
     add(new CLabel("countyCouncil", Text.PARTICIPANT_COUNTY_COUNCIL.text()), "cell 4 2");

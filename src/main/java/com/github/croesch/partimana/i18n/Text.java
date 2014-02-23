@@ -73,7 +73,7 @@ public enum Text {
   /** the name for the gender of the participant */
   PARTICIPANT_GENDER(104),
   /** the name of the denomination */
-  PARTICIPANT_DENOMINTAION(105),
+  PARTICIPANT_DENOMINATION(105),
   /** the name of the birthday */
   PARTICIPANT_BIRTHDAY(106),
   /** the name for living address */
