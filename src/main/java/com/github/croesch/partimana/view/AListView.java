@@ -9,6 +9,7 @@ import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.view.api.IListView;
 import com.github.croesch.partimana.view.components.DataTable;
+import com.github.croesch.partimana.view.components.RowNumberTable;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
@@ -40,18 +41,20 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
   /**
    * Constructs the view, including the table that can hold the entries.
    *
-   * @param name        the name of this view
-   * @param nameOfComps the name of the constructed table
-   * @param observer    the observer listening for action events
-   * @param tableModel  the model of the table
-   * @param action      the action that should be performed, when a row is selected in the table
+   * @param name           the name of this view
+   * @param nameOfComps    the name of the constructed table
+   * @param observer       the observer listening for action events
+   * @param tableModel     the model of the table
+   * @param action         the action that should be performed, when a row is selected in the table
+   * @param showRowNumbers <code>true</code>, if the row numbers should be shown
    * @since Date: Nov 11, 2012
    */
   public AListView(final String name,
                    final String nameOfComps,
                    final ActionObserver observer,
                    final DefaultTableModel tableModel,
-                   final UserAction action) {
+                   final UserAction action,
+                   boolean showRowNumbers) {
     super(name);
     this.selectionAction = action; //TODO null check
 
@@ -59,7 +62,11 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
 
     this.table = new DataTable(nameOfComps, observer, action, tableModel);
 
-    add(new CScrollPane(nameOfComps, this.table), "grow");
+    CScrollPane scrollPane = new CScrollPane(nameOfComps, this.table);
+    if (showRowNumbers) {
+      scrollPane.setRowHeaderView(new RowNumberTable(table));
+    }
+    add(scrollPane, "grow");
   }
 
   @Override

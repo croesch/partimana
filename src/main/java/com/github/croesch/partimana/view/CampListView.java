@@ -26,7 +26,7 @@ class CampListView extends AListView<Camp> {
    * @since Date: Sep 27, 2011
    */
   public CampListView(final String name, final ActionObserver o) {
-    super(name, "camps", o, new CampTableModel(), UserAction.CAMP_SELECTED);
+    super(name, "camps", o, new CampTableModel(), UserAction.CAMP_SELECTED, false);
   }
 
   /**

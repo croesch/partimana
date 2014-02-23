@@ -42,7 +42,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
    * @since Date: Sep 16, 2012
    */
   public CampParticipantListView(final String name, final ActionObserver o) {
-    super(name, "campParticipants", o, new CampParticipantTableModel(), UserAction.CAMP_PARTICIPANT_SELECTED);
+    super(name, "campParticipants", o, new CampParticipantTableModel(), UserAction.CAMP_PARTICIPANT_SELECTED, true);
     setCellEditor(3, new DefaultCellEditor(new JComboBox(Role.values())));
     this.tableModel = (CampParticipantTableModel) getTableModel();
   }

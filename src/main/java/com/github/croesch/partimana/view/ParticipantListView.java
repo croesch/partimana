@@ -26,7 +26,7 @@ class ParticipantListView extends AListView<Participant> {
    * @since Date: Jul 10, 2011
    */
   public ParticipantListView(final String name, final ActionObserver o) {
-    super(name, "participants", o, new ParticipantTableModel(), UserAction.PARTICIPANT_SELECTED);
+    super(name, "participants", o, new ParticipantTableModel(), UserAction.PARTICIPANT_SELECTED, false);
   }
 
   /**
