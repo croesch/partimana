@@ -145,7 +145,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
     list.add(this.campParticipant1);
     update(list);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
   }
 
   private void update(final ArrayList<CampParticipant> list) throws InterruptedException, InvocationTargetException {
@@ -162,9 +162,9 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
     list.add(this.campParticipant1);
     update(list);
-    this.testView.table().requireNotEditable(TableCell.row(0).column(0));
-    this.testView.table().requireNotEditable(TableCell.row(0).column(1));
-    this.testView.table().requireNotEditable(TableCell.row(0).column(2));
+    this.testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(0));
+    this.testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(1));
+    this.testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(2));
   }
 
   @Test
@@ -172,12 +172,12 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
     list.add(this.campParticipant1);
     update(list);
-    this.testView.table().selectRows(0);
-    this.testView.table().requireSelectedRows(0);
+    this.testView.table("campParticipants").selectRows(0);
+    this.testView.table("campParticipants").requireSelectedRows(0);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant1.getId());
 
-    this.testView.table().selectCell(TableCell.row(0).column(0));
-    assertThat(this.testView.table().component().isCellSelected(0, 1)).isTrue();
+    this.testView.table("campParticipants").selectCell(TableCell.row(0).column(0));
+    assertThat(this.testView.table("campParticipants").component().isCellSelected(0, 1)).isTrue();
   }
 
   @Test
@@ -224,21 +224,21 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(cp3);
     update(list);
 
-    this.testView.table().requireRowCount(3);
-    requireParticipant(this.testView.table(), 0, cp1);
-    requireParticipant(this.testView.table(), 1, cp2);
-    requireParticipant(this.testView.table(), 2, cp3);
+    this.testView.table("campParticipants").requireRowCount(3);
+    requireParticipant(this.testView.table("campParticipants"), 0, cp1);
+    requireParticipant(this.testView.table("campParticipants"), 1, cp2);
+    requireParticipant(this.testView.table("campParticipants"), 2, cp3);
 
-    this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, cp3);
-    requireParticipant(this.testView.table(), 1, cp2);
-    requireParticipant(this.testView.table(), 2, cp1);
+    this.testView.table("campParticipants").tableHeader().clickColumn(0);
+    requireParticipant(this.testView.table("campParticipants"), 0, cp3);
+    requireParticipant(this.testView.table("campParticipants"), 1, cp2);
+    requireParticipant(this.testView.table("campParticipants"), 2, cp1);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, cp1);
-    requireParticipant(this.testView.table(), 1, cp2);
-    requireParticipant(this.testView.table(), 2, cp3);
+    this.testView.table("campParticipants").click();
+    this.testView.table("campParticipants").tableHeader().clickColumn(0);
+    requireParticipant(this.testView.table("campParticipants"), 0, cp1);
+    requireParticipant(this.testView.table("campParticipants"), 1, cp2);
+    requireParticipant(this.testView.table("campParticipants"), 2, cp3);
   }
 
   @Test
@@ -251,27 +251,27 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
-    requireParticipant(this.testView.table(), 1, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant3);
-    requireParticipant(this.testView.table(), 3, this.campParticipant4);
-    requireParticipant(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
 
-    this.testView.table().tableHeader().clickColumn(1);
-    requireParticipant(this.testView.table(), 4, this.campParticipant1);
-    requireParticipant(this.testView.table(), 1, this.campParticipant2);
-    requireParticipant(this.testView.table(), 3, this.campParticipant3);
-    requireParticipant(this.testView.table(), 2, this.campParticipant4);
-    requireParticipant(this.testView.table(), 0, this.campParticipant5);
+    this.testView.table("campParticipants").tableHeader().clickColumn(1);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(1);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
-    requireParticipant(this.testView.table(), 3, this.campParticipant2);
-    requireParticipant(this.testView.table(), 1, this.campParticipant3);
-    requireParticipant(this.testView.table(), 2, this.campParticipant4);
-    requireParticipant(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").click();
+    this.testView.table("campParticipants").tableHeader().clickColumn(1);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
   }
 
   @Test
@@ -284,27 +284,27 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
-    requireParticipant(this.testView.table(), 1, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant3);
-    requireParticipant(this.testView.table(), 3, this.campParticipant4);
-    requireParticipant(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
 
-    this.testView.table().tableHeader().clickColumn(2);
-    requireParticipant(this.testView.table(), 3, this.campParticipant1);
-    requireParticipant(this.testView.table(), 4, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant3);
-    requireParticipant(this.testView.table(), 1, this.campParticipant4);
-    requireParticipant(this.testView.table(), 0, this.campParticipant5);
+    this.testView.table("campParticipants").tableHeader().clickColumn(2);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(2);
-    requireParticipant(this.testView.table(), 1, this.campParticipant1);
-    requireParticipant(this.testView.table(), 0, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant3);
-    requireParticipant(this.testView.table(), 3, this.campParticipant4);
-    requireParticipant(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").click();
+    this.testView.table("campParticipants").tableHeader().clickColumn(2);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
   }
 
   @Test
@@ -317,27 +317,27 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().requireRowCount(5);
-    slct(this.testView.table(), 0, this.campParticipant1);
-    slct(this.testView.table(), 1, this.campParticipant2);
-    slct(this.testView.table(), 2, this.campParticipant3);
-    slct(this.testView.table(), 3, this.campParticipant4);
-    slct(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").requireRowCount(5);
+    slct(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    slct(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    slct(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    slct(this.testView.table("campParticipants"), 3, this.campParticipant4);
+    slct(this.testView.table("campParticipants"), 4, this.campParticipant5);
 
-    this.testView.table().tableHeader().clickColumn(1);
-    slct(this.testView.table(), 4, this.campParticipant1);
-    slct(this.testView.table(), 1, this.campParticipant2);
-    slct(this.testView.table(), 3, this.campParticipant3);
-    slct(this.testView.table(), 2, this.campParticipant4);
-    slct(this.testView.table(), 0, this.campParticipant5);
+    this.testView.table("campParticipants").tableHeader().clickColumn(1);
+    slct(this.testView.table("campParticipants"), 4, this.campParticipant1);
+    slct(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    slct(this.testView.table("campParticipants"), 3, this.campParticipant3);
+    slct(this.testView.table("campParticipants"), 2, this.campParticipant4);
+    slct(this.testView.table("campParticipants"), 0, this.campParticipant5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(1);
-    slct(this.testView.table(), 0, this.campParticipant1);
-    slct(this.testView.table(), 3, this.campParticipant2);
-    slct(this.testView.table(), 1, this.campParticipant3);
-    slct(this.testView.table(), 2, this.campParticipant4);
-    slct(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").click();
+    this.testView.table("campParticipants").tableHeader().clickColumn(1);
+    slct(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    slct(this.testView.table("campParticipants"), 3, this.campParticipant2);
+    slct(this.testView.table("campParticipants"), 1, this.campParticipant3);
+    slct(this.testView.table("campParticipants"), 2, this.campParticipant4);
+    slct(this.testView.table("campParticipants"), 4, this.campParticipant5);
   }
 
   private void slct(final JTableFixture table, final int row, final CampParticipant cp) {
@@ -363,9 +363,9 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().selectRows(1, 2, 3);
-    this.testView.table().requireSelectedRows(3);
-    assertThat(this.testView.table().target.getSelectedRowCount()).isEqualTo(1);
+    this.testView.table("campParticipants").selectRows(1, 2, 3);
+    this.testView.table("campParticipants").requireSelectedRows(3);
+    assertThat(this.testView.table("campParticipants").target.getSelectedRowCount()).isEqualTo(1);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant4.getId());
   }
 
@@ -379,28 +379,28 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
-    requireParticipant(this.testView.table(), 1, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant3);
-    requireParticipant(this.testView.table(), 3, this.campParticipant4);
-    requireParticipant(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
 
     list.remove(this.campParticipant4);
     list.remove(this.campParticipant3);
     update(list);
 
-    this.testView.table().requireRowCount(3);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
-    requireParticipant(this.testView.table(), 1, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant5);
+    this.testView.table("campParticipants").requireRowCount(3);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant5);
 
     list.remove(this.campParticipant1);
     list.remove(this.campParticipant5);
     update(list);
 
-    this.testView.table().requireRowCount(1);
-    requireParticipant(this.testView.table(), 0, this.campParticipant2);
+    this.testView.table("campParticipants").requireRowCount(1);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant2);
 
     list.add(this.campParticipant1);
     list.add(this.campParticipant3);
@@ -408,12 +408,12 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.campParticipant1);
-    requireParticipant(this.testView.table(), 1, this.campParticipant2);
-    requireParticipant(this.testView.table(), 2, this.campParticipant3);
-    requireParticipant(this.testView.table(), 3, this.campParticipant4);
-    requireParticipant(this.testView.table(), 4, this.campParticipant5);
+    this.testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
+    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
+    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
+    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
   }
 
   @Test
@@ -426,18 +426,18 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(this.campParticipant5);
     update(list);
 
-    this.testView.table().selectRows(1);
+    this.testView.table("campParticipants").selectRows(1);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant2.getId());
 
-    this.testView.table().selectRows(2);
+    this.testView.table("campParticipants").selectRows(2);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant3.getId());
 
-    this.testView.table().selectRows(4);
+    this.testView.table("campParticipants").selectRows(4);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant5.getId());
 
-    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
+    this.testView.table("campParticipants").pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
                  .releaseKey(KeyEvent.VK_CONTROL);
-    this.testView.table().requireNoSelection();
+    this.testView.table("campParticipants").requireNoSelection();
     assertThat(this.listView.getSelectedElementId()).isZero();
   }
 
@@ -452,48 +452,60 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     update(list);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
+    this.testView.table("campParticipants").cell(TableCell.row(2).column(1)).doubleClick();
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
+    this.testView.table("campParticipants").cell(TableCell.row(0).column(0))
+                 .click(MouseClickInfo.middleButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
+    this.testView.table("campParticipants").cell(TableCell.row(0).column(1))
+                 .click(MouseClickInfo.middleButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
+    this.testView.table("campParticipants").cell(TableCell.row(0).column(2))
+                 .click(MouseClickInfo.middleButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
+    this.testView.table("campParticipants").cell(TableCell.row(1).column(0))
+                 .click(MouseClickInfo.rightButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
+    this.testView.table("campParticipants").cell(TableCell.row(1).column(1))
+                 .click(MouseClickInfo.rightButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
+    this.testView.table("campParticipants").cell(TableCell.row(1).column(2))
+                 .click(MouseClickInfo.rightButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
+    this.testView.table("campParticipants").cell(TableCell.row(2).column(0))
+                 .click(MouseClickInfo.leftButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
+    this.testView.table("campParticipants").cell(TableCell.row(2).column(1))
+                 .click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
+    this.testView.table("campParticipants").cell(TableCell.row(2).column(2))
+                 .click(MouseClickInfo.leftButton().times(3));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
+    this.testView.table("campParticipants").cell(TableCell.row(2).column(1))
+                 .click(MouseClickInfo.leftButton().times(16));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
+    this.testView.table("campParticipants").cell(TableCell.row(4).column(0))
+                 .click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
+    this.testView.table("campParticipants").cell(TableCell.row(1).column(2))
+                 .click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
   }
 
