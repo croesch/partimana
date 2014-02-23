@@ -3,9 +3,17 @@ layout: default
 title: Downloads
 ---
 
-# Version 0.11.1 - not released
+# Version 0.12
+## Download
+Packaged: [partimana-0.12.zip](https://github.com/croesch/partimana/releases/download/v-0.12.0/partimana-0.12.0-bin.zip)
+
+Source: [v-0.12.0.zip](https://github.com/croesch/partimana/archive/v-0.12.0.zip) /  [v-0.12.0.tar.gz](https://github.com/croesch/partimana/archive/v-0.12.0.tar.gz)
+
 ## Changelog
+* [#48](https://github.com/croesch/partimana/issues/48) Make it possible to delete participants from a camp
+* [#34](https://github.com/croesch/partimana/issues/34) Add row numbers in camp participant list view
 * Rename *Kreis Kirchheimbolanden* to *Donnersbergkreis*
+* zip-file is now automatically created by `mvn package`
 
 # Version 0.11
 ## Download
