@@ -57,8 +57,10 @@ public enum Text {
 
   /** warning title for the user */
   USER_WARNING(60),
-  /** message that continueing leads in overriding a file */
+  /** message that continuing leads in overriding a file */
   CONTINUE_OVERRIDES_FILE(61),
+  /** message that continuing leads in removing the selected participant from the camp. */
+  CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP(62),
 
   /** the name for participant */
   PARTICIPANT(100),

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -272,6 +273,12 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
         }
       }
     } else if (action == UserAction.CAMP_PARTICIPANT_SELECTED) {
+      if (JOptionPane.showConfirmDialog(this,
+                                        Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP,
+                                        Text.USER_WARNING.text(),
+                                        JOptionPane.OK_CANCEL_OPTION) != JOptionPane.OK_OPTION) {
+        return;
+      }
       final long id = this.campParticipantList.getSelectedElementId();
       for (final CampParticipant cp : this.campParticipants) {
         if (cp.getId() == id) {

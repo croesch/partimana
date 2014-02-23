@@ -29,6 +29,7 @@
 
   <entry key="60">Achtung</entry>
   <entry key="61">Die Datei '{0}' wird überschrieben!</entry>
+  <entry key="62">Der Teilnehmer wird aus der Freizeit entfernt!</entry>
 
   <!-- Teilnehmer-Daten -->
   <entry key="100">Teilnehmer</entry>

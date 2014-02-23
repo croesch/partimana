@@ -350,6 +350,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                                                             new CampParticipant(participant5)));
 
     this.testView.table("campParticipants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    testView.optionPane().requireTitle(Text.USER_WARNING.text())
+            .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
     requireParticipant(this.testView.table("participants"), 0, participant2);
     requireParticipant(this.testView.table("participants"), 1, participant4);
     requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
@@ -362,6 +364,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                                                             new CampParticipant(participant5)));
 
     this.testView.table("campParticipants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
+    testView.optionPane().requireTitle(Text.USER_WARNING.text())
+            .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
     requireParticipant(this.testView.table("participants"), 0, participant2);
     requireParticipant(this.testView.table("participants"), 1, participant3);
     requireParticipant(this.testView.table("participants"), 2, participant4);
@@ -373,6 +377,21 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
                                                                             new CampParticipant(participant5)));
 
     this.testView.table("campParticipants").click(TableCell.row(0).column(1), MouseClickInfo.leftButton().times(2));
+    testView.optionPane().requireTitle(Text.USER_WARNING.text())
+            .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).cancelButton().click();
+    requireParticipant(this.testView.table("participants"), 0, participant2);
+    requireParticipant(this.testView.table("participants"), 1, participant3);
+    requireParticipant(this.testView.table("participants"), 2, participant4);
+    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
+    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant1));
+    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant5));
+    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
+                                                                            new CampParticipant(participant1),
+                                                                            new CampParticipant(participant5)));
+
+    this.testView.table("campParticipants").click(TableCell.row(0).column(1), MouseClickInfo.leftButton().times(2));
+    testView.optionPane().requireTitle(Text.USER_WARNING.text())
+            .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
     requireParticipant(this.testView.table("participants"), 0, this.participant);
     requireParticipant(this.testView.table("participants"), 1, participant2);
     requireParticipant(this.testView.table("participants"), 2, participant3);
@@ -383,6 +402,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
         .isEqualTo(Arrays.asList(new CampParticipant(participant1), new CampParticipant(participant5)));
 
     this.testView.table("campParticipants").click(TableCell.row(1).column(0), MouseClickInfo.leftButton().times(2));
+    testView.optionPane().requireTitle(Text.USER_WARNING.text())
+            .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
     requireParticipant(this.testView.table("participants"), 0, this.participant);
     requireParticipant(this.testView.table("participants"), 1, participant2);
     requireParticipant(this.testView.table("participants"), 2, participant3);
@@ -392,6 +413,8 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant1)));
 
     this.testView.table("campParticipants").click(TableCell.row(0).column(0), MouseClickInfo.leftButton().times(2));
+    testView.optionPane().requireTitle(Text.USER_WARNING.text())
+            .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
     requireParticipant(this.testView.table("participants"), 0, this.participant);
     requireParticipant(this.testView.table("participants"), 1, participant1);
     requireParticipant(this.testView.table("participants"), 2, participant2);
