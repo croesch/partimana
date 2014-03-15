@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.model.filter.types;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.i18n.Text;
 import org.junit.Test;

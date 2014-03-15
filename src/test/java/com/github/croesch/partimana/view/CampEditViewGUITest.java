@@ -2,7 +2,7 @@ package com.github.croesch.partimana.view;
 
 import static com.github.croesch.partimana.view.CampParticipantListViewGUITest.requireParticipant;
 import static com.github.croesch.partimana.view.ParticipantListViewGUITest.requireParticipant;
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.i18n.Text;
@@ -14,12 +14,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import org.fest.swing.core.MouseClickInfo;
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.edt.GuiTask;
-import org.fest.swing.fixture.*;
+import org.assertj.swing.core.MouseClickInfo;
+import org.assertj.swing.data.TableCell;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.edt.GuiTask;
+import org.assertj.swing.fixture.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

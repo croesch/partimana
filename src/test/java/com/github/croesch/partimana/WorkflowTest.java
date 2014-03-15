@@ -9,11 +9,11 @@ import com.github.croesch.partimana.view.CampListViewGUITest;
 import com.github.croesch.partimana.view.CampParticipantListViewGUITest;
 import com.github.croesch.partimana.view.ParticipantListViewGUITest;
 import com.github.croesch.partimana.view.View;
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.finder.WindowFinder;
-import org.fest.swing.fixture.FrameFixture;
+import org.assertj.swing.data.TableCell;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.finder.WindowFinder;
+import org.assertj.swing.fixture.FrameFixture;
 import org.junit.Test;
 
 /**

@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.view;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.types.CountyCouncil;
@@ -14,10 +14,10 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.edt.GuiTask;
-import org.fest.swing.fixture.*;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.edt.GuiTask;
+import org.assertj.swing.fixture.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -393,10 +393,10 @@ public class ParticipantEditViewGUITest extends PartiManaDefaultGUITestCase {
 
       @Override
       protected void executeInEDT() throws Throwable {
-        testObj.target.paste();
+        testObj.target().paste();
       }
     });
-    testObj.robot.waitForIdle();
+    robot().waitForIdle();
     testObj.enterText("address.com");
     assertThat(this.editView.getMailAddress()).isEqualTo("mail@address.com");
   }

@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.model.filter;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;

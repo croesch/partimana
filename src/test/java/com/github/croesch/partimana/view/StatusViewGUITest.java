@@ -4,11 +4,11 @@ import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.i18n.Text;
 import java.awt.Color;
 import javax.swing.JFrame;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.edt.GuiTask;
-import org.fest.swing.fixture.JLabelFixture;
-import org.fest.swing.fixture.JPanelFixture;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.edt.GuiTask;
+import org.assertj.swing.fixture.JLabelFixture;
+import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.Test;
 
 /**

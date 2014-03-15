@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.view;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.actions.UserAction;
@@ -10,13 +10,13 @@ import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JFrame;
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JButtonFixture;
-import org.fest.swing.fixture.JComboBoxFixture;
-import org.fest.swing.fixture.JTableFixture;
+import org.assertj.swing.data.TableCell;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JButtonFixture;
+import org.assertj.swing.fixture.JComboBoxFixture;
+import org.assertj.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 /**
@@ -55,16 +55,16 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   @Test
   public void testClosingView() {
-    assertThat(this.searchView.component().getName()).isEqualTo("searchingView");
+    assertThat(this.searchView.target().getName()).isEqualTo("searchingView");
     this.searchView.button("close").requireText(Text.CANCEL.text()).click();
     this.searchView.requireNotVisible();
-    assertThat(this.searchView.component().isDisplayable()).isFalse();
+    assertThat(this.searchView.target().isDisplayable()).isFalse();
   }
 
   @Test
   public void testListInView() {
     this.searchView.panel("list").table("camps").requireRowCount(0);
-    CampListViewGUITest.update(((CampSearchView) this.searchView.component()).getListView(), Arrays.asList(this.camps));
+    CampListViewGUITest.update(((CampSearchView) this.searchView.target()).getListView(), Arrays.asList(this.camps));
     CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 0, this.camps[0]);
     CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 1, this.camps[1]);
     CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 2, this.camps[2]);
@@ -80,7 +80,7 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     table.requireRowCount(0);
     button.requireText(Text.SELECT.text()).requireDisabled();
 
-    CampListViewGUITest.update(((CampSearchView) this.searchView.component()).getListView(), Arrays.asList(this.camps));
+    CampListViewGUITest.update(((CampSearchView) this.searchView.target()).getListView(), Arrays.asList(this.camps));
     CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
     CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
     CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
@@ -111,11 +111,11 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     button.click();
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    assertThat(this.searchView.component()).isInstanceOf(CampSearchView.class);
-    assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isEqualTo(this.camps[0].getId());
+    assertThat(this.searchView.target()).isInstanceOf(CampSearchView.class);
+    assertThat(((CampSearchView) this.searchView.target()).getSelectedId()).isEqualTo(this.camps[0].getId());
 
     table.selectRows(2);
-    assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isEqualTo(this.camps[2].getId());
+    assertThat(((CampSearchView) this.searchView.target()).getSelectedId()).isEqualTo(this.camps[2].getId());
 
     try {
       table.pressKey(KeyEvent.VK_CONTROL);
@@ -125,7 +125,7 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     }
     table.requireSelectedRows(new int[] { });
     button.requireDisabled();
-    assertThat(((CampSearchView) this.searchView.component()).getSelectedId()).isZero();
+    assertThat(((CampSearchView) this.searchView.target()).getSelectedId()).isZero();
   }
 
   @Test

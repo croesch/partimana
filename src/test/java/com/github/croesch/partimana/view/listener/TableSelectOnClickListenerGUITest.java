@@ -4,11 +4,11 @@ import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import org.fest.swing.core.MouseButton;
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.fixture.JTableFixture;
+import org.assertj.swing.core.MouseButton;
+import org.assertj.swing.data.TableCell;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 /**
@@ -56,7 +56,7 @@ public class TableSelectOnClickListenerGUITest extends PartiManaDefaultGUITestCa
 
   @Test
   public void testMultiSelection() {
-    this.table.target.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    this.table.target().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     this.table.click(TableCell.row(0).column(0), MouseButton.RIGHT_BUTTON).requireSelectedRows(0);
     this.table.click(TableCell.row(1).column(0), MouseButton.RIGHT_BUTTON).requireSelectedRows(1);
     this.table.click(TableCell.row(2).column(0), MouseButton.RIGHT_BUTTON).requireSelectedRows(2);

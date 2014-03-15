@@ -1,8 +1,8 @@
 package com.github.croesch.partimana.view;
 
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiTask;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiTask;
 import org.junit.Test;
 
 /**

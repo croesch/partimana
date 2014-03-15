@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.view;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.actions.UserAction;
@@ -11,14 +11,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.SwingUtilities;
-import org.fest.swing.core.MouseClickInfo;
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.fixture.Containers;
-import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JPanelFixture;
-import org.fest.swing.fixture.JTableFixture;
+import org.assertj.swing.core.MouseClickInfo;
+import org.assertj.swing.data.TableCell;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.fixture.Containers;
+import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JPanelFixture;
+import org.assertj.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 /**
@@ -130,7 +130,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     this.listView = view;
 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(view));
-    window.target.setPreferredSize(new Dimension(800, 400));
+    window.target().setPreferredSize(new Dimension(800, 400));
     window.show();
     this.testView = window.panel("listView");
   }
@@ -177,7 +177,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant1.getId());
 
     this.testView.table("campParticipants").selectCell(TableCell.row(0).column(0));
-    assertThat(this.testView.table("campParticipants").component().isCellSelected(0, 1)).isTrue();
+    assertThat(this.testView.table("campParticipants").target().isCellSelected(0, 1)).isTrue();
   }
 
   @Test
@@ -365,7 +365,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
 
     this.testView.table("campParticipants").selectRows(1, 2, 3);
     this.testView.table("campParticipants").requireSelectedRows(3);
-    assertThat(this.testView.table("campParticipants").target.getSelectedRowCount()).isEqualTo(1);
+    assertThat(this.testView.table("campParticipants").target().getSelectedRowCount()).isEqualTo(1);
     assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant4.getId());
   }
 

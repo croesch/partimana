@@ -1,13 +1,13 @@
 package com.github.croesch.partimana;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.actions.UserAction;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
-import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
+import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
 
 /**
  * Default gui test case for the partimana program.
@@ -15,7 +15,7 @@ import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
  * @author croesch
  * @since Date: Jul 11, 2011
  */
-public abstract class PartiManaDefaultGUITestCase extends FestSwingJUnitTestCase implements ActionObserver {
+public abstract class PartiManaDefaultGUITestCase extends AssertJSwingJUnitTestCase implements ActionObserver {
 
   private final Queue<UserAction> actions = new ArrayDeque<UserAction>();
 

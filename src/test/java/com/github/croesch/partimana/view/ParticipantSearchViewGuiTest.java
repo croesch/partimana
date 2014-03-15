@@ -1,6 +1,6 @@
 package com.github.croesch.partimana.view;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.actions.UserAction;
@@ -14,13 +14,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JFrame;
-import org.fest.swing.data.TableCell;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.fixture.FrameFixture;
-import org.fest.swing.fixture.JButtonFixture;
-import org.fest.swing.fixture.JComboBoxFixture;
-import org.fest.swing.fixture.JTableFixture;
+import org.assertj.swing.data.TableCell;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JButtonFixture;
+import org.assertj.swing.fixture.JComboBoxFixture;
+import org.assertj.swing.fixture.JTableFixture;
 import org.junit.Test;
 
 /**
@@ -99,17 +99,17 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   @Test
   public void testClosingView() {
-    assertThat(this.searchView.component().getName()).isEqualTo("searchingView");
+    assertThat(this.searchView.target().getName()).isEqualTo("searchingView");
     this.searchView.button("close").requireText(Text.CANCEL.text()).click();
     this.searchView.requireNotVisible();
-    assertThat(this.searchView.component().isDisplayable()).isFalse();
+    assertThat(this.searchView.target().isDisplayable()).isFalse();
   }
 
   @Test
   public void testListInView() throws InterruptedException, InvocationTargetException {
     this.searchView.panel("list").table("participants").requireRowCount(0);
     ParticipantListViewGUITest
-        .update(((ParticipantSearchView) this.searchView.component()).getListView(), Arrays.asList(this.participants));
+        .update(((ParticipantSearchView) this.searchView.target()).getListView(), Arrays.asList(this.participants));
     ParticipantListViewGUITest
         .requireParticipant(this.searchView.panel("list").table("participants"), 0, this.participants[0]);
     ParticipantListViewGUITest
@@ -131,7 +131,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     button.requireText(Text.SELECT.text()).requireDisabled();
 
     ParticipantListViewGUITest
-        .update(((ParticipantSearchView) this.searchView.component()).getListView(), Arrays.asList(this.participants));
+        .update(((ParticipantSearchView) this.searchView.target()).getListView(), Arrays.asList(this.participants));
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[0]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[1]);
     ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[2]);
@@ -162,12 +162,12 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     button.click();
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    assertThat(this.searchView.component()).isInstanceOf(ParticipantSearchView.class);
-    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId())
+    assertThat(this.searchView.target()).isInstanceOf(ParticipantSearchView.class);
+    assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId())
         .isEqualTo(this.participants[0].getId());
 
     table.selectRows(2);
-    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId())
+    assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId())
         .isEqualTo(this.participants[2].getId());
 
     try {
@@ -178,7 +178,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     }
     table.requireSelectedRows(new int[] { });
     button.requireDisabled();
-    assertThat(((ParticipantSearchView) this.searchView.component()).getSelectedId()).isZero();
+    assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId()).isZero();
   }
 
   @Test

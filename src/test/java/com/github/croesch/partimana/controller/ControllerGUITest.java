@@ -1,17 +1,17 @@
 package com.github.croesch.partimana.controller;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.PartiManaDefaultGUITestCase;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.i18n.Text;
 import com.github.croesch.partimana.model.helper.HashMapPersistenceModel;
 import com.github.croesch.partimana.view.View;
-import org.fest.swing.edt.GuiActionRunner;
-import org.fest.swing.edt.GuiQuery;
-import org.fest.swing.edt.GuiTask;
-import org.fest.swing.finder.WindowFinder;
-import org.fest.swing.fixture.FrameFixture;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.edt.GuiQuery;
+import org.assertj.swing.edt.GuiTask;
+import org.assertj.swing.finder.WindowFinder;
+import org.assertj.swing.fixture.FrameFixture;
 import org.junit.Test;
 
 /**
@@ -38,7 +38,7 @@ public class ControllerGUITest extends PartiManaDefaultGUITestCase {
   public void testView() {
     final FrameFixture frame = WindowFinder.findFrame(View.class).using(robot());
     frame.label("statusTxt").requireText(Text.VERSION.text());
-    assertThat(frame.component().getName()).isEqualTo("view");
+    assertThat(frame.target().getName()).isEqualTo("view");
   }
 
   @Test
