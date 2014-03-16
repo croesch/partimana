@@ -264,6 +264,9 @@ public enum Text {
   /** description of category <em>until</em> of a camp */
   FILTER_CAT_CAMP_UNTIL(205),
 
+  /** description of category <em>signed in</em> of a camp participant */
+  FILTER_CAT_CAMP_PARTICIPANT_SIGNED_IN(3400),
+
   /** description of filtering objects equal to a specific object */
   FILTER_TYPE_EQUALS(3300),
   /** description of filtering objects not equal to a specific object */

@@ -139,6 +139,8 @@
   <entry key="3330">früher als</entry>
   <entry key="3331">später als</entry>
 
+  <entry key="3400">angemeldet</entry>
+
   <!-- Debug-Informationen -->
   <entry key="10000">Ausgewählte Sprache: '{0}'</entry>
   <entry key="10001">Ausgewähltes Look-And-Feel: '{0}'</entry>
