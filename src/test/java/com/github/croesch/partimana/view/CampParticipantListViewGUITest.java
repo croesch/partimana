@@ -522,4 +522,31 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     table.requireCellValue(TableCell.row(row).column(1), fName);
     table.requireCellValue(TableCell.row(row).column(2), lName);
   }
+
+  @Test
+  public final void testGetElementIds() throws InterruptedException, InvocationTargetException {
+    assertThat(this.listView.getElementIds()).isEmpty();
+
+    final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
+    list.add(this.campParticipant1);
+    list.add(this.campParticipant2);
+    list.add(this.campParticipant3);
+    list.add(this.campParticipant4);
+    list.add(this.campParticipant5);
+    update(list);
+
+    assertThat(this.listView.getElementIds()).containsOnly(campParticipant1.getId(),
+                                                           campParticipant2.getId(),
+                                                           campParticipant3.getId(),
+                                                           campParticipant4.getId(),
+                                                           campParticipant5.getId());
+
+    list.remove(campParticipant4);
+    update(list);
+
+    assertThat(this.listView.getElementIds()).containsOnly(campParticipant1.getId(),
+                                                           campParticipant2.getId(),
+                                                           campParticipant3.getId(),
+                                                           campParticipant5.getId());
+  }
 }

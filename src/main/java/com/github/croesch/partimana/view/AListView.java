@@ -10,6 +10,8 @@ import com.github.croesch.partimana.types.api.IFilterable;
 import com.github.croesch.partimana.view.api.IListView;
 import com.github.croesch.partimana.view.components.DataTable;
 import com.github.croesch.partimana.view.components.RowNumberTable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
@@ -93,7 +95,20 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
     if (this.table.getSelectedRowCount() == 0) {
       return 0;
     }
-    return Long.parseLong(this.table.getValueAt(this.table.getSelectedRow(), 0).toString());
+    return getIdOfRow(table.getSelectedRow());
+  }
+
+  @Override
+  public Collection<Long> getElementIds() {
+    List<Long> elements = new ArrayList<Long>();
+    for (int row = 0; row < table.getRowCount(); ++row) {
+      elements.add(getIdOfRow(row));
+    }
+    return elements;
+  }
+
+  private Long getIdOfRow(int row) {
+    return Long.parseLong(this.table.getValueAt(row, 0).toString());
   }
 
   @Override
