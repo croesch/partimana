@@ -14,7 +14,7 @@ import java.util.List;
  * @author croesch
  * @since Date: Jan 26, 2013
  */
-public final class ParticipantSearchView extends ASearchView<Participant> {
+public final class ParticipantSearchView extends ASingleSelectSearchView<Participant> {
 
   /** generated serial version UID */
   private static final long serialVersionUID = -855139359052994514L;

@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.view;
 
+import com.github.croesch.annotate.NotNull;
 import com.github.croesch.components.*;
 import com.github.croesch.partimana.actions.ActionObserver;
 import com.github.croesch.partimana.i18n.Text;
@@ -10,10 +11,9 @@ import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -23,7 +23,7 @@ import net.miginfocom.swing.MigLayout;
  * @author croesch
  * @since Date: Nov 2, 2012
  */
-public abstract class ASearchView<T extends IFilterable> extends CFrame {
+abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /** generated serial version UID */
   private static final long serialVersionUID = -2064381374545329865L;
@@ -42,6 +42,10 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /** the model that filters the stored data */
   private final FilterModel<T> filterModel;
+
+  /** the button to select the current result. */
+  @NotNull
+  private final CButton selectButton = new CButton("select", Text.SELECT.text());
 
   /**
    * Constructs the search view with the given model. The model provides the different filters the user can use and
@@ -87,7 +91,7 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   }
 
   /**
-   * Adds components to create the next filter.
+   * Adds components to define the filter.
    *
    * @since Date: Nov 11, 2012
    */
@@ -201,18 +205,11 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
     });
     buttonPanel.add(closeButton);
 
-    final CButton selectButton = new CButton("select", Text.SELECT.text());
-    updateSelectButtonState(selectButton);
+    updateSelectButtonState();
     selectButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(final ActionEvent e) {
         getObserver().performAction(getListView().getSelectionAction());
-      }
-    });
-    getListView().addSelectionListener(new ListSelectionListener() {
-      @Override
-      public void valueChanged(final ListSelectionEvent e) {
-        updateSelectButtonState(selectButton);
       }
     });
     buttonPanel.add(selectButton);
@@ -229,23 +226,34 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
   protected abstract AListView<T> getListView();
 
   /**
-   * Updates the state of the select button. The given button (assumed to be the select button) will be enabled if the
-   * given list has a selectable selection.
+   * Updates the state of the select button. It will be enabled if {@link #shouldSelectButtonBeEnabled()} returns
+   * <code>true</code>.
    *
-   * @param selectButton the button to enable, if the selection in the list is selectable or disable otherwise
    * @since Date: Nov 10, 2012
    */
-  private void updateSelectButtonState(final CButton selectButton) {
-    selectButton.setEnabled(getListView().getSelectedElementId() != 0);
+  protected void updateSelectButtonState() {
+    selectButton.setEnabled(shouldSelectButtonBeEnabled());
   }
 
   /**
-   * Returns the id of the selected item.
-   *
+   * @return <code>true</code> if the select button should be enabled. Called frequently.
+   * @since Date: Apr 13, 2014
+   */
+  protected abstract boolean shouldSelectButtonBeEnabled();
+
+  /**
    * @return the id of the selected item,<br> or <code>0</code> if no element is selected.
    * @since Date: Dec 16, 2012
    */
   public final long getSelectedId() {
     return getListView().getSelectedElementId();
+  }
+
+  /**
+   * @return the ids of the items contained in the list.
+   * @since Date: Apr 13, 2014
+   */
+  public final Collection<Long> getAllIds() {
+    return getListView().getElementIds();
   }
 }

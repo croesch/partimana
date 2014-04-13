@@ -3,6 +3,7 @@ package com.github.croesch.partimana.view.api;
 import com.github.croesch.annotate.NotNull;
 import com.github.croesch.partimana.actions.UserAction;
 import com.github.croesch.partimana.types.api.IFilterable;
+import java.util.Collection;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.event.ListSelectionListener;
@@ -34,12 +35,17 @@ public interface IListView<T extends IFilterable> {
   void update(List<T> elements);
 
   /**
-   * Returns the id of the selected element.
-   *
    * @return id of the element that is currently selected.<br> <code>0</code>, if no row is selected.
    * @since Date: Sep 27, 2011
    */
   long getSelectedElementId();
+
+  /**
+   * @return ids of all elements contained in this view.
+   * @since Date: Apr 13, 2014
+   */
+  @NotNull
+  Collection<Long> getElementIds();
 
   /**
    * Adds the given listener to listen for table selection changes.

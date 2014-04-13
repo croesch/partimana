@@ -14,7 +14,7 @@ import java.util.List;
  * @author croesch
  * @since Date: Nov 11, 2012
  */
-public final class CampSearchView extends ASearchView<Camp> {
+public final class CampSearchView extends ASingleSelectSearchView<Camp> {
 
   /** generated serial version UID */
   private static final long serialVersionUID = -7644046114952605154L;
