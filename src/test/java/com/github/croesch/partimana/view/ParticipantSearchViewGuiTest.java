@@ -176,7 +176,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     } finally {
       table.releaseKey(KeyEvent.VK_CONTROL);
     }
-    table.requireSelectedRows(new int[] { });
+    table.requireSelectedRows();
     button.requireDisabled();
     assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId()).isZero();
   }
@@ -217,10 +217,9 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
     filterComboBox.selectItem(Text.FILTER_TYPE_CONTAINS.text());
     this.searchView.textBox("filterValue").enterText("a");
-    this.searchView.panel("list").table("participants").requireRowCount(0);
 
-    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
     final JTableFixture table = this.searchView.panel("list").table("participants");
+    this.searchView.panel("list").table("participants").requireRowCount(3);
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[1]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[3]);
     ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[4]);
@@ -230,10 +229,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
     filterComboBox.selectItem(Text.FILTER_TYPE_STARTS_WITH.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("P");
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[1]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[4]);
-    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
+    this.searchView.panel("list").table("participants").requireRowCount(2);
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[3]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[4]);
 
@@ -242,9 +238,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
     filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("mUsTerHaUsEN");
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[4]);
-    this.searchView.button("or").requireText(Text.FILTER_OR.text()).click();
+    this.searchView.panel("list").table("participants").requireRowCount(4);
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[0]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[2]);
     ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[3]);
@@ -255,101 +249,10 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
     this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("11000000000");
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[0]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[2]);
-    ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 3, this.participants[4]);
-    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
+    this.searchView.panel("list").table("participants").requireRowCount(3);
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[2]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[3]);
     ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[4]);
-  }
-
-  @Test
-  public void testFilterRepresentation() {
-    final JComboBoxFixture categoryComboBox = this.searchView.panel(FC).comboBox("category");
-    final JComboBoxFixture filterComboBox = this.searchView.panel(FC).comboBox("filterType");
-
-    categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM.text());
-    filterComboBox.selectItem(Text.FILTER_TYPE_GREATER_THAN.text());
-    this.searchView.textBox("filterValue").enterText("2");
-    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
-    requireFilterRepresentation("f1",
-                                "",
-                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
-                                Text.FILTER_TYPE_GREATER_THAN,
-                                "2");
-
-    categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_COMMENT.text());
-    filterComboBox.selectItem(Text.FILTER_TYPE_ENDS_WITH.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("t");
-    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
-    requireFilterRepresentation("f1",
-                                "",
-                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
-                                Text.FILTER_TYPE_GREATER_THAN,
-                                "2");
-    requireFilterRepresentation("f2",
-                                Text.FILTER_AND.text(),
-                                Text.FILTER_CAT_PARTICIPANT_COMMENT,
-                                Text.FILTER_TYPE_ENDS_WITH,
-                                "t");
-
-    categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_LAST_NAME.text());
-    filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("MüLLEr");
-    this.searchView.button("or").requireText(Text.FILTER_OR.text()).click();
-    requireFilterRepresentation("f1",
-                                "",
-                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
-                                Text.FILTER_TYPE_GREATER_THAN,
-                                "2");
-    requireFilterRepresentation("f2",
-                                Text.FILTER_AND.text(),
-                                Text.FILTER_CAT_PARTICIPANT_COMMENT,
-                                Text.FILTER_TYPE_ENDS_WITH,
-                                "t");
-    requireFilterRepresentation("f3",
-                                Text.FILTER_OR.text(),
-                                Text.FILTER_CAT_PARTICIPANT_LAST_NAME,
-                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE,
-                                "MüLLEr");
-
-    categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_DATE_SINCE.text());
-    filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("44999999");
-    this.searchView.button("and").requireText(Text.FILTER_AND.text()).click();
-    requireFilterRepresentation("f1",
-                                "",
-                                Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM,
-                                Text.FILTER_TYPE_GREATER_THAN,
-                                "2");
-    requireFilterRepresentation("f2",
-                                Text.FILTER_AND.text(),
-                                Text.FILTER_CAT_PARTICIPANT_COMMENT,
-                                Text.FILTER_TYPE_ENDS_WITH,
-                                "t");
-    requireFilterRepresentation("f3",
-                                Text.FILTER_OR.text(),
-                                Text.FILTER_CAT_PARTICIPANT_LAST_NAME,
-                                Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE,
-                                "MüLLEr");
-    requireFilterRepresentation("f4",
-                                Text.FILTER_AND.text(),
-                                Text.FILTER_CAT_PARTICIPANT_DATE_SINCE,
-                                Text.FILTER_TYPE_AFTER,
-                                "44999999");
-  }
-
-  private void requireFilterRepresentation(final String filter,
-                                           final String connection,
-                                           final Text category,
-                                           final Text filterType,
-                                           final String filterValue) {
-    this.searchView.label(filter + "-connection").requireText(connection);
-    this.searchView.comboBox(filter + "-category").requireSelection(category.text()).requireDisabled();
-    this.searchView.comboBox(filter + "-filterType").requireSelection(filterType.text()).requireDisabled();
-    this.searchView.textBox(filter + "-filterValue").requireText(filterValue).requireDisabled();
   }
 
   private void assertComboboxContainsDateFilterTypes(final JComboBoxFixture filterComboBox) {
