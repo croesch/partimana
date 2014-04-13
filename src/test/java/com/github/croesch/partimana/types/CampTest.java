@@ -457,15 +457,35 @@ public class CampTest {
     String lf = System.getProperty("line.separator");
     String from = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getFromDate());
     String until = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getUntilDate());
-    assertThat(this.camp.toCSV()).isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf
-                                            + "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;Testcamp;100;" + from + ";"
-                                            + until + lf
-                                            + "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from
-                                            + ";" + until + lf
-                                            + "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;Testcamp;22;" + from + ";"
-                                            + until + lf
-                                            + "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from
-                                            + ";" + until + lf);
-    // System.out.println(this.camp.toCSV());
+
+    String participant1CSV = "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;Testcamp;100;" + from + ";" + until;
+    String participant2CSV = "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from + ";" + until;
+    String participant3CSV = "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;Testcamp;22;" + from + ";" + until;
+    String participant4CSV = "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from + ";" + until;
+
+    // all participants
+    assertThat(this.camp.toCSV()).isEqualTo(
+        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
+        + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
+    assertThat(this.camp.toCSV(participant3.getId(), participant2.getId(), participant.getId(), participant4.getId()))
+        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
+                   + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
+
+    // one participant
+    assertThat(this.camp.toCSV(participant.getId()))
+        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf);
+    assertThat(this.camp.toCSV(participant4.getId()))
+        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant4CSV + lf);
+    // duplicate id
+    assertThat(this.camp.toCSV(participant.getId(), participant.getId()))
+        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf);
+
+    // more participants
+    assertThat(this.camp.toCSV(participant4.getId(), participant3.getId())).isEqualTo(
+        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant3CSV + lf
+        + participant4CSV + lf);
+    assertThat(this.camp.toCSV(participant.getId(), participant3.getId())).isEqualTo(
+        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
+        + participant3CSV + lf);
   }
 }

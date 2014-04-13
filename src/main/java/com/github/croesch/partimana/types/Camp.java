@@ -468,10 +468,13 @@ public final class Camp implements IFilterable {
   }
 
   /**
-   * @return a string being a CSV representation of this camp
+   * @param selectedIds the selected participant IDs to include. If empty, all participants of this camp are included.
+   * @return a string being a CSV representation of this camp - or to be more specific: a CSV representation of the
+   * selected participants of this camp
    * @since Date: Jun 1, 2013
    */
-  public String toCSV() {
+  public String toCSV(long... selectedIds) {
+    Set<Long> participantsToInclude = toSet(selectedIds);
     final String separator = ";";
     final String lf = System.getProperty("line.separator");
 
@@ -480,22 +483,32 @@ public final class Camp implements IFilterable {
         + "geschlecht" + separator + "freizeit" + separator + "preis" + separator + "von" + separator + "bis");
     sb.append(lf);
     for (final CampParticipant cp : getParticipants()) {
-      sb.append(cp.getForeName()).append(separator);
-      sb.append(cp.getLastName()).append(separator);
-      sb.append(cp.getStreet()).append(separator);
-      sb.append(cp.getPostCode()).append(separator);
-      sb.append(cp.getCity()).append(separator);
-      sb.append(cp.getGender().getRepresentation()).append(separator);
-      sb.append(getName()).append(separator);
-      if (cp.getRole() == Role.DAY_CHILD) {
-        sb.append(getRatePerDayChildren());
-      } else {
-        sb.append(getRatePerParticipant());
+      if (participantsToInclude.isEmpty() || participantsToInclude.contains(cp.getId())) {
+        sb.append(cp.getForeName()).append(separator);
+        sb.append(cp.getLastName()).append(separator);
+        sb.append(cp.getStreet()).append(separator);
+        sb.append(cp.getPostCode()).append(separator);
+        sb.append(cp.getCity()).append(separator);
+        sb.append(cp.getGender().getRepresentation()).append(separator);
+        sb.append(getName()).append(separator);
+        if (cp.getRole() == Role.DAY_CHILD) {
+          sb.append(getRatePerDayChildren());
+        } else {
+          sb.append(getRatePerParticipant());
+        }
+        sb.append(separator).append(getFormattedDate(getFromDate())).append(separator);
+        sb.append(getFormattedDate(getUntilDate())).append(lf);
       }
-      sb.append(separator).append(getFormattedDate(getFromDate())).append(separator);
-      sb.append(getFormattedDate(getUntilDate())).append(lf);
     }
     return sb.toString();
+  }
+
+  private static Set<Long> toSet(long[] array) {
+    Set<Long> set = new HashSet<Long>();
+    for (long element : array) {
+      set.add(element);
+    }
+    return set;
   }
 
   /**
