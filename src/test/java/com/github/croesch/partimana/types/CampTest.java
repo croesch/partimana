@@ -1,9 +1,11 @@
 package com.github.croesch.partimana.types;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
@@ -464,27 +466,30 @@ public class CampTest {
     String participant4CSV = "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from + ";" + until;
 
     // all participants
-    assertThat(this.camp.toCSV()).isEqualTo(
+    assertThat(this.camp.toCSV(Collections.<Long>emptySet())).isEqualTo(
         "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
         + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
-    assertThat(this.camp.toCSV(participant3.getId(), participant2.getId(), participant.getId(), participant4.getId()))
-        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
-                   + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
+    assertThat(this.camp.toCSV(asList(participant3.getId(),
+                                      participant2.getId(),
+                                      participant.getId(),
+                                      participant4.getId()))).isEqualTo(
+        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
+        + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
 
     // one participant
-    assertThat(this.camp.toCSV(participant.getId()))
+    assertThat(this.camp.toCSV(asList(participant.getId())))
         .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf);
-    assertThat(this.camp.toCSV(participant4.getId()))
+    assertThat(this.camp.toCSV(asList(participant4.getId())))
         .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant4CSV + lf);
     // duplicate id
-    assertThat(this.camp.toCSV(participant.getId(), participant.getId()))
+    assertThat(this.camp.toCSV(asList(participant.getId(), participant.getId())))
         .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf);
 
     // more participants
-    assertThat(this.camp.toCSV(participant4.getId(), participant3.getId())).isEqualTo(
+    assertThat(this.camp.toCSV(asList(participant4.getId(), participant3.getId()))).isEqualTo(
         "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant3CSV + lf
         + participant4CSV + lf);
-    assertThat(this.camp.toCSV(participant.getId(), participant3.getId())).isEqualTo(
+    assertThat(this.camp.toCSV(asList(participant.getId(), participant3.getId()))).isEqualTo(
         "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
         + participant3CSV + lf);
   }

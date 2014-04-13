@@ -13,7 +13,7 @@ import java.util.List;
  * @author croesch
  * @since Date: Mar 16, 2014
  */
-public final class CampParticipantSearchView extends ASearchView<CampParticipant> {
+public final class CampParticipantSearchView extends AMultiSelectSearchView<CampParticipant> {
 
   /** generated serial version UID */
   private static final long serialVersionUID = -855139359052994514L;
