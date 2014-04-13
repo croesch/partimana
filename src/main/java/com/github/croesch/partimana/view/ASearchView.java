@@ -10,6 +10,8 @@ import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import net.miginfocom.swing.MigLayout;
@@ -28,13 +30,6 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
 
   /** the observer that will be notified when a selection has been made */
   private final ActionObserver observer;
-
-  /** the number of filters currently active */
-  private int filters = 0;
-
-  /** the panel that holds the representation of the different filters */
-  private final CPanel filterPanel =
-      new CPanel("filters", new MigLayout("fill,wrap 4", "[grow,fill][40%][][fill,grow]", "[fill]"));
 
   /** the combobox that holds the filter type */
   private final CComboBox filterTypeCBox = new CComboBox("filterType");
@@ -84,20 +79,11 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
     setLayout(new MigLayout("fill,wrap 1"));
 
     addFilterComposition();
-    addFilterRepresentation();
     add(getListView().toComponent());
     addButtons();
 
     pack();
-  }
-
-  /**
-   * Adds the panel for representing the filters to the view.
-   *
-   * @since Date: Nov 23, 2012
-   */
-  private void addFilterRepresentation() {
-    add(new CScrollPane("filters", this.filterPanel), "grow");
+    updateListView();
   }
 
   /**
@@ -119,70 +105,23 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
     panel.add(this.filterTypeCBox, "shrink");
 
     panel.add(this.filterValueTBox, "grow");
-
-    final CPanel buttons = new CPanel("buttons");
-
-    final CButton andButton = new CButton("and", Text.FILTER_AND.text());
-    andButton.addActionListener(new ActionListener() {
+    filterValueTBox.getDocument().addDocumentListener(new DocumentListener() {
       @Override
-      public void actionPerformed(final ActionEvent e) {
-        final IFilter<T> filter = createAdministeredFilter();
-        addRepresentation(filter, Text.FILTER_AND);
-        ASearchView.this.filterModel.and(filter);
+      public void insertUpdate(DocumentEvent documentEvent) {
+        updateListView();
+      }
+
+      @Override
+      public void removeUpdate(DocumentEvent documentEvent) {
+        updateListView();
+      }
+
+      @Override
+      public void changedUpdate(DocumentEvent documentEvent) {
         updateListView();
       }
     });
-    buttons.add(andButton);
-
-    final CButton orButton = new CButton("or", Text.FILTER_OR.text());
-    orButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(final ActionEvent e) {
-        final IFilter<T> filter = createAdministeredFilter();
-        addRepresentation(filter, Text.FILTER_OR);
-        ASearchView.this.filterModel.or(filter);
-        updateListView();
-      }
-    });
-    buttons.add(orButton);
-
-    panel.add(buttons, "newline, span 3");
     add(panel, "grow");
-  }
-
-  /**
-   * Adds the representation for the given filter to the view.
-   *
-   * @param filter     the filter to represent
-   * @param connection the text that visualizes the connection of this filter to the previous filter
-   * @since Date: Nov 23, 2012
-   */
-  private void addRepresentation(final IFilter<T> filter, final Text connection) {
-    final String namePrefix = "f" + ++this.filters + "-";
-
-    final CLabel connLabel = new CLabel(namePrefix + "connection");
-    if (this.filters > 1) {
-      connLabel.setText(connection.text());
-    }
-
-    this.filterPanel.add(connLabel);
-
-    final CComboBox categoryBox = new CComboBox(namePrefix + "category", getPossibleCategories());
-    categoryBox.setEnabled(false);
-    categoryBox.setSelectedItem(this.categoryCBox.getSelectedItem());
-    this.filterPanel.add(categoryBox);
-
-    final CComboBox filterTypeBox = new CComboBox(namePrefix + "filterType");
-    for (int i = 0; i < this.filterTypeCBox.getItemCount(); ++i) {
-      filterTypeBox.addItem(this.filterTypeCBox.getItemAt(i));
-    }
-    filterTypeBox.setEnabled(false);
-    filterTypeBox.setSelectedItem(this.filterTypeCBox.getSelectedItem());
-    this.filterPanel.add(filterTypeBox);
-
-    final CTextField filterValueField = new CTextField(namePrefix + "filterValue", this.filterValueTBox.getText());
-    filterValueField.setEnabled(false);
-    this.filterPanel.add(filterValueField);
   }
 
   /**
@@ -191,7 +130,8 @@ public abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @since Date: Nov 17, 2012
    */
   private void updateListView() {
-    getListView().update(ASearchView.this.filterModel.getFilterMatchingElements());
+    filterModel.setFilter(createAdministeredFilter());
+    getListView().update(filterModel.getFilterMatchingElements());
   }
 
   /**

@@ -5,13 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.filter.cat.c.LocationCategory;
 import com.github.croesch.partimana.model.filter.cat.c.NameCategory;
-import com.github.croesch.partimana.model.filter.types.Contains;
 import com.github.croesch.partimana.model.filter.types.EndsWith;
 import com.github.croesch.partimana.model.filter.types.StartsWith;
 import com.github.croesch.partimana.types.Camp;
 import java.util.Arrays;
 import java.util.Date;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -22,66 +20,32 @@ import org.junit.Test;
  */
 public class FilterModelTest {
 
-  private Camp c1;
+  private Camp c1 = new Camp("OFZ", new Date(15000000), new Date(110000000), "Berlin", "20 USD");
 
-  private Camp c2;
+  private Camp c2 = new Camp("HFZ", new Date(25000000), new Date(210000000), "Frankfurt", "2 EUR");
 
-  private Camp c3;
+  private Camp c3 = new Camp("Freizeit", new Date(35000000), new Date(310000000), "Stuttgart", "2");
 
-  private Camp c4;
+  private Camp c4 = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
 
-  private Camp c5;
-
-  @Before
-  public void setUp() {
-    this.c1 = new Camp("OFZ", new Date(15000000), new Date(110000000), "Berlin", "20 USD");
-    this.c2 = new Camp("HFZ", new Date(25000000), new Date(210000000), "Frankfurt", "2 EUR");
-    this.c3 = new Camp("Freizeit", new Date(35000000), new Date(310000000), "Stuttgart", "2");
-    this.c4 = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
-    this.c5 = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
-  }
+  private Camp c5 = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
 
   @Test
-  public void testOrWithToDisjunctSets() {
-    final FilterModel<Camp> fm = new FilterModel<Camp>(Arrays.asList(this.c1, this.c2, this.c3, this.c4, this.c5));
-    assertThat(fm.getFilterMatchingElements()).isEmpty();
+  public void test_setFilter_And_getFilterMatchingElements_WithDifferentFilters() {
+    final FilterModel<Camp> fm = new FilterModel<Camp>(Arrays.asList(c1, c2, c3, c4, c5));
+    assertThat(fm.getFilterMatchingElements()).containsExactly(c1, c2, c3, c4, c5);
 
-    fm.and(createFilter1());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1);
+    fm.setFilter(createFilter1());
+    assertThat(fm.getFilterMatchingElements()).containsExactly(c1);
 
-    fm.or(createFilter2());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c2);
-  }
+    fm.setFilter(createFilter2());
+    assertThat(fm.getFilterMatchingElements()).containsExactly(c2);
 
-  @Test
-  public void test() {
-    FilterModel<Camp> fm = new FilterModel<Camp>(Arrays.asList(this.c1, this.c2, this.c3, this.c4, this.c5));
-    assertThat(fm.getFilterMatchingElements()).isEmpty();
+    fm.setFilter(createFilter15());
+    assertThat(fm.getFilterMatchingElements()).containsExactly(c1, c5);
 
-    fm.and(createFilter15());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c5);
-
-    fm.or(createFilter12());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c5, this.c2);
-
-    fm = new FilterModel<Camp>(Arrays.asList(this.c1, this.c2, this.c3, this.c4, this.c5));
-    fm.or(createFilter15());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c5);
-
-    fm.and(createFilter12());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1);
-
-    fm.or(createFilter234());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c2, this.c3, this.c4);
-
-    fm.and(createFilter12());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c2);
-
-    fm.and(createFilter15());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1);
-
-    fm.or(createFilter15());
-    assertThat(fm.getFilterMatchingElements()).containsExactly(this.c1, this.c5);
+    fm.setFilter(createFilter12());
+    assertThat(fm.getFilterMatchingElements()).containsExactly(c1, c2);
   }
 
   private IFilter<Camp> createFilter15() {
@@ -104,17 +68,6 @@ public class FilterModelTest {
     filter12.setCategory(cat12);
 
     return filter12;
-  }
-
-  private IFilter<Camp> createFilter234() {
-    final CampFilter filter234 = new CampFilter();
-    final LocationCategory cat234 = new LocationCategory();
-    final Contains containsA = new Contains();
-    containsA.setFilterValue("a");
-    cat234.setFilter(containsA);
-    filter234.setCategory(cat234);
-
-    return filter234;
   }
 
   private IFilter<Camp> createFilter1() {

@@ -3,10 +3,12 @@ package com.github.croesch.partimana.model.filter;
 import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.api.IFilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The model for filtering {@link IFilterable} objects.
+ * The model for filtering {@link IFilterable} objects. This can be used to connect more than one filter with each
+ * other. Currently it's just used to filter with one filter at a time.
  *
  * @param <F> the type of the objects this model can filter
  * @author croesch
@@ -14,8 +16,8 @@ import java.util.List;
  */
 public final class FilterModel<F extends IFilterable> implements IFilterModel<F> {
 
-  /** the group that contains the different filters */
-  private final OrGroup<F> filters = new OrGroup<F>();
+  /** the filter this model filters the elements currently with. */
+  private IFilter<F> filter;
 
   /** the list of elements to be filtered */
   private final List<F> originalElements;
@@ -31,19 +33,15 @@ public final class FilterModel<F extends IFilterable> implements IFilterModel<F>
   }
 
   @Override
-  public void and(final IFilter<F> filter) {
-    this.filters.add(filter);
-  }
-
-  @Override
-  public void or(final IFilter<F> filter) {
-    final AndGroup<F> group = new AndGroup<F>();
-    group.add(filter);
-    this.filters.add(group);
+  public void setFilter(IFilter<F> filter) {
+    this.filter = filter;
   }
 
   @Override
   public List<F> getFilterMatchingElements() {
-    return this.filters.filter(this.originalElements);
+    if (filter == null) {
+      return new ArrayList<F>(originalElements);
+    }
+    return this.filter.filter(this.originalElements);
   }
 }

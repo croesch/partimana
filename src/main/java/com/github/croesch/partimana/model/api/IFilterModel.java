@@ -13,21 +13,13 @@ import java.util.List;
 public interface IFilterModel<F extends IFilterable> {
 
   /**
-   * Adds the given filter to the list and connects it with an AND operation to all filters since the last OR
-   * operation.
+   * Sets the given filter as the main filter. This will have an effect on the result returned by {@link
+   * #getFilterMatchingElements()}.
    *
    * @param filter the new filter
-   * @since Date: Nov 1, 2012
+   * @since Date: Apr 13, 2014
    */
-  void and(IFilter<F> filter);
-
-  /**
-   * Adds the given filter to the list and connects it with an OR operation to the result of current filtering.
-   *
-   * @param filter the new filter
-   * @since Date: Nov 1, 2012
-   */
-  void or(IFilter<F> filter);
+  void setFilter(IFilter<F> filter);
 
   /**
    * Returns all objects matching the current filters.
