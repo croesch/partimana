@@ -72,6 +72,14 @@ public final class View extends CFrame
   @MayBeNull
   private ParticipantSearchView participantSearchView = null;
 
+  /** the view to search for a participant of a camp. */
+  @MayBeNull
+  private CampParticipantSearchView campParticipantSearchView = null;
+
+  /** the  camp that is currently being stored to a csv file or <code>null</code> if we're not in save state. */
+  @MayBeNull
+  private Camp campToSaveToCSV = null;
+
   /**
    * Constructs the view of the program with the given model.
    *
@@ -217,7 +225,14 @@ public final class View extends CFrame
         break;
 
       case SAVE_CAMP_TO_CSV:
+        selectCampsForCSVExport();
+        break;
+
+      // assert the event happened from the search view
+      case CAMP_PARTICIPANT_SELECTED:
+        campParticipantSearchView.dispose();
         saveCampToCSV();
+        campParticipantSearchView = null;
         break;
 
       // assert the event happened from the search view
@@ -243,6 +258,17 @@ public final class View extends CFrame
     }
   }
 
+  private void selectCampsForCSVExport() {
+    campToSaveToCSV = this.model.getCamp(this.campView.getCampListView().getSelectedElementId());
+    if (campToSaveToCSV == null) {
+      showInformation(Text.INFO_NO_CAMP_SELECTED);
+      return;
+    }
+    campParticipantSearchView = new CampParticipantSearchView("asd", campToSaveToCSV.getParticipants(), this);
+    campParticipantSearchView.setVisible(true);
+    campParticipantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+  }
+
   /**
    * Writes the data of the currently selected camp to a csv file. The user can choose the file and then the content is
    * written to the file.
@@ -250,15 +276,10 @@ public final class View extends CFrame
    * @since Date: Jun 1, 2013
    */
   private void saveCampToCSV() {
-    final Camp selectedCamp = this.model.getCamp(this.campView.getCampListView().getSelectedElementId());
-    if (selectedCamp == null) {
-      showInformation(Text.INFO_NO_CAMP_SELECTED);
-      return;
-    }
     final JFileChooser fileChooser = new JFileChooser();
-    if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+    if (fileChooser.showSaveDialog(View.this) == JFileChooser.APPROVE_OPTION) {
       final File selectedFile = fileChooser.getSelectedFile();
-      if (!selectedFile.exists() || JOptionPane.showConfirmDialog(this,
+      if (!selectedFile.exists() || JOptionPane.showConfirmDialog(View.this,
                                                                   Text.CONTINUE_OVERRIDES_FILE
                                                                       .text(selectedFile.getAbsolutePath()),
                                                                   Text.USER_WARNING.text(),
@@ -267,9 +288,9 @@ public final class View extends CFrame
         FileWriter fileWriter = null;
         try {
           fileWriter = new FileWriter(selectedFile);
-          fileWriter.write(selectedCamp.toCSV());
+          fileWriter.write(campToSaveToCSV.toCSV(campParticipantSearchView.getAllIds()));
           fileWriter.flush();
-          showInformation(Text.INFO_CAMP_SAVED_TO_CSV, selectedCamp.getId(), selectedFile.getAbsolutePath());
+          showInformation(Text.INFO_CAMP_SAVED_TO_CSV, campToSaveToCSV.getId(), selectedFile.getAbsolutePath());
         } catch (final IOException e) {
           e.printStackTrace();
           showError(Text.ERROR_CAMP_NOT_SAVED);
