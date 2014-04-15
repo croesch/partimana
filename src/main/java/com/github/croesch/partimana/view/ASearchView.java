@@ -98,7 +98,6 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
     addButtons();
 
     pack();
-    updateListView();
   }
 
   /**
@@ -136,6 +135,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
     addDocumentListener(filterValueDateBox);
     addDocumentListener(filterValueStringBox);
     add(panel, "grow");
+    updateListView();
   }
 
   private void addDocumentListener(JTextField field) {
