@@ -14,6 +14,7 @@ Source: [v-1.0.0.zip](https://github.com/croesch/partimana/archive/v-1.0.0.zip) 
 * [#54](https://github.com/croesch/partimana/issues/54) Allow to select which participants to print
 
 # Version 0.12
+
 ## Download
 Packaged: [partimana-0.12.zip](https://github.com/croesch/partimana/releases/download/v-0.12.0/partimana-0.12.0-bin.zip)
 
@@ -26,6 +27,7 @@ Source: [v-0.12.0.zip](https://github.com/croesch/partimana/archive/v-0.12.0.zip
 * zip-file is now automatically created by `mvn package`
 
 # Version 0.11
+
 ## Download
 Packaged: [partimana-0.11.zip](https://github.com/croesch/partimana/releases/download/v-0.11.0/partimana-0.11.zip)
 
@@ -36,6 +38,7 @@ Source: [v-0.11.0.zip](https://github.com/croesch/partimana/archive/v-0.11.0.zip
 
 
 # Version 0.10
+
 ## Download
 Source: [v-0.10.0.zip](https://github.com/croesch/partimana/archive/v-0.10.0.zip) /  [v-0.10.0.tar.gz](https://github.com/croesch/partimana/archive/v-0.10.0.tar.gz)
 
@@ -44,6 +47,7 @@ Source: [v-0.10.0.zip](https://github.com/croesch/partimana/archive/v-0.10.0.zip
 
 
 # Version 0.9.4
+
 ## Download
 Packaged: [partimana-0.9.4.zip](https://github.com/croesch/partimana/releases/download/v-0.9.4/partimana-0.9.4.zip)
 
@@ -57,6 +61,7 @@ Source: [v-0.9.4.zip](https://github.com/croesch/partimana/archive/v-0.9.4.zip) 
 
 
 # Version 0.9.3
+
 ## Download
 Source: [v-0.9.3.zip](https://github.com/croesch/partimana/archive/v-0.9.3.zip) / [v-0.9.3.tar.gz](https://github.com/croesch/partimana/archive/v-0.9.3.tar.gz)
 
@@ -67,6 +72,7 @@ Source: [v-0.9.3.zip](https://github.com/croesch/partimana/archive/v-0.9.3.zip) 
   * Use `db-v-1-to-v-2.sql` to convert from V1 database to V2 database
 
 # Version 0.9.2
+
 ## Download
 Packaged: [partimana-0.9.2.zip](https://github.com/croesch/partimana/releases/download/v-0.9.2/partimana-0.9.2.zip)
 
@@ -77,6 +83,7 @@ Source: [v-0.9.2.zip](https://github.com/croesch/partimana/archive/v-0.9.2.zip) 
 
 
 # Version 0.9.1
+
 ## Download
 Packaged: [partimana-0.9.1.zip](https://github.com/croesch/partimana/releases/download/v-0.9.1/partimana-0.9.1.zip)
 
@@ -88,6 +95,7 @@ Source: [v-0.9.1.zip](https://github.com/croesch/partimana/archive/v-0.9.1.zip) 
 
 
 # Version 0.9
+
 ## Download
 Packaged: [partimana-0.9.zip](https://github.com/croesch/partimana/releases/download/v-0.9/partimana-0.9.zip)
 
