@@ -11,6 +11,8 @@ import com.github.croesch.partimana.model.filter.FilterModel;
 import com.github.croesch.partimana.types.api.IFilterable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Collection;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -97,15 +99,26 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   private void addFilterComposition() {
     final CPanel panel = new CPanel("filterComposition", new MigLayout("fill"));
-    this.categoryCBox.addActionListener(new ActionListener() {
+    categoryCBox.addItemListener(new ItemListener() {
       @Override
-      public void actionPerformed(final ActionEvent e) {
-        updateFilterTypeComboBox();
+      public void itemStateChanged(ItemEvent itemEvent) {
+        if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+          updateFilterTypeComboBox();
+          updateListView();
+        }
       }
     });
     panel.add(this.categoryCBox, "shrink");
 
     updateFilterTypeComboBox();
+    filterTypeCBox.addItemListener(new ItemListener() {
+      @Override
+      public void itemStateChanged(ItemEvent itemEvent) {
+        if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+          updateListView();
+        }
+      }
+    });
     panel.add(this.filterTypeCBox, "shrink");
 
     panel.add(this.filterValueTBox, "grow");
