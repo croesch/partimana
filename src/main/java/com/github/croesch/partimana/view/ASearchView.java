@@ -98,7 +98,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @since Date: Nov 11, 2012
    */
   private void addFilterComposition() {
-    final CPanel panel = new CPanel("filterComposition", new MigLayout("fill"));
+    final CPanel panel = new CPanel("filterComposition", new MigLayout("fill", "[shrink][shrink][grow]"));
     categoryCBox.addItemListener(new ItemListener() {
       @Override
       public void itemStateChanged(ItemEvent itemEvent) {
@@ -108,7 +108,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
         }
       }
     });
-    panel.add(this.categoryCBox, "shrink");
+    panel.add(this.categoryCBox);
 
     updateFilterTypeComboBox();
     filterTypeCBox.addItemListener(new ItemListener() {
@@ -119,7 +119,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
         }
       }
     });
-    panel.add(this.filterTypeCBox, "shrink");
+    panel.add(this.filterTypeCBox);
 
     panel.add(this.filterValueTBox, "grow");
     filterValueTBox.getDocument().addDocumentListener(new DocumentListener() {
