@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.model.filter.types;
 
 import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.util.Util;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public final class DateEquals extends DateFilterType {
 
   @Override
   public boolean matches(final Date object) {
-    return object.equals(getFilterValue());
+    return Util.of(object).getDateWithoutTime().equals(getFilterValue());
   }
 
   @Override
