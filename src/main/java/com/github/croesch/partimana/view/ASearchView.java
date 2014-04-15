@@ -8,12 +8,15 @@ import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.FilterModel;
+import com.github.croesch.partimana.model.filter.types.DateFilterType;
 import com.github.croesch.partimana.types.api.IFilterable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
+import java.util.Locale;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import net.miginfocom.swing.MigLayout;
@@ -40,7 +43,13 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
   private final CComboBox categoryCBox = new CComboBox("category", getPossibleCategories());
 
   /** the text box that holds the value for the filter */
-  private final CTextField filterValueTBox = new CTextField("filterValue");
+  private final CTextField filterValueStringBox = new CTextField("filterValue");
+
+  /** the text box that holds the value for the filter */
+  private final CDateField filterValueDateBox = new CDateField(Locale.GERMANY);
+
+  /** the text box that holds the value for the filter */
+  private JTextField filterValueTBox = filterValueStringBox;
 
   /** the model that filters the stored data */
   private final FilterModel<T> filterModel;
@@ -116,13 +125,21 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
       public void itemStateChanged(ItemEvent itemEvent) {
         if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
           updateListView();
+          updateTextComponent(panel);
         }
       }
     });
     panel.add(this.filterTypeCBox);
 
-    panel.add(this.filterValueTBox, "grow");
-    filterValueTBox.getDocument().addDocumentListener(new DocumentListener() {
+    updateTextComponent(panel);
+    filterValueDateBox.setName("filterValue");
+    addDocumentListener(filterValueDateBox);
+    addDocumentListener(filterValueStringBox);
+    add(panel, "grow");
+  }
+
+  private void addDocumentListener(JTextField field) {
+    field.getDocument().addDocumentListener(new DocumentListener() {
       @Override
       public void insertUpdate(DocumentEvent documentEvent) {
         updateListView();
@@ -138,7 +155,16 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
         updateListView();
       }
     });
-    add(panel, "grow");
+  }
+
+  private void updateTextComponent(CPanel panel) {
+    panel.remove(filterValueTBox);
+    if (filterTypeCBox.getSelectedItem() instanceof DateFilterType) {
+      filterValueTBox = filterValueDateBox;
+    } else {
+      filterValueTBox = filterValueStringBox;
+    }
+    panel.add(filterValueTBox, "grow");
   }
 
   /**
@@ -165,7 +191,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
         ((IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem()).getCopy();
     @SuppressWarnings("unchecked")
     final IFilterType<OT> filterType = ((IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem()).getCopy();
-    filterType.parseFilterValue(this.filterValueTBox.getText());
+    filterType.parseFilterValue(this.filterValueTBox);
     category.setFilter(filterType);
     filter.setCategory(category);
     return filter;

@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.model.filter.types;
 
 import com.github.croesch.partimana.types.CountyCouncil;
+import javax.swing.JTextField;
 
 /**
  * Abstract county council filter that filters county-council-objects based on the filter value.
@@ -10,8 +11,8 @@ import com.github.croesch.partimana.types.CountyCouncil;
  */
 public abstract class CountyCouncilFilterType extends AFilterType<CountyCouncil> {
   @Override
-  public final boolean parseFilterValue(final String value) {
-    final CountyCouncil cc = parse(value);
+  public final boolean parseFilterValue(final JTextField value) {
+    final CountyCouncil cc = parse(value.getText());
     if (cc != null) {
       setFilterValue(cc);
       return true;

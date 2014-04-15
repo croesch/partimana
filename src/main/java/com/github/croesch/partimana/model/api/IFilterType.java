@@ -2,6 +2,7 @@ package com.github.croesch.partimana.model.api;
 
 import com.github.croesch.annotate.MayBeNull;
 import com.github.croesch.partimana.types.api.IDescribable;
+import javax.swing.JTextField;
 
 /**
  * Interface that defines a filter for a specific data type.
@@ -24,11 +25,11 @@ public interface IFilterType<OT> extends IDescribable {
    * Parses and sets the value for the filter. Each object to filter will be checked against this value. Returns whether
    * the given value could be parsed to a valid value.
    *
-   * @param value the object this filter should check objects against - may be null
+   * @param field the value this filter should filter by
    * @return <code>true</code>, if the given value could be parsed to a valid value,<br> or <code>false</code> otherwise
    * @since Date: Oct 21, 2012
    */
-  boolean parseFilterValue(String value);
+  boolean parseFilterValue(JTextField field);
 
   /**
    * Returns the value of the filter. Each object to filter is checked against this value.

@@ -248,7 +248,7 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     assertComboboxContainsDateFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("11000000000");
+    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("07.05.1970");
     this.searchView.panel("list").table("participants").requireRowCount(3);
     ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[2]);
     ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[3]);

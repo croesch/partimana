@@ -1,8 +1,8 @@
 package com.github.croesch.partimana.model.filter.types;
 
-import com.github.croesch.partimana.i18n.Text;
+import com.github.croesch.components.CDateField;
 import java.util.Date;
-import org.apache.log4j.Logger;
+import javax.swing.JTextField;
 
 /**
  * Abstract date filter that filters date-objects based on the filter value.
@@ -11,21 +11,12 @@ import org.apache.log4j.Logger;
  * @since Date: Nov 17, 2012
  */
 public abstract class DateFilterType extends AFilterType<Date> {
-
-  /** logging class */
-  private static final Logger LOGGER = Logger.getLogger(DateFilterType.class);
-
   @Override
-  public final boolean parseFilterValue(final String value) {
-    Date date;
-    try {
-      date = new Date(Long.parseLong(value));
-    } catch (final NumberFormatException nfe) {
-      LOGGER.debug(Text.ERROR_EXCEPTION.text(nfe.getClass().getName()), nfe);
-      // TODO information for the user
-      return false;
+  public final boolean parseFilterValue(final JTextField value) {
+    if (value instanceof CDateField) {
+      setFilterValue(((CDateField) value).getDateWithoutTime());
+      return true;
     }
-    setFilterValue(date);
-    return true;
+    return false;
   }
 }

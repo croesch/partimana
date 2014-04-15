@@ -1,5 +1,7 @@
 package com.github.croesch.partimana.model.filter.types;
 
+import javax.swing.JTextField;
+
 /**
  * Abstract boolean filter that filters boolean-objects based on the filter value.
  *
@@ -9,8 +11,8 @@ package com.github.croesch.partimana.model.filter.types;
 public abstract class BooleanFilterType extends AFilterType<Boolean> {
 
   @Override
-  public final boolean parseFilterValue(final String value) {
-    setFilterValue(Boolean.valueOf(value));
+  public final boolean parseFilterValue(final JTextField value) {
+    setFilterValue(Boolean.valueOf(value.getText()));
     return true;
   }
 }

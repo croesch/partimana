@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.model.filter.types;
 
 import com.github.croesch.partimana.types.Denomination;
+import javax.swing.JTextField;
 
 /**
  * Abstract denomination filter that filters denomination-objects based on the filter value.
@@ -10,8 +11,8 @@ import com.github.croesch.partimana.types.Denomination;
  */
 public abstract class DenominationFilterType extends AFilterType<Denomination> {
   @Override
-  public final boolean parseFilterValue(final String value) {
-    final Denomination den = parse(value);
+  public final boolean parseFilterValue(final JTextField value) {
+    final Denomination den = parse(value.getText());
     if (den != null) {
       setFilterValue(den);
       return true;

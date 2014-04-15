@@ -36,11 +36,11 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
   @Override
   protected void before() {
     this.camps = new Camp[5];
-    this.camps[0] = new Camp("OFZ", new Date(15000000), new Date(110000000), "Berlin", "20 USD");
-    this.camps[1] = new Camp("HFZ", new Date(25000000), new Date(210000000), "Frankfurt", "2 EUR");
-    this.camps[2] = new Camp("Freizeit", new Date(35000000), new Date(310000000), "Stuttgart", "2");
-    this.camps[3] = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
-    this.camps[4] = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
+    this.camps[0] = new Camp("OFZ", new Date(15000000000L), new Date(110000000000L), "Berlin", "20 USD");
+    this.camps[1] = new Camp("HFZ", new Date(25000000000L), new Date(210000000000L), "Frankfurt", "2 EUR");
+    this.camps[2] = new Camp("Freizeit", new Date(35000000000L), new Date(310000000000L), "Stuttgart", "2");
+    this.camps[3] = new Camp("Lager", new Date(45000000000L), new Date(410000000000L), "Hannover", "10");
+    this.camps[4] = new Camp("Camp", new Date(55000000000L), new Date(510000000000L), "München", "200");
 
     this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
       @Override
@@ -198,7 +198,7 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     assertComboboxContainsDateFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("44999999");
+    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("05.06.1971");
     table.requireRowCount(2);
     CampListViewGUITest.requireCamp(table, 0, this.camps[3]);
     CampListViewGUITest.requireCamp(table, 1, this.camps[4]);
