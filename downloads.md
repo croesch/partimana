@@ -4,6 +4,7 @@ title: Downloads
 ---
 
 # Version 1.0.0
+
 ## Download
 Packaged: [partimana-1.0.0.zip](https://github.com/croesch/partimana/releases/download/v-1.0.0/partimana-1.0.0-bin.zip)
 
