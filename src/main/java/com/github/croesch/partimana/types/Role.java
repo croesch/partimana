@@ -35,8 +35,8 @@ public enum Role {
    * @since Date: Mar 2, 2013
    */
   private Role(final int dbId, final Text txt) {
-    this.id = dbId;
-    this.text = txt.text();
+    id = dbId;
+    text = txt.text();
   }
 
   /**
@@ -60,11 +60,11 @@ public enum Role {
    * @since Date: Mar 2, 2013
    */
   public int getId() {
-    return this.id;
+    return id;
   }
 
   @Override
   public String toString() {
-    return this.text;
+    return text;
   }
 }

@@ -35,9 +35,9 @@ public final class PersistenceModel implements IPersistenceModel {
    */
   public PersistenceModel() {
     try {
-      this.con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(),
-                                             DataBaseSettings.DB_USER.value(),
-                                             DataBaseSettings.DB_PASSWORD.value());
+      con = DriverManager.getConnection(DataBaseSettings.DB_URL.value(),
+                                        DataBaseSettings.DB_USER.value(),
+                                        DataBaseSettings.DB_PASSWORD.value());
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }
@@ -47,7 +47,7 @@ public final class PersistenceModel implements IPersistenceModel {
   public void update(final Participant p) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement(
+      stmt = con.prepareStatement(
           "UPDATE `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
           + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
           + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
@@ -98,8 +98,8 @@ public final class PersistenceModel implements IPersistenceModel {
   public void update(final Camp c) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("UPDATE `camps` SET name=?, fromDate=?, until=?, location=?, "
-                                       + "ratePerParticipant=?, ratePerDayChild=?, cancelledSince=? WHERE id=?");
+      stmt = con.prepareStatement("UPDATE `camps` SET name=?, fromDate=?, until=?, location=?, "
+                                  + "ratePerParticipant=?, ratePerDayChild=?, cancelledSince=? WHERE id=?");
       insertCampIntoStatement(c, stmt);
       stmt.executeUpdate();
 
@@ -123,8 +123,8 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try {
-      stmt = this.con
-          .prepareStatement("SELECT id, role, sinceInCamp, sinceNotInCamp" + " FROM `campParticipants` WHERE camp=?");
+      stmt = con.prepareStatement(
+          "SELECT id, role, sinceInCamp, sinceNotInCamp" + " FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, camp.getId());
       rs = stmt.executeQuery();
       while (rs.next()) {
@@ -160,14 +160,14 @@ public final class PersistenceModel implements IPersistenceModel {
   private void updateCampParticipants(final List<CampParticipant> campParticipants, final long id) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
+      stmt = con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, id);
       stmt.executeUpdate();
 
       for (final CampParticipant part : campParticipants) {
         PreparedStatement s = null;
         try {
-          s = this.con.prepareStatement(
+          s = con.prepareStatement(
               "INSERT INTO `campParticipants` SET id=?, camp=?," + " role=?, sinceInCamp=?, sinceNotInCamp=?");
           int i = 0;
           s.setLong(++i, part.getId());
@@ -192,9 +192,9 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try {
-      stmt = this.con.prepareStatement("SELECT id, name, fromDate, until, location, "
-                                       + "ratePerParticipant, ratePerDayChild, cancelledSince FROM `camps` ORDER BY " +
-                                       "id");
+      stmt = con.prepareStatement("SELECT id, name, fromDate, until, location, "
+                                  + "ratePerParticipant, ratePerDayChild, cancelledSince FROM `camps` ORDER BY " +
+                                  "id");
       rs = stmt.executeQuery();
 
       final HashMap<Long, Camp> hashMap = new HashMap<Long, Camp>();
@@ -230,11 +230,11 @@ public final class PersistenceModel implements IPersistenceModel {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     try {
-      stmt = this.con.prepareStatement("SELECT id, lastName, foreName, gender, denomination, birth, livingStreet, "
-                                       + "livingCity, livingPlz, postStreet, postCity, postPlz, "
-                                       + "phone, fax, mobilePhone, phoneParents, mailAddress, countyCouncil, "
-                                       + "bankCodeNumber, bank, bankAccountNumber, commentar, sinceInDb, "
-                                       + "dateUpInDb FROM `participants` ORDER BY id");
+      stmt = con.prepareStatement("SELECT id, lastName, foreName, gender, denomination, birth, livingStreet, "
+                                  + "livingCity, livingPlz, postStreet, postCity, postPlz, "
+                                  + "phone, fax, mobilePhone, phoneParents, mailAddress, countyCouncil, "
+                                  + "bankCodeNumber, bank, bankAccountNumber, commentar, sinceInDb, "
+                                  + "dateUpInDb FROM `participants` ORDER BY id");
       rs = stmt.executeQuery();
 
       final HashMap<Long, Participant> hashMap = new HashMap<Long, Participant>();
@@ -283,7 +283,7 @@ public final class PersistenceModel implements IPersistenceModel {
   public void deleteParticipant(final long id) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("DELETE FROM `participants` WHERE id=?");
+      stmt = con.prepareStatement("DELETE FROM `participants` WHERE id=?");
 
       stmt.setLong(1, id);
 
@@ -300,12 +300,12 @@ public final class PersistenceModel implements IPersistenceModel {
 
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
+      stmt = con.prepareStatement("DELETE FROM `campParticipants` WHERE camp=?");
       stmt.setLong(1, id);
 
       stmt.executeUpdate();
 
-      stmt = this.con.prepareStatement("DELETE FROM `camps` WHERE id=?");
+      stmt = con.prepareStatement("DELETE FROM `camps` WHERE id=?");
       stmt.setLong(1, id);
 
       stmt.executeUpdate();
@@ -320,7 +320,7 @@ public final class PersistenceModel implements IPersistenceModel {
   public void create(final Participant p) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement(
+      stmt = con.prepareStatement(
           "INSERT INTO `participants` SET lastName=?, foreName=?, gender=?, denomination=?, birth=?, "
           + "livingStreet=?, livingCity=?, livingPlz=?, postStreet=?, postCity=?, postPlz=?, "
           + "phone=?, fax=?, mobilePhone=?, phoneParents=?, mailAddress=?, countyCouncil=?, "
@@ -424,8 +424,8 @@ public final class PersistenceModel implements IPersistenceModel {
   public void create(final Camp c) {
     PreparedStatement stmt = null;
     try {
-      stmt = this.con.prepareStatement("INSERT INTO `camps` SET name=?, fromDate=?, until=?, location=?, "
-                                       + "ratePerParticipant=?, ratePerDayChild=?, cancelledSince=?, id=?");
+      stmt = con.prepareStatement("INSERT INTO `camps` SET name=?, fromDate=?, until=?, location=?, "
+                                  + "ratePerParticipant=?, ratePerDayChild=?, cancelledSince=?, id=?");
       insertCampIntoStatement(c, stmt);
       stmt.executeUpdate();
 
@@ -440,7 +440,7 @@ public final class PersistenceModel implements IPersistenceModel {
   @Override
   public void close() throws IOException {
     try {
-      this.con.close();
+      con.close();
     } catch (final SQLException e) {
       LOGGER.fatal(Text.ERROR_EXCEPTION.text(e.getClass().getName()), e);
     }

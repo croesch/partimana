@@ -32,19 +32,19 @@ final class XMLResourceBundle extends ResourceBundle {
     if (stream == null) {
       throw new IOException();
     }
-    this.props = new Properties();
-    this.props.loadFromXML(stream);
+    props = new Properties();
+    props.loadFromXML(stream);
   }
 
   @Override
   @MayBeNull
   protected Object handleGetObject(final String key) {
-    return this.props.getProperty(key);
+    return props.getProperty(key);
   }
 
   @Override
   @NotNull
   public Enumeration<String> getKeys() {
-    return Collections.enumeration(this.props.stringPropertyNames());
+    return Collections.enumeration(props.stringPropertyNames());
   }
 }

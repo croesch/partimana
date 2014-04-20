@@ -95,8 +95,8 @@ public final class View extends CFrame
     if (m == null || o == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.model = m;
-    this.observer = o;
+    model = m;
+    observer = o;
     Action.setObserver(this);
 
     setJMenuBar(new MenuBar("menuBar"));
@@ -120,8 +120,8 @@ public final class View extends CFrame
 
     final CPanel partPanel = new CPanel("partPanel", new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
 
-    final ParticipantView pv = new ParticipantView("participantView", this.model);
-    this.participantView = pv;
+    final ParticipantView pv = new ParticipantView("participantView", model);
+    participantView = pv;
     partPanel.add(pv, "top");
 
     final CPanel partButtonPanel = new CPanel("buttons");
@@ -133,8 +133,8 @@ public final class View extends CFrame
 
     pane.addTab(Text.PARTICIPANT.text(), partPanel);
 
-    final CampView cv = new CampView("campView", this.model);
-    this.campView = cv;
+    final CampView cv = new CampView("campView", model);
+    campView = cv;
 
     final CPanel campPanel = new CPanel("campPanel", new MigLayout("fill, wrap 1", "[grow, fill]", "[grow, fill][]"));
     campPanel.add(cv, "top");
@@ -151,14 +151,14 @@ public final class View extends CFrame
     add(pane);
 
     final StatusView sv = new StatusView("status");
-    this.statusView = sv;
+    statusView = sv;
     add(sv, BorderLayout.SOUTH);
 
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(final WindowEvent e) {
-        View.this.observer.performAction(UserAction.EXIT);
+        observer.performAction(UserAction.EXIT);
       }
     });
 
@@ -172,28 +172,28 @@ public final class View extends CFrame
   @Override
   @NotNull
   public IParticipantEditView getParticipantEditView() {
-    return this.participantView.getParticipantEditView();
+    return participantView.getParticipantEditView();
   }
 
   @Override
   @NotNull
   public IListView<Participant> getParticipantListView() {
-    return this.participantView.getParticipantListView();
+    return participantView.getParticipantListView();
   }
 
   @Override
   public void showInformation(final Text info) {
-    this.statusView.showInformation(info);
+    statusView.showInformation(info);
   }
 
   @Override
   public void showInformation(final Text info, final Object... args) {
-    this.statusView.showInformation(info, args);
+    statusView.showInformation(info, args);
   }
 
   @Override
   public void showError(final Text error) {
-    this.statusView.showError(error);
+    statusView.showError(error);
   }
 
   @Override
@@ -209,7 +209,7 @@ public final class View extends CFrame
       case SAVE_CAMP:
       case DELETE_CAMP:
       case CANCEL_CAMP:
-        this.observer.performAction(action);
+        observer.performAction(action);
         break;
 
       case CREATE_PARTICIPANT:
@@ -237,7 +237,7 @@ public final class View extends CFrame
 
       // assert the event happened from the search view
       case CAMP_SELECTED:
-        this.campView.getCampEditView().setCamp(this.model.getCamp(this.campSearchView.getSelectedId()));
+        campView.getCampEditView().setCamp(model.getCamp(campSearchView.getSelectedId()));
         closeCampSearchView();
         break;
 
@@ -247,8 +247,8 @@ public final class View extends CFrame
 
       // assert the event happened from the search view
       case PARTICIPANT_SELECTED:
-        this.participantView.getParticipantEditView()
-                            .setParticipant(this.model.getParticipant(this.participantSearchView.getSelectedId()));
+        participantView.getParticipantEditView()
+                       .setParticipant(model.getParticipant(participantSearchView.getSelectedId()));
         closeParticipantSearchView();
         break;
 
@@ -259,7 +259,7 @@ public final class View extends CFrame
   }
 
   private void selectCampsForCSVExport() {
-    campToSaveToCSV = this.model.getCamp(this.campView.getCampListView().getSelectedElementId());
+    campToSaveToCSV = model.getCamp(campView.getCampListView().getSelectedElementId());
     if (campToSaveToCSV == null) {
       showInformation(Text.INFO_NO_CAMP_SELECTED);
       return;
@@ -313,8 +313,8 @@ public final class View extends CFrame
    * @since Date: Mar 3, 2013
    */
   private void closeParticipantSearchView() {
-    this.participantSearchView.dispose();
-    this.participantSearchView = null;
+    participantSearchView.dispose();
+    participantSearchView = null;
   }
 
   /**
@@ -323,10 +323,9 @@ public final class View extends CFrame
    * @since Date: Mar 3, 2013
    */
   private void openParticipantSearchView() {
-    this.participantSearchView =
-        new ParticipantSearchView("participant-search", this.model.getListOfParticipants(), this);
-    this.participantSearchView.setVisible(true);
-    this.participantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    participantSearchView = new ParticipantSearchView("participant-search", model.getListOfParticipants(), this);
+    participantSearchView.setVisible(true);
+    participantSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   }
 
   /**
@@ -335,8 +334,8 @@ public final class View extends CFrame
    * @since Date: Mar 3, 2013
    */
   private void closeCampSearchView() {
-    this.campSearchView.dispose();
-    this.campSearchView = null;
+    campSearchView.dispose();
+    campSearchView = null;
   }
 
   /**
@@ -345,35 +344,35 @@ public final class View extends CFrame
    * @since Date: Mar 3, 2013
    */
   private void openCampSearchView() {
-    this.campSearchView = new CampSearchView("camp-search", this.model.getListOfCamps(), this);
-    this.campSearchView.setVisible(true);
-    this.campSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    campSearchView = new CampSearchView("camp-search", model.getListOfCamps(), this);
+    campSearchView.setVisible(true);
+    campSearchView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   }
 
   @Override
   public void update() {
-    getParticipantListView().update(this.model.getListOfParticipants());
-    getCampEditView().update(this.model.getListOfParticipants());
-    getCampListView().update(this.model.getListOfCamps());
+    getParticipantListView().update(model.getListOfParticipants());
+    getCampEditView().update(model.getListOfParticipants());
+    getCampListView().update(model.getListOfCamps());
   }
 
   @Override
   public void createParticipant() {
-    this.participantView.createParticipant();
+    participantView.createParticipant();
   }
 
   @Override
   public ICampEditView getCampEditView() {
-    return this.campView.getCampEditView();
+    return campView.getCampEditView();
   }
 
   @Override
   public IListView<Camp> getCampListView() {
-    return this.campView.getCampListView();
+    return campView.getCampListView();
   }
 
   @Override
   public void createCamp() {
-    this.campView.createCamp();
+    campView.createCamp();
   }
 }

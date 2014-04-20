@@ -40,121 +40,121 @@ public class CampFilterTest {
 
   @Before
   public void setUp() {
-    this.filter = new CampFilter();
+    filter = new CampFilter();
 
-    this.c1 = new Camp("OFZ", new Date(15000000), new Date(110000000), "Berlin", "20 USD");
-    this.c2 = new Camp("HFZ", new Date(25000000), new Date(210000000), "Frankfurt", "2 EUR");
-    this.c3 = new Camp("Freizeit", new Date(35000000), new Date(310000000), "Stuttgart", "2");
-    this.c4 = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
-    this.c5 = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
+    c1 = new Camp("OFZ", new Date(15000000), new Date(110000000), "Berlin", "20 USD");
+    c2 = new Camp("HFZ", new Date(25000000), new Date(210000000), "Frankfurt", "2 EUR");
+    c3 = new Camp("Freizeit", new Date(35000000), new Date(310000000), "Stuttgart", "2");
+    c4 = new Camp("Lager", new Date(45000000), new Date(410000000), "Hannover", "10");
+    c5 = new Camp("Camp", new Date(55000000), new Date(510000000), "München", "200");
   }
 
   @Test
   public void testSetGetCategory() {
-    assertThat(this.filter.getCategory()).isNull();
+    assertThat(filter.getCategory()).isNull();
 
-    assertThat(this.filter.getCategories()).isNotNull();
+    assertThat(filter.getCategories()).isNotNull();
 
-    for (final IFilterCategory<Camp, ?> category : this.filter.getCategories()) {
-      this.filter.setCategory(category);
-      assertThat(this.filter.getCategory()).isEqualTo(category);
+    for (final IFilterCategory<Camp, ?> category : filter.getCategories()) {
+      filter.setCategory(category);
+      assertThat(filter.getCategory()).isEqualTo(category);
     }
 
-    this.filter.setCategory(null);
-    assertThat(this.filter.getCategory()).isNull();
+    filter.setCategory(null);
+    assertThat(filter.getCategory()).isNull();
   }
 
   @Test
   public void testFilterWithoutCategory() {
-    assertThat(this.filter.filter(Arrays.asList(this.c1, this.c2, this.c3, this.c4, this.c5))).isEmpty();
+    assertThat(filter.filter(Arrays.asList(c1, c2, c3, c4, c5))).isEmpty();
   }
 
   @Test
   public void testFilter() {
-    final List<Camp> campList = Arrays.asList(this.c1, this.c2, this.c3, this.c4, this.c5);
+    final List<Camp> campList = Arrays.asList(c1, c2, c3, c4, c5);
 
     IFilterCategory<Camp, Date> cat = new UntilCategory();
-    final IFilterType<Date> filter = new After();
+    final IFilterType<Date> filterType = new After();
 
-    this.filter.setCategory(cat);
-    assertThat(this.filter.filter(campList)).isEmpty();
+    filter.setCategory(cat);
+    assertThat(filter.filter(campList)).isEmpty();
 
-    filter.setFilterValue(new Date(310000000));
-    cat.setFilter(filter);
-    assertThat(this.filter.filter(campList)).containsOnly(this.c4, this.c5);
+    filterType.setFilterValue(new Date(310000000));
+    cat.setFilter(filterType);
+    assertThat(filter.filter(campList)).containsOnly(c4, c5);
 
     cat = new FromCategory();
-    cat.setFilter(filter);
-    this.filter.setCategory(cat);
-    assertThat(this.filter.filter(campList)).isEmpty();
+    cat.setFilter(filterType);
+    filter.setCategory(cat);
+    assertThat(filter.filter(campList)).isEmpty();
 
     final IFilterCategory<Camp, String> category = new LocationCategory();
     final IFilterType<String> filter2 = new Contains();
     category.setFilter(filter2);
     filter2.setFilterValue("er");
-    this.filter.setCategory(category);
-    assertThat(this.filter.filter(campList)).containsOnly(this.c1, this.c4);
+    filter.setCategory(category);
+    assertThat(filter.filter(campList)).containsOnly(c1, c4);
 
     final StartsWith startsWith = new StartsWith();
     startsWith.setFilterValue("");
     category.setFilter(startsWith);
-    assertThat(this.filter.filter(campList)).containsOnly(this.c1, this.c2, this.c3, this.c4, this.c5);
+    assertThat(filter.filter(campList)).containsOnly(c1, c2, c3, c4, c5);
   }
 
   @Test
   public void testEquals() {
-    assertThat(this.filter).isEqualTo(new CampFilter());
+    assertThat(filter).isEqualTo(new CampFilter());
     final LocationCategory category1 = new LocationCategory();
-    this.filter.setCategory(category1);
+    filter.setCategory(category1);
 
     final CampFilter other = new CampFilter();
     final ParticipantFilter different = new ParticipantFilter();
-    assertThat(this.filter).isNotEqualTo(other);
-    assertThat(this.filter).isNotEqualTo(different);
+    assertThat(filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(different);
     assertThat(other).isEqualTo(different);
     final LocationCategory category2 = new LocationCategory();
     other.setCategory(category2);
-    assertThat(this.filter).isEqualTo(other);
+    assertThat(filter).isEqualTo(other);
     assertThat(other).isNotEqualTo(different);
 
     final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
-    assertThat(this.filter).isEqualTo(other);
+    assertThat(filter).isEqualTo(other);
 
     equals1.setFilterValue("Peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("Peter");
-    assertThat(this.filter).isEqualTo(other);
+    assertThat(filter).isEqualTo(other);
   }
 
   @Test
   public void testHashCode() {
-    assertThat(this.filter.hashCode()).isEqualTo(new CampFilter().hashCode());
+    assertThat(filter.hashCode()).isEqualTo(new CampFilter().hashCode());
     final LocationCategory category1 = new LocationCategory();
-    this.filter.setCategory(category1);
+    filter.setCategory(category1);
 
     final CampFilter other = new CampFilter();
     assertThat(other.hashCode()).isEqualTo(new ParticipantFilter().hashCode());
     final LocationCategory category2 = new LocationCategory();
     other.setCategory(category2);
-    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+    assertThat(filter.hashCode()).isEqualTo(other.hashCode());
 
     final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
     final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
-    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+    assertThat(filter.hashCode()).isEqualTo(other.hashCode());
 
     equals1.setFilterValue("Peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("Peter");
-    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+    assertThat(filter.hashCode()).isEqualTo(other.hashCode());
   }
 }

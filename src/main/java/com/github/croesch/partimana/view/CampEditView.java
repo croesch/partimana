@@ -115,42 +115,42 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
     final CLabel idLbl = new CLabel("id", Text.CAMP_ID.text());
     add(idLbl, "cell 0 0");
 
-    add(this.idValueLbl, "cell 1 0");
+    add(idValueLbl, "cell 1 0");
 
-    add(this.cancelledLbl, "cell 2 0, span 2");
+    add(cancelledLbl, "cell 2 0, span 2");
 
     final CLabel nameLbl = new CLabel("name", Text.CAMP_NAME.text());
     add(nameLbl, "cell 0 1");
 
-    add(this.nameTf, "cell 1 1");
+    add(nameTf, "cell 1 1");
 
     final CLabel locationLbl = new CLabel("location", Text.CAMP_LOCATION.text());
     add(locationLbl, "cell 2 1");
 
-    add(this.locationTf, "cell 3 1");
+    add(locationTf, "cell 3 1");
 
     final CLabel fromLbl = new CLabel("from", Text.CAMP_DATE_FROM.text());
     add(fromLbl, "cell 0 2");
 
-    add(this.fromTf, "cell 1 2");
+    add(fromTf, "cell 1 2");
 
     final CLabel toLbl = new CLabel("until", Text.CAMP_DATE_TO.text());
     add(toLbl, "cell 2 2");
 
-    add(this.untilTf, "cell 3 2");
+    add(untilTf, "cell 3 2");
 
     final CLabel perParticipantLbl = new CLabel("perParticipant", Text.CAMP_RATE_PER_PARTICIPANT.text());
     add(perParticipantLbl, "cell 0 3");
 
-    add(this.ratePerParticipantTf, "cell 1 3");
+    add(ratePerParticipantTf, "cell 1 3");
 
     final CLabel perDayLbl = new CLabel("perDay", Text.CAMP_RATE_PER_DAY.text());
     add(perDayLbl, "cell 2 3");
 
-    add(this.ratePerDayTf, "cell 3 3");
+    add(ratePerDayTf, "cell 3 3");
 
-    add(this.participantList, "cell 0 4, span 2, grow");
-    add(this.campParticipantList, "cell 2 4, span 2, grow");
+    add(participantList, "cell 0 4, span 2, grow");
+    add(campParticipantList, "cell 2 4, span 2, grow");
   }
 
   /**
@@ -160,23 +160,23 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
    */
   private void initNames() {
 
-    this.fromTf.setName("fromTF");
-    this.untilTf.setName("untilTF");
+    fromTf.setName("fromTF");
+    untilTf.setName("untilTF");
   }
 
   @Override
   public void clear() {
-    this.idValueLbl.setText(null);
-    this.cancelledLbl.setText(null);
+    idValueLbl.setText(null);
+    cancelledLbl.setText(null);
 
-    this.nameTf.setText(null);
-    this.locationTf.setText(null);
-    this.fromTf.setText(null);
-    this.untilTf.setText(null);
-    this.ratePerDayTf.setText(null);
-    this.ratePerParticipantTf.setText(null);
+    nameTf.setText(null);
+    locationTf.setText(null);
+    fromTf.setText(null);
+    untilTf.setText(null);
+    ratePerDayTf.setText(null);
+    ratePerParticipantTf.setText(null);
     setCampParticipants(null);
-    update(this.allParticipants);
+    update(allParticipants);
   }
 
   @Override
@@ -185,20 +185,20 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
       clear();
     } else {
 
-      this.idValueLbl.setText(String.valueOf(camp.getId()));
+      idValueLbl.setText(String.valueOf(camp.getId()));
 
       if (camp.getCancelDate() != null) {
-        this.cancelledLbl.setText(Text.CAMP_CANCELLED_ON.text(new SimpleDateFormat().format(camp.getCancelDate())));
+        cancelledLbl.setText(Text.CAMP_CANCELLED_ON.text(new SimpleDateFormat().format(camp.getCancelDate())));
       }
 
-      this.nameTf.setText(camp.getName());
-      this.locationTf.setText(camp.getLocation());
-      this.fromTf.setDateAndDisplay(camp.getFromDate());
-      this.untilTf.setDateAndDisplay(camp.getUntilDate());
-      this.ratePerDayTf.setText(camp.getRatePerDayChildren());
-      this.ratePerParticipantTf.setText(camp.getRatePerParticipant());
+      nameTf.setText(camp.getName());
+      locationTf.setText(camp.getLocation());
+      fromTf.setDateAndDisplay(camp.getFromDate());
+      untilTf.setDateAndDisplay(camp.getUntilDate());
+      ratePerDayTf.setText(camp.getRatePerDayChildren());
+      ratePerParticipantTf.setText(camp.getRatePerParticipant());
       setCampParticipants(camp.getParticipants());
-      update(this.allParticipants);
+      update(allParticipants);
     }
   }
 
@@ -209,50 +209,50 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
    * @since Date: Sep 23, 2012
    */
   private void setCampParticipants(final List<CampParticipant> cp) {
-    this.campParticipants.clear();
+    campParticipants.clear();
     if (cp != null) {
       for (final CampParticipant part : cp) {
-        this.campParticipants.add(part);
+        campParticipants.add(part);
       }
     }
-    this.campParticipantList.update(this.campParticipants);
+    campParticipantList.update(campParticipants);
   }
 
   @Override
   public String getNameOfCamp() {
-    return this.nameTf.getText();
+    return nameTf.getText();
   }
 
   @Override
   public String getLocationOfCamp() {
-    return this.locationTf.getText();
+    return locationTf.getText();
   }
 
   @Override
   @MayBeNull
   public Date getFrom() {
-    return this.fromTf.getDateWithoutTimeOrNull();
+    return fromTf.getDateWithoutTimeOrNull();
   }
 
   @Override
   @MayBeNull
   public Date getUntil() {
-    return this.untilTf.getDateWithoutTimeOrNull();
+    return untilTf.getDateWithoutTimeOrNull();
   }
 
   @Override
   public String getRatePerDay() {
-    return this.ratePerDayTf.getText();
+    return ratePerDayTf.getText();
   }
 
   @Override
   public String getRatePerParticipant() {
-    return this.ratePerParticipantTf.getText();
+    return ratePerParticipantTf.getText();
   }
 
   @Override
   public long getId() {
-    final String text = this.idValueLbl.getText();
+    final String text = idValueLbl.getText();
     if (text == null || text.trim().equals("")) {
       return 0; //FIXME should that -1? See also ParticipantEditView!
     }
@@ -262,13 +262,13 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.PARTICIPANT_SELECTED) {
-      final long id = this.participantList.getSelectedElementId();
-      for (final Participant p : this.participants) {
+      final long id = participantList.getSelectedElementId();
+      for (final Participant p : participants) {
         if (p.getId() == id) {
-          this.participants.remove(p);
-          this.campParticipants.add(new CampParticipant(p));
-          this.participantList.update(this.participants);
-          this.campParticipantList.update(this.campParticipants);
+          participants.remove(p);
+          campParticipants.add(new CampParticipant(p));
+          participantList.update(participants);
+          campParticipantList.update(campParticipants);
           break;
         }
       }
@@ -279,18 +279,18 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
                                         JOptionPane.OK_CANCEL_OPTION) != JOptionPane.OK_OPTION) {
         return;
       }
-      final long id = this.campParticipantList.getSelectedElementId();
-      for (final CampParticipant cp : this.campParticipants) {
+      final long id = campParticipantList.getSelectedElementId();
+      for (final CampParticipant cp : campParticipants) {
         if (cp.getId() == id) {
           for (Participant p : allParticipants) {
             if (p.getId() == id) {
-              this.participants.add(p);
+              participants.add(p);
               break;
             }
           }
-          this.campParticipants.remove(cp);
-          this.participantList.update(this.participants);
-          this.campParticipantList.update(this.campParticipants);
+          campParticipants.remove(cp);
+          participantList.update(participants);
+          campParticipantList.update(campParticipants);
           break;
         }
       }
@@ -299,20 +299,20 @@ final class CampEditView extends CPanel implements ICampEditView, ActionObserver
 
   @Override
   public void update(final List<Participant> p) {
-    this.allParticipants = p;
-    this.participants.clear();
+    allParticipants = p;
+    participants.clear();
 
     for (final Participant part : p) {
-      if (!this.campParticipants.contains(new CampParticipant(part))) {
-        this.participants.add(part);
+      if (!campParticipants.contains(new CampParticipant(part))) {
+        participants.add(part);
       }
     }
 
-    this.participantList.update(this.participants);
+    participantList.update(participants);
   }
 
   @Override
   public List<CampParticipant> getCampParticipants() {
-    return this.campParticipants;
+    return campParticipants;
   }
 }

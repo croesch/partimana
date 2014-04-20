@@ -63,81 +63,81 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
       }
     });
 
-    this.participant1 = new Participant("Mustermann",
-                                        "Max",
-                                        Gender.MALE,
-                                        Denomination.OTHER,
-                                        new Date(),
-                                        "Musterstrasse 12",
-                                        12345,
-                                        "Musterhausen",
-                                        CountyCouncil.OTHER);
+    participant1 = new Participant("Mustermann",
+                                   "Max",
+                                   Gender.MALE,
+                                   Denomination.OTHER,
+                                   new Date(),
+                                   "Musterstrasse 12",
+                                   12345,
+                                   "Musterhausen",
+                                   CountyCouncil.OTHER);
 
     final Date d1 = new Date(123);
 
-    this.participant1.setBank("bank");
-    this.participant1.setBankAccountNumber(1);
-    this.participant1.setBankCodeNumber(12);
-    this.participant1.setComment("comment");
-    this.participant1.setDateSinceInDataBase(d1);
-    this.participant1.setDateUpToInSystem(d1);
-    this.participant1.setDenomination(Denomination.JEWISH);
-    this.participant1.setFax("fax");
-    this.participant1.setMailAddress("mail");
-    this.participant1.setMobilePhone("mobile");
-    this.participant1.setPhone("phone");
-    this.participant1.setPhoneOfParents("phone");
-    this.participant1.setCityPostal("city");
-    this.participant1.setPostCodePostal(3124);
-    this.participant1.setStreetPostal("street");
+    participant1.setBank("bank");
+    participant1.setBankAccountNumber(1);
+    participant1.setBankCodeNumber(12);
+    participant1.setComment("comment");
+    participant1.setDateSinceInDataBase(d1);
+    participant1.setDateUpToInSystem(d1);
+    participant1.setDenomination(Denomination.JEWISH);
+    participant1.setFax("fax");
+    participant1.setMailAddress("mail");
+    participant1.setMobilePhone("mobile");
+    participant1.setPhone("phone");
+    participant1.setPhoneOfParents("phone");
+    participant1.setCityPostal("city");
+    participant1.setPostCodePostal(3124);
+    participant1.setStreetPostal("street");
 
-    this.participant2 = new Participant("Schmidt",
-                                        "Hans",
-                                        Gender.MALE,
-                                        Denomination.NONE,
-                                        new Date(1200),
-                                        "Strasse 4",
-                                        56789,
-                                        "Stadt",
-                                        CountyCouncil.CITY_NEUSTADT);
+    participant2 = new Participant("Schmidt",
+                                   "Hans",
+                                   Gender.MALE,
+                                   Denomination.NONE,
+                                   new Date(1200),
+                                   "Strasse 4",
+                                   56789,
+                                   "Stadt",
+                                   CountyCouncil.CITY_NEUSTADT);
 
-    this.participant3 = new Participant("Müller",
-                                        "Jasmin",
-                                        Gender.FEMALE,
-                                        Denomination.CATHOLIC,
-                                        new Date(6789543),
-                                        "Mittelgasse 3",
-                                        54321,
-                                        "Schimmelhausen",
-                                        CountyCouncil.CITY_ZWEIBRUECKEN);
+    participant3 = new Participant("Müller",
+                                   "Jasmin",
+                                   Gender.FEMALE,
+                                   Denomination.CATHOLIC,
+                                   new Date(6789543),
+                                   "Mittelgasse 3",
+                                   54321,
+                                   "Schimmelhausen",
+                                   CountyCouncil.CITY_ZWEIBRUECKEN);
 
-    this.participant4 = new Participant("Mauer",
-                                        "Jaqueline",
-                                        Gender.FEMALE,
-                                        Denomination.JEWISH,
-                                        new Date(1297579),
-                                        "Hinterweg 12",
-                                        99384,
-                                        "Hilgen",
-                                        CountyCouncil.UNKNOWN);
+    participant4 = new Participant("Mauer",
+                                   "Jaqueline",
+                                   Gender.FEMALE,
+                                   Denomination.JEWISH,
+                                   new Date(1297579),
+                                   "Hinterweg 12",
+                                   99384,
+                                   "Hilgen",
+                                   CountyCouncil.UNKNOWN);
 
-    this.participant5 = new Participant("Bauer",
-                                        "Andreas",
-                                        Gender.MALE,
-                                        Denomination.EVANGELIC,
-                                        new Date(9876543),
-                                        "Julgenweg 76",
-                                        21228,
-                                        "Mildeningen",
-                                        CountyCouncil.CITY_NEUSTADT);
+    participant5 = new Participant("Bauer",
+                                   "Andreas",
+                                   Gender.MALE,
+                                   Denomination.EVANGELIC,
+                                   new Date(9876543),
+                                   "Julgenweg 76",
+                                   21228,
+                                   "Mildeningen",
+                                   CountyCouncil.CITY_NEUSTADT);
 
     view.setName("listView");
-    this.listView = view;
+    listView = view;
 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(view));
     window.target().setPreferredSize(new Dimension(800, 400));
     window.show();
-    this.testView = window.panel("listView");
+    testView = window.panel("listView");
   }
 
   @Override
@@ -148,32 +148,32 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
   @Test
   public final void testUpdateListOfParticipant() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    update(this.listView, list);
-    requireParticipant(this.testView.table(), 0, this.participant1);
+    list.add(participant1);
+    update(listView, list);
+    requireParticipant(testView.table(), 0, participant1);
   }
 
   @Test
   public final void testTableEditable() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    update(this.listView, list);
-    this.testView.table().requireNotEditable(TableCell.row(0).column(0));
-    this.testView.table().requireNotEditable(TableCell.row(0).column(1));
-    this.testView.table().requireNotEditable(TableCell.row(0).column(2));
+    list.add(participant1);
+    update(listView, list);
+    testView.table().requireNotEditable(TableCell.row(0).column(0));
+    testView.table().requireNotEditable(TableCell.row(0).column(1));
+    testView.table().requireNotEditable(TableCell.row(0).column(2));
   }
 
   @Test
   public final void testSelection() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    update(this.listView, list);
-    this.testView.table().selectRows(0);
-    this.testView.table().requireSelectedRows(0);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant1.getId());
+    list.add(participant1);
+    update(listView, list);
+    testView.table().selectRows(0);
+    testView.table().requireSelectedRows(0);
+    assertThat(listView.getSelectedElementId()).isEqualTo(participant1.getId());
 
-    this.testView.table().selectCell(TableCell.row(0).column(0));
-    assertThat(this.testView.table().target().isCellSelected(0, 1)).isTrue();
+    testView.table().selectCell(TableCell.row(0).column(0));
+    assertThat(testView.table().target().isCellSelected(0, 1)).isTrue();
   }
 
   @Test
@@ -216,232 +216,232 @@ public class ParticipantListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(p1);
     list.add(p2);
     list.add(p3);
-    update(this.listView, list);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(3);
-    requireParticipant(this.testView.table(), 0, p1);
-    requireParticipant(this.testView.table(), 1, p2);
-    requireParticipant(this.testView.table(), 2, p3);
+    testView.table().requireRowCount(3);
+    requireParticipant(testView.table(), 0, p1);
+    requireParticipant(testView.table(), 1, p2);
+    requireParticipant(testView.table(), 2, p3);
 
-    this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, p3);
-    requireParticipant(this.testView.table(), 1, p2);
-    requireParticipant(this.testView.table(), 2, p1);
+    testView.table().tableHeader().clickColumn(0);
+    requireParticipant(testView.table(), 0, p3);
+    requireParticipant(testView.table(), 1, p2);
+    requireParticipant(testView.table(), 2, p1);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table(), 0, p1);
-    requireParticipant(this.testView.table(), 1, p2);
-    requireParticipant(this.testView.table(), 2, p3);
+    testView.table().click();
+    testView.table().tableHeader().clickColumn(0);
+    requireParticipant(testView.table(), 0, p1);
+    requireParticipant(testView.table(), 1, p2);
+    requireParticipant(testView.table(), 2, p3);
   }
 
   @Test
   public final void testSorting_FirstName() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant2);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    testView.table().requireRowCount(5);
+    requireParticipant(testView.table(), 0, participant1);
+    requireParticipant(testView.table(), 1, participant2);
+    requireParticipant(testView.table(), 2, participant3);
+    requireParticipant(testView.table(), 3, participant4);
+    requireParticipant(testView.table(), 4, participant5);
 
-    this.testView.table().tableHeader().clickColumn(1);
-    requireParticipant(this.testView.table(), 4, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 3, this.participant3);
-    requireParticipant(this.testView.table(), 2, this.participant4);
-    requireParticipant(this.testView.table(), 0, this.participant5);
+    testView.table().tableHeader().clickColumn(1);
+    requireParticipant(testView.table(), 4, participant1);
+    requireParticipant(testView.table(), 1, participant2);
+    requireParticipant(testView.table(), 3, participant3);
+    requireParticipant(testView.table(), 2, participant4);
+    requireParticipant(testView.table(), 0, participant5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(1);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 3, this.participant2);
-    requireParticipant(this.testView.table(), 1, this.participant3);
-    requireParticipant(this.testView.table(), 2, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    testView.table().click();
+    testView.table().tableHeader().clickColumn(1);
+    requireParticipant(testView.table(), 0, participant1);
+    requireParticipant(testView.table(), 3, participant2);
+    requireParticipant(testView.table(), 1, participant3);
+    requireParticipant(testView.table(), 2, participant4);
+    requireParticipant(testView.table(), 4, participant5);
   }
 
   @Test
   public final void testSorting_LastName() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant2);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    testView.table().requireRowCount(5);
+    requireParticipant(testView.table(), 0, participant1);
+    requireParticipant(testView.table(), 1, participant2);
+    requireParticipant(testView.table(), 2, participant3);
+    requireParticipant(testView.table(), 3, participant4);
+    requireParticipant(testView.table(), 4, participant5);
 
-    this.testView.table().tableHeader().clickColumn(2);
-    requireParticipant(this.testView.table(), 3, this.participant1);
-    requireParticipant(this.testView.table(), 4, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 1, this.participant4);
-    requireParticipant(this.testView.table(), 0, this.participant5);
+    testView.table().tableHeader().clickColumn(2);
+    requireParticipant(testView.table(), 3, participant1);
+    requireParticipant(testView.table(), 4, participant2);
+    requireParticipant(testView.table(), 2, participant3);
+    requireParticipant(testView.table(), 1, participant4);
+    requireParticipant(testView.table(), 0, participant5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(2);
-    requireParticipant(this.testView.table(), 1, this.participant1);
-    requireParticipant(this.testView.table(), 0, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    testView.table().click();
+    testView.table().tableHeader().clickColumn(2);
+    requireParticipant(testView.table(), 1, participant1);
+    requireParticipant(testView.table(), 0, participant2);
+    requireParticipant(testView.table(), 2, participant3);
+    requireParticipant(testView.table(), 3, participant4);
+    requireParticipant(testView.table(), 4, participant5);
   }
 
   @Test
   public final void testSelection_CountOfRows() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant2);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
-    this.testView.table().selectRows(1, 2, 3);
-    this.testView.table().requireSelectedRows(3);
-    assertThat(this.testView.table().target().getSelectedRowCount()).isEqualTo(1);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant4.getId());
+    testView.table().selectRows(1, 2, 3);
+    testView.table().requireSelectedRows(3);
+    assertThat(testView.table().target().getSelectedRowCount()).isEqualTo(1);
+    assertThat(listView.getSelectedElementId()).isEqualTo(participant4.getId());
   }
 
   @Test
   public final void testSelection_MultipleUpdate() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant2);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    testView.table().requireRowCount(5);
+    requireParticipant(testView.table(), 0, participant1);
+    requireParticipant(testView.table(), 1, participant2);
+    requireParticipant(testView.table(), 2, participant3);
+    requireParticipant(testView.table(), 3, participant4);
+    requireParticipant(testView.table(), 4, participant5);
 
-    list.remove(this.participant4);
-    list.remove(this.participant3);
-    update(this.listView, list);
+    list.remove(participant4);
+    list.remove(participant3);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(3);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant5);
+    testView.table().requireRowCount(3);
+    requireParticipant(testView.table(), 0, participant1);
+    requireParticipant(testView.table(), 1, participant2);
+    requireParticipant(testView.table(), 2, participant5);
 
-    list.remove(this.participant1);
-    list.remove(this.participant5);
-    update(this.listView, list);
+    list.remove(participant1);
+    list.remove(participant5);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(1);
-    requireParticipant(this.testView.table(), 0, this.participant2);
+    testView.table().requireRowCount(1);
+    requireParticipant(testView.table(), 0, participant2);
 
-    list.add(this.participant1);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireParticipant(this.testView.table(), 0, this.participant1);
-    requireParticipant(this.testView.table(), 1, this.participant2);
-    requireParticipant(this.testView.table(), 2, this.participant3);
-    requireParticipant(this.testView.table(), 3, this.participant4);
-    requireParticipant(this.testView.table(), 4, this.participant5);
+    testView.table().requireRowCount(5);
+    requireParticipant(testView.table(), 0, participant1);
+    requireParticipant(testView.table(), 1, participant2);
+    requireParticipant(testView.table(), 2, participant3);
+    requireParticipant(testView.table(), 3, participant4);
+    requireParticipant(testView.table(), 4, participant5);
   }
 
   @Test
   public final void testGetSelectedParticipantId() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant2);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
-    this.testView.table().selectRows(1);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant2.getId());
+    testView.table().selectRows(1);
+    assertThat(listView.getSelectedElementId()).isEqualTo(participant2.getId());
 
-    this.testView.table().selectRows(2);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant3.getId());
+    testView.table().selectRows(2);
+    assertThat(listView.getSelectedElementId()).isEqualTo(participant3.getId());
 
-    this.testView.table().selectRows(4);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.participant5.getId());
+    testView.table().selectRows(4);
+    assertThat(listView.getSelectedElementId()).isEqualTo(participant5.getId());
 
-    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
-                 .releaseKey(KeyEvent.VK_CONTROL);
-    this.testView.table().requireNoSelection();
-    assertThat(this.listView.getSelectedElementId()).isZero();
+    testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
+            .releaseKey(KeyEvent.VK_CONTROL);
+    testView.table().requireNoSelection();
+    assertThat(listView.getSelectedElementId()).isZero();
   }
 
   @Test
   public final void testSelection_EventAfterDoubleClick() throws InterruptedException, InvocationTargetException {
     final ArrayList<Participant> list = new ArrayList<Participant>();
-    list.add(this.participant1);
-    list.add(this.participant2);
-    list.add(this.participant3);
-    list.add(this.participant4);
-    list.add(this.participant5);
-    update(this.listView, list);
+    list.add(participant1);
+    list.add(participant2);
+    list.add(participant3);
+    list.add(participant4);
+    list.add(participant5);
+    update(listView, list);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).doubleClick();
+    testView.table().cell(TableCell.row(2).column(1)).doubleClick();
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
+    testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
+    testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
+    testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
+    testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
+    testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
+    testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
+    testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
+    testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
+    testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
   }
 

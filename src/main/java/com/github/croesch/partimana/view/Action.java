@@ -82,7 +82,7 @@ final class Action extends AbstractAction {
    */
   private Action(final UserAction act, final Text t) {
     super(t.text());
-    this.action = act; // FIXME null check
+    action = act; // FIXME null check
   }
 
   /**
@@ -98,7 +98,7 @@ final class Action extends AbstractAction {
   @Override
   public void actionPerformed(final ActionEvent ev) {
     if (observer != null) {
-      observer.performAction(this.action);
+      observer.performAction(action);
     }
   }
 

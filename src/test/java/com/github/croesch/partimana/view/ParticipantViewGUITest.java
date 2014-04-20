@@ -41,7 +41,7 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
 
     @Override
     public List<Participant> getListOfParticipants() {
-      return Arrays.asList(ParticipantViewGUITest.this.participant);
+      return Arrays.asList(participant);
     }
 
     @Override
@@ -66,105 +66,104 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
       @Override
       public void performAction(final UserAction action) {
         if (action == UserAction.CREATE_PARTICIPANT) {
-          ParticipantViewGUITest.this.pView.createParticipant();
+          pView.createParticipant();
         } else if (action == UserAction.DELETE_PARTICIPANT) {
-          ParticipantViewGUITest.this.deleteActionPerformed = true;
+          deleteActionPerformed = true;
         } else {
           Assert.fail();
         }
       }
     });
 
-    this.participant = new Participant("Mustermann",
-                                       "Max",
-                                       Gender.FEMALE,
-                                       Denomination.OTHER,
-                                       new Date(),
-                                       "Musterstrasse 12",
-                                       12345,
-                                       "Musterhausen",
-                                       CountyCouncil.OTHER);
+    participant = new Participant("Mustermann",
+                                  "Max",
+                                  Gender.FEMALE,
+                                  Denomination.OTHER,
+                                  new Date(),
+                                  "Musterstrasse 12",
+                                  12345,
+                                  "Musterhausen",
+                                  CountyCouncil.OTHER);
 
     final Date d1 = new Date(123);
 
-    this.participant.setBank("bank");
-    this.participant.setBankAccountNumber(1);
-    this.participant.setBankCodeNumber(12);
-    this.participant.setComment("comment");
-    this.participant.setDateSinceInDataBase(d1);
-    this.participant.setDateUpToInSystem(d1);
-    this.participant.setDenomination(Denomination.JEWISH);
-    this.participant.setFax("fax");
-    this.participant.setMailAddress("mail");
-    this.participant.setMobilePhone("mobile");
-    this.participant.setPhone("phone");
-    this.participant.setPhoneOfParents("phone");
-    this.participant.setCityPostal("city");
-    this.participant.setPostCodePostal(3124);
-    this.participant.setStreetPostal("street");
+    participant.setBank("bank");
+    participant.setBankAccountNumber(1);
+    participant.setBankCodeNumber(12);
+    participant.setComment("comment");
+    participant.setDateSinceInDataBase(d1);
+    participant.setDateUpToInSystem(d1);
+    participant.setDenomination(Denomination.JEWISH);
+    participant.setFax("fax");
+    participant.setMailAddress("mail");
+    participant.setMobilePhone("mobile");
+    participant.setPhone("phone");
+    participant.setPhoneOfParents("phone");
+    participant.setCityPostal("city");
+    participant.setPostCodePostal(3124);
+    participant.setStreetPostal("street");
 
-    this.pView = GuiActionRunner.execute(new GuiQuery<ParticipantView>() {
+    pView = GuiActionRunner.execute(new GuiQuery<ParticipantView>() {
       @Override
       protected ParticipantView executeInEDT() throws Throwable {
-        return new ParticipantView(null, ParticipantViewGUITest.this.model);
+        return new ParticipantView(null, model);
       }
     });
 
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        ParticipantViewGUITest.this.pView.getParticipantEditView()
-                                         .setParticipant(ParticipantViewGUITest.this.participant);
+        pView.getParticipantEditView().setParticipant(participant);
       }
     });
 
-    this.pView.setName("view");
+    pView.setName("view");
 
-    final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(this.pView));
+    final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(pView));
     window.show();
-    this.testView = window.panel("view");
+    testView = window.panel("view");
 
-    this.deleteActionPerformed = false;
+    deleteActionPerformed = false;
   }
 
   @Test
   public void testView() {
-    this.testView.textBox("firstNameTF").requireText(this.participant.getForeName());
-    this.testView.textBox("lastNameTF").requireText(this.participant.getLastName());
+    testView.textBox("firstNameTF").requireText(participant.getForeName());
+    testView.textBox("lastNameTF").requireText(participant.getLastName());
 
-    ParticipantListViewGUITest.requireParticipant(this.testView.table(), 0, this.participant);
+    ParticipantListViewGUITest.requireParticipant(testView.table(), 0, participant);
   }
 
   @Test
   public void testCreateNewParticipant_Button() {
 
-    this.testView.button("newParticipant").click();
+    testView.button("newParticipant").click();
 
-    this.testView.textBox("firstNameTF").requireEmpty();
-    this.testView.textBox("lastNameTF").requireEmpty();
-    this.testView.comboBox("genderCB").requireNoSelection();
-    this.testView.textBox("birthTF").requireEmpty();
-    this.testView.comboBox("denominationCB").requireNoSelection();
-    this.testView.textBox("postalStreetTF").requireEmpty();
-    this.testView.textBox("postalPostCodeTF").requireEmpty();
-    this.testView.textBox("postalCityTF").requireEmpty();
-    this.testView.comboBox("countyCouncilCB").requireNoSelection();
-    this.testView.textBox("bankTF").requireEmpty();
-    this.testView.textBox("bankAccountNumberTF").requireEmpty();
-    this.testView.textBox("bankCodeNumberTF").requireEmpty();
-    this.testView.textBox("commentTF").requireEmpty();
-    this.testView.textBox("dateUpToInDBTF").requireEmpty();
-    this.testView.textBox("faxTF").requireEmpty();
-    this.testView.textBox("mailTF").requireEmpty();
-    this.testView.textBox("mobilePhoneTF").requireEmpty();
-    this.testView.textBox("phoneTF").requireEmpty();
-    this.testView.textBox("phoneOfParentsTF").requireEmpty();
-    this.testView.textBox("livingStreetTF").requireEmpty();
-    this.testView.textBox("livingPostCodeTF").requireEmpty();
-    this.testView.textBox("livingCityTF").requireEmpty();
+    testView.textBox("firstNameTF").requireEmpty();
+    testView.textBox("lastNameTF").requireEmpty();
+    testView.comboBox("genderCB").requireNoSelection();
+    testView.textBox("birthTF").requireEmpty();
+    testView.comboBox("denominationCB").requireNoSelection();
+    testView.textBox("postalStreetTF").requireEmpty();
+    testView.textBox("postalPostCodeTF").requireEmpty();
+    testView.textBox("postalCityTF").requireEmpty();
+    testView.comboBox("countyCouncilCB").requireNoSelection();
+    testView.textBox("bankTF").requireEmpty();
+    testView.textBox("bankAccountNumberTF").requireEmpty();
+    testView.textBox("bankCodeNumberTF").requireEmpty();
+    testView.textBox("commentTF").requireEmpty();
+    testView.textBox("dateUpToInDBTF").requireEmpty();
+    testView.textBox("faxTF").requireEmpty();
+    testView.textBox("mailTF").requireEmpty();
+    testView.textBox("mobilePhoneTF").requireEmpty();
+    testView.textBox("phoneTF").requireEmpty();
+    testView.textBox("phoneOfParentsTF").requireEmpty();
+    testView.textBox("livingStreetTF").requireEmpty();
+    testView.textBox("livingPostCodeTF").requireEmpty();
+    testView.textBox("livingCityTF").requireEmpty();
     final String n = null;
-    this.testView.label("idLbl").requireText(n);
-    this.testView.label("dateSinceInDBLbl").requireText(n);
+    testView.label("idLbl").requireText(n);
+    testView.label("dateSinceInDBLbl").requireText(n);
   }
 
   @Test
@@ -173,42 +172,42 @@ public class ParticipantViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        ParticipantViewGUITest.this.pView.createParticipant();
+        pView.createParticipant();
       }
     });
 
-    this.testView.textBox("firstNameTF").requireEmpty();
-    this.testView.textBox("lastNameTF").requireEmpty();
-    this.testView.comboBox("genderCB").requireNoSelection();
-    this.testView.textBox("birthTF").requireEmpty();
-    this.testView.comboBox("denominationCB").requireNoSelection();
-    this.testView.textBox("postalStreetTF").requireEmpty();
-    this.testView.textBox("postalPostCodeTF").requireEmpty();
-    this.testView.textBox("postalCityTF").requireEmpty();
-    this.testView.comboBox("countyCouncilCB").requireNoSelection();
-    this.testView.textBox("bankTF").requireEmpty();
-    this.testView.textBox("bankAccountNumberTF").requireEmpty();
-    this.testView.textBox("bankCodeNumberTF").requireEmpty();
-    this.testView.textBox("commentTF").requireEmpty();
-    this.testView.textBox("dateUpToInDBTF").requireEmpty();
-    this.testView.textBox("faxTF").requireEmpty();
-    this.testView.textBox("mailTF").requireEmpty();
-    this.testView.textBox("mobilePhoneTF").requireEmpty();
-    this.testView.textBox("phoneTF").requireEmpty();
-    this.testView.textBox("phoneOfParentsTF").requireEmpty();
-    this.testView.textBox("livingStreetTF").requireEmpty();
-    this.testView.textBox("livingPostCodeTF").requireEmpty();
-    this.testView.textBox("livingCityTF").requireEmpty();
+    testView.textBox("firstNameTF").requireEmpty();
+    testView.textBox("lastNameTF").requireEmpty();
+    testView.comboBox("genderCB").requireNoSelection();
+    testView.textBox("birthTF").requireEmpty();
+    testView.comboBox("denominationCB").requireNoSelection();
+    testView.textBox("postalStreetTF").requireEmpty();
+    testView.textBox("postalPostCodeTF").requireEmpty();
+    testView.textBox("postalCityTF").requireEmpty();
+    testView.comboBox("countyCouncilCB").requireNoSelection();
+    testView.textBox("bankTF").requireEmpty();
+    testView.textBox("bankAccountNumberTF").requireEmpty();
+    testView.textBox("bankCodeNumberTF").requireEmpty();
+    testView.textBox("commentTF").requireEmpty();
+    testView.textBox("dateUpToInDBTF").requireEmpty();
+    testView.textBox("faxTF").requireEmpty();
+    testView.textBox("mailTF").requireEmpty();
+    testView.textBox("mobilePhoneTF").requireEmpty();
+    testView.textBox("phoneTF").requireEmpty();
+    testView.textBox("phoneOfParentsTF").requireEmpty();
+    testView.textBox("livingStreetTF").requireEmpty();
+    testView.textBox("livingPostCodeTF").requireEmpty();
+    testView.textBox("livingCityTF").requireEmpty();
     final String n = null;
-    this.testView.label("idLbl").requireText(n);
-    this.testView.label("dateSinceInDBLbl").requireText(n);
+    testView.label("idLbl").requireText(n);
+    testView.label("dateSinceInDBLbl").requireText(n);
   }
 
   @Test
   public void testDeleteParticipant() {
-    assertThat(this.deleteActionPerformed).isFalse();
-    this.testView.button("deleteParticipant").click();
+    assertThat(deleteActionPerformed).isFalse();
+    testView.button("deleteParticipant").click();
 
-    assertThat(this.deleteActionPerformed).isTrue();
+    assertThat(deleteActionPerformed).isTrue();
   }
 }

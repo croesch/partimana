@@ -34,9 +34,9 @@ class StatusView extends CPanel implements IStatusView {
     super(name);
     setLayout(new MigLayout(new LC().fill()));
 
-    this.label = new CLabel("statusTxt");
+    label = new CLabel("statusTxt");
 
-    add(this.label);
+    add(label);
   }
 
   @Override
@@ -46,8 +46,8 @@ class StatusView extends CPanel implements IStatusView {
 
   @Override
   public void showError(final Text error) {
-    this.label.setForeground(Color.RED);
-    this.label.setText(error.text()); // FIXME null check?
+    label.setForeground(Color.RED);
+    label.setText(error.text()); // FIXME null check?
   }
 
   @Override
@@ -62,7 +62,7 @@ class StatusView extends CPanel implements IStatusView {
    * @since Date: Jul 1, 2011
    */
   private void showInfo(final String txt) {
-    this.label.setForeground(Color.BLACK);
-    this.label.setText(txt);
+    label.setForeground(Color.BLACK);
+    label.setText(txt);
   }
 }

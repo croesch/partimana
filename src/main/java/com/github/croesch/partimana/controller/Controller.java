@@ -42,14 +42,14 @@ public final class Controller implements ActionObserver {
    * @since Date: May 29, 2011
    */
   public Controller(final ActionObserver o, final IPersistenceModel pModel) {
-    this.observer = o; //FIXME null check!
-    this.model = new Model(pModel);
-    this.view = new View("view", this.model, this);
-    this.model.setView(this.view);
+    observer = o; //FIXME null check!
+    model = new Model(pModel);
+    view = new View("view", model, this);
+    model.setView(view);
 
-    this.view.setVisible(true);
+    view.setVisible(true);
 
-    this.view.showInformation(Text.VERSION);
+    view.showInformation(Text.VERSION);
   }
 
   @Override
@@ -58,29 +58,29 @@ public final class Controller implements ActionObserver {
 
       case EXIT:
         LOGGER.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
-        this.observer.performAction(action);
+        observer.performAction(action);
         break;
 
       case SAVE_PARTICIPANT:
-        ParticipantSaver.performSave(this.model, this.view.getParticipantEditView(), this.view);
+        ParticipantSaver.performSave(model, view.getParticipantEditView(), view);
         break;
 
       case DELETE_PARTICIPANT:
-        this.model.deleteParticipant(this.view.getParticipantListView().getSelectedElementId());
+        model.deleteParticipant(view.getParticipantListView().getSelectedElementId());
         break;
 
       case CANCEL_CAMP:
-        final Camp c = this.model.getCamp(this.view.getCampListView().getSelectedElementId());
+        final Camp c = model.getCamp(view.getCampListView().getSelectedElementId());
         c.setCancelDate(new Date());
-        this.model.store(c);
+        model.store(c);
         break;
 
       case SAVE_CAMP:
-        CampSaver.performSave(this.model, this.view.getCampEditView(), this.view);
+        CampSaver.performSave(model, view.getCampEditView(), view);
         break;
 
       case DELETE_CAMP:
-        this.model.deleteCamp(this.view.getCampListView().getSelectedElementId());
+        model.deleteCamp(view.getCampListView().getSelectedElementId());
         break;
 
       default:

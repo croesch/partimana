@@ -23,7 +23,7 @@ public class AddressTest {
    */
   @Before
   public final void setUp() {
-    this.address = new Address();
+    address = new Address();
   }
 
   /**
@@ -31,9 +31,9 @@ public class AddressTest {
    */
   @Test
   public final void testAddress() {
-    assertThat(this.address.getCity()).isNull();
-    assertThat(this.address.getStreet()).isNull();
-    assertThat(this.address.getPostCode()).isZero();
+    assertThat(address.getCity()).isNull();
+    assertThat(address.getStreet()).isNull();
+    assertThat(address.getPostCode()).isZero();
   }
 
   /**
@@ -41,10 +41,10 @@ public class AddressTest {
    */
   @Test
   public final void testAddressStringIntString() {
-    this.address = new Address(null, 1, "two");
-    assertThat(this.address.getStreet()).isNull();
-    assertThat(this.address.getPostCode()).isEqualTo(1);
-    assertThat(this.address.getCity()).isEqualTo("two");
+    address = new Address(null, 1, "two");
+    assertThat(address.getStreet()).isNull();
+    assertThat(address.getPostCode()).isEqualTo(1);
+    assertThat(address.getCity()).isEqualTo("two");
   }
 
   /**
@@ -52,14 +52,14 @@ public class AddressTest {
    */
   @Test
   public final void testSetAndGetStreet() {
-    this.address.setStreet("...");
-    assertThat(this.address.getStreet()).isEqualTo("...");
+    address.setStreet("...");
+    assertThat(address.getStreet()).isEqualTo("...");
 
-    this.address.setStreet(null);
-    assertThat(this.address.getStreet()).isNull();
+    address.setStreet(null);
+    assertThat(address.getStreet()).isNull();
 
-    this.address.setStreet("street");
-    assertThat(this.address.getStreet()).isEqualTo("street");
+    address.setStreet("street");
+    assertThat(address.getStreet()).isEqualTo("street");
   }
 
   /**
@@ -67,15 +67,15 @@ public class AddressTest {
    */
   @Test
   public final void testSetAndGetPostCode() {
-    this.address.setPostCode(0);
-    assertThat(this.address.getPostCode()).isZero();
+    address.setPostCode(0);
+    assertThat(address.getPostCode()).isZero();
 
-    this.address.setPostCode(1);
-    assertThat(this.address.getPostCode()).isEqualTo(1);
+    address.setPostCode(1);
+    assertThat(address.getPostCode()).isEqualTo(1);
 
     final int pc3 = 17836;
-    this.address.setPostCode(pc3);
-    assertThat(this.address.getPostCode()).isEqualTo(Integer.valueOf(pc3).intValue());
+    address.setPostCode(pc3);
+    assertThat(address.getPostCode()).isEqualTo(Integer.valueOf(pc3).intValue());
   }
 
   /**
@@ -83,14 +83,14 @@ public class AddressTest {
    */
   @Test
   public final void testSetAndGetCity() {
-    this.address.setCity("...");
-    assertThat(this.address.getCity()).isEqualTo("...");
+    address.setCity("...");
+    assertThat(address.getCity()).isEqualTo("...");
 
-    this.address.setCity(null);
-    assertThat(this.address.getCity()).isNull();
+    address.setCity(null);
+    assertThat(address.getCity()).isNull();
 
-    this.address.setCity("city");
-    assertThat(this.address.getCity()).isEqualTo("city");
+    address.setCity("city");
+    assertThat(address.getCity()).isEqualTo("city");
   }
 
   /**
@@ -99,40 +99,40 @@ public class AddressTest {
   @Test
   public final void testEqualsAndHashCode() {
     final int postCode = 22222;
-    this.address = new Address("street", postCode, "city");
+    address = new Address("street", postCode, "city");
     final Address copy = new Address("street", postCode, "city");
-    assertThat(this.address).isEqualTo(copy);
+    assertThat(address).isEqualTo(copy);
 
-    assertThat(this.address.hashCode()).isEqualTo(copy.hashCode());
+    assertThat(address.hashCode()).isEqualTo(copy.hashCode());
     copy.setStreet("stree");
-    assertThat(this.address.hashCode()).isNotEqualTo(copy.hashCode());
-    assertThat(this.address).isNotEqualTo(copy);
+    assertThat(address.hashCode()).isNotEqualTo(copy.hashCode());
+    assertThat(address).isNotEqualTo(copy);
 
-    copy.setCity(this.address.getCity());
-    copy.setPostCode(this.address.getPostCode());
-    copy.setStreet(this.address.getStreet());
+    copy.setCity(address.getCity());
+    copy.setPostCode(address.getPostCode());
+    copy.setStreet(address.getStreet());
 
-    assertThat(this.address).isEqualTo(this.address);
-    assertThat(this.address).isNotEqualTo(null);
-    assertThat(this.address).isNotEqualTo("address");
+    assertThat(address).isEqualTo(address);
+    assertThat(address).isNotEqualTo(null);
+    assertThat(address).isNotEqualTo("address");
 
-    this.address.setCity(null);
-    assertThat(this.address).isNotEqualTo(copy);
-    this.address.setCity("other");
-    assertThat(this.address).isNotEqualTo(copy);
-    this.address.setCity(copy.getCity());
+    address.setCity(null);
+    assertThat(address).isNotEqualTo(copy);
+    address.setCity("other");
+    assertThat(address).isNotEqualTo(copy);
+    address.setCity(copy.getCity());
 
-    this.address.setStreet(null);
-    assertThat(this.address).isNotEqualTo(copy);
-    this.address.setStreet("other");
-    assertThat(this.address).isNotEqualTo(copy);
-    this.address.setStreet(copy.getStreet());
+    address.setStreet(null);
+    assertThat(address).isNotEqualTo(copy);
+    address.setStreet("other");
+    assertThat(address).isNotEqualTo(copy);
+    address.setStreet(copy.getStreet());
 
-    this.address.setPostCode(-1);
-    assertThat(this.address).isNotEqualTo(copy);
-    this.address.setPostCode(copy.getPostCode());
+    address.setPostCode(-1);
+    assertThat(address).isNotEqualTo(copy);
+    address.setPostCode(copy.getPostCode());
 
-    assertThat(this.address).isEqualTo(copy);
+    assertThat(address).isEqualTo(copy);
   }
 
   /**
@@ -140,10 +140,10 @@ public class AddressTest {
    */
   @Test
   public final void testToString() {
-    this.address = new Address("street", 1223, "city");
+    address = new Address("street", 1223, "city");
 
-    assertThat(this.address.toString()).contains(this.address.getCity());
-    assertThat(this.address.toString()).contains(this.address.getStreet());
-    assertThat(this.address.toString()).contains(String.valueOf(this.address.getPostCode()));
+    assertThat(address.toString()).contains(address.getCity());
+    assertThat(address.toString()).contains(address.getStreet());
+    assertThat(address.toString()).contains(String.valueOf(address.getPostCode()));
   }
 }

@@ -23,7 +23,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
 
   @Override
   protected void before() {
-    this.statusView = GuiActionRunner.execute(new GuiQuery<StatusView>() {
+    statusView = GuiActionRunner.execute(new GuiQuery<StatusView>() {
       @Override
       protected StatusView executeInEDT() throws Throwable {
         return new StatusView(null);
@@ -33,7 +33,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
       @Override
       protected void executeInEDT() throws Throwable {
         final JFrame f = new JFrame();
-        f.add(StatusViewGUITest.this.statusView);
+        f.add(statusView);
         f.setVisible(true);
       }
     });
@@ -41,7 +41,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
 
   @Test
   public void testShowInformation() {
-    final JLabelFixture statusFixture = new JPanelFixture(robot(), this.statusView).label();
+    final JLabelFixture statusFixture = new JPanelFixture(robot(), statusView).label();
 
     showInformation(Text.APPLY);
     statusFixture.foreground().requireEqualTo(Color.BLACK);
@@ -68,7 +68,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        StatusViewGUITest.this.statusView.showError(txt);
+        statusView.showError(txt);
       }
     });
   }
@@ -77,7 +77,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        StatusViewGUITest.this.statusView.showInformation(txt);
+        statusView.showInformation(txt);
       }
     });
   }
@@ -86,7 +86,7 @@ public class StatusViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        StatusViewGUITest.this.statusView.showInformation(txt, args);
+        statusView.showInformation(txt, args);
       }
     });
   }

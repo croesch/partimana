@@ -27,61 +27,61 @@ public class CampEditViewTest {
 
   @Before
   public void setUp() {
-    this.testView = GuiActionRunner.execute(new GuiQuery<CampEditView>() {
+    testView = GuiActionRunner.execute(new GuiQuery<CampEditView>() {
       @Override
       protected CampEditView executeInEDT() throws Throwable {
         return new CampEditView(null);
       }
     });
 
-    this.camp = new Camp("OFZ", new Date(500000), new Date(1000000), "Raversbeuren", "1,50€");
+    camp = new Camp("OFZ", new Date(500000), new Date(1000000), "Raversbeuren", "1,50€");
 
-    this.camp.setRatePerDayChildren("0,5€");
+    camp.setRatePerDayChildren("0,5€");
 
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampEditViewTest.this.testView.setCamp(CampEditViewTest.this.camp);
+        testView.setCamp(camp);
       }
     });
   }
 
   @Test
   public void testGetName() {
-    assertThat(this.testView.getNameOfCamp()).isEqualTo(this.camp.getName());
+    assertThat(testView.getNameOfCamp()).isEqualTo(camp.getName());
   }
 
   @Test
   public void testGetLocation() {
-    assertThat(this.testView.getLocationOfCamp()).isEqualTo(this.camp.getLocation());
+    assertThat(testView.getLocationOfCamp()).isEqualTo(camp.getLocation());
   }
 
   @Test
   public void testGetFrom() throws ParseException {
     final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-    final Date date = sdf.parse(sdf.format(this.camp.getFromDate()));
-    assertThat(this.testView.getFrom()).isEqualTo(date);
+    final Date date = sdf.parse(sdf.format(camp.getFromDate()));
+    assertThat(testView.getFrom()).isEqualTo(date);
   }
 
   @Test
   public void testGetTo() throws ParseException {
     final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-    final Date date = sdf.parse(sdf.format(this.camp.getUntilDate()));
-    assertThat(this.testView.getUntil()).isEqualTo(date);
+    final Date date = sdf.parse(sdf.format(camp.getUntilDate()));
+    assertThat(testView.getUntil()).isEqualTo(date);
   }
 
   @Test
   public final void testGetRatePerParticipant() {
-    assertThat(this.testView.getRatePerParticipant()).isEqualTo(this.camp.getRatePerParticipant());
+    assertThat(testView.getRatePerParticipant()).isEqualTo(camp.getRatePerParticipant());
   }
 
   @Test
   public final void testGetRatePerDayChildren() {
-    assertThat(this.testView.getRatePerDay()).isEqualTo(this.camp.getRatePerDayChildren());
+    assertThat(testView.getRatePerDay()).isEqualTo(camp.getRatePerDayChildren());
   }
 
   @Test
   public final void testGetId() {
-    assertThat(this.testView.getId()).isEqualTo(this.camp.getId());
+    assertThat(testView.getId()).isEqualTo(camp.getId());
   }
 }

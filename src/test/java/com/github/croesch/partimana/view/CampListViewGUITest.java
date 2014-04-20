@@ -52,49 +52,49 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
       }
     });
 
-    this.camp1 = new Camp("OFZ", new Date(), new Date(), "Raversbeuren", "rate");
-    this.camp2 = new Camp("Sommercamp", new Date(99999), new Date(88888888), "Spain", "5,0€");
-    this.camp3 = new Camp("Wintercamp", new Date(444444), new Date(333333333), "Russia", "1,30 €");
-    this.camp4 = new Camp("Ostercamp", new Date(444334), new Date(333113333), "France", "1,30 €");
-    this.camp5 = new Camp("Herbstcamp", new Date(4422444), new Date(399333333), "Italy", "1,30 €");
+    camp1 = new Camp("OFZ", new Date(), new Date(), "Raversbeuren", "rate");
+    camp2 = new Camp("Sommercamp", new Date(99999), new Date(88888888), "Spain", "5,0€");
+    camp3 = new Camp("Wintercamp", new Date(444444), new Date(333333333), "Russia", "1,30 €");
+    camp4 = new Camp("Ostercamp", new Date(444334), new Date(333113333), "France", "1,30 €");
+    camp5 = new Camp("Herbstcamp", new Date(4422444), new Date(399333333), "Italy", "1,30 €");
 
     view.setName("aListView");
-    this.aListView = view;
+    aListView = view;
 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(view));
     window.show(new Dimension(800, 400));
-    this.testView = window.panel("aListView");
+    testView = window.panel("aListView");
   }
 
   @Test
   public final void testUpdateListOfCamps() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    update(this.aListView, list);
-    requireCamp(this.testView.table(), 0, this.camp1);
+    list.add(camp1);
+    update(aListView, list);
+    requireCamp(testView.table(), 0, camp1);
   }
 
   @Test
   public final void testTableEditable() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    update(this.aListView, list);
-    this.testView.table().requireNotEditable(TableCell.row(0).column(0));
-    this.testView.table().requireNotEditable(TableCell.row(0).column(1));
-    this.testView.table().requireNotEditable(TableCell.row(0).column(2));
+    list.add(camp1);
+    update(aListView, list);
+    testView.table().requireNotEditable(TableCell.row(0).column(0));
+    testView.table().requireNotEditable(TableCell.row(0).column(1));
+    testView.table().requireNotEditable(TableCell.row(0).column(2));
   }
 
   @Test
   public final void testSelection() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    update(this.aListView, list);
-    this.testView.table().selectRows(0);
-    this.testView.table().requireSelectedRows(0);
-    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp1.getId());
+    list.add(camp1);
+    update(aListView, list);
+    testView.table().selectRows(0);
+    testView.table().requireSelectedRows(0);
+    assertThat(aListView.getSelectedElementId()).isEqualTo(camp1.getId());
 
-    this.testView.table().selectCell(TableCell.row(0).column(0));
-    assertThat(this.testView.table().target().isCellSelected(0, 1)).isTrue();
+    testView.table().selectCell(TableCell.row(0).column(0));
+    assertThat(testView.table().target().isCellSelected(0, 1)).isTrue();
   }
 
   @Test
@@ -107,23 +107,23 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
     list.add(c1);
     list.add(c2);
     list.add(c3);
-    update(this.aListView, list);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(3);
-    requireCamp(this.testView.table(), 0, c1);
-    requireCamp(this.testView.table(), 1, c2);
-    requireCamp(this.testView.table(), 2, c3);
+    testView.table().requireRowCount(3);
+    requireCamp(testView.table(), 0, c1);
+    requireCamp(testView.table(), 1, c2);
+    requireCamp(testView.table(), 2, c3);
 
-    this.testView.table().tableHeader().clickColumn(0);
-    requireCamp(this.testView.table(), 0, c3);
-    requireCamp(this.testView.table(), 1, c2);
-    requireCamp(this.testView.table(), 2, c1);
+    testView.table().tableHeader().clickColumn(0);
+    requireCamp(testView.table(), 0, c3);
+    requireCamp(testView.table(), 1, c2);
+    requireCamp(testView.table(), 2, c1);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(0);
-    requireCamp(this.testView.table(), 0, c1);
-    requireCamp(this.testView.table(), 1, c2);
-    requireCamp(this.testView.table(), 2, c3);
+    testView.table().click();
+    testView.table().tableHeader().clickColumn(0);
+    requireCamp(testView.table(), 0, c1);
+    requireCamp(testView.table(), 1, c2);
+    requireCamp(testView.table(), 2, c3);
   }
 
   public static void update(final AListView<Camp> lView, final List<Camp> list) {
@@ -138,210 +138,210 @@ public class CampListViewGUITest extends PartiManaDefaultGUITestCase {
   @Test
   public final void testSorting_Location() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    list.add(this.camp2);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp2);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireCamp(this.testView.table(), 0, this.camp1);
-    requireCamp(this.testView.table(), 1, this.camp2);
-    requireCamp(this.testView.table(), 2, this.camp3);
-    requireCamp(this.testView.table(), 3, this.camp4);
-    requireCamp(this.testView.table(), 4, this.camp5);
+    testView.table().requireRowCount(5);
+    requireCamp(testView.table(), 0, camp1);
+    requireCamp(testView.table(), 1, camp2);
+    requireCamp(testView.table(), 2, camp3);
+    requireCamp(testView.table(), 3, camp4);
+    requireCamp(testView.table(), 4, camp5);
 
-    this.testView.table().tableHeader().clickColumn(1);
-    requireCamp(this.testView.table(), 2, this.camp1);
-    requireCamp(this.testView.table(), 4, this.camp2);
-    requireCamp(this.testView.table(), 3, this.camp3);
-    requireCamp(this.testView.table(), 0, this.camp4);
-    requireCamp(this.testView.table(), 1, this.camp5);
+    testView.table().tableHeader().clickColumn(1);
+    requireCamp(testView.table(), 2, camp1);
+    requireCamp(testView.table(), 4, camp2);
+    requireCamp(testView.table(), 3, camp3);
+    requireCamp(testView.table(), 0, camp4);
+    requireCamp(testView.table(), 1, camp5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(1);
-    requireCamp(this.testView.table(), 2, this.camp1);
-    requireCamp(this.testView.table(), 0, this.camp2);
-    requireCamp(this.testView.table(), 1, this.camp3);
-    requireCamp(this.testView.table(), 4, this.camp4);
-    requireCamp(this.testView.table(), 3, this.camp5);
+    testView.table().click();
+    testView.table().tableHeader().clickColumn(1);
+    requireCamp(testView.table(), 2, camp1);
+    requireCamp(testView.table(), 0, camp2);
+    requireCamp(testView.table(), 1, camp3);
+    requireCamp(testView.table(), 4, camp4);
+    requireCamp(testView.table(), 3, camp5);
   }
 
   @Test
   public final void testSorting_Name() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    list.add(this.camp2);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp2);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireCamp(this.testView.table(), 0, this.camp1);
-    requireCamp(this.testView.table(), 1, this.camp2);
-    requireCamp(this.testView.table(), 2, this.camp3);
-    requireCamp(this.testView.table(), 3, this.camp4);
-    requireCamp(this.testView.table(), 4, this.camp5);
+    testView.table().requireRowCount(5);
+    requireCamp(testView.table(), 0, camp1);
+    requireCamp(testView.table(), 1, camp2);
+    requireCamp(testView.table(), 2, camp3);
+    requireCamp(testView.table(), 3, camp4);
+    requireCamp(testView.table(), 4, camp5);
 
-    this.testView.table().tableHeader().clickColumn(2);
-    requireCamp(this.testView.table(), 1, this.camp1);
-    requireCamp(this.testView.table(), 3, this.camp2);
-    requireCamp(this.testView.table(), 4, this.camp3);
-    requireCamp(this.testView.table(), 2, this.camp4);
-    requireCamp(this.testView.table(), 0, this.camp5);
+    testView.table().tableHeader().clickColumn(2);
+    requireCamp(testView.table(), 1, camp1);
+    requireCamp(testView.table(), 3, camp2);
+    requireCamp(testView.table(), 4, camp3);
+    requireCamp(testView.table(), 2, camp4);
+    requireCamp(testView.table(), 0, camp5);
 
-    this.testView.table().click();
-    this.testView.table().tableHeader().clickColumn(2);
-    requireCamp(this.testView.table(), 3, this.camp1);
-    requireCamp(this.testView.table(), 1, this.camp2);
-    requireCamp(this.testView.table(), 0, this.camp3);
-    requireCamp(this.testView.table(), 2, this.camp4);
-    requireCamp(this.testView.table(), 4, this.camp5);
+    testView.table().click();
+    testView.table().tableHeader().clickColumn(2);
+    requireCamp(testView.table(), 3, camp1);
+    requireCamp(testView.table(), 1, camp2);
+    requireCamp(testView.table(), 0, camp3);
+    requireCamp(testView.table(), 2, camp4);
+    requireCamp(testView.table(), 4, camp5);
   }
 
   @Test
   public final void testSelection_CountOfRows() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    list.add(this.camp2);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp2);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
-    this.testView.table().selectRows(1, 2, 3);
-    this.testView.table().requireSelectedRows(3);
-    assertThat(this.testView.table().target().getSelectedRowCount()).isEqualTo(1);
-    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp4.getId());
+    testView.table().selectRows(1, 2, 3);
+    testView.table().requireSelectedRows(3);
+    assertThat(testView.table().target().getSelectedRowCount()).isEqualTo(1);
+    assertThat(aListView.getSelectedElementId()).isEqualTo(camp4.getId());
   }
 
   @Test
   public final void testSelection_MultipleUpdate() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    list.add(this.camp2);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp2);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireCamp(this.testView.table(), 0, this.camp1);
-    requireCamp(this.testView.table(), 1, this.camp2);
-    requireCamp(this.testView.table(), 2, this.camp3);
-    requireCamp(this.testView.table(), 3, this.camp4);
-    requireCamp(this.testView.table(), 4, this.camp5);
+    testView.table().requireRowCount(5);
+    requireCamp(testView.table(), 0, camp1);
+    requireCamp(testView.table(), 1, camp2);
+    requireCamp(testView.table(), 2, camp3);
+    requireCamp(testView.table(), 3, camp4);
+    requireCamp(testView.table(), 4, camp5);
 
-    list.remove(this.camp4);
-    list.remove(this.camp3);
-    update(this.aListView, list);
+    list.remove(camp4);
+    list.remove(camp3);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(3);
-    requireCamp(this.testView.table(), 0, this.camp1);
-    requireCamp(this.testView.table(), 1, this.camp2);
-    requireCamp(this.testView.table(), 2, this.camp5);
+    testView.table().requireRowCount(3);
+    requireCamp(testView.table(), 0, camp1);
+    requireCamp(testView.table(), 1, camp2);
+    requireCamp(testView.table(), 2, camp5);
 
-    list.remove(this.camp1);
-    list.remove(this.camp5);
-    update(this.aListView, list);
+    list.remove(camp1);
+    list.remove(camp5);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(1);
-    requireCamp(this.testView.table(), 0, this.camp2);
+    testView.table().requireRowCount(1);
+    requireCamp(testView.table(), 0, camp2);
 
-    list.add(this.camp1);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
-    this.testView.table().requireRowCount(5);
-    requireCamp(this.testView.table(), 0, this.camp1);
-    requireCamp(this.testView.table(), 1, this.camp2);
-    requireCamp(this.testView.table(), 2, this.camp3);
-    requireCamp(this.testView.table(), 3, this.camp4);
-    requireCamp(this.testView.table(), 4, this.camp5);
+    testView.table().requireRowCount(5);
+    requireCamp(testView.table(), 0, camp1);
+    requireCamp(testView.table(), 1, camp2);
+    requireCamp(testView.table(), 2, camp3);
+    requireCamp(testView.table(), 3, camp4);
+    requireCamp(testView.table(), 4, camp5);
   }
 
   @Test
   public final void testGetSelectedParticipantId() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    list.add(this.camp2);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp2);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
-    this.testView.table().selectRows(1);
-    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp2.getId());
+    testView.table().selectRows(1);
+    assertThat(aListView.getSelectedElementId()).isEqualTo(camp2.getId());
 
-    this.testView.table().selectRows(2);
-    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp3.getId());
+    testView.table().selectRows(2);
+    assertThat(aListView.getSelectedElementId()).isEqualTo(camp3.getId());
 
-    this.testView.table().selectRows(4);
-    assertThat(this.aListView.getSelectedElementId()).isEqualTo(this.camp5.getId());
+    testView.table().selectRows(4);
+    assertThat(aListView.getSelectedElementId()).isEqualTo(camp5.getId());
 
-    this.testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
-                 .releaseKey(KeyEvent.VK_CONTROL);
-    this.testView.table().requireNoSelection();
-    assertThat(this.aListView.getSelectedElementId()).isZero();
+    testView.table().pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
+            .releaseKey(KeyEvent.VK_CONTROL);
+    testView.table().requireNoSelection();
+    assertThat(aListView.getSelectedElementId()).isZero();
   }
 
   @Test
   public final void testSelection_EventAfterDoubleClick() {
     final ArrayList<Camp> list = new ArrayList<Camp>();
-    list.add(this.camp1);
-    list.add(this.camp2);
-    list.add(this.camp3);
-    list.add(this.camp4);
-    list.add(this.camp5);
-    update(this.aListView, list);
+    list.add(camp1);
+    list.add(camp2);
+    list.add(camp3);
+    list.add(camp4);
+    list.add(camp5);
+    update(aListView, list);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
+    testView.table().cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
+    testView.table().cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
+    testView.table().cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
+    testView.table().cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
+    testView.table().cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
+    testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
+    testView.table().cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
+    testView.table().cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
+    testView.table().cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
+    testView.table().cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
   }
 

@@ -95,14 +95,14 @@ public class CampSaverTest {
 
   @Before
   public void setUp() {
-    this.dummyCamp = new Camp("CAMP", new Date(82800000), new Date(182800000), "Entenhausen", "1 euro");
-    this.dummyCamp.setRatePerDayChildren("2 euro");
+    dummyCamp = new Camp("CAMP", new Date(82800000), new Date(182800000), "Entenhausen", "1 euro");
+    dummyCamp.setRatePerDayChildren("2 euro");
 
-    this.model = new ICampModel() {
+    model = new ICampModel() {
 
       @Override
       public Camp getCamp(final long id) {
-        return CampSaverTest.this.dummyCamp;
+        return dummyCamp;
       }
 
       @Override
@@ -112,7 +112,7 @@ public class CampSaverTest {
 
       @Override
       public void store(final Camp c) throws RequiredFieldSetToNullException {
-        CampSaverTest.this.stored = c;
+        stored = c;
       }
 
       @Override
@@ -121,17 +121,17 @@ public class CampSaverTest {
       }
     };
 
-    this.stored = null;
+    stored = null;
   }
 
   @Test
   public final void testPerformSave_Name() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     c.setName("a-name");
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 
   private void save(final Camp c) {
@@ -139,64 +139,64 @@ public class CampSaverTest {
       @Override
       protected void executeInEDT() throws Throwable {
         editView.setCamp(c);
-        CampSaver.performSave(CampSaverTest.this.model, editView, statusView);
+        CampSaver.performSave(model, editView, statusView);
       }
     });
   }
 
   @Test
   public final void testPerformSave_Location() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     c.setLocation("Nordpol");
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 
   @Test
   public final void testPerformSave_FromDate() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     c.setFromDate(new Date(12000000000l));
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 
   @Test
   public final void testPerformSave_UntilDate() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     c.setUntilDate(new Date(12000000000l));
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 
   @Test
   public final void testPerformSave_RatePerParticipant() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     c.setRatePerParticipant("RATE");
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 
   @Test
   public final void testPerformSave_RatePerDay() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     c.setRatePerDayChildren("daily rate");
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 
   @Test
   public final void testPerformSave_Participants() {
-    final Camp c = new Camp(this.dummyCamp);
+    final Camp c = new Camp(dummyCamp);
     final Participant participant = new Participant("",
                                                     "",
                                                     Gender.FEMALE,
@@ -211,6 +211,6 @@ public class CampSaverTest {
 
     save(c);
 
-    assertThat(this.stored).isEqualTo(c);
+    assertThat(stored).isEqualTo(c);
   }
 }

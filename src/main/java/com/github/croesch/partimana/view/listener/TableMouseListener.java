@@ -31,14 +31,14 @@ public final class TableMouseListener extends MouseAdapter {
    * @since Date: Sep 12, 2012
    */
   public TableMouseListener(final ActionObserver o, final UserAction a) {
-    this.observer = o; //FIXME null check
-    this.action = a; // FIXME null check
+    observer = o; //FIXME null check
+    action = a; // FIXME null check
   }
 
   @Override
   public void mouseClicked(final MouseEvent e) {
     if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-      this.observer.performAction(this.action);
+      observer.performAction(action);
     }
     super.mouseClicked(e);
   }

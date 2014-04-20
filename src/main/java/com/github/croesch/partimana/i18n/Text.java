@@ -387,7 +387,7 @@ public enum Text {
     } catch (final MissingResourceException mre) {
       value = "!!missing-key=" + key + "!!";
     }
-    this.string = value;
+    string = value;
   }
 
   @Override
@@ -403,7 +403,7 @@ public enum Text {
    */
   @NotNull
   public String text() {
-    return this.string;
+    return string;
   }
 
   /**
@@ -414,7 +414,7 @@ public enum Text {
    */
   @NotNull
   public String text(final Object... s) {
-    String text = this.string;
+    String text = string;
     for (int i = 0; i < s.length; ++i) {
       // prevent exceptions with using $
       final String param = s[i].toString().replaceAll("\\$", "\\\\\\$");

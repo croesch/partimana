@@ -34,13 +34,13 @@ class ParticipantModel implements IParticipantModel {
    * @since Date: Jun 19, 2011
    */
   public ParticipantModel(final IPersistenceModel pm) {
-    this.persistenceModel = pm; //FIXME null check!
-    this.mapOfParticipants = this.persistenceModel.getMapOfParticipants();
+    persistenceModel = pm; //FIXME null check!
+    mapOfParticipants = persistenceModel.getMapOfParticipants();
   }
 
   @Override
   public Participant getParticipant(final long id) {
-    final Participant p = this.mapOfParticipants.get(Long.valueOf(id));
+    final Participant p = mapOfParticipants.get(Long.valueOf(id));
     if (p == null) {
       return null;
     }
@@ -51,26 +51,26 @@ class ParticipantModel implements IParticipantModel {
   public Participant store(final Participant p) throws KeyAlreadyExistsException, RequiredFieldSetToNullException {
     final Participant store = new Participant(p);
 
-    if (this.mapOfParticipants.containsKey(store.getId())) {
-      this.persistenceModel.update(store);
+    if (mapOfParticipants.containsKey(store.getId())) {
+      persistenceModel.update(store);
     } else {
-      this.persistenceModel.create(store);
+      persistenceModel.create(store);
     }
-    this.mapOfParticipants.put(store.getId(), store);
+    mapOfParticipants.put(store.getId(), store);
 
     return store;
   }
 
   @Override
   public void deleteParticipant(final long id) {
-    this.persistenceModel.deleteParticipant(id);
-    this.mapOfParticipants.remove(id);
+    persistenceModel.deleteParticipant(id);
+    mapOfParticipants.remove(id);
   }
 
   @Override
   public List<Participant> getListOfParticipants() {
     final List<Participant> list = new ArrayList<Participant>();
-    for (final Participant p : this.mapOfParticipants.values()) {
+    for (final Participant p : mapOfParticipants.values()) {
       list.add(new Participant(p));
     }
     return list;

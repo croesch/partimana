@@ -39,23 +39,23 @@ public final class CampSearchView extends ASingleSelectSearchView<Camp> {
 
   @Override
   protected AListView<Camp> getListView() {
-    if (this.lView == null) {
-      this.lView = new CampListView("list", getObserver());
+    if (lView == null) {
+      lView = new CampListView("list", getObserver());
     }
-    return this.lView;
+    return lView;
   }
 
   @Override
   protected Object[] getPossibleCategories() {
-    if (this.objects == null) {
-      this.objects = new Object[] { new NameCategory(),
-                                    new LocationCategory(),
-                                    new FromCategory(),
-                                    new UntilCategory(),
-                                    new RatePerParticipantCategory(),
-                                    new RatePerDayChildCategory() };
+    if (objects == null) {
+      objects = new Object[] { new NameCategory(),
+                               new LocationCategory(),
+                               new FromCategory(),
+                               new UntilCategory(),
+                               new RatePerParticipantCategory(),
+                               new RatePerDayChildCategory() };
     }
-    return this.objects;
+    return objects;
   }
 
   @Override

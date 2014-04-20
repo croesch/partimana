@@ -23,32 +23,32 @@ public final class HashMapPersistenceModel implements IPersistenceModel {
 
   @Override
   public void update(final Participant p) {
-    this.participantMap.put(Long.valueOf(p.getId()), p);
+    participantMap.put(Long.valueOf(p.getId()), p);
   }
 
   @Override
   public void update(final Camp c) {
-    this.campMap.put(Long.valueOf(c.getId()), c);
+    campMap.put(Long.valueOf(c.getId()), c);
   }
 
   @Override
   public Map<Long, Camp> getMapOfCamps() {
-    return new HashMap<Long, Camp>(this.campMap);
+    return new HashMap<Long, Camp>(campMap);
   }
 
   @Override
   public Map<Long, Participant> getMapOfParticipants() {
-    return new HashMap<Long, Participant>(this.participantMap);
+    return new HashMap<Long, Participant>(participantMap);
   }
 
   @Override
   public void deleteParticipant(final long id) {
-    this.participantMap.remove(id);
+    participantMap.remove(id);
   }
 
   @Override
   public void deleteCamp(final long id) {
-    this.campMap.remove(id);
+    campMap.remove(id);
   }
 
   @Override

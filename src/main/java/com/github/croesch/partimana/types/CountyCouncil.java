@@ -87,14 +87,14 @@ public enum CountyCouncil {
    * @since Date: Jun 21, 2011
    */
   private CountyCouncil(final Text t, final int r) {
-    this.s = t.text();
-    this.dbRepresentation = r;
+    s = t.text();
+    dbRepresentation = r;
   }
 
   @Override
   @NotNull
   public String toString() {
-    return this.s;
+    return s;
   }
 
   /**
@@ -104,7 +104,7 @@ public enum CountyCouncil {
    * @since Date: Oct 14, 2012
    */
   public int getStorableRepresentation() {
-    return this.dbRepresentation;
+    return dbRepresentation;
   }
 
   /**

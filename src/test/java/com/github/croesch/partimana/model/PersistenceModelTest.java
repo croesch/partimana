@@ -27,7 +27,7 @@ public class PersistenceModelTest {
 
   @Before
   public void setUp() {
-    this.pm = new PersistenceModel();
+    pm = new PersistenceModel();
   }
 
   @After
@@ -46,15 +46,15 @@ public class PersistenceModelTest {
           con.close();
         }
       } finally {
-        this.pm.close();
+        pm.close();
       }
     }
   }
 
   @Test
   public void testIsEmpty() throws SQLException, IOException {
-    assertThat(this.pm.getMapOfCamps()).isEmpty();
-    assertThat(this.pm.getMapOfParticipants()).isEmpty();
+    assertThat(pm.getMapOfCamps()).isEmpty();
+    assertThat(pm.getMapOfParticipants()).isEmpty();
 
     Connection con = null;
     try {
@@ -89,13 +89,13 @@ public class PersistenceModelTest {
                                           "City",
                                           CountyCouncil.CITY_KAISERSLAUTERN);
     final Date before = new Date();
-    this.pm.create(p);
+    pm.create(p);
     final Date after = new Date();
 
     assertThat(p.getDateSinceInDataBase().before(before)).isFalse();
     assertThat(p.getDateSinceInDataBase().after(after)).isFalse();
-    assertThat(this.pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
-    assertThat(this.pm.getMapOfParticipants().size()).isEqualTo(1);
+    assertThat(pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
+    assertThat(pm.getMapOfParticipants().size()).isEqualTo(1);
 
     final PersistenceModel pm2 = new PersistenceModel();
     assertThat(pm2.getMapOfParticipants().get(p.getId())).isEqualTo(p);
@@ -103,7 +103,7 @@ public class PersistenceModelTest {
     pm2.deleteParticipant(p.getId());
     pm2.close();
 
-    assertThat(this.pm.getMapOfParticipants()).isEmpty();
+    assertThat(pm.getMapOfParticipants()).isEmpty();
   }
 
   @Test
@@ -117,14 +117,14 @@ public class PersistenceModelTest {
                                           4031,
                                           "City",
                                           CountyCouncil.CITY_KAISERSLAUTERN);
-    this.pm.create(p);
+    pm.create(p);
     p.setForeName("Peter");
 
     final PersistenceModel pm2 = new PersistenceModel();
     assertThat(pm2.getMapOfParticipants().get(p.getId())).isNotEqualTo(p);
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
 
-    this.pm.update(p);
+    pm.update(p);
 
     assertThat(pm2.getMapOfParticipants().get(p.getId())).isEqualTo(p);
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
@@ -132,7 +132,7 @@ public class PersistenceModelTest {
     pm2.deleteParticipant(p.getId());
     pm2.close();
 
-    assertThat(this.pm.getMapOfParticipants()).isEmpty();
+    assertThat(pm.getMapOfParticipants()).isEmpty();
   }
 
   @Test
@@ -148,12 +148,12 @@ public class PersistenceModelTest {
                                           "City",
                                           CountyCouncil.CITY_KAISERSLAUTERN);
     c.addParticipant(new CampParticipant(p));
-    this.pm.create(p);
-    this.pm.create(c);
-    assertThat(this.pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
-    assertThat(this.pm.getMapOfParticipants().size()).isEqualTo(1);
-    assertThat(this.pm.getMapOfCamps().get(c.getId())).isEqualTo(c);
-    assertThat(this.pm.getMapOfCamps().size()).isEqualTo(1);
+    pm.create(p);
+    pm.create(c);
+    assertThat(pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
+    assertThat(pm.getMapOfParticipants().size()).isEqualTo(1);
+    assertThat(pm.getMapOfCamps().get(c.getId())).isEqualTo(c);
+    assertThat(pm.getMapOfCamps().size()).isEqualTo(1);
 
     final PersistenceModel pm2 = new PersistenceModel();
     assertThat(pm2.getMapOfCamps().get(c.getId())).isEqualTo(c);
@@ -163,14 +163,14 @@ public class PersistenceModelTest {
     pm2.deleteCamp(c.getId());
     pm2.close();
 
-    assertThat(this.pm.getMapOfCamps()).isEmpty();
+    assertThat(pm.getMapOfCamps()).isEmpty();
 
-    assertThat(this.pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
-    assertThat(this.pm.getMapOfParticipants().size()).isEqualTo(1);
+    assertThat(pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
+    assertThat(pm.getMapOfParticipants().size()).isEqualTo(1);
 
-    this.pm.deleteParticipant(p.getId());
+    pm.deleteParticipant(p.getId());
 
-    assertThat(this.pm.getMapOfParticipants()).isEmpty();
+    assertThat(pm.getMapOfParticipants()).isEmpty();
   }
 
   @Test
@@ -188,8 +188,8 @@ public class PersistenceModelTest {
     final CampParticipant cp = new CampParticipant(p);
     cp.setSignedIn(new Date(0));
     c.addParticipant(cp);
-    this.pm.create(p);
-    this.pm.create(c);
+    pm.create(p);
+    pm.create(c);
     c.setName("FREIZEIT");
     c.setCancelDate(new Date(1234567887654L));
     cp.setRole(Role.KITCHEN_STAFF);
@@ -209,7 +209,7 @@ public class PersistenceModelTest {
     assertThat(storedCamp.getCancelDate()).isNull();
     assertThat(pm2.getMapOfCamps().size()).isEqualTo(1);
 
-    this.pm.update(c);
+    pm.update(c);
 
     assertThat(pm2.getMapOfParticipants().get(p.getId())).isEqualTo(p);
     assertThat(pm2.getMapOfParticipants().size()).isEqualTo(1);
@@ -227,13 +227,13 @@ public class PersistenceModelTest {
     pm2.deleteCamp(c.getId());
     pm2.close();
 
-    assertThat(this.pm.getMapOfCamps()).isEmpty();
+    assertThat(pm.getMapOfCamps()).isEmpty();
 
-    assertThat(this.pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
-    assertThat(this.pm.getMapOfParticipants().size()).isEqualTo(1);
+    assertThat(pm.getMapOfParticipants().get(p.getId())).isEqualTo(p);
+    assertThat(pm.getMapOfParticipants().size()).isEqualTo(1);
 
-    this.pm.deleteParticipant(p.getId());
+    pm.deleteParticipant(p.getId());
 
-    assertThat(this.pm.getMapOfParticipants()).isEmpty();
+    assertThat(pm.getMapOfParticipants()).isEmpty();
   }
 }

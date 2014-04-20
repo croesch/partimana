@@ -41,164 +41,164 @@ public class ParticipantFilterTest {
 
   @Before
   public void setUp() {
-    this.filter = new ParticipantFilter();
+    filter = new ParticipantFilter();
 
-    this.p1 = new Participant("Mustermann",
-                              "Max",
-                              Gender.MALE,
-                              Denomination.CATHOLIC,
-                              new Date(100000000),
-                              "Musterstraße",
-                              12345,
-                              "Musterstadt",
-                              CountyCouncil.COUNTY_RHEIN_PFALZ);
-    this.p2 = new Participant("Schmidt",
-                              "Jutta",
-                              Gender.FEMALE,
-                              Denomination.JEWISH,
-                              new Date(1100000000),
-                              "Hauptstraße",
-                              77443,
-                              "Entenhausen",
-                              CountyCouncil.COUNTY_KAISERSLAUTERN);
-    this.p3 = new Participant("Hansen",
-                              "Hans",
-                              Gender.MALE,
-                              Denomination.CATHOLIC,
-                              new Date(1200000000),
-                              "Bauweg",
-                              44551,
-                              "Berlin",
-                              CountyCouncil.COUNTY_GERMERSHEIM);
-    this.p4 = new Participant("Mustermann",
-                              "Josefine",
-                              Gender.FEMALE,
-                              Denomination.JEWISH,
-                              new Date(1300000000),
-                              "Maierweg",
-                              33441,
-                              "Bremen",
-                              CountyCouncil.COUNTY_KAISERSLAUTERN);
-    this.p5 = new Participant("Maier",
-                              "Hellen",
-                              Gender.FEMALE,
-                              Denomination.CATHOLIC,
-                              new Date(1400000000),
-                              "Juppstraße",
-                              11556,
-                              "Berlin",
-                              CountyCouncil.COUNTY_RHEIN_PFALZ);
+    p1 = new Participant("Mustermann",
+                         "Max",
+                         Gender.MALE,
+                         Denomination.CATHOLIC,
+                         new Date(100000000),
+                         "Musterstraße",
+                         12345,
+                         "Musterstadt",
+                         CountyCouncil.COUNTY_RHEIN_PFALZ);
+    p2 = new Participant("Schmidt",
+                         "Jutta",
+                         Gender.FEMALE,
+                         Denomination.JEWISH,
+                         new Date(1100000000),
+                         "Hauptstraße",
+                         77443,
+                         "Entenhausen",
+                         CountyCouncil.COUNTY_KAISERSLAUTERN);
+    p3 = new Participant("Hansen",
+                         "Hans",
+                         Gender.MALE,
+                         Denomination.CATHOLIC,
+                         new Date(1200000000),
+                         "Bauweg",
+                         44551,
+                         "Berlin",
+                         CountyCouncil.COUNTY_GERMERSHEIM);
+    p4 = new Participant("Mustermann",
+                         "Josefine",
+                         Gender.FEMALE,
+                         Denomination.JEWISH,
+                         new Date(1300000000),
+                         "Maierweg",
+                         33441,
+                         "Bremen",
+                         CountyCouncil.COUNTY_KAISERSLAUTERN);
+    p5 = new Participant("Maier",
+                         "Hellen",
+                         Gender.FEMALE,
+                         Denomination.CATHOLIC,
+                         new Date(1400000000),
+                         "Juppstraße",
+                         11556,
+                         "Berlin",
+                         CountyCouncil.COUNTY_RHEIN_PFALZ);
   }
 
   @Test
   public void testSetGetCategory() {
-    assertThat(this.filter.getCategory()).isNull();
+    assertThat(filter.getCategory()).isNull();
 
-    assertThat(this.filter.getCategories()).isNotNull();
+    assertThat(filter.getCategories()).isNotNull();
 
-    for (final IFilterCategory<Participant, ?> category : this.filter.getCategories()) {
-      this.filter.setCategory(category);
-      assertThat(this.filter.getCategory()).isEqualTo(category);
+    for (final IFilterCategory<Participant, ?> category : filter.getCategories()) {
+      filter.setCategory(category);
+      assertThat(filter.getCategory()).isEqualTo(category);
     }
 
-    this.filter.setCategory(null);
-    assertThat(this.filter.getCategory()).isNull();
+    filter.setCategory(null);
+    assertThat(filter.getCategory()).isNull();
   }
 
   @Test
   public void testFilterWithoutCategory() {
-    assertThat(this.filter.filter(Arrays.asList(this.p1, this.p2, this.p3, this.p4, this.p5))).isEmpty();
+    assertThat(filter.filter(Arrays.asList(p1, p2, p3, p4, p5))).isEmpty();
   }
 
   @Test
   public void testFilter() {
-    final List<Participant> participantList = Arrays.asList(this.p1, this.p2, this.p3, this.p4, this.p5);
+    final List<Participant> participantList = Arrays.asList(p1, p2, p3, p4, p5);
 
     final IFilterCategory<Participant, Date> cat = new BirthdayCategory();
     final IFilterType<Date> filterType = new After();
 
-    this.filter.setCategory(cat);
-    assertThat(this.filter.filter(participantList)).isEmpty();
+    filter.setCategory(cat);
+    assertThat(filter.filter(participantList)).isEmpty();
 
     filterType.setFilterValue(new Date(1100000000));
     cat.setFilter(filterType);
-    assertThat(this.filter.filter(participantList)).containsOnly(this.p3, this.p4, this.p5);
+    assertThat(filter.filter(participantList)).containsOnly(p3, p4, p5);
 
     final IFilterCategory<Participant, Gender> cat2 = new GenderCategory();
     final IFilterType<Gender> filterType2 = new GenderEquals();
     cat2.setFilter(filterType2);
-    this.filter.setCategory(cat2);
-    assertThat(this.filter.filter(participantList)).isEmpty();
+    filter.setCategory(cat2);
+    assertThat(filter.filter(participantList)).isEmpty();
     filterType2.setFilterValue(Gender.FEMALE);
-    assertThat(this.filter.filter(participantList)).containsOnly(this.p2, this.p4, this.p5);
+    assertThat(filter.filter(participantList)).containsOnly(p2, p4, p5);
 
     final IFilterCategory<Participant, String> cat3 = new LivingCityCategory();
     final IFilterType<String> filterType3 = new Contains();
     cat3.setFilter(filterType3);
     filterType3.setFilterValue("er");
-    this.filter.setCategory(cat3);
-    assertThat(this.filter.filter(participantList)).containsOnly(this.p1, this.p3, this.p5);
+    filter.setCategory(cat3);
+    assertThat(filter.filter(participantList)).containsOnly(p1, p3, p5);
 
     final StartsWith startsWith = new StartsWith();
     startsWith.setFilterValue("");
     cat3.setFilter(startsWith);
-    assertThat(this.filter.filter(participantList)).containsOnly(this.p1, this.p2, this.p3, this.p4, this.p5);
+    assertThat(filter.filter(participantList)).containsOnly(p1, p2, p3, p4, p5);
   }
 
   @Test
   public void testEquals() {
-    assertThat(this.filter).isEqualTo(new ParticipantFilter());
+    assertThat(filter).isEqualTo(new ParticipantFilter());
     final ForeNameCategory category1 = new ForeNameCategory();
-    this.filter.setCategory(category1);
+    filter.setCategory(category1);
 
     final ParticipantFilter other = new ParticipantFilter();
     final CampFilter different = new CampFilter();
-    assertThat(this.filter).isNotEqualTo(other);
-    assertThat(this.filter).isNotEqualTo(different);
+    assertThat(filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(different);
     assertThat(other).isEqualTo(different);
     final ForeNameCategory category2 = new ForeNameCategory();
     other.setCategory(category2);
-    assertThat(this.filter).isEqualTo(other);
+    assertThat(filter).isEqualTo(other);
     assertThat(other).isNotEqualTo(different);
 
     final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
-    assertThat(this.filter).isEqualTo(other);
+    assertThat(filter).isEqualTo(other);
 
     equals1.setFilterValue("Peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("Peter");
-    assertThat(this.filter).isEqualTo(other);
+    assertThat(filter).isEqualTo(other);
   }
 
   @Test
   public void testHashCode() {
-    assertThat(this.filter.hashCode()).isEqualTo(new ParticipantFilter().hashCode());
+    assertThat(filter.hashCode()).isEqualTo(new ParticipantFilter().hashCode());
     final ForeNameCategory category1 = new ForeNameCategory();
-    this.filter.setCategory(category1);
+    filter.setCategory(category1);
 
     final ParticipantFilter other = new ParticipantFilter();
     assertThat(other.hashCode()).isEqualTo(new CampFilter().hashCode());
     final ForeNameCategory category2 = new ForeNameCategory();
     other.setCategory(category2);
-    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+    assertThat(filter.hashCode()).isEqualTo(other.hashCode());
 
     final StringEquals equals1 = new StringEquals();
     category1.setFilter(equals1);
     final StringEquals equals2 = new StringEquals();
     category2.setFilter(equals2);
-    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+    assertThat(filter.hashCode()).isEqualTo(other.hashCode());
 
     equals1.setFilterValue("Peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("peter");
-    assertThat(this.filter).isNotEqualTo(other);
+    assertThat(filter).isNotEqualTo(other);
     equals2.setFilterValue("Peter");
-    assertThat(this.filter.hashCode()).isEqualTo(other.hashCode());
+    assertThat(filter.hashCode()).isEqualTo(other.hashCode());
   }
 }

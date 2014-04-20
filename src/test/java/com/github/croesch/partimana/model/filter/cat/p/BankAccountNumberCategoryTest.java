@@ -24,38 +24,38 @@ public class BankAccountNumberCategoryTest {
 
   @org.junit.Before
   public void setUp() {
-    this.category = new BankAccountNumberCategory();
+    category = new BankAccountNumberCategory();
   }
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes())
+    assertThat(category.getFilterTypes())
         .containsOnly(new IntegerEquals(), new IntegerNotEquals(), new LessThan(), new GreaterThan());
 
-    final IFilterType<Integer> filterType = this.category.getFilterTypes().get(0);
+    final IFilterType<Integer> filterType = category.getFilterTypes().get(0);
     filterType.setFilterValue(12345);
 
-    assertThat(this.category.getFilterTypes().contains(filterType)).isFalse();
+    assertThat(category.getFilterTypes().contains(filterType)).isFalse();
   }
 
   @Test
   public void testSetAndGetFilter() {
-    assertThat(this.category.getFilter()).isNull();
-    this.category.setFilter(new IntegerEquals());
-    assertThat(this.category.getFilter()).isEqualTo(new IntegerEquals());
-    this.category.setFilter(null);
-    assertThat(this.category.getFilter()).isNull();
+    assertThat(category.getFilter()).isNull();
+    category.setFilter(new IntegerEquals());
+    assertThat(category.getFilter()).isEqualTo(new IntegerEquals());
+    category.setFilter(null);
+    assertThat(category.getFilter()).isNull();
   }
 
   @Test
   public void testGetShortDescription() {
-    assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_PARTICIPANT_BANK_ACC_NUM.text());
-    assertThat(this.category.getShortDescription()).isEqualTo(Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text());
+    assertThat(category.getShortDescription()).isEqualTo(Text.FILTER_CAT_PARTICIPANT_BANK_ACC_NUM.text());
+    assertThat(category.getShortDescription()).isEqualTo(Text.PARTICIPANT_BANK_ACCOUNT_NUMBER.text());
   }
 
   @Test
   public void testIsMatchingFilter() {
-    assertThat(this.category.isMatchingFilter(null)).isFalse();
+    assertThat(category.isMatchingFilter(null)).isFalse();
 
     final Participant p = new Participant("Musterfrau",
                                           "Maxi",
@@ -67,54 +67,54 @@ public class BankAccountNumberCategoryTest {
                                           "city",
                                           CountyCouncil.COUNTY_RHEIN_PFALZ);
     p.setBankAccountNumber(123456789);
-    assertThat(this.category.isMatchingFilter(p)).isFalse();
+    assertThat(category.isMatchingFilter(p)).isFalse();
 
     final LessThan less = new LessThan();
     less.setFilterValue(500);
-    this.category.setFilter(less);
-    assertThat(this.category.isMatchingFilter(p)).isFalse();
+    category.setFilter(less);
+    assertThat(category.isMatchingFilter(p)).isFalse();
 
     final GreaterThan greater = new GreaterThan();
     greater.setFilterValue(500);
-    this.category.setFilter(greater);
-    assertThat(this.category.isMatchingFilter(p)).isTrue();
+    category.setFilter(greater);
+    assertThat(category.isMatchingFilter(p)).isTrue();
   }
 
   @Test
   public void testEquals() {
-    assertThat(this.category).isEqualTo(new BankAccountNumberCategory());
-    assertThat(this.category).isEqualTo(this.category);
-    assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isNotEqualTo(new ForeNameCategory());
-    assertThat(this.category).isNotEqualTo("category");
+    assertThat(category).isEqualTo(new BankAccountNumberCategory());
+    assertThat(category).isEqualTo(category);
+    assertThat(category).isNotEqualTo(null);
+    assertThat(category).isNotEqualTo(new ForeNameCategory());
+    assertThat(category).isNotEqualTo("category");
 
-    this.category.setFilter(new IntegerEquals());
+    category.setFilter(new IntegerEquals());
     final BankAccountNumberCategory other = new BankAccountNumberCategory();
-    assertThat(this.category).isNotEqualTo(other);
-    assertThat(other).isNotEqualTo(this.category);
+    assertThat(category).isNotEqualTo(other);
+    assertThat(other).isNotEqualTo(category);
     other.setFilter(new IntegerEquals());
-    assertThat(this.category).isEqualTo(other);
+    assertThat(category).isEqualTo(other);
 
     final ForeNameCategory different = new ForeNameCategory();
     different.setFilter(new StringEquals());
-    this.category.getFilter().setFilterValue(12);
-    assertThat(this.category).isNotEqualTo(different);
-    assertThat(different).isNotEqualTo(this.category);
+    category.getFilter().setFilterValue(12);
+    assertThat(category).isNotEqualTo(different);
+    assertThat(different).isNotEqualTo(category);
   }
 
   @Test
   public void testHashCode() {
-    assertThat(this.category.hashCode()).isEqualTo(new BankAccountNumberCategory().hashCode());
-    assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
-    assertThat(this.category.hashCode()).isEqualTo(new ForeNameCategory().hashCode());
+    assertThat(category.hashCode()).isEqualTo(new BankAccountNumberCategory().hashCode());
+    assertThat(category.hashCode()).isEqualTo(category.hashCode());
+    assertThat(category.hashCode()).isEqualTo(new ForeNameCategory().hashCode());
 
-    this.category.setFilter(new IntegerEquals());
+    category.setFilter(new IntegerEquals());
     final BankAccountNumberCategory other = new BankAccountNumberCategory();
     other.setFilter(new IntegerEquals());
-    assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
+    assertThat(category.hashCode()).isEqualTo(other.hashCode());
 
     final ForeNameCategory different = new ForeNameCategory();
     different.setFilter(new StringEquals());
-    assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
+    assertThat(category.hashCode()).isEqualTo(different.hashCode());
   }
 }

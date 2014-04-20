@@ -54,15 +54,15 @@ class CampView extends CPanel implements ICampView, ActionObserver {
     if (m == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.model = m;
+    model = m;
 
     setLayout(new MigLayout("fill", "[][grow, fill]", "[grow, fill]"));
 
     // sic! because of the add methods below ..
     final CampEditView pev = new CampEditView("campEdit");
     final CampListView clv = new CampListView("campList", this);
-    this.editView = pev;
-    this.listView = clv;
+    editView = pev;
+    listView = clv;
 
     final CPanel buttonPanel = new CPanel("buttons", new MigLayout());
     final CButton createButton = new CButton("newCamp", Action.getCreateCampAction());
@@ -83,19 +83,19 @@ class CampView extends CPanel implements ICampView, ActionObserver {
   @Override
   @NotNull
   public ICampEditView getCampEditView() {
-    return this.editView;
+    return editView;
   }
 
   @Override
   @NotNull
   public IListView<Camp> getCampListView() {
-    return this.listView;
+    return listView;
   }
 
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.CAMP_SELECTED) {
-      this.editView.setCamp(this.model.getCamp(this.listView.getSelectedElementId()));
+      editView.setCamp(model.getCamp(listView.getSelectedElementId()));
     } else {
       LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }
@@ -103,6 +103,6 @@ class CampView extends CPanel implements ICampView, ActionObserver {
 
   @Override
   public void createCamp() {
-    this.editView.clear();
+    editView.clear();
   }
 }
