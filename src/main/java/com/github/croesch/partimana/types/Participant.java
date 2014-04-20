@@ -133,7 +133,7 @@ public final class Participant implements IFilterable {
     setCity(c);
     setCountyCouncil(county);
 
-    this.id = forcedId;
+    id = forcedId;
     setNewHighestIdTo(forcedId);
   }
 
@@ -188,34 +188,34 @@ public final class Participant implements IFilterable {
       throw new RequiredFieldSetToNullException();
     }
 
-    this.bank = p.bank;
-    this.bankAccountNumber = p.bankAccountNumber;
-    this.bankCodeNumber = p.bankCodeNumber;
-    this.birthDate = new Date(p.birthDate.getTime());
-    this.comment = p.comment;
-    this.countyCouncil = p.countyCouncil;
+    bank = p.bank;
+    bankAccountNumber = p.bankAccountNumber;
+    bankCodeNumber = p.bankCodeNumber;
+    birthDate = new Date(p.birthDate.getTime());
+    comment = p.comment;
+    countyCouncil = p.countyCouncil;
     if (p.dateSinceInDataBase != null) {
-      this.dateSinceInDataBase = new Date(p.dateSinceInDataBase.getTime());
+      dateSinceInDataBase = new Date(p.dateSinceInDataBase.getTime());
     }
     if (p.dateUpToInSystem != null) {
-      this.dateUpToInSystem = new Date(p.dateUpToInSystem.getTime());
+      dateUpToInSystem = new Date(p.dateUpToInSystem.getTime());
     }
-    this.denomination = p.denomination;
-    this.fax = p.fax;
-    this.foreName = p.foreName;
-    this.gender = p.gender;
-    this.id = p.id;
-    this.lastName = p.lastName;
-    this.livingAddress.setCity(p.livingAddress.getCity());
-    this.livingAddress.setPostCode(p.livingAddress.getPostCode());
-    this.livingAddress.setStreet(p.livingAddress.getStreet());
-    this.mailAddress = p.mailAddress;
-    this.mobilePhone = p.mobilePhone;
-    this.phone = p.phone;
-    this.phoneOfParents = p.phoneOfParents;
-    this.postToAddress.setCity(p.postToAddress.getCity());
-    this.postToAddress.setPostCode(p.postToAddress.getPostCode());
-    this.postToAddress.setStreet(p.postToAddress.getStreet());
+    denomination = p.denomination;
+    fax = p.fax;
+    foreName = p.foreName;
+    gender = p.gender;
+    id = p.id;
+    lastName = p.lastName;
+    livingAddress.setCity(p.livingAddress.getCity());
+    livingAddress.setPostCode(p.livingAddress.getPostCode());
+    livingAddress.setStreet(p.livingAddress.getStreet());
+    mailAddress = p.mailAddress;
+    mobilePhone = p.mobilePhone;
+    phone = p.phone;
+    phoneOfParents = p.phoneOfParents;
+    postToAddress.setCity(p.postToAddress.getCity());
+    postToAddress.setPostCode(p.postToAddress.getPostCode());
+    postToAddress.setStreet(p.postToAddress.getStreet());
   }
 
   /**
@@ -226,7 +226,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public String getLastName() {
-    return this.lastName;
+    return lastName;
   }
 
   /**
@@ -240,7 +240,7 @@ public final class Participant implements IFilterable {
     if (name == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.lastName = name;
+    lastName = name;
   }
 
   /**
@@ -251,7 +251,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public String getForeName() {
-    return this.foreName;
+    return foreName;
   }
 
   /**
@@ -265,7 +265,7 @@ public final class Participant implements IFilterable {
     if (name == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.foreName = name;
+    foreName = name;
   }
 
   /**
@@ -276,7 +276,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public Gender getGender() {
-    return this.gender;
+    return gender;
   }
 
   /**
@@ -290,7 +290,7 @@ public final class Participant implements IFilterable {
     if (g == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.gender = g;
+    gender = g;
   }
 
   /**
@@ -301,7 +301,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public Denomination getDenomination() {
-    return this.denomination;
+    return denomination;
   }
 
   /**
@@ -315,7 +315,7 @@ public final class Participant implements IFilterable {
     if (den == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.denomination = den;
+    denomination = den;
   }
 
   /**
@@ -326,7 +326,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public Date getBirthDate() {
-    return (Date) this.birthDate.clone();
+    return (Date) birthDate.clone();
   }
 
   /**
@@ -340,7 +340,7 @@ public final class Participant implements IFilterable {
     if (birth == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.birthDate = new Date(birth.getTime());
+    birthDate = new Date(birth.getTime());
   }
 
   /**
@@ -351,7 +351,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public String getStreet() {
-    return this.livingAddress.getStreet();
+    return livingAddress.getStreet();
   }
 
   /**
@@ -365,7 +365,7 @@ public final class Participant implements IFilterable {
     if (str == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.livingAddress.setStreet(str);
+    livingAddress.setStreet(str);
   }
 
   /**
@@ -375,7 +375,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public int getPostCode() {
-    return this.livingAddress.getPostCode();
+    return livingAddress.getPostCode();
   }
 
   /**
@@ -390,7 +390,7 @@ public final class Participant implements IFilterable {
     if (pc < 0 || pc > highestPostCode) {
       throw new IllegalArgumentException();
     }
-    this.livingAddress.setPostCode(pc);
+    livingAddress.setPostCode(pc);
   }
 
   /**
@@ -401,7 +401,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public String getCity() {
-    return this.livingAddress.getCity();
+    return livingAddress.getCity();
   }
 
   /**
@@ -415,7 +415,7 @@ public final class Participant implements IFilterable {
     if (c == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.livingAddress.setCity(c);
+    livingAddress.setCity(c);
   }
 
   /**
@@ -426,7 +426,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getStreetPostal() {
-    return this.postToAddress.getStreet();
+    return postToAddress.getStreet();
   }
 
   /**
@@ -437,7 +437,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public void setStreetPostal(final String sp) {
-    this.postToAddress.setStreet(sp);
+    postToAddress.setStreet(sp);
   }
 
   /**
@@ -447,7 +447,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public int getPostCodePostal() {
-    return this.postToAddress.getPostCode();
+    return postToAddress.getPostCode();
   }
 
   /**
@@ -462,7 +462,7 @@ public final class Participant implements IFilterable {
     if (pc < 0 || pc > highestPostCode) {
       throw new IllegalArgumentException();
     }
-    this.postToAddress.setPostCode(pc);
+    postToAddress.setPostCode(pc);
   }
 
   /**
@@ -473,7 +473,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getCityPostal() {
-    return this.postToAddress.getCity();
+    return postToAddress.getCity();
   }
 
   /**
@@ -483,7 +483,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setCityPostal(final String cp) {
-    this.postToAddress.setCity(cp);
+    postToAddress.setCity(cp);
   }
 
   /**
@@ -494,7 +494,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getPhone() {
-    return this.phone;
+    return phone;
   }
 
   /**
@@ -504,7 +504,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setPhone(final String p) {
-    this.phone = p;
+    phone = p;
   }
 
   /**
@@ -515,7 +515,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getFax() {
-    return this.fax;
+    return fax;
   }
 
   /**
@@ -525,7 +525,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setFax(final String f) {
-    this.fax = f;
+    fax = f;
   }
 
   /**
@@ -536,7 +536,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getMobilePhone() {
-    return this.mobilePhone;
+    return mobilePhone;
   }
 
   /**
@@ -546,7 +546,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setMobilePhone(final String mobile) {
-    this.mobilePhone = mobile;
+    mobilePhone = mobile;
   }
 
   /**
@@ -557,7 +557,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getPhoneOfParents() {
-    return this.phoneOfParents;
+    return phoneOfParents;
   }
 
   /**
@@ -567,7 +567,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setPhoneOfParents(final String pop) {
-    this.phoneOfParents = pop;
+    phoneOfParents = pop;
   }
 
   /**
@@ -578,7 +578,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getMailAddress() {
-    return this.mailAddress;
+    return mailAddress;
   }
 
   /**
@@ -588,7 +588,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setMailAddress(final String mail) {
-    this.mailAddress = mail;
+    mailAddress = mail;
   }
 
   /**
@@ -599,7 +599,7 @@ public final class Participant implements IFilterable {
    */
   @NotNull
   public CountyCouncil getCountyCouncil() {
-    return this.countyCouncil;
+    return countyCouncil;
   }
 
   /**
@@ -613,7 +613,7 @@ public final class Participant implements IFilterable {
     if (cc == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.countyCouncil = cc;
+    countyCouncil = cc;
   }
 
   /**
@@ -623,7 +623,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public int getBankCodeNumber() {
-    return this.bankCodeNumber;
+    return bankCodeNumber;
   }
 
   /**
@@ -633,7 +633,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setBankCodeNumber(final int bcn) {
-    this.bankCodeNumber = bcn;
+    bankCodeNumber = bcn;
   }
 
   /**
@@ -644,7 +644,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getBank() {
-    return this.bank;
+    return bank;
   }
 
   /**
@@ -654,7 +654,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setBank(final String b) {
-    this.bank = b;
+    bank = b;
   }
 
   /**
@@ -664,7 +664,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public int getBankAccountNumber() {
-    return this.bankAccountNumber;
+    return bankAccountNumber;
   }
 
   /**
@@ -674,7 +674,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setBankAccountNumber(final int ban) {
-    this.bankAccountNumber = ban;
+    bankAccountNumber = ban;
   }
 
   /**
@@ -685,7 +685,7 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public String getComment() {
-    return this.comment;
+    return comment;
   }
 
   /**
@@ -695,7 +695,7 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setComment(final String com) {
-    this.comment = com;
+    comment = com;
   }
 
   /**
@@ -706,10 +706,10 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public Date getDateSinceInDataBase() {
-    if (this.dateSinceInDataBase == null) {
+    if (dateSinceInDataBase == null) {
       return null;
     }
-    return (Date) this.dateSinceInDataBase.clone();
+    return (Date) dateSinceInDataBase.clone();
   }
 
   /**
@@ -720,9 +720,9 @@ public final class Participant implements IFilterable {
    */
   public void setDateSinceInDataBase(final Date since) {
     if (since != null) {
-      this.dateSinceInDataBase = new Date(since.getTime());
+      dateSinceInDataBase = new Date(since.getTime());
     } else {
-      this.dateSinceInDataBase = null;
+      dateSinceInDataBase = null;
     }
   }
 
@@ -734,10 +734,10 @@ public final class Participant implements IFilterable {
    */
   @MayBeNull
   public Date getDateUpToInSystem() {
-    if (this.dateUpToInSystem == null) {
+    if (dateUpToInSystem == null) {
       return null;
     }
-    return (Date) this.dateUpToInSystem.clone();
+    return (Date) dateUpToInSystem.clone();
   }
 
   /**
@@ -748,9 +748,9 @@ public final class Participant implements IFilterable {
    */
   public void setDateUpToInSystem(final Date until) {
     if (until != null) {
-      this.dateUpToInSystem = new Date(until.getTime());
+      dateUpToInSystem = new Date(until.getTime());
     } else {
-      this.dateUpToInSystem = null;
+      dateUpToInSystem = null;
     }
   }
 
@@ -761,32 +761,32 @@ public final class Participant implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public long getId() {
-    return this.id;
+    return id;
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = prime + getHash(this.bank);
-    result = prime * result + this.bankAccountNumber;
-    result = prime * result + this.bankCodeNumber;
-    result = prime * result + getHash(this.birthDate);
-    result = prime * result + getHash(this.comment);
-    result = prime * result + this.countyCouncil.hashCode();
-    result = prime * result + getHash(this.dateSinceInDataBase);
-    result = prime * result + getHash(this.dateUpToInSystem);
-    result = prime * result + this.denomination.hashCode();
-    result = prime * result + getHash(this.fax);
-    result = prime * result + getHash(this.foreName);
-    result = prime * result + this.gender.hashCode();
-    result = prime * result + Long.valueOf(this.id).hashCode();
-    result = prime * result + getHash(this.lastName);
-    result = prime * result + this.livingAddress.hashCode();
-    result = prime * result + getHash(this.mailAddress);
-    result = prime * result + getHash(this.mobilePhone);
-    result = prime * result + getHash(this.phone);
-    result = prime * result + getHash(this.phoneOfParents);
-    result = prime * result + this.postToAddress.hashCode();
+    int result = prime + getHash(bank);
+    result = prime * result + bankAccountNumber;
+    result = prime * result + bankCodeNumber;
+    result = prime * result + getHash(birthDate);
+    result = prime * result + getHash(comment);
+    result = prime * result + countyCouncil.hashCode();
+    result = prime * result + getHash(dateSinceInDataBase);
+    result = prime * result + getHash(dateUpToInSystem);
+    result = prime * result + denomination.hashCode();
+    result = prime * result + getHash(fax);
+    result = prime * result + getHash(foreName);
+    result = prime * result + gender.hashCode();
+    result = prime * result + Long.valueOf(id).hashCode();
+    result = prime * result + getHash(lastName);
+    result = prime * result + livingAddress.hashCode();
+    result = prime * result + getHash(mailAddress);
+    result = prime * result + getHash(mobilePhone);
+    result = prime * result + getHash(phone);
+    result = prime * result + getHash(phoneOfParents);
+    result = prime * result + postToAddress.hashCode();
     return result;
   }
 
@@ -832,92 +832,92 @@ public final class Participant implements IFilterable {
       return false;
     }
     final Participant other = (Participant) obj;
-    if (this.bank == null) {
+    if (bank == null) {
       if (other.bank != null) {
         return false;
       }
-    } else if (!this.bank.equals(other.bank)) {
+    } else if (!bank.equals(other.bank)) {
       return false;
     }
-    if (this.bankAccountNumber != other.bankAccountNumber) {
+    if (bankAccountNumber != other.bankAccountNumber) {
       return false;
     }
-    if (this.bankCodeNumber != other.bankCodeNumber) {
+    if (bankCodeNumber != other.bankCodeNumber) {
       return false;
     }
-    if (areDatesDifferent(this.birthDate, other.birthDate)) {
+    if (areDatesDifferent(birthDate, other.birthDate)) {
       return false;
     }
-    if (this.comment == null) {
+    if (comment == null) {
       if (other.comment != null) {
         return false;
       }
-    } else if (!this.comment.equals(other.comment)) {
+    } else if (!comment.equals(other.comment)) {
       return false;
     }
-    if (this.countyCouncil != other.countyCouncil) {
+    if (countyCouncil != other.countyCouncil) {
       return false;
     }
-    if (areDatesDifferent(this.dateSinceInDataBase, other.dateSinceInDataBase)) {
+    if (areDatesDifferent(dateSinceInDataBase, other.dateSinceInDataBase)) {
       return false;
     }
-    if (areDatesDifferent(this.dateUpToInSystem, other.dateUpToInSystem)) {
+    if (areDatesDifferent(dateUpToInSystem, other.dateUpToInSystem)) {
       return false;
     }
-    if (this.denomination != other.denomination) {
+    if (denomination != other.denomination) {
       return false;
     }
-    if (this.fax == null) {
+    if (fax == null) {
       if (other.fax != null) {
         return false;
       }
-    } else if (!this.fax.equals(other.fax)) {
+    } else if (!fax.equals(other.fax)) {
       return false;
     }
-    if (!this.foreName.equals(other.foreName)) {
+    if (!foreName.equals(other.foreName)) {
       return false;
     }
-    if (this.gender != other.gender) {
+    if (gender != other.gender) {
       return false;
     }
-    if (this.id != other.id) {
+    if (id != other.id) {
       return false;
     }
-    if (!this.lastName.equals(other.lastName)) {
+    if (!lastName.equals(other.lastName)) {
       return false;
     }
-    if (!this.livingAddress.equals(other.livingAddress)) {
+    if (!livingAddress.equals(other.livingAddress)) {
       return false;
     }
-    if (this.mailAddress == null) {
+    if (mailAddress == null) {
       if (other.mailAddress != null) {
         return false;
       }
-    } else if (!this.mailAddress.equals(other.mailAddress)) {
+    } else if (!mailAddress.equals(other.mailAddress)) {
       return false;
     }
-    if (this.mobilePhone == null) {
+    if (mobilePhone == null) {
       if (other.mobilePhone != null) {
         return false;
       }
-    } else if (!this.mobilePhone.equals(other.mobilePhone)) {
+    } else if (!mobilePhone.equals(other.mobilePhone)) {
       return false;
     }
-    if (this.phone == null) {
+    if (phone == null) {
       if (other.phone != null) {
         return false;
       }
-    } else if (!this.phone.equals(other.phone)) {
+    } else if (!phone.equals(other.phone)) {
       return false;
     }
-    if (this.phoneOfParents == null) {
+    if (phoneOfParents == null) {
       if (other.phoneOfParents != null) {
         return false;
       }
-    } else if (!this.phoneOfParents.equals(other.phoneOfParents)) {
+    } else if (!phoneOfParents.equals(other.phoneOfParents)) {
       return false;
     }
-    return this.postToAddress.equals(other.postToAddress);
+    return postToAddress.equals(other.postToAddress);
   }
 
   /**
@@ -958,18 +958,18 @@ public final class Participant implements IFilterable {
 
   @Override
   public String toString() {
-    return String.valueOf(Text.PARTICIPANT) + " [" + Text.PARTICIPANT_ID + "=" + this.id + ", "
-           + Text.PARTICIPANT_LASTNAME + "=" + this.lastName + ", " + Text.PARTICIPANT_FORENAME + "=" + this.foreName
-           + ", " + Text.PARTICIPANT_GENDER + "=" + this.gender + ", " + Text.PARTICIPANT_DENOMINATION + "="
-           + this.denomination + ", " + Text.PARTICIPANT_BIRTHDAY + "=" + this.birthDate + ", "
-           + Text.PARTICIPANT_ADDRESS_LIVING + "=" + this.livingAddress + ", " + Text.PARTICIPANT_ADDRESS_POSTAL + "="
-           + this.postToAddress + ", " + Text.PARTICIPANT_PHONE + "=" + this.phone + ", " + Text.PARTICIPANT_FAX + "="
-           + this.fax + ", " + Text.PARTICIPANT_MOBILE_PHONE + "=" + this.mobilePhone + ", "
-           + Text.PARTICIPANT_PHONE_OF_PARENTS + "=" + this.phoneOfParents + ", " + Text.PARTICIPANT_MAIL_ADDRESS + "="
-           + this.mailAddress + ", " + Text.PARTICIPANT_COUNTY_COUNCIL + "=" + this.countyCouncil + ", "
-           + Text.PARTICIPANT_BANK_CODE_NUMBER + "=" + this.bankCodeNumber + ", " + Text.PARTICIPANT_BANK_NAME + "="
-           + this.bank + ", " + Text.PARTICIPANT_BANK_ACCOUNT_NUMBER + "=" + this.bankAccountNumber + ", "
-           + Text.PARTICIPANT_COMMENT + "=" + this.comment + ", " + Text.PARTICIPANT_DATE_SINCE + "="
-           + this.dateSinceInDataBase + ", " + Text.PARTICIPANT_DATE_UNTIL + "=" + this.dateUpToInSystem + "]";
+    return String.valueOf(Text.PARTICIPANT) + " [" + Text.PARTICIPANT_ID + "=" + id + ", "
+           + Text.PARTICIPANT_LASTNAME + "=" + lastName + ", " + Text.PARTICIPANT_FORENAME + "=" + foreName
+           + ", " + Text.PARTICIPANT_GENDER + "=" + gender + ", " + Text.PARTICIPANT_DENOMINATION + "="
+           + denomination + ", " + Text.PARTICIPANT_BIRTHDAY + "=" + birthDate + ", "
+           + Text.PARTICIPANT_ADDRESS_LIVING + "=" + livingAddress + ", " + Text.PARTICIPANT_ADDRESS_POSTAL + "="
+           + postToAddress + ", " + Text.PARTICIPANT_PHONE + "=" + phone + ", " + Text.PARTICIPANT_FAX + "="
+           + fax + ", " + Text.PARTICIPANT_MOBILE_PHONE + "=" + mobilePhone + ", "
+           + Text.PARTICIPANT_PHONE_OF_PARENTS + "=" + phoneOfParents + ", " + Text.PARTICIPANT_MAIL_ADDRESS + "="
+           + mailAddress + ", " + Text.PARTICIPANT_COUNTY_COUNCIL + "=" + countyCouncil + ", "
+           + Text.PARTICIPANT_BANK_CODE_NUMBER + "=" + bankCodeNumber + ", " + Text.PARTICIPANT_BANK_NAME + "="
+           + bank + ", " + Text.PARTICIPANT_BANK_ACCOUNT_NUMBER + "=" + bankAccountNumber + ", "
+           + Text.PARTICIPANT_COMMENT + "=" + comment + ", " + Text.PARTICIPANT_DATE_SINCE + "="
+           + dateSinceInDataBase + ", " + Text.PARTICIPANT_DATE_UNTIL + "=" + dateUpToInSystem + "]";
   }
 }

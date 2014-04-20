@@ -86,7 +86,7 @@ public final class Camp implements IFilterable {
     setLocation(where);
     setRatePerParticipant(rate);
 
-    this.id = forcedId;
+    id = forcedId;
     setNewHighestIdTo(forcedId);
   }
 
@@ -115,15 +115,15 @@ public final class Camp implements IFilterable {
       throw new RequiredFieldSetToNullException();
     }
 
-    this.from = c.from;
-    this.id = c.id;
-    this.location = c.location;
-    this.name = c.name;
-    this.ratePerDayChildren = c.ratePerDayChildren;
-    this.ratePerParticipant = c.ratePerParticipant;
-    this.until = c.until;
-    this.participants.addAll(c.participants);
-    this.cancelDate = c.cancelDate;
+    from = c.from;
+    id = c.id;
+    location = c.location;
+    name = c.name;
+    ratePerDayChildren = c.ratePerDayChildren;
+    ratePerParticipant = c.ratePerParticipant;
+    until = c.until;
+    participants.addAll(c.participants);
+    cancelDate = c.cancelDate;
   }
 
   /**
@@ -134,7 +134,7 @@ public final class Camp implements IFilterable {
    */
   @NotNull
   public String getName() {
-    return this.name;
+    return name;
   }
 
   /**
@@ -148,7 +148,7 @@ public final class Camp implements IFilterable {
     if (n == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.name = n;
+    name = n;
   }
 
   /**
@@ -159,7 +159,7 @@ public final class Camp implements IFilterable {
    */
   @NotNull
   public Date getFromDate() {
-    return new Date(this.from.getTime());
+    return new Date(from.getTime());
   }
 
   /**
@@ -173,7 +173,7 @@ public final class Camp implements IFilterable {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.from = new Date(date.getTime());
+    from = new Date(date.getTime());
   }
 
   /**
@@ -184,7 +184,7 @@ public final class Camp implements IFilterable {
    */
   @NotNull
   public Date getUntilDate() {
-    return new Date(this.until.getTime());
+    return new Date(until.getTime());
   }
 
   /**
@@ -198,7 +198,7 @@ public final class Camp implements IFilterable {
     if (date == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.until = new Date(date.getTime());
+    until = new Date(date.getTime());
   }
 
   /**
@@ -209,7 +209,7 @@ public final class Camp implements IFilterable {
    */
   @NotNull
   public String getLocation() {
-    return this.location;
+    return location;
   }
 
   /**
@@ -223,7 +223,7 @@ public final class Camp implements IFilterable {
     if (loc == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.location = loc;
+    location = loc;
   }
 
   /**
@@ -234,7 +234,7 @@ public final class Camp implements IFilterable {
    */
   @NotNull
   public String getRatePerParticipant() {
-    return this.ratePerParticipant;
+    return ratePerParticipant;
   }
 
   /**
@@ -248,7 +248,7 @@ public final class Camp implements IFilterable {
     if (rate == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.ratePerParticipant = rate;
+    ratePerParticipant = rate;
   }
 
   /**
@@ -259,7 +259,7 @@ public final class Camp implements IFilterable {
    */
   @MayBeNull
   public String getRatePerDayChildren() {
-    return this.ratePerDayChildren;
+    return ratePerDayChildren;
   }
 
   /**
@@ -269,7 +269,7 @@ public final class Camp implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public void setRatePerDayChildren(final String rate) {
-    this.ratePerDayChildren = rate;
+    ratePerDayChildren = rate;
   }
 
   /**
@@ -279,7 +279,7 @@ public final class Camp implements IFilterable {
    * @since Date: Jun 18, 2011
    */
   public long getId() {
-    return this.id;
+    return id;
   }
 
   /**
@@ -290,7 +290,7 @@ public final class Camp implements IFilterable {
    */
   @NotNull
   public List<CampParticipant> getParticipants() {
-    return new ArrayList<CampParticipant>(this.participants);
+    return new ArrayList<CampParticipant>(participants);
   }
 
   /**
@@ -301,7 +301,7 @@ public final class Camp implements IFilterable {
    */
   public void addParticipant(final CampParticipant participant) {
     if (participant != null) {
-      this.participants.add(participant);
+      participants.add(participant);
     }
   }
 
@@ -313,7 +313,7 @@ public final class Camp implements IFilterable {
    */
   public void removeParticipant(final CampParticipant participant) {
     if (participant != null) {
-      this.participants.remove(participant);
+      participants.remove(participant);
     }
   }
 
@@ -323,7 +323,7 @@ public final class Camp implements IFilterable {
    * @since Date: Sep 24, 2012
    */
   public void removeAllParticipants() {
-    this.participants.clear();
+    participants.clear();
   }
 
   @Override
@@ -331,19 +331,19 @@ public final class Camp implements IFilterable {
   public String toString() {
     final StringBuilder builder = new StringBuilder();
     builder.append("Camp [id=");
-    builder.append(this.id);
+    builder.append(id);
     builder.append(", name=");
-    builder.append(this.name);
+    builder.append(name);
     builder.append(", from=");
-    builder.append(this.from);
+    builder.append(from);
     builder.append(", until=");
-    builder.append(this.until);
+    builder.append(until);
     builder.append(", location=");
-    builder.append(this.location);
+    builder.append(location);
     builder.append(", ratePerParticipant=");
-    builder.append(this.ratePerParticipant);
+    builder.append(ratePerParticipant);
     builder.append(", ratePerDayChildren=");
-    builder.append(this.ratePerDayChildren);
+    builder.append(ratePerDayChildren);
     builder.append("]");
     return builder.toString();
   }
@@ -354,16 +354,16 @@ public final class Camp implements IFilterable {
     final int intSize = 32;
 
     int result = 1;
-    result = prime * result + this.from.hashCode();
-    result = prime * result + (int) (this.id ^ (this.id >>> intSize));
-    result = prime * result + this.location.hashCode();
-    result = prime * result + this.name.hashCode();
+    result = prime * result + from.hashCode();
+    result = prime * result + (int) (id ^ (id >>> intSize));
+    result = prime * result + location.hashCode();
+    result = prime * result + name.hashCode();
     result *= prime;
-    if (this.ratePerDayChildren != null) {
-      result += this.ratePerDayChildren.hashCode();
+    if (ratePerDayChildren != null) {
+      result += ratePerDayChildren.hashCode();
     }
-    result = prime * result + this.ratePerParticipant.hashCode();
-    result = prime * result + this.until.hashCode();
+    result = prime * result + ratePerParticipant.hashCode();
+    result = prime * result + until.hashCode();
     return result;
   }
 
@@ -377,32 +377,32 @@ public final class Camp implements IFilterable {
     }
 
     final Camp other = (Camp) obj;
-    if (!areDatesEqual(this.from, other.from)) {
+    if (!areDatesEqual(from, other.from)) {
       return false;
     }
-    if (this.id != other.id) {
+    if (id != other.id) {
       return false;
     }
-    if (!this.location.equals(other.location)) {
+    if (!location.equals(other.location)) {
       return false;
     }
-    if (!this.name.equals(other.name)) {
+    if (!name.equals(other.name)) {
       return false;
     }
-    if (!this.participants.equals(other.participants)) {
+    if (!participants.equals(other.participants)) {
       return false;
     }
-    if (this.ratePerDayChildren == null) {
+    if (ratePerDayChildren == null) {
       if (other.ratePerDayChildren != null) {
         return false;
       }
-    } else if (!this.ratePerDayChildren.equals(other.ratePerDayChildren)) {
+    } else if (!ratePerDayChildren.equals(other.ratePerDayChildren)) {
       return false;
     }
-    if (!this.ratePerParticipant.equals(other.ratePerParticipant)) {
+    if (!ratePerParticipant.equals(other.ratePerParticipant)) {
       return false;
     }
-    return areDatesEqual(this.until, other.until);
+    return areDatesEqual(until, other.until);
   }
 
   /**
@@ -447,10 +447,10 @@ public final class Camp implements IFilterable {
    */
   @MayBeNull
   public Date getCancelDate() {
-    if (this.cancelDate == null) {
+    if (cancelDate == null) {
       return null;
     }
-    return new Date(this.cancelDate.getTime());
+    return new Date(cancelDate.getTime());
   }
 
   /**
@@ -461,9 +461,9 @@ public final class Camp implements IFilterable {
    */
   public void setCancelDate(final Date date) {
     if (date == null) {
-      this.cancelDate = null;
+      cancelDate = null;
     } else {
-      this.cancelDate = new Date(date.getTime());
+      cancelDate = new Date(date.getTime());
     }
   }
 

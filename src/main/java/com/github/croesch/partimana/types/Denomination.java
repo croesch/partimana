@@ -51,14 +51,14 @@ public enum Denomination {
    * @since Date: Jun 21, 2011
    */
   private Denomination(final Text t, final int r) {
-    this.text = t.text();
-    this.dbRepresentation = r;
+    text = t.text();
+    dbRepresentation = r;
   }
 
   @Override
   @NotNull
   public String toString() {
-    return this.text;
+    return text;
   }
 
   /**
@@ -68,7 +68,7 @@ public enum Denomination {
    * @since Date: Oct 14, 2012
    */
   public int getStorableRepresentation() {
-    return this.dbRepresentation;
+    return dbRepresentation;
   }
 
   /**

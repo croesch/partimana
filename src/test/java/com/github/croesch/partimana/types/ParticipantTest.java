@@ -28,7 +28,7 @@ public class ParticipantTest {
    */
   @Before
   public final void setUp() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -54,32 +54,32 @@ public class ParticipantTest {
   public final void testParticipantParticipant() {
     final Date d1 = new Date(123);
 
-    this.participant.setBank("bank");
-    this.participant.setBankAccountNumber(1);
-    this.participant.setBankCodeNumber(12);
-    this.participant.setComment("comment");
-    this.participant.setDateSinceInDataBase(d1);
-    this.participant.setDateUpToInSystem(d1);
-    this.participant.setDenomination(Denomination.JEWISH);
-    this.participant.setFax("fax");
-    this.participant.setMailAddress("mail");
-    this.participant.setMobilePhone("mobile");
-    this.participant.setPhone("phone");
-    this.participant.setPhoneOfParents("phone");
-    this.participant.setCityPostal("city");
-    this.participant.setPostCodePostal(3124);
-    this.participant.setStreetPostal("street");
+    participant.setBank("bank");
+    participant.setBankAccountNumber(1);
+    participant.setBankCodeNumber(12);
+    participant.setComment("comment");
+    participant.setDateSinceInDataBase(d1);
+    participant.setDateUpToInSystem(d1);
+    participant.setDenomination(Denomination.JEWISH);
+    participant.setFax("fax");
+    participant.setMailAddress("mail");
+    participant.setMobilePhone("mobile");
+    participant.setPhone("phone");
+    participant.setPhoneOfParents("phone");
+    participant.setCityPostal("city");
+    participant.setPostCodePostal(3124);
+    participant.setStreetPostal("street");
 
-    final Participant p = new Participant(this.participant);
-    assertThat(p).isEqualTo(this.participant);
+    final Participant p = new Participant(participant);
+    assertThat(p).isEqualTo(participant);
 
     d1.setTime(1212);
     assertThat(p.getDateSinceInDataBase()).isNotEqualTo(d1);
     assertThat(p.getDateUpToInSystem()).isNotEqualTo(d1);
-    assertThat(p).isEqualTo(this.participant);
+    assertThat(p).isEqualTo(participant);
 
     p.setBirthDate(d1);
-    assertThat(p).isNotEqualTo(this.participant);
+    assertThat(p).isNotEqualTo(participant);
   }
 
   /**
@@ -88,7 +88,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE1() {
-    this.participant = new Participant(null,
+    participant = new Participant(null,
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -105,7 +105,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE2() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        null,
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -122,7 +122,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE3() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        null,
                                        Denomination.OTHER,
@@ -139,7 +139,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE4() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        null,
@@ -156,7 +156,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE5() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -173,7 +173,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE6() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -190,7 +190,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE7() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -207,7 +207,7 @@ public class ParticipantTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public final void testParticipantRFSTNE8() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -224,7 +224,7 @@ public class ParticipantTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testParticipantIAE() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -242,7 +242,7 @@ public class ParticipantTest {
   @Test
   public final void testParticipant() {
     final Date birth = new Date();
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -251,15 +251,15 @@ public class ParticipantTest {
                                        SAMPLE_POSTCODE,
                                        "Musterhausen",
                                        CountyCouncil.OTHER);
-    assertThat(this.participant.getForeName()).isEqualTo("Max");
-    assertThat(this.participant.getLastName()).isEqualTo("Mustermann");
-    assertThat(this.participant.getGender()).isEqualTo(Gender.MALE);
-    assertThat(this.participant.getDenomination()).isEqualTo(Denomination.OTHER);
-    assertThat(this.participant.getBirthDate()).isEqualTo(birth);
-    assertThat(this.participant.getStreet()).isEqualTo("Musterstrasse 12");
-    assertThat(this.participant.getPostCode()).isEqualTo(SAMPLE_POSTCODE);
-    assertThat(this.participant.getCity()).isEqualTo("Musterhausen");
-    assertThat(this.participant.getCountyCouncil()).isEqualTo(CountyCouncil.OTHER);
+    assertThat(participant.getForeName()).isEqualTo("Max");
+    assertThat(participant.getLastName()).isEqualTo("Mustermann");
+    assertThat(participant.getGender()).isEqualTo(Gender.MALE);
+    assertThat(participant.getDenomination()).isEqualTo(Denomination.OTHER);
+    assertThat(participant.getBirthDate()).isEqualTo(birth);
+    assertThat(participant.getStreet()).isEqualTo("Musterstrasse 12");
+    assertThat(participant.getPostCode()).isEqualTo(SAMPLE_POSTCODE);
+    assertThat(participant.getCity()).isEqualTo("Musterhausen");
+    assertThat(participant.getCountyCouncil()).isEqualTo(CountyCouncil.OTHER);
   }
 
   /**
@@ -267,14 +267,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetLastName() {
-    this.participant.setLastName("last");
-    assertThat(this.participant.getLastName()).isEqualTo("last");
+    participant.setLastName("last");
+    assertThat(participant.getLastName()).isEqualTo("last");
 
-    this.participant.setLastName("another");
-    assertThat(this.participant.getLastName()).isEqualTo("another");
+    participant.setLastName("another");
+    assertThat(participant.getLastName()).isEqualTo("another");
 
-    this.participant.setLastName("");
-    assertThat(this.participant.getLastName()).isEmpty();
+    participant.setLastName("");
+    assertThat(participant.getLastName()).isEmpty();
   }
 
   /**
@@ -282,14 +282,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetForeName() {
-    this.participant.setForeName("first");
-    assertThat(this.participant.getForeName()).isEqualTo("first");
+    participant.setForeName("first");
+    assertThat(participant.getForeName()).isEqualTo("first");
 
-    this.participant.setForeName("another");
-    assertThat(this.participant.getForeName()).isEqualTo("another");
+    participant.setForeName("another");
+    assertThat(participant.getForeName()).isEqualTo("another");
 
-    this.participant.setForeName("");
-    assertThat(this.participant.getForeName()).isEmpty();
+    participant.setForeName("");
+    assertThat(participant.getForeName()).isEmpty();
   }
 
   /**
@@ -297,11 +297,11 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetGender() {
-    this.participant.setGender(Gender.FEMALE);
-    assertThat(this.participant.getGender()).isEqualTo(Gender.FEMALE);
+    participant.setGender(Gender.FEMALE);
+    assertThat(participant.getGender()).isEqualTo(Gender.FEMALE);
 
-    this.participant.setGender(Gender.MALE);
-    assertThat(this.participant.getGender()).isEqualTo(Gender.MALE);
+    participant.setGender(Gender.MALE);
+    assertThat(participant.getGender()).isEqualTo(Gender.MALE);
   }
 
   /**
@@ -309,14 +309,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetDenomination() {
-    this.participant.setDenomination(Denomination.CATHOLIC);
-    assertThat(this.participant.getDenomination()).isEqualTo(Denomination.CATHOLIC);
+    participant.setDenomination(Denomination.CATHOLIC);
+    assertThat(participant.getDenomination()).isEqualTo(Denomination.CATHOLIC);
 
-    this.participant.setDenomination(Denomination.JEWISH);
-    assertThat(this.participant.getDenomination()).isEqualTo(Denomination.JEWISH);
+    participant.setDenomination(Denomination.JEWISH);
+    assertThat(participant.getDenomination()).isEqualTo(Denomination.JEWISH);
 
-    this.participant.setDenomination(Denomination.FREE_CHURCH);
-    assertThat(this.participant.getDenomination()).isEqualTo(Denomination.FREE_CHURCH);
+    participant.setDenomination(Denomination.FREE_CHURCH);
+    assertThat(participant.getDenomination()).isEqualTo(Denomination.FREE_CHURCH);
   }
 
   /**
@@ -326,16 +326,16 @@ public class ParticipantTest {
   public final void testSetAndGetBirthDate() {
     final Date birth = new Date();
     final Date copy = (Date) birth.clone();
-    this.participant.setBirthDate(birth);
-    assertThat(this.participant.getBirthDate()).isEqualTo(birth);
+    participant.setBirthDate(birth);
+    assertThat(participant.getBirthDate()).isEqualTo(birth);
 
     birth.setTime(0);
-    assertThat(this.participant.getBirthDate()).isNotEqualTo(birth);
-    assertThat(this.participant.getBirthDate()).isEqualTo(copy);
+    assertThat(participant.getBirthDate()).isNotEqualTo(birth);
+    assertThat(participant.getBirthDate()).isEqualTo(copy);
 
-    final Date d = this.participant.getBirthDate();
+    final Date d = participant.getBirthDate();
     d.setTime(0);
-    assertThat(this.participant.getBirthDate()).isEqualTo(copy);
+    assertThat(participant.getBirthDate()).isEqualTo(copy);
   }
 
   /**
@@ -343,14 +343,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetStreet() {
-    this.participant.setStreet("street");
-    assertThat(this.participant.getStreet()).isEqualTo("street");
+    participant.setStreet("street");
+    assertThat(participant.getStreet()).isEqualTo("street");
 
-    this.participant.setStreet("other");
-    assertThat(this.participant.getStreet()).isEqualTo("other");
+    participant.setStreet("other");
+    assertThat(participant.getStreet()).isEqualTo("other");
 
-    this.participant.setStreet("");
-    assertThat(this.participant.getStreet()).isEqualTo("");
+    participant.setStreet("");
+    assertThat(participant.getStreet()).isEqualTo("");
   }
 
   /**
@@ -359,16 +359,16 @@ public class ParticipantTest {
   @Test
   public final void testSetAndGetPostCode() {
     final int pc1 = 1;
-    this.participant.setPostCode(pc1);
-    assertThat(this.participant.getPostCode()).isEqualTo(pc1);
+    participant.setPostCode(pc1);
+    assertThat(participant.getPostCode()).isEqualTo(pc1);
 
     final int pc2 = 13423;
-    this.participant.setPostCode(pc2);
-    assertThat(this.participant.getPostCode()).isEqualTo(pc2);
+    participant.setPostCode(pc2);
+    assertThat(participant.getPostCode()).isEqualTo(pc2);
 
     final int pc3 = 77789;
-    this.participant.setPostCode(pc3);
-    assertThat(this.participant.getPostCode()).isEqualTo(Integer.valueOf(pc3).intValue());
+    participant.setPostCode(pc3);
+    assertThat(participant.getPostCode()).isEqualTo(Integer.valueOf(pc3).intValue());
   }
 
   /**
@@ -376,7 +376,7 @@ public class ParticipantTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodeIAE1() {
-    this.participant.setPostCode(-1);
+    participant.setPostCode(-1);
   }
 
   /**
@@ -385,7 +385,7 @@ public class ParticipantTest {
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodeIAE2() {
     final int tooHigh = 100000;
-    this.participant.setPostCode(tooHigh);
+    participant.setPostCode(tooHigh);
   }
 
   /**
@@ -393,14 +393,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetCity() {
-    this.participant.setCity("stadt");
-    assertThat(this.participant.getCity()).isEqualTo("stadt");
+    participant.setCity("stadt");
+    assertThat(participant.getCity()).isEqualTo("stadt");
 
-    this.participant.setCity("");
-    assertThat(this.participant.getCity()).isEqualTo("");
+    participant.setCity("");
+    assertThat(participant.getCity()).isEqualTo("");
 
-    this.participant.setCity("...");
-    assertThat(this.participant.getCity()).isEqualTo("...");
+    participant.setCity("...");
+    assertThat(participant.getCity()).isEqualTo("...");
   }
 
   /**
@@ -408,14 +408,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetStreetPostal() {
-    this.participant.setStreetPostal("street");
-    assertThat(this.participant.getStreetPostal()).isEqualTo("street");
+    participant.setStreetPostal("street");
+    assertThat(participant.getStreetPostal()).isEqualTo("street");
 
-    this.participant.setStreetPostal("other");
-    assertThat(this.participant.getStreetPostal()).isEqualTo("other");
+    participant.setStreetPostal("other");
+    assertThat(participant.getStreetPostal()).isEqualTo("other");
 
-    this.participant.setStreetPostal("");
-    assertThat(this.participant.getStreetPostal()).isEqualTo("");
+    participant.setStreetPostal("");
+    assertThat(participant.getStreetPostal()).isEqualTo("");
   }
 
   /**
@@ -424,16 +424,16 @@ public class ParticipantTest {
   @Test
   public final void testSetAndGetPostCodePostal() {
     final int pc1 = 1;
-    this.participant.setPostCodePostal(pc1);
-    assertThat(this.participant.getPostCodePostal()).isEqualTo(pc1);
+    participant.setPostCodePostal(pc1);
+    assertThat(participant.getPostCodePostal()).isEqualTo(pc1);
 
     final int pc2 = 13423;
-    this.participant.setPostCodePostal(pc2);
-    assertThat(this.participant.getPostCodePostal()).isEqualTo(pc2);
+    participant.setPostCodePostal(pc2);
+    assertThat(participant.getPostCodePostal()).isEqualTo(pc2);
 
     final int pc3 = 77789;
-    this.participant.setPostCodePostal(pc3);
-    assertThat(this.participant.getPostCodePostal()).isEqualTo(Integer.valueOf(pc3).intValue());
+    participant.setPostCodePostal(pc3);
+    assertThat(participant.getPostCodePostal()).isEqualTo(Integer.valueOf(pc3).intValue());
   }
 
   /**
@@ -441,7 +441,7 @@ public class ParticipantTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodePostalIAE1() {
-    this.participant.setPostCodePostal(-1);
+    participant.setPostCodePostal(-1);
   }
 
   /**
@@ -450,7 +450,7 @@ public class ParticipantTest {
   @Test(expected = IllegalArgumentException.class)
   public final void testSetAndGetPostCodePostalIAE2() {
     final int tooHigh = 100000;
-    this.participant.setPostCodePostal(tooHigh);
+    participant.setPostCodePostal(tooHigh);
   }
 
   /**
@@ -458,14 +458,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetCityPostal() {
-    this.participant.setCityPostal("stadt");
-    assertThat(this.participant.getCityPostal()).isEqualTo("stadt");
+    participant.setCityPostal("stadt");
+    assertThat(participant.getCityPostal()).isEqualTo("stadt");
 
-    this.participant.setCityPostal("");
-    assertThat(this.participant.getCityPostal()).isEqualTo("");
+    participant.setCityPostal("");
+    assertThat(participant.getCityPostal()).isEqualTo("");
 
-    this.participant.setCityPostal("...");
-    assertThat(this.participant.getCityPostal()).isEqualTo("...");
+    participant.setCityPostal("...");
+    assertThat(participant.getCityPostal()).isEqualTo("...");
   }
 
   /**
@@ -473,14 +473,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetPhone() {
-    this.participant.setPhone("...");
-    assertThat(this.participant.getPhone()).isEqualTo("...");
+    participant.setPhone("...");
+    assertThat(participant.getPhone()).isEqualTo("...");
 
-    this.participant.setPhone(null);
-    assertThat(this.participant.getPhone()).isNull();
+    participant.setPhone(null);
+    assertThat(participant.getPhone()).isNull();
 
-    this.participant.setPhone("0123/456789");
-    assertThat(this.participant.getPhone()).isEqualTo("0123/456789");
+    participant.setPhone("0123/456789");
+    assertThat(participant.getPhone()).isEqualTo("0123/456789");
   }
 
   /**
@@ -488,14 +488,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetFax() {
-    this.participant.setFax("...");
-    assertThat(this.participant.getFax()).isEqualTo("...");
+    participant.setFax("...");
+    assertThat(participant.getFax()).isEqualTo("...");
 
-    this.participant.setFax(null);
-    assertThat(this.participant.getFax()).isNull();
+    participant.setFax(null);
+    assertThat(participant.getFax()).isNull();
 
-    this.participant.setFax("0123/456789");
-    assertThat(this.participant.getFax()).isEqualTo("0123/456789");
+    participant.setFax("0123/456789");
+    assertThat(participant.getFax()).isEqualTo("0123/456789");
   }
 
   /**
@@ -503,14 +503,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetMobilePhone() {
-    this.participant.setMobilePhone("...");
-    assertThat(this.participant.getMobilePhone()).isEqualTo("...");
+    participant.setMobilePhone("...");
+    assertThat(participant.getMobilePhone()).isEqualTo("...");
 
-    this.participant.setMobilePhone(null);
-    assertThat(this.participant.getMobilePhone()).isNull();
+    participant.setMobilePhone(null);
+    assertThat(participant.getMobilePhone()).isNull();
 
-    this.participant.setMobilePhone("0123/456789");
-    assertThat(this.participant.getMobilePhone()).isEqualTo("0123/456789");
+    participant.setMobilePhone("0123/456789");
+    assertThat(participant.getMobilePhone()).isEqualTo("0123/456789");
   }
 
   /**
@@ -518,14 +518,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetPhoneOfParents() {
-    this.participant.setPhoneOfParents("...");
-    assertThat(this.participant.getPhoneOfParents()).isEqualTo("...");
+    participant.setPhoneOfParents("...");
+    assertThat(participant.getPhoneOfParents()).isEqualTo("...");
 
-    this.participant.setPhoneOfParents(null);
-    assertThat(this.participant.getPhoneOfParents()).isNull();
+    participant.setPhoneOfParents(null);
+    assertThat(participant.getPhoneOfParents()).isNull();
 
-    this.participant.setPhoneOfParents("0123/456789");
-    assertThat(this.participant.getPhoneOfParents()).isEqualTo("0123/456789");
+    participant.setPhoneOfParents("0123/456789");
+    assertThat(participant.getPhoneOfParents()).isEqualTo("0123/456789");
   }
 
   /**
@@ -533,14 +533,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetMailAddress() {
-    this.participant.setMailAddress("...");
-    assertThat(this.participant.getMailAddress()).isEqualTo("...");
+    participant.setMailAddress("...");
+    assertThat(participant.getMailAddress()).isEqualTo("...");
 
-    this.participant.setMailAddress(null);
-    assertThat(this.participant.getMailAddress()).isEqualTo(null);
+    participant.setMailAddress(null);
+    assertThat(participant.getMailAddress()).isEqualTo(null);
 
-    this.participant.setMailAddress("abc@def-ghi.jk");
-    assertThat(this.participant.getMailAddress()).isEqualTo("abc@def-ghi.jk");
+    participant.setMailAddress("abc@def-ghi.jk");
+    assertThat(participant.getMailAddress()).isEqualTo("abc@def-ghi.jk");
   }
 
   /**
@@ -548,14 +548,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetCountyCouncil() {
-    this.participant.setCountyCouncil(CountyCouncil.CITY_FRANKENTHAL);
-    assertThat(this.participant.getCountyCouncil()).isEqualTo(CountyCouncil.CITY_FRANKENTHAL);
+    participant.setCountyCouncil(CountyCouncil.CITY_FRANKENTHAL);
+    assertThat(participant.getCountyCouncil()).isEqualTo(CountyCouncil.CITY_FRANKENTHAL);
 
-    this.participant.setCountyCouncil(CountyCouncil.CITY_LUDWIGSHAFEN);
-    assertThat(this.participant.getCountyCouncil()).isEqualTo(CountyCouncil.CITY_LUDWIGSHAFEN);
+    participant.setCountyCouncil(CountyCouncil.CITY_LUDWIGSHAFEN);
+    assertThat(participant.getCountyCouncil()).isEqualTo(CountyCouncil.CITY_LUDWIGSHAFEN);
 
-    this.participant.setCountyCouncil(CountyCouncil.COUNTY_BAD_KREUZNACH);
-    assertThat(this.participant.getCountyCouncil()).isEqualTo(CountyCouncil.COUNTY_BAD_KREUZNACH);
+    participant.setCountyCouncil(CountyCouncil.COUNTY_BAD_KREUZNACH);
+    assertThat(participant.getCountyCouncil()).isEqualTo(CountyCouncil.COUNTY_BAD_KREUZNACH);
   }
 
   /**
@@ -564,16 +564,16 @@ public class ParticipantTest {
   @Test
   public final void testSetAndGetBankCodeNumber() {
     final int nr1 = 1234567;
-    this.participant.setBankCodeNumber(nr1);
-    assertThat(this.participant.getBankCodeNumber()).isEqualTo(nr1);
+    participant.setBankCodeNumber(nr1);
+    assertThat(participant.getBankCodeNumber()).isEqualTo(nr1);
 
     final int nr2 = 0;
-    this.participant.setBankCodeNumber(nr2);
-    assertThat(this.participant.getBankCodeNumber()).isEqualTo(nr2);
+    participant.setBankCodeNumber(nr2);
+    assertThat(participant.getBankCodeNumber()).isEqualTo(nr2);
 
     final int nr3 = 98765432;
-    this.participant.setBankCodeNumber(nr3);
-    assertThat(this.participant.getBankCodeNumber()).isEqualTo(nr3);
+    participant.setBankCodeNumber(nr3);
+    assertThat(participant.getBankCodeNumber()).isEqualTo(nr3);
   }
 
   /**
@@ -581,14 +581,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetBank() {
-    this.participant.setBank("...");
-    assertThat(this.participant.getBank()).isEqualTo("...");
+    participant.setBank("...");
+    assertThat(participant.getBank()).isEqualTo("...");
 
-    this.participant.setBank(null);
-    assertThat(this.participant.getBank()).isEqualTo(null);
+    participant.setBank(null);
+    assertThat(participant.getBank()).isEqualTo(null);
 
-    this.participant.setBank("bank of him");
-    assertThat(this.participant.getBank()).isEqualTo("bank of him");
+    participant.setBank("bank of him");
+    assertThat(participant.getBank()).isEqualTo("bank of him");
   }
 
   /**
@@ -597,16 +597,16 @@ public class ParticipantTest {
   @Test
   public final void testSetAndGetBankAccountNumber() {
     final int nr1 = 1234567;
-    this.participant.setBankAccountNumber(nr1);
-    assertThat(this.participant.getBankAccountNumber()).isEqualTo(nr1);
+    participant.setBankAccountNumber(nr1);
+    assertThat(participant.getBankAccountNumber()).isEqualTo(nr1);
 
     final int nr2 = 0;
-    this.participant.setBankAccountNumber(nr2);
-    assertThat(this.participant.getBankAccountNumber()).isEqualTo(nr2);
+    participant.setBankAccountNumber(nr2);
+    assertThat(participant.getBankAccountNumber()).isEqualTo(nr2);
 
     final int nr3 = 98765432;
-    this.participant.setBankAccountNumber(nr3);
-    assertThat(this.participant.getBankAccountNumber()).isEqualTo(nr3);
+    participant.setBankAccountNumber(nr3);
+    assertThat(participant.getBankAccountNumber()).isEqualTo(nr3);
   }
 
   /**
@@ -614,14 +614,14 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetComment() {
-    this.participant.setComment("...");
-    assertThat(this.participant.getComment()).isEqualTo("...");
+    participant.setComment("...");
+    assertThat(participant.getComment()).isEqualTo("...");
 
-    this.participant.setComment(null);
-    assertThat(this.participant.getComment()).isEqualTo(null);
+    participant.setComment(null);
+    assertThat(participant.getComment()).isEqualTo(null);
 
-    this.participant.setComment("this is a stupid comment! <-");
-    assertThat(this.participant.getComment()).isEqualTo("this is a stupid comment! <-");
+    participant.setComment("this is a stupid comment! <-");
+    assertThat(participant.getComment()).isEqualTo("this is a stupid comment! <-");
   }
 
   /**
@@ -629,23 +629,23 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetDateSinceInDataBase() {
-    this.participant.setDateSinceInDataBase(null);
-    assertThat(this.participant.getDateSinceInDataBase()).isNull();
+    participant.setDateSinceInDataBase(null);
+    assertThat(participant.getDateSinceInDataBase()).isNull();
 
     Date d1 = new Date();
-    this.participant.setDateSinceInDataBase(d1);
-    assertThat(this.participant.getDateSinceInDataBase()).isEqualTo(d1);
+    participant.setDateSinceInDataBase(d1);
+    assertThat(participant.getDateSinceInDataBase()).isEqualTo(d1);
 
     final Date d2 = new Date(0);
-    this.participant.setDateSinceInDataBase(d2);
-    assertThat(this.participant.getDateSinceInDataBase()).isEqualTo(d2);
+    participant.setDateSinceInDataBase(d2);
+    assertThat(participant.getDateSinceInDataBase()).isEqualTo(d2);
     d2.setTime(d1.getTime());
-    assertThat(this.participant.getDateSinceInDataBase()).isNotEqualTo(d2);
+    assertThat(participant.getDateSinceInDataBase()).isNotEqualTo(d2);
 
-    this.participant.setDateSinceInDataBase(d2);
-    d1 = this.participant.getDateSinceInDataBase();
+    participant.setDateSinceInDataBase(d2);
+    d1 = participant.getDateSinceInDataBase();
     d1.setTime(12);
-    assertThat(this.participant.getDateSinceInDataBase()).isEqualTo(d2);
+    assertThat(participant.getDateSinceInDataBase()).isEqualTo(d2);
   }
 
   /**
@@ -653,23 +653,23 @@ public class ParticipantTest {
    */
   @Test
   public final void testSetAndGetDateUpToInSystem() {
-    this.participant.setDateUpToInSystem(null);
-    assertThat(this.participant.getDateUpToInSystem()).isNull();
+    participant.setDateUpToInSystem(null);
+    assertThat(participant.getDateUpToInSystem()).isNull();
 
     Date d1 = new Date();
-    this.participant.setDateUpToInSystem(d1);
-    assertThat(this.participant.getDateUpToInSystem()).isEqualTo(d1);
+    participant.setDateUpToInSystem(d1);
+    assertThat(participant.getDateUpToInSystem()).isEqualTo(d1);
 
     final Date d2 = new Date(0);
-    this.participant.setDateUpToInSystem(d2);
-    assertThat(this.participant.getDateUpToInSystem()).isEqualTo(d2);
+    participant.setDateUpToInSystem(d2);
+    assertThat(participant.getDateUpToInSystem()).isEqualTo(d2);
     d2.setTime(d1.getTime());
-    assertThat(this.participant.getDateUpToInSystem()).isNotEqualTo(d2);
+    assertThat(participant.getDateUpToInSystem()).isNotEqualTo(d2);
 
-    this.participant.setDateUpToInSystem(d2);
-    d1 = this.participant.getDateUpToInSystem();
+    participant.setDateUpToInSystem(d2);
+    d1 = participant.getDateUpToInSystem();
     d1.setTime(12);
-    assertThat(this.participant.getDateUpToInSystem()).isEqualTo(d2);
+    assertThat(participant.getDateUpToInSystem()).isEqualTo(d2);
   }
 
   /**
@@ -677,8 +677,8 @@ public class ParticipantTest {
    */
   @Test
   public final void testGetId() {
-    final long id = this.participant.getId();
-    this.participant = new Participant("name",
+    final long id = participant.getId();
+    participant = new Participant("name",
                                        "first",
                                        Gender.FEMALE,
                                        Denomination.EVANGELIC,
@@ -688,8 +688,8 @@ public class ParticipantTest {
                                        "city",
                                        CountyCouncil.COUNTY_GERMERSHEIM);
 
-    assertThat(this.participant.getId()).isEqualTo(id + 1);
-    this.participant = new Participant(id + 2,
+    assertThat(participant.getId()).isEqualTo(id + 1);
+    participant = new Participant(id + 2,
                                        "name",
                                        "first",
                                        Gender.FEMALE,
@@ -699,7 +699,7 @@ public class ParticipantTest {
                                        SAMPLE_POSTCODE,
                                        "city",
                                        CountyCouncil.COUNTY_GERMERSHEIM);
-    assertThat(this.participant.getId()).isEqualTo(id + 2);
+    assertThat(participant.getId()).isEqualTo(id + 2);
   }
 
   /**
@@ -707,7 +707,7 @@ public class ParticipantTest {
    */
   @Test
   public final void testToString() {
-    assertThat(this.participant.toString()).contains(String.valueOf(this.participant.getId()));
+    assertThat(participant.toString()).contains(String.valueOf(participant.getId()));
   }
 
   /**
@@ -735,99 +735,99 @@ public class ParticipantTest {
     p.setDenomination(Denomination.FREE_CHURCH);
     p.setFax("fax");
 
-    assertThat(this.participant).isEqualTo(this.participant);
-    assertThat(this.participant).isNotEqualTo(null);
-    assertThat(this.participant).isNotEqualTo("participant");
-    assertThat(this.participant).isNotEqualTo(p);
-    assertThat(p).isNotEqualTo(this.participant);
+    assertThat(participant).isEqualTo(participant);
+    assertThat(participant).isNotEqualTo(null);
+    assertThat(participant).isNotEqualTo("participant");
+    assertThat(participant).isNotEqualTo(p);
+    assertThat(p).isNotEqualTo(participant);
 
-    this.participant.setBank("bank");
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setBank("bank");
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setBankAccountNumber(4);
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setBankAccountNumber(4);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setBankCodeNumber(7);
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setBankCodeNumber(7);
+    assertThat(participant).isNotEqualTo(p);
 
-    p.setBirthDate(this.participant.getBirthDate());
-    assertThat(this.participant).isNotEqualTo(p);
-    assertThat(p).isNotEqualTo(this.participant);
+    p.setBirthDate(participant.getBirthDate());
+    assertThat(participant).isNotEqualTo(p);
+    assertThat(p).isNotEqualTo(participant);
 
-    this.participant.setComment("comment");
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setComment("comment");
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setComment("com");
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setComment("com");
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setCountyCouncil(CountyCouncil.CITY_LANDAU);
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setCountyCouncil(CountyCouncil.CITY_LANDAU);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setDateSinceInDataBase(new Date());
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setDateSinceInDataBase(new Date());
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setDateSinceInDataBase(new Date(12));
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setDateSinceInDataBase(new Date(12));
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setDateUpToInSystem(new Date());
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setDateUpToInSystem(new Date());
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setDateUpToInSystem(new Date(24));
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setDateUpToInSystem(new Date(24));
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setDenomination(p.getDenomination());
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setDenomination(p.getDenomination());
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setFax("d");
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setFax("d");
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setFax(p.getFax());
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setFax(p.getFax());
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setForeName(p.getForeName());
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setForeName(p.getForeName());
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setGender(p.getGender());
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setGender(p.getGender());
+    assertThat(participant).isNotEqualTo(p);
 
-    p = new Participant(this.participant);
+    p = new Participant(participant);
     p.setLastName("l");
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setLastName(p.getLastName());
+    participant.setLastName(p.getLastName());
     p.setStreet("s");
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setStreet(p.getStreet());
+    participant.setStreet(p.getStreet());
     p.setMailAddress("mail-addy");
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setMailAddress("mail");
-    assertThat(this.participant).isNotEqualTo(p);
+    participant.setMailAddress("mail");
+    assertThat(participant).isNotEqualTo(p);
 
-    p.setMailAddress(this.participant.getMailAddress());
+    p.setMailAddress(participant.getMailAddress());
     p.setMobilePhone("mobile");
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setMobilePhone("phone");
-    assertThat(this.participant).isNotEqualTo(p);
-    this.participant.setMobilePhone(p.getMobilePhone());
+    participant.setMobilePhone("phone");
+    assertThat(participant).isNotEqualTo(p);
+    participant.setMobilePhone(p.getMobilePhone());
     p.setPhone("mobile");
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setPhone("phone");
-    assertThat(this.participant).isNotEqualTo(p);
-    p.setPhone(this.participant.getPhone());
+    participant.setPhone("phone");
+    assertThat(participant).isNotEqualTo(p);
+    p.setPhone(participant.getPhone());
     p.setPhoneOfParents("pop");
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
 
-    this.participant.setPhoneOfParents("phone-of-parents");
-    assertThat(this.participant).isNotEqualTo(p);
-    p.setPhoneOfParents(this.participant.getPhoneOfParents());
+    participant.setPhoneOfParents("phone-of-parents");
+    assertThat(participant).isNotEqualTo(p);
+    p.setPhoneOfParents(participant.getPhoneOfParents());
 
-    assertThat(this.participant).isEqualTo(p);
+    assertThat(participant).isEqualTo(p);
     p.setPostCodePostal(177);
-    assertThat(this.participant).isNotEqualTo(p);
+    assertThat(participant).isNotEqualTo(p);
   }
 
   /**
@@ -835,10 +835,10 @@ public class ParticipantTest {
    */
   @Test
   public final void testEquals_OtherDateNull() {
-    final Participant p = new Participant(this.participant);
+    final Participant p = new Participant(participant);
 
     p.setDateUpToInSystem(new Date(24));
 
-    assertThat(p).isNotEqualTo(this.participant);
+    assertThat(p).isNotEqualTo(participant);
   }
 }

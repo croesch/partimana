@@ -45,7 +45,7 @@ public enum DataBaseSettings {
    * @since Date: Jan 15, 2012
    */
   private DataBaseSettings() {
-    this.value = PropertiesProvider.getInstance().get("db", name());
+    value = PropertiesProvider.getInstance().get("db", name());
   }
 
   /**
@@ -55,6 +55,6 @@ public enum DataBaseSettings {
    * @since Date: Jan 15, 2012
    */
   public String value() {
-    return this.value;
+    return value;
   }
 }

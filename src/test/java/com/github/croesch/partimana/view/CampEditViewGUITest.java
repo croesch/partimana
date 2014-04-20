@@ -55,72 +55,72 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
       }
     });
 
-    this.camp = new Camp("OFZ", new Date(500000), new Date(1000000), "Raversbeuren", "1,50€");
-    this.camp.setRatePerDayChildren("0,5€");
+    camp = new Camp("OFZ", new Date(500000), new Date(1000000), "Raversbeuren", "1,50€");
+    camp.setRatePerDayChildren("0,5€");
 
-    this.participant = new Participant("Schmidt",
-                                       "Hans",
-                                       Gender.MALE,
-                                       Denomination.NONE,
-                                       new Date(1200),
-                                       "Strasse 4",
-                                       56789,
-                                       "Stadt",
-                                       CountyCouncil.CITY_NEUSTADT);
-    this.camp.addParticipant(new CampParticipant(this.participant));
+    participant = new Participant("Schmidt",
+                                  "Hans",
+                                  Gender.MALE,
+                                  Denomination.NONE,
+                                  new Date(1200),
+                                  "Strasse 4",
+                                  56789,
+                                  "Stadt",
+                                  CountyCouncil.CITY_NEUSTADT);
+    camp.addParticipant(new CampParticipant(participant));
 
     view.setName("editView");
-    this.editView = view;
+    editView = view;
     updateCamp();
 
-    this.window = new FrameFixture(robot(), Containers.frameFor(view));
-    this.window.show();
-    this.testView = this.window.panel("editView");
+    window = new FrameFixture(robot(), Containers.frameFor(view));
+    window.show();
+    testView = window.panel("editView");
   }
 
   private void updateCamp() {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampEditViewGUITest.this.editView.setCamp(CampEditViewGUITest.this.camp);
+        editView.setCamp(camp);
       }
     });
   }
 
   @Override
   protected void after() {
-    this.window.cleanUp();
+    window.cleanUp();
     cleanUp();
   }
 
   @Test
   public void testClear() {
     clear();
-    this.testView.textBox("nameTF").requireEmpty();
-    this.testView.textBox("locationTF").requireEmpty();
-    this.testView.textBox("fromTF").requireEmpty();
-    this.testView.textBox("untilTF").requireEmpty();
-    this.testView.textBox("ratePerParticipantTF").requireEmpty();
-    this.testView.textBox("ratePerDayTF").requireEmpty();
-    this.testView.label("idLbl").requireText((String) null);
-    this.testView.table("campParticipants").requireRowCount(0);
-    this.testView.label("cancelledLbl").requireText((String) null);
+    testView.textBox("nameTF").requireEmpty();
+    testView.textBox("locationTF").requireEmpty();
+    testView.textBox("fromTF").requireEmpty();
+    testView.textBox("untilTF").requireEmpty();
+    testView.textBox("ratePerParticipantTF").requireEmpty();
+    testView.textBox("ratePerDayTF").requireEmpty();
+    testView.label("idLbl").requireText((String) null);
+    testView.table("campParticipants").requireRowCount(0);
+    testView.label("cancelledLbl").requireText((String) null);
 
-    assertThat(this.editView.getNameOfCamp()).isEmpty();
-    assertThat(this.editView.getLocationOfCamp()).isEmpty();
-    assertThat(this.editView.getId()).isEqualTo(0);
-    assertThat(this.editView.getFrom()).isNull();
-    assertThat(this.editView.getUntil()).isNull();
-    assertThat(this.editView.getRatePerParticipant()).isEmpty();
-    assertThat(this.editView.getRatePerDay()).isEmpty();
-    assertThat(this.editView.getCampParticipants()).isEmpty();
+    assertThat(editView.getNameOfCamp()).isEmpty();
+    assertThat(editView.getLocationOfCamp()).isEmpty();
+    assertThat(editView.getId()).isEqualTo(0);
+    assertThat(editView.getFrom()).isNull();
+    assertThat(editView.getUntil()).isNull();
+    assertThat(editView.getRatePerParticipant()).isEmpty();
+    assertThat(editView.getRatePerDay()).isEmpty();
+    assertThat(editView.getCampParticipants()).isEmpty();
   }
 
   private void clear() {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampEditViewGUITest.this.editView.clear();
+        editView.clear();
       }
     });
   }
@@ -130,106 +130,106 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampEditViewGUITest.this.editView.setCamp(null);
+        editView.setCamp(null);
       }
     });
-    this.testView.textBox("nameTF").requireEmpty();
-    this.testView.textBox("locationTF").requireEmpty();
-    this.testView.textBox("fromTF").requireEmpty();
-    this.testView.textBox("untilTF").requireEmpty();
-    this.testView.textBox("ratePerParticipantTF").requireEmpty();
-    this.testView.textBox("ratePerDayTF").requireEmpty();
-    this.testView.label("idLbl").requireText((String) null);
+    testView.textBox("nameTF").requireEmpty();
+    testView.textBox("locationTF").requireEmpty();
+    testView.textBox("fromTF").requireEmpty();
+    testView.textBox("untilTF").requireEmpty();
+    testView.textBox("ratePerParticipantTF").requireEmpty();
+    testView.textBox("ratePerDayTF").requireEmpty();
+    testView.label("idLbl").requireText((String) null);
 
-    assertThat(this.editView.getNameOfCamp()).isEmpty();
-    assertThat(this.editView.getLocationOfCamp()).isEmpty();
-    assertThat(this.editView.getId()).isEqualTo(0);
-    assertThat(this.editView.getFrom()).isNull();
-    assertThat(this.editView.getUntil()).isNull();
-    assertThat(this.editView.getRatePerParticipant()).isEmpty();
-    assertThat(this.editView.getRatePerDay()).isEmpty();
+    assertThat(editView.getNameOfCamp()).isEmpty();
+    assertThat(editView.getLocationOfCamp()).isEmpty();
+    assertThat(editView.getId()).isEqualTo(0);
+    assertThat(editView.getFrom()).isNull();
+    assertThat(editView.getUntil()).isNull();
+    assertThat(editView.getRatePerParticipant()).isEmpty();
+    assertThat(editView.getRatePerDay()).isEmpty();
   }
 
   @Test
   public void testGetName() {
-    final JTextComponentFixture testObj = this.testView.textBox("nameTF");
+    final JTextComponentFixture testObj = testView.textBox("nameTF");
 
-    testObj.requireText(this.camp.getName());
+    testObj.requireText(camp.getName());
     testObj.deleteText();
     testObj.enterText("OFZ");
-    assertThat(this.editView.getNameOfCamp()).isEqualTo("OFZ");
+    assertThat(editView.getNameOfCamp()).isEqualTo("OFZ");
   }
 
   @Test
   public void testGetLocation() {
-    final JTextComponentFixture testObj = this.testView.textBox("locationTF");
+    final JTextComponentFixture testObj = testView.textBox("locationTF");
 
-    testObj.requireText(this.camp.getLocation());
+    testObj.requireText(camp.getLocation());
     testObj.deleteText();
     testObj.enterText("Raversbeuren");
-    assertThat(this.editView.getLocationOfCamp()).isEqualTo("Raversbeuren");
+    assertThat(editView.getLocationOfCamp()).isEqualTo("Raversbeuren");
   }
 
   @Test
   public final void testGetFrom() throws ParseException {
-    final JTextComponentFixture testObj = this.testView.textBox("fromTF");
+    final JTextComponentFixture testObj = testView.textBox("fromTF");
     final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-    testObj.requireText(sdf.format(this.camp.getFromDate()));
+    testObj.requireText(sdf.format(camp.getFromDate()));
     testObj.deleteText();
     testObj.enterText("24.03.2002");
-    assertThat(this.editView.getFrom()).isEqualTo(sdf.parse("24.03.2002"));
+    assertThat(editView.getFrom()).isEqualTo(sdf.parse("24.03.2002"));
   }
 
   @Test
   public final void testGetTo() throws ParseException {
-    final JTextComponentFixture testObj = this.testView.textBox("untilTF");
+    final JTextComponentFixture testObj = testView.textBox("untilTF");
     final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-    testObj.requireText(sdf.format(this.camp.getUntilDate()));
+    testObj.requireText(sdf.format(camp.getUntilDate()));
     testObj.deleteText();
     testObj.enterText("14.04.2002");
-    assertThat(this.editView.getUntil()).isEqualTo(sdf.parse("14.04.2002"));
+    assertThat(editView.getUntil()).isEqualTo(sdf.parse("14.04.2002"));
   }
 
   @Test
   public final void testGetRatePerParticipant() {
-    final JTextComponentFixture testObj = this.testView.textBox("ratePerParticipantTF");
+    final JTextComponentFixture testObj = testView.textBox("ratePerParticipantTF");
 
-    testObj.requireText(this.camp.getRatePerParticipant());
+    testObj.requireText(camp.getRatePerParticipant());
     testObj.deleteText();
     testObj.enterText("1,50 EUR");
-    assertThat(this.editView.getRatePerParticipant()).isEqualTo("1,50 EUR");
+    assertThat(editView.getRatePerParticipant()).isEqualTo("1,50 EUR");
   }
 
   @Test
   public final void testGetRatePerDay() {
-    final JTextComponentFixture testObj = this.testView.textBox("ratePerDayTF");
+    final JTextComponentFixture testObj = testView.textBox("ratePerDayTF");
 
-    testObj.requireText(this.camp.getRatePerDayChildren());
+    testObj.requireText(camp.getRatePerDayChildren());
     testObj.deleteText();
     testObj.enterText("2,50 EUR");
-    assertThat(this.editView.getRatePerDay()).isEqualTo("2,50 EUR");
+    assertThat(editView.getRatePerDay()).isEqualTo("2,50 EUR");
   }
 
   @Test
   public final void testGetID() {
-    final JLabelFixture testObj = this.testView.label("idLbl");
-    testObj.requireText(String.valueOf(this.camp.getId()));
-    assertThat(this.editView.getId()).isEqualTo(this.camp.getId());
+    final JLabelFixture testObj = testView.label("idLbl");
+    testObj.requireText(String.valueOf(camp.getId()));
+    assertThat(editView.getId()).isEqualTo(camp.getId());
   }
 
   @Test
   public final void testCancelDate() {
-    final JLabelFixture testObj = this.testView.label("cancelledLbl");
+    final JLabelFixture testObj = testView.label("cancelledLbl");
     testObj.requireText((String) null);
 
-    this.camp.setCancelDate(new Date(1234));
+    camp.setCancelDate(new Date(1234));
     testObj.requireText((String) null);
     updateCamp();
     testObj.requireText(Text.CAMP_CANCELLED_ON.text(new SimpleDateFormat().format(new Date(1234))));
 
-    this.camp.setCancelDate(null);
+    camp.setCancelDate(null);
     clear();
     updateCamp();
     testObj.requireText((String) null);
@@ -248,11 +248,11 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
         Arrays.asList(participant1, participant2, participant3, participant4, participant5);
     update(participants);
 
-    requireParticipant(this.testView.table("participants"), 0, participant1);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant3);
-    requireParticipant(this.testView.table("participants"), 3, participant4);
-    requireParticipant(this.testView.table("participants"), 4, participant5);
+    requireParticipant(testView.table("participants"), 0, participant1);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant3);
+    requireParticipant(testView.table("participants"), 3, participant4);
+    requireParticipant(testView.table("participants"), 4, participant5);
   }
 
   @Test
@@ -268,55 +268,55 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
         Arrays.asList(participant1, participant2, participant3, participant4, participant5);
     update(participants);
 
-    requireParticipant(this.testView.table("participants"), 0, participant1);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant3);
-    requireParticipant(this.testView.table("participants"), 3, participant4);
-    requireParticipant(this.testView.table("participants"), 4, participant5);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant)));
+    requireParticipant(testView.table("participants"), 0, participant1);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant3);
+    requireParticipant(testView.table("participants"), 3, participant4);
+    requireParticipant(testView.table("participants"), 4, participant5);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant)));
 
-    this.testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
-    requireParticipant(this.testView.table("participants"), 0, participant1);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant4);
-    requireParticipant(this.testView.table("participants"), 3, participant5);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
-    assertThat(this.editView.getCampParticipants())
-        .isEqualTo(Arrays.asList(new CampParticipant(this.participant), new CampParticipant(participant3)));
+    testView.table("participants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    requireParticipant(testView.table("participants"), 0, participant1);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant4);
+    requireParticipant(testView.table("participants"), 3, participant5);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant3));
+    assertThat(editView.getCampParticipants())
+        .isEqualTo(Arrays.asList(new CampParticipant(participant), new CampParticipant(participant3)));
 
-    this.testView.table("participants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
-    requireParticipant(this.testView.table("participants"), 0, participant1);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant5);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant4));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant3),
-                                                                            new CampParticipant(participant4)));
+    testView.table("participants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
+    requireParticipant(testView.table("participants"), 0, participant1);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant5);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant3));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant4));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant),
+                                                                       new CampParticipant(participant3),
+                                                                       new CampParticipant(participant4)));
 
-    this.testView.table("participants").click(TableCell.row(2).column(1), MouseClickInfo.leftButton().times(2));
-    requireParticipant(this.testView.table("participants"), 0, participant1);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant3));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant4));
-    requireParticipant(this.testView.table("campParticipants"), 3, new CampParticipant(participant5));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant3),
-                                                                            new CampParticipant(participant4),
-                                                                            new CampParticipant(participant5)));
+    testView.table("participants").click(TableCell.row(2).column(1), MouseClickInfo.leftButton().times(2));
+    requireParticipant(testView.table("participants"), 0, participant1);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant3));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant4));
+    requireParticipant(testView.table("campParticipants"), 3, new CampParticipant(participant5));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant),
+                                                                       new CampParticipant(participant3),
+                                                                       new CampParticipant(participant4),
+                                                                       new CampParticipant(participant5)));
 
     clear();
-    requireParticipant(this.testView.table("participants"), 0, participant1);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant3);
-    requireParticipant(this.testView.table("participants"), 3, participant4);
-    requireParticipant(this.testView.table("participants"), 4, participant5);
-    assertThat(this.editView.getCampParticipants()).isEmpty();
-    this.testView.table("campParticipants").requireRowCount(0);
+    requireParticipant(testView.table("participants"), 0, participant1);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant3);
+    requireParticipant(testView.table("participants"), 3, participant4);
+    requireParticipant(testView.table("participants"), 4, participant5);
+    assertThat(editView.getCampParticipants()).isEmpty();
+    testView.table("campParticipants").requireRowCount(0);
   }
 
 
@@ -337,101 +337,101 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     camp.addParticipant(new CampParticipant(participant5));
     updateCamp();
 
-    requireParticipant(this.testView.table("participants"), 0, participant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant1));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant2));
-    requireParticipant(this.testView.table("campParticipants"), 3, new CampParticipant(participant3));
-    requireParticipant(this.testView.table("campParticipants"), 4, new CampParticipant(participant5));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant1),
-                                                                            new CampParticipant(participant2),
-                                                                            new CampParticipant(participant3),
-                                                                            new CampParticipant(participant5)));
+    requireParticipant(testView.table("participants"), 0, participant4);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant1));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant2));
+    requireParticipant(testView.table("campParticipants"), 3, new CampParticipant(participant3));
+    requireParticipant(testView.table("campParticipants"), 4, new CampParticipant(participant5));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant),
+                                                                       new CampParticipant(participant1),
+                                                                       new CampParticipant(participant2),
+                                                                       new CampParticipant(participant3),
+                                                                       new CampParticipant(participant5)));
 
-    this.testView.table("campParticipants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").click(TableCell.row(2).column(2), MouseClickInfo.leftButton().times(2));
     testView.optionPane().requireTitle(Text.USER_WARNING.text())
             .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
-    requireParticipant(this.testView.table("participants"), 0, participant2);
-    requireParticipant(this.testView.table("participants"), 1, participant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant1));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant3));
-    requireParticipant(this.testView.table("campParticipants"), 3, new CampParticipant(participant5));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant1),
-                                                                            new CampParticipant(participant3),
-                                                                            new CampParticipant(participant5)));
+    requireParticipant(testView.table("participants"), 0, participant2);
+    requireParticipant(testView.table("participants"), 1, participant4);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant1));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant3));
+    requireParticipant(testView.table("campParticipants"), 3, new CampParticipant(participant5));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant),
+                                                                       new CampParticipant(participant1),
+                                                                       new CampParticipant(participant3),
+                                                                       new CampParticipant(participant5)));
 
-    this.testView.table("campParticipants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").click(TableCell.row(2).column(0), MouseClickInfo.leftButton().times(2));
     testView.optionPane().requireTitle(Text.USER_WARNING.text())
             .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
-    requireParticipant(this.testView.table("participants"), 0, participant2);
-    requireParticipant(this.testView.table("participants"), 1, participant3);
-    requireParticipant(this.testView.table("participants"), 2, participant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant1));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant5));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant1),
-                                                                            new CampParticipant(participant5)));
+    requireParticipant(testView.table("participants"), 0, participant2);
+    requireParticipant(testView.table("participants"), 1, participant3);
+    requireParticipant(testView.table("participants"), 2, participant4);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant1));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant5));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant),
+                                                                       new CampParticipant(participant1),
+                                                                       new CampParticipant(participant5)));
 
-    this.testView.table("campParticipants").click(TableCell.row(0).column(1), MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").click(TableCell.row(0).column(1), MouseClickInfo.leftButton().times(2));
     testView.optionPane().requireTitle(Text.USER_WARNING.text())
             .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).cancelButton().click();
-    requireParticipant(this.testView.table("participants"), 0, participant2);
-    requireParticipant(this.testView.table("participants"), 1, participant3);
-    requireParticipant(this.testView.table("participants"), 2, participant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant1));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant5));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(this.participant),
-                                                                            new CampParticipant(participant1),
-                                                                            new CampParticipant(participant5)));
+    requireParticipant(testView.table("participants"), 0, participant2);
+    requireParticipant(testView.table("participants"), 1, participant3);
+    requireParticipant(testView.table("participants"), 2, participant4);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant1));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant5));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant),
+                                                                       new CampParticipant(participant1),
+                                                                       new CampParticipant(participant5)));
 
-    this.testView.table("campParticipants").click(TableCell.row(0).column(1), MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").click(TableCell.row(0).column(1), MouseClickInfo.leftButton().times(2));
     testView.optionPane().requireTitle(Text.USER_WARNING.text())
             .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
-    requireParticipant(this.testView.table("participants"), 0, this.participant);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant3);
-    requireParticipant(this.testView.table("participants"), 3, participant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(participant1));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant5));
-    assertThat(this.editView.getCampParticipants())
+    requireParticipant(testView.table("participants"), 0, participant);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant3);
+    requireParticipant(testView.table("participants"), 3, participant4);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant1));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant5));
+    assertThat(editView.getCampParticipants())
         .isEqualTo(Arrays.asList(new CampParticipant(participant1), new CampParticipant(participant5)));
 
-    this.testView.table("campParticipants").click(TableCell.row(1).column(0), MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").click(TableCell.row(1).column(0), MouseClickInfo.leftButton().times(2));
     testView.optionPane().requireTitle(Text.USER_WARNING.text())
             .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
-    requireParticipant(this.testView.table("participants"), 0, this.participant);
-    requireParticipant(this.testView.table("participants"), 1, participant2);
-    requireParticipant(this.testView.table("participants"), 2, participant3);
-    requireParticipant(this.testView.table("participants"), 3, participant4);
-    requireParticipant(this.testView.table("participants"), 4, participant5);
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(participant1));
-    assertThat(this.editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant1)));
+    requireParticipant(testView.table("participants"), 0, participant);
+    requireParticipant(testView.table("participants"), 1, participant2);
+    requireParticipant(testView.table("participants"), 2, participant3);
+    requireParticipant(testView.table("participants"), 3, participant4);
+    requireParticipant(testView.table("participants"), 4, participant5);
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant1));
+    assertThat(editView.getCampParticipants()).isEqualTo(Arrays.asList(new CampParticipant(participant1)));
 
-    this.testView.table("campParticipants").click(TableCell.row(0).column(0), MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").click(TableCell.row(0).column(0), MouseClickInfo.leftButton().times(2));
     testView.optionPane().requireTitle(Text.USER_WARNING.text())
             .requireMessage(Text.CONTINUE_REMOVES_PARTICIPANT_FROM_CAMP).okButton().click();
-    requireParticipant(this.testView.table("participants"), 0, this.participant);
-    requireParticipant(this.testView.table("participants"), 1, participant1);
-    requireParticipant(this.testView.table("participants"), 2, participant2);
-    requireParticipant(this.testView.table("participants"), 3, participant3);
-    requireParticipant(this.testView.table("participants"), 4, participant4);
-    requireParticipant(this.testView.table("participants"), 5, participant5);
-    assertThat(this.editView.getCampParticipants()).isEmpty();
+    requireParticipant(testView.table("participants"), 0, participant);
+    requireParticipant(testView.table("participants"), 1, participant1);
+    requireParticipant(testView.table("participants"), 2, participant2);
+    requireParticipant(testView.table("participants"), 3, participant3);
+    requireParticipant(testView.table("participants"), 4, participant4);
+    requireParticipant(testView.table("participants"), 5, participant5);
+    assertThat(editView.getCampParticipants()).isEmpty();
 
     clear();
-    requireParticipant(this.testView.table("participants"), 0, this.participant);
-    requireParticipant(this.testView.table("participants"), 1, participant1);
-    requireParticipant(this.testView.table("participants"), 2, participant2);
-    requireParticipant(this.testView.table("participants"), 3, participant3);
-    requireParticipant(this.testView.table("participants"), 4, participant4);
-    requireParticipant(this.testView.table("participants"), 5, participant5);
-    assertThat(this.editView.getCampParticipants()).isEmpty();
-    this.testView.table("campParticipants").requireRowCount(0);
+    requireParticipant(testView.table("participants"), 0, participant);
+    requireParticipant(testView.table("participants"), 1, participant1);
+    requireParticipant(testView.table("participants"), 2, participant2);
+    requireParticipant(testView.table("participants"), 3, participant3);
+    requireParticipant(testView.table("participants"), 4, participant4);
+    requireParticipant(testView.table("participants"), 5, participant5);
+    assertThat(editView.getCampParticipants()).isEmpty();
+    testView.table("campParticipants").requireRowCount(0);
   }
 
   @Test
@@ -445,39 +445,39 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
 
     final CampParticipant campParticipant = new CampParticipant(participant1);
     campParticipant.setRole(Role.DIRECTION);
-    this.camp.addParticipant(campParticipant);
-    this.camp.addParticipant(new CampParticipant(participant2));
-    this.camp.addParticipant(new CampParticipant(participant3));
-    this.camp.addParticipant(new CampParticipant(participant4));
-    this.camp.addParticipant(new CampParticipant(participant5));
+    camp.addParticipant(campParticipant);
+    camp.addParticipant(new CampParticipant(participant2));
+    camp.addParticipant(new CampParticipant(participant3));
+    camp.addParticipant(new CampParticipant(participant4));
+    camp.addParticipant(new CampParticipant(participant5));
 
     setCamp();
 
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, campParticipant);
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant2));
-    requireParticipant(this.testView.table("campParticipants"), 3, new CampParticipant(participant3));
-    requireParticipant(this.testView.table("campParticipants"), 4, new CampParticipant(participant4));
-    requireParticipant(this.testView.table("campParticipants"), 5, new CampParticipant(participant5));
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant);
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant2));
+    requireParticipant(testView.table("campParticipants"), 3, new CampParticipant(participant3));
+    requireParticipant(testView.table("campParticipants"), 4, new CampParticipant(participant4));
+    requireParticipant(testView.table("campParticipants"), 5, new CampParticipant(participant5));
 
     final CampParticipant cParticipant = new CampParticipant(participant1);
     campParticipant.setRole(Role.STAFF);
-    this.camp.removeParticipant(cParticipant);
+    camp.removeParticipant(cParticipant);
     setCamp();
-    requireParticipant(this.testView.table("campParticipants"), 0, new CampParticipant(this.participant));
-    requireParticipant(this.testView.table("campParticipants"), 1, new CampParticipant(participant2));
-    requireParticipant(this.testView.table("campParticipants"), 2, new CampParticipant(participant3));
-    requireParticipant(this.testView.table("campParticipants"), 3, new CampParticipant(participant4));
-    requireParticipant(this.testView.table("campParticipants"), 4, new CampParticipant(participant5));
+    requireParticipant(testView.table("campParticipants"), 0, new CampParticipant(participant));
+    requireParticipant(testView.table("campParticipants"), 1, new CampParticipant(participant2));
+    requireParticipant(testView.table("campParticipants"), 2, new CampParticipant(participant3));
+    requireParticipant(testView.table("campParticipants"), 3, new CampParticipant(participant4));
+    requireParticipant(testView.table("campParticipants"), 4, new CampParticipant(participant5));
 
-    assertThat(this.editView.getCampParticipants()).isEqualTo(this.camp.getParticipants());
+    assertThat(editView.getCampParticipants()).isEqualTo(camp.getParticipants());
   }
 
   private void setCamp() {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampEditViewGUITest.this.editView.setCamp(CampEditViewGUITest.this.camp);
+        editView.setCamp(camp);
       }
     });
   }
@@ -486,7 +486,7 @@ public class CampEditViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampEditViewGUITest.this.editView.update(participants);
+        editView.update(participants);
       }
     });
   }

@@ -38,18 +38,18 @@ public final class CampParticipantSearchView extends AMultiSelectSearchView<Camp
 
   @Override
   protected AListView<CampParticipant> getListView() {
-    if (this.lView == null) {
-      this.lView = new CampParticipantListView("list", getObserver());
+    if (lView == null) {
+      lView = new CampParticipantListView("list", getObserver());
     }
-    return this.lView;
+    return lView;
   }
 
   @Override
   protected Object[] getPossibleCategories() {
-    if (this.objects == null) {
+    if (objects == null) {
       objects = createEmptyFilter().getCategories().toArray();
     }
-    return this.objects;
+    return objects;
   }
 
   @Override

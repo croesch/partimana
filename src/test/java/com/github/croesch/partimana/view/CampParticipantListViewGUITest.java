@@ -89,7 +89,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            56789,
                                            "Stadt",
                                            CountyCouncil.CITY_NEUSTADT);
-    this.campParticipant2 = new CampParticipant(p2);
+    campParticipant2 = new CampParticipant(p2);
 
     final Participant p3 = new Participant("Müller",
                                            "Jasmin",
@@ -100,7 +100,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            54321,
                                            "Schimmelhausen",
                                            CountyCouncil.CITY_ZWEIBRUECKEN);
-    this.campParticipant3 = new CampParticipant(p3);
+    campParticipant3 = new CampParticipant(p3);
 
     final Participant p4 = new Participant("Mauer",
                                            "Jaqueline",
@@ -111,7 +111,7 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            99384,
                                            "Hilgen",
                                            CountyCouncil.UNKNOWN);
-    this.campParticipant4 = new CampParticipant(p4);
+    campParticipant4 = new CampParticipant(p4);
 
     final Participant p5 = new Participant("Bauer",
                                            "Andreas",
@@ -122,17 +122,17 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
                                            21228,
                                            "Mildeningen",
                                            CountyCouncil.CITY_NEUSTADT);
-    this.campParticipant5 = new CampParticipant(p5);
+    campParticipant5 = new CampParticipant(p5);
 
-    this.campParticipant1 = new CampParticipant(participant1);
+    campParticipant1 = new CampParticipant(participant1);
 
     view.setName("listView");
-    this.listView = view;
+    listView = view;
 
     final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(view));
     window.target().setPreferredSize(new Dimension(800, 400));
     window.show();
-    this.testView = window.panel("listView");
+    testView = window.panel("listView");
   }
 
   @Override
@@ -143,16 +143,16 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
   @Test
   public final void testUpdateListOfParticipant() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
+    list.add(campParticipant1);
     update(list);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
   }
 
   private void update(final ArrayList<CampParticipant> list) throws InterruptedException, InvocationTargetException {
     SwingUtilities.invokeAndWait(new Runnable() {
       @Override
       public void run() {
-        CampParticipantListViewGUITest.this.listView.update(list);
+        listView.update(list);
       }
     });
   }
@@ -160,24 +160,24 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
   @Test
   public final void testTableEditable() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
+    list.add(campParticipant1);
     update(list);
-    this.testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(0));
-    this.testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(1));
-    this.testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(2));
+    testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(0));
+    testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(1));
+    testView.table("campParticipants").requireNotEditable(TableCell.row(0).column(2));
   }
 
   @Test
   public final void testSelection() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
+    list.add(campParticipant1);
     update(list);
-    this.testView.table("campParticipants").selectRows(0);
-    this.testView.table("campParticipants").requireSelectedRows(0);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant1.getId());
+    testView.table("campParticipants").selectRows(0);
+    testView.table("campParticipants").requireSelectedRows(0);
+    assertThat(listView.getSelectedElementId()).isEqualTo(campParticipant1.getId());
 
-    this.testView.table("campParticipants").selectCell(TableCell.row(0).column(0));
-    assertThat(this.testView.table("campParticipants").target().isCellSelected(0, 1)).isTrue();
+    testView.table("campParticipants").selectCell(TableCell.row(0).column(0));
+    assertThat(testView.table("campParticipants").target().isCellSelected(0, 1)).isTrue();
   }
 
   @Test
@@ -224,120 +224,120 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
     list.add(cp3);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(3);
-    requireParticipant(this.testView.table("campParticipants"), 0, cp1);
-    requireParticipant(this.testView.table("campParticipants"), 1, cp2);
-    requireParticipant(this.testView.table("campParticipants"), 2, cp3);
+    testView.table("campParticipants").requireRowCount(3);
+    requireParticipant(testView.table("campParticipants"), 0, cp1);
+    requireParticipant(testView.table("campParticipants"), 1, cp2);
+    requireParticipant(testView.table("campParticipants"), 2, cp3);
 
-    this.testView.table("campParticipants").tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table("campParticipants"), 0, cp3);
-    requireParticipant(this.testView.table("campParticipants"), 1, cp2);
-    requireParticipant(this.testView.table("campParticipants"), 2, cp1);
+    testView.table("campParticipants").tableHeader().clickColumn(0);
+    requireParticipant(testView.table("campParticipants"), 0, cp3);
+    requireParticipant(testView.table("campParticipants"), 1, cp2);
+    requireParticipant(testView.table("campParticipants"), 2, cp1);
 
-    this.testView.table("campParticipants").click();
-    this.testView.table("campParticipants").tableHeader().clickColumn(0);
-    requireParticipant(this.testView.table("campParticipants"), 0, cp1);
-    requireParticipant(this.testView.table("campParticipants"), 1, cp2);
-    requireParticipant(this.testView.table("campParticipants"), 2, cp3);
+    testView.table("campParticipants").click();
+    testView.table("campParticipants").tableHeader().clickColumn(0);
+    requireParticipant(testView.table("campParticipants"), 0, cp1);
+    requireParticipant(testView.table("campParticipants"), 1, cp2);
+    requireParticipant(testView.table("campParticipants"), 2, cp3);
   }
 
   @Test
   public final void testSorting_FirstName() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(5);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant5);
 
-    this.testView.table("campParticipants").tableHeader().clickColumn(1);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant5);
+    testView.table("campParticipants").tableHeader().clickColumn(1);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant5);
 
-    this.testView.table("campParticipants").click();
-    this.testView.table("campParticipants").tableHeader().clickColumn(1);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").click();
+    testView.table("campParticipants").tableHeader().clickColumn(1);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant5);
   }
 
   @Test
   public final void testSorting_LastName() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(5);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant5);
 
-    this.testView.table("campParticipants").tableHeader().clickColumn(2);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant5);
+    testView.table("campParticipants").tableHeader().clickColumn(2);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant5);
 
-    this.testView.table("campParticipants").click();
-    this.testView.table("campParticipants").tableHeader().clickColumn(2);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").click();
+    testView.table("campParticipants").tableHeader().clickColumn(2);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant5);
   }
 
   @Test
   public final void testValueChanging() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(5);
-    slct(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    slct(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    slct(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    slct(this.testView.table("campParticipants"), 3, this.campParticipant4);
-    slct(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").requireRowCount(5);
+    slct(testView.table("campParticipants"), 0, campParticipant1);
+    slct(testView.table("campParticipants"), 1, campParticipant2);
+    slct(testView.table("campParticipants"), 2, campParticipant3);
+    slct(testView.table("campParticipants"), 3, campParticipant4);
+    slct(testView.table("campParticipants"), 4, campParticipant5);
 
-    this.testView.table("campParticipants").tableHeader().clickColumn(1);
-    slct(this.testView.table("campParticipants"), 4, this.campParticipant1);
-    slct(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    slct(this.testView.table("campParticipants"), 3, this.campParticipant3);
-    slct(this.testView.table("campParticipants"), 2, this.campParticipant4);
-    slct(this.testView.table("campParticipants"), 0, this.campParticipant5);
+    testView.table("campParticipants").tableHeader().clickColumn(1);
+    slct(testView.table("campParticipants"), 4, campParticipant1);
+    slct(testView.table("campParticipants"), 1, campParticipant2);
+    slct(testView.table("campParticipants"), 3, campParticipant3);
+    slct(testView.table("campParticipants"), 2, campParticipant4);
+    slct(testView.table("campParticipants"), 0, campParticipant5);
 
-    this.testView.table("campParticipants").click();
-    this.testView.table("campParticipants").tableHeader().clickColumn(1);
-    slct(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    slct(this.testView.table("campParticipants"), 3, this.campParticipant2);
-    slct(this.testView.table("campParticipants"), 1, this.campParticipant3);
-    slct(this.testView.table("campParticipants"), 2, this.campParticipant4);
-    slct(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").click();
+    testView.table("campParticipants").tableHeader().clickColumn(1);
+    slct(testView.table("campParticipants"), 0, campParticipant1);
+    slct(testView.table("campParticipants"), 3, campParticipant2);
+    slct(testView.table("campParticipants"), 1, campParticipant3);
+    slct(testView.table("campParticipants"), 2, campParticipant4);
+    slct(testView.table("campParticipants"), 4, campParticipant5);
   }
 
   private void slct(final JTableFixture table, final int row, final CampParticipant cp) {
@@ -356,156 +356,144 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
   @Test
   public final void testSelection_CountOfRows() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").selectRows(1, 2, 3);
-    this.testView.table("campParticipants").requireSelectedRows(3);
-    assertThat(this.testView.table("campParticipants").target().getSelectedRowCount()).isEqualTo(1);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant4.getId());
+    testView.table("campParticipants").selectRows(1, 2, 3);
+    testView.table("campParticipants").requireSelectedRows(3);
+    assertThat(testView.table("campParticipants").target().getSelectedRowCount()).isEqualTo(1);
+    assertThat(listView.getSelectedElementId()).isEqualTo(campParticipant4.getId());
   }
 
   @Test
   public final void testSelection_MultipleUpdate() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(5);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant5);
 
-    list.remove(this.campParticipant4);
-    list.remove(this.campParticipant3);
+    list.remove(campParticipant4);
+    list.remove(campParticipant3);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(3);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant5);
+    testView.table("campParticipants").requireRowCount(3);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant5);
 
-    list.remove(this.campParticipant1);
-    list.remove(this.campParticipant5);
+    list.remove(campParticipant1);
+    list.remove(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(1);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant2);
+    testView.table("campParticipants").requireRowCount(1);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant2);
 
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").requireRowCount(5);
-    requireParticipant(this.testView.table("campParticipants"), 0, this.campParticipant1);
-    requireParticipant(this.testView.table("campParticipants"), 1, this.campParticipant2);
-    requireParticipant(this.testView.table("campParticipants"), 2, this.campParticipant3);
-    requireParticipant(this.testView.table("campParticipants"), 3, this.campParticipant4);
-    requireParticipant(this.testView.table("campParticipants"), 4, this.campParticipant5);
+    testView.table("campParticipants").requireRowCount(5);
+    requireParticipant(testView.table("campParticipants"), 0, campParticipant1);
+    requireParticipant(testView.table("campParticipants"), 1, campParticipant2);
+    requireParticipant(testView.table("campParticipants"), 2, campParticipant3);
+    requireParticipant(testView.table("campParticipants"), 3, campParticipant4);
+    requireParticipant(testView.table("campParticipants"), 4, campParticipant5);
   }
 
   @Test
   public final void testGetSelectedParticipantId() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    this.testView.table("campParticipants").selectRows(1);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant2.getId());
+    testView.table("campParticipants").selectRows(1);
+    assertThat(listView.getSelectedElementId()).isEqualTo(campParticipant2.getId());
 
-    this.testView.table("campParticipants").selectRows(2);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant3.getId());
+    testView.table("campParticipants").selectRows(2);
+    assertThat(listView.getSelectedElementId()).isEqualTo(campParticipant3.getId());
 
-    this.testView.table("campParticipants").selectRows(4);
-    assertThat(this.listView.getSelectedElementId()).isEqualTo(this.campParticipant5.getId());
+    testView.table("campParticipants").selectRows(4);
+    assertThat(listView.getSelectedElementId()).isEqualTo(campParticipant5.getId());
 
-    this.testView.table("campParticipants").pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
-                 .releaseKey(KeyEvent.VK_CONTROL);
-    this.testView.table("campParticipants").requireNoSelection();
-    assertThat(this.listView.getSelectedElementId()).isZero();
+    testView.table("campParticipants").pressKey(KeyEvent.VK_CONTROL).pressAndReleaseKeys(KeyEvent.VK_SPACE)
+            .releaseKey(KeyEvent.VK_CONTROL);
+    testView.table("campParticipants").requireNoSelection();
+    assertThat(listView.getSelectedElementId()).isZero();
   }
 
   @Test
   public final void testSelection_EventAfterDoubleClick() throws InterruptedException, InvocationTargetException {
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(2).column(1)).doubleClick();
+    testView.table("campParticipants").cell(TableCell.row(2).column(1)).doubleClick();
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(0).column(0))
-                 .click(MouseClickInfo.middleButton().times(1));
+    testView.table("campParticipants").cell(TableCell.row(0).column(0)).click(MouseClickInfo.middleButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(0).column(1))
-                 .click(MouseClickInfo.middleButton().times(2));
+    testView.table("campParticipants").cell(TableCell.row(0).column(1)).click(MouseClickInfo.middleButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(0).column(2))
-                 .click(MouseClickInfo.middleButton().times(3));
+    testView.table("campParticipants").cell(TableCell.row(0).column(2)).click(MouseClickInfo.middleButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(1).column(0))
-                 .click(MouseClickInfo.rightButton().times(1));
+    testView.table("campParticipants").cell(TableCell.row(1).column(0)).click(MouseClickInfo.rightButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(1).column(1))
-                 .click(MouseClickInfo.rightButton().times(2));
+    testView.table("campParticipants").cell(TableCell.row(1).column(1)).click(MouseClickInfo.rightButton().times(2));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(1).column(2))
-                 .click(MouseClickInfo.rightButton().times(3));
+    testView.table("campParticipants").cell(TableCell.row(1).column(2)).click(MouseClickInfo.rightButton().times(3));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(2).column(0))
-                 .click(MouseClickInfo.leftButton().times(1));
+    testView.table("campParticipants").cell(TableCell.row(2).column(0)).click(MouseClickInfo.leftButton().times(1));
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(2).column(1))
-                 .click(MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(2).column(2))
-                 .click(MouseClickInfo.leftButton().times(3));
+    testView.table("campParticipants").cell(TableCell.row(2).column(2)).click(MouseClickInfo.leftButton().times(3));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(2).column(1))
-                 .click(MouseClickInfo.leftButton().times(16));
+    testView.table("campParticipants").cell(TableCell.row(2).column(1)).click(MouseClickInfo.leftButton().times(16));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(4).column(0))
-                 .click(MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").cell(TableCell.row(4).column(0)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
 
     assertNoActionPerformed();
-    this.testView.table("campParticipants").cell(TableCell.row(1).column(2))
-                 .click(MouseClickInfo.leftButton().times(2));
+    testView.table("campParticipants").cell(TableCell.row(1).column(2)).click(MouseClickInfo.leftButton().times(2));
     assertThat(poll()).isEqualTo(UserAction.CAMP_PARTICIPANT_SELECTED);
   }
 
@@ -525,28 +513,28 @@ public class CampParticipantListViewGUITest extends PartiManaDefaultGUITestCase 
 
   @Test
   public final void testGetElementIds() throws InterruptedException, InvocationTargetException {
-    assertThat(this.listView.getElementIds()).isEmpty();
+    assertThat(listView.getElementIds()).isEmpty();
 
     final ArrayList<CampParticipant> list = new ArrayList<CampParticipant>();
-    list.add(this.campParticipant1);
-    list.add(this.campParticipant2);
-    list.add(this.campParticipant3);
-    list.add(this.campParticipant4);
-    list.add(this.campParticipant5);
+    list.add(campParticipant1);
+    list.add(campParticipant2);
+    list.add(campParticipant3);
+    list.add(campParticipant4);
+    list.add(campParticipant5);
     update(list);
 
-    assertThat(this.listView.getElementIds()).containsOnly(campParticipant1.getId(),
-                                                           campParticipant2.getId(),
-                                                           campParticipant3.getId(),
-                                                           campParticipant4.getId(),
-                                                           campParticipant5.getId());
+    assertThat(listView.getElementIds()).containsOnly(campParticipant1.getId(),
+                                                      campParticipant2.getId(),
+                                                      campParticipant3.getId(),
+                                                      campParticipant4.getId(),
+                                                      campParticipant5.getId());
 
     list.remove(campParticipant4);
     update(list);
 
-    assertThat(this.listView.getElementIds()).containsOnly(campParticipant1.getId(),
-                                                           campParticipant2.getId(),
-                                                           campParticipant3.getId(),
-                                                           campParticipant5.getId());
+    assertThat(listView.getElementIds()).containsOnly(campParticipant1.getId(),
+                                                      campParticipant2.getId(),
+                                                      campParticipant3.getId(),
+                                                      campParticipant5.getId());
   }
 }

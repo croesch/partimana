@@ -70,8 +70,8 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   public ASearchView(final String name, final FilterModel<T> model, final ActionObserver o) {
     super(name, Text.SEARCH_TITLE.text(Text.PARTIMANA, Text.SEARCH));
-    this.filterModel = model;
-    this.observer = o;
+    filterModel = model;
+    observer = o;
     buildUI();
   }
 
@@ -82,7 +82,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
    * @since Date: Nov 11, 2012
    */
   protected final ActionObserver getObserver() {
-    return this.observer;
+    return observer;
   }
 
   /**
@@ -116,7 +116,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
         }
       }
     });
-    panel.add(this.categoryCBox);
+    panel.add(categoryCBox);
 
     updateFilterTypeComboBox();
     filterTypeCBox.addItemListener(new ItemListener() {
@@ -128,7 +128,7 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
         }
       }
     });
-    panel.add(this.filterTypeCBox);
+    panel.add(filterTypeCBox);
 
     updateTextComponent(panel);
     filterValueDateBox.setName("filterValue");
@@ -187,11 +187,10 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
   private <OT> IFilter<T> createAdministeredFilter() {
     final IFilter<T> filter = createEmptyFilter();
     @SuppressWarnings("unchecked")
-    final IFilterCategory<T, OT> category =
-        ((IFilterCategory<T, OT>) ASearchView.this.categoryCBox.getSelectedItem()).getCopy();
+    final IFilterCategory<T, OT> category = ((IFilterCategory<T, OT>) categoryCBox.getSelectedItem()).getCopy();
     @SuppressWarnings("unchecked")
-    final IFilterType<OT> filterType = ((IFilterType<OT>) ASearchView.this.filterTypeCBox.getSelectedItem()).getCopy();
-    filterType.parseFilterValue(this.filterValueTBox);
+    final IFilterType<OT> filterType = ((IFilterType<OT>) filterTypeCBox.getSelectedItem()).getCopy();
+    filterType.parseFilterValue(filterValueTBox);
     category.setFilter(filterType);
     filter.setCategory(category);
     return filter;
@@ -212,10 +211,9 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
    */
   @SuppressWarnings("unchecked")
   private void updateFilterTypeComboBox() {
-    this.filterTypeCBox.removeAllItems();
-    for (final IFilterType<?> filterType : ((IFilterCategory<T, ?>) this.categoryCBox.getSelectedItem())
-        .getFilterTypes()) {
-      this.filterTypeCBox.addItem(filterType);
+    filterTypeCBox.removeAllItems();
+    for (final IFilterType<?> filterType : ((IFilterCategory<T, ?>) categoryCBox.getSelectedItem()).getFilterTypes()) {
+      filterTypeCBox.addItem(filterType);
     }
   }
 

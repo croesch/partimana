@@ -32,13 +32,13 @@ class CampModel implements ICampModel {
    * @since Date: Jun 19, 2011
    */
   public CampModel(final IPersistenceModel pm) {
-    this.persistenceModel = pm; //FIXME: null check
-    this.mapOfCamps = this.persistenceModel.getMapOfCamps();
+    persistenceModel = pm; //FIXME: null check
+    mapOfCamps = persistenceModel.getMapOfCamps();
   }
 
   @Override
   public Camp getCamp(final long id) {
-    final Camp c = this.mapOfCamps.get(Long.valueOf(id));
+    final Camp c = mapOfCamps.get(Long.valueOf(id));
     if (c == null) {
       return null;
     }
@@ -48,7 +48,7 @@ class CampModel implements ICampModel {
   @Override
   public List<Camp> getListOfCamps() {
     final List<Camp> list = new ArrayList<Camp>();
-    for (final Camp c : this.mapOfCamps.values()) {
+    for (final Camp c : mapOfCamps.values()) {
       list.add(c);
     }
     return list;
@@ -58,17 +58,17 @@ class CampModel implements ICampModel {
   public void store(final Camp c) throws RequiredFieldSetToNullException {
     final Camp store = new Camp(c);
 
-    if (this.mapOfCamps.containsKey(store.getId())) {
-      this.persistenceModel.update(store);
+    if (mapOfCamps.containsKey(store.getId())) {
+      persistenceModel.update(store);
     } else {
-      this.persistenceModel.create(store);
+      persistenceModel.create(store);
     }
-    this.mapOfCamps.put(store.getId(), store);
+    mapOfCamps.put(store.getId(), store);
   }
 
   @Override
   public void deleteCamp(final long id) {
-    this.persistenceModel.deleteCamp(id);
-    this.mapOfCamps.remove(id);
+    persistenceModel.deleteCamp(id);
+    mapOfCamps.remove(id);
   }
 }

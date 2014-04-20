@@ -27,37 +27,37 @@ public class CountyCouncilCategoryTest {
 
   @org.junit.Before
   public void setUp() {
-    this.category = new CountyCouncilCategory();
+    category = new CountyCouncilCategory();
   }
 
   @Test
   public void testGetFilters() {
-    assertThat(this.category.getFilterTypes()).containsOnly(new CountyCouncilEquals(), new CountyCouncilNotEquals());
+    assertThat(category.getFilterTypes()).containsOnly(new CountyCouncilEquals(), new CountyCouncilNotEquals());
 
-    final IFilterType<CountyCouncil> filterType = this.category.getFilterTypes().get(0);
+    final IFilterType<CountyCouncil> filterType = category.getFilterTypes().get(0);
     filterType.setFilterValue(CountyCouncil.CITY_KAISERSLAUTERN);
 
-    assertThat(this.category.getFilterTypes().contains(filterType)).isFalse();
+    assertThat(category.getFilterTypes().contains(filterType)).isFalse();
   }
 
   @Test
   public void testSetAndGetFilter() {
-    assertThat(this.category.getFilter()).isNull();
-    this.category.setFilter(new CountyCouncilEquals());
-    assertThat(this.category.getFilter()).isEqualTo(new CountyCouncilEquals());
-    this.category.setFilter(null);
-    assertThat(this.category.getFilter()).isNull();
+    assertThat(category.getFilter()).isNull();
+    category.setFilter(new CountyCouncilEquals());
+    assertThat(category.getFilter()).isEqualTo(new CountyCouncilEquals());
+    category.setFilter(null);
+    assertThat(category.getFilter()).isNull();
   }
 
   @Test
   public void testGetShortDescription() {
-    assertThat(this.category.getShortDescription()).isEqualTo(Text.FILTER_CAT_PARTICIPANT_COUNTY_COUNCIL.text());
-    assertThat(this.category.getShortDescription()).isEqualTo(Text.PARTICIPANT_COUNTY_COUNCIL.text());
+    assertThat(category.getShortDescription()).isEqualTo(Text.FILTER_CAT_PARTICIPANT_COUNTY_COUNCIL.text());
+    assertThat(category.getShortDescription()).isEqualTo(Text.PARTICIPANT_COUNTY_COUNCIL.text());
   }
 
   @Test
   public void testIsMatchingFilter() {
-    assertThat(this.category.isMatchingFilter(null)).isFalse();
+    assertThat(category.isMatchingFilter(null)).isFalse();
 
     final Participant p = new Participant("Musterfrau",
                                           "Maxi",
@@ -68,54 +68,54 @@ public class CountyCouncilCategoryTest {
                                           12,
                                           "city",
                                           CountyCouncil.COUNTY_RHEIN_PFALZ);
-    assertThat(this.category.isMatchingFilter(p)).isFalse();
+    assertThat(category.isMatchingFilter(p)).isFalse();
 
     final CountyCouncilEquals equals = new CountyCouncilEquals();
     equals.setFilterValue(CountyCouncil.CITY_LANDAU);
-    this.category.setFilter(equals);
-    assertThat(this.category.isMatchingFilter(p)).isFalse();
+    category.setFilter(equals);
+    assertThat(category.isMatchingFilter(p)).isFalse();
 
     final CountyCouncilNotEquals notEquals = new CountyCouncilNotEquals();
     notEquals.setFilterValue(CountyCouncil.CITY_LANDAU);
-    this.category.setFilter(notEquals);
-    assertThat(this.category.isMatchingFilter(p)).isTrue();
+    category.setFilter(notEquals);
+    assertThat(category.isMatchingFilter(p)).isTrue();
   }
 
   @Test
   public void testEquals() {
-    assertThat(this.category).isEqualTo(new CountyCouncilCategory());
-    assertThat(this.category).isEqualTo(this.category);
-    assertThat(this.category).isNotEqualTo(null);
-    assertThat(this.category).isNotEqualTo(new LocationCategory());
-    assertThat(this.category).isNotEqualTo("category");
+    assertThat(category).isEqualTo(new CountyCouncilCategory());
+    assertThat(category).isEqualTo(category);
+    assertThat(category).isNotEqualTo(null);
+    assertThat(category).isNotEqualTo(new LocationCategory());
+    assertThat(category).isNotEqualTo("category");
 
-    this.category.setFilter(new CountyCouncilEquals());
+    category.setFilter(new CountyCouncilEquals());
     final CountyCouncilCategory other = new CountyCouncilCategory();
-    assertThat(this.category).isNotEqualTo(other);
-    assertThat(other).isNotEqualTo(this.category);
+    assertThat(category).isNotEqualTo(other);
+    assertThat(other).isNotEqualTo(category);
     other.setFilter(new CountyCouncilEquals());
-    assertThat(this.category).isEqualTo(other);
+    assertThat(category).isEqualTo(other);
 
     final LocationCategory different = new LocationCategory();
     different.setFilter(new StringEquals());
-    this.category.getFilter().setFilterValue(CountyCouncil.CITY_ZWEIBRUECKEN);
-    assertThat(this.category).isNotEqualTo(different);
-    assertThat(different).isNotEqualTo(this.category);
+    category.getFilter().setFilterValue(CountyCouncil.CITY_ZWEIBRUECKEN);
+    assertThat(category).isNotEqualTo(different);
+    assertThat(different).isNotEqualTo(category);
   }
 
   @Test
   public void testHashCode() {
-    assertThat(this.category.hashCode()).isEqualTo(new CountyCouncilCategory().hashCode());
-    assertThat(this.category.hashCode()).isEqualTo(this.category.hashCode());
-    assertThat(this.category.hashCode()).isEqualTo(new LocationCategory().hashCode());
+    assertThat(category.hashCode()).isEqualTo(new CountyCouncilCategory().hashCode());
+    assertThat(category.hashCode()).isEqualTo(category.hashCode());
+    assertThat(category.hashCode()).isEqualTo(new LocationCategory().hashCode());
 
-    this.category.setFilter(new CountyCouncilEquals());
+    category.setFilter(new CountyCouncilEquals());
     final CountyCouncilCategory other = new CountyCouncilCategory();
     other.setFilter(new CountyCouncilEquals());
-    assertThat(this.category.hashCode()).isEqualTo(other.hashCode());
+    assertThat(category.hashCode()).isEqualTo(other.hashCode());
 
     final LocationCategory different = new LocationCategory();
     different.setFilter(new StringEquals());
-    assertThat(this.category.hashCode()).isEqualTo(different.hashCode());
+    assertThat(category.hashCode()).isEqualTo(different.hashCode());
   }
 }

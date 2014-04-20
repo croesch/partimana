@@ -29,20 +29,20 @@ public enum Gender {
   /**
    * Constructs a {@link Gender} with the given i18n representation of the specific object.
    *
-   * @param representation the representation of this object. This is ensured to be not changed frequently as it may be
-   *                       stored in the database or something like that.
-   * @param t              the {@link Text} that represents this object.
+   * @param rep the representation of this object. This is ensured to be not changed frequently as it may be stored in
+   *            the database or something like that.
+   * @param t   the {@link Text} that represents this object.
    * @since Date: Jun 21, 2011
    */
-  private Gender(final Text t, String representation) {
-    this.s = t.text();
-    this.representation = representation;
+  private Gender(final Text t, String rep) {
+    s = t.text();
+    representation = rep;
   }
 
   @Override
   @NotNull
   public String toString() {
-    return this.s;
+    return s;
   }
 
 

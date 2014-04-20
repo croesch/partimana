@@ -23,7 +23,7 @@ public abstract class PartiManaDefaultGUITestCase extends AssertJSwingJUnitTestC
 
   @Override
   protected final void onSetUp() {
-    this.actions.clear();
+    actions.clear();
     before();
   }
 
@@ -45,14 +45,14 @@ public abstract class PartiManaDefaultGUITestCase extends AssertJSwingJUnitTestC
 
   @Override
   public final void performAction(final UserAction action) {
-    this.actions.add(action);
+    actions.add(action);
   }
 
   protected UserAction poll() {
-    return this.actions.poll();
+    return actions.poll();
   }
 
   protected void assertNoActionPerformed() {
-    assertThat(this.actions).isEmpty();
+    assertThat(actions).isEmpty();
   }
 }

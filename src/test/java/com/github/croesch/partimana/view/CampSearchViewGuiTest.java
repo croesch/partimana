@@ -35,57 +35,55 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   @Override
   protected void before() {
-    this.camps = new Camp[5];
-    this.camps[0] = new Camp("OFZ", new Date(15000000000L), new Date(110000000000L), "Berlin", "20 USD");
-    this.camps[1] = new Camp("HFZ", new Date(25000000000L), new Date(210000000000L), "Frankfurt", "2 EUR");
-    this.camps[2] = new Camp("Freizeit", new Date(35000000000L), new Date(310000000000L), "Stuttgart", "2");
-    this.camps[3] = new Camp("Lager", new Date(45000000000L), new Date(410000000000L), "Hannover", "10");
-    this.camps[4] = new Camp("Camp", new Date(55000000000L), new Date(510000000000L), "München", "200");
+    camps = new Camp[5];
+    camps[0] = new Camp("OFZ", new Date(15000000000L), new Date(110000000000L), "Berlin", "20 USD");
+    camps[1] = new Camp("HFZ", new Date(25000000000L), new Date(210000000000L), "Frankfurt", "2 EUR");
+    camps[2] = new Camp("Freizeit", new Date(35000000000L), new Date(310000000000L), "Stuttgart", "2");
+    camps[3] = new Camp("Lager", new Date(45000000000L), new Date(410000000000L), "Hannover", "10");
+    camps[4] = new Camp("Camp", new Date(55000000000L), new Date(510000000000L), "München", "200");
 
-    this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
+    searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
       @Override
       protected JFrame executeInEDT() throws Throwable {
-        return new CampSearchView("searchingView",
-                                  Arrays.asList(CampSearchViewGuiTest.this.camps),
-                                  CampSearchViewGuiTest.this);
+        return new CampSearchView("searchingView", Arrays.asList(camps), CampSearchViewGuiTest.this);
       }
     }));
-    this.searchView.show();
+    searchView.show();
   }
 
   @Test
   public void testClosingView() {
-    assertThat(this.searchView.target().getName()).isEqualTo("searchingView");
-    this.searchView.button("close").requireText(Text.CANCEL.text()).click();
-    this.searchView.requireNotVisible();
-    assertThat(this.searchView.target().isDisplayable()).isFalse();
+    assertThat(searchView.target().getName()).isEqualTo("searchingView");
+    searchView.button("close").requireText(Text.CANCEL.text()).click();
+    searchView.requireNotVisible();
+    assertThat(searchView.target().isDisplayable()).isFalse();
   }
 
   @Test
   public void testListInView() {
-    this.searchView.panel("list").table("camps").requireRowCount(0);
-    CampListViewGUITest.update(((CampSearchView) this.searchView.target()).getListView(), Arrays.asList(this.camps));
-    CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 0, this.camps[0]);
-    CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 1, this.camps[1]);
-    CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 2, this.camps[2]);
-    CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 3, this.camps[3]);
-    CampListViewGUITest.requireCamp(this.searchView.panel("list").table("camps"), 4, this.camps[4]);
+    searchView.panel("list").table("camps").requireRowCount(0);
+    CampListViewGUITest.update(((CampSearchView) searchView.target()).getListView(), Arrays.asList(camps));
+    CampListViewGUITest.requireCamp(searchView.panel("list").table("camps"), 0, camps[0]);
+    CampListViewGUITest.requireCamp(searchView.panel("list").table("camps"), 1, camps[1]);
+    CampListViewGUITest.requireCamp(searchView.panel("list").table("camps"), 2, camps[2]);
+    CampListViewGUITest.requireCamp(searchView.panel("list").table("camps"), 3, camps[3]);
+    CampListViewGUITest.requireCamp(searchView.panel("list").table("camps"), 4, camps[4]);
   }
 
   @Test
   public void testSelectItem() {
-    final JTableFixture table = this.searchView.panel("list").table("camps");
-    final JButtonFixture button = this.searchView.button("select");
+    final JTableFixture table = searchView.panel("list").table("camps");
+    final JButtonFixture button = searchView.button("select");
 
     table.requireRowCount(0);
     button.requireText(Text.SELECT.text()).requireDisabled();
 
-    CampListViewGUITest.update(((CampSearchView) this.searchView.target()).getListView(), Arrays.asList(this.camps));
-    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
-    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
-    CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
-    CampListViewGUITest.requireCamp(table, 3, this.camps[3]);
-    CampListViewGUITest.requireCamp(table, 4, this.camps[4]);
+    CampListViewGUITest.update(((CampSearchView) searchView.target()).getListView(), Arrays.asList(camps));
+    CampListViewGUITest.requireCamp(table, 0, camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, camps[1]);
+    CampListViewGUITest.requireCamp(table, 2, camps[2]);
+    CampListViewGUITest.requireCamp(table, 3, camps[3]);
+    CampListViewGUITest.requireCamp(table, 4, camps[4]);
     table.requireNoSelection();
     button.requireDisabled();
 
@@ -111,11 +109,11 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     button.click();
     assertThat(poll()).isEqualTo(UserAction.CAMP_SELECTED);
 
-    assertThat(this.searchView.target()).isInstanceOf(CampSearchView.class);
-    assertThat(((CampSearchView) this.searchView.target()).getSelectedId()).isEqualTo(this.camps[0].getId());
+    assertThat(searchView.target()).isInstanceOf(CampSearchView.class);
+    assertThat(((CampSearchView) searchView.target()).getSelectedId()).isEqualTo(camps[0].getId());
 
     table.selectRows(2);
-    assertThat(((CampSearchView) this.searchView.target()).getSelectedId()).isEqualTo(this.camps[2].getId());
+    assertThat(((CampSearchView) searchView.target()).getSelectedId()).isEqualTo(camps[2].getId());
 
     try {
       table.pressKey(KeyEvent.VK_CONTROL);
@@ -125,32 +123,32 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     }
     table.requireSelectedRows();
     button.requireDisabled();
-    assertThat(((CampSearchView) this.searchView.target()).getSelectedId()).isZero();
+    assertThat(((CampSearchView) searchView.target()).getSelectedId()).isZero();
   }
 
   @Test
   public void testFilterTwoFirstCamps() {
-    final JComboBoxFixture categoryComboBox = this.searchView.panel(FC).comboBox("category");
-    final JComboBoxFixture filterComboBox = this.searchView.panel(FC).comboBox("filterType");
+    final JComboBoxFixture categoryComboBox = searchView.panel(FC).comboBox("category");
+    final JComboBoxFixture filterComboBox = searchView.panel(FC).comboBox("filterType");
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_NAME.text());
 
     assertComboboxContainsStringFilterTypes(filterComboBox);
     filterComboBox.selectItem(Text.FILTER_TYPE_STARTS_WITH.text());
-    this.searchView.textBox("filterValue").enterText("O");
+    searchView.textBox("filterValue").enterText("O");
 
-    final JTableFixture table = this.searchView.panel("list").table("camps");
+    final JTableFixture table = searchView.panel("list").table("camps");
     table.requireRowCount(1);
-    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
+    CampListViewGUITest.requireCamp(table, 0, camps[0]);
 
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("H");
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("H");
     table.requireRowCount(1);
-    CampListViewGUITest.requireCamp(table, 0, this.camps[1]);
+    CampListViewGUITest.requireCamp(table, 0, camps[1]);
   }
 
   @Test
   public void testFilterComposition() {
-    final JComboBoxFixture categoryComboBox = this.searchView.panel(FC).comboBox("category");
-    final JComboBoxFixture filterComboBox = this.searchView.panel(FC).comboBox("filterType");
+    final JComboBoxFixture categoryComboBox = searchView.panel(FC).comboBox("category");
+    final JComboBoxFixture filterComboBox = searchView.panel(FC).comboBox("filterType");
     assertThat(categoryComboBox.contents()).containsOnly(Text.FILTER_CAT_CAMP_FROM.text(),
                                                          Text.FILTER_CAT_CAMP_LOCATION.text(),
                                                          Text.FILTER_CAT_CAMP_NAME.text(),
@@ -165,43 +163,43 @@ public class CampSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     assertComboboxContainsStringFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_CONTAINS.text());
-    this.searchView.textBox("filterValue").enterText("2");
+    searchView.textBox("filterValue").enterText("2");
 
-    final JTableFixture table = this.searchView.panel("list").table("camps");
+    final JTableFixture table = searchView.panel("list").table("camps");
     table.requireRowCount(4);
-    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
-    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
-    CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
-    CampListViewGUITest.requireCamp(table, 3, this.camps[4]);
+    CampListViewGUITest.requireCamp(table, 0, camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, camps[1]);
+    CampListViewGUITest.requireCamp(table, 2, camps[2]);
+    CampListViewGUITest.requireCamp(table, 3, camps[4]);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_LOCATION.text());
     assertComboboxContainsStringFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_ENDS_WITH.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("t");
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("t");
     table.requireRowCount(2);
-    CampListViewGUITest.requireCamp(table, 0, this.camps[1]);
-    CampListViewGUITest.requireCamp(table, 1, this.camps[2]);
+    CampListViewGUITest.requireCamp(table, 0, camps[1]);
+    CampListViewGUITest.requireCamp(table, 1, camps[2]);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_NAME.text());
     assertComboboxContainsStringFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("caMp");
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("caMp");
     table.requireRowCount(4);
-    CampListViewGUITest.requireCamp(table, 0, this.camps[0]);
-    CampListViewGUITest.requireCamp(table, 1, this.camps[1]);
-    CampListViewGUITest.requireCamp(table, 2, this.camps[2]);
-    CampListViewGUITest.requireCamp(table, 3, this.camps[3]);
+    CampListViewGUITest.requireCamp(table, 0, camps[0]);
+    CampListViewGUITest.requireCamp(table, 1, camps[1]);
+    CampListViewGUITest.requireCamp(table, 2, camps[2]);
+    CampListViewGUITest.requireCamp(table, 3, camps[3]);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_CAMP_FROM.text());
     assertComboboxContainsDateFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("05.06.1971");
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("05.06.1971");
     table.requireRowCount(2);
-    CampListViewGUITest.requireCamp(table, 0, this.camps[3]);
-    CampListViewGUITest.requireCamp(table, 1, this.camps[4]);
+    CampListViewGUITest.requireCamp(table, 0, camps[3]);
+    CampListViewGUITest.requireCamp(table, 1, camps[4]);
   }
 
   private void assertComboboxContainsDateFilterTypes(final JComboBoxFixture filterComboBox) {

@@ -39,16 +39,16 @@ public final class ParticipantSearchView extends ASingleSelectSearchView<Partici
 
   @Override
   protected AListView<Participant> getListView() {
-    if (this.lView == null) {
-      this.lView = new ParticipantListView("list", getObserver());
+    if (lView == null) {
+      lView = new ParticipantListView("list", getObserver());
     }
-    return this.lView;
+    return lView;
   }
 
   @Override
   protected Object[] getPossibleCategories() {
-    if (this.objects == null) {
-      this.objects = new Object[] { new BankAccountNumberCategory(),
+    if (objects == null) {
+      objects = new Object[] { new BankAccountNumberCategory(),
                                     new BankCodeNumberCategory(),
                                     new BankNameCategory(),
                                     new BirthdayCategory(),
@@ -72,7 +72,7 @@ public final class ParticipantSearchView extends ASingleSelectSearchView<Partici
                                     new PostalPostCodeCategory(),
                                     new PostalStreetCategory(), };
     }
-    return this.objects;
+    return objects;
   }
 
   @Override

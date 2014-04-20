@@ -39,104 +39,99 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
 
   @Override
   protected void before() {
-    this.participants = new Participant[5];
-    this.participants[0] = new Participant("Schmidt",
-                                           "Hans",
-                                           Gender.MALE,
-                                           Denomination.NONE,
-                                           new Date(1200),
-                                           "Strasse 4",
-                                           56789,
-                                           "Stadt",
-                                           CountyCouncil.CITY_NEUSTADT);
-    this.participants[1] = new Participant("Mustermann",
-                                           "Max",
-                                           Gender.MALE,
-                                           Denomination.CATHOLIC,
-                                           new Date(1200000000),
-                                           "Musterstraße 1",
-                                           12345,
-                                           "Musterhausen",
-                                           CountyCouncil.OTHER);
-    this.participants[2] = new Participant("Becker",
-                                           "Hilde",
-                                           Gender.FEMALE,
-                                           Denomination.EVANGELIC,
-                                           new Date(11200000000L),
-                                           "Hauptstraße 41",
-                                           64829,
-                                           "Saarbrücken",
-                                           CountyCouncil.UNKNOWN);
-    this.participants[3] = new Participant("Paulson",
-                                           "Paula",
-                                           Gender.FEMALE,
-                                           Denomination.ORTHODOX,
-                                           new Date(111200000000L),
-                                           "Hinterweg 3",
-                                           87663,
-                                           "Oslo",
-                                           CountyCouncil.CITY_LUDWIGSHAFEN);
-    this.participants[4] = new Participant("Hauser",
-                                           "Peter",
-                                           Gender.MALE,
-                                           Denomination.MUSLIM,
-                                           new Date(12200000000L),
-                                           "Ruhrgasse 124",
-                                           34429,
-                                           "Ludwigshafen",
-                                           CountyCouncil.CITY_LANDAU);
+    participants = new Participant[5];
+    participants[0] = new Participant("Schmidt",
+                                      "Hans",
+                                      Gender.MALE,
+                                      Denomination.NONE,
+                                      new Date(1200),
+                                      "Strasse 4",
+                                      56789,
+                                      "Stadt",
+                                      CountyCouncil.CITY_NEUSTADT);
+    participants[1] = new Participant("Mustermann",
+                                      "Max",
+                                      Gender.MALE,
+                                      Denomination.CATHOLIC,
+                                      new Date(1200000000),
+                                      "Musterstraße 1",
+                                      12345,
+                                      "Musterhausen",
+                                      CountyCouncil.OTHER);
+    participants[2] = new Participant("Becker",
+                                      "Hilde",
+                                      Gender.FEMALE,
+                                      Denomination.EVANGELIC,
+                                      new Date(11200000000L),
+                                      "Hauptstraße 41",
+                                      64829,
+                                      "Saarbrücken",
+                                      CountyCouncil.UNKNOWN);
+    participants[3] = new Participant("Paulson",
+                                      "Paula",
+                                      Gender.FEMALE,
+                                      Denomination.ORTHODOX,
+                                      new Date(111200000000L),
+                                      "Hinterweg 3",
+                                      87663,
+                                      "Oslo",
+                                      CountyCouncil.CITY_LUDWIGSHAFEN);
+    participants[4] = new Participant("Hauser",
+                                      "Peter",
+                                      Gender.MALE,
+                                      Denomination.MUSLIM,
+                                      new Date(12200000000L),
+                                      "Ruhrgasse 124",
+                                      34429,
+                                      "Ludwigshafen",
+                                      CountyCouncil.CITY_LANDAU);
 
-    this.searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
+    searchView = new FrameFixture(robot(), GuiActionRunner.execute(new GuiQuery<JFrame>() {
       @Override
       protected JFrame executeInEDT() throws Throwable {
         return new ParticipantSearchView("searchingView",
-                                         Arrays.asList(ParticipantSearchViewGuiTest.this.participants),
+                                         Arrays.asList(participants),
                                          ParticipantSearchViewGuiTest.this);
       }
     }));
-    this.searchView.show();
+    searchView.show();
   }
 
   @Test
   public void testClosingView() {
-    assertThat(this.searchView.target().getName()).isEqualTo("searchingView");
-    this.searchView.button("close").requireText(Text.CANCEL.text()).click();
-    this.searchView.requireNotVisible();
-    assertThat(this.searchView.target().isDisplayable()).isFalse();
+    assertThat(searchView.target().getName()).isEqualTo("searchingView");
+    searchView.button("close").requireText(Text.CANCEL.text()).click();
+    searchView.requireNotVisible();
+    assertThat(searchView.target().isDisplayable()).isFalse();
   }
 
   @Test
   public void testListInView() throws InterruptedException, InvocationTargetException {
-    this.searchView.panel("list").table("participants").requireRowCount(0);
+    searchView.panel("list").table("participants").requireRowCount(0);
     ParticipantListViewGUITest
-        .update(((ParticipantSearchView) this.searchView.target()).getListView(), Arrays.asList(this.participants));
-    ParticipantListViewGUITest
-        .requireParticipant(this.searchView.panel("list").table("participants"), 0, this.participants[0]);
-    ParticipantListViewGUITest
-        .requireParticipant(this.searchView.panel("list").table("participants"), 1, this.participants[1]);
-    ParticipantListViewGUITest
-        .requireParticipant(this.searchView.panel("list").table("participants"), 2, this.participants[2]);
-    ParticipantListViewGUITest
-        .requireParticipant(this.searchView.panel("list").table("participants"), 3, this.participants[3]);
-    ParticipantListViewGUITest
-        .requireParticipant(this.searchView.panel("list").table("participants"), 4, this.participants[4]);
+        .update(((ParticipantSearchView) searchView.target()).getListView(), Arrays.asList(participants));
+    ParticipantListViewGUITest.requireParticipant(searchView.panel("list").table("participants"), 0, participants[0]);
+    ParticipantListViewGUITest.requireParticipant(searchView.panel("list").table("participants"), 1, participants[1]);
+    ParticipantListViewGUITest.requireParticipant(searchView.panel("list").table("participants"), 2, participants[2]);
+    ParticipantListViewGUITest.requireParticipant(searchView.panel("list").table("participants"), 3, participants[3]);
+    ParticipantListViewGUITest.requireParticipant(searchView.panel("list").table("participants"), 4, participants[4]);
   }
 
   @Test
   public void testSelectItem() throws InterruptedException, InvocationTargetException {
-    final JTableFixture table = this.searchView.panel("list").table("participants");
-    final JButtonFixture button = this.searchView.button("select");
+    final JTableFixture table = searchView.panel("list").table("participants");
+    final JButtonFixture button = searchView.button("select");
 
     table.requireRowCount(0);
     button.requireText(Text.SELECT.text()).requireDisabled();
 
     ParticipantListViewGUITest
-        .update(((ParticipantSearchView) this.searchView.target()).getListView(), Arrays.asList(this.participants));
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[0]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[1]);
-    ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[2]);
-    ParticipantListViewGUITest.requireParticipant(table, 3, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 4, this.participants[4]);
+        .update(((ParticipantSearchView) searchView.target()).getListView(), Arrays.asList(participants));
+    ParticipantListViewGUITest.requireParticipant(table, 0, participants[0]);
+    ParticipantListViewGUITest.requireParticipant(table, 1, participants[1]);
+    ParticipantListViewGUITest.requireParticipant(table, 2, participants[2]);
+    ParticipantListViewGUITest.requireParticipant(table, 3, participants[3]);
+    ParticipantListViewGUITest.requireParticipant(table, 4, participants[4]);
     table.requireNoSelection();
     button.requireDisabled();
 
@@ -162,13 +157,11 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     button.click();
     assertThat(poll()).isEqualTo(UserAction.PARTICIPANT_SELECTED);
 
-    assertThat(this.searchView.target()).isInstanceOf(ParticipantSearchView.class);
-    assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId())
-        .isEqualTo(this.participants[0].getId());
+    assertThat(searchView.target()).isInstanceOf(ParticipantSearchView.class);
+    assertThat(((ParticipantSearchView) searchView.target()).getSelectedId()).isEqualTo(participants[0].getId());
 
     table.selectRows(2);
-    assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId())
-        .isEqualTo(this.participants[2].getId());
+    assertThat(((ParticipantSearchView) searchView.target()).getSelectedId()).isEqualTo(participants[2].getId());
 
     try {
       table.pressKey(KeyEvent.VK_CONTROL);
@@ -178,13 +171,13 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     }
     table.requireSelectedRows();
     button.requireDisabled();
-    assertThat(((ParticipantSearchView) this.searchView.target()).getSelectedId()).isZero();
+    assertThat(((ParticipantSearchView) searchView.target()).getSelectedId()).isZero();
   }
 
   @Test
   public void testFilterComposition() {
-    final JComboBoxFixture categoryComboBox = this.searchView.panel(FC).comboBox("category");
-    final JComboBoxFixture filterComboBox = this.searchView.panel(FC).comboBox("filterType");
+    final JComboBoxFixture categoryComboBox = searchView.panel(FC).comboBox("category");
+    final JComboBoxFixture filterComboBox = searchView.panel(FC).comboBox("filterType");
     assertThat(categoryComboBox.contents()).containsOnly(Text.FILTER_CAT_PARTICIPANT_BANK_ACC_NUM.text(),
                                                          Text.FILTER_CAT_PARTICIPANT_BANK_CODE_NUM.text(),
                                                          Text.FILTER_CAT_PARTICIPANT_BANK_NAME.text(),
@@ -216,43 +209,43 @@ public class ParticipantSearchViewGuiTest extends PartiManaDefaultGUITestCase {
     assertComboboxContainsStringFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_CONTAINS.text());
-    this.searchView.textBox("filterValue").enterText("a");
+    searchView.textBox("filterValue").enterText("a");
 
-    final JTableFixture table = this.searchView.panel("list").table("participants");
-    this.searchView.panel("list").table("participants").requireRowCount(3);
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[1]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[4]);
+    final JTableFixture table = searchView.panel("list").table("participants");
+    searchView.panel("list").table("participants").requireRowCount(3);
+    ParticipantListViewGUITest.requireParticipant(table, 0, participants[1]);
+    ParticipantListViewGUITest.requireParticipant(table, 1, participants[3]);
+    ParticipantListViewGUITest.requireParticipant(table, 2, participants[4]);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_FORE_NAME.text());
     assertComboboxContainsStringFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_STARTS_WITH.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("P");
-    this.searchView.panel("list").table("participants").requireRowCount(2);
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[4]);
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("P");
+    searchView.panel("list").table("participants").requireRowCount(2);
+    ParticipantListViewGUITest.requireParticipant(table, 0, participants[3]);
+    ParticipantListViewGUITest.requireParticipant(table, 1, participants[4]);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_LIVING_CITY.text());
     assertComboboxContainsStringFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_NOT_EQUALS_IGNORE_CASE.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("mUsTerHaUsEN");
-    this.searchView.panel("list").table("participants").requireRowCount(4);
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[0]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[2]);
-    ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 3, this.participants[4]);
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("mUsTerHaUsEN");
+    searchView.panel("list").table("participants").requireRowCount(4);
+    ParticipantListViewGUITest.requireParticipant(table, 0, participants[0]);
+    ParticipantListViewGUITest.requireParticipant(table, 1, participants[2]);
+    ParticipantListViewGUITest.requireParticipant(table, 2, participants[3]);
+    ParticipantListViewGUITest.requireParticipant(table, 3, participants[4]);
 
     categoryComboBox.selectItem(Text.FILTER_CAT_PARTICIPANT_BIRTHDAY.text());
     assertComboboxContainsDateFilterTypes(filterComboBox);
 
     filterComboBox.selectItem(Text.FILTER_TYPE_AFTER.text());
-    this.searchView.panel(FC).textBox("filterValue").deleteText().enterText("07.05.1970");
-    this.searchView.panel("list").table("participants").requireRowCount(3);
-    ParticipantListViewGUITest.requireParticipant(table, 0, this.participants[2]);
-    ParticipantListViewGUITest.requireParticipant(table, 1, this.participants[3]);
-    ParticipantListViewGUITest.requireParticipant(table, 2, this.participants[4]);
+    searchView.panel(FC).textBox("filterValue").deleteText().enterText("07.05.1970");
+    searchView.panel("list").table("participants").requireRowCount(3);
+    ParticipantListViewGUITest.requireParticipant(table, 0, participants[2]);
+    ParticipantListViewGUITest.requireParticipant(table, 1, participants[3]);
+    ParticipantListViewGUITest.requireParticipant(table, 2, participants[4]);
   }
 
   private void assertComboboxContainsDateFilterTypes(final JComboBoxFixture filterComboBox) {

@@ -26,17 +26,17 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
   /**
    * Constructs this category with the given viewable description.
    *
-   * @param description the short description that can be shown to the user
+   * @param desc the short description that can be shown to the user
    * @since Date: Oct 22, 2012
    */
-  protected ACategory(final Text description) {
-    this.description = description;
+  protected ACategory(final Text desc) {
+    description = desc;
   }
 
   @Override
   @NotNull
   public final String getShortDescription() {
-    return this.description.text();
+    return description.text();
   }
 
   @Override
@@ -46,12 +46,12 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
 
   @Override
   public final IFilterType<OT> getFilter() {
-    return this.filter;
+    return filter;
   }
 
   @Override
   public final void setFilter(final IFilterType<OT> f) {
-    this.filter = f;
+    filter = f;
   }
 
   /**
@@ -65,7 +65,7 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
 
   @Override
   public final boolean isMatchingFilter(final F element) {
-    if (this.filter == null || element == null) {
+    if (filter == null || element == null) {
       return false;
     }
     return getFilter().isMatching(getValue(element));
@@ -76,8 +76,8 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
     final int prime = 31;
     int result = 1;
     result = prime * result;
-    if (this.filter != null) {
-      result += this.filter.hashCode();
+    if (filter != null) {
+      result += filter.hashCode();
     }
     return result;
   }
@@ -95,11 +95,11 @@ public abstract class ACategory<F extends IFilterable, OT> implements IFilterCat
     }
     @SuppressWarnings("rawtypes")
     final ACategory other = (ACategory) obj;
-    if (this.filter == null) {
+    if (filter == null) {
       if (other.filter != null) {
         return false;
       }
-    } else if (!this.filter.equals(other.filter)) {
+    } else if (!filter.equals(other.filter)) {
       return false;
     }
     return true;

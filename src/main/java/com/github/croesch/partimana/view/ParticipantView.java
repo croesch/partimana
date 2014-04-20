@@ -54,7 +54,7 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
     if (m == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.model = m;
+    model = m;
 
     setLayout(new MigLayout("fill", "[][grow, fill]", "[grow, fill]"));
 
@@ -62,8 +62,8 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
     final ParticipantEditView pev = new ParticipantEditView("participantEdit");
     final ParticipantListView plv = new ParticipantListView("participantList", this);
     plv.update(m.getListOfParticipants());
-    this.editView = pev;
-    this.listView = plv;
+    editView = pev;
+    listView = plv;
 
     final CPanel buttonPanel = new CPanel("buttons", new MigLayout("fill"));
     final CButton createButton = new CButton("newParticipant", Action.getCreateParticipantAction());
@@ -82,19 +82,19 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
   @Override
   @NotNull
   public IParticipantEditView getParticipantEditView() {
-    return this.editView;
+    return editView;
   }
 
   @Override
   @NotNull
   public IListView<Participant> getParticipantListView() {
-    return this.listView;
+    return listView;
   }
 
   @Override
   public void performAction(final UserAction action) {
     if (action == UserAction.PARTICIPANT_SELECTED) {
-      this.editView.setParticipant(this.model.getParticipant(this.listView.getSelectedElementId()));
+      editView.setParticipant(model.getParticipant(listView.getSelectedElementId()));
     } else {
       LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }
@@ -102,6 +102,6 @@ class ParticipantView extends CPanel implements IParticipantView, ActionObserver
 
   @Override
   public void createParticipant() {
-    this.editView.clear();
+    editView.clear();
   }
 }

@@ -28,10 +28,10 @@ public class ModelTest implements IView {
    */
   @Before
   public void setUp() {
-    this.model = new Model(new HashMapPersistenceModel());
-    this.model.setView(this);
+    model = new Model(new HashMapPersistenceModel());
+    model.setView(this);
 
-    this.updateCalled = false;
+    updateCalled = false;
   }
 
   /**
@@ -49,10 +49,10 @@ public class ModelTest implements IView {
                                           "city",
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
 
-    assertThat(this.updateCalled).isFalse();
-    this.model.store(p);
+    assertThat(updateCalled).isFalse();
+    model.store(p);
 
-    assertThat(this.updateCalled).isTrue();
+    assertThat(updateCalled).isTrue();
   }
 
   @Test
@@ -66,11 +66,11 @@ public class ModelTest implements IView {
                                           13245,
                                           "city",
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
-    this.model.setView(null);
+    model.setView(null);
 
-    this.model.store(p);
-    assertThat(this.model.getParticipant(p.getId())).isNotSameAs(p);
-    assertThat(this.model.getParticipant(p.getId())).isEqualTo(p);
+    model.store(p);
+    assertThat(model.getParticipant(p.getId())).isNotSameAs(p);
+    assertThat(model.getParticipant(p.getId())).isEqualTo(p);
   }
 
   @Test
@@ -93,23 +93,23 @@ public class ModelTest implements IView {
                                            11245,
                                            "mustercity",
                                            CountyCouncil.COUNTY_KUSEL);
-    this.model.setView(null);
+    model.setView(null);
 
-    assertThat(this.model.getListOfParticipants()).isEmpty();
+    assertThat(model.getListOfParticipants()).isEmpty();
 
-    this.model.store(p1);
-    this.model.store(p2);
+    model.store(p1);
+    model.store(p2);
 
-    assertThat(this.model.getListOfParticipants()).containsOnly(p1, p2);
+    assertThat(model.getListOfParticipants()).containsOnly(p1, p2);
 
-    this.model.deleteParticipant(p1.getId());
-    assertThat(this.model.getListOfParticipants()).containsOnly(p2);
+    model.deleteParticipant(p1.getId());
+    assertThat(model.getListOfParticipants()).containsOnly(p2);
 
-    this.model.deleteParticipant(p1.getId());
-    assertThat(this.model.getListOfParticipants()).containsOnly(p2);
+    model.deleteParticipant(p1.getId());
+    assertThat(model.getListOfParticipants()).containsOnly(p2);
 
-    this.model.deleteParticipant(p2.getId());
-    assertThat(this.model.getListOfParticipants()).isEmpty();
+    model.deleteParticipant(p2.getId());
+    assertThat(model.getListOfParticipants()).isEmpty();
   }
 
   @Test
@@ -125,35 +125,35 @@ public class ModelTest implements IView {
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
     final Camp c1 = new Camp("name", new Date(12000), new Date(2900000), "place", "rate");
     final Camp c2 = new Camp("mustername", new Date(2000), new Date(12900000), "musterplace", "the-rate");
-    this.model.setView(null);
+    model.setView(null);
 
-    assertThat(this.model.getListOfCamps()).isEmpty();
+    assertThat(model.getListOfCamps()).isEmpty();
 
-    this.model.store(p);
-    this.model.store(c1);
-    this.model.store(c2);
+    model.store(p);
+    model.store(c1);
+    model.store(c2);
 
-    assertThat(this.model.getListOfCamps()).containsOnly(c1, c2);
+    assertThat(model.getListOfCamps()).containsOnly(c1, c2);
 
-    this.model.deleteCamp(c1.getId());
-    assertThat(this.model.getListOfCamps()).containsOnly(c2);
+    model.deleteCamp(c1.getId());
+    assertThat(model.getListOfCamps()).containsOnly(c2);
 
-    this.model.deleteCamp(c1.getId());
-    assertThat(this.model.getListOfCamps()).containsOnly(c2);
+    model.deleteCamp(c1.getId());
+    assertThat(model.getListOfCamps()).containsOnly(c2);
 
-    this.model.deleteCamp(c2.getId());
-    assertThat(this.model.getListOfCamps()).isEmpty();
+    model.deleteCamp(c2.getId());
+    assertThat(model.getListOfCamps()).isEmpty();
   }
 
   @Test
   public final void testGetCamp() {
     final Camp c = new Camp("name", new Date(12000), new Date(2900000), "place", "rate");
 
-    this.model.setView(null);
-    this.model.store(c);
+    model.setView(null);
+    model.store(c);
 
-    assertThat(this.model.getCamp(c.getId())).isNotSameAs(c);
-    assertThat(this.model.getCamp(c.getId())).isEqualTo(c);
+    assertThat(model.getCamp(c.getId())).isNotSameAs(c);
+    assertThat(model.getCamp(c.getId())).isEqualTo(c);
   }
 
   /**
@@ -163,10 +163,10 @@ public class ModelTest implements IView {
   public final void testStoreCamp() {
     final Camp c = new Camp("name", new Date(12000), new Date(2900000), "place", "rate");
 
-    assertThat(this.updateCalled).isFalse();
-    this.model.store(c);
+    assertThat(updateCalled).isFalse();
+    model.store(c);
 
-    assertThat(this.updateCalled).isTrue();
+    assertThat(updateCalled).isTrue();
   }
 
   /**
@@ -183,11 +183,11 @@ public class ModelTest implements IView {
                                           13245,
                                           "city",
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
-    this.model.setView(null);
-    assertThat(this.updateCalled).isFalse();
-    this.model.store(p);
+    model.setView(null);
+    assertThat(updateCalled).isFalse();
+    model.store(p);
 
-    assertThat(this.updateCalled).isFalse();
+    assertThat(updateCalled).isFalse();
   }
 
   /**
@@ -197,11 +197,11 @@ public class ModelTest implements IView {
   public final void testStoreCamp_ViewIsNull() {
     final Camp c = new Camp("name", new Date(12000), new Date(2900000), "place", "rate");
 
-    this.model.setView(null);
-    assertThat(this.updateCalled).isFalse();
-    this.model.store(c);
+    model.setView(null);
+    assertThat(updateCalled).isFalse();
+    model.store(c);
 
-    assertThat(this.updateCalled).isFalse();
+    assertThat(updateCalled).isFalse();
   }
 
   /**
@@ -218,10 +218,10 @@ public class ModelTest implements IView {
                                           13245,
                                           "city",
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
-    assertThat(this.updateCalled).isFalse();
-    this.model.deleteParticipant(p.getId());
+    assertThat(updateCalled).isFalse();
+    model.deleteParticipant(p.getId());
 
-    assertThat(this.updateCalled).isTrue();
+    assertThat(updateCalled).isTrue();
   }
 
   /**
@@ -230,10 +230,10 @@ public class ModelTest implements IView {
   @Test
   public final void testDeleteCamp() {
     final Camp c = new Camp("name", new Date(12000), new Date(2900000), "place", "rate");
-    assertThat(this.updateCalled).isFalse();
-    this.model.deleteCamp(c.getId());
+    assertThat(updateCalled).isFalse();
+    model.deleteCamp(c.getId());
 
-    assertThat(this.updateCalled).isTrue();
+    assertThat(updateCalled).isTrue();
   }
 
   /**
@@ -250,11 +250,11 @@ public class ModelTest implements IView {
                                           13245,
                                           "city",
                                           CountyCouncil.COUNTY_KIRCHHEIMBOLANDEN);
-    this.model.setView(null);
-    assertThat(this.updateCalled).isFalse();
-    this.model.deleteParticipant(p.getId());
+    model.setView(null);
+    assertThat(updateCalled).isFalse();
+    model.deleteParticipant(p.getId());
 
-    assertThat(this.updateCalled).isFalse();
+    assertThat(updateCalled).isFalse();
   }
 
   /**
@@ -264,15 +264,15 @@ public class ModelTest implements IView {
   public final void testDeleteCamp_ViewIsNull() {
     final Camp c = new Camp("name", new Date(12000), new Date(2900000), "place", "rate");
 
-    this.model.setView(null);
-    assertThat(this.updateCalled).isFalse();
-    this.model.deleteParticipant(c.getId());
+    model.setView(null);
+    assertThat(updateCalled).isFalse();
+    model.deleteParticipant(c.getId());
 
-    assertThat(this.updateCalled).isFalse();
+    assertThat(updateCalled).isFalse();
   }
 
   @Override
   public void update() {
-    this.updateCalled = true;
+    updateCalled = true;
   }
 }

@@ -25,7 +25,7 @@ public class CampParticipantTest {
 
   @Before
   public final void setUp() {
-    this.participant = new Participant("Mustermann",
+    participant = new Participant("Mustermann",
                                        "Max",
                                        Gender.MALE,
                                        Denomination.OTHER,
@@ -35,7 +35,7 @@ public class CampParticipantTest {
                                        "Musterhausen",
                                        CountyCouncil.OTHER);
 
-    this.campParticipant = new CampParticipant(this.participant);
+    campParticipant = new CampParticipant(participant);
   }
 
   @Test(expected = RequiredFieldSetToNullException.class)
@@ -47,130 +47,130 @@ public class CampParticipantTest {
   public final void testCampParticipant_Participant() {
     final Date d1 = new Date(123);
 
-    this.participant.setBank("bank");
-    this.participant.setBankAccountNumber(1);
-    this.participant.setBankCodeNumber(12);
-    this.participant.setComment("comment");
-    this.participant.setDateSinceInDataBase(d1);
-    this.participant.setDateUpToInSystem(d1);
-    this.participant.setDenomination(Denomination.JEWISH);
-    this.participant.setFax("fax");
-    this.participant.setMailAddress("mail");
-    this.participant.setMobilePhone("mobile");
-    this.participant.setPhone("phone");
-    this.participant.setPhoneOfParents("phone");
-    this.participant.setCityPostal("city");
-    this.participant.setPostCodePostal(3124);
-    this.participant.setStreetPostal("street");
+    participant.setBank("bank");
+    participant.setBankAccountNumber(1);
+    participant.setBankCodeNumber(12);
+    participant.setComment("comment");
+    participant.setDateSinceInDataBase(d1);
+    participant.setDateUpToInSystem(d1);
+    participant.setDenomination(Denomination.JEWISH);
+    participant.setFax("fax");
+    participant.setMailAddress("mail");
+    participant.setMobilePhone("mobile");
+    participant.setPhone("phone");
+    participant.setPhoneOfParents("phone");
+    participant.setCityPostal("city");
+    participant.setPostCodePostal(3124);
+    participant.setStreetPostal("street");
 
-    assertCampParticipantCallsParticipant(this.campParticipant);
+    assertCampParticipantCallsParticipant(campParticipant);
 
-    this.participant.setForeName("Hanz");
-    this.participant.setLastName("Decker");
-    this.participant.setStreet("a new street 42");
-    this.participant.setPostCode(12500);
-    this.participant.setCity("a new city");
+    participant.setForeName("Hanz");
+    participant.setLastName("Decker");
+    participant.setStreet("a new street 42");
+    participant.setPostCode(12500);
+    participant.setCity("a new city");
 
-    assertCampParticipantCallsParticipant(this.campParticipant);
+    assertCampParticipantCallsParticipant(campParticipant);
 
-    this.participant.setForeName("Hans");
-    this.participant.setLastName("Becker");
-    this.participant.setStreet("Examplestreet 12");
-    this.participant.setPostCode(12345);
-    this.participant.setCity("Examplecity");
+    participant.setForeName("Hans");
+    participant.setLastName("Becker");
+    participant.setStreet("Examplestreet 12");
+    participant.setPostCode(12345);
+    participant.setCity("Examplecity");
 
-    assertCampParticipantCallsParticipant(this.campParticipant);
+    assertCampParticipantCallsParticipant(campParticipant);
   }
 
   private void assertCampParticipantCallsParticipant(final CampParticipant cp) {
-    assertThat(cp.getId()).isEqualTo(this.participant.getId());
-    assertThat(cp.getForeName()).isEqualTo(this.participant.getForeName());
-    assertThat(cp.getLastName()).isEqualTo(this.participant.getLastName());
-    assertThat(cp.getStreet()).isEqualTo(this.participant.getStreet());
-    assertThat(cp.getPostCode()).isEqualTo(String.valueOf(this.participant.getPostCode()));
-    assertThat(cp.getCity()).isEqualTo(this.participant.getCity());
+    assertThat(cp.getId()).isEqualTo(participant.getId());
+    assertThat(cp.getForeName()).isEqualTo(participant.getForeName());
+    assertThat(cp.getLastName()).isEqualTo(participant.getLastName());
+    assertThat(cp.getStreet()).isEqualTo(participant.getStreet());
+    assertThat(cp.getPostCode()).isEqualTo(String.valueOf(participant.getPostCode()));
+    assertThat(cp.getCity()).isEqualTo(participant.getCity());
   }
 
   @Test
   public final void testRole() {
     for (final Role role : Role.values()) {
-      this.campParticipant.setRole(role);
-      assertThat(this.campParticipant.getRole()).isEqualTo(role);
+      campParticipant.setRole(role);
+      assertThat(campParticipant.getRole()).isEqualTo(role);
     }
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testSignedIn_Null() {
-    this.campParticipant.setSignedIn(null);
+    campParticipant.setSignedIn(null);
   }
 
   @Test
   public final void testSignedIn() {
     final Date before = new Date();
-    this.campParticipant = new CampParticipant(this.participant);
+    campParticipant = new CampParticipant(participant);
     final Date after = new Date();
 
-    assertThat(this.campParticipant.getSignedIn()).isNotNull();
-    assertThat(this.campParticipant.getSignedIn().before(before)).isFalse();
-    assertThat(this.campParticipant.getSignedIn().after(after)).isFalse();
+    assertThat(campParticipant.getSignedIn()).isNotNull();
+    assertThat(campParticipant.getSignedIn().before(before)).isFalse();
+    assertThat(campParticipant.getSignedIn().after(after)).isFalse();
 
     Date signedIn = new Date(12345678901L);
-    this.campParticipant.setSignedIn(signedIn);
-    assertThat(this.campParticipant.getSignedIn()).isEqualTo(signedIn);
+    campParticipant.setSignedIn(signedIn);
+    assertThat(campParticipant.getSignedIn()).isEqualTo(signedIn);
 
     signedIn = new Date(22345678901L);
-    this.campParticipant.setSignedIn(signedIn);
-    assertThat(this.campParticipant.getSignedIn()).isEqualTo(signedIn);
+    campParticipant.setSignedIn(signedIn);
+    assertThat(campParticipant.getSignedIn()).isEqualTo(signedIn);
   }
 
   @Test
   public final void testSignedOff() {
-    assertThat(this.campParticipant.getSignedOff()).isNull();
+    assertThat(campParticipant.getSignedOff()).isNull();
 
     Date signedOff = new Date(12345678901L);
-    this.campParticipant.setSignedOff(signedOff);
-    assertThat(this.campParticipant.getSignedOff()).isEqualTo(signedOff);
+    campParticipant.setSignedOff(signedOff);
+    assertThat(campParticipant.getSignedOff()).isEqualTo(signedOff);
 
     signedOff = new Date(22345678901L);
-    this.campParticipant.setSignedOff(signedOff);
-    assertThat(this.campParticipant.getSignedOff()).isEqualTo(signedOff);
+    campParticipant.setSignedOff(signedOff);
+    assertThat(campParticipant.getSignedOff()).isEqualTo(signedOff);
   }
 
   @Test
   public final void testEquals() {
-    assertThat(this.campParticipant).isNotEqualTo(this.participant);
-    assertThat(this.campParticipant).isNotEqualTo(null);
-    assertThat(this.campParticipant).isEqualTo(this.campParticipant);
-    assertThat(this.campParticipant).isEqualTo(new CampParticipant(this.participant));
+    assertThat(campParticipant).isNotEqualTo(participant);
+    assertThat(campParticipant).isNotEqualTo(null);
+    assertThat(campParticipant).isEqualTo(campParticipant);
+    assertThat(campParticipant).isEqualTo(new CampParticipant(participant));
 
-    final Participant p2 = new Participant(this.participant);
+    final Participant p2 = new Participant(participant);
 
-    assertThat(this.campParticipant).isEqualTo(new CampParticipant(p2));
+    assertThat(campParticipant).isEqualTo(new CampParticipant(p2));
 
     p2.setBank("blub");
-    assertThat(this.campParticipant).isNotEqualTo(new CampParticipant(p2));
+    assertThat(campParticipant).isNotEqualTo(new CampParticipant(p2));
   }
 
   @Test
   public final void testHashCode() {
-    assertThat(this.campParticipant.hashCode()).isNotEqualTo(this.participant.hashCode());
-    assertThat(this.campParticipant.hashCode()).isEqualTo(this.campParticipant.hashCode());
-    assertThat(this.campParticipant.hashCode()).isEqualTo(new CampParticipant(this.participant).hashCode());
+    assertThat(campParticipant.hashCode()).isNotEqualTo(participant.hashCode());
+    assertThat(campParticipant.hashCode()).isEqualTo(campParticipant.hashCode());
+    assertThat(campParticipant.hashCode()).isEqualTo(new CampParticipant(participant).hashCode());
 
-    final Participant p2 = new Participant(this.participant);
+    final Participant p2 = new Participant(participant);
 
-    assertThat(this.campParticipant.hashCode()).isEqualTo(new CampParticipant(p2).hashCode());
+    assertThat(campParticipant.hashCode()).isEqualTo(new CampParticipant(p2).hashCode());
 
     p2.setBank("blub");
-    assertThat(this.campParticipant.hashCode()).isNotEqualTo(new CampParticipant(p2).hashCode());
+    assertThat(campParticipant.hashCode()).isNotEqualTo(new CampParticipant(p2).hashCode());
   }
 
 
   @Test
   public final void testGetGender() {
-    assertThat(this.campParticipant.getGender()).isEqualTo(Gender.MALE);
+    assertThat(campParticipant.getGender()).isEqualTo(Gender.MALE);
 
     participant.setGender(Gender.FEMALE);
-    assertThat(this.campParticipant.getGender()).isEqualTo(Gender.FEMALE);
+    assertThat(campParticipant.getGender()).isEqualTo(Gender.FEMALE);
   }
 }

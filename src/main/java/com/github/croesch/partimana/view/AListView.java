@@ -58,13 +58,13 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
                    final UserAction action,
                    boolean showRowNumbers) {
     super(name);
-    this.selectionAction = action; //TODO null check
+    selectionAction = action; //TODO null check
 
     setLayout(new MigLayout("fill"));
 
-    this.table = new DataTable(nameOfComps, observer, action, tableModel);
+    table = new DataTable(nameOfComps, observer, action, tableModel);
 
-    CScrollPane scrollPane = new CScrollPane(nameOfComps, this.table);
+    CScrollPane scrollPane = new CScrollPane(nameOfComps, table);
     if (showRowNumbers) {
       scrollPane.setRowHeaderView(new RowNumberTable(table));
     }
@@ -73,11 +73,11 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
 
   @Override
   public void update(final List<T> elements) {
-    while (this.table.getRowCount() > 0) {
-      ((DefaultTableModel) this.table.getModel()).removeRow(0);
+    while (table.getRowCount() > 0) {
+      ((DefaultTableModel) table.getModel()).removeRow(0);
     }
     for (final T element : elements) {
-      ((DefaultTableModel) this.table.getModel()).addRow(getRowArray(element));
+      ((DefaultTableModel) table.getModel()).addRow(getRowArray(element));
     }
   }
 
@@ -92,7 +92,7 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
 
   @Override
   public final long getSelectedElementId() {
-    if (this.table.getSelectedRowCount() == 0) {
+    if (table.getSelectedRowCount() == 0) {
       return 0;
     }
     return getIdOfRow(table.getSelectedRow());
@@ -108,7 +108,7 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
   }
 
   private Long getIdOfRow(int row) {
-    return Long.parseLong(this.table.getValueAt(row, 0).toString());
+    return Long.parseLong(table.getValueAt(row, 0).toString());
   }
 
   @Override
@@ -119,7 +119,7 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
 
   @Override
   public final void addSelectionListener(final ListSelectionListener lst) {
-    this.table.getSelectionModel().addListSelectionListener(lst);
+    table.getSelectionModel().addListSelectionListener(lst);
   }
 
   /**
@@ -129,7 +129,7 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
    * @since Date: Nov 11, 2012
    */
   protected final TableModel getTableModel() {
-    return this.table.getModel();
+    return table.getModel();
   }
 
   /**
@@ -140,11 +140,11 @@ public abstract class AListView<T extends IFilterable> extends CPanel implements
    * @since Date: Mar 2, 2013
    */
   protected final void setCellEditor(final int column, final DefaultCellEditor cellEditor) {
-    this.table.getColumnModel().getColumn(column).setCellEditor(cellEditor);
+    table.getColumnModel().getColumn(column).setCellEditor(cellEditor);
   }
 
   @Override
   public final UserAction getSelectionAction() {
-    return this.selectionAction;
+    return selectionAction;
   }
 }

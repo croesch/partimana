@@ -34,11 +34,11 @@ public final class CampModelTest {
    */
   @Before
   public void setUp() {
-    this.persistenceModel = new HashMapPersistenceModel();
-    this.cModel = new CampModel(this.persistenceModel);
+    persistenceModel = new HashMapPersistenceModel();
+    cModel = new CampModel(persistenceModel);
 
-    this.c1 = new Camp("Sommercamp", new Date(99999), new Date(88888888), "Spain", "5,0€");
-    this.c2 = new Camp("Wintercamp", new Date(444444), new Date(333333333), "Russia", "1,30 €");
+    c1 = new Camp("Sommercamp", new Date(99999), new Date(88888888), "Spain", "5,0€");
+    c2 = new Camp("Wintercamp", new Date(444444), new Date(333333333), "Russia", "1,30 €");
   }
 
   /**
@@ -46,18 +46,18 @@ public final class CampModelTest {
    */
   @Test
   public void testGetCamp() {
-    this.persistenceModel.create(this.c1);
-    this.persistenceModel.create(this.c2);
-    this.cModel = new CampModel(this.persistenceModel);
+    persistenceModel.create(c1);
+    persistenceModel.create(c2);
+    cModel = new CampModel(persistenceModel);
 
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.cModel.getCamp(this.c2.getId())).isEqualTo(this.c2);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.cModel.getCamp(Long.MAX_VALUE)).isNull();
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(cModel.getCamp(c2.getId())).isEqualTo(c2);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(cModel.getCamp(Long.MAX_VALUE)).isNull();
 
-    final Camp c = this.cModel.getCamp(this.c2.getId());
+    final Camp c = cModel.getCamp(c2.getId());
     c.setRatePerDayChildren("new bank");
-    assertThat(this.cModel.getCamp(this.c2.getId())).isNotEqualTo(c);
+    assertThat(cModel.getCamp(c2.getId())).isNotEqualTo(c);
   }
 
   /**
@@ -65,15 +65,15 @@ public final class CampModelTest {
    */
   @Test
   public void testCreateCampKAEE() {
-    this.cModel.store(this.c1);
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
+    cModel.store(c1);
+    cModel.store(c1);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
 
-    this.c1.setRatePerDayChildren("new bank");
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
+    c1.setRatePerDayChildren("new bank");
+    cModel.store(c1);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
   }
 
   /**
@@ -81,25 +81,25 @@ public final class CampModelTest {
    */
   @Test
   public void testDeleteCamp() {
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
-    this.cModel.deleteCamp(this.c1.getId());
-    assertThat(this.cModel.getCamp(this.c1.getId())).isNull();
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isNull();
-    this.cModel.deleteCamp(this.c1.getId());
-    assertThat(this.cModel.getCamp(this.c1.getId())).isNull();
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isNull();
+    cModel.store(c1);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
+    cModel.deleteCamp(c1.getId());
+    assertThat(cModel.getCamp(c1.getId())).isNull();
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isNull();
+    cModel.deleteCamp(c1.getId());
+    assertThat(cModel.getCamp(c1.getId())).isNull();
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isNull();
 
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
-    this.c1.setRatePerDayChildren("other bank");
-    assertThat(this.cModel.getCamp(this.c1.getId())).isNotEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isNotEqualTo(this.c1);
-    this.cModel.deleteCamp(this.c1.getId());
-    assertThat(this.cModel.getCamp(this.c1.getId())).isNull();
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isNull();
+    cModel.store(c1);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
+    c1.setRatePerDayChildren("other bank");
+    assertThat(cModel.getCamp(c1.getId())).isNotEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isNotEqualTo(c1);
+    cModel.deleteCamp(c1.getId());
+    assertThat(cModel.getCamp(c1.getId())).isNull();
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isNull();
   }
 
   /**
@@ -107,7 +107,7 @@ public final class CampModelTest {
    */
   @Test(expected = RequiredFieldSetToNullException.class)
   public void testStoreCampRFSTNE() {
-    this.cModel.store(null);
+    cModel.store(null);
   }
 
   /**
@@ -115,27 +115,27 @@ public final class CampModelTest {
    */
   @Test
   public void testStoreCamp() {
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
-    this.c1.setRatePerDayChildren("new bank");
-    assertThat(this.cModel.getCamp(this.c1.getId())).isNotEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isNotEqualTo(this.c1);
+    cModel.store(c1);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
+    c1.setRatePerDayChildren("new bank");
+    assertThat(cModel.getCamp(c1.getId())).isNotEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isNotEqualTo(c1);
 
-    this.cModel.store(this.c2);
-    this.c1.setRatePerDayChildren(null);
-    assertThat(this.cModel.getCamp(this.c2.getId())).isEqualTo(this.c2);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c2.getId())).isEqualTo(this.c2);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
-    this.c2.setRatePerDayChildren("new bank");
-    assertThat(this.cModel.getCamp(this.c2.getId())).isNotEqualTo(this.c2);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c2.getId())).isNotEqualTo(this.c2);
-    assertThat(this.cModel.getCamp(this.c1.getId())).isEqualTo(this.c1);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c1.getId())).isEqualTo(this.c1);
-    this.cModel.store(this.c2);
-    assertThat(this.cModel.getCamp(this.c2.getId())).isEqualTo(this.c2);
-    assertThat(this.persistenceModel.getMapOfCamps().get(this.c2.getId())).isEqualTo(this.c2);
+    cModel.store(c2);
+    c1.setRatePerDayChildren(null);
+    assertThat(cModel.getCamp(c2.getId())).isEqualTo(c2);
+    assertThat(persistenceModel.getMapOfCamps().get(c2.getId())).isEqualTo(c2);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
+    c2.setRatePerDayChildren("new bank");
+    assertThat(cModel.getCamp(c2.getId())).isNotEqualTo(c2);
+    assertThat(persistenceModel.getMapOfCamps().get(c2.getId())).isNotEqualTo(c2);
+    assertThat(cModel.getCamp(c1.getId())).isEqualTo(c1);
+    assertThat(persistenceModel.getMapOfCamps().get(c1.getId())).isEqualTo(c1);
+    cModel.store(c2);
+    assertThat(cModel.getCamp(c2.getId())).isEqualTo(c2);
+    assertThat(persistenceModel.getMapOfCamps().get(c2.getId())).isEqualTo(c2);
   }
 
   /**
@@ -143,14 +143,14 @@ public final class CampModelTest {
    */
   @Test
   public void testGetListOfCamps() {
-    this.cModel.store(this.c1);
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getListOfCamps()).containsExactly(this.c1);
-    this.cModel.store(this.c2);
-    this.cModel.deleteCamp(this.c1.getId());
-    assertThat(this.cModel.getListOfCamps()).containsExactly(this.c2);
-    this.cModel.store(this.c1);
-    this.cModel.store(this.c1);
-    assertThat(this.cModel.getListOfCamps()).contains(this.c2, this.c1);
+    cModel.store(c1);
+    cModel.store(c1);
+    assertThat(cModel.getListOfCamps()).containsExactly(c1);
+    cModel.store(c2);
+    cModel.deleteCamp(c1.getId());
+    assertThat(cModel.getListOfCamps()).containsExactly(c2);
+    cModel.store(c1);
+    cModel.store(c1);
+    assertThat(cModel.getListOfCamps()).contains(c2, c1);
   }
 }

@@ -67,56 +67,56 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
       @Override
       public void performAction(final UserAction action) {
         if (action == UserAction.CREATE_CAMP) {
-          CampViewGUITest.this.cView.createCamp();
+          cView.createCamp();
         } else if (action == UserAction.DELETE_CAMP) {
-          CampViewGUITest.this.deleteActionPerformed = true;
+          deleteActionPerformed = true;
         } else if (action == UserAction.CANCEL_CAMP) {
-          CampViewGUITest.this.cancelActionPerformed = true;
+          cancelActionPerformed = true;
         } else {
           Assert.fail();
         }
       }
     });
 
-    this.cView = GuiActionRunner.execute(new GuiQuery<CampView>() {
+    cView = GuiActionRunner.execute(new GuiQuery<CampView>() {
       @Override
       protected CampView executeInEDT() throws Throwable {
-        return new CampView(null, CampViewGUITest.this.model);
+        return new CampView(null, model);
       }
     });
 
-    this.camp = new Camp("Freizeit", new Date(123456788), new Date(987654322), "Dort", "1€");
+    camp = new Camp("Freizeit", new Date(123456788), new Date(987654322), "Dort", "1€");
 
     GuiActionRunner.execute(new GuiTask() {
 
       @Override
       protected void executeInEDT() throws Throwable {
-        CampViewGUITest.this.cView.getCampEditView().setCamp(CampViewGUITest.this.camp);
+        cView.getCampEditView().setCamp(camp);
       }
     });
-    this.cView.setName("view");
+    cView.setName("view");
 
-    final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(this.cView));
+    final FrameFixture window = new FrameFixture(robot(), Containers.frameFor(cView));
     window.show();
-    this.testView = window.panel("view");
+    testView = window.panel("view");
 
-    this.deleteActionPerformed = false;
-    this.cancelActionPerformed = false;
+    deleteActionPerformed = false;
+    cancelActionPerformed = false;
   }
 
   @Test
   public void testCreateNewCamp_Button() {
 
-    this.testView.button("newCamp").click();
+    testView.button("newCamp").click();
 
-    this.testView.textBox("nameTF").requireEmpty();
-    this.testView.textBox("locationTF").requireEmpty();
-    this.testView.textBox("fromTF").requireEmpty();
-    this.testView.textBox("untilTF").requireEmpty();
-    this.testView.textBox("ratePerParticipantTF").requireEmpty();
-    this.testView.textBox("ratePerDayTF").requireEmpty();
-    this.testView.label("idLbl").requireText((String) null);
-    this.testView.table("campParticipants").requireRowCount(0);
+    testView.textBox("nameTF").requireEmpty();
+    testView.textBox("locationTF").requireEmpty();
+    testView.textBox("fromTF").requireEmpty();
+    testView.textBox("untilTF").requireEmpty();
+    testView.textBox("ratePerParticipantTF").requireEmpty();
+    testView.textBox("ratePerDayTF").requireEmpty();
+    testView.label("idLbl").requireText((String) null);
+    testView.table("campParticipants").requireRowCount(0);
   }
 
   @Test
@@ -125,33 +125,33 @@ public class CampViewGUITest extends PartiManaDefaultGUITestCase {
     GuiActionRunner.execute(new GuiTask() {
       @Override
       protected void executeInEDT() throws Throwable {
-        CampViewGUITest.this.cView.createCamp();
+        cView.createCamp();
       }
     });
 
-    this.testView.textBox("nameTF").requireEmpty();
-    this.testView.textBox("locationTF").requireEmpty();
-    this.testView.textBox("fromTF").requireEmpty();
-    this.testView.textBox("untilTF").requireEmpty();
-    this.testView.textBox("ratePerParticipantTF").requireEmpty();
-    this.testView.textBox("ratePerDayTF").requireEmpty();
-    this.testView.label("idLbl").requireText((String) null);
-    this.testView.table("campParticipants").requireRowCount(0);
+    testView.textBox("nameTF").requireEmpty();
+    testView.textBox("locationTF").requireEmpty();
+    testView.textBox("fromTF").requireEmpty();
+    testView.textBox("untilTF").requireEmpty();
+    testView.textBox("ratePerParticipantTF").requireEmpty();
+    testView.textBox("ratePerDayTF").requireEmpty();
+    testView.label("idLbl").requireText((String) null);
+    testView.table("campParticipants").requireRowCount(0);
   }
 
   @Test
   public void testDeleteCamp() {
-    assertThat(this.deleteActionPerformed).isFalse();
-    this.testView.button("deleteCamp").click();
+    assertThat(deleteActionPerformed).isFalse();
+    testView.button("deleteCamp").click();
 
-    assertThat(this.deleteActionPerformed).isTrue();
+    assertThat(deleteActionPerformed).isTrue();
   }
 
   @Test
   public void testCancelCamp() {
-    assertThat(this.cancelActionPerformed).isFalse();
-    this.testView.button("cancelCamp").click();
+    assertThat(cancelActionPerformed).isFalse();
+    testView.button("cancelCamp").click();
 
-    assertThat(this.cancelActionPerformed).isTrue();
+    assertThat(cancelActionPerformed).isTrue();
   }
 }

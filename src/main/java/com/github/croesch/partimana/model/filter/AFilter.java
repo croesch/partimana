@@ -23,9 +23,9 @@ public abstract class AFilter<F extends IFilterable> implements IFilter<F> {
   public final List<F> filter(final List<F> elements) {
     final List<F> result = new ArrayList<F>();
 
-    if (this.category != null) {
+    if (category != null) {
       for (final F element : elements) {
-        if (this.category.isMatchingFilter(element)) {
+        if (category.isMatchingFilter(element)) {
           result.add(element);
         }
       }
@@ -36,12 +36,12 @@ public abstract class AFilter<F extends IFilterable> implements IFilter<F> {
 
   @Override
   public final IFilterCategory<F, ?> getCategory() {
-    return this.category;
+    return category;
   }
 
   @Override
   public final void setCategory(final IFilterCategory<F, ?> cat) {
-    this.category = cat;
+    category = cat;
   }
 
   @Override
@@ -49,8 +49,8 @@ public abstract class AFilter<F extends IFilterable> implements IFilter<F> {
     final int prime = 31;
     int result = 1;
     result = prime * result;
-    if (this.category != null) {
-      result += this.category.hashCode();
+    if (category != null) {
+      result += category.hashCode();
     }
 
     return result;
@@ -66,11 +66,11 @@ public abstract class AFilter<F extends IFilterable> implements IFilter<F> {
     }
     @SuppressWarnings("rawtypes")
     final AFilter other = (AFilter) obj;
-    if (this.category == null) {
+    if (category == null) {
       if (other.category != null) {
         return false;
       }
-    } else if (!this.category.equals(other.category)) {
+    } else if (!category.equals(other.category)) {
       return false;
     }
     return true;

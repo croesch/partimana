@@ -53,7 +53,7 @@ public final class Address {
    */
   @MayBeNull
   String getStreet() {
-    return this.street;
+    return street;
   }
 
   /**
@@ -65,7 +65,7 @@ public final class Address {
    */
   @NotNull
   Address setStreet(final String str) {
-    this.street = str;
+    street = str;
     return this;
   }
 
@@ -76,7 +76,7 @@ public final class Address {
    * @since Date: Jun 18, 2011
    */
   int getPostCode() {
-    return this.postCode;
+    return postCode;
   }
 
   /**
@@ -88,7 +88,7 @@ public final class Address {
    */
   @NotNull
   Address setPostCode(final int pc) {
-    this.postCode = pc;
+    postCode = pc;
     return this;
   }
 
@@ -100,7 +100,7 @@ public final class Address {
    */
   @MayBeNull
   String getCity() {
-    return this.city;
+    return city;
   }
 
   /**
@@ -112,7 +112,7 @@ public final class Address {
    */
   @NotNull
   Address setCity(final String c) {
-    this.city = c;
+    city = c;
     return this;
   }
 
@@ -127,13 +127,13 @@ public final class Address {
     final int prime = 31;
     int result = 1;
     result = prime * result;
-    if (this.city != null) {
-      result += this.city.hashCode();
+    if (city != null) {
+      result += city.hashCode();
     }
-    result = prime * result + this.postCode;
+    result = prime * result + postCode;
     result = prime * result;
-    if (this.street != null) {
-      result += this.street.hashCode();
+    if (street != null) {
+      result += street.hashCode();
     }
     return result;
   }
@@ -147,21 +147,21 @@ public final class Address {
       return false;
     }
     final Address other = (Address) obj;
-    if (this.city == null) {
+    if (city == null) {
       if (other.city != null) {
         return false;
       }
-    } else if (!this.city.equals(other.city)) {
+    } else if (!city.equals(other.city)) {
       return false;
     }
-    if (this.postCode != other.postCode) {
+    if (postCode != other.postCode) {
       return false;
     }
-    if (this.street == null) {
+    if (street == null) {
       if (other.street != null) {
         return false;
       }
-    } else if (!this.street.equals(other.street)) {
+    } else if (!street.equals(other.street)) {
       return false;
     }
     return true;

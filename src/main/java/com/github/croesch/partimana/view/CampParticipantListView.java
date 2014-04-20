@@ -44,14 +44,14 @@ class CampParticipantListView extends AListView<CampParticipant> {
   public CampParticipantListView(final String name, final ActionObserver o) {
     super(name, "campParticipants", o, new CampParticipantTableModel(), UserAction.CAMP_PARTICIPANT_SELECTED, true);
     setCellEditor(3, new DefaultCellEditor(new JComboBox(Role.values())));
-    this.tableModel = (CampParticipantTableModel) getTableModel();
+    tableModel = (CampParticipantTableModel) getTableModel();
   }
 
   @Override
   public void update(final List<CampParticipant> participants) {
-    this.tableModel.removeAll();
+    tableModel.removeAll();
     for (final CampParticipant p : participants) {
-      this.tableModel.addRow(p);
+      tableModel.addRow(p);
     }
   }
 
@@ -100,7 +100,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
 
     @Override
     public void removeRow(final int row) {
-      this.participants.remove(row);
+      participants.remove(row);
       super.removeRow(row);
     }
 
@@ -111,7 +111,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
      * @since Date: Sep 16, 2012
      */
     public void addRow(final CampParticipant p) {
-      this.participants.put(getRowCount(), p);
+      participants.put(getRowCount(), p);
       super.addRow(new Object[] { p.getId(), p.getForeName(), p.getLastName(), p.getRole() });
     }
 
@@ -123,7 +123,7 @@ class CampParticipantListView extends AListView<CampParticipant> {
         }
 
         if (e.getColumn() == 3) {
-          final CampParticipant participant = this.participants.get(e.getFirstRow());
+          final CampParticipant participant = participants.get(e.getFirstRow());
           final Role value = (Role) getValueAt(e.getFirstRow(), e.getColumn());
 
           participant.setRole(value);

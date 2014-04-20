@@ -66,7 +66,7 @@ public final class PartiMana implements ActionObserver {
     // start 'real' program
     new Controller(this, new PersistenceModel());
 
-    while (this.running) {
+    while (running) {
       try {
         Thread.sleep(HEARTBEAT_INTERVAL);
       } catch (final InterruptedException e) {
@@ -80,7 +80,7 @@ public final class PartiMana implements ActionObserver {
   public void performAction(final UserAction action) {
     if (action == UserAction.EXIT) {
       LOGGER.debug(Text.DEBUG_PROGRAM_EXIT_NOTIFICATION.text());
-      this.running = false;
+      running = false;
     } else {
       LOGGER.warn(Text.WARN_UNKNOWN_ACTION.text(action));
     }

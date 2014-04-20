@@ -29,12 +29,12 @@ public final class FilterModel<F extends IFilterable> implements IFilterModel<F>
    * @since Date: Nov 1, 2012
    */
   public FilterModel(final List<F> elements) {
-    this.originalElements = elements; //TODO reference
+    originalElements = elements; //TODO reference
   }
 
   @Override
-  public void setFilter(IFilter<F> filter) {
-    this.filter = filter;
+  public void setFilter(IFilter<F> f) {
+    filter = f;
   }
 
   @Override
@@ -42,6 +42,6 @@ public final class FilterModel<F extends IFilterable> implements IFilterModel<F>
     if (filter == null) {
       return new ArrayList<F>(originalElements);
     }
-    return this.filter.filter(this.originalElements);
+    return filter.filter(originalElements);
   }
 }

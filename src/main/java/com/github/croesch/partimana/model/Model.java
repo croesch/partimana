@@ -39,8 +39,8 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
    * @since Date: Oct 13, 2012
    */
   public Model(final IPersistenceModel persistenceModel) {
-    this.participantModel = new ParticipantModel(persistenceModel);
-    this.campModel = new CampModel(persistenceModel);
+    participantModel = new ParticipantModel(persistenceModel);
+    campModel = new CampModel(persistenceModel);
   }
 
   /**
@@ -50,59 +50,59 @@ public final class Model implements ICampModel, IParticipantModel, IModel4View {
    * @since Date: Jun 30, 2011
    */
   public void setView(final IView v) {
-    this.view = v;
+    view = v;
   }
 
   @Override
   public Participant getParticipant(final long id) {
-    return this.participantModel.getParticipant(id);
+    return participantModel.getParticipant(id);
   }
 
   @Override
   public Participant store(final Participant p) throws RequiredFieldSetToNullException {
-    final Participant participant = this.participantModel.store(p);
-    if (this.view != null) {
-      this.view.update();
+    final Participant participant = participantModel.store(p);
+    if (view != null) {
+      view.update();
     }
     return participant;
   }
 
   @Override
   public void deleteParticipant(final long id) {
-    this.participantModel.deleteParticipant(id);
-    if (this.view != null) {
-      this.view.update();
+    participantModel.deleteParticipant(id);
+    if (view != null) {
+      view.update();
     }
   }
 
   @Override
   public List<Participant> getListOfParticipants() {
-    return this.participantModel.getListOfParticipants();
+    return participantModel.getListOfParticipants();
   }
 
   @Override
   public Camp getCamp(final long id) {
-    return this.campModel.getCamp(id);
+    return campModel.getCamp(id);
   }
 
   @Override
   public List<Camp> getListOfCamps() {
-    return this.campModel.getListOfCamps();
+    return campModel.getListOfCamps();
   }
 
   @Override
   public void store(final Camp c) throws RequiredFieldSetToNullException {
-    this.campModel.store(c);
-    if (this.view != null) {
-      this.view.update();
+    campModel.store(c);
+    if (view != null) {
+      view.update();
     }
   }
 
   @Override
   public void deleteCamp(final long id) {
-    this.campModel.deleteCamp(id);
-    if (this.view != null) {
-      this.view.update();
+    campModel.deleteCamp(id);
+    if (view != null) {
+      view.update();
     }
   }
 }

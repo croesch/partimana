@@ -39,7 +39,7 @@ public final class CampParticipant implements IFilterable {
     if (p == null) {
       throw new RequiredFieldSetToNullException();
     }
-    this.participant = p;
+    participant = p;
   }
 
   /**
@@ -47,7 +47,7 @@ public final class CampParticipant implements IFilterable {
    * @since Date: Mar 5, 2013
    */
   public Date getSignedIn() {
-    return this.signedIn;
+    return signedIn;
   }
 
   /**
@@ -58,7 +58,7 @@ public final class CampParticipant implements IFilterable {
     if (date == null) {
       throw new IllegalArgumentException();
     }
-    this.signedIn = date;
+    signedIn = date;
   }
 
   /**
@@ -66,7 +66,7 @@ public final class CampParticipant implements IFilterable {
    * @since Date: Mar 5, 2013
    */
   public Date getSignedOff() {
-    return this.signedOff;
+    return signedOff;
   }
 
   /**
@@ -77,7 +77,7 @@ public final class CampParticipant implements IFilterable {
    * @since Date: Mar 5, 2013
    */
   public void setSignedOff(final Date date) {
-    this.signedOff = date;
+    signedOff = date;
   }
 
   /**
@@ -87,7 +87,7 @@ public final class CampParticipant implements IFilterable {
    * @since Date: Mar 2, 2013
    */
   public void setRole(final Role newRole) {
-    this.role = newRole;
+    role = newRole;
   }
 
   /**
@@ -95,14 +95,14 @@ public final class CampParticipant implements IFilterable {
    * @since Date: Mar 2, 2013
    */
   public Role getRole() {
-    return this.role;
+    return role;
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + this.participant.hashCode();
+    result = prime * result + participant.hashCode();
     return result;
   }
 
@@ -117,7 +117,7 @@ public final class CampParticipant implements IFilterable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    return this.participant.equals(((CampParticipant) obj).participant);
+    return participant.equals(((CampParticipant) obj).participant);
   }
 
   /**
@@ -125,7 +125,7 @@ public final class CampParticipant implements IFilterable {
    * @since Date: Sep 16, 2012
    */
   public long getId() {
-    return this.participant.getId();
+    return participant.getId();
   }
 
   /**
@@ -134,7 +134,7 @@ public final class CampParticipant implements IFilterable {
    */
   @NotNull
   public String getForeName() {
-    return this.participant.getForeName();
+    return participant.getForeName();
   }
 
   /**
@@ -143,7 +143,7 @@ public final class CampParticipant implements IFilterable {
    */
   @NotNull
   public String getLastName() {
-    return this.participant.getLastName();
+    return participant.getLastName();
   }
 
   /**
@@ -152,7 +152,7 @@ public final class CampParticipant implements IFilterable {
    */
   @NotNull
   public String getStreet() {
-    return this.participant.getStreet();
+    return participant.getStreet();
   }
 
   /**
@@ -161,7 +161,7 @@ public final class CampParticipant implements IFilterable {
    */
   @NotNull
   public String getPostCode() {
-    return String.valueOf(this.participant.getPostCode());
+    return String.valueOf(participant.getPostCode());
   }
 
   /**
@@ -170,7 +170,7 @@ public final class CampParticipant implements IFilterable {
    */
   @NotNull
   public String getCity() {
-    return this.participant.getCity();
+    return participant.getCity();
   }
 
   /**
@@ -179,6 +179,6 @@ public final class CampParticipant implements IFilterable {
    */
   @NotNull
   public Gender getGender() {
-    return this.participant.getGender();
+    return participant.getGender();
   }
 }

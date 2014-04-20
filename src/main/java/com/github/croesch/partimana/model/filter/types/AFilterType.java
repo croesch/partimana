@@ -23,12 +23,12 @@ public abstract class AFilterType<OT> implements IFilterType<OT> {
 
   @Override
   public final void setFilterValue(final OT value) {
-    this.filterValue = value;
+    filterValue = value;
   }
 
   @Override
   public final OT getFilterValue() {
-    return this.filterValue;
+    return filterValue;
   }
 
   @Override
@@ -54,8 +54,8 @@ public abstract class AFilterType<OT> implements IFilterType<OT> {
     final int prime = 31;
     int result = 1;
     result = prime * result;
-    if (this.filterValue != null) {
-      result += this.filterValue.hashCode();
+    if (filterValue != null) {
+      result += filterValue.hashCode();
     }
     return result;
   }
@@ -73,11 +73,11 @@ public abstract class AFilterType<OT> implements IFilterType<OT> {
     }
 
     final AFilterType<?> other = (AFilterType<?>) obj;
-    if (this.filterValue == null) {
+    if (filterValue == null) {
       if (other.filterValue != null) {
         return false;
       }
-    } else if (!this.filterValue.equals(other.filterValue)) {
+    } else if (!filterValue.equals(other.filterValue)) {
       return false;
     }
     return true;
