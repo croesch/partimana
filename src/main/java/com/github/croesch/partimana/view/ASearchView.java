@@ -8,7 +8,9 @@ import com.github.croesch.partimana.model.api.IFilter;
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
 import com.github.croesch.partimana.model.filter.FilterModel;
+import com.github.croesch.partimana.model.filter.types.CountyCouncilFilterType;
 import com.github.croesch.partimana.model.filter.types.DateFilterType;
+import com.github.croesch.partimana.types.CountyCouncil;
 import com.github.croesch.partimana.types.api.IFilterable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +18,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
 import java.util.Locale;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -48,8 +52,11 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
   /** the text box that holds the value for the filter */
   private final CDateField filterValueDateBox = new CDateField(Locale.GERMANY);
 
+  /** the combo box that holds the value for the council filter */
+  private final CComboBox filterValueCouncilBox = new CComboBox("filterValue");
+
   /** the text box that holds the value for the filter */
-  private JTextField filterValueTBox = filterValueStringBox;
+  private JComponent filterValueTBox = filterValueStringBox;
 
   /** the model that filters the stored data */
   private final FilterModel<T> filterModel;
@@ -93,11 +100,18 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
   private void buildUI() {
     setLayout(new MigLayout("fill,wrap 1"));
 
+    fillComboboxes();
     addFilterComposition();
     add(getListView().toComponent());
     addButtons();
 
     pack();
+  }
+
+  private void fillComboboxes() {
+    for (CountyCouncil cc : CountyCouncil.values()) {
+      filterValueCouncilBox.addItem(cc);
+    }
   }
 
   /**
@@ -134,8 +148,20 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
     filterValueDateBox.setName("filterValue");
     addDocumentListener(filterValueDateBox);
     addDocumentListener(filterValueStringBox);
+    addItemListener(filterValueCouncilBox);
     add(panel, "grow");
     updateListView();
+  }
+
+  private void addItemListener(JComboBox box) {
+    box.addItemListener(new ItemListener() {
+      @Override
+      public void itemStateChanged(ItemEvent itemEvent) {
+        if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+          updateListView();
+        }
+      }
+    });
   }
 
   private void addDocumentListener(JTextField field) {
@@ -161,6 +187,8 @@ abstract class ASearchView<T extends IFilterable> extends CFrame {
     panel.remove(filterValueTBox);
     if (filterTypeCBox.getSelectedItem() instanceof DateFilterType) {
       filterValueTBox = filterValueDateBox;
+    } else if (filterTypeCBox.getSelectedItem() instanceof CountyCouncilFilterType) {
+      filterValueTBox = filterValueCouncilBox;
     } else {
       filterValueTBox = filterValueStringBox;
     }

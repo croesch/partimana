@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.model.api.IFilterCategory;
 import com.github.croesch.partimana.model.api.IFilterType;
+import com.github.croesch.partimana.model.filter.cat.cp.CountyCouncilCategory;
 import com.github.croesch.partimana.model.filter.cat.cp.SignedInCategory;
 import com.github.croesch.partimana.model.filter.types.After;
 import com.github.croesch.partimana.types.*;
@@ -107,6 +108,13 @@ public class CampParticipantFilterTest {
   @Test
   public void testFilterWithoutCategory() {
     assertThat(filter.filter(Arrays.asList(cp1, cp2, cp3, cp4, cp5))).isEmpty();
+  }
+
+  @Test
+  public void testGetCategories() {
+    assertThat(filter.getCategories()).hasSize(2);
+    assertThat(filter.getCategories().get(0)).isInstanceOf(SignedInCategory.class);
+    assertThat(filter.getCategories().get(1)).isInstanceOf(CountyCouncilCategory.class);
   }
 
   @Test

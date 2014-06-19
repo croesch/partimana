@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.model.filter;
 
 import com.github.croesch.partimana.model.api.IFilterCategory;
+import com.github.croesch.partimana.model.filter.cat.cp.CountyCouncilCategory;
 import com.github.croesch.partimana.model.filter.cat.cp.SignedInCategory;
 import com.github.croesch.partimana.types.CampParticipant;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class CampParticipantFilter extends AFilter<CampParticipant> {
   public final List<IFilterCategory<CampParticipant, ?>> getCategories() {
     final List<IFilterCategory<CampParticipant, ?>> categories = new ArrayList<IFilterCategory<CampParticipant, ?>>();
     categories.add(new SignedInCategory());
+    categories.add(new CountyCouncilCategory());
     return categories;
   }
 }
