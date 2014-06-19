@@ -3,6 +3,17 @@ layout: default
 title: Downloads
 ---
 
+# Version 1.1.0
+
+## Download
+Packaged: [partimana-1.1.0.zip](https://github.com/croesch/partimana/releases/download/v-1.1.0/partimana-1.1.0-bin.zip)
+
+Source: [v-1.1.0.zip](https://github.com/croesch/partimana/archive/v-1.1.0.zip) /  [v-1.1.0.tar.gz](https://github.com/croesch/partimana/archive/v-1.1.0.tar.gz)
+
+## Changelog
+* [#55](https://github.com/croesch/partimana/issues/55) Add further attributes to CSV export
+* [#56](https://github.com/croesch/partimana/issues/56) Allow filtering CSV for county councils
+
 # Version 1.0.0
 
 ## Download
