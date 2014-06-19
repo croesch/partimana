@@ -165,12 +165,69 @@ public class CampParticipantTest {
     assertThat(campParticipant.hashCode()).isNotEqualTo(new CampParticipant(p2).hashCode());
   }
 
-
   @Test
   public final void testGetGender() {
     assertThat(campParticipant.getGender()).isEqualTo(Gender.MALE);
 
     participant.setGender(Gender.FEMALE);
     assertThat(campParticipant.getGender()).isEqualTo(Gender.FEMALE);
+  }
+
+  @Test
+  public final void testGetDenomination() {
+    assertThat(campParticipant.getDenomination()).isEqualTo(participant.getDenomination());
+
+    participant.setDenomination(Denomination.FREE_CHURCH);
+    assertThat(campParticipant.getDenomination()).isEqualTo(Denomination.FREE_CHURCH);
+  }
+
+  @Test
+  public final void testGetBirthDate() {
+    assertThat(campParticipant.getBirthDate()).isEqualTo(participant.getBirthDate());
+
+    Date birthDate = new Date(123456789123456L);
+    participant.setBirthDate(birthDate);
+    assertThat(campParticipant.getBirthDate()).isEqualTo(birthDate);
+  }
+
+  @Test
+  public final void testGetPhone() {
+    assertThat(campParticipant.getPhone()).isEqualTo(participant.getPhone());
+
+    participant.setPhone("444-333-2222");
+    assertThat(campParticipant.getPhone()).isEqualTo("444-333-2222");
+
+    participant.setPhone(null);
+    assertThat(campParticipant.getPhone()).isNull();
+  }
+
+  @Test
+  public final void testGetMobilePhone() {
+    assertThat(campParticipant.getMobilePhone()).isEqualTo(participant.getMobilePhone());
+
+    participant.setMobilePhone("444-333-2222");
+    assertThat(campParticipant.getMobilePhone()).isEqualTo("444-333-2222");
+
+    participant.setMobilePhone(null);
+    assertThat(campParticipant.getMobilePhone()).isNull();
+  }
+
+  @Test
+  public final void testGetMailAddress() {
+    assertThat(campParticipant.getMailAddress()).isEqualTo(participant.getMailAddress());
+
+    participant.setMailAddress("peter.pan@web.de");
+    assertThat(campParticipant.getMailAddress()).isEqualTo("peter.pan@web.de");
+
+    participant.setMailAddress(null);
+    assertThat(campParticipant.getMailAddress()).isNull();
+  }
+
+  @Test
+  public final void testGetCountyCouncil() {
+    assertThat(campParticipant.getCountyCouncil()).isEqualTo(participant.getCountyCouncil());
+
+    participant.setCountyCouncil(CountyCouncil.CITY_FRANKENTHAL);
+    assertThat(campParticipant.getCountyCouncil()).isEqualTo(CountyCouncil.CITY_FRANKENTHAL);
   }
 }

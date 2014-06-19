@@ -181,4 +181,58 @@ public final class CampParticipant implements IFilterable {
   public Gender getGender() {
     return participant.getGender();
   }
+
+  /**
+   * @return the {@link Denomination} of the {@link Participant}.
+   * @since Date: Jun 19, 2014
+   */
+  @NotNull
+  public Denomination getDenomination() {
+    return participant.getDenomination();
+  }
+
+  /**
+   * @return the birth date of the {@link Participant}.
+   * @since Date: Jun 19, 2014
+   */
+  @NotNull
+  public Date getBirthDate() {
+    return participant.getBirthDate();
+  }
+
+  /**
+   * @return the phone number of the {@link Participant}.
+   * @since Date: Jun 19, 2014
+   */
+  @MayBeNull
+  public String getPhone() {
+    return participant.getPhone();
+  }
+
+  /**
+   * @return the mobile phone of the {@link Participant}.
+   * @since Date: Jun 19, 2014
+   */
+  @MayBeNull
+  public String getMobilePhone() {
+    return participant.getMobilePhone();
+  }
+
+  /**
+   * @return the mail address of the {@link Participant}.
+   * @since Date: Jun 19, 2014
+   */
+  @MayBeNull
+  public String getMailAddress() {
+    return participant.getMailAddress();
+  }
+
+  /**
+   * @return the {@link CountyCouncil} of the {@link Participant}.
+   * @since Date: Jun 19, 2014
+   */
+  @NotNull
+  public CountyCouncil getCountyCouncil() {
+    return participant.getCountyCouncil();
+  }
 }
