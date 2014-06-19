@@ -480,7 +480,9 @@ public final class Camp implements IFilterable {
 
     final StringBuilder sb = new StringBuilder(
         "vorname" + separator + "name" + separator + "strasse" + separator + "plz" + separator + "wohnort" + separator
-        + "geschlecht" + separator + "freizeit" + separator + "preis" + separator + "von" + separator + "bis");
+        + "geschlecht" + separator + "geburtstag" + separator + "alter" + separator + "kreisverwaltung" + separator
+        + "konfession" + separator + "telefon" + separator + "mobiltelefon" + separator + "mail" + separator
+        + "freizeit" + separator + "preis" + separator + "von" + separator + "bis");
     sb.append(lf);
     for (final CampParticipant cp : getParticipants()) {
       if (participantsToInclude.isEmpty() || participantsToInclude.contains(cp.getId())) {
@@ -490,6 +492,13 @@ public final class Camp implements IFilterable {
         sb.append(cp.getPostCode()).append(separator);
         sb.append(cp.getCity()).append(separator);
         sb.append(cp.getGender().getRepresentation()).append(separator);
+        sb.append(getFormattedDate(cp.getBirthDate())).append(separator);
+        sb.append(age(cp)).append(separator);
+        sb.append(cp.getCountyCouncil()).append(separator);
+        sb.append(cp.getDenomination()).append(separator);
+        sb.append(stringOrEmpty(cp.getPhone())).append(separator);
+        sb.append(stringOrEmpty(cp.getMobilePhone())).append(separator);
+        sb.append(stringOrEmpty(cp.getMailAddress())).append(separator);
         sb.append(getName()).append(separator);
         if (cp.getRole() == Role.DAY_CHILD) {
           sb.append(getRatePerDayChildren());
@@ -501,6 +510,27 @@ public final class Camp implements IFilterable {
       }
     }
     return sb.toString();
+  }
+
+  private String age(CampParticipant participant) {
+    Calendar dob = Calendar.getInstance();
+    dob.setTime(participant.getBirthDate());
+    Calendar today = Calendar.getInstance();
+    int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+    if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+      age--;
+    } else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) < dob
+        .get(Calendar.DAY_OF_MONTH)) {
+      age--;
+    }
+    return String.valueOf(age);
+  }
+
+  private String stringOrEmpty(String string) {
+    if (string == null) {
+      return "";
+    }
+    return string;
   }
 
   /**

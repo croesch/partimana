@@ -5,9 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -19,13 +19,7 @@ import org.junit.Test;
 public class CampTest {
 
   /** object under test */
-  private Camp camp;
-
-  @Before
-  public final void setUp() {
-    final int untilDate = 100000;
-    camp = new Camp("Testcamp", new Date(0), new Date(untilDate), "here", "100");
-  }
+  private Camp camp = new Camp("Testcamp", new Date(0), new Date(100000), "here", "100");
 
   @Test
   public final void testCamp() {
@@ -409,39 +403,52 @@ public class CampTest {
     final Participant participant = new Participant("Kleemann",
                                                     "Lorenz",
                                                     Gender.MALE,
-                                                    Denomination.OTHER,
-                                                    new Date(),
+                                                    Denomination.EVANGELIC,
+                                                    // 10.01.2005
+                                                    new Date(1105311600000L),
                                                     "Lehmweg 28",
                                                     67688,
                                                     "Rodenbach",
-                                                    CountyCouncil.OTHER);
+                                                    CountyCouncil.COUNTY_BAD_DUERKHEIM);
     final Participant participant2 = new Participant("Eichhorn",
                                                      "Sosaya",
                                                      Gender.FEMALE,
-                                                     Denomination.OTHER,
-                                                     new Date(),
+                                                     Denomination.CATHOLIC,
+                                                     // 20.11.2002
+                                                     new Date(1037746800000L),
                                                      "Eisenkehlstr. 37",
                                                      67475,
                                                      "Weidenthal",
-                                                     CountyCouncil.OTHER);
+                                                     CountyCouncil.COUNTY_GERMERSHEIM);
     final Participant participant3 = new Participant("Duck",
                                                      "Donald",
                                                      Gender.MALE,
                                                      Denomination.JEWISH,
-                                                     new Date(),
+                                                     // 06.03.2008
+                                                     new Date(1204758000000L),
                                                      "Entenstraße 2",
                                                      12345,
                                                      "Entenhausen",
-                                                     CountyCouncil.OTHER);
+                                                     CountyCouncil.COUNTY_KUSEL);
     final Participant participant4 = new Participant("Eichhorn",
                                                      "Cosima",
                                                      Gender.FEMALE,
                                                      Denomination.OTHER,
-                                                     new Date(),
+                                                     // 13.12.2001
+                                                     new Date(1008198000000L),
                                                      "Eisenkehlstr. 37",
                                                      67475,
                                                      "Weidenthal",
-                                                     CountyCouncil.OTHER);
+                                                     CountyCouncil.COUNTY_RHEIN_PFALZ);
+    participant2.setPhone(" ");
+    participant2.setMobilePhone(" ");
+    participant2.setMailAddress(" ");
+    participant3.setPhone("987654");
+    participant3.setMobilePhone("0123-456789");
+    participant3.setMailAddress("donald@duck.de");
+    participant4.setPhone("555-444333");
+    participant4.setMobilePhone("0160/1112223");
+    participant4.setMailAddress("cosima.eichhorn@t-online.de");
 
     camp.addParticipant(new CampParticipant(participant));
     camp.addParticipant(new CampParticipant(participant2));
@@ -457,40 +464,68 @@ public class CampTest {
     camp.setRatePerDayChildren("22");
 
     String lf = System.getProperty("line.separator");
-    String from = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getFromDate());
-    String until = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(camp.getUntilDate());
+    String from = formatDate(camp.getFromDate());
+    String until = formatDate(camp.getUntilDate());
 
-    String participant1CSV = "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;Testcamp;100;" + from + ";" + until;
-    String participant2CSV = "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from + ";" + until;
-    String participant3CSV = "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;Testcamp;22;" + from + ";" + until;
-    String participant4CSV = "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;Testcamp;100;" + from + ";" + until;
+    String headerCSV =
+        "vorname;name;strasse;plz;wohnort;geschlecht;geburtstag;alter;kreisverwaltung;konfession;telefon;"
+        + "mobiltelefon;mail;freizeit;preis;von;bis";
+    String participant1CSV =
+        "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;" + birth(participant) + ";" + age(participant)
+        + ";Kreis Bad Dürkheim;Evangelisch;;;;" + "Testcamp;100;" + from + ";" + until;
+    String participant2CSV =
+        "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;" + birth(participant2) + ";" + age(participant2)
+        + ";Kreis Gemersheim;Katholisch; ; ; ;" + "Testcamp;100;" + from + ";" + until;
+    String participant3CSV =
+        "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;" + birth(participant3) + ";" + age(participant3)
+        + ";Kreis Kusel;Jüdisch;987654;0123-456789;donald@duck.de;" + "Testcamp;22;" + from + ";" + until;
+    String participant4CSV =
+        "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;" + birth(participant4) + ";" + age(participant4)
+        + ";Kreis Rhein-Pfalz;Andere Konfession;555-444333;0160/1112223;cosima.eichhorn@t-online.de;" + "Testcamp;100;"
+        + from + ";" + until;
 
     // all participants
     assertThat(camp.toCSV(Collections.<Long>emptySet())).isEqualTo(
-        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
-        + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
+        headerCSV + lf + participant1CSV + lf + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
     assertThat(camp.toCSV(asList(participant3.getId(),
                                  participant2.getId(),
                                  participant.getId(),
                                  participant4.getId()))).isEqualTo(
-        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
-        + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
+        headerCSV + lf + participant1CSV + lf + participant2CSV + lf + participant3CSV + lf + participant4CSV + lf);
 
     // one participant
-    assertThat(camp.toCSV(asList(participant.getId())))
-        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf);
-    assertThat(camp.toCSV(asList(participant4.getId())))
-        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant4CSV + lf);
+    assertThat(camp.toCSV(asList(participant.getId()))).isEqualTo(headerCSV + lf + participant1CSV + lf);
+    assertThat(camp.toCSV(asList(participant4.getId()))).isEqualTo(headerCSV + lf + participant4CSV + lf);
     // duplicate id
     assertThat(camp.toCSV(asList(participant.getId(), participant.getId())))
-        .isEqualTo("vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf);
+        .isEqualTo(headerCSV + lf + participant1CSV + lf);
 
     // more participants
-    assertThat(camp.toCSV(asList(participant4.getId(), participant3.getId()))).isEqualTo(
-        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant3CSV + lf
-        + participant4CSV + lf);
-    assertThat(camp.toCSV(asList(participant.getId(), participant3.getId()))).isEqualTo(
-        "vorname;name;strasse;plz;wohnort;geschlecht;freizeit;preis;von;bis" + lf + participant1CSV + lf
-        + participant3CSV + lf);
+    assertThat(camp.toCSV(asList(participant4.getId(), participant3.getId())))
+        .isEqualTo(headerCSV + lf + participant3CSV + lf + participant4CSV + lf);
+    assertThat(camp.toCSV(asList(participant.getId(), participant3.getId())))
+        .isEqualTo(headerCSV + lf + participant1CSV + lf + participant3CSV + lf);
+  }
+
+  private String birth(Participant participant) {
+    return formatDate(participant.getBirthDate());
+  }
+
+  private String age(Participant participant) {
+    Calendar dob = Calendar.getInstance();
+    dob.setTime(participant.getBirthDate());
+    Calendar today = Calendar.getInstance();
+    int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+    if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+      age--;
+    } else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) < dob
+        .get(Calendar.DAY_OF_MONTH)) {
+      age--;
+    }
+    return String.valueOf(age);
+  }
+
+  private String formatDate(Date date) {
+    return SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(date);
   }
 }
