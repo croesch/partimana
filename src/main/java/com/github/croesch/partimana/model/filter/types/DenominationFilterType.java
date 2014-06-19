@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.model.filter.types;
 
 import com.github.croesch.partimana.types.Denomination;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 /**
@@ -11,11 +12,13 @@ import javax.swing.JTextField;
  */
 public abstract class DenominationFilterType extends AFilterType<Denomination> {
   @Override
-  public final boolean parseFilterValue(final JTextField value) {
-    final Denomination den = parse(value.getText());
-    if (den != null) {
-      setFilterValue(den);
-      return true;
+  public final boolean parseFilterValue(final JComponent value) {
+    if (value instanceof JTextField) {
+      final Denomination den = parse(((JTextField) value).getText());
+      if (den != null) {
+        setFilterValue(den);
+        return true;
+      }
     }
     return false;
   }

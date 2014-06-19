@@ -1,5 +1,6 @@
 package com.github.croesch.partimana.model.filter.types;
 
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 /**
@@ -10,8 +11,11 @@ import javax.swing.JTextField;
  */
 public abstract class StringFilterType extends AFilterType<String> {
   @Override
-  public final boolean parseFilterValue(final JTextField value) {
-    setFilterValue(value.getText());
-    return true;
+  public final boolean parseFilterValue(final JComponent value) {
+    if (value instanceof JTextField) {
+      setFilterValue(((JTextField) value).getText());
+      return true;
+    }
+    return false;
   }
 }

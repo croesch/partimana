@@ -1,6 +1,7 @@
 package com.github.croesch.partimana.model.filter.types;
 
 import com.github.croesch.partimana.types.Gender;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 /**
@@ -12,11 +13,13 @@ import javax.swing.JTextField;
 public abstract class GenderFilterType extends AFilterType<Gender> {
 
   @Override
-  public final boolean parseFilterValue(final JTextField value) {
-    final Gender gen = parse(value.getText());
-    if (gen != null) {
-      setFilterValue(gen);
-      return true;
+  public final boolean parseFilterValue(final JComponent value) {
+    if (value instanceof JTextField) {
+      final Gender gen = parse(((JTextField) value).getText());
+      if (gen != null) {
+        setFilterValue(gen);
+        return true;
+      }
     }
     return false;
   }
