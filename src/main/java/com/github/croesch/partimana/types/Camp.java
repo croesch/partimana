@@ -515,12 +515,13 @@ public final class Camp implements IFilterable {
   private String age(CampParticipant participant) {
     Calendar dob = Calendar.getInstance();
     dob.setTime(participant.getBirthDate());
-    Calendar today = Calendar.getInstance();
-    int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-    if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+    Calendar dateOfInterest = Calendar.getInstance();
+    dateOfInterest.setTime(getFromDate());
+    int age = dateOfInterest.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+    if (dateOfInterest.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
       age--;
-    } else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) < dob
-        .get(Calendar.DAY_OF_MONTH)) {
+    } else if (dateOfInterest.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
+               && dateOfInterest.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)) {
       age--;
     }
     return String.valueOf(age);

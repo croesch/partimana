@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.croesch.partimana.types.exceptions.RequiredFieldSetToNullException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import org.junit.Test;
@@ -18,15 +17,14 @@ import org.junit.Test;
  */
 public class CampTest {
 
-  /** object under test */
-  private Camp camp = new Camp("Testcamp", new Date(0), new Date(100000), "here", "100");
+  /** object under test from 6/29/2014 to 7/13/2014 */
+  private Camp camp = new Camp("Testcamp", new Date(1403992800000L), new Date(1405202400000L), "here", "100");
 
   @Test
   public final void testCamp() {
-    final int untilDate = 100000;
     assertThat(camp.getName()).isEqualTo("Testcamp");
-    assertThat(camp.getFromDate()).isEqualTo(new Date(0));
-    assertThat(camp.getUntilDate()).isEqualTo(new Date(untilDate));
+    assertThat(camp.getFromDate()).isEqualTo(new Date(1403992800000L));
+    assertThat(camp.getUntilDate()).isEqualTo(new Date(1405202400000L));
     assertThat(camp.getLocation()).isEqualTo("here");
     assertThat(camp.getRatePerParticipant()).isEqualTo("100");
   }
@@ -470,19 +468,16 @@ public class CampTest {
     String headerCSV =
         "vorname;name;strasse;plz;wohnort;geschlecht;geburtstag;alter;kreisverwaltung;konfession;telefon;"
         + "mobiltelefon;mail;freizeit;preis;von;bis";
-    String participant1CSV =
-        "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;" + birth(participant) + ";" + age(participant)
-        + ";Kreis Bad Dürkheim;Evangelisch;;;;" + "Testcamp;100;" + from + ";" + until;
-    String participant2CSV =
-        "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;" + birth(participant2) + ";" + age(participant2)
-        + ";Kreis Gemersheim;Katholisch; ; ; ;" + "Testcamp;100;" + from + ";" + until;
-    String participant3CSV =
-        "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;" + birth(participant3) + ";" + age(participant3)
-        + ";Kreis Kusel;Jüdisch;987654;0123-456789;donald@duck.de;" + "Testcamp;22;" + from + ";" + until;
-    String participant4CSV =
-        "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;" + birth(participant4) + ";" + age(participant4)
-        + ";Kreis Rhein-Pfalz;Andere Konfession;555-444333;0160/1112223;cosima.eichhorn@t-online.de;" + "Testcamp;100;"
-        + from + ";" + until;
+    String participant1CSV = "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;" + birth(participant) + ";9"
+                             + ";Kreis Bad Dürkheim;Evangelisch;;;;Testcamp;100;" + from + ";" + until;
+    String participant2CSV = "Sosaya;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;" + birth(participant2) + ";11"
+                             + ";Kreis Gemersheim;Katholisch; ; ; ;Testcamp;100;" + from + ";" + until;
+    String participant3CSV = "Donald;Duck;Entenstraße 2;12345;Entenhausen;m;" + birth(participant3) + ";6"
+                             + ";Kreis Kusel;Jüdisch;987654;0123-456789;donald@duck.de;Testcamp;22;" + from + ";"
+                             + until;
+    String participant4CSV = "Cosima;Eichhorn;Eisenkehlstr. 37;67475;Weidenthal;w;" + birth(participant4) + ";12"
+                             + ";Kreis Rhein-Pfalz;Andere Konfession;555-444333;0160/1112223;cosima.eichhorn@t-online" +
+                             ".de;Testcamp;100;" + from + ";" + until;
 
     // all participants
     assertThat(camp.toCSV(Collections.<Long>emptySet())).isEqualTo(
@@ -507,22 +502,56 @@ public class CampTest {
         .isEqualTo(headerCSV + lf + participant1CSV + lf + participant3CSV + lf);
   }
 
-  private String birth(Participant participant) {
-    return formatDate(participant.getBirthDate());
+  @Test
+  public void testToCSV_Age() {
+    final Participant participant = new Participant("Kleemann",
+                                                    "Lorenz",
+                                                    Gender.MALE,
+                                                    Denomination.EVANGELIC,
+                                                    // 10.01.2005
+                                                    new Date(1105311600000L),
+                                                    "Lehmweg 28",
+                                                    67688,
+                                                    "Rodenbach",
+                                                    CountyCouncil.COUNTY_BAD_DUERKHEIM);
+
+    camp.addParticipant(new CampParticipant(participant));
+
+    // 1/20/2025
+    Date beforeBegin = new Date(1735686000000L);
+    // 1/10/2025
+    Date onBegin = new Date(1736463600000L);
+    // 1/1/2025
+    Date afterBegin = new Date(1737327600000L);
+    String lf = System.getProperty("line.separator");
+    String fromBefore = formatDate(beforeBegin);
+    String fromOn = formatDate(onBegin);
+    String fromAfter = formatDate(afterBegin);
+    String until = formatDate(camp.getUntilDate());
+
+    String headerCSV =
+        "vorname;name;strasse;plz;wohnort;geschlecht;geburtstag;alter;kreisverwaltung;konfession;telefon;"
+        + "mobiltelefon;mail;freizeit;preis;von;bis";
+    String participantBirthBeforeBegin = "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;" + birth(participant) + ";19"
+                                         + ";Kreis Bad Dürkheim;Evangelisch;;;;Testcamp;100;" + fromBefore + ";"
+                                         + until;
+    String participantBirthOnBegin = "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;" + birth(participant) + ";20"
+                                     + ";Kreis Bad Dürkheim;Evangelisch;;;;Testcamp;100;" + fromOn + ";" + until;
+    String participantBirthAfterBegin = "Lorenz;Kleemann;Lehmweg 28;67688;Rodenbach;m;" + birth(participant) + ";20"
+                                        + ";Kreis Bad Dürkheim;Evangelisch;;;;Testcamp;100;" + fromAfter + ";" + until;
+
+    camp.setFromDate(beforeBegin);
+    assertThat(camp.toCSV(Collections.<Long>emptySet())).isEqualTo(headerCSV + lf + participantBirthBeforeBegin + lf);
+
+    camp.setFromDate(onBegin);
+    assertThat(camp.toCSV(Collections.<Long>emptySet())).isEqualTo(headerCSV + lf + participantBirthOnBegin + lf);
+
+    camp.setFromDate(afterBegin);
+    assertThat(camp.toCSV(Collections.<Long>emptySet())).isEqualTo(headerCSV + lf + participantBirthAfterBegin + lf);
   }
 
-  private String age(Participant participant) {
-    Calendar dob = Calendar.getInstance();
-    dob.setTime(participant.getBirthDate());
-    Calendar today = Calendar.getInstance();
-    int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-    if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
-      age--;
-    } else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) < dob
-        .get(Calendar.DAY_OF_MONTH)) {
-      age--;
-    }
-    return String.valueOf(age);
+  private String birth(Participant participant) {
+    return formatDate(participant.getBirthDate());
   }
 
   private String formatDate(Date date) {
