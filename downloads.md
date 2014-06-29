@@ -3,6 +3,16 @@ layout: default
 title: Downloads
 ---
 
+# Version 1.1.1
+
+## Download
+Packaged: [partimana-1.1.1.zip](https://github.com/croesch/partimana/releases/download/v-1.1.1/partimana-1.1.1-bin.zip)
+
+Source: [v-1.1.1.zip](https://github.com/croesch/partimana/archive/v-1.1.1.zip) /  [v-1.1.1.tar.gz](https://github.com/croesch/partimana/archive/v-1.1.1.tar.gz)
+
+## Changelog
+* [#57](https://github.com/croesch/partimana/issues/57) Age in CSV export is calculated wrong
+
 # Version 1.1.0
 
 ## Download
