@@ -21,7 +21,7 @@ Partimana is a simple Java Swing application that helps you managing camps and t
         # enter your password here
         db.password = secretPassword
 ^
-1. Start your database
-1. Run the `partimana.bat` on Windows or `partimana.sh` on Unix
+5. Start your database
+6. Run the `partimana.bat` on Windows or `partimana.sh` on Unix
 
 Don't hesitate to contact me!
