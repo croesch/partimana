@@ -3,7 +3,4 @@ lsi: false
 markdown: kramdown
 pygments: true
 source: .
-analytics:
-  provider: google
-  google:
-      tracking_id: 'UA-39746022-3'
+google_analytics_tracking_id: 'UA-39746022-3'
