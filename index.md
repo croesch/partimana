@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Partimana
+title: Manage your camps
 ---
 
 # Partimana

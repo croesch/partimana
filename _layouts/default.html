@@ -1,59 +1,48 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-
-    <title>{{ page.title }}</title>
-    <meta name="description" content=" partimana - a program to manage camps and their participants.">
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
+    <link rel="stylesheet" type="text/css" href="stylesheets/theme.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=yes"/>
+    <title>Partimana - {{ page.title }}</title>
 </head>
 
 <body>
+<header>
+    <h1>Parti<strong>mana</strong></h1>
 
-<div class="wrapper">
-    <header>
-        <h1 class="title">{{ page.title }}</h1>
-    </header>
-    <div id="container">
-        <p class="tagline"> partimana - a program to manage camps and their participants.</p>
-
-        <div id="main" role="main">
-            <div class="download-bar">
-                <div class="inner">
-                    <a href="https://github.com/croesch/partimana/releases/download/v-1.1.1/partimana-1.1.1-bin.zip"
-                       class="download-button zip"><span>Download</span></a>
-                    <a href="https://github.com/croesch/partimana" class="code">View Partimana on GitHub</a>
-                </div>
-                <span class="blc"></span><span class="trc"></span>
-            </div>
-            <article class="markdown-body">
-                {{ content }}
-            </article>
+    <h2>{{ page.title }}</h2>
+</header>
+<main>
+    <div id="nav">
+        <a href="index.html">index</a>
+    </div>
+    <div>
+        {{ content }}
+        <div style="margin-top: 50px;margin-left: auto;margin-right: auto;text-align: center">
+            it follows an ad<br/>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- partimana - github.io -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-6867036041575568"
+                 data-ad-slot="6717329482"></ins>
+            <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
-    <footer>
-        <div class="owner">
-            <p><a href="https://github.com/croesch" class="avatar"><img
-                    src="https://0.gravatar.com/avatar/e78a8aead32dc2f89357154dbf962c18?d=https%3A%2F%2Fidenticons.github.com%2Fd7a33e7e59206efa178dea4333aa7d40.png&amp;r=x&amp;s=60"
-                    width="48" height="48"/></a> <a href="https://github.com/croesch">croesch</a> maintains <a
-                    href="https://github.com/croesch/partimana">Partimana</a></p>
+</main>
+<footer>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-
-        </div>
-        <div class="creds">
-            <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a
-                    href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-        </div>
-    </footer>
-</div>
-
+  ga('create', 'UA-39746022-3', 'auto');
+  ga('send', 'pageview');
+    </script>
+</footer>
 </body>
 </html>
